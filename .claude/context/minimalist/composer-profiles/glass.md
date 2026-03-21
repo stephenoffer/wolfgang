@@ -1,144 +1,251 @@
-# Glass Composer Profile
+# Composer Profile: Philip Glass (b. 1937)
 
-## Quick ID
-| Attribute | Value |
-|-----------|-------|
-| Full name | Philip Glass (b. 1937) |
-| Nationality | American |
-| Period | Minimalist / Post-Minimalist |
-| Key works | Einstein on the Beach, Glassworks, Koyaanisqatsi, Piano Etudes, Symphonies 1-12, Akhnaten |
-| Signature traits | Additive rhythm, arpeggiated patterns, triadic harmony, opera/film crossover |
+## Style Overview
 
-## Additive Rhythm
+| Element | Glass's Approach |
+|---------|-----------------|
+| Harmonic language | Diatonic, modal, arpeggiated triads |
+| Rhythmic technique | Additive process, cyclic patterns |
+| Texture | Arpeggiated keyboard layers, repetitive |
+| Form | Cyclic structure, additive/subtractive, opera acts |
+| Ensemble | Keyboards + winds + voice (Philip Glass Ensemble) |
+| Aesthetic | Repetition with gradual change, hypnotic |
+| Output range | Opera, symphony, film score, chamber, solo piano |
 
-| Technique | Description |
-|-----------|-------------|
-| Pattern extension | Base pattern grows by adding notes |
-| Pattern contraction | Pattern shrinks by removing notes |
-| Cyclic growth | Additive within repeating cycles |
-| Metric change | Bar length changes with each addition |
-| Combined voices | Different voices add at different rates |
+## Period Overview
 
-### Additive Rhythm Example
+| Period | Years | Key Works | Style |
+|--------|-------|-----------|-------|
+| Early minimalist | 1965-1974 | Music in 12 Parts, ensemble pieces | Pure process, additive |
+| Opera trilogy | 1976-1984 | Einstein, Satyagraha, Akhnaten | Operatic minimalism |
+| Film/symphonic | 1982-present | Koyaanisqatsi, Symphonies 1-12 | Accessible, expanded palette |
+| Late chamber | 2000s-present | String Quartets, Etudes | Refined, mature |
+
+## Additive Rhythmic Process
+
+### Core Technique
+
+| Step | Description |
+|------|-------------|
+| 1 | Establish base rhythmic unit (e.g., 3 eighth notes) |
+| 2 | Repeat unit several times |
+| 3 | Add one note to unit (now 4 eighth notes) |
+| 4 | Repeat expanded unit |
+| 5 | Continue adding (5, 6, 7... notes) |
+| 6 | Optionally reverse (subtractive) |
+
 ```abc
 X:1
-T:Glass Additive Pattern
-M:12/8
+T:Additive Rhythmic Process - Glass
+M:4/4
+L:1/8
 K:Am
-| A,CE A,CE A,CE A,CE | A,CEA A,CEA A,CEA | A,CEAC A,CEAC |
+"^3"AEC AEC AEC AEC AE |
+"^4"AECE AECE AECE AECE |
+"^5"AECEG AECEG AECEG z |
+"^6"AECEGA AECEGA AECEG |
 ```
 
-### Additive Process Detailed
-```
-Cycle 1:  | e e e |  e e e |        (3+3 = 6)
-Cycle 2:  | e e e e | e e e |       (4+3 = 7)
-Cycle 3:  | e e e e | e e e e |     (4+4 = 8)
-Cycle 4:  | e e e e e | e e e e |   (5+4 = 9)
-(pattern asymmetry creates shifting rhythmic interest)
+### Additive Process with Chord Change
+```abc
+X:2
+T:Additive Process + Harmonic Change
+M:4/4
+L:1/8
+K:Fm
+"^Fm: 3"FAc FAc FAc FAc |
+"^Fm: 5"FAcAF FAcAF FAcA |
+"^Ab: 3"_Ace _Ace _Ace _Ace |
+"^Ab: 5"_AceA_E _AceA_E _Ace |
 ```
 
 ## Arpeggiated Patterns
 
-| Pattern Type | Description |
-|-------------|-------------|
-| Rising arpeggio | Root-3rd-5th-8va, continuous |
-| Falling arpeggio | 8va-5th-3rd-root, continuous |
-| Oscillating | Up then down within chord |
-| Broken chord | Non-sequential chord tones |
-| Two-hand interlock | LH and RH alternate notes of pattern |
-| Hocketed | Pattern split between two instruments |
+### Pattern Shapes
 
-### Glass Arpeggio Signature
+| Shape | Description | Example (Am) |
+|-------|-------------|--------------|
+| Ascending | Up through chord | A-C-E-A-C-E |
+| Descending | Down through chord | E-C-A-E-C-A |
+| Oscillating | Up-down alternation | A-C-E-C-A-C-E-C |
+| Rotating | Circular, shifted start | C-E-A-C, E-A-C-E |
+| Broken | Non-adjacent leaps | A-E-C-A, reversed |
+| Expanding | Wider intervals each cycle | A-C, A-E, A-A' |
+
 ```abc
-X:2
-T:Glass Arpeggiation
+X:3
+T:Arpeggiated Pattern Shapes
 M:4/4
+L:1/16
 K:Am
-| A,CEA AECA | G,BDG GDBG | F,ACF FCAF | E,GBE EBGE |
+"^Ascending"ACEA CEAC EACE ACEC |
+"^Oscillating"ACEC ACEC ACEC ACEC |
+"^Rotating"CEAC EACE ACEA CEAC |
 ```
 
-## Triadic Harmony
-
-| Principle | Application |
-|-----------|-------------|
-| Consonant triads only | Major and minor triads, root position |
-| No extensions | No 7ths, 9ths (early period) |
-| Diatonic cycling | Triads cycle through key's chords |
-| Descending patterns | bVII - bVI - V - iv common |
-| Modal ambiguity | Major/minor not always clear |
-| Slow harmonic rhythm | Chord changes after many arpeggio cycles |
-
-### Glass Chord Progressions
-```
-Descending:    Am - G - F - E (Aeolian descent)
-Cycling:       Am - G - F - G - Am (oscillating)
-Modal mix:     C - Bb - Ab - Bb - C (Aeolian inflection in major)
-Chromatic:     Am - Ab - G - Gb (chromatic bass descent, later works)
-Opera:         i - bVI - bVII - i (dramatic weight)
+### Two-Hand Keyboard Pattern
+```abc
+X:4
+T:Two-Hand Keyboard Arpeggiation (Glass)
+M:6/8
+L:1/8
+K:Dm
+%%staves {1 2}
+V:1 name="RH"
+FAd FAd | FAd FAd | _EGc _EGc | _EGc _EGc |
+V:2 name="LH"
+D,A,D D,A,D | D,A,D D,A,D | C,G,C C,G,C | C,G,C C,G,C |
 ```
 
-## Opera/Film Crossover
-
-| Genre | Approach |
-|-------|----------|
-| Opera | Arpeggiated orchestra + vocal melody; non-narrative (Einstein), mythic (Akhnaten) |
-| Film score | Hypnotic repetition matched to visual rhythm |
-| Documentary | Pattern = visual pulse (Koyaanisqatsi) |
-| Emotional scoring | Repetition builds emotional intensity through accumulation |
-
-## Ensemble and Orchestration
-
-| Ensemble | Instruments | Period |
-|----------|------------|--------|
-| Philip Glass Ensemble | 2 keyboards, winds, soprano, sound engineer | Early |
-| Solo piano | Piano etudes, solo works | All periods |
-| String quartet | Quartets 1-8 | Middle-late |
-| Symphony orchestra | Symphonies 1-12 | Late |
-| Opera orchestra | Full orchestra + amplified ensemble | All periods |
-
-### Glass Ensemble Scoring
-```
-Electric organ 1: Arpeggiated pattern (continuous)
-Electric organ 2: Same pattern, offset or complementary
-Flute: Doubling organ melody notes, sustained
-Saxophone: Countermelody or doubling
-Soprano: Solfege syllables or text, above patterns
-Sound mix: All amplified, balanced
-```
-
-## Formal Approach
-
-| Form | Application |
-|------|-------------|
-| Sectional (numbered) | Sections with different patterns, repeated ad lib |
-| Additive arch | Pattern grows then shrinks |
-| Cumulative | Instruments/patterns added over time |
-| Scene-based (opera) | Each scene a distinct harmonic/rhythmic world |
-| Through-composed | Film scores: following visual narrative |
-| Variation | Same pattern, different harmonization each cycle |
-
-## Rhythmic Characteristics
+## Cyclic Structure
 
 | Feature | Description |
 |---------|-------------|
-| Continuous eighth notes | Basic pulse rarely breaks |
-| Asymmetric groupings | 3+3+2, 3+2+3 within steady pulse |
-| No syncopation | Accents from grouping, not displacement |
-| Tempo stability | Steady tempo throughout sections |
-| Metric modulation | Tempo changes between sections only |
+| Definition | Music organized in repeating cycles of chord changes |
+| Cycle length | Typically 4-8 chords |
+| Repetition | Each cycle repeated multiple times |
+| Variation | Pattern or orchestration changes each cycle |
+| No development | Cycles don't develop, they accumulate |
+| Opera structure | Entire scenes built on cycling progressions |
 
-## Generation Guidelines
+### Common Cycle Patterns
 
-| Parameter | Recommendation |
-|-----------|---------------|
-| Key/mode | A minor, C major, F major; Aeolian, Mixolydian |
-| Tempo | Steady; quarter = 120-160 for fast, 60-80 for slow |
-| Melody | Embedded in arpeggiation; soprano line above |
-| Harmony | Triadic only; diatonic cycling; slow changes |
-| Texture | Arpeggiated keyboards + sustained winds/strings |
-| Form | Sectional with additive process within sections |
-| Rhythm | Continuous eighth notes, additive groupings |
-| Dynamics | Gradual builds; terraced between sections |
-| Emotional tone | Hypnotic, building, meditative or ecstatic |
-| Avoid | Complex harmony, rubato, solo virtuosity, silence |
-| Emphasize | Repetition, arpeggiation, additive rhythm, triadic purity |
+| Cycle | Chords | Character | Work |
+|-------|--------|-----------|------|
+| i-bVI-bVII-i | Fm-Db-Eb-Fm | Dark, driving | Koyaanisqatsi |
+| I-vi-IV-V | C-Am-F-G | Bright, populist | Glassworks |
+| i-bIII-bVII-IV | Am-C-G-D | Epic, cinematic | Film scores |
+| i-iv-bVI-bVII | Dm-Gm-Bb-C | Melancholy, flowing | Metamorphosis |
+| I-IV-I-V | D-G-D-A | Simple, hymnic | Satyagraha |
+
+```abc
+X:5
+T:Glass Cyclic Progression (Fm - Db - Eb - Fm)
+M:4/4
+L:1/16
+K:Fm
+"^Fm"FACF FACF FACF FACF | "_Db"_D_A_dF _D_A_dF _D_A_dF _D_A_dF |
+"_Eb"_EG_Be _EG_Be _EG_Be _EG_Be | "^Fm"FACF FACF FACF FACF |
+```
+
+## Repetition with Gradual Change
+
+| Change Type | Mechanism | Time Scale |
+|------------|-----------|------------|
+| Note addition | Additive process | Every 4-8 bars |
+| Harmonic shift | New chord in cycle | Every cycle (4-16 bars) |
+| Register expansion | Pattern widens range | Every 2-4 cycles |
+| Instrument addition | New voice enters | Every 1-2 cycles |
+| Dynamic swell | Gradual crescendo | Over many cycles |
+| Melodic emergence | Melody crystallizes from pattern | Over many cycles |
+
+## Opera and Film Scoring
+
+### Opera Technique
+
+| Feature | Application |
+|---------|-------------|
+| Vocal style | Sustained, syllabic, repeating text |
+| Accompaniment | Cycling arpeggios underneath |
+| Scene structure | Based on chord cycle repetition |
+| Character motifs | Specific cycles for characters |
+| Text setting | Text repeated many times, becomes incantatory |
+| Chorus | Block chords, chant-like |
+
+```abc
+X:6
+T:Opera Vocal Style (Satyagraha-like)
+M:4/4
+L:1/8
+K:D
+V:1 name="Voice"
+w:Sa-tya-gra-ha Sa-tya-gra-ha
+D2FD A2FD | D2FD A2FD |
+V:2 name="Organ arpeggio"
+DFAD DFAD | DFAD DFAD |
+```
+
+### Film Score Approach
+
+| Technique | Application |
+|-----------|-------------|
+| Arpeggiated underscore | Cycling patterns under dialogue |
+| Emotional cycles | Chord cycle matched to scene emotion |
+| Orchestral expansion | Glass Ensemble + symphony orchestra |
+| Repetition for hypnosis | Long scenes with repeating music |
+| Minimal melody | Simple repeated melodic fragments |
+| Koyaanisqatsi | Paradigm: music+image, no dialogue |
+
+## Keyboard-Based Writing
+
+| Technique | Description |
+|-----------|-------------|
+| Two-hand independence | Each hand has distinct pattern |
+| Perpetual motion | Continuous 8th or 16th notes |
+| Thumb melody | Melody carried by thumb in arpeggiated texture |
+| Wide spread | Hands span 2+ octaves |
+| Pedal use | Sustain pedal for resonance and blend |
+| Parallel motion | Both hands in parallel, different octaves |
+
+```abc
+X:7
+T:Solo Piano - Metamorphosis Style
+M:4/4
+L:1/8
+K:Am
+%%staves {1 2}
+V:1 name="RH melody+arpeggio"
+"^p"E2 EA cA EA | E2 EA cA EA |
+V:2 name="LH pattern"
+A,E A,E A,E A,E | A,E A,E A,E A,E |
+```
+
+```abc
+X:8
+T:Etude-Style Piano (late Glass)
+M:3/4
+L:1/16
+K:Dm
+DFAD FAdf ADFa | DFAD FAdf ADFa |
+```
+
+## Harmonic Simplicity
+
+| Principle | Application |
+|-----------|-------------|
+| Triads only | Root position and inversions, no extensions |
+| Diatonic motion | Chord changes within single key/mode |
+| No dominant function | V does not "need" to resolve to I |
+| Chromatic mediant | Occasional shift by 3rd for color |
+| Modal interchange | Borrowing between parallel major/minor |
+| Pedal bass | Bass stays while upper chords change |
+
+## Style Markers for Generation
+
+| Parameter | Setting |
+|-----------|---------|
+| Harmony | Diatonic triads, cycling progression |
+| Rhythm | Additive process, continuous 8ths/16ths |
+| Texture | Arpeggiated keyboard, layered repetition |
+| Melody | Emerges from pattern, simple, stepwise |
+| Form | Cyclic, arch, additive/subtractive |
+| Dynamics | Steady state with gradual swells |
+| Orchestration | Keyboards + winds + voice (or full orchestra for film) |
+| Tempo | Moderate to fast (q=120-160 for arpeggios) |
+| Key | Minor modes favored (Fm, Am, Dm) |
+| Duration | Sections: 2-5 min; full works: 10-90 min |
+
+## Compositional Fingerprints
+
+| Fingerprint | Description |
+|-------------|-------------|
+| Arpeggiated triads | Continuous broken-chord patterns |
+| Additive rhythm | Patterns grow by adding notes |
+| Cycling progression | 4-8 chord loop repeated many times |
+| Keyboard foundation | Piano or organ as primary texture source |
+| Syllabic vocal | Repeated text on repeated notes |
+| Parallel motion | Voices move in parallel |
+| No counterpoint | Homophonic, pattern-based texture |
+| Minor-mode preference | Darker modes for drama |
+| Hypnotic repetition | Same pattern for extended duration |
+| Gradual emergence | Melody slowly crystallizes from pattern |

@@ -1,291 +1,537 @@
-# Baroque Period Forms Reference
+# Baroque Forms Reference
 
-> Dense reference for AI composition agents. Covers formal structures c. 1600-1750.
+## Suite Structure
+
+Standard order (all movements share key):
+
+| Position | Dance       | Meter | Tempo     | Character                        | Origin   |
+|----------|-------------|-------|-----------|----------------------------------|----------|
+| 1        | Prelude*    | free  | moderate  | improvisatory, toccata-like      | --       |
+| 2        | Allemande   | 4/4   | moderate  | flowing, serious, contrapuntal   | German   |
+| 3        | Courante    | 3/4   | moderate+ | running passages, cross-rhythms  | French   |
+| 3 alt    | Corrente    | 3/4   | fast      | lighter, homophonic Italian style| Italian  |
+| 4        | Sarabande   | 3/4   | slow      | stately, accent on beat 2        | Spanish  |
+| 5        | Optional(s) | varies| varies    | galanteries -- see below         | various  |
+| 6        | Gigue       | 6/8   | fast      | fugal, lively, compound meter    | British  |
+
+*Optional. Present in English suites (Bach), often absent elsewhere.
+
+### Optional Galanteries (inserted between Sarabande and Gigue)
+
+| Dance      | Meter | Tempo    | Character                          |
+|------------|-------|----------|------------------------------------|
+| Minuet     | 3/4   | moderate | elegant, paired (I & II)           |
+| Gavotte    | 2/2   | moderate | starts half-bar upbeat, cheerful   |
+| Bourree    | 2/2   | fast     | starts quarter-note upbeat, lively |
+| Passepied  | 3/8   | fast     | light, quick minuet variant        |
+| Loure      | 6/4   | slow     | dotted rhythms, heavy              |
+| Polonaise  | 3/4   | moderate | accented beat 1, feminine cadences |
+| Air        | 4/4   | slow     | songlike, lyrical                  |
+| Anglaise   | 4/4   | fast     | energetic, simple                  |
+
+### Suite Section Proportions (typical bar counts)
+
+| Dance      | A section | B section | Ratio A:B |
+|------------|-----------|-----------|-----------|
+| Allemande  | 8-16      | 12-24     | ~1:1.5    |
+| Courante   | 8-16      | 12-20     | ~1:1.3    |
+| Sarabande  | 8-12      | 12-16     | ~1:1.3    |
+| Gigue      | 12-24     | 16-32     | ~1:1.4    |
+| Minuet     | 8         | 8-16      | ~1:1.5    |
+| Gavotte    | 8         | 8-12      | ~1:1.2    |
+| Bourree    | 8         | 8-12      | ~1:1.2    |
+
+### ABC Example -- Allemande Opening (Binary Form, D minor)
+
+```abc
+X:1
+T:Allemande
+M:4/4
+L:1/16
+K:Dm
+Q:1/4=72
+|:"A" A,2DE FAGF EDCE D2A,2|D4 F2A2 d2c2 B2A2|
+G2FG A2Bc d2ef g2fe|dcBA GFED ^C2D2 E2^F2:|
+|:"B" G2AB cBAG FGAB cdef|g2fe d2c2 B2A2 G2^F2|
+G2AB c2de f2ed ^c2d2|e2d2 ^c2B2 A4 D4:|
+```
 
 ---
 
-## 1. Fugue
+## Binary Form
 
-The pinnacle of Baroque contrapuntal form.
+Used in virtually all Baroque dance movements.
 
-### Fugue Anatomy
+### Simple Binary (Type 1)
 
-| Component | Description | Location |
-|---|---|---|
-| Subject | Main theme; defines the fugue | Opening voice, alone |
-| Answer | Subject in dominant key (real or tonal) | Second voice entry |
-| Countersubject | Counterpoint against the answer; may recur | Accompanies answer |
-| Exposition | All voices enter with subject/answer | Beginning |
-| Episode | Non-subject material; sequential, modulatory | Between subject entries |
-| Middle entries | Subject returns in various keys | After exposition |
-| Stretto | Overlapping subject entries | Climactic section |
-| Pedal point | Sustained tonic or dominant | Near end |
-| Final entry | Subject in tonic, definitive | Conclusion |
+```
+||: A :||: B :||
+   I->V     V->I
+```
+
+- A section: tonic to dominant (or relative major if minor key)
+- B section: dominant area back to tonic
+- No return of opening material in B
+
+### Rounded Binary (Type 2)
+
+```
+||: A :||: B  A' :||
+   I->V    V->..->I
+```
+
+- B section begins with development/new material
+- A' = return of opening theme in tonic
+- Precursor to sonata form
+
+### Balanced Binary
+
+```
+||: A :||: B :||
+   I->V     V->I
+```
+
+- End of B uses same cadential material as end of A, transposed to tonic
+
+### Binary Form Key Scheme
+
+| Section | Major Key      | Minor Key          |
+|---------|----------------|--------------------|
+| A open  | I              | i                  |
+| A close | V (or iii)     | III (or v)         |
+| B open  | V (or vi, iii) | III (or v, iv)     |
+| B close | I              | i                  |
+
+---
+
+## Fugue Structure
+
+### Exposition
+
+```
+Voice 1:  Subject (tonic)   ---  Countersubject  ---  free
+Voice 2:  rest              Answer (dominant)     Countersubject  free
+Voice 3:  rest              rest                  Subject (tonic) CS
+Voice 4:  rest              rest                  rest            Answer
+```
+
+- **Subject**: main theme, in tonic
+- **Answer**: subject at the 5th (real = exact interval, tonal = modified to stay in key)
+- **Countersubject**: recurring counterpoint against answer/subject
+- **Bridge/link**: short modulatory passage connecting subject to answer
 
 ### Real vs Tonal Answer
 
-| Type | Description | When to Use |
-|---|---|---|
-| Real answer | Exact transposition to dominant | Subject stays within key |
-| Tonal answer | Modified to preserve tonic-dominant relationship | Subject begins ^1-^5 or ^5-^1 |
+| Subject starts/ends | Answer type | Adjustment         |
+|---------------------|-------------|--------------------|
+| 1-5 (do-sol)        | Tonal       | 5-1 (sol-do)       |
+| 5-1 (sol-do)        | Tonal       | 1-5 (do-sol)       |
+| Stays near tonic    | Real        | Exact transposition |
+| Modulates to V      | Tonal       | Modified intervals  |
 
-### Tonal Answer Rule
+### Post-Exposition Sections
 
-| Subject begins | Answer begins |
-|---|---|
-| ^1 | ^5 |
-| ^5 | ^1 (NOT ^2) |
-| ^1-^5 | ^5-^1 |
-| ^5-^1 | ^1-^5 |
+| Section       | Function                                    | Typical Keys        |
+|---------------|---------------------------------------------|----------------------|
+| Episode 1     | Sequential development, modulation           | -> relative major/vi |
+| Middle Entry  | Subject in new key                           | iii, vi, IV, ii      |
+| Episode 2     | More distant modulation                      | -> iv, ii, bVI       |
+| Entry         | Subject in remote key                        | various              |
+| Stretto       | Overlapping subject entries                  | builds tension       |
+| Pedal point   | Subject over dominant/tonic pedal            | V pedal -> I pedal   |
+| Final entry   | Subject in tonic, strong cadence             | I                    |
 
-### Episode Techniques
+### Fugue Proportions
 
-| Technique | Description |
-|---|---|
-| Sequence of subject fragment | Most common |
-| Invertible counterpoint | Swap upper/lower voices |
-| Free counterpoint | Non-thematic, transitional |
-| Modulating sequence | Drives to next key area |
+| Voices | Typical Bars | Exposition | Episodes+Entries | Final Section |
+|--------|-------------|------------|------------------|---------------|
+| 2      | 30-50       | 20%        | 60%              | 20%           |
+| 3      | 50-80       | 20%        | 60%              | 20%           |
+| 4      | 70-120      | 15%        | 65%              | 20%           |
+| 5      | 80-140      | 15%        | 65%              | 20%           |
 
-### ABC Example: Fugue exposition (2 voices)
+### ABC Example -- 3-Voice Fugue Exposition (C major)
+
 ```abc
-X:1
+X:2
+T:Fugue Exposition
 M:4/4
 L:1/8
 K:C
-V:1
-%% Subject
-C2 DE FG Ac | B2 AG FE D2 |
-%% Countersubject against answer
-E2 FG AB cB | AG FE D2 C2 |
-V:2
-%% Rests during subject
-z8 | z8 |
-%% Answer (dominant)
-G2 AB cd ge | f2 ed cB A2 |
+V:1 name="Soprano"
+V:2 name="Alto"
+V:3 name="Bass"
+[V:1] z8|z8|z8|CDEC DEFD|
+[V:2] z8|CDEC DEFD|EFGE dcBA|GABG c4|
+[V:3] CDEC DEFD|EFGE c2BA|G2G2 C4|z8|
 ```
 
-### Fugue Voice Count
+---
 
-| Voices | Common In | Difficulty |
-|---|---|---|
-| 2 (bicinium) | Keyboard, didactic | Moderate |
-| 3 | Keyboard, chamber | Standard |
-| 4 | Choral, organ, orchestral | Standard |
-| 5 | Choral, grand organ | Complex |
-| 6+ | Rare; showpiece | Very complex |
+## Ritornello Form
 
-## 2. Ritornello Form
-
-Primary form for Baroque concerto fast movements.
+Used in Baroque concertos (concerto grosso and solo concerto).
 
 ### Structure
 
-| Section | Key | Content | Forces |
-|---|---|---|---|
-| Ritornello 1 | I | Full theme | Tutti |
-| Episode 1 | I -> V | Solo, new/derived material | Solo + continuo |
-| Ritornello 2 | V | Full or partial theme | Tutti |
-| Episode 2 | V -> vi or other | Solo development | Solo + continuo |
-| Ritornello 3 | vi or other | Partial theme | Tutti |
-| Episode 3 | -> I | Solo, virtuosic return | Solo + continuo |
-| Ritornello 4 | I | Full theme, conclusive | Tutti |
+```
+Rit1(I) -- Solo1 -- Rit2(V) -- Solo2 -- Rit3(vi) -- Solo3 -- Rit4(IV) -- Solo4 -- Rit5(I)
+```
 
-### Ritornello Principles
+### Key Scheme (Major Key)
 
-| Principle | Description |
-|---|---|
-| Modular theme | Ritornello has distinct segments that can appear separately |
-| Key confirms | Each ritornello confirms a key |
-| Episodes modulate | Solo episodes drive to new keys |
-| Shortening | Later ritornellos often use only fragments |
-| Solo virtuosity | Episodes showcase soloist |
-| Framework | Ritornello returns provide structural pillars |
+| Section  | Key      | Material                | Bars (approx %) |
+|----------|----------|-------------------------|------------------|
+| Rit 1    | I        | Full ritornello          | 15%              |
+| Solo 1   | I -> V   | Virtuosic, thematic dev  | 15%              |
+| Rit 2    | V        | Partial ritornello       | 8%               |
+| Solo 2   | V -> vi  | New figuration           | 15%              |
+| Rit 3    | vi       | Fragment of ritornello   | 5%               |
+| Solo 3   | vi -> IV | Development, sequences   | 15%              |
+| Rit 4    | IV or ii | Partial ritornello       | 5%               |
+| Solo 4   | -> I     | Cadenza/virtuosity       | 12%              |
+| Rit 5    | I        | Full or partial rit.     | 10%              |
 
-## 3. Da Capo Aria (ABA)
+### Key Scheme (Minor Key)
 
-Standard vocal form; also used instrumentally.
+| Section  | Key         |
+|----------|-------------|
+| Rit 1    | i           |
+| Rit 2    | III         |
+| Rit 3    | v or iv     |
+| Rit 4    | iv or VII   |
+| Rit 5    | i           |
 
-| Section | Key | Content | Marking |
-|---|---|---|---|
-| A section | I (with modulation to V) | Main text/music, ritornello-based | Written out |
-| B section | Contrasting key (relative, iv, etc.) | New text, contrasting affect | Written out |
-| A section (da capo) | I | Repeat of A with ornamentation | "Da Capo" instruction |
+### Ritornello Internal Structure
+
+```
+[Head motif] -- [Continuation/Sequence] -- [Cadential figure]
+    4 bars          4-8 bars                 2-4 bars
+```
+
+Partial ritornellos typically use Head motif only, or Head + Cadential.
+
+---
+
+## Concerto Grosso Structure
+
+Three-movement plan:
+
+| Movement | Tempo  | Form              | Character          |
+|----------|--------|-------------------|--------------------|
+| I        | Fast   | Ritornello        | Energetic, bold    |
+| II       | Slow   | Binary/Free/Aria  | Lyrical, expressive|
+| III      | Fast   | Ritornello/Fugal  | Dance-like, finale |
+
+### Concertino vs Ripieno
+
+| Group      | Typical Forces              | Role              |
+|------------|-----------------------------|--------------------|
+| Concertino | 2 violins + cello + continuo| Soloistic passages |
+| Ripieno    | Full string orchestra        | Tutti sections     |
+
+### Corelli Chiesa vs Camera
+
+| Type    | Movements        | Character            |
+|---------|------------------|----------------------|
+| Chiesa  | Slow-Fast-Slow-Fast | Serious, contrapuntal |
+| Camera  | Suite-like dances   | Dance-based, lighter  |
+
+---
+
+## Da Capo Aria (ABA)
+
+```
+A section (I) -- B section (contrast) -- A section da capo (with ornamentation)
+```
+
+| Section | Key           | Bars (approx) | Character              |
+|---------|---------------|----------------|------------------------|
+| A       | I -> V -> I   | 40-60%         | Main affect, ritornello|
+| B       | vi, IV, ii, iii| 20-30%        | Contrasting affect     |
+| A (d.c.)| I -> V -> I   | = A section    | Ornamented repeat      |
+
+### A Section Internal Structure
+
+```
+Rit(orch) -- Vocal A1(I->V) -- Rit(partial) -- Vocal A2(->I) -- Rit(closing)
+```
 
 ### Da Capo Conventions
 
-| Convention | Description |
-|---|---|
-| A section repeat | Singer ornaments melody on return |
-| B section contrast | Shorter, different affect/key/texture |
-| Opening ritornello | Orchestra introduces A material |
-| Closing ritornello | Orchestra closes A section |
-| Improvised cadenza | Singer adds cadenza before final cadence of A |
+| Convention             | Description                                      |
+|------------------------|--------------------------------------------------|
+| A section repeat       | Singer ornaments melody on return                |
+| B section contrast     | Shorter, different affect/key/texture            |
+| Opening ritornello     | Orchestra introduces A material                  |
+| Closing ritornello     | Orchestra closes A section                       |
+| Improvised cadenza     | Singer adds cadenza before final cadence of A    |
 
-## 4. Binary Dance Forms
+### ABC Example -- Da Capo Aria A Section (G major)
 
-The building blocks of the Baroque suite.
-
-### Binary Form Structure
-
-| Section | Key Plan (Major) | Key Plan (Minor) | Repeats |
-|---|---|---|---|
-| A | I -> V | i -> III | :double-bar: |
-| B | V -> (sequence) -> I | III -> (sequence) -> i | :double-bar: |
-
-### The Suite (Ordre, Partita)
-
-| Movement | Meter | Tempo | Character | Rhythm Pattern |
-|---|---|---|---|---|
-| Allemande | 4/4 | Moderate | Serious, flowing | Upbeat start, continuous 16ths |
-| Courante (French) | 3/2 or 6/4 | Moderate | Stately, hemiola | Cross-rhythms, 3/2 vs 6/4 |
-| Corrente (Italian) | 3/4 | Fast | Running, light | Continuous running notes |
-| Sarabande | 3/4 | Slow | Stately, expressive | Stress on beat 2, dotted rhythms |
-| Gigue | 6/8 or 12/8 | Fast | Lively, closing | Compound meter, fugal opening |
-
-### Optional Movements (Galanteries, inserted between Sarabande and Gigue)
-
-| Movement | Meter | Character |
-|---|---|---|
-| Minuet | 3/4 | Elegant, moderate |
-| Bourree | 2/2 | Brisk, upbeat start |
-| Gavotte | 2/2 | Moderate, half-bar upbeat |
-| Passepied | 3/8 | Quick, light minuet |
-| Polonaise | 3/4 | Stately, rhythmic |
-| Air | Various | Lyrical, songlike |
-| Loure | 6/4 | Slow gigue, dotted |
-
-### ABC Example: Sarabande character (stress on beat 2)
 ```abc
-X:2
+X:3
+T:Da Capo Aria - A Section
+M:3/4
+L:1/8
+K:G
+%% Orchestral Ritornello
+|:d4 B2|A4 G2|E2 G2 A2|B6|
+d4 e2|d2 c2 B2|A2 B2 c2|d6:|
+%% Vocal Entry
+|B4 d2|c4 B2|A2 G2 ^F2|G6|
+```
+
+---
+
+## Passacaglia / Chaconne
+
+Ground bass (4-8 bars) repeated with continuous variation above.
+
+### Ground Bass Patterns (common, in minor)
+
+```abc
+X:4
+T:Passacaglia Bass Patterns
 M:3/4
 L:1/4
 K:Dm
-D3/2 E/ F | G2 F | E3/2 F/ G | A2 z |
-%% Note: dotted rhythm and emphasis on beat 2
+%% Pattern 1: Descending tetrachord (diatonic)
+D2D|C2C|B,2B,|A,2A,|
+%% Pattern 2: Chromatic descent
+D2D|^C2C|C2=C|B,2B,|A,2A,|
+%% Pattern 3: With leaps
+D2A,|B,2^F,|G,2E,|A,3|
 ```
 
-### ABC Example: Gigue opening (compound meter, fugal)
+### Variation Techniques (cumulative intensity)
+
+| Var Group | Technique                          | Texture            |
+|-----------|------------------------------------|--------------------|
+| 1-4       | Simple melody over bass            | Homophonic         |
+| 5-8       | Running 8ths, arpeggiation         | Figural            |
+| 9-12      | Running 16ths, scalar passages     | Virtuosic          |
+| 13-16     | Syncopation, chromatic inflection  | Intensifying       |
+| 17-20     | Mode change (major/minor switch)   | Contrast           |
+| 21-24     | Dense counterpoint, stretto-like   | Climactic          |
+| Final     | Return to simplicity or grand close| Resolution         |
+
+### ABC Example -- Passacaglia Theme and First Variation
+
 ```abc
-X:3
-M:6/8
+X:5
+T:Passacaglia
+M:3/4
 L:1/8
-K:D
+K:Cm
 V:1
-D2 F AFA | G2 B d3 |
-V:2
-z6 | z6 |
-%% Voice 2 enters next bar with answer
+V:2 clef=bass
+%% Theme
+[V:1] z6|z6|z6|z6|
+[V:2] C,2C,2C,2|B,,2B,,2B,,2|A,,2A,,2A,,2|G,,4 z2|
+%% Variation 1
+[V:1] G2AB c2|d2 edc2|c2BA G2|G4 z2|
+[V:2] C,2C,2C,2|B,,2B,,2B,,2|A,,2A,,2A,,2|G,,4 z2|
 ```
 
-## 5. Ground Bass / Basso Ostinato
+---
 
-| Feature | Description |
-|---|---|
-| Structure | Short bass pattern (4-8 bars) repeats continuously |
-| Variations | Upper voices provide continuous variation |
-| Harmonic | Bass implies fixed harmonic progression |
-| Length | Can be extended indefinitely |
+## French Overture
 
-### Famous Ground Bass Patterns
+```
+Slow (dotted) -- Fast (fugal) -- [Slow return]
+```
 
-| Pattern | Description |
-|---|---|
-| Descending tetrachord | ^1-^7-b^7-^6-b^6-^5 (chromatic lament) |
-| Diatonic descent | ^1-^7-^6-^5 |
-| Ascending pattern | ^1-^2-^3-^4-^5 |
-| Repeated chords | Fixed harmonic sequence as ostinato |
+| Section | Meter   | Tempo | Style                        | Proportion |
+|---------|---------|-------|------------------------------|------------|
+| A       | 4/4     | Grave | Dotted rhythms, majestic     | 30%        |
+| B       | 3/4,4/4 | Allegro| Fugal/imitative, lighter   | 55%        |
+| A'*     | 4/4     | Grave | Brief return of dotted style | 15%        |
 
-## 6. Passacaglia and Chaconne
+*Optional. Sometimes B just slows at the end.
 
-| Feature | Passacaglia | Chaconne |
-|---|---|---|
-| Bass | Fixed bass pattern, repeating | Harmonic pattern, bass may vary |
-| Meter | Triple (3/4) | Triple (3/4) |
-| Tempo | Slow to moderate | Slow to moderate |
-| Variations | Above the bass | More freely over harmonic scheme |
-| Key | Often minor | Often minor |
-| Length | Extended | Extended |
-| Climax | Builds intensity over variations | Same |
+### Double-Dotting Convention
 
-### Note: The distinction between passacaglia and chaconne is debated. In practice, treat both as variation sets over a repeating bass/harmonic pattern.
+Notated dotted rhythms performed with even sharper inequality (near double-dotted).
 
-## 7. Toccata
+### ABC Example -- French Overture Opening
 
-| Feature | Description |
-|---|---|
-| Character | Improvisatory, virtuosic, free |
-| Sections | Alternating free (scale runs, arpeggios) and strict (fugal) |
-| Instrument | Organ or harpsichord |
-| Purpose | Display instrument and player capabilities |
-| Harmony | Exploratory; establishes key through exploration |
-| Pairing | Often paired with fugue (Toccata and Fugue) |
-
-## 8. Prelude
-
-| Type | Description |
-|---|---|
-| Improvisatory | Free, arpeggiated, exploratory (WTC preludes) |
-| Inventive | Single motif developed continuously |
-| Dance-like | Structured, rhythmic (some WTC preludes) |
-| Chorale prelude | Based on chorale melody (organ) |
-| Pairing | Before fugue, suite, or liturgical piece |
-
-## 9. French Overture
-
-| Section | Tempo | Character | Texture |
-|---|---|---|---|
-| A (slow) | Grave, lent | Majestic, dotted rhythms | Homophonic, full |
-| B (fast) | Allegro | Fugal, energetic | Imitative |
-| A' (optional) | Slow return | Brief, closing | Homophonic |
-
-### ABC Example: French overture dotted rhythm
 ```abc
-X:4
+X:6
+T:French Overture
 M:4/4
 L:1/8
 K:D
-!f! D3 E F2 G2 | A3 B A2 G2 | F3 G A4 |
-%% Double-dotting convention: dotted rhythms played MORE dotted
+Q:1/4=56
+|D3E F3G|A3B A2G2|F3E D3^C|D6 z2|
+|D3E F3G|A2Bd c3B|A3G ^F3E|D6 z2|
 ```
 
-## 10. Italian Overture (Sinfonia)
+### ABC Example -- French Overture Allegro (Fugal)
 
-| Section | Tempo | Character |
-|---|---|---|
-| I | Allegro | Homophonic, energetic |
-| II | Adagio | Brief, lyrical, transitional |
-| III | Allegro | Dance-like (often minuet/gigue) |
+```abc
+X:7
+T:French Overture - Allegro
+M:3/4
+L:1/8
+K:D
+V:1
+V:2
+[V:1] D2 FAFA|Bd cBAG|F2 z6|z6|
+[V:2] z6|z6|A,2 DEDE|FA GFED|
+```
 
-## 11. Concerto Forms
+---
 
-### Solo Concerto (Vivaldi model, 3 movements)
+## Italian Overture (Sinfonia)
 
-| Movement | Tempo | Form |
-|---|---|---|
-| I | Allegro | Ritornello |
-| II | Adagio/Largo | Binary, through-composed, or ABA |
-| III | Allegro/Presto | Ritornello (shorter, lighter) |
+```
+Fast -- Slow -- Fast (dance)
+```
 
-### Concerto Grosso (Corelli model)
+| Section | Meter | Tempo    | Style                    | Proportion |
+|---------|-------|----------|--------------------------|------------|
+| I       | 4/4   | Allegro  | Homophonic, brilliant    | 40%        |
+| II      | 3/4   | Adagio   | Lyrical, thin texture    | 25%        |
+| III     | 3/8   | Presto   | Dance-like, binary form  | 35%        |
 
-| Type | Movements | Description |
-|---|---|---|
-| Chiesa (church) | Slow-Fast-Slow-Fast | Serious, contrapuntal |
-| Camera (chamber) | Suite-like dance movements | Dance-based |
+### ABC Example -- Italian Overture Opening
 
-## 12. Form-Function Quick Reference
+```abc
+X:8
+T:Italian Overture - Allegro
+M:4/4
+L:1/16
+K:D
+|D4F4 A4d4|c4B4 A4G4|F4E4 D4^C4|D8 z8|
+```
 
-| If generating... | Use this form |
-|---|---|
-| Concerto fast movement | Ritornello form |
-| Concerto slow movement | Binary, ABA, or arioso |
-| Vocal aria | Da capo (ABA) |
-| Keyboard prelude | Improvisatory or inventive |
-| Keyboard fugue | Fugue (3-4 voices) |
-| Dance movement | Binary form with suite conventions |
-| Ground bass piece | Passacaglia/chaconne |
-| Orchestral opening | French or Italian overture |
-| Chorale setting | 4-part homophonic + passing tones |
-| Organ prelude | Toccata, prelude, or chorale prelude |
-| Chamber music | Trio sonata or solo sonata in 3-4 movements |
+---
+
+## Chorale Prelude Forms
+
+| Type                  | Technique                                           | Voices |
+|-----------------------|-----------------------------------------------------|--------|
+| Cantus firmus         | Chorale in long notes (soprano), free counterpoint   | 3-4    |
+| Chorale fugue         | Each chorale phrase = fugue subject                  | 3-4    |
+| Chorale fantasia      | Elaborate, large-scale, ornamented cantus firmus     | 4-5    |
+| Ornamental chorale    | Embellished chorale melody, homophonic accompaniment | 3-4    |
+| Chorale canon         | Chorale melody in canon between two voices           | 3-4    |
+| Chorale partita       | Theme and variations on chorale tune                 | varies |
+
+### ABC Example -- Chorale Prelude (Cantus Firmus in Soprano)
+
+```abc
+X:9
+T:Chorale Prelude
+M:4/4
+L:1/8
+K:G
+V:1 name="Soprano (Cantus Firmus)"
+V:2 name="Alto"
+V:3 name="Bass"
+[V:1] G4 A4|B4 A4|G8|
+[V:2] D2EF G2AB|d2cB A2GF|G2FE D4|
+[V:3] G,2A,B, C2D2|G,2A,B, D2D,2|G,8|
+```
+
+---
+
+## Toccata
+
+| Feature    | Description                                        |
+|------------|----------------------------------------------------|
+| Character  | Improvisatory, virtuosic, free-form                |
+| Sections   | Alternating free (scale runs, arpeggios) and strict (fugal) |
+| Instrument | Organ or harpsichord                               |
+| Purpose    | Display instrument and player capabilities         |
+| Harmony    | Exploratory; establishes key through exploration   |
+| Pairing    | Often paired with fugue (Toccata and Fugue)        |
+
+### ABC Example -- Toccata Opening (D minor, Organ)
+
+```abc
+X:10
+T:Toccata Opening
+M:4/4
+L:1/16
+K:Dm
+|A4 z4 G4 z4|F4 z4 E4 z4|
+D2E2F2G2 A2B2c2d2|e2d2^c2d2 A4 z4|
+```
+
+---
+
+## Prelude Types
+
+| Type            | Description                                     |
+|-----------------|-------------------------------------------------|
+| Improvisatory   | Free, arpeggiated, exploratory (WTC preludes)   |
+| Inventive       | Single motif developed continuously              |
+| Dance-like      | Structured, rhythmic (some WTC preludes)         |
+| Chorale prelude | Based on chorale melody (organ)                  |
+| Pairing         | Before fugue, suite, or liturgical piece         |
+
+---
+
+## Baroque Cadence Types
+
+| Cadence       | Bass Motion | Usage                          |
+|---------------|-------------|--------------------------------|
+| Perfect auth. | V -> I      | Section/piece endings          |
+| Imperfect     | V -> I (inv)| Internal phrase endings        |
+| Half          | -> V        | End of A section (binary)      |
+| Deceptive     | V -> vi     | Avoid resolution, extend phrase|
+| Phrygian      | iv6 -> V    | Minor key slow mvt endings     |
+| Plagal        | IV -> I     | "Amen" cadence, codas          |
+| Evaded        | V -> I6     | Continue motion, avoid closure |
+
+---
+
+## Trio Sonata / Solo Sonata
+
+### Trio Sonata (2 melody + continuo)
+
+| Type    | Movements        | Character            |
+|---------|------------------|----------------------|
+| Chiesa  | Slow-Fast-Slow-Fast | Serious, contrapuntal |
+| Camera  | Suite dances        | Dance-based, lighter  |
+
+### Solo Sonata (1 melody + continuo)
+
+Same movement plans as trio sonata. Solo voice more virtuosic.
+
+---
+
+## Form-Function Quick Reference
+
+| If generating...          | Use this form                      |
+|---------------------------|------------------------------------|
+| Concerto fast movement    | Ritornello form                    |
+| Concerto slow movement    | Binary, ABA, or arioso             |
+| Vocal aria                | Da capo (ABA)                      |
+| Keyboard prelude          | Improvisatory or inventive         |
+| Keyboard fugue            | Fugue (3-4 voices)                 |
+| Dance movement            | Binary form with suite conventions |
+| Ground bass piece         | Passacaglia/chaconne               |
+| Orchestral opening        | French or Italian overture         |
+| Chorale setting           | 4-part homophonic + passing tones  |
+| Organ prelude             | Toccata, prelude, or chorale prelude|
+| Chamber music             | Trio sonata or solo sonata (3-4 mvts)|
+
+---
+
+## Section ID Mapping for Baroque Forms
+
+| Form            | Section IDs                                              |
+|-----------------|----------------------------------------------------------|
+| Suite-Allemande | `m1_allemande_a`, `m1_allemande_b`                       |
+| Suite-Gigue     | `m6_gigue_a`, `m6_gigue_b`                               |
+| Fugue           | `m1_expo`, `m1_ep1`, `m1_mid1`, `m1_ep2`, `m1_stretto`, `m1_coda` |
+| Ritornello      | `m1_rit1`, `m1_solo1`, `m1_rit2`, `m1_solo2`, ...        |
+| Da Capo Aria    | `m1_rit_a`, `m1_voc_a1`, `m1_voc_a2`, `m1_b`, `m1_dc`   |
+| Passacaglia     | `m1_theme`, `m1_var01`, `m1_var02`, ...                   |
+| French Overture | `m1_grave`, `m1_allegro`, `m1_grave_return`               |
+| Italian Overture| `m1_allegro`, `m1_adagio`, `m1_presto`                    |
+| Chorale Prelude | `m1_phrase1`, `m1_phrase2`, `m1_phrase3`, ...              |
+| Trio Sonata     | `m1_adagio`, `m2_allegro`, `m3_adagio`, `m4_allegro`     |
