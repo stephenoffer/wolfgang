@@ -48,10 +48,21 @@
 | Parallel 5ths | Two voices moving in P5 to P5 | Destroys voice independence |
 | Parallel octaves | Two voices moving in P8 to P8 | Destroys voice independence |
 | Parallel unisons | Two voices moving in P1 to P1 | Complete loss of independence |
-| Direct (hidden) 5ths/8ves | Similar motion into P5/P8 | Allowed only if upper voice steps; avoid in outer voices |
+| Direct (hidden) 5ths/8ves | Similar motion into P5/P8 | In outer voices: allowed only if soprano moves by step. Between inner voices: generally acceptable |
 | Consecutive diminished 5ths | d5 to d5 in parallel | Tolerated only in inner voices |
 
 **Note:** Parallel 3rds and 6ths are encouraged (up to ~4 consecutive); they provide smooth consonance while maintaining independence.
+
+### Unequal (Consecutive) 5ths
+
+| Motion | Acceptability | Context |
+|---|---|---|
+| P5 → d5 | Acceptable | Common in descending sequences (e.g., I-ii in major) |
+| d5 → P5 | Acceptable | Common in ascending resolution (e.g., viio-I) |
+| P5 → A5 | Avoid | Harsh sound, poor voice leading |
+| A5 → P5 | Avoid | Equally problematic |
+
+**Rule of thumb:** Consecutive 5ths involving one diminished 5th are acceptable when they arise naturally from diatonic progressions. Consecutive 5ths involving augmented intervals should be avoided.
 
 ---
 
@@ -148,3 +159,72 @@
 | vii° | I, iii (rare) |
 
 **Harmonic rhythm:** Chords on strong beats carry more structural weight. Avoid changing harmony on the weakest subdivision only.
+
+---
+
+## ABC Examples
+
+### First Species Counterpoint (C major, two voices)
+```abc
+X:1
+T:First Species (1:1)
+M:4/4
+L:1/1
+K:C
+V:1 clef=treble name="Upper"
+V:2 clef=bass name="CF"
+[V:1] E | G | A | G | F | E | D | C |
+[V:2] C, | E, | F, | E, | D, | C, | B,, | C, |
+% Intervals: M3 m3 M3 m3 m3 M3 m3 P1
+```
+
+### Suspensions (4-3 and 7-6)
+```abc
+X:2
+T:Suspension Resolutions
+M:4/4
+L:1/2
+K:C
+V:1 clef=treble name="Upper"
+V:2 clef=bass name="Lower"
+% 4-3 suspension
+[V:1] [EG] [FA] | [E2G2] z2 |
+[V:2] C, D, | C,2 z2 |
+% 7-6 suspension
+[V:1] [Bc] [Ad] | [G2B2] z2 |
+[V:2] E, F, | E,2 z2 |
+```
+
+### Cadences (PAC, HC, Deceptive)
+```abc
+X:3
+T:Cadence Types in C major
+M:4/4
+L:1/2
+K:C
+V:S clef=treble name="S/A"
+V:B clef=bass name="T/B"
+% PAC: V7 -> I (soprano 7-1)
+[V:S] [BF] [CE] |
+[V:B] G, C, |
+% HC: I -> V
+[V:S] [CE] [BD] |
+[V:B] C, G, |
+% DC: V7 -> vi
+[V:S] [BF] [CE] |
+[V:B] G, A, |
+```
+
+### SATB Voice Leading (I-IV-V7-I)
+```abc
+X:4
+T:SATB Progression I-IV-V7-I
+M:4/4
+L:1/1
+K:C
+V:SA clef=treble name="S/A"
+V:TB clef=bass name="T/B"
+[V:SA] [EG] [FA] [FB] [EG] |]
+[V:TB] [C,C] [C,F,] [B,,D] [C,C] |]
+% I     IV    V7    I
+```

@@ -1,206 +1,337 @@
-# Composer Profile: Ennio Morricone (1928–2020)
+# Ennio Morricone (1928-2020) — Composer Profile
 
-## Style Overview
+## Harmonic Language
 
-| Element | Morricone's Approach |
-|---------|---------------------|
-| Harmonic language | Simple tonal base, modal, unexpected chromaticism |
-| Instrumentation | Unconventional: harmonica, electric guitar, human voice |
-| Texture | Often sparse, building to lush |
-| Signature | Unique timbral combinations, genre-defining sounds |
-| Range | 500+ film scores across all genres |
-| Innovation | Expanded film scoring beyond traditional orchestral palette |
+| Parameter | Value |
+|-----------|-------|
+| Foundation | Simple, folk-influenced, modal |
+| Complexity | Deceptively simple — power through restraint |
+| Modulation | Rare within cues; key stays fixed |
+| Chromaticism | Minimal, occasional unexpected chromatic turn |
+| Dissonance | Used structurally in avant-garde works, rarely in themes |
+| Key choices | Am, Em, Dm (spaghetti western); C, F, Bb (romantic) |
+| Cadences | Often plagal (IV-I), sometimes unresolved |
 
-## Unusual Instrument Choices
+### Characteristic Harmonic Devices
 
-| Instrument | Character | Iconic Use |
-|-----------|-----------|-----------|
-| Harmonica | Loneliness, vast landscape | Once Upon a Time in the West |
-| Electric guitar (twangy) | Dangerous, cool | Dollars Trilogy |
-| Human whistle | Casual menace, loneliness | The Good, the Bad and the Ugly |
-| Soprano voice (wordless) | Ethereal, haunting | The Mission, Dollars |
-| Jaw harp | Quirky, primitive | For a Few Dollars More |
-| Ocarina | Innocent, earthy | Various |
-| Trumpet (solo) | Noble, sorrowful | The Good, the Bad and the Ugly |
-| Church bells | Sacred, fate | The Mission |
-| Whip crack | Percussion, violence | Dollars Trilogy |
-| Choir (rhythmic) | Ritual, chanting | Various |
+| Device | Usage | Example |
+|--------|-------|---------|
+| Pedal point | Foundation of most western cues | Bass drone under melody |
+| Modal harmony (Aeolian) | Western desolation | i - bVII - bVI - bVII |
+| Simple I-IV-V | Folk simplicity | Main themes, Italian scores |
+| Minor plagal (iv-I) | Bittersweet arrival | Cinema Paradiso ending |
+| Unexpected major/minor shift | Emotional twist | Major chord after minor passage |
+| Ostinato bass | Rhythmic/harmonic engine | Once Upon a Time in the West |
+| Bare octaves/unisons | Raw, primal | Western duels |
+| Chromatic descent (bass) | Tragedy, doom | Lament bass |
+| Suspended harmony | Tension without resolution | Duel scenes, anticipation |
+| Parallel triads | Non-functional, atmospheric | Investigation/mystery cues |
 
+### Harmonic Progressions by Context
+
+| Context | Typical Progression |
+|---------|-------------------|
+| Western main theme | Am - Am - Dm - Am - E - Am |
+| Romantic/nostalgic | F - Am - Dm - G - C |
+| Tension/duel | Single chord sustained, bass pedal |
+| Elegy/sadness | i - iv - bVI - V (Aeolian) |
+| Triumphant | I - IV - V - I (simple, direct) |
+| Mystery | Chromatic planing, unresolved suspensions |
+
+### ABC — Western Harmony (pedal point)
 ```abc
 X:1
-T:Morricone Whistle Theme (Spaghetti Western style)
+T:Morricone western harmony
 M:4/4
-L:1/8
+L:1/2
 K:Am
-"^Whistle - p, free"A2 B2 c2 e2 | d2 c2 B2 A2 | E4 A4 | z8 |
-A2 c2 e2 a2 | g2 e2 c2 A2 | E6 z2 |
+Q:1/4=72
+V:1 name="Melody"
+E2 | A2 | G2 | E2 |
+V:2 name="Guitar/Bass pedal"
+[A,,E,A,]2 | [A,,E,A,]2 | [A,,E,A,]2 | [A,,E,A,]2 |
 ```
 
+## Melodic Style
+
+| Parameter | Value |
+|-----------|-------|
+| Character | Vocal quality — even instrumental melodies "sing" |
+| Simplicity | Often just 3-5 notes in core motif |
+| Range | Moderate — singable, within octave typically |
+| Interval emphasis | Minor 3rd (lament), perfect 5th (open), minor 2nd (tension) |
+| Development | Extensive — single motif through many orchestrations |
+| Repetition | Core motif repeats many times, transformed by arrangement |
+| Ornament | Grace notes, turns in vocal/instrumental solos |
+| Influence | Italian opera, folk song, Sicilian melody |
+
+### Melodic Archetypes
+
+| Archetype | Characteristics | Usage |
+|-----------|----------------|-------|
+| The whistle | Simple, 4-6 notes, narrow range | Western themes (GBU) |
+| The lament | Descending minor, vocal quality | Tragedy, loss |
+| The hymn | Chorale-like, major, step-wise | Redemption (The Mission) |
+| The ostinato melody | Repeating figure, hypnotic | Tension, buildup |
+| The cry | Wide leap up, sustained note | Emotional peak |
+| The folk tune | Simple, diatonic, dance-like | Italian comedy, pastoral |
+
+### ABC — The Whistle (GBU-inspired)
 ```abc
 X:2
-T:Morricone Harmonica Theme (sparse, wide open)
+T:Morricone whistle theme
 M:4/4
-L:1/4
-K:Dm
-"^Harmonica - pp, lonely"D2 z2 | A, D F A | D2 z2 | A, C F A |
-D F A d | c A F D | A,4 |
+L:1/8
+K:Am
+Q:1/4=108
+V:1 name="Whistle/Ocarina"
+A2 E2 F2 E2 | D4 C2 A,2 | A2 E2 F2 E2 | A,4 z4 |
 ```
 
-## Sparse Scoring
-
-| Principle | Application |
-|-----------|-------------|
-| Less is more | Single instrument carries entire scene |
-| Space between notes | Silence as compositional element |
-| Minimal accompaniment | Often just bass or guitar strum |
-| Solo + drone | Single melody over sustained bass note |
-| Gradual addition | Start with nothing, add one layer at a time |
-| Textural contrast | Sparse verse, full chorus/climax |
-
-### Density Progression (Morricone Model)
-
-| Phase | Texture | Forces |
-|-------|---------|--------|
-| 1 | Solo instrument, unaccompanied | Whistle, harmonica, or guitar |
-| 2 | Solo + simple bass (guitar/bass) | Duo |
-| 3 | Add rhythm (percussion or strum) | Trio |
-| 4 | Add voice or second melody | Quarter |
-| 5 | Strings enter, sustained | Chamber |
-| 6 | Full orchestra + choir | Maximum |
-
+### ABC — The Lament (Cinema Paradiso-inspired)
 ```abc
 X:3
-T:Sparse to Full (Ecstasy of Gold style buildup)
+T:Morricone lament melody
 M:4/4
 L:1/8
-K:Am
-"^Phase 1: Voice alone"A2 c2 e4 | d2 c2 B2 A2 |
-"^Phase 2: +Guitar"A2 c2 e4 | d2 c2 B2 A2 |
-"^Phase 3: +Strings"A2 c2 e4 | [Adf]2 [Ace]2 [GBd]2 [FAc]2 |
-"^Phase 4: +Full orch+choir"[A,Ace]2 [Cceg]2 [Eega]2 z2 |
+K:F
+Q:1/4=66
+V:1 name="Solo Instrument"
+z2 F2 A2 c2 | d4 c2 A2 | _B4 A2 G2 | F4 z4 |
+z2 F2 A2 c2 | d4 f2 d2 | c4 _B2 A2 | F4 z4 |
 ```
 
-## Tension Through Repetition
-
-| Technique | Description | Effect |
-|-----------|-------------|--------|
-| Ostinato buildup | Simple pattern repeated, growing louder/thicker | Mounting dread |
-| Rhythmic insistence | Same rhythm, changing pitch | Obsessive tension |
-| Ticking clock | Regular pulse suggesting time running out | Urgency |
-| Melodic loop | Short motif cycling, not resolving | Psychological tension |
-| Drone + activity | Static bass, increasingly busy upper voices | Growing unease |
-| Silence interrupting | Pattern stops abruptly, restarts | Jumpiness |
-
+### ABC — The Hymn (The Mission-inspired)
 ```abc
 X:4
-T:Ostinato Tension Building
+T:Morricone hymn theme
+M:4/4
+L:1/4
+K:D
+Q:1/4=72
+V:1 name="Oboe"
+D F A d | c B A F | G A B A | G F E D |
+D F A d | f e d c | B A G F | D4 |
+```
+
+### ABC — Simple Motif with Extensive Repetition
+```abc
+X:5
+T:Morricone motif development through orchestration
+M:4/4
+L:1/8
+K:Em
+Q:1/4=88
+%% Statement 1: solo, sparse
+V:1 name="Electric Guitar"
+B,4 E4 | ^D4 E2 z2 |
+%% (Repeat same motif with: trumpet, then strings, then full orchestra)
+%% The melody stays the same; the arrangement grows
+```
+
+## Rhythmic Characteristics
+
+| Parameter | Value |
+|-----------|-------|
+| Foundation | Simple, repetitive, often static |
+| Development | Through orchestration, NOT rhythmic change |
+| Ostinato | Central technique — repeated figure drives cue |
+| Tempo | Moderate to slow (60-100 BPM typical) |
+| Syncopation | Minimal — straightforward beat placement |
+| Meter | 4/4, 3/4, 6/8 (Italian folk) |
+| Rubato | In vocal/lyrical passages only |
+| Acceleration | Rare — tension through addition, not speed |
+
+### Rhythmic Patterns
+
+| Pattern | Usage | Description |
+|---------|-------|-------------|
+| Steady quarter-note pulse | Duel/tension | Heartbeat, ticking clock |
+| Galloping rhythm | Horse riding, chase | Dotted-eighth + sixteenth |
+| Triplet ostinato | Building intensity | Piano/guitar repeated figure |
+| Free/rubato | Solo vocal/instrument | Cadenza-like passages |
+| March | Military themes | Snare-driven, regular |
+| 6/8 folk | Italian pastoral | Lilting dance rhythm |
+
+### ABC — Galloping Western Rhythm
+```abc
+X:6
+T:Morricone galloping rhythm
+M:4/4
+L:1/16
+K:Am
+Q:1/4=132
+V:1 name="Guitar/Strings"
+A,4 A,3A, A,4 A,3A, | A,4 A,3A, E,4 E,3E, |
+```
+
+### ABC — Tension Ostinato (Once Upon a Time-inspired)
+```abc
+X:7
+T:Morricone tension ostinato
 M:4/4
 L:1/8
 K:Dm
-"^pp"D,2 A,2 D,2 A,2 | D,2 A,2 D,2 A,2 |
-"^mp + melody"D,2 A,2 D,2 A,2 | "^above"[Df]2 [Ce]2 [B,d]2 [A,c]2 |
-"^f + full"[D,DA,df]2 z2 [D,DA,df]2 z2 | [D,DA,df]2 [D,DA,df]2 [D,DA,df]2 [D,DA,df]2 |
+Q:1/4=80
+V:1 name="Electric Guitar"
+|: D,F,A,D D,F,A,D :|
+V:2 name="Harmonica"
+z8 | z8 | z4 D2 F2 | A4 z4 |
 ```
 
-## Eclectic Influences
+## Preferred Forms
 
-| Influence | Musical Result | Films |
-|-----------|---------------|-------|
-| Italian opera | Soaring vocal melody | The Mission, Cinema Paradiso |
-| American jazz | Trumpet solos, walking bass | Investigation films |
-| Rock/pop | Electric guitar, drums | Dollars Trilogy |
-| Sacred music | Choir, organ, chant | The Mission |
-| Folk music | Acoustic guitar, simple melody | Italian neorealism films |
-| Avant-garde | Prepared sounds, unusual timbres | Pasolini films, horror |
-| Baroque | Oboe melody, harpsichord | Period films |
+| Form | Description | Example |
+|------|-------------|---------|
+| Theme and orchestral variation | Same melody, growing arrangement | Cinema Paradiso, GBU |
+| Atmospheric build | Sparse to full over 3-5 minutes | Once Upon a Time in the West |
+| Strophic (verse) | Repeated sections, folk-song form | Ecstasy of Gold |
+| Passacaglia | Repeating bass, varied melody above | The Untouchables |
+| ABA with coda | Simple ternary, extended ending | The Mission |
+| Duel structure | Tension hold then sudden release | Western duel cues |
+| Gradual orchestral build | Solo to duo to ensemble to tutti | Signature approach |
 
+### The Morricone Build
+
+| Stage | Instruments | Dynamic | Duration |
+|-------|------------|---------|----------|
+| 1: Solo | Single instrument (whistle, guitar, harmonica) | pp-p | 30-60s |
+| 2: Addition | Add second instrument (bass, or second melody) | p-mp | 30-60s |
+| 3: Strings enter | Sustained strings join | mp | 30-60s |
+| 4: Rhythm added | Percussion or rhythmic guitar | mf | 30-60s |
+| 5: Full ensemble | Orchestra, possibly choir | f | 30-60s |
+| 6: Peak | Everything, maximum intensity | ff | 15-30s |
+| 7: Fade/solo return | Strip back to solo or silence | pp | 15-30s |
+
+## Orchestration
+
+### Unconventional Instrument Choices
+
+| Instrument | Role | Signature Usage |
+|-----------|------|----------------|
+| Harmonica | Lead melody | Once Upon a Time in the West |
+| Electric guitar (clean/distorted) | Twangy melody, rhythmic ostinato | Spaghetti westerns |
+| Whistling | Main theme melody | GBU, Fistful of Dollars |
+| Jaw harp | Rhythmic/textural color | Western quirk |
+| Ocarina | Breathy, haunting melody | Western atmosphere |
+| Wordless female vocal | Ethereal melody (Edda Dell'Orso) | GBU ecstasy, Once Upon a Time |
+| Wordless male choir | Power, ritual, menace | The Mission, western duel |
+| Pan flute | Pastoral, South American | The Mission |
+| Banjo | Folk, rural character | My Name Is Nobody |
+| Church bells | Sacred, solemn | The Mission, funerals |
+| Whip crack | Rhythmic accent | Western onomatopoeia |
+| Gunshot sounds | Rhythmic, textural | Fistful of Dollars |
+
+### Conventional Instruments — Morricone Usage
+
+| Instrument | Typical Role |
+|-----------|-------------|
+| Trumpet (solo, muted) | Lyrical melody, nostalgic |
+| Oboe | Hymn-like themes, The Mission |
+| Strings (section) | Lush accompaniment, emotional peaks |
+| Solo violin | Lament, tragedy |
+| Piano | Ostinato accompaniment, intimate |
+| Choir (full) | Sacred, climactic, ritual |
+| Timpani | Dramatic punctuation |
+| Snare drum | Military/march |
+
+### Texture Strategy
+
+| Texture | Usage | Density |
+|---------|-------|---------|
+| Monophonic | Solo instrument opening | 1 voice |
+| Melody + drone | Western desolation | 2 voices |
+| Melody + ostinato | Building tension | 2-3 voices |
+| Homophonic chorale | Sacred/hymn passages | 4 voices |
+| Full orchestral | Climactic moments only | All voices |
+| Antiphonal | Call and response (voices/instruments) | 2 groups |
+
+### ABC — Morricone Full Texture (Western Climax)
 ```abc
-X:5
-T:Opera-Influenced Vocal Theme (Cinema Paradiso style)
-M:3/4
-L:1/8
-K:Eb
-"^Soprano - p cantabile"_E2 G2 _B2 | _e2 d2 c2 | _B4 G2 | _E4 z2 |
-G2 _B2 _e2 | d2 c2 _B2 | _A4 G2 | _E6 |
-```
-
-## The Spaghetti Western Sound
-
-| Element | Technique |
-|---------|-----------|
-| Twangy guitar | Electric guitar with reverb, Duane Eddy influence |
-| Whistle | Shrill, lonely human whistle |
-| Wordless soprano | "Ah" vocals, soaring |
-| Whip cracks | Percussion accent |
-| Trumpet solo | Usually muted or distant |
-| Rhythmic guitar | Strumming pattern as foundation |
-| Bell/chime | Funeral or church bell |
-| Coyote howl sounds | Imitated vocally |
-| Sparse orchestration | Small ensemble, not full symphony |
-| Wide reverb | Vast empty space feeling |
-
-```abc
-X:6
-T:Spaghetti Western Theme (Dollars style)
+X:8
+T:Morricone western climax texture
 M:4/4
 L:1/8
 K:Am
-"^Electric guitar (twangy)"A,2E,2 A,2E,2 |
-"^Whistle enters"z4 A2B2 | c2B2 A2E2 | A4 z4 |
-"^Trumpet (muted)"z4 e2^d2 | e2c2 A2E2 | A4 z4 |
+Q:1/4=100
+V:1 name="Wordless Soprano"
+A4 c4 | B4 A4 | G4 A4 | E4 z4 |
+V:2 name="Trumpet"
+z4 E2 A2 | G2 F2 E2 D2 | E4 C2 A,2 | A,4 z4 |
+V:3 name="Electric Guitar"
+|: A,CE A,CE A,CE A,CE :|
+V:4 name="Strings"
+[A,CE]4 [A,CE]4 | [G,BD]4 [A,CE]4 | [E,G,B,]4 [A,CE]4 | [A,CE]4 z4 |
+V:5 name="Bass" clef=bass
+A,,4 A,,4 | E,,4 A,,4 | E,,4 A,,4 | A,,4 z4 |
 ```
 
-## Key Works Reference
+### ABC — Sparse Morricone (Solo + Accompaniment)
+```abc
+X:9
+T:Morricone sparse texture
+M:4/4
+L:1/4
+K:Em
+Q:1/4=66
+V:1 name="Harmonica"
+z B, | E2 ^D E | G F E B, | E4 |
+V:2 name="Guitar (arpeggiated)" clef=treble
+E,B,E z | E,B,E z | E,B,E z | E,B,E z |
+```
 
-| Film | Year | Signature Sound | Key Instrument |
-|------|------|-----------------|----------------|
-| A Fistful of Dollars | 1964 | Whistle + whip + guitar | Electric guitar |
-| The Good, the Bad and the Ugly | 1966 | Three-character themes | Whistle, vocals, trumpet |
-| Once Upon a Time in the West | 1968 | Harmonica theme | Harmonica |
-| The Mission | 1986 | Sacred + indigenous blend | Oboe, choir |
-| Cinema Paradiso | 1988 | Nostalgic waltz | Orchestra, love theme |
-| The Untouchables | 1987 | Heroic Americana | Full orchestra |
-| Malena | 2000 | Sensual, warm | Strings, piano |
-| The Hateful Eight | 2015 | Dark tension | Low strings, bass |
+## Representative Works — Quick Reference
 
-## Scoring Techniques Unique to Morricone
+| Work | Year | Key Features | Signature Sound |
+|------|------|-------------|-----------------|
+| A Fistful of Dollars | 1964 | Whistle, electric guitar, whip | Sparse, twangy |
+| The Good, the Bad and the Ugly | 1966 | Wordless vocals, whistle, 3-note motif | Iconic call melody |
+| Once Upon a Time in the West | 1968 | Harmonica leitmotif, atmospheric build | Solo harmonica identity |
+| The Mission | 1986 | Oboe hymn, pan flute, choir | Sacred + indigenous fusion |
+| The Untouchables | 1987 | Heroic brass, Copland-esque | American orchestral |
+| Cinema Paradiso | 1988 | Piano + strings, nostalgic | Simple major-key lament |
+| Malena | 2000 | Orchestral, romantic, yearning | Lush string melody |
+| The Hateful Eight | 2015 | Dark, Stravinsky-influenced, menacing | Late-period orchestral |
 
-| Technique | Description |
-|-----------|-------------|
-| Theme association | Each character gets a unique instrument, not just melody |
-| Vocal as instrument | Wordless voice used as orchestral color |
-| Genre blending | Mix classical, rock, folk in one cue |
-| Sound effects as music | Gunshots, whip cracks in rhythmic patterns |
-| Silence as weapon | Long silences build more tension than music |
-| Anti-climax scoring | Quiet music for violent scenes (dissonance of mood) |
-| Recurring motif evolution | Theme changes across film to track character arc |
-
-## Style Markers for Generation
+## Style Emulation Parameters
 
 | Parameter | Setting |
 |-----------|---------|
-| Harmony | Simple tonal/modal base, occasional chromaticism |
-| Melody | Singable, memorable, often pentatonic or modal |
-| Orchestration | Unusual timbres, sparse to full range |
-| Texture | Start sparse, build gradually |
-| Dynamics | pp to ff, dramatic contrast |
-| Repetition | Ostinato and melodic loops for tension |
-| Instruments | Prioritize unusual solo instruments |
-| Rhythm | Often simple, driving, or free/rubato |
-| Space | Reverb and silence as compositional tools |
-| Vocal | Wordless soprano or choir frequently |
+| Tempo | 60-100 BPM (slow to moderate) |
+| Keys | Am, Em, Dm (western); F, C, Bb (romantic) |
+| Time signature | 4/4, 3/4, 6/8 |
+| Core melody | 3-5 note motif, repeated extensively |
+| Orchestration | Unconventional lead + gradual orchestral build |
+| Harmonic rhythm | Very slow — 1 chord per 2-4 bars typical |
+| Dynamic range | pp (solo) to ff (full build) — wide range |
+| Texture | Start sparse, build through instrumentation |
+| Repetition | Same melody 4-8 times with different arrangements |
+| Silence | Used dramatically between phrases |
 
-## Compositional Fingerprints
+### The Morricone Sound Checklist
 
-| Fingerprint | Description |
-|-------------|-------------|
-| Unusual solo instrument | Harmonica, whistle, electric guitar as lead |
-| Wordless vocals | Soprano "ah" as melodic instrument |
-| Sparse texture | Minimal forces, maximum impact |
-| Repetitive tension | Simple pattern building inexorably |
-| Genre mixing | Classical + rock + folk in one score |
-| Character = instrument | Each character identified by specific timbre |
-| Dramatic silence | Silence used as powerfully as music |
-| Simple melody | Tunes that entire audiences can hum |
-| Gradual buildup | From nothing to everything over one cue |
-| Sacred elements | Church bells, choir, organ for gravitas |
+| Element | Required? | Notes |
+|---------|-----------|-------|
+| Unconventional lead instrument | Yes | Whistle, harmonica, wordless voice, guitar |
+| Simple memorable melody | Yes | Must be hummable in 3-5 notes |
+| Pedal point / drone | Usually | Bass drone anchors harmony |
+| Orchestral build | Usually | Start solo, end full |
+| Wordless vocals | Often | Soprano (Edda Dell'Orso style) |
+| Guitar ostinato | Often | Clean or twangy electric |
+| Sparse texture | Yes | Less is more |
+| Folk/modal harmony | Yes | Avoid complex chromaticism |
+
+## Common Pitfalls When Emulating Morricone
+
+| Mistake | Correction |
+|---------|------------|
+| Too complex harmonically | Simplify — power is in simplicity |
+| Melody too long | Keep core motif to 3-5 notes |
+| Standard orchestration | Use unconventional lead: whistle, harmonica, guitar |
+| Building through rhythm | Build through orchestration/instrumentation instead |
+| Ignoring silence | Long pauses between phrases are essential |
+| Overcrowded texture | Start with 1 instrument, add slowly |
+| No drone/pedal | Most cues need a sustained bass anchor |
+| Western cliche without depth | Study his non-western work for range |
+| Forgetting the voice | Wordless soprano is a defining color |
+| Too fast tempo | Morricone is patient — slow down |

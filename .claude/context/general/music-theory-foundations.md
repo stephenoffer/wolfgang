@@ -49,7 +49,7 @@
 | Major 2nd | 2 | Mild dissonance | Stepwise motion, suspensions |
 | Minor 3rd | 3 | Consonant (imperfect) | Minor triads, sadness |
 | Major 3rd | 4 | Consonant (imperfect) | Major triads, brightness |
-| Perfect 4th | 5 | Perfect (context-dep.) | Suspensions; consonant below bass only if supported |
+| Perfect 4th | 5 | Perfect (context-dep.) | Dissonant above the bass in counterpoint; consonant between upper voices |
 | Tritone | 6 | Dissonant | Dominant tension, resolution driver |
 | Perfect 5th | 7 | Perfect | Root-fifth stability, open sound |
 | Minor 6th | 8 | Consonant (imperfect) | First-inversion minor triad |
@@ -58,7 +58,7 @@
 | Major 7th | 11 | Dissonant | Leading tone tension, jazz color |
 | Octave | 12 | Perfect | Doubling, reinforcement |
 
-**Consonance hierarchy:** P1/P8 > P5 > 3rds/6ths > P4 (above bass = dissonant in CP) > 2nds/7ths/tritone
+**Consonance categories:** Perfect consonances: P1/P8, P5. Imperfect consonances: 3rds, 6ths. Context-dependent: P4 (consonant between upper voices, dissonant above bass). Dissonances: 2nds, 7ths, tritone.
 
 ---
 
@@ -187,3 +187,92 @@
 - vi (relative minor) — smooth, shared tones
 - iii (mediant) — Romantic-era color
 - bVI, bIII (chromatic mediants) — dramatic color shift
+
+---
+
+## Modal Borrowing (Mixture)
+
+Borrowing chords from the parallel key (e.g., C minor chords used in C major, or vice versa).
+
+### Common Borrowed Chords in Major Keys
+
+| Borrowed chord | Source | Notes (in C) | Effect | Usage |
+|---|---|---|---|---|
+| iv | Parallel minor | F Ab C | Darkened subdominant | Plagal cadences, Romantic color |
+| bVI | Parallel minor | Ab C Eb | Warm, dark | Deceptive cadence target, progressions |
+| bVII | Parallel minor | Bb D F | Earthy, modal | Rock/film progressions, cadences |
+| bIII | Parallel minor | Eb G Bb | Expansive | Romantic, cinematic |
+| ii° | Parallel minor | D F Ab | Tense pre-dominant | Substitutes for ii |
+| i | Parallel minor | C Eb G | Mode mixture | Brief darkening |
+
+### Common Borrowed Chords in Minor Keys
+
+| Borrowed chord | Source | Notes (in C minor) | Effect | Usage |
+|---|---|---|---|---|
+| I (Picardy 3rd) | Parallel major | C E G | Bright resolution | Final cadences (Baroque+) |
+| IV | Parallel major | F A C | Brighter subdominant | Dorian inflection |
+| V (with raised 7th) | Harmonic minor | G B D | Standard dominant | Creates leading tone |
+
+---
+
+## ABC Examples
+
+### Scales
+```abc
+X:1
+T:Major Scale (C)
+M:4/4
+L:1/8
+K:C
+C D E F G A B c | c B A G F E D C |
+```
+
+```abc
+X:2
+T:Minor Scales (A)
+M:4/4
+L:1/8
+K:Am
+% Natural minor
+A, B, C D E F G A |
+% Harmonic minor
+A, B, C D E F ^G A |
+% Melodic minor (ascending / descending)
+A, B, C D E ^F ^G A | A G F E D C B, A, |
+```
+
+### Modes (all from C)
+```abc
+X:3
+T:Seven Modes from C
+M:4/4
+L:1/8
+K:C
+% Ionian
+"^Ionian" C D E F G A B c |
+% Dorian
+"^Dorian" C D _E F G A _B c |
+% Phrygian
+"^Phrygian" C _D _E F G _A _B c |
+% Lydian
+"^Lydian" C D E ^F G A B c |
+% Mixolydian
+"^Mixolydian" C D E F G A _B c |
+% Aeolian
+"^Aeolian" C D _E F G _A _B c |
+% Locrian
+"^Locrian" C _D _E F _G _A _B c |
+```
+
+### Chord Types (arpeggiated from C)
+```abc
+X:4
+T:Triad and 7th Chord Types
+M:4/4
+L:1/4
+K:C
+% Triads
+"^Maj" C E G c | "^min" C _E G c | "^dim" C _E _G c | "^aug" C E ^G c |
+% 7th chords
+"^Maj7" C E G B | "^Dom7" C E G _B | "^min7" C _E G _B | "^hdim7" C _E _G _B | "^dim7" C _E _G __B |
+```

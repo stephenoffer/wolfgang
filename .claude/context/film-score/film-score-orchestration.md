@@ -1,253 +1,295 @@
-# Film Score Orchestration Reference
+# Film Score Orchestration — Reference Tables
 
-## The Hollywood Orchestral Sound
+## Standard Film Orchestra
 
-### Standard Film Orchestra
+### Woodwinds
+| Instrument | Count | Range (ABC) | Role |
+|-----------|-------|-------------|------|
+| Flute | 2-3 | C' - C'''' | Melody, color, high shimmer |
+| Piccolo | 1 | D'' - C''''' (sounds 8va) | Brilliance, high accents |
+| Oboe | 2 | Bb - A''' | Pastoral melody, poignant solo |
+| English Horn | 1 | E - A'' | Warm melody, nostalgic |
+| Clarinet (Bb) | 2-3 | D - Bb''' | Versatile melody, agility |
+| Bass Clarinet | 1 | Bb,, - G'' | Low atmosphere, darkness |
+| Bassoon | 2 | Bb,, - Eb'' | Bass line, comic, lyrical |
+| Contrabassoon | 1 | Bb,,, - Bb, | Ultra-low depth |
 
-| Section | Instruments | Size | Role |
-|---------|------------|------|------|
-| Strings | Vln I (16), Vln II (14), Vla (12), Vc (10), Cb (8) | 60 | Foundation, melody, pad |
-| Woodwinds | 3 Fl (+ picc), 3 Ob (+ EH), 3 Cl (+ bass cl), 3 Bsn (+ contra) | 12 | Color, solo melody |
-| Brass | 6 Hn, 4 Tpt, 4 Tbn (+ bass tbn), 2 Tuba | 16 | Power, fanfare, weight |
-| Percussion | Timpani, snare, bass drum, cymbals, tam-tam, glock, vibes, xylo, crotales, celesta, harp (2), piano | 6-8 players | Rhythm, color, FX |
-| Choir | SATB (24-60 voices) | Variable | Epic scale, sacred |
-| Electronics | Synth pads, samples, processed sounds | Variable | Texture, sub-bass |
+### Brass
+| Instrument | Count | Range (ABC) | Role |
+|-----------|-------|-------------|------|
+| French Horn | 4-6 | B,, - F'' | Heroic themes, warmth, sustain |
+| Trumpet (Bb) | 3-4 | F#, - D''' | Fanfare, melody, brilliance |
+| Trombone | 3 | E, - Bb'' | Power, warmth, dark weight |
+| Bass Trombone | 1 | C, - G' | Low power, menace |
+| Tuba | 1 | D,, - F' | Foundation, weight |
 
-### Signature Hollywood Doublings
+### Strings
+| Instrument | Count | Range (ABC) | Role |
+|-----------|-------|-------------|------|
+| Violin I | 16 | G, - E'''' | Melody, high emotion |
+| Violin II | 14 | G, - E'''' | Harmony, counter-melody |
+| Viola | 12 | C, - E''' | Inner voice, warmth |
+| Cello | 10 | C,, - A'' | Melody, bass, emotion |
+| Double Bass | 8 | E,,, - G' | Foundation, weight |
 
-| Doubling | Effect | Usage |
-|---------|--------|-------|
-| Horns in unison | Powerful, noble | Main theme statement |
-| Trumpet + violins | Brilliant, soaring | Heroic melody |
-| Cello + French horn | Warm, noble | Emotional theme |
-| Flute + celesta | Magical, twinkling | Fantasy, wonder |
-| Low brass + low strings | Massive, dark | Villain, threat |
-| Full strings unison | Overwhelming emotion | Climax melody |
-| Oboe + clarinet | Sweet, warm | Romance |
-| Piccolo + glockenspiel | Bright, ethereal | Fairy-tale |
+### Percussion
+| Instrument | Type | Role |
+|-----------|------|------|
+| Timpani | Pitched | Dramatic punctuation, rolls |
+| Bass Drum | Unpitched | Impact, heartbeat |
+| Snare Drum | Unpitched | Military, tension rolls |
+| Cymbals (crash/susp) | Unpitched | Climax, shimmer |
+| Tam-tam | Unpitched | Doom, enormity |
+| Tubular Bells | Pitched | Solemn, church, magic |
+| Glockenspiel | Pitched | Sparkle, magic, childhood |
+| Xylophone | Pitched | Playful, macabre |
+| Vibraphone | Pitched | Jazz, mystery, shimmer |
+| Marimba | Pitched | Warmth, ethnic, rhythmic |
+| Celesta | Pitched | Magic, delicacy, wonder |
+
+### Keyboards and Harp
+| Instrument | Role |
+|-----------|------|
+| Harp (1-2) | Arpeggios, glissandi, color |
+| Piano | Percussive rhythm, solo, ostinato |
+| Celesta | Magic, fairy-tale color |
+| Organ | Sacred, massive, horror |
+| Synthesizer | Pads, textures, modern hybrid |
+
+## Hybrid Scoring — Orchestra + Electronics
+
+| Electronic Element | Orchestral Pairing | Effect |
+|-------------------|-------------------|--------|
+| Synth pad (sustained) | String sustain | Expanded low end, width |
+| Sub bass (30-60Hz) | Contrabass + tuba | Visceral rumble |
+| Rhythmic pulse | Pizzicato + percussion | Modern drive |
+| Processed vocals | Choir | Ethereal, otherworldly |
+| Granular texture | Tremolo strings | Atmospheric unease |
+| Distorted synth | Brass stabs | Aggressive impact |
+| Ambient drone | Sustained horn/organ | Immersive space |
+| Glitch/stutter | Col legno/Bartok pizz | Technological, broken |
+
+## Scoring Templates by Scene Type
+
+### Action Scoring
+| Layer | Instruments | Technique |
+|-------|------------|-----------|
+| Rhythmic drive | Low strings, timp, perc | Ostinato, marcato |
+| Harmonic punch | Brass section | Staccato stabs, sfz |
+| Melodic line | Trumpet/horn unison | Heroic theme fragments |
+| Texture fill | Upper strings tremolo | Sustained tension |
+| Accents | Full orchestra | Tutti hits on action |
+| Low weight | Bass tbn, tuba, bass drum | Ground-shaking impacts |
 
 ```abc
 X:1
-T:Hollywood Theme Statement (Horns + Strings)
+T:Action scoring template
 M:4/4
 L:1/8
-K:Bb
-%%staves {1 2}
-V:1 name="Horns (unison)"
-"^ff maestoso"B2 d2 f2 b2 | a2 g2 f2 e2 | d4 c2 B2 | F4 B4 |
-V:2 name="Strings"
-[B,DF]4 [B,DF]4 | [_EGB]4 [CEG]4 | [B,DF]4 [A,CF]4 | [B,DF]8 |
+K:Cm
+Q:1/4=152
+V:1 name="Trumpet"
+z4 G2 c2 | _e2 d2 c2 G2 | _A4 G4 |
+V:2 name="Horns"
+[C,_E,G,]2 z2 [C,_E,G,]2 z2 | [C,_E,G,]2 z2 [_A,,C,_E,]2 z2 | [G,,_B,,D,]4 [C,_E,G,]4 |
+V:3 name="Low Strings" clef=bass
+C,C,C,C, C,C,C,C, | C,C,C,C, _A,,_A,,_A,,_A,, | G,,2 z2 C,,4 |
+V:4 name="Timpani" clef=bass
+C,,2 z C,, C,,2 z C,, | C,,2 z C,, _A,,,2 z _A,,, | G,,,4 C,,,4 |
 ```
 
-## Synth + Orchestra Hybrid
-
-### Layer Architecture
-
-| Layer | Function | Instrument Type |
-|-------|----------|----------------|
-| Sub-bass (20-80 Hz) | Physical rumble | Synth bass, processed contrabass |
-| Bass (80-200 Hz) | Harmonic foundation | Bass, cello, tuba, synth |
-| Low-mid (200-500 Hz) | Warmth, body | Cellos, horns, synth pad |
-| Mid (500 Hz-2 kHz) | Melody, detail | Violins, woodwinds, brass |
-| High-mid (2-6 kHz) | Brightness, presence | High strings, trumpet, synth lead |
-| Air (6+ kHz) | Shimmer, space | Cymbals, synth air, harmonics |
-
-### Hybrid Scoring Principles
-
-| Principle | Application |
-|-----------|-------------|
-| Synth for sustain | Pads provide continuous harmonic bed |
-| Orchestra for expression | Strings/winds for dynamic, human emotion |
-| Synth for sub-bass | Below acoustic instrument range |
-| Percussion blend | Electronic + acoustic percussion layered |
-| Transition masking | Synths smooth gaps between orchestral phrases |
-| Sound design integration | Processed sounds as musical elements |
+### Romantic/Love Theme Scoring
+| Layer | Instruments | Technique |
+|-------|------------|-----------|
+| Solo melody | Oboe, English horn, violin solo | Legato, espressivo |
+| Counter-melody | Cello, French horn | Complementary phrases |
+| Harmonic cushion | Divisi strings (pp) | Sustained chords, warm |
+| Color | Harp arpeggios | Rolling broken chords |
+| Bass | Cello + bass (pizz or sost) | Gentle foundation |
+| Sparkle | Celesta, glockenspiel | Occasional touches |
 
 ```abc
 X:2
-T:Hybrid Texture (Synth Pad + Orchestra Melody)
-M:4/4
-L:1/4
-K:Dm
-%%staves {1 2}
-V:1 name="Orch. melody (Cello)"
-"^mp espress."D F A d | c A F E | D2 z2 |
-V:2 name="Synth pad (sustained)"
-"^pp"[D,A,DF]4 | [D,A,DF]4 | [D,A,DF]4 |
+T:Romantic scoring template
+M:3/4
+L:1/8
+K:Eb
+Q:1/4=72
+V:1 name="Solo Oboe"
+z2 _B2 G2 | _A4 F2 | G4 _E2 | _B,4 z2 |
+V:2 name="Strings"
+[_E,G,_B,]4 [_E,G,_B,]2 | [F,_A,C]4 [F,_A,C]2 | [_E,G,_B,]4 [_E,G,_B,]2 | [_B,,D,F,]4 z2 |
+V:3 name="Harp"
+_E,G,_B, _E G _B | F,_A,C F _A c | _E,G,_B, _E G _B | _B,,D,F, _B, D F |
 ```
 
-## Percussion for Action
-
-### Action Percussion Toolkit
-
-| Instrument | Role | Intensity |
-|-----------|------|-----------|
-| Taiko drums | Epic impact hits | High |
-| Snare drum | Military rhythm, urgency | Medium-High |
-| Bass drum (orchestral) | Weight, impact | High |
-| Timpani rolls | Building tension | Medium |
-| Cymbals (crash) | Climax punctuation | High |
-| Tom-toms | Rhythmic drive | Medium |
-| Anvil/metal perc | Metallic impact | High |
-| Electronic drum hits | Hybrid action pulse | Medium-High |
-
-### Action Rhythm Patterns
+### Horror/Tension Scoring
+| Layer | Instruments | Technique |
+|-------|------------|-----------|
+| Sustained dread | Strings sul ponticello | Glassy, unstable |
+| Cluster/dissonance | Divisi strings, brass | Semitone clusters |
+| Shock stingers | Full orchestra sfz | Sudden loud attacks |
+| Creeping texture | Col legno, harmonics | Insect-like, alien |
+| Sub-rumble | Synth + contrabass | Below perception |
+| Silence | Nothing | Most terrifying element |
 
 ```abc
 X:3
-T:Action Percussion Pattern (orchestral reduction)
+T:Horror texture
 M:4/4
-L:1/16
-K:C
-"^Taiko + strings"C,4 z4 C,4 z4 | C,4 z2C,2 C,4 z4 |
-"^Building"C,4 z2C,2 C,2z2 C,4 | C,2C,2 C,2C,2 C,4 C,4 |
+L:1/4
+K:Cm
+Q:1/4=52
+V:1 name="Violin I (sul pont)"
+"pp"C "tremolo" C C C | _D _D _D _D |
+V:2 name="Violin II (sul pont)"
+"pp"_D _D _D _D | C C C C |
+V:3 name="Viola (col legno)" clef=alto
+z G,, z G,, | z G,, z G,, |
+V:4 name="Cello" clef=bass
+"ppp"C,,4 | C,,4 |
 ```
 
-## String Pad Techniques
-
-| Technique | Scoring | Effect |
-|-----------|---------|--------|
-| Sustained divisi | Each section on different chord tone | Thick, warm |
-| Tremolo | Bow tremolo on sustained notes | Tension, shimmer |
-| Sul tasto | Bow over fingerboard | Ethereal, distant |
-| Con sordino | Muted strings | Intimate, muffled |
-| Harmonics | Natural harmonics, high register | Magical, crystalline |
-| Marcato chords | Short, accented downbows | Power, impact |
+### Epic/Trailer Scoring
+| Layer | Instruments | Technique |
+|-------|------------|-----------|
+| Percussion foundation | Taiko, bass drum, toms | Driving quarter/eighth pulse |
+| Brass fanfare | Horns + trumpets unison | ff, marcato, heroic |
+| Choir | SATB or wordless | Power, reverence |
+| String ostinato | Full section tremolo/repeated | Driving energy |
+| Anvil/metal hits | Percussion, synth | Impact accents |
+| Build layers | Add instruments progressively | Crescendo over 16-32 bars |
 
 ```abc
 X:4
-T:String Pad - Divisi Voicing
-M:4/4
-L:1/1
-K:Am
-%%staves {1 2 3 4}
-V:1 name="Vln I"
-e |
-V:2 name="Vln II"
-c |
-V:3 name="Vla"
-A |
-V:4 name="Vc" clef=bass
-E, |
-```
-
-## Brass Fanfare
-
-| Element | Technique |
-|---------|-----------|
-| Call to action | Ascending 4th/5th interval opening |
-| Heroic melody | Major scale, wide leaps, dotted rhythms |
-| Unison power | All horns/trumpets on same line |
-| Harmonic support | Trombones + tuba provide chords beneath |
-| Timpani reinforcement | Matches brass rhythm |
-| Dynamic | ff to fff |
-| Articulation | Marcato, accented |
-
-```abc
-X:5
-T:Brass Fanfare (Williams-style)
-M:4/4
-L:1/8
-K:Bb
-"^ff - Trumpets"B,2 F2 B2 d2 | c2 B2 A2 G2 |
-"^Horns join"F2 B2 d2 f2 | e2 d2 c2 B2 |
-"^Full brass"B,2 D2 F2 B2 | d4 B4 |
-```
-
-## Choir as Instrument
-
-| Choral Technique | Effect | Usage |
-|-----------------|--------|-------|
-| Wordless sustain (ah/oh) | Pad, atmosphere | Establishing shots |
-| Latin text | Sacred, ancient | Epic, religious scenes |
-| Rhythmic chanting | Tribal, powerful | Battle, ritual |
-| Unison melody | Pure, simple | Theme statement |
-| Cluster chords | Eerie, unsettling | Horror, supernatural |
-| Soprano solo over orchestra | Ethereal, emotional | Transcendent moments |
-
-```abc
-X:6
-T:Choir - Epic Chanting (battle scene)
+T:Epic trailer build
 M:4/4
 L:1/4
 K:Dm
-V:1 name="Sopranos/Altos"
-"^ff"d d d A | d d c A | d d d A | F2 D2 |
-V:2 name="Tenors/Basses" clef=bass
-D, D, D, A,, | D, D, C, A,, | D, D, D, A,, | F,2 D,2 |
+Q:1/4=92
+V:1 name="Brass (Horns+Trumpets)"
+z4 | z4 | D, F, A, D | F A d2 |
+V:2 name="Choir"
+z4 | z4 | z4 | [DFA]2 [DFd]2 |
+V:3 name="Strings"
+D, z D, z | D, F, D, z | D, F, A, D | [D,F,A,D]4 |
+V:4 name="Taiko/Perc" clef=bass
+D,,2 z D,, | D,,2 D,, D,, | D,,D,,D,,D,, | D,,,4 |
 ```
 
-## Trailer Music Escalation
+### Intimate/Understated Scoring
+| Layer | Instruments | Technique |
+|-------|------------|-----------|
+| Solo melody | Piano, guitar, solo violin | Simple, exposed |
+| Accompaniment | Piano arpeggios, guitar fingerpick | Sparse, transparent |
+| Sustain | 2-4 solo strings (not section) | Warmth, not weight |
+| Color | Single woodwind note | Occasional phrase endings |
+| Bass | Cello pizzicato | Gentle pulse |
 
-### Escalation Blueprint
+```abc
+X:5
+T:Intimate piano scoring
+M:4/4
+L:1/8
+K:G
+Q:1/4=66
+V:1 name="Piano RH"
+B2 d2 e2 d2 | B2 A2 G2 F2 | G4 z4 |
+V:2 name="Piano LH" clef=bass
+G,,B,,D, z G,,B,,D, z | C,E,G, z C,E,G, z | G,,B,,D,G, z4 |
+```
 
-| Section | Duration | Texture | Dynamic |
-|---------|----------|---------|---------|
-| Intro | 0:00-0:15 | Solo/sparse, mysterious | pp |
-| Build 1 | 0:15-0:30 | Add strings, pulse begins | mp |
-| Build 2 | 0:30-0:50 | Brass enters, rhythm intensifies | mf |
-| Pre-drop | 0:50-1:00 | Full orchestra, maximum tension | f |
-| Drop/Hit | 1:00 | Massive impact, silence, then full | fff |
-| Climax | 1:00-1:30 | Full ensemble, driving rhythm | fff |
-| Resolution | 1:30-1:45 | Sudden thin, emotional solo | p |
+## Extended Techniques for Film
 
-### Escalation Techniques
+| Technique | Instrument | Notation Hint | Effect |
+|-----------|-----------|---------------|--------|
+| Sul ponticello | Strings | "sul pont." | Glassy, eerie |
+| Sul tasto | Strings | "sul tasto" | Veiled, ghostly |
+| Col legno | Strings | "col legno" | Clicking, skeletal |
+| Bartok pizzicato | Strings | "snap pizz." | Aggressive snap |
+| Harmonic gliss | Strings | Flageolet + gliss | Ethereal, alien |
+| Tremolo | Strings, timp | "trem." | Tension, shimmer |
+| Flutter-tongue | Brass, flute | "flz." | Menacing, buzzing |
+| Muted brass | Brass | "con sord." | Distant, muffled |
+| Stopped horn | Horn | "+" symbol | Metallic, nasal |
+| Multiphonic | Woodwind | Specific fingering | Horror, distortion |
+| Prepared piano | Piano | Objects on strings | Percussive, unusual |
+| Bowed cymbal | Percussion | "bow" | High eerie sustain |
+| Bowed vibraphone | Vibraphone | "bow" | Sustained, glassy |
 
-| Technique | Description |
-|-----------|-------------|
-| Rising pitch | Melodic line ascends over multiple bars |
-| Thickening texture | Layers added progressively |
-| Accelerating rhythm | Note values get shorter |
-| Crescendo | Gradual dynamic increase |
-| Register expansion | Low + high extremes widen |
-| Harmonic tension | Dissonance increases to climax |
-| Percussion buildup | Snare roll, timpani crescendo |
+## Mickeymousing vs Underscoring
 
-## Mixing Conventions (Orchestration Perspective)
+| Approach | Definition | When to Use |
+|----------|-----------|-------------|
+| Mickeymousing | Music mirrors every on-screen action | Comedy, animation, slapstick |
+| Tight sync | Music hits major action points only | Action, thriller |
+| Loose sync | Music follows emotional arc, not action | Drama, romance |
+| Underscoring | Music provides background mood only | Dialogue scenes |
+| Source music | Diegetic — music exists in the scene | Bar scenes, radio, concert |
+| Contrapuntal | Music contradicts visual mood | Irony, dark comedy, Kubrick |
 
-| Convention | Scoring Implication |
-|-----------|-------------------|
-| Horns in unison | 4-6 horns produce "the" Hollywood horn sound |
-| Strings divisi | Creates thick pad without individual lines exposed |
-| Brass ffff | Requires space — don't bury with other instruments |
-| Woodwind solo | Leave space in arrangement for audibility |
-| Low end clarity | Only one element in sub-bass at a time |
-| Percussion placement | Taiko/bass drum center, cymbals wider |
-| Choir blend | Vowels chosen for blend ("ah" blends, "ee" cuts through) |
+## Voice/Instrument Templates for ABC
 
-## Orchestration by Scene Type
+### Full Orchestra Tutti
+```abc
+V:1 name="Flute" clef=treble
+V:2 name="Oboe" clef=treble
+V:3 name="Clarinet" clef=treble
+V:4 name="Bassoon" clef=bass
+V:5 name="Horn" clef=treble
+V:6 name="Trumpet" clef=treble
+V:7 name="Trombone" clef=bass
+V:8 name="Tuba" clef=bass
+V:9 name="Timpani" clef=bass
+V:10 name="Violin I" clef=treble
+V:11 name="Violin II" clef=treble
+V:12 name="Viola" clef=alto
+V:13 name="Cello" clef=bass
+V:14 name="Bass" clef=bass
+```
 
-| Scene Type | Primary Instruments | Secondary | Character |
-|-----------|-------------------|-----------|-----------|
-| Love scene | Solo violin/cello, harp | Strings, clarinet | Intimate, warm |
-| Action | Full brass, percussion | Strings driving | Powerful, rhythmic |
-| Comedy | Woodwinds, pizzicato | Light percussion | Nimble, bright |
-| Horror | Low strings tremolo, col legno | Prepared piano, clusters | Unsettling |
-| Epic/battle | Full orchestra + choir | Taiko, brass fanfare | Massive, overwhelming |
-| Mystery | Muted strings, celesta | Solo oboe, vibraphone | Atmospheric |
-| Sci-fi | Synths + strings | Processed piano, electronics | Otherworldly |
-| Fantasy | Harp, celesta, choir | Full strings, flute | Magical |
-| Western | Guitar, harmonica | Strings, trumpet | Open, rugged |
-| Period drama | Chamber ensemble | Harpsichord, period instruments | Authentic, restrained |
+### Small Dramatic Ensemble
+```abc
+V:1 name="Solo Instrument" clef=treble
+V:2 name="Horn" clef=treble
+V:3 name="Violin I" clef=treble
+V:4 name="Violin II" clef=treble
+V:5 name="Viola" clef=alto
+V:6 name="Cello" clef=bass
+V:7 name="Bass" clef=bass
+V:8 name="Harp" clef=treble
+```
 
-## Dynamic Range by Context
+### Hybrid Action Ensemble
+```abc
+V:1 name="Brass" clef=treble
+V:2 name="Strings" clef=treble
+V:3 name="Low Strings" clef=bass
+V:4 name="Percussion" clef=bass
+V:5 name="Synth" clef=bass
+```
 
-| Context | Floor | Ceiling | Range |
-|---------|-------|---------|-------|
-| Dialogue underscore | ppp | mp | Very narrow |
-| Emotional scene | pp | f | Moderate |
-| Action sequence | mf | fff | Moderate-wide |
-| Climactic moment | p | ffff | Maximum |
-| Horror scare | ppp to fff | (sudden) | Extreme contrast |
-| End credits | mp | ff | Moderate |
+## Dynamic Layering Strategy
 
-## Register Deployment
+| Build Stage | Instruments Added | Dynamic |
+|-------------|------------------|---------|
+| 1: Foundation | Low strings pizz, single sustained note | pp |
+| 2: Color | Add woodwind, harp | p |
+| 3: Motion | Add string ostinato | mp |
+| 4: Theme | Add melody instrument (horn/trumpet) | mf |
+| 5: Weight | Add brass harmony, timpani | f |
+| 6: Full | Tutti, percussion, choir if available | ff |
+| 7: Climax | Everything, extreme registers | fff |
 
-| Register | Instruments | Emotional Association |
-|----------|------------|----------------------|
-| Sub-bass (C1-) | Synth, contrabass | Dread, power, earth |
-| Bass (C2-C3) | Cello, bassoon, tuba | Weight, darkness |
-| Tenor (C3-C4) | Viola, horn, clarinet | Warmth, humanity |
-| Alto (C4-C5) | Violin, oboe, trumpet | Expression, clarity |
-| Soprano (C5-C6) | Flute, high violin | Brightness, innocence |
-| Super-soprano (C6+) | Piccolo, celesta, harmonics | Magic, ethereal |
+## Common Orchestral Doublings
+
+| Doubling | Effect | Usage |
+|----------|--------|-------|
+| Flute + violin I (8va) | Brightness, shimmer | Lyrical melodies |
+| Oboe + cello (unison) | Rich, warm | Emotional themes |
+| Horn + cello (unison) | Noble, full | Heroic themes |
+| Trumpet + violin I (unison) | Brilliant, cutting | Climactic melody |
+| Clarinet + viola (unison) | Mellow blend | Inner voice warmth |
+| Trombone + cello + bassoon | Dark weight | Villain themes |
+| Full brass + strings | Maximum power | Final statement |
+| Glock + celesta + harp harmonics | Magic sparkle | Wonder moments |

@@ -1,265 +1,288 @@
-# Composer Profile: Steve Reich (b. 1936)
-
-## Style Overview
-
-| Element | Reich's Approach |
-|---------|-----------------|
-| Core technique | Phase shifting, gradual process |
-| Harmonic language | Diatonic, modal, consonant |
-| Rhythmic basis | Interlocking patterns, resultant rhythm |
-| Texture | Layered percussion, keyboards, winds |
-| Form | Process-driven, audible transformation |
-| Influences | West African drumming, Balinese gamelan, jazz, cantillation |
-| Aesthetic | Music as gradual process — audible, impersonal, compelling |
-
-## Period Overview
-
-| Period | Years | Key Works | Technique |
-|--------|-------|-----------|-----------|
-| Tape/phase | 1965-1971 | It's Gonna Rain, Come Out, Piano Phase | Tape phase, live phase |
-| Percussion/mallet | 1970-1976 | Drumming, Music for Mallet Instruments | Substitution, resulting patterns |
-| Large ensemble | 1976-1988 | Music for 18 Musicians, Tehillim | Pulsing, harmonic cycles |
-| Speech melody | 1988-2002 | Different Trains, City Life | Sampled speech as melody |
-| Late orchestral | 2002-present | You Are (Variations), Runner | Orchestral, post-minimal |
-
-## Phase Shifting
-
-### The Process
-
-| Stage | Description | Duration |
-|-------|-------------|----------|
-| Unison | Both players play identical pattern | 8-16 bars |
-| Shifting | One player gradually accelerates | 8-32 bars |
-| Lock | Arrive at next offset position | 8-16 bars |
-| Repeat shift | Shift to next position | 8-32 bars |
-| Full cycle | Return to unison through all positions | Full piece |
-
-### Phase Notation Conventions
-
-| Symbol/Instruction | Meaning |
-|-------------------|---------|
-| "Repeat and fade ahead" | Player 2 accelerates slightly |
-| "Hold steady" | Player 1 maintains tempo |
-| "Lock" | Both players at new stable relationship |
-| Bar numbers in parentheses | Approximate number of bars at each stage |
-| Double barline | Phase position change complete |
-
-```abc
-X:1
-T:Piano Phase - Pattern
-M:4/4
-L:1/16
-K:E
-"^The 12-note pattern"E^FBE ^FBE^F BE^FB |
-```
-
-```abc
-X:2
-T:Piano Phase - Two Positions
-M:4/4
-L:1/16
-K:E
-%%staves {1 2}
-V:1 name="Piano 1 (steady)"
-E^FBE ^FBEF ^FBE^F |
-V:2 name="Piano 2 (offset 2)"
-BE^F B E^FBE ^FBE^F |
-```
-
-### Resultant Patterns
-
-| Concept | Description |
-|---------|-------------|
-| Definition | New melodic pattern perceived from combination of phased voices |
-| Emergence | Listener hears pattern not played by either player |
-| Varying | Different offset = different resultant |
-| Reinforcement | Players can emphasize resultant by accenting |
-| Doubling | Wind/voice doubles resultant to make it audible |
-
-## Speech Melody (Different Trains, City Life)
-
-### Process
-
-| Step | Description |
-|------|-------------|
-| 1 | Record spoken words/phrases |
-| 2 | Transcribe exact pitches and rhythm of speech |
-| 3 | Instruments play speech melody patterns |
-| 4 | Sampled speech plays with instruments |
-| 5 | Melody derived from speech rhythm/pitch |
-| 6 | Canon/phase applied to speech melody |
-
-```abc
-X:3
-T:Speech Melody Transcription (Different Trains style)
-M:4/4
-L:1/16
-K:D
-w:From Chi-ca-go to New York
-D4 D2E2 ^F4 A2A2 | D4 D2E2 ^F4 z4 |
-```
-
-### Different Trains Technique
-
-| Layer | Content | Function |
-|-------|---------|----------|
-| Sampled speech | Recorded voices | Source material |
-| String quartet (live) | Plays speech-derived melody | Performance layer |
-| String quartet (tape) | Pre-recorded doubling | Enrichment |
-| Train sounds | Sampled | Sound design, rhythm |
-
-## Clapping Music Technique
-
-| Feature | Description |
-|---------|-------------|
-| Single pattern | 12-beat rhythmic pattern |
-| No pitch | Purely rhythmic |
-| Phase by substitution | One player shifts pattern by one beat each cycle |
-| 12 positions | Returns to unison after 12 shifts |
-| Structural clarity | Every position creates new combined rhythm |
-
-```abc
-X:4
-T:Clapping Music Pattern (rhythm only, on single pitch)
-M:12/8
-L:1/8
-K:C
-"^Player 1"C C C z C C z C z C C z |
-"^Player 2 (offset 1)"C C z C C z C z C C z C |
-```
-
-## Large Ensemble Writing
-
-### Music for 18 Musicians Model
-
-| Section | Technique | Instruments |
-|---------|-----------|-------------|
-| Cycle of chords | 11 chords, each becomes a section | Full ensemble |
-| Pulsing | Sustained instruments pulse (breathe in/out) | Winds, voices |
-| Rhythmic patterns | Interlocking mallet/piano patterns | Marimba, piano, vibes |
-| Bass pulse | Steady, grounding | Bass clarinet, cello |
-| Vocal patterns | Wordless singing, doubled by instruments | Soprano voices |
-
-```abc
-X:5
-T:Pulsing Technique (winds breathing in/out)
-M:4/4
-L:1/4
-K:D
-"^Swell"!pp![DF]!mp![DF]!p![DF]!pp![DF] | !pp![DF]!mp![DF]!p![DF]!pp![DF] |
-```
-
-```abc
-X:6
-T:Interlocking Mallet Patterns (18 Musicians style)
-M:4/4
-L:1/16
-K:D
-%%staves {1 2 3}
-V:1 name="Marimba 1"
-D2F2 z2A2 z2d2 z2A2 |
-V:2 name="Marimba 2"
-z2D2 F2z2 A2z2 d2z2 |
-V:3 name="Piano"
-[D,A,]4 z4 [D,A,]4 z4 |
-```
-
-### Instrument Roles in Large Ensemble
-
-| Instrument | Role | Character |
-|-----------|------|-----------|
-| Marimbas (2-4) | Interlocking rhythmic patterns | Warm, woody |
-| Vibraphones (2) | Sustained resultant patterns | Bell-like |
-| Pianos (2) | Pattern + chordal pulse | Percussive clarity |
-| Bass clarinet | Low pedal tones, pulse | Dark ground |
-| Clarinets | Doubling resultant, melody | Warm blend |
-| Female voices (3-4) | Pulsing, wordless melody | Human warmth |
-| Cello | Bass, occasional melody | Rich sustain |
-| Violin | Melody, sustained tones | Bright sustain |
-
-## African and Balinese Influence
-
-| Source | Technique Borrowed | Reich Application |
-|--------|-------------------|-------------------|
-| Ewe drumming (Ghana) | Interlocking patterns, bell pattern | Drumming, Clapping Music |
-| Balinese gamelan | Interlocking melody (kotekan) | Large ensemble interlocking |
-| African timeline | Asymmetric repeating rhythm | Phase patterns |
-| Polyrhythm | Multiple simultaneous meters | Layered patterns |
-| Call-response | Alternating musical phrases | Section transitions |
-| Resultant melody | Emerges from combined patterns | Doubling with instruments |
-
-## Gradually Evolving Patterns
-
-### Evolution Techniques
-
-| Technique | Description | Work |
-|-----------|-------------|------|
-| Phase shifting | Gradual acceleration, one voice | Piano Phase, Violin Phase |
-| Substitution | Rests replaced by beats one at a time | Drumming |
-| Augmentation | Pattern notes gradually lengthen | Music for 18 Musicians |
-| Harmonic shift | Pattern stays, chord changes beneath | 18 Musicians, Tehillim |
-| Registration change | Same pattern, octave shifts | Various |
-| Timbral shift | Pattern migrates between instruments | Drumming (bongos->marimba->glock) |
-
-```abc
-X:7
-T:Substitution Process (Drumming-style, from rest to full)
-M:4/4
-L:1/8
-K:C
-"^Step 1"z z z z C z z z | "^Step 2"z z C z C z z z |
-"^Step 3"z z C z C z C z | "^Step 4"C z C z C z C z |
-"^Step 5"C C C z C z C z | "^Full"C C C C C z C C |
-```
+# Steve Reich (b. 1936) — Composer Profile
 
 ## Harmonic Language
 
-| Feature | Description |
-|---------|-------------|
-| Diatonic | Firmly within key, modal |
-| Consonant | Triads, open intervals |
-| Slow harmonic rhythm | Chords change slowly |
-| Cycle-based | Set of chords repeated as cycle |
-| Modal color | Dorian, Mixolydian frequently |
-| Pedal tones | Bass sustains through changes |
-| Non-functional | No V-I obligation |
+| Parameter | Value |
+|-----------|-------|
+| Tonality | Modal, diatonic, strongly tonal center |
+| Harmonic rhythm | Extremely slow — single harmony may last 4-8 minutes |
+| Chord types | Triads, 7ths (rarely), open 5ths, stacked 4ths |
+| Modulation | Gradual — pivot via shared tones, not cadential |
+| Dissonance | Incidental (from phasing), never structural |
+| Key relationships | Closely related keys, often I - vi - IV - V cycling |
+| Characteristic | Consonance maintained even during complex phasing |
 
-```abc
-X:8
-T:Harmonic Cycle (Music for 18 Musicians style)
-M:4/4
-L:1/2
-K:D
-"^Chord 1"[DFA] [DFA] | "^Chord 2"[CEG] [CEG] |
-"^Chord 3"[B,DF] [B,DF] | "^Chord 4"[A,CE] [A,CE] |
+### Harmonic Progressions by Period
+
+| Period | Typical Progressions |
+|--------|---------------------|
+| Early (1965-1975) | Single chord / unison, no harmonic motion |
+| Middle (1976-1990) | I - vi - IV - V cycled slowly, 11-chord cycles (Music for 18) |
+| Late (1990+) | More chromatic, secondary dominants, richer palette |
+
+### Harmonic Cycle — Music for 18 Musicians Style
+```
+Section I:    D major (4+ pulses)
+Section II:   F# minor (4+ pulses)
+Section III:  D major -> B minor (gradual)
+Section IV:   B minor (4+ pulses)
 ```
 
-## Style Markers for Generation
+## Melodic Style
+
+| Parameter | Value |
+|-----------|-------|
+| Range | Narrow — typically within octave |
+| Interval content | 2nds, 3rds, 4ths, 5ths — rarely >5th |
+| Contour | Circular, rotating, no clear climax |
+| Pattern length | 4-12 notes (short repeating cells) |
+| Development | Additive process, substitution, augmentation |
+| Motif identity | Pattern = motif, no "theme" in classical sense |
+
+### Pattern Types
+
+| Type | Description | Note Count |
+|------|-------------|------------|
+| Repeating cell | Fixed pattern, exact repetition | 4-8 |
+| Resultant pattern | Emerges from phasing overlap | Variable |
+| Additive pattern | Notes added one at a time | Grows 1->12+ |
+| Substitution pattern | Rests replaced by pitches | Grows from sparse |
+
+### ABC — Basic Repeating Pattern (Piano Phase style)
+```abc
+X:1
+T:Reich-style repeating pattern
+M:12/8
+L:1/8
+K:D
+Q:1/4=144
+|: E F A B c B A F E c B A :|
+```
+
+### ABC — Additive Process (Drumming-inspired)
+```abc
+X:2
+T:Additive process demonstration
+M:12/8
+L:1/8
+K:C
+%% Phase 1: sparse
+|: z z G z z z z z G z z z :|
+%% Phase 2: one note added
+|: z z G z z G z z G z z z :|
+%% Phase 3: another note added
+|: z z G z G G z z G z z z :|
+%% Phase 4: filling in
+|: z z G z G G z z G z G z :|
+%% Phase 5: nearly complete
+|: z G G z G G z z G z G z :|
+%% Phase 6: complete pattern
+|: z G G z G G z G G z G z :|
+```
+
+## Rhythmic Characteristics
+
+| Parameter | Value |
+|-----------|-------|
+| Pulse | Constant, unwavering — foundation of all works |
+| Tempo | Usually MM=144-192 (eighth note pulse) |
+| Meter | 12/8, 6/4, 3/4 — compound and simple |
+| Polyrhythm source | Phasing creates polyrhythm, not written polymeter |
+| Phase shift rate | Gradual — 1 sixteenth per ~30 seconds typical |
+| Downbeat | Often ambiguous due to pattern rotation |
+| Accent | Resultant — emerges from overlapping patterns |
+
+### Phase Shifting Process
+
+```
+Step 0: Both parts in unison
+  Part A: |E F A B c B A F E c B A|
+  Part B: |E F A B c B A F E c B A|
+
+Step 1: Part B shifts ahead by 1 eighth
+  Part A: |E F A B c B A F E c B A|
+  Part B: |F A B c B A F E c B A E|
+
+Step 2: Part B shifts ahead by 2 eighths
+  Part A: |E F A B c B A F E c B A|
+  Part B: |A B c B A F E c B A E F|
+
+...continues until unison returns (12 shifts in 12/8)
+```
+
+### ABC — Phasing (two voices, offset)
+```abc
+X:3
+T:Phase pattern - voice 1
+V:1
+M:6/4
+L:1/8
+K:E
+Q:1/4=144
+|: E ^G B e B ^G E ^G B e B ^G :|
+V:2
+M:6/4
+L:1/8
+K:E
+%% shifted by one eighth note
+|: ^G B e B ^G E ^G B e B ^G E :|
+```
+
+### Additive/Subtractive Rhythms
+```
+Beat:  1 . 2 . 3 . 4 . 5 . 6 .
+Full:  x . x . x . x . x . x .
+Sub-1: x . x . x . x . x . z .
+Sub-2: x . x . x . x . z . z .
+Sub-3: x . x . x . z . z . z .
+(reverse = additive process)
+```
+
+## Preferred Forms
+
+| Form | Description | Example Works |
+|------|-------------|---------------|
+| Process music | Single process unfolds, no sections | Come Out, It's Gonna Rain, Piano Phase |
+| Gradual transformation | Slow morph from state A to B | Drumming (single movement) |
+| Sectional / arch | Sections defined by harmonic changes | Music for 18 Musicians |
+| Multi-movement | 3-4 movements, each a process | Different Trains, Tehillim |
+| Pulsing arch | Build -> sustain -> fade structure | Music for 18 (macro form) |
+
+### Typical Section Transition
+
+| Technique | Description |
+|-----------|-------------|
+| Fade in/out | New pattern enters pp while old exits |
+| Substitution | One pattern morphs into next note-by-note |
+| Harmonic pivot | Shared tones bridge two harmonic areas |
+| Rhythmic cue | Vibraphone/clave signals section change |
+
+## Orchestration
+
+| Ensemble Type | Instruments | Example |
+|--------------|-------------|---------|
+| Phase duo | 2 identical instruments | Piano Phase, Violin Phase |
+| Percussion ensemble | Marimbas, glockenspiels, drums | Drumming |
+| Amplified ensemble | Keyboards, strings, winds, voices | Music for 18 Musicians |
+| Chamber | String quartet + tape | Different Trains |
+| Solo + tape/ensemble | Electric guitar/counterpoint | Electric Counterpoint |
+
+### Doubling Strategy
+
+| Purpose | Technique |
+|---------|-----------|
+| Phasing | 2 identical instruments, one shifts |
+| Reinforcement | Marimba + piano on same pattern |
+| Resultant melody | Listener perceives melody from overlap |
+| Timbral phasing | Same pitch, different instrument = color shift |
+
+### Characteristic Instruments
+
+| Instrument | Role | Technique |
+|------------|------|-----------|
+| Marimba | Pattern carrier | Constant 8th-note patterns |
+| Vibraphone | Pulsing signal | Sustained chords, section cues |
+| Piano | Pattern carrier | Doubling marimbas, phasing |
+| Electric organ | Sustained harmony | Long chords under patterns |
+| Clarinet/Flute | Melodic doubling | Resultant pattern reinforcement |
+| Bass clarinet | Bass pattern | Rhythmic foundation |
+| Women's voices | Melodic pattern | Syllabic, blend with instruments |
+| Clapping | Rhythm | Clapping Music — pure rhythm phase |
+
+### ABC — Interlocking Pattern (Music for 18 style)
+```abc
+X:4
+T:Interlocking patterns - 3 voices
+V:1 name="Marimba 1"
+M:3/4
+L:1/8
+K:D
+Q:1/4=168
+|: D F z A z F :|
+V:2 name="Marimba 2"
+M:3/4
+L:1/8
+K:D
+|: z z A z F z :|
+V:3 name="Piano"
+M:3/4
+L:1/8
+K:D
+|: z F z z A F :|
+```
+
+### ABC — Pulsing Chords (vibraphone-style)
+```abc
+X:5
+T:Pulsing chord pattern
+M:3/4
+L:1/4
+K:D
+Q:1/4=168
+V:1 name="Vibraphone"
+|: [DFA] z [DFA] | z [DFA] z | [DFA] [DFA] z | z z [DFA] :|
+```
+
+## Representative Works — Quick Reference
+
+| Work | Year | Forces | Key Technique | Duration |
+|------|------|--------|---------------|----------|
+| It's Gonna Rain | 1965 | 2 tape loops | Tape phasing | 18 min |
+| Piano Phase | 1967 | 2 pianos | Live phasing | 20 min |
+| Drumming | 1970-71 | 9 percussionists, voices | Additive process, phasing | 57 min |
+| Clapping Music | 1972 | 2 clappers | Rhythmic phase shift | 5 min |
+| Music for 18 Musicians | 1974-76 | 18 players | Pulsing, harmonic cycle | 55 min |
+| Tehillim | 1981 | Voices + ensemble | Text-driven, canonic | 30 min |
+| Different Trains | 1988 | String quartet + tape | Speech melody, sampling | 27 min |
+| Electric Counterpoint | 1987 | Guitar + tape | Phasing, resultant patterns | 15 min |
+| City Life | 1995 | Ensemble + samplers | Urban sampling, phasing | 24 min |
+| Daniel Variations | 2006 | Ensemble + voices | Text-driven, slow harmony | 26 min |
+
+## Style Emulation Parameters
 
 | Parameter | Setting |
 |-----------|---------|
-| Harmony | Diatonic, modal, consonant triads |
-| Rhythm | Interlocking patterns, 8th/16th note base |
-| Process | Phase, substitution, or augmentation |
-| Texture | Layered percussion + keyboards + winds |
-| Form | Process-driven, gradual transformation |
-| Dynamics | Steady state, pulsing swells |
-| Tempo | Moderate to fast (q=140-192 for patterns) |
-| Meter | Often compound (12/8) or additive (3+2+2+3+2) |
-| Duration | 15-60 minutes typical |
-| Ensemble | Mallet percussion + piano + winds + strings |
+| Tempo | 144-192 eighth-note pulse |
+| Key | D major, E major, F# minor preferred |
+| Time signature | 12/8, 6/4, 3/4 |
+| Texture | 3-6 interlocking parts minimum |
+| Harmonic rhythm | 1 chord per 30-120 seconds |
+| Dynamic range | pp to mf (rarely ff) |
+| Pattern length | 4-12 notes |
+| Phase shift | 1 unit per 20-60 seconds |
+| Rests | Integral part of pattern identity |
+| Articulation | Non-legato, clear attacks |
 
-## Compositional Fingerprints
+## ABC — Full Texture Example (Music for 18 style)
+```abc
+X:6
+T:Reich-style full texture
+M:12/8
+L:1/8
+K:D
+Q:1/8=192
+V:1 name="Marimba 1"
+|: D F A d A F D F A d A F :|
+V:2 name="Marimba 2"
+|: z F A z A F z F A z A F :|
+V:3 name="Piano 1"
+|: D z A d z F D z A d z F :|
+V:4 name="Piano 2"
+|: z F z d A z z F z d A z :|
+V:5 name="Bass Clarinet"
+|: D,,4 z4 D,,4 | D,,4 z4 D,,4 :|
+V:6 name="Vibraphone"
+|: [D,F,A,]4 z4 [D,F,A,]4 | z4 [D,F,A,]4 z4 :|
+```
 
-| Fingerprint | Description |
-|-------------|-------------|
-| Phase shifting | Two identical patterns gradually drift apart |
-| Interlocking patterns | Complementary rhythms that fit together |
-| Resulting patterns | Melodies emerging from combined patterns |
-| Speech melody | Musical patterns derived from recorded speech |
-| Pulsing | Sustained tones with dynamic breathing |
-| Substitution | Building patterns one note at a time |
-| Mallet centrality | Marimba, vibraphone as core instruments |
-| Canonic texture | Strict or free canon between voices |
-| Rhythmic clarity | Every beat audible, nothing hidden |
-| Gradual process | All changes happen slowly and audibly |
+## Common Pitfalls When Emulating Reich
+
+| Mistake | Correction |
+|---------|------------|
+| Too much harmonic motion | Hold each chord for extended duration |
+| Patterns too complex | Keep to 4-12 notes, mostly stepwise |
+| Ignoring rests in patterns | Rests define pattern identity as much as notes |
+| Tempo fluctuation | Pulse must be rock-steady, no rubato |
+| Too loud | Reich is rarely above mf; clarity over volume |
+| Adding expression marks | Minimal dynamics; process creates expression |
+| Melodic development | Patterns don't develop — they phase and interlock |

@@ -96,7 +96,7 @@
 
 | Mark | Name | Effect | Symbol |
 |---|---|---|---|
-| . | Staccato | Short, detached (~50% of value) | Dot above/below note |
+| . | Staccato | Short, detached (~50% of value; varies: ~30% fast, ~70% slow) | Dot above/below note |
 | - | Tenuto | Held full value, slight stress | Horizontal line above/below |
 | > | Accent | Strong attack | > above/below note |
 | ^ | Marcato | Strong, forceful accent | ^ above note |
@@ -105,7 +105,7 @@
 | n | Down-bow (strings) | Pull stroke | Pi-shape above note |
 | tr | Trill | Rapid alternation with note above | tr above note, wavy line |
 | ~ | Turn / mordent | Ornamental figure | Various symbols above note |
-| fermata | Fermata | Hold beyond written value | Bird's eye above note |
+| fermata | Fermata | Hold beyond written value (~1.5-2x) | Curved arc with dot above note |
 | pizz. | Pizzicato | Pluck string (strings) | Text marking |
 | arco | Arco | Return to bowing (strings) | Text marking |
 
@@ -146,3 +146,81 @@
 | Final barline | Double barline with thick right line | End of piece only |
 | Repeat signs | `||: ... :||` with dots | Repeated sections |
 | Segno / Coda | Navigation markers for jumps | Dal segno, coda jumps |
+
+---
+
+## Time Signatures
+
+| Meter type | Signatures | Beat unit | Beat division | Feel |
+|---|---|---|---|---|
+| Simple duple | 2/4, 2/2 (alla breve) | Half/quarter | Divides in 2 | March, polka |
+| Simple triple | 3/4, 3/8 | Quarter/eighth | Divides in 2 | Waltz, minuet, scherzo |
+| Simple quadruple | 4/4 (C) | Quarter | Divides in 2 | Most common meter |
+| Compound duple | 6/8 | Dotted quarter | Divides in 3 | Jig, barcarolle, pastoral |
+| Compound triple | 9/8 | Dotted quarter | Divides in 3 | Flowing, lilting |
+| Compound quadruple | 12/8 | Dotted quarter | Divides in 3 | Slow blues, ballad |
+| Asymmetric | 5/8, 7/8, 5/4 | Mixed | 2+3 or 3+2 groupings | Folk, modern |
+
+**Choosing time signature:** Match the natural grouping of the music. Use 6/8 (not 3/4) when beats group in twos with triple subdivision. Use alla breve (2/2) for fast tempos where 4/4 would create unnecessarily small note values.
+
+---
+
+## Grace Notes & Ornaments
+
+| Ornament | ABC syntax | Notation | Execution |
+|---|---|---|---|
+| Acciaccatura (crushed) | `{g}c` | Small slashed note before main | Very fast, before the beat |
+| Appoggiatura (leaning) | `{/g}c` | Small note before main (no slash) | Takes time from main note |
+| Trill | `!trill!c` or `T` | tr above note | Rapid alternation with note above |
+| Mordent (lower) | `!mordent!c` | Zigzag symbol | Main-lower-main |
+| Inverted mordent (upper) | `!pralltriller!c` | Zigzag with line | Main-upper-main |
+| Turn | `!turn!c` | S-shaped symbol | Upper-main-lower-main |
+| Tremolo | `!///!c` | Slashes through stem | Rapid repetition |
+
+---
+
+## ABC Notation Reference
+
+### Articulation in ABC
+```abc
+X:1
+T:Articulation Marks in ABC
+M:4/4
+L:1/4
+K:C
+!staccato!C !tenuto!D !accent!E !marcato!F | !fermata!G2 z2 |
+```
+
+### Dynamics in ABC
+```abc
+X:2
+T:Dynamic Markings in ABC
+M:4/4
+L:1/4
+K:C
+!pp!C D E F | !crescendo(!G A B c | !crescendo)!!f!d c B A | !diminuendo(!G F E D | !diminuendo)!!pp!C4 |
+```
+
+### Time Signatures in ABC
+```abc
+X:3
+T:Simple vs Compound Meter
+M:3/4
+L:1/8
+K:G
+% 3/4: beats on each quarter note
+G2 AB cd |
+[M:6/8]
+% 6/8: beats on dotted quarters
+G2A Bcd |
+```
+
+### Grace Notes in ABC
+```abc
+X:4
+T:Ornaments in ABC
+M:4/4
+L:1/4
+K:D
+{e}d2 {cd}e2 | !trill!f2 !mordent!e2 | !turn!d4 |
+```

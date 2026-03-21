@@ -1,240 +1,344 @@
-# Film Score Forms Reference
+# Film Score Forms — Reference Tables
 
-## Cue Structure
+## Cue-Based Structure
 
-| Element | Description |
-|---------|-------------|
-| Cue | A single piece of music for a specific scene |
-| Cue number | Identified by reel/scene (e.g., 3m2 = Reel 3, cue 2) |
-| In-point | Exact frame where music begins |
-| Out-point | Exact frame where music ends |
-| Duration | Determined by scene length, not musical logic |
-| Tempo | Often locked to visual timing needs |
-| Pre-lap | Music begins before scene change |
-| Post-lap | Music continues after scene change |
+Film music is driven by scene needs, not abstract musical form. Each cue serves a dramatic function.
 
-### Cue Length Guidelines
+### Cue Types
 
-| Scene Type | Typical Cue Duration |
-|-----------|---------------------|
-| Transition/sting | 5-15 seconds |
-| Short dialogue scene | 30-90 seconds |
-| Action sequence | 2-5 minutes |
-| Emotional set piece | 3-8 minutes |
-| Main title | 1-3 minutes |
-| End credits | 3-6 minutes |
-| Extended sequence (montage) | 3-10 minutes |
+| Cue Type | Duration | Function | Characteristics |
+|----------|----------|----------|----------------|
+| Main Title | 1-4 min | Establish tone, introduce themes | Full orchestration, primary leitmotif |
+| Underscore | 30s-5 min | Background mood | Sparse, avoids competing with dialogue |
+| Source music | Variable | Diegetic (in-scene) | Realistic, often pop/jazz |
+| Stinger | 1-5 sec | Shock/surprise | Sudden loud chord or cluster |
+| Transition | 5-30s | Bridge between scenes | Modulatory, thinning texture |
+| Montage | 1-3 min | Accompany time passage | Steady rhythm, moderate energy |
+| Chase/Action | 1-5 min | Drive action sequence | Fast tempo, rhythmic, building |
+| End Credits | 2-6 min | Concert arrangement of themes | Suite form, full orchestra |
+| Source-to-score | Variable | Diegetic becomes non-diegetic | Gradual orchestral expansion |
 
-## Underscore vs. Source Music
+### Cue Timing Notation
 
-| Type | Definition | Examples |
-|------|-----------|----------|
-| Underscore | Non-diegetic — characters can't hear it | Orchestral score, tension music |
-| Source music | Diegetic — exists in the story world | Radio, band at party, jukebox |
-| Source-to-score | Starts diegetic, transitions to non-diegetic | Song on radio becomes orchestral |
-| Score-to-source | Non-diegetic fades into diegetic | Score resolves into character's humming |
+| Symbol | Meaning |
+|--------|---------|
+| Hit point | Exact frame where music must sync |
+| Streamer | Visual countdown line across screen |
+| Free time | Music flows without strict sync |
+| Hard cut | Abrupt music change at edit |
+| Cross-fade | Music dissolves between cues |
+| Stab | Sharp accent on specific frame |
+| Sting | Brief musical punctuation |
 
 ## Leitmotif System
 
-### Building a Leitmotif System
+### Wagner-Derived Theme Association
 
-| Component | Rule | Example (Star Wars) |
-|-----------|------|---------------------|
-| Hero theme | Major, ascending, noble intervals | Luke's Theme (Bb major) |
-| Villain theme | Minor, chromatic, angular | Imperial March (G minor) |
-| Love theme | Lyrical, legato, warm | Han & Leia (D major) |
-| Place theme | Modal, atmospheric | Tatooine (pentatonic) |
-| Object theme | Short, distinctive motif | Force Theme (modal) |
-| Conflict theme | Dissonant, rhythmic | Battle music |
-| Mystery theme | Chromatic, unresolved | Yoda's Theme (uncertain) |
+| Principle | Description |
+|-----------|-------------|
+| Character motif | Each major character has a theme |
+| Object motif | Important objects (Ring, lightsaber) get themes |
+| Concept motif | Ideas (the Force, love, fate) get themes |
+| Location motif | Places (Shire, Hogwarts) get themes |
+| Transformation | Themes change as characters develop |
+| Combination | Themes can be layered simultaneously |
+| Quotation | Brief reference triggers audience memory |
 
 ### Leitmotif Transformation Techniques
 
-| Transformation | Method | Dramatic Effect |
-|---------------|--------|-----------------|
-| Reharmonization | Same melody, different chords | Changed emotional context |
-| Mode change | Major to minor or reverse | Hope to despair (or reverse) |
-| Tempo change | Fast to slow or reverse | Action to reflection |
-| Orchestration change | Solo to tutti or reverse | Intimate to epic |
-| Fragmentation | Only part of theme used | Memory, foreshadowing |
-| Augmentation | Notes stretched longer | Noble, grand statement |
-| Diminution | Notes compressed shorter | Urgency, panic |
-| Inversion | Melody flipped | Corruption, reversal |
-| Combination | Two themes played together | Characters meeting |
-| Quotation | Brief reference within other music | Subtle reminder |
+| Technique | Character/Story Implication | Musical Change |
+|-----------|----------------------------|----------------|
+| Mode change (major to minor) | Character corrupted/saddened | Change 3rd, 6th, 7th |
+| Augmentation | Character gaining power/gravity | Double note durations |
+| Diminution | Urgency, danger | Halve note durations |
+| Inversion | Mirror/opposite/villain's version | Invert all intervals |
+| Retrograde | Return, memory, reversal | Play theme backwards |
+| Fragmentation | Character weakened/dying | Use only first 2-3 notes |
+| Orchestral change | Emotional recontextualization | Same notes, new timbre |
+| Harmonic recolor | Mood shift | Same melody, different chords |
+| Tempo change | Energy shift | Faster or slower |
+| Register change | Intimacy vs grandeur | Move up or down octaves |
 
+### ABC — Leitmotif Transformation Example
 ```abc
 X:1
-T:Leitmotif Transformation Example
+T:Hero theme - original (major, heroic)
 M:4/4
-L:1/8
+L:1/4
 K:C
-"^Original (heroic)"C2 E2 G2 c2 | B2 A2 G4 |
-"^Minor (tragic)"C2 _E2 G2 c2 | _B2 _A2 G4 |
-"^Fragmented (memory)"C2 E2 z4 | z8 |
-"^Augmented (noble)"C4 E4 | G4 c4 |
+Q:1/4=120
+G, C E G | A G E C | D2 E2 | C4 |
+
+X:2
+T:Hero theme - minor (hero in danger)
+M:4/4
+L:1/4
+K:Cm
+G, C _E G | _A G _E C | D2 _E2 | C4 |
+
+X:3
+T:Hero theme - fragmented (hero wounded)
+M:4/4
+L:1/4
+K:C
+Q:1/4=60
+G, C z2 | z4 | G, C z2 | z4 |
+
+X:4
+T:Hero theme - augmented (hero triumphant)
+M:4/4
+L:1/2
+K:C
+Q:1/4=100
+G, C | E G | A G | E C | D E | C4 |
 ```
 
-## Thematic Transformation Across Cues
+## Through-Scoring vs Source Music
 
-### Film-Wide Thematic Arc
+| Aspect | Through-Scoring | Source Music |
+|--------|----------------|--------------|
+| Origin | Non-diegetic (audience only) | Diegetic (exists in scene) |
+| Continuity | Follows emotional arc | Follows realistic playback |
+| Orchestration | Full palette available | Limited to "realistic" source |
+| Mix | Under dialogue, balanced | Sounds like room acoustics |
+| Transition | Seamless between scenes | Starts/stops with source |
+| Common sources | N/A | Radio, jukebox, band, TV, piano |
 
-| Act | Theme Treatment | Orchestration | Dynamic |
-|-----|----------------|---------------|---------|
-| Act I intro | Theme hinted, fragmented | Solo instrument | p |
-| Act I full | Theme stated completely | Small ensemble | mf |
-| Act II development | Theme varied, transformed | Moderate orchestra | varies |
-| Act II low point | Theme in minor, broken | Solo over sparse chords | pp |
-| Act III return | Theme triumphant, full | Full orchestra | f-ff |
-| Act III climax | Theme at maximum power | Full orchestra + choir | fff |
-| Resolution | Theme gentle, complete | Reduced, warm | p-mp |
+## Suite Form for Concert Adaptation
 
-## Hit Points and Sync
+### Typical Suite Structure
 
-| Sync Type | Technique | Example |
-|-----------|-----------|---------|
-| Hard hit | Musical accent on visual event | Cymbal crash on explosion |
-| Soft hit | Harmonic change on visual event | Chord change on door opening |
-| Mickey-mousing | Music literally follows action | Running notes match footsteps |
-| Anticipation | Music reaches accent before visual | Builds to hit slightly early |
-| Delayed reaction | Musical response after visual | Emotional realization |
-| Underplay | Music ignores obvious hit point | More sophisticated scoring |
+| Movement | Source | Duration | Character |
+|----------|--------|----------|-----------|
+| I: Overture | Main title + key themes | 3-5 min | Heroic/establishing |
+| II: Character theme | Love/lyrical cue | 3-4 min | Emotional, moderate |
+| III: Scherzo/Adventure | Action/chase cue | 3-5 min | Fast, energetic |
+| IV: Intermezzo | Atmospheric/mystery cue | 2-4 min | Quiet, colorful |
+| V: Finale | Climax + end credits | 4-6 min | Builds to triumph |
 
-### Tempo and Click Track
+## Stinger/Hit Point Composition
 
-| Method | Description |
-|--------|-------------|
-| Free timing | No click, conductor follows streamers/punches |
-| Click track | Constant tempo, locked to picture |
-| Variable click | Tempo changes mapped to scene |
-| Rubato | Click with built-in flex points |
-| Streamers | Visual lines crossing screen for cue points |
-| Punches | Flash frames at exact hit points |
+### Stinger Types
 
-## Tension-Release for Scenes
+| Type | Duration | Instruments | Usage |
+|------|----------|-------------|-------|
+| Jump scare | <1 sec | Full orch sfz cluster | Horror reveal |
+| Revelation | 1-3 sec | Brass + strings swell | Plot twist |
+| Comic | <1 sec | Woodwind chirp, cymbal | Comedic punctuation |
+| Dramatic | 2-5 sec | Low brass + timpani | Villain appearance |
+| Transition | 1-3 sec | Harp gliss, cymbal roll | Scene change |
+| Death | 2-5 sec | Low strings + tam-tam | Character death |
 
-### Building Tension
-
-| Step | Musical Technique | Time |
-|------|-------------------|------|
-| 1 | Quiet sustained note or silence | 0:00 |
-| 2 | Add low pulse (heartbeat) | +5s |
-| 3 | Dissonant note enters | +10s |
-| 4 | Harmonic movement begins (chromatic) | +15s |
-| 5 | Rhythm intensifies | +25s |
-| 6 | Register expands (higher + lower) | +35s |
-| 7 | Full texture, maximum dissonance | +45s |
-| 8 | Hit point / climax | +50s |
-
-### Releasing Tension
-
-| Step | Musical Technique | Time |
-|------|-------------------|------|
-| 1 | Sudden silence or drop to single note | 0:00 |
-| 2 | Consonant chord resolves | +2s |
-| 3 | Melody enters (warm instrument) | +5s |
-| 4 | Simple harmonic progression | +10s |
-| 5 | Full resolution cadence | +20s |
-
+### ABC — Stinger Examples
 ```abc
-X:2
-T:Tension Building Pattern
+X:5
+T:Jump scare stinger
 M:4/4
 L:1/8
 K:Cm
-"^pp - sustained"C,8 | C,8 |
-"^+ pulse"C,2z2 C,2z2 | "^+ dissonance"[C,_D,]2z2 [C,_D,]2z2 |
-"^chromatic rise"C,2_D,2D,2_E,2 | E,2F,2^F,2G,2 |
-"^fff CLIMAX"[G,C_EG_Bc]8 |
+Q:1/4=120
+"fff"[C,_D,_E,F,G,_A,_B,C]2 z6 |
+
+X:6
+T:Revelation stinger
+M:4/4
+L:1/4
+K:C
+Q:1/4=80
+"pp"[C,E,G,]"<""crescendo" [C,E,G,] [C,E,G,] "ff"[CEGc]|
+
+X:7
+T:Dramatic villain stinger
+M:4/4
+L:1/2
+K:Cm
+Q:1/4=72
+"ff"[C,,G,,C,_E,G,]2 z2 |
 ```
 
-## Main Title and End Credits
+## Tension Build and Release Patterns
+
+### Build Structure
+
+| Phase | Bars | Technique |
+|-------|------|-----------|
+| 1: Seed | 1-4 | Single instrument, simple motif, pp |
+| 2: Growth | 4-8 | Add instruments, develop motif |
+| 3: Escalation | 8-16 | Increase tempo/density/dynamics |
+| 4: Peak | 1-4 | Climax — tutti, fff, highest register |
+| 5: Release | 1-8 | Sudden drop or gradual decay |
+
+### Tension Devices (Cumulative)
+
+| Device | Application | Bars Needed |
+|--------|-------------|-------------|
+| Ascending pitch | Melody/bass creeps upward | 4-16 |
+| Accelerating rhythm | Note values get shorter | 4-16 |
+| Adding instruments | Layer by layer | 8-32 |
+| Crescendo | pp to fff | 4-32 |
+| Harmonic intensification | Add dissonance over time | 4-16 |
+| Narrowing intervals | Semitone motion, closing in | 4-8 |
+| Tremolo intensification | Slow trem to fast trem | 2-8 |
+| Pedal point pressure | Hold bass, move harmony over it | 4-16 |
+| Register expansion | Spread voicing wider and wider | 4-16 |
+| Rhythmic unison | All parts lock to same rhythm | 1-4 (at climax) |
+
+### ABC — Tension Build Example
+```abc
+X:8
+T:Tension build to climax
+M:4/4
+L:1/8
+K:Cm
+Q:1/4=100
+V:1 name="Strings"
+%% Phase 1: seed
+"pp"G,2 z2 z4 | z4 G,2 z2 |
+%% Phase 2: growth
+"p"G,2 _A,2 G,2 z2 | G,2 _A,2 _B,2 z2 |
+%% Phase 3: escalation
+"mf"G,_A,G,_A, _B,C_B,C | D_EDC _B,C_A,G, |
+%% Phase 4: peak
+"fff"[G,_B,D]2 [_A,C_E]2 [_B,DF]2 [CDG]2 |
+%% Phase 5: release
+"p"[C,_E,G,]4 z4 |
+```
+
+## Chase/Action Sequence Structure
+
+### Rhythmic Escalation Template
+
+| Section | Bars | Tempo | Rhythm | Texture |
+|---------|------|-------|--------|---------|
+| Setup | 4-8 | Moderate | Quarter notes | Sparse, low |
+| Pursuit begins | 8-16 | Faster | Eighth notes | Building |
+| Complications | 8-16 | Driving | Sixteenths appear | Full orchestra |
+| Near-miss | 2-4 | Sudden break | Pause/silence | Dramatic stop |
+| Final sprint | 8-16 | Fastest | Constant sixteenths | Maximum density |
+| Resolution | 2-8 | Slowing | Long notes | Release |
+
+### Ostinato Patterns for Action
+
+```abc
+X:9
+T:Action ostinato patterns
+M:4/4
+L:1/16
+K:Dm
+Q:1/4=152
+%% Pattern A: driving eighths
+V:1 name="Low strings"
+D,2D,2 D,2D,2 D,2D,2 D,2D,2 |
+%% Pattern B: syncopated
+V:2 name="Brass stabs"
+D,2 z2 z2 D,2 z2 D,2 z4 |
+%% Pattern C: rapid repeated
+V:3 name="String tremolo"
+D,D,D,D, D,D,D,D, D,D,D,D, D,D,D,D, |
+```
+
+## Love Theme Development Across Film
+
+### Typical Arc
+
+| Film Point | Theme Treatment | Orchestration |
+|-----------|----------------|---------------|
+| First meeting | Fragment, incomplete | Solo piano or solo woodwind |
+| Growing attraction | Theme emerges, tentative | Solo instrument + light strings |
+| First kiss / declaration | Full theme, first complete statement | Full strings, warm woodwinds |
+| Separation/conflict | Theme in minor, fragmented | Solo cello, muted |
+| Reunion | Theme returns, enriched | Full orchestra, key up by half step |
+| Final moment | Most lush, complete statement | Tutti, broadened tempo |
+
+### ABC — Love Theme Arc
+```abc
+X:10
+T:Love theme - first meeting (fragment)
+M:3/4
+L:1/4
+K:Eb
+Q:1/4=66
+V:1 name="Solo Piano"
+G _B z | c z2 | z3 |
+
+X:11
+T:Love theme - full statement
+M:3/4
+L:1/4
+K:Eb
+Q:1/4=72
+V:1 name="Violin I"
+G _B c | _d c _B | c _e _d | c _B G | _A G F | G2 z |
+```
+
+## Main Title / End Credits Form
 
 ### Main Title Structure
 
 | Section | Duration | Content |
 |---------|----------|---------|
-| Studio logos | 10-20s | Silence or quiet lead-in |
-| Title card | 5-10s | Theme begins, clear statement |
-| Main theme | 30-60s | Full theme, memorable |
-| Bridge/development | 20-30s | Theme developed |
-| Transition | 10-15s | Music settles into first scene |
+| Studio logo | 5-15s | Silence or ambient drone |
+| Opening image | 10-30s | Mood-setting texture, key established |
+| Title card | 5-10s | Theme begins or fanfare |
+| Main theme | 30-90s | Full theme statement |
+| Transition to scene | 10-30s | Theme dissolves into underscore |
 
 ### End Credits Structure
 
-| Section | Content | Pacing |
-|---------|---------|--------|
-| Immediate post-climax | Resolution of final scene | Emotional |
-| Main theme reprise | Complete statement | Stately |
-| Secondary themes | Other leitmotifs return | Varied |
-| Development/medley | Extended treatment | Building |
-| Final statement | Theme triumphant or reflective | Conclusive |
-| Fadeout or final chord | Clean ending | Definitive |
+| Section | Duration | Content |
+|---------|----------|---------|
+| Final scene resolve | 10-30s | Theme completes, final cadence |
+| Credits begin | 30-60s | Main theme — concert arrangement |
+| Secondary theme | 30-60s | Love/secondary theme statement |
+| Medley/development | 60-120s | Combined themes, variations |
+| Final statement | 30-60s | Main theme, grandest form |
+| Fade/final chord | 10-30s | Resolution, silence |
 
-```abc
-X:3
-T:Main Title Opening (fanfare + theme)
-M:4/4
-L:1/8
-K:Bb
-"^Fanfare - fff"B,4 F4 | B4 d4 |
-"^Theme enters"B,2 D2 F2 B2 | A2 G2 F2 E2 | D2 F2 B2 d2 | c4 B4 |
-```
+## Tempo and Meter Changes for Scene Cuts
 
-## Scene-Type Form Templates
+| Cut Type | Musical Response |
+|----------|-----------------|
+| Hard cut (same mood) | Maintain tempo, slight orchestration shift |
+| Hard cut (mood change) | Abrupt tempo/key change |
+| Dissolve | Gradual tempo/key transition over 2-4 bars |
+| Smash cut | Silence then sudden loud entry |
+| Match cut | Same motif continues, new arrangement |
+| Montage cut | Steady pulse, changes on downbeats |
+| Flashback | Tempo rubato, simplified orchestration, reverb |
+| Flash forward | Accelerando or abrupt shift to fast |
+| Parallel editing | Alternating tempi/themes per storyline |
 
-### Action Cue Structure
+### Tempo Mapping Guide
 
-| Section | Bars | Content |
-|---------|------|---------|
-| Setup | 4-8 | Ostinato begins, tension |
-| First action | 16-32 | Driving rhythm, brass stabs |
-| Escalation | 8-16 | Rising pitch, thickening |
-| Climax | 4-8 | Full orchestra, maximum |
-| Resolution/Transition | 4-8 | Quick release or cut |
+| Scene Energy | Tempo Range | Time Signature |
+|-------------|-------------|----------------|
+| Contemplative | 40-60 BPM | 3/4, 4/4, free |
+| Dialogue | 60-80 BPM | 4/4 |
+| Walking/exploring | 80-100 BPM | 4/4, 6/8 |
+| Moderate action | 100-130 BPM | 4/4, 2/2 |
+| Fast action | 130-160 BPM | 4/4, 2/2 |
+| Frantic/chase | 160-200 BPM | 2/2, 7/8 |
+| Slow motion | 40-60 BPM (half of scene tempo) | 3/4, 4/4 |
 
-### Emotional Scene Structure
+### Meter for Scene Types
 
-| Section | Bars | Content |
-|---------|------|---------|
-| Intro | 4-8 | Sparse, setting mood |
-| Theme entry | 8-16 | Solo melody, simple accompaniment |
-| Development | 8-16 | Theme elaborated, richer texture |
-| Climax | 4-8 | Emotional peak, full strings |
-| Resolution | 4-8 | Theme fragments, fading |
+| Scene Type | Common Meters | Reason |
+|-----------|--------------|--------|
+| March/military | 4/4, 2/4 | Strong downbeat, regular |
+| Waltz/elegance | 3/4 | Dance-like, flowing |
+| Pastoral/flowing | 6/8 | Lilting, gentle |
+| Epic/grand | 4/4, 3/4 | Broadness, weight |
+| Chase/irregular | 7/8, 5/4, mixed | Urgency, instability |
+| Dream/fantasy | Free, 5/4, 7/4 | Otherworldly, untethered |
+| Horror | 4/4 (distorted), free | Familiar made wrong |
 
-### Horror/Suspense Structure
+## Silence as Structural Element
 
-| Section | Bars | Content |
-|---------|------|---------|
-| Silence | 2-4 | Nothing or near-nothing |
-| Unease | 4-8 | Subtle dissonance, drone |
-| Building | 8-16 | Increasing tension, rhythm |
-| Scare | 1-2 | Sudden loud dissonance |
-| Aftermath | 4-8 | Echo, settling |
-
-## Spotting and Timing
-
-### Spotting Session Decisions
-
-| Decision | Description |
-|----------|-------------|
-| Where music starts | In-point for each cue |
-| Where music stops | Out-point, often at scene change |
-| What emotion | Fear, joy, tension, nostalgia |
-| Which theme | Leitmotif assignment |
-| Source vs. underscore | Diegetic or non-diegetic |
-| Hit points | Moments music must accent |
-| Tempo feel | Slow, moderate, fast |
-| No music | Deciding where silence is best |
-
-## Form Adaptation Principles
-
-| Film Constraint | Musical Adaptation |
-|----------------|-------------------|
-| Scene is 47 seconds | Music must fit exactly 47 seconds |
-| Actor pauses vary | Music has flexible sustain points |
-| Director wants less | Thin orchestration, fewer notes |
-| Scene recut shorter | Music edited (crossfade, cut) |
-| Two scenes merged | Transition composed between cues |
-| Temp track influence | Match tempo/feel of temp selection |
+| Usage | Duration | Effect |
+|-------|----------|--------|
+| Before stinger | 0.5-2 sec | Amplifies shock |
+| After climax | 1-5 sec | Lets emotion land |
+| Scene transition | 1-3 sec | Reset, palate cleanser |
+| Dialogue focus | Entire scene | Music would distract |
+| Dramatic pause | 0.5-1 sec | Breath before resolution |
+| Ending | 2-5 sec | Final resonance, then nothing |

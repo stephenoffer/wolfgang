@@ -34,7 +34,7 @@
 |---|---|---|---|---|
 | **Exposition** | 1st theme (P) | I | i | Establishes tonic |
 | | Transition (TR) | I -> V | i -> III | Modulates; energy builds |
-| | 2nd theme (S) | V | III (or v) | Contrasting character in new key |
+| | 2nd theme (S) | V | III (standard; v is rare) | Contrasting character in new key |
 | | Closing (C) | V | III | Confirms new key |
 | **Development** | — | Unstable, remote keys | Unstable | Fragments, sequences, modulations of expo. material |
 | **Recapitulation** | 1st theme (P) | I | i | Return of tonic |
@@ -198,4 +198,72 @@ No large-scale repetition; music evolves continuously with text.
 | III | Moderate (dance) | Minuet & trio (Haydn/Mozart) or Scherzo & trio (Beethoven+) | Tonic | Dance-like or humorous |
 | IV | Fast | Sonata, rondo, or sonata-rondo | Tonic | Brilliant, conclusive |
 
-**Romantic-era expansions:** 5 movements (Berlioz), cyclic thematic return across movements (Brahms, Franck), programmatic content, scherzo before slow movement or vice versa.
+**Romantic-era expansions:** 5 movements (Berlioz), programmatic content, scherzo before slow movement or vice versa (Beethoven 9th, Mahler).
+
+---
+
+## Cyclic Form
+
+Themes or motifs recur across movements, unifying the entire work.
+
+| Technique | Description | Example |
+|---|---|---|
+| Thematic recall | Theme from earlier movement returns in finale | Beethoven Symphony 5 (mvt 3 → 4 transition) |
+| Idée fixe | Single theme appears transformed in every movement | Berlioz Symphonie fantastique |
+| Motto theme | Brief motif opens multiple movements | Brahms Symphony 3 (F-Ab-F) |
+| Cyclic return | Full thematic return in finale as culmination | Franck Symphony in D minor |
+| Thematic transformation | Single theme generates all movement themes | Liszt Piano Sonata in B minor |
+
+---
+
+## ABC Examples
+
+### Binary Form (Rounded Binary with Repeats)
+```abc
+X:1
+T:Rounded Binary Form
+M:3/4
+L:1/8
+K:G
+P:A
+|: G2 AB cd | e2 d2 B2 | c2 BA GF | G4 D2 :|
+P:B
+|: E2 FG AB | c2 B2 A2 | G2 AB cd | e2 d2 B2 | c2 BA GF | G6 :|
+```
+
+### Sonata Form Tonal Plan
+```abc
+X:2
+T:Sonata Exposition Tonal Sketch
+M:4/4
+L:1/4
+K:C
+% P theme (tonic)
+"^P (I)" C E G c | e d c B |
+% Transition (modulating to V)
+"^TR" A B c d | e ^f g2 |
+[K:G]
+% S theme (dominant)
+"^S (V)" B d g b | a g ^f g |
+% Closing
+"^C (V)" d B G D | G4 z2 |
+```
+
+### Rondo Refrain Pattern (A-B-A-C-A)
+```abc
+X:3
+T:Rondo Structure Sketch
+M:2/4
+L:1/8
+K:D
+P:A (Refrain - I)
+D2 FA | d2 cB | AF ED | D4 |
+P:B (Episode 1 - V)
+[K:A] A2 ce | a2 gf | ec BA | A4 |
+P:A (Refrain - I)
+[K:D] D2 FA | d2 cB | AF ED | D4 |
+P:C (Episode 2 - vi)
+[K:Bm] B2 df | b2 ag | fd BA | B4 |
+P:A (Refrain - I)
+[K:D] D2 FA | d2 cB | AF ED | D4 |]
+```
