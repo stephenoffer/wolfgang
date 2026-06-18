@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_open_widely_spaced_harmonies_the_american_landscape",
+      "category": "fingerprint",
+      "description": "Open, widely-spaced harmonies \u2014 the American landscape",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_pandiatonicism_all_notes_of_the_key_simultaneously",
+      "category": "fingerprint",
+      "description": "Pandiatonicism \u2014 all notes of the key simultaneously",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_american_folk_and_hymn_melody",
+      "category": "fingerprint",
+      "description": "American folk and hymn melody",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sudden_silence_and_wide_dynamic_range",
+      "category": "fingerprint",
+      "description": "Sudden silence and wide dynamic range",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_jazz_influenced_rhythm_the_hoedown_energy",
+      "category": "fingerprint",
+      "description": "Jazz-influenced rhythm \u2014 the \"hoedown\" energy",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Dense, lush harmonics.** Copland is lean. A thick orchestral texture with all registers filled is ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**European Romantic melody.** A long, arching, decorated Romantic melody is not Copland's melodic la",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Complex chromatic harmony.** Copland's harmony is fundamentally diatonic (with jazz inflections in",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Absence of space.** A Copland passage with no rests, no silences, constant texture \u2014 has lost the ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Irony or darkness.** Copland's public style (ballets, Fanfare for the Common Man) is genuinely opt",
+      "severity": "soft"
+    }
+  ]
+}

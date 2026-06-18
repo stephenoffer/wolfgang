@@ -139,3 +139,153 @@ Density:  Low   Med   Med   High  Peak  Med   Low
 | Fragmentary | Last motif fragments trail off | Common |
 | Bright close | Rare; brief forte final chord | Rare (Ravel more than Debussy) |
 | Silence approach | Longer and longer pauses before final sound | Moderate |
+
+## ABC Examples
+
+### Free Form — Motif Emergence and Dissolution
+```abc
+X:1
+T:Free Form - Motif Emerging from Color
+M:4/4
+L:1/8
+K:C
+%% Atmospheric opening (color without melody)
+!ppp! [CEG]8 | [CEG]7 z |
+%% Motif emerges from texture
+!pp! z2 E2 G2 c2 | d3 c B2 G2 | E8 |
+%% Color dissolves back
+!ppp! [_DFA]8 | [_DFA]7 z |
+```
+
+### ABA' — Transformed Return
+```abc
+X:2
+T:ABA' - Impressionist Transformed Return
+M:3/4
+L:1/8
+K:C
+%% A - melody in flute register, whole-tone color
+!p! E2 ^F2 ^G2 | ^A2 c2 d2 | e6 |
+%% B - pentatonic contrast
+[K:Gb] !pp! _G2 _A2 _B2 | _d2 _e2 _g2 |
+%% A' - same melody, different register and color
+[K:C] !pp! E,2 ^F,2 ^G,2 | ^A,2 C2 D2 | E,6 |
+```
+
+### Mosaic — Block Juxtaposition
+```abc
+X:3
+T:Mosaic Form - Contrasting Blocks
+M:4/4
+L:1/8
+K:C
+%% Block A: sustained strings
+!p! [CEG]8 | [FAc]8 |
+%% Block B: rhythmic winds (sudden contrast, no transition)
+!mf! c2d2e2f2 | g2f2e2d2 |
+%% Block A': return with new color
+!pp! [_DF_A]8 | [_EG_B]8 |
+```
+
+### Floating Tonality — Section Change by Color Shift
+```abc
+X:4
+T:Section Boundary via Scale Change (not cadence)
+M:4/4
+L:1/8
+K:C
+%% Section 1: Whole-tone
+C2 D2 E2 ^F2 | ^G2 ^A2 C'4 |
+%% Section 2: Pentatonic (no cadence between — just a new color world)
+C2 D2 E2 G2 | A2 C'2 D'4 |
+%% Section 3: Diatonic
+C2 D2 E2 F2 | G2 A2 B2 c2 |
+```
+
+## Suite Form (Impressionist)
+
+| Principle | Description |
+|---|---|
+| Multi-movement | 3-5 movements, each a self-contained character piece |
+| Unifying element | Shared motifs, scale palette, or timbral identity |
+| No narrative arc | Movements are moods, not a story |
+| Dance origins | Some movements reference dances (sarabande, menuet, toccata) |
+
+### Impressionist Suite Models
+| Suite | Composer | Movements | Unifying element |
+|---|---|---|---|
+| Suite bergamasque | Debussy | Prelude, Menuet, Clair de lune, Passepied | Moonlight imagery, modal harmony |
+| Pour le piano | Debussy | Prelude, Sarabande, Toccata | Dance forms reinterpreted |
+| Le Tombeau de Couperin | Ravel | Prelude, Fugue, Forlane, Rigaudon, Menuet, Toccata | Baroque dance forms with Impressionist harmony |
+| Miroirs | Ravel | 5 pieces | Each a different "reflection"/image |
+| Ma mère l'Oye | Ravel | 5 pieces | Fairy tale program |
+
+## Impressionist Prelude Form
+
+Standalone character piece — not paired with fugue (unlike Baroque):
+
+| Element | Description |
+|---|---|
+| Length | 2-5 minutes typically |
+| Form | Usually ABA', free, or mosaic |
+| Title | Evocative, placed at END of piece (Debussy's convention) |
+| Character | Each prelude captures one image, mood, or sensation |
+| Harmony | Self-contained harmonic world per prelude |
+
+### Debussy Prelude Character Types
+| Type | Example | Musical approach |
+|---|---|---|
+| Water/nature | "La cathédrale engloutie" | Parallel chords, sustained pedals, rising/falling |
+| Wind/air | "Le vent dans la plaine" | Rapid figuration, chromatic runs, flutter |
+| Ancient/archaic | "La terrasse des audiences" | Pentatonic, modal, gamelan-like |
+| Dance | "La puerta del vino" | Habanera rhythm, Spanish color |
+| Character/humor | "Minstrels" | Syncopation, ragtime hints |
+| Landscape | "Des pas sur la neige" | Ostinato, sparse, cold color |
+
+## Triptych Form (Three-Panel)
+
+| Panel | Function | Proportion |
+|---|---|---|
+| I | Establish primary atmosphere | ~35% |
+| II | Contrasting center (may be climactic or withdrawn) | ~30% |
+| III | Return/synthesis, transformed by Panel II | ~35% |
+
+### Triptych Models
+| Work | Composer | Panels | Character |
+|---|---|---|---|
+| La Mer | Debussy | Dawn, Play of waves, Wind and sea dialogue | Nature-as-symphony |
+| Nocturnes | Debussy | Nuages, Fêtes, Sirènes | Night moods |
+| Daphnis et Chloé Suites | Ravel | Dawn, Pantomime, General dance | Ballet narrative |
+
+## Arch Form (Impressionist)
+
+| Position | Section | Function |
+|---|---|---|
+| Opening | A | Atmospheric establishment |
+| Rising | B | Growing intensity, new color |
+| Center/apex | C | Maximum density or maximum stillness |
+| Descending | B' | B material transformed, dissolving |
+| Close | A' | Return to opening atmosphere, transformed |
+
+## Ravel vs. Debussy: Structural Approaches
+
+| Aspect | Debussy | Ravel |
+|---|---|---|
+| Form | Free, organic, avoids Classical models | Classical models beneath Impressionist surface |
+| Phrase structure | Irregular, floating | Regular, balanced, Classical |
+| Cadences | Avoided, dissolved | Present but disguised by color |
+| Development | None — juxtaposition, layering | Present within coloristic surface |
+| Endings | Almost always dissolving (morendo) | Often firm (Ravel loves a bright close) |
+| Overall | The form IS the color | Color decorates the form |
+
+## Section ID Mapping
+
+| Form | Section IDs |
+|---|---|
+| Free form | `intro`, `emergence`, `bloom`, `climax`, `dissolution`, `coda` |
+| ABA' | `a`, `bridge_ab`, `b`, `retransition`, `a_prime`, `coda` |
+| Mosaic | `block_a`, `block_b`, `block_c`, `block_a2`, `block_d`, `coda` |
+| Suite movement | `m1_prelude`, `m2_sarabande`, `m3_toccata` (etc.) |
+| Triptych | `panel_1`, `panel_2`, `panel_3` |
+| Arch | `a`, `b`, `c_apex`, `b_prime`, `a_prime` |
+| Prelude | `opening`, `development`, `climax`, `dissolution` |

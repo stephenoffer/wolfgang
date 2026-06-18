@@ -1,0 +1,5604 @@
+{
+  "composer": "mozart",
+  "claim_count": 270,
+  "claims": [
+    {
+      "claim_id": "dist:lh:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.alberti",
+      "category": "distribution",
+      "description": "LH texture 'alberti' should be ~19.3% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "alberti",
+        "expected_proportion": 0.193,
+        "tolerance": 0.15
+      },
+      "support_count": 20,
+      "contradiction_count": 22,
+      "total_tested": 69,
+      "confidence": 0.4762,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.bass_melody",
+      "category": "distribution",
+      "description": "LH texture 'bass_melody' should be ~15.1% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "bass_melody",
+        "expected_proportion": 0.151,
+        "tolerance": 0.15
+      },
+      "support_count": 50,
+      "contradiction_count": 3,
+      "total_tested": 69,
+      "confidence": 0.9434,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.unclassified",
+      "category": "distribution",
+      "description": "LH texture 'unclassified' should be ~13.3% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "unclassified",
+        "expected_proportion": 0.133,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.block_chord_sparse",
+      "category": "distribution",
+      "description": "LH texture 'block_chord_sparse' should be ~11.1% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "block_chord_sparse",
+        "expected_proportion": 0.111,
+        "tolerance": 0.15
+      },
+      "support_count": 64,
+      "contradiction_count": 1,
+      "total_tested": 69,
+      "confidence": 0.9846,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.pedal_point",
+      "category": "distribution",
+      "description": "LH texture 'pedal_point' should be ~6.6% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "pedal_point",
+        "expected_proportion": 0.066,
+        "tolerance": 0.15
+      },
+      "support_count": 36,
+      "contradiction_count": 10,
+      "total_tested": 69,
+      "confidence": 0.7826,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.sparse_punctuation",
+      "category": "distribution",
+      "description": "LH texture 'sparse_punctuation' should be ~6.3% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "sparse_punctuation",
+        "expected_proportion": 0.063,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.walking_bass",
+      "category": "distribution",
+      "description": "LH texture 'walking_bass' should be ~5.5% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "walking_bass",
+        "expected_proportion": 0.055,
+        "tolerance": 0.15
+      },
+      "support_count": 66,
+      "contradiction_count": 1,
+      "total_tested": 69,
+      "confidence": 0.9851,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:block_chord_offbeat",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.block_chord_offbeat",
+      "category": "distribution",
+      "description": "LH texture 'block_chord_offbeat' should be ~4.3% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "block_chord_offbeat",
+        "expected_proportion": 0.043,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:silence",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.silence",
+      "category": "distribution",
+      "description": "LH texture 'silence' should be ~4.1% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "silence",
+        "expected_proportion": 0.041,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:broken_chord_wave",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.broken_chord_wave",
+      "category": "distribution",
+      "description": "LH texture 'broken_chord_wave' should be ~3.6% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "broken_chord_wave",
+        "expected_proportion": 0.036,
+        "tolerance": 0.15
+      },
+      "support_count": 68,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:sparse_octaves",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.sparse_octaves",
+      "category": "distribution",
+      "description": "LH texture 'sparse_octaves' should be ~2.6% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "sparse_octaves",
+        "expected_proportion": 0.026,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:broken_chord_descending",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.broken_chord_descending",
+      "category": "distribution",
+      "description": "LH texture 'broken_chord_descending' should be ~2.2% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "broken_chord_descending",
+        "expected_proportion": 0.022,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:walking_bass_chromatic",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.walking_bass_chromatic",
+      "category": "distribution",
+      "description": "LH texture 'walking_bass_chromatic' should be ~1.9% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "walking_bass_chromatic",
+        "expected_proportion": 0.019,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:broken_chord_ascending",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.broken_chord_ascending",
+      "category": "distribution",
+      "description": "LH texture 'broken_chord_ascending' should be ~1.5% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "broken_chord_ascending",
+        "expected_proportion": 0.015,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:block_chord_tremolo",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.block_chord_tremolo",
+      "category": "distribution",
+      "description": "LH texture 'block_chord_tremolo' should be ~1.4% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "block_chord_tremolo",
+        "expected_proportion": 0.014,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "dist:lh:oscillation_trill",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "lh_distribution.oscillation_trill",
+      "category": "distribution",
+      "description": "LH texture 'oscillation_trill' should be ~1.2% of bars",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "oscillation_trill",
+        "expected_proportion": 0.012,
+        "tolerance": 0.15
+      },
+      "support_count": 69,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:bass_melody:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.bass_melody.unclassified",
+      "category": "distribution",
+      "description": "Transition bass_melody\u2192unclassified should be ~6.7%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "bass_melody",
+        "tgt": "unclassified",
+        "expected_proportion": 0.0666,
+        "tolerance": 0.15
+      },
+      "support_count": 65,
+      "contradiction_count": 0,
+      "total_tested": 65,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:bass_melody:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.bass_melody.alberti",
+      "category": "distribution",
+      "description": "Transition bass_melody\u2192alberti should be ~7.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "bass_melody",
+        "tgt": "alberti",
+        "expected_proportion": 0.0704,
+        "tolerance": 0.15
+      },
+      "support_count": 30,
+      "contradiction_count": 22,
+      "total_tested": 65,
+      "confidence": 0.5769,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:bass_melody:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.bass_melody.walking_bass",
+      "category": "distribution",
+      "description": "Transition bass_melody\u2192walking_bass should be ~8.9%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "bass_melody",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.0894,
+        "tolerance": 0.15
+      },
+      "support_count": 65,
+      "contradiction_count": 0,
+      "total_tested": 65,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:bass_melody:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.bass_melody.bass_melody",
+      "category": "distribution",
+      "description": "Transition bass_melody\u2192bass_melody should be ~45.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "bass_melody",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.4558,
+        "tolerance": 0.15
+      },
+      "support_count": 28,
+      "contradiction_count": 18,
+      "total_tested": 65,
+      "confidence": 0.6087,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:bass_melody:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.bass_melody.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition bass_melody\u2192block_chord_sparse should be ~5.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "bass_melody",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.0504,
+        "tolerance": 0.15
+      },
+      "support_count": 62,
+      "contradiction_count": 1,
+      "total_tested": 65,
+      "confidence": 0.9841,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:bass_melody:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.bass_melody.pedal_point",
+      "category": "distribution",
+      "description": "Transition bass_melody\u2192pedal_point should be ~8.4%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "bass_melody",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.0837,
+        "tolerance": 0.15
+      },
+      "support_count": 34,
+      "contradiction_count": 12,
+      "total_tested": 65,
+      "confidence": 0.7391,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:unclassified:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.unclassified.bass_melody",
+      "category": "distribution",
+      "description": "Transition unclassified\u2192bass_melody should be ~9.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "unclassified",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.0905,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:unclassified:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.unclassified.alberti",
+      "category": "distribution",
+      "description": "Transition unclassified\u2192alberti should be ~8.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "unclassified",
+        "tgt": "alberti",
+        "expected_proportion": 0.083,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:unclassified:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.unclassified.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition unclassified\u2192sparse_punctuation should be ~7.4%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "unclassified",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0744,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:unclassified:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.unclassified.unclassified",
+      "category": "distribution",
+      "description": "Transition unclassified\u2192unclassified should be ~41.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "unclassified",
+        "tgt": "unclassified",
+        "expected_proportion": 0.4106,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:unclassified:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.unclassified.pedal_point",
+      "category": "distribution",
+      "description": "Transition unclassified\u2192pedal_point should be ~5.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "unclassified",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.0528,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:unclassified:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.unclassified.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition unclassified\u2192block_chord_sparse should be ~12.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "unclassified",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.1218,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:alberti:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.alberti.alberti",
+      "category": "distribution",
+      "description": "Transition alberti\u2192alberti should be ~67.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "alberti",
+        "tgt": "alberti",
+        "expected_proportion": 0.6746,
+        "tolerance": 0.15
+      },
+      "support_count": 46,
+      "contradiction_count": 5,
+      "total_tested": 66,
+      "confidence": 0.902,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:alberti:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.alberti.bass_melody",
+      "category": "distribution",
+      "description": "Transition alberti\u2192bass_melody should be ~5.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "alberti",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.0556,
+        "tolerance": 0.15
+      },
+      "support_count": 55,
+      "contradiction_count": 1,
+      "total_tested": 66,
+      "confidence": 0.9821,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:alberti:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.alberti.unclassified",
+      "category": "distribution",
+      "description": "Transition alberti\u2192unclassified should be ~6.9%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "alberti",
+        "tgt": "unclassified",
+        "expected_proportion": 0.0689,
+        "tolerance": 0.15
+      },
+      "support_count": 66,
+      "contradiction_count": 0,
+      "total_tested": 66,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_ascending:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_ascending.alberti",
+      "category": "distribution",
+      "description": "Transition broken_chord_ascending\u2192alberti should be ~13.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_ascending",
+        "tgt": "alberti",
+        "expected_proportion": 0.1296,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_ascending:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_ascending.unclassified",
+      "category": "distribution",
+      "description": "Transition broken_chord_ascending\u2192unclassified should be ~10.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_ascending",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1019,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_ascending:broken_chord_ascending",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_ascending.broken_chord_ascending",
+      "category": "distribution",
+      "description": "Transition broken_chord_ascending\u2192broken_chord_ascending should be ~34.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_ascending",
+        "tgt": "broken_chord_ascending",
+        "expected_proportion": 0.3426,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_ascending:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_ascending.walking_bass",
+      "category": "distribution",
+      "description": "Transition broken_chord_ascending\u2192walking_bass should be ~5.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_ascending",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.0556,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_ascending:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_ascending.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition broken_chord_ascending\u2192block_chord_sparse should be ~6.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_ascending",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.0648,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_ascending:broken_chord_wave",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_ascending.broken_chord_wave",
+      "category": "distribution",
+      "description": "Transition broken_chord_ascending\u2192broken_chord_wave should be ~7.4%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_ascending",
+        "tgt": "broken_chord_wave",
+        "expected_proportion": 0.0741,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_offbeat:block_chord_offbeat",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_offbeat.block_chord_offbeat",
+      "category": "distribution",
+      "description": "Transition block_chord_offbeat\u2192block_chord_offbeat should be ~36.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_offbeat",
+        "tgt": "block_chord_offbeat",
+        "expected_proportion": 0.3627,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_offbeat:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_offbeat.bass_melody",
+      "category": "distribution",
+      "description": "Transition block_chord_offbeat\u2192bass_melody should be ~8.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_offbeat",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.0814,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_offbeat:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_offbeat.unclassified",
+      "category": "distribution",
+      "description": "Transition block_chord_offbeat\u2192unclassified should be ~15.9%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_offbeat",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1593,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_offbeat:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_offbeat.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition block_chord_offbeat\u2192block_chord_sparse should be ~11.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_offbeat",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.1153,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_offbeat:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_offbeat.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition block_chord_offbeat\u2192sparse_punctuation should be ~9.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_offbeat",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0915,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:block_chord_offbeat",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.block_chord_offbeat",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192block_chord_offbeat should be ~7.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "block_chord_offbeat",
+        "expected_proportion": 0.0708,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192block_chord_sparse should be ~12.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.121,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.alberti",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192alberti should be ~10.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "alberti",
+        "expected_proportion": 0.1027,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.unclassified",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192unclassified should be ~8.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "unclassified",
+        "expected_proportion": 0.0845,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192sparse_punctuation should be ~35.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.3516,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:silence",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.silence",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192silence should be ~10.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "silence",
+        "expected_proportion": 0.1005,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_punctuation:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_punctuation.bass_melody",
+      "category": "distribution",
+      "description": "Transition sparse_punctuation\u2192bass_melody should be ~9.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_punctuation",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.0959,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass.bass_melody",
+      "category": "distribution",
+      "description": "Transition walking_bass\u2192bass_melody should be ~25.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.2507,
+        "tolerance": 0.15
+      },
+      "support_count": 2,
+      "contradiction_count": 1,
+      "total_tested": 8,
+      "confidence": 0.6667,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass.alberti",
+      "category": "distribution",
+      "description": "Transition walking_bass\u2192alberti should be ~6.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass",
+        "tgt": "alberti",
+        "expected_proportion": 0.0653,
+        "tolerance": 0.15
+      },
+      "support_count": 2,
+      "contradiction_count": 5,
+      "total_tested": 8,
+      "confidence": 0.2857,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass.walking_bass",
+      "category": "distribution",
+      "description": "Transition walking_bass\u2192walking_bass should be ~31.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.3107,
+        "tolerance": 0.15
+      },
+      "support_count": 3,
+      "contradiction_count": 2,
+      "total_tested": 8,
+      "confidence": 0.6,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass.pedal_point",
+      "category": "distribution",
+      "description": "Transition walking_bass\u2192pedal_point should be ~7.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.0705,
+        "tolerance": 0.15
+      },
+      "support_count": 8,
+      "contradiction_count": 0,
+      "total_tested": 8,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass.unclassified",
+      "category": "distribution",
+      "description": "Transition walking_bass\u2192unclassified should be ~6.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass",
+        "tgt": "unclassified",
+        "expected_proportion": 0.0679,
+        "tolerance": 0.15
+      },
+      "support_count": 8,
+      "contradiction_count": 0,
+      "total_tested": 8,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass:sparse_octaves",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass.sparse_octaves",
+      "category": "distribution",
+      "description": "Transition walking_bass\u2192sparse_octaves should be ~7.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass",
+        "tgt": "sparse_octaves",
+        "expected_proportion": 0.0705,
+        "tolerance": 0.15
+      },
+      "support_count": 8,
+      "contradiction_count": 0,
+      "total_tested": 8,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_tremolo:block_chord_tremolo",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_tremolo.block_chord_tremolo",
+      "category": "distribution",
+      "description": "Transition block_chord_tremolo\u2192block_chord_tremolo should be ~57.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_tremolo",
+        "tgt": "block_chord_tremolo",
+        "expected_proportion": 0.5729,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_tremolo:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_tremolo.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition block_chord_tremolo\u2192block_chord_sparse should be ~7.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_tremolo",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.0729,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_tremolo:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_tremolo.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition block_chord_tremolo\u2192sparse_punctuation should be ~7.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_tremolo",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0729,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_tremolo:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_tremolo.unclassified",
+      "category": "distribution",
+      "description": "Transition block_chord_tremolo\u2192unclassified should be ~16.7%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_tremolo",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1667,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_tremolo:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_tremolo.alberti",
+      "category": "distribution",
+      "description": "Transition block_chord_tremolo\u2192alberti should be ~5.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_tremolo",
+        "tgt": "alberti",
+        "expected_proportion": 0.0521,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.alberti",
+      "category": "distribution",
+      "description": "Transition silence\u2192alberti should be ~8.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "alberti",
+        "expected_proportion": 0.0846,
+        "tolerance": 0.15
+      },
+      "support_count": 25,
+      "contradiction_count": 17,
+      "total_tested": 47,
+      "confidence": 0.5952,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.bass_melody",
+      "category": "distribution",
+      "description": "Transition silence\u2192bass_melody should be ~13.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.136,
+        "tolerance": 0.15
+      },
+      "support_count": 24,
+      "contradiction_count": 15,
+      "total_tested": 47,
+      "confidence": 0.6154,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.unclassified",
+      "category": "distribution",
+      "description": "Transition silence\u2192unclassified should be ~10.7%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1066,
+        "tolerance": 0.15
+      },
+      "support_count": 47,
+      "contradiction_count": 0,
+      "total_tested": 47,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:block_chord_offbeat",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.block_chord_offbeat",
+      "category": "distribution",
+      "description": "Transition silence\u2192block_chord_offbeat should be ~11.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "block_chord_offbeat",
+        "expected_proportion": 0.1103,
+        "tolerance": 0.15
+      },
+      "support_count": 47,
+      "contradiction_count": 0,
+      "total_tested": 47,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:silence",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.silence",
+      "category": "distribution",
+      "description": "Transition silence\u2192silence should be ~19.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "silence",
+        "expected_proportion": 0.1949,
+        "tolerance": 0.15
+      },
+      "support_count": 10,
+      "contradiction_count": 4,
+      "total_tested": 47,
+      "confidence": 0.7143,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition silence\u2192sparse_punctuation should be ~5.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0515,
+        "tolerance": 0.15
+      },
+      "support_count": 47,
+      "contradiction_count": 0,
+      "total_tested": 47,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition silence\u2192block_chord_sparse should be ~11.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.1176,
+        "tolerance": 0.15
+      },
+      "support_count": 42,
+      "contradiction_count": 5,
+      "total_tested": 47,
+      "confidence": 0.8936,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:silence:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.silence.walking_bass",
+      "category": "distribution",
+      "description": "Transition silence\u2192walking_bass should be ~6.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "silence",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.0662,
+        "tolerance": 0.15
+      },
+      "support_count": 47,
+      "contradiction_count": 0,
+      "total_tested": 47,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_descending:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_descending.alberti",
+      "category": "distribution",
+      "description": "Transition broken_chord_descending\u2192alberti should be ~5.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_descending",
+        "tgt": "alberti",
+        "expected_proportion": 0.0526,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_descending:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_descending.bass_melody",
+      "category": "distribution",
+      "description": "Transition broken_chord_descending\u2192bass_melody should be ~12.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_descending",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.125,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_descending:broken_chord_descending",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_descending.broken_chord_descending",
+      "category": "distribution",
+      "description": "Transition broken_chord_descending\u2192broken_chord_descending should be ~42.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_descending",
+        "tgt": "broken_chord_descending",
+        "expected_proportion": 0.4276,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_descending:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_descending.unclassified",
+      "category": "distribution",
+      "description": "Transition broken_chord_descending\u2192unclassified should be ~10.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_descending",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1053,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.alberti",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192alberti should be ~10.1%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "alberti",
+        "expected_proportion": 0.1006,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.unclassified",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192unclassified should be ~9.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "unclassified",
+        "expected_proportion": 0.095,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.bass_melody",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192bass_melody should be ~14.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.1453,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:silence",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.silence",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192silence should be ~16.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "silence",
+        "expected_proportion": 0.162,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.pedal_point",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192pedal_point should be ~8.9%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.0894,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.walking_bass",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192walking_bass should be ~6.7%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.067,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192block_chord_sparse should be ~7.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.0726,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192sparse_punctuation should be ~5.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0559,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:sparse_octaves:sparse_octaves",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.sparse_octaves.sparse_octaves",
+      "category": "distribution",
+      "description": "Transition sparse_octaves\u2192sparse_octaves should be ~7.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "sparse_octaves",
+        "tgt": "sparse_octaves",
+        "expected_proportion": 0.0726,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_sparse:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_sparse.unclassified",
+      "category": "distribution",
+      "description": "Transition block_chord_sparse\u2192unclassified should be ~15.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_sparse",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1526,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 30,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_sparse:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_sparse.alberti",
+      "category": "distribution",
+      "description": "Transition block_chord_sparse\u2192alberti should be ~8.9%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_sparse",
+        "tgt": "alberti",
+        "expected_proportion": 0.0895,
+        "tolerance": 0.15
+      },
+      "support_count": 21,
+      "contradiction_count": 4,
+      "total_tested": 30,
+      "confidence": 0.84,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_sparse:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_sparse.bass_melody",
+      "category": "distribution",
+      "description": "Transition block_chord_sparse\u2192bass_melody should be ~7.9%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_sparse",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.0789,
+        "tolerance": 0.15
+      },
+      "support_count": 21,
+      "contradiction_count": 4,
+      "total_tested": 30,
+      "confidence": 0.84,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_sparse:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_sparse.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition block_chord_sparse\u2192block_chord_sparse should be ~39.7%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_sparse",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.3974,
+        "tolerance": 0.15
+      },
+      "support_count": 11,
+      "contradiction_count": 11,
+      "total_tested": 30,
+      "confidence": 0.5,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:block_chord_sparse:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.block_chord_sparse.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition block_chord_sparse\u2192sparse_punctuation should be ~9.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "block_chord_sparse",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0921,
+        "tolerance": 0.15
+      },
+      "support_count": 30,
+      "contradiction_count": 0,
+      "total_tested": 30,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:pedal_point:silence",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.pedal_point.silence",
+      "category": "distribution",
+      "description": "Transition pedal_point\u2192silence should be ~7.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "pedal_point",
+        "tgt": "silence",
+        "expected_proportion": 0.0764,
+        "tolerance": 0.15
+      },
+      "support_count": 58,
+      "contradiction_count": 3,
+      "total_tested": 64,
+      "confidence": 0.9508,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:pedal_point:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.pedal_point.bass_melody",
+      "category": "distribution",
+      "description": "Transition pedal_point\u2192bass_melody should be ~13.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "pedal_point",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.1326,
+        "tolerance": 0.15
+      },
+      "support_count": 42,
+      "contradiction_count": 12,
+      "total_tested": 64,
+      "confidence": 0.7778,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:pedal_point:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.pedal_point.unclassified",
+      "category": "distribution",
+      "description": "Transition pedal_point\u2192unclassified should be ~7.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "pedal_point",
+        "tgt": "unclassified",
+        "expected_proportion": 0.0719,
+        "tolerance": 0.15
+      },
+      "support_count": 64,
+      "contradiction_count": 0,
+      "total_tested": 64,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:pedal_point:block_chord_sparse",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.pedal_point.block_chord_sparse",
+      "category": "distribution",
+      "description": "Transition pedal_point\u2192block_chord_sparse should be ~14.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "pedal_point",
+        "tgt": "block_chord_sparse",
+        "expected_proportion": 0.1483,
+        "tolerance": 0.15
+      },
+      "support_count": 60,
+      "contradiction_count": 2,
+      "total_tested": 64,
+      "confidence": 0.9677,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:pedal_point:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.pedal_point.pedal_point",
+      "category": "distribution",
+      "description": "Transition pedal_point\u2192pedal_point should be ~29.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "pedal_point",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.2899,
+        "tolerance": 0.15
+      },
+      "support_count": 19,
+      "contradiction_count": 10,
+      "total_tested": 64,
+      "confidence": 0.6552,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:pedal_point:sparse_octaves",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.pedal_point.sparse_octaves",
+      "category": "distribution",
+      "description": "Transition pedal_point\u2192sparse_octaves should be ~5.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "pedal_point",
+        "tgt": "sparse_octaves",
+        "expected_proportion": 0.0517,
+        "tolerance": 0.15
+      },
+      "support_count": 64,
+      "contradiction_count": 0,
+      "total_tested": 64,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:oscillation_trill:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.oscillation_trill.pedal_point",
+      "category": "distribution",
+      "description": "Transition oscillation_trill\u2192pedal_point should be ~8.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "oscillation_trill",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.0864,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:oscillation_trill:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.oscillation_trill.bass_melody",
+      "category": "distribution",
+      "description": "Transition oscillation_trill\u2192bass_melody should be ~14.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "oscillation_trill",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.1481,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:oscillation_trill:oscillation_trill",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.oscillation_trill.oscillation_trill",
+      "category": "distribution",
+      "description": "Transition oscillation_trill\u2192oscillation_trill should be ~37.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "oscillation_trill",
+        "tgt": "oscillation_trill",
+        "expected_proportion": 0.3704,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:oscillation_trill:sparse_punctuation",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.oscillation_trill.sparse_punctuation",
+      "category": "distribution",
+      "description": "Transition oscillation_trill\u2192sparse_punctuation should be ~6.2%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "oscillation_trill",
+        "tgt": "sparse_punctuation",
+        "expected_proportion": 0.0617,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:oscillation_trill:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.oscillation_trill.walking_bass",
+      "category": "distribution",
+      "description": "Transition oscillation_trill\u2192walking_bass should be ~12.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "oscillation_trill",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.1235,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:oscillation_trill:sparse_octaves",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.oscillation_trill.sparse_octaves",
+      "category": "distribution",
+      "description": "Transition oscillation_trill\u2192sparse_octaves should be ~8.6%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "oscillation_trill",
+        "tgt": "sparse_octaves",
+        "expected_proportion": 0.0864,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass_chromatic:bass_melody",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass_chromatic.bass_melody",
+      "category": "distribution",
+      "description": "Transition walking_bass_chromatic\u2192bass_melody should be ~17.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass_chromatic",
+        "tgt": "bass_melody",
+        "expected_proportion": 0.1729,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass_chromatic:walking_bass_chromatic",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass_chromatic.walking_bass_chromatic",
+      "category": "distribution",
+      "description": "Transition walking_bass_chromatic\u2192walking_bass_chromatic should be ~20.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass_chromatic",
+        "tgt": "walking_bass_chromatic",
+        "expected_proportion": 0.203,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass_chromatic:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass_chromatic.unclassified",
+      "category": "distribution",
+      "description": "Transition walking_bass_chromatic\u2192unclassified should be ~8.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass_chromatic",
+        "tgt": "unclassified",
+        "expected_proportion": 0.0827,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass_chromatic:sparse_octaves",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass_chromatic.sparse_octaves",
+      "category": "distribution",
+      "description": "Transition walking_bass_chromatic\u2192sparse_octaves should be ~5.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass_chromatic",
+        "tgt": "sparse_octaves",
+        "expected_proportion": 0.0526,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass_chromatic:walking_bass",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass_chromatic.walking_bass",
+      "category": "distribution",
+      "description": "Transition walking_bass_chromatic\u2192walking_bass should be ~15.0%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass_chromatic",
+        "tgt": "walking_bass",
+        "expected_proportion": 0.1504,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:walking_bass_chromatic:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.walking_bass_chromatic.pedal_point",
+      "category": "distribution",
+      "description": "Transition walking_bass_chromatic\u2192pedal_point should be ~15.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "walking_bass_chromatic",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.1579,
+        "tolerance": 0.15
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 0,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_wave:pedal_point",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_wave.pedal_point",
+      "category": "distribution",
+      "description": "Transition broken_chord_wave\u2192pedal_point should be ~7.7%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_wave",
+        "tgt": "pedal_point",
+        "expected_proportion": 0.0766,
+        "tolerance": 0.15
+      },
+      "support_count": 39,
+      "contradiction_count": 7,
+      "total_tested": 50,
+      "confidence": 0.8478,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_wave:alberti",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_wave.alberti",
+      "category": "distribution",
+      "description": "Transition broken_chord_wave\u2192alberti should be ~13.3%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_wave",
+        "tgt": "alberti",
+        "expected_proportion": 0.1331,
+        "tolerance": 0.15
+      },
+      "support_count": 21,
+      "contradiction_count": 25,
+      "total_tested": 50,
+      "confidence": 0.4565,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_wave:broken_chord_wave",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_wave.broken_chord_wave",
+      "category": "distribution",
+      "description": "Transition broken_chord_wave\u2192broken_chord_wave should be ~46.8%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_wave",
+        "tgt": "broken_chord_wave",
+        "expected_proportion": 0.4677,
+        "tolerance": 0.15
+      },
+      "support_count": 10,
+      "contradiction_count": 31,
+      "total_tested": 50,
+      "confidence": 0.2439,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "trans:broken_chord_wave:unclassified",
+      "source_file": "scoped_statistics.json",
+      "source_entry_id": "transition_matrix.broken_chord_wave.unclassified",
+      "category": "distribution",
+      "description": "Transition broken_chord_wave\u2192unclassified should be ~10.5%",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "transition_counts",
+        "src": "broken_chord_wave",
+        "tgt": "unclassified",
+        "expected_proportion": 0.1048,
+        "tolerance": 0.15
+      },
+      "support_count": 50,
+      "contradiction_count": 0,
+      "total_tested": 50,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "fingerprint:vocal_thinking_in_instrumental_writing",
+      "source_file": "fingerprint_rules.json",
+      "source_entry_id": "vocal_thinking_in_instrumental_writing",
+      "category": "fingerprint",
+      "description": "Fingerprint: Vocal thinking in instrumental writing",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "stepwise_pct",
+        "direction": "gte",
+        "threshold": 45.0,
+        "description": "Vocal writing implies high stepwise motion"
+      },
+      "support_count": 63,
+      "contradiction_count": 6,
+      "total_tested": 69,
+      "confidence": 0.913,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "fingerprint:chromatic_inflection_for_emotional_nuance",
+      "source_file": "fingerprint_rules.json",
+      "source_entry_id": "chromatic_inflection_for_emotional_nuance",
+      "category": "fingerprint",
+      "description": "Fingerprint: Chromatic inflection for emotional nuance",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "chromatic_pct",
+        "direction": "gte",
+        "threshold": 3.0,
+        "description": "Chromatic inflection implies some accidentals"
+      },
+      "support_count": 68,
+      "contradiction_count": 1,
+      "total_tested": 69,
+      "confidence": 0.9855,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "fingerprint:transparent_chamber_like_texture",
+      "source_file": "fingerprint_rules.json",
+      "source_entry_id": "transparent_chamber_like_texture",
+      "category": "fingerprint",
+      "description": "Fingerprint: Transparent, chamber-like texture",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "events_per_bar",
+        "direction": "lte",
+        "threshold": 30.0,
+        "description": "Transparent texture implies moderate density"
+      },
+      "support_count": 68,
+      "contradiction_count": 1,
+      "total_tested": 69,
+      "confidence": 0.9855,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "fingerprint:symmetrical_phrase_structure_subverted_at_one_moment",
+      "source_file": "fingerprint_rules.json",
+      "source_entry_id": "symmetrical_phrase_structure_subverted_at_one_moment",
+      "category": "fingerprint",
+      "description": "Fingerprint: Symmetrical phrase structure subverted at one moment",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "phrase_length_avg",
+        "direction": "range",
+        "min": 8.0,
+        "max": 24.0,
+        "description": "Symmetrical phrasing implies consistent lengths"
+      },
+      "support_count": 42,
+      "contradiction_count": 27,
+      "total_tested": 69,
+      "confidence": 0.6087,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "fingerprint:minor_mode_shadow_in_major_contexts",
+      "source_file": "fingerprint_rules.json",
+      "source_entry_id": "minor_mode_shadow_in_major_contexts",
+      "category": "fingerprint",
+      "description": "Fingerprint: Minor-mode shadow in major contexts",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "chromatic_pct",
+        "direction": "gte",
+        "threshold": 2.0,
+        "description": "Minor-mode shadows involve chromatic alterations"
+      },
+      "support_count": 68,
+      "contradiction_count": 1,
+      "total_tested": 69,
+      "confidence": 0.9855,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "figuration:fig_1_alberti",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_1_alberti",
+      "category": "figuration",
+      "description": "Figuration 'alberti' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "alberti",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 66,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "figuration:fig_2_broken_chord_asc",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_2_broken_chord_asc",
+      "category": "figuration",
+      "description": "Figuration 'broken_chord_asc' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "broken_chord_asc",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "figuration:fig_3_broken_chord_desc",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_3_broken_chord_desc",
+      "category": "figuration",
+      "description": "Figuration 'broken_chord_desc' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "broken_chord_desc",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "figuration:fig_4_murky_bass",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_4_murky_bass",
+      "category": "figuration",
+      "description": "Figuration 'murky_bass' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "murky_bass",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_5_waltz_bass",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_5_waltz_bass",
+      "category": "figuration",
+      "description": "Figuration 'waltz_bass' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "waltz_bass",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_6_wide_span_arpeggio",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_6_wide_span_arpeggio",
+      "category": "figuration",
+      "description": "Figuration 'wide_span_arpeggio' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "wide_span_arpeggio",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_7_turn_based",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_7_turn_based",
+      "category": "figuration",
+      "description": "Figuration 'turn_based' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "turn_based",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_8_scalar_asc",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_8_scalar_asc",
+      "category": "figuration",
+      "description": "Figuration 'scalar_asc' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "scalar_asc",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_9_scalar_desc",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_9_scalar_desc",
+      "category": "figuration",
+      "description": "Figuration 'scalar_desc' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "scalar_desc",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_10_tremolo",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_10_tremolo",
+      "category": "figuration",
+      "description": "Figuration 'tremolo' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "tremolo",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "figuration:fig_11_broken_octave",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_11_broken_octave",
+      "category": "figuration",
+      "description": "Figuration 'broken_octave' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "broken_octave",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "figuration:fig_12_chordal_passing",
+      "source_file": "figuration_templates.json",
+      "source_entry_id": "fig_12_chordal_passing",
+      "category": "figuration",
+      "description": "Figuration 'chordal_passing' should appear in LH corpus",
+      "test_type": "distribution",
+      "test_config": {
+        "field": "lh_texture_distribution",
+        "key": "chordal_passing",
+        "expected_proportion": null,
+        "presence_only": true
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:phrase_structure_cell",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "phrase_structure_cell",
+      "category": "melody_prior",
+      "description": "Cell: Smallest recognizable unit",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "raw_value": "2-3 notes",
+        "description": "Phrase structure: Cell: Smallest recognizable unit"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "melody:phrase_structure_motif",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "phrase_structure_motif",
+      "category": "melody_prior",
+      "description": "Motif: Characteristic rhythm + interval pattern",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "raw_value": "1-2 bars",
+        "description": "Phrase structure: Motif: Characteristic rhythm + interval pattern"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "melody:phrase_structure_phrase",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "phrase_structure_phrase",
+      "category": "melody_prior",
+      "description": "Phrase: Complete musical thought, ends with cadence",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "raw_value": "4 bars",
+        "description": "Phrase structure: Phrase: Complete musical thought, ends with cadence"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "melody:phrase_structure_period",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "phrase_structure_period",
+      "category": "melody_prior",
+      "description": "Period: Two complementary phrases",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "raw_value": "8 bars (4+4)",
+        "description": "Phrase structure: Period: Two complementary phrases"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "melody:phrase_structure_double period",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "phrase_structure_double period",
+      "category": "melody_prior",
+      "description": "Double period: Extended period structure",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "raw_value": "16 bars (4+4+4+4)",
+        "description": "Phrase structure: Double period: Extended period structure"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "melody:phrase_structure_section",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "phrase_structure_section",
+      "category": "melody_prior",
+      "description": "Section: Structural unit (exposition, development, etc.)",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "raw_value": "Multiple periods",
+        "description": "Phrase structure: Section: Structural unit (exposition, development, etc.)"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "melody:contour_arch_(rise-fall)",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "contour_arch_(rise-fall)",
+      "category": "melody_prior",
+      "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Arch (rise-fall) (\u2227): Completion, singing quality"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:contour_ascending",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "contour_ascending",
+      "category": "melody_prior",
+      "description": "Ascending (/): Aspiration, tension, hope",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Ascending (/): Aspiration, tension, hope"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:contour_descending",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "contour_descending",
+      "category": "melody_prior",
+      "description": "Descending (\\): Resolution, grief, relaxation",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Descending (\\): Resolution, grief, relaxation"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:contour_wave",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "contour_wave",
+      "category": "melody_prior",
+      "description": "Wave (\u223c): Lyrical, flowing",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Wave (\u223c): Lyrical, flowing"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:contour_static/plateau",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "contour_static/plateau",
+      "category": "melody_prior",
+      "description": "Static/plateau (\u2014): Contemplation, suspense",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Static/plateau (\u2014): Contemplation, suspense"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:contour_inverted_arch",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "contour_inverted_arch",
+      "category": "melody_prior",
+      "description": "Inverted arch (\u2228): Settling then rising",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Inverted arch (\u2228): Settling then rising"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "melody:peak_timing_within_a_phrase",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "peak_timing_within_a_phrase",
+      "category": "melody_prior",
+      "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "melody:peak_timing_within_a_melody",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "peak_timing_within_a_melody",
+      "category": "melody_prior",
+      "description": "Climax placement at Within a melody level: ~60-75% through",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Climax placement at Within a melody level: ~60-75% through"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "melody:peak_timing_within_a_section",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "peak_timing_within_a_section",
+      "category": "melody_prior",
+      "description": "Climax placement at Within a section level: After development/buildup",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Climax placement at Within a section level: After development/buildup"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "melody:peak_timing_multiple_levels",
+      "source_file": "melody_priors.json",
+      "source_entry_id": "peak_timing_multiple_levels",
+      "category": "melody_prior",
+      "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:b6_melodic_inflection",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "b6_melodic_inflection",
+      "category": "harmonic_device",
+      "description": "Harmonic device: b6 melodic inflection",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Any major-key phrase \u2014 the signature shadow"
+        ],
+        "description": "Device 'b6_melodic_inflection' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:neapolitan_6th_bii6",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "neapolitan_6th_bii6",
+      "category": "harmonic_device",
+      "description": "Harmonic device: Neapolitan 6th (bII6)",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Slow movements",
+          "minor-key cadences"
+        ],
+        "description": "Device 'neapolitan_6th_bii6' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:diminished_7th_pivot",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "diminished_7th_pivot",
+      "category": "harmonic_device",
+      "description": "Harmonic device: Diminished 7th pivot",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Development sections",
+          "operatic transitions"
+        ],
+        "description": "Device 'diminished_7th_pivot' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:augmented_6th_chords",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "augmented_6th_chords",
+      "category": "harmonic_device",
+      "description": "Harmonic device: Augmented 6th chords",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Dramatic cadential moments",
+          "late works"
+        ],
+        "description": "Device 'augmented_6th_chords' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:chromatic_bass_descent",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "chromatic_bass_descent",
+      "category": "harmonic_device",
+      "description": "Harmonic device: Chromatic bass descent",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Lament",
+          "grief",
+          "slow introductions"
+        ],
+        "description": "Device 'chromatic_bass_descent' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:enharmonic_reinterpretation",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "enharmonic_reinterpretation",
+      "category": "harmonic_device",
+      "description": "Harmonic device: Enharmonic reinterpretation",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Late works",
+          "development sections"
+        ],
+        "description": "Device 'enharmonic_reinterpretation' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "harmonic:secondary_dominants",
+      "source_file": "harmonic_devices.json",
+      "source_entry_id": "secondary_dominants",
+      "category": "harmonic_device",
+      "description": "Harmonic device: Secondary dominants",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "frequency_weight": 0.3,
+        "contexts": [
+          "Transitions",
+          "sequences"
+        ],
+        "description": "Device 'secondary_dominants' with weight 0.3"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_1_single_phrase_covering_entire_section",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_1_single_phrase_covering_entire_section",
+      "category": "anti_pattern",
+      "description": "1. Single Phrase Covering Entire Section",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "single_phrase_section",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 1. Single Phrase Covering Entire Section"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_2_same_accompaniment_pattern_throughout",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_2_same_accompaniment_pattern_throughout",
+      "category": "anti_pattern",
+      "description": "2. Same Accompaniment Pattern Throughout",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "identical_consecutive_pct",
+        "direction": "gte",
+        "threshold": 30.0,
+        "description": "Same accompaniment \u2192 high identical consecutive %",
+        "is_anti_pattern": true
+      },
+      "support_count": 12,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_3_theme_stated_identically_every_time",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_3_theme_stated_identically_every_time",
+      "category": "anti_pattern",
+      "description": "3. Theme Stated Identically Every Time",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "identical_restatement",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 3. Theme Stated Identically Every Time"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_4_flat_dynamics",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_4_flat_dynamics",
+      "category": "anti_pattern",
+      "description": "4. Flat Dynamics",
+      "test_type": "threshold",
+      "test_config": {
+        "test_type": "threshold",
+        "metric": "density_cv",
+        "direction": "lte",
+        "threshold": 0.15,
+        "description": "Flat dynamics \u2192 low density CV",
+        "is_anti_pattern": true
+      },
+      "support_count": 1,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 1.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_5_no_ornaments",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_5_no_ornaments",
+      "category": "anti_pattern",
+      "description": "5. No Ornaments",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "missing_ornaments",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 5. No Ornaments"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_6_all_instruments_playing_all_the_time",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_6_all_instruments_playing_all_the_time",
+      "category": "anti_pattern",
+      "description": "6. All Instruments Playing All the Time",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "no_rests_between_instruments",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 6. All Instruments Playing All the Time"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_7_all_voices_in_rhythmic_unison",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_7_all_voices_in_rhythmic_unison",
+      "category": "anti_pattern",
+      "description": "7. All Voices in Rhythmic Unison",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "rhythmic_unison",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 7. All Voices in Rhythmic Unison"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_8_block_chords_for_accompaniment",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_8_block_chords_for_accompaniment",
+      "category": "anti_pattern",
+      "description": "8. Block Chords for Accompaniment",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "block_chord_overuse",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 8. Block Chords for Accompaniment"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_9_theme_melody_sounds_like_arpeggiated_chords",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_9_theme_melody_sounds_like_arpeggiated_chords",
+      "category": "anti_pattern",
+      "description": "9. Theme Melody Sounds Like Arpeggiated Chords",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "melody_is_arpeggio",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 9. Theme Melody Sounds Like Arpeggiated Chords"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:ap_10_generic_transition_scales",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "ap_10_generic_transition_scales",
+      "category": "anti_pattern",
+      "description": "10. Generic Transition (Scales)",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "generic_transition",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: 10. Generic Transition (Scales)"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_perfectly_balanced_phrase",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_perfectly_balanced_phrase",
+      "category": "anti_pattern",
+      "description": "Perfectly Balanced Phrase",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "perfectly_balanced_phrase",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Perfectly Balanced Phrase"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_democracy_of_instruments",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_democracy_of_instruments",
+      "category": "anti_pattern",
+      "description": "Democracy of Instruments",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "democracy_of_instruments",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Democracy of Instruments"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_texture_slot_machine",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_texture_slot_machine",
+      "category": "anti_pattern",
+      "description": "Texture Slot Machine",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "texture_slot_machine",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Texture Slot Machine"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_ornament_wallpaper",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_ornament_wallpaper",
+      "category": "anti_pattern",
+      "description": "Ornament Wallpaper",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "ornament_wallpaper",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Ornament Wallpaper"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_register_monotony",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_register_monotony",
+      "category": "anti_pattern",
+      "description": "Register Monotony",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "register_monotony",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Register Monotony"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_missing_silence",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_missing_silence",
+      "category": "anti_pattern",
+      "description": "Missing Silence",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "missing_silence",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Missing Silence"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_development_that_doesn_t_develop",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_development_that_doesn_t_develop",
+      "category": "anti_pattern",
+      "description": "Development That Doesn't Develop",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "development_that_doesn_t_develop",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Development That Doesn't Develop"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_climax_that_arrives_by_volume_alone",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_climax_that_arrives_by_volume_alone",
+      "category": "anti_pattern",
+      "description": "Climax That Arrives By Volume Alone",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "climax_that_arrives_by_volume_alone",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Climax That Arrives By Volume Alone"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_phrase_level_thinking_only",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_phrase_level_thinking_only",
+      "category": "anti_pattern",
+      "description": "Phrase-Level Thinking Only",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "phrase_level_thinking_only",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Phrase-Level Thinking Only"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_recapitulation_that_s_just_a_transpose",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_recapitulation_that_s_just_a_transpose",
+      "category": "anti_pattern",
+      "description": "Recapitulation That's Just a Transpose",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "recapitulation_that_s_just_a_transpose",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Recapitulation That's Just a Transpose"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_coda_that_summarizes",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_coda_that_summarizes",
+      "category": "anti_pattern",
+      "description": "Coda That Summarizes",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "coda_that_summarizes",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Coda That Summarizes"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_everything_arrives_on_schedule",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_everything_arrives_on_schedule",
+      "category": "anti_pattern",
+      "description": "Everything Arrives On Schedule",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "everything_arrives_on_schedule",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Everything Arrives On Schedule"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_safe_harmonic_palette",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_safe_harmonic_palette",
+      "category": "anti_pattern",
+      "description": "Safe Harmonic Palette",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "safe_harmonic_palette",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Safe Harmonic Palette"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_every_dissonance_resolves_immediately",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_every_dissonance_resolves_immediately",
+      "category": "anti_pattern",
+      "description": "Every Dissonance Resolves Immediately",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "every_dissonance_resolves_immediately",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Every Dissonance Resolves Immediately"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_harmonic_rhythm_that_s_too_regular",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_harmonic_rhythm_that_s_too_regular",
+      "category": "anti_pattern",
+      "description": "Harmonic Rhythm That's Too Regular",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "harmonic_rhythm_that_s_too_regular",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Harmonic Rhythm That's Too Regular"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_key_change_that_feels_like_a_scene_change",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_key_change_that_feels_like_a_scene_change",
+      "category": "anti_pattern",
+      "description": "Key Change That Feels Like a Scene Change",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "key_change_that_feels_like_a_scene_change",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Key Change That Feels Like a Scene Change"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_metronomic_regularity",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_metronomic_regularity",
+      "category": "anti_pattern",
+      "description": "Metronomic Regularity",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "metronomic_regularity",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Metronomic Regularity"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_build_that_s_just_adding_layers",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_build_that_s_just_adding_layers",
+      "category": "anti_pattern",
+      "description": "Build That's Just Adding Layers",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "build_that_s_just_adding_layers",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Build That's Just Adding Layers"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_accompaniment_that_ignores_the_melody",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_accompaniment_that_ignores_the_melody",
+      "category": "anti_pattern",
+      "description": "Accompaniment That Ignores the Melody",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "accompaniment_that_ignores_the_melody",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Accompaniment That Ignores the Melody"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_rhythmic_variation_that_s_just_note_values",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_rhythmic_variation_that_s_just_note_values",
+      "category": "anti_pattern",
+      "description": "Rhythmic Variation That's Just Note Values",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "rhythmic_variation_that_s_just_note_values",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Rhythmic Variation That's Just Note Values"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_theme_that_s_obviously_designed",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_theme_that_s_obviously_designed",
+      "category": "anti_pattern",
+      "description": "Theme That's Obviously Designed",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "theme_that_s_obviously_designed",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Theme That's Obviously Designed"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_every_phrase_ends_with_a_clean_cadence",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_every_phrase_ends_with_a_clean_cadence",
+      "category": "anti_pattern",
+      "description": "Every Phrase Ends With a Clean Cadence",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "every_phrase_ends_with_a_clean_cadence",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Every Phrase Ends With a Clean Cadence"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_melody_that_never_leaves_its_comfort_zone",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_melody_that_never_leaves_its_comfort_zone",
+      "category": "anti_pattern",
+      "description": "Melody That Never Leaves Its Comfort Zone",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "melody_that_never_leaves_its_comfort_zone",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Melody That Never Leaves Its Comfort Zone"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_counter_melodies_that_are_just_harmony",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_counter_melodies_that_are_just_harmony",
+      "category": "anti_pattern",
+      "description": "Counter-Melodies That Are Just Harmony",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "counter_melodies_that_are_just_harmony",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Counter-Melodies That Are Just Harmony"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_emotion_by_parameter",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_emotion_by_parameter",
+      "category": "anti_pattern",
+      "description": "Emotion-By-Parameter",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "emotion_by_parameter",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Emotion-By-Parameter"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_no_sense_of_struggle_or_discovery",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_no_sense_of_struggle_or_discovery",
+      "category": "anti_pattern",
+      "description": "No Sense of Struggle or Discovery",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "no_sense_of_struggle_or_discovery",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: No Sense of Struggle or Discovery"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_emotional_arc_that_s_too_clean",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_emotional_arc_that_s_too_clean",
+      "category": "anti_pattern",
+      "description": "Emotional Arc That's Too Clean",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "emotional_arc_that_s_too_clean",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Emotional Arc That's Too Clean"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_no_humor_wit_or_playfulness",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_no_humor_wit_or_playfulness",
+      "category": "anti_pattern",
+      "description": "No Humor, Wit, or Playfulness",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "no_humor_wit_or_playfulness",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: No Humor, Wit, or Playfulness"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_no_ugliness_or_roughness",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_no_ugliness_or_roughness",
+      "category": "anti_pattern",
+      "description": "No Ugliness or Roughness",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "no_ugliness_or_roughness",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: No Ugliness or Roughness"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_assembly_instead_of_composition",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_assembly_instead_of_composition",
+      "category": "anti_pattern",
+      "description": "Assembly Instead of Composition",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "assembly_instead_of_composition",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Assembly Instead of Composition"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_following_the_plan_too_faithfully",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_following_the_plan_too_faithfully",
+      "category": "anti_pattern",
+      "description": "Following the Plan Too Faithfully",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "following_the_plan_too_faithfully",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Following the Plan Too Faithfully"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_defaulting_instead_of_choosing",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_defaulting_instead_of_choosing",
+      "category": "anti_pattern",
+      "description": "Defaulting Instead of Choosing",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "defaulting_instead_of_choosing",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Defaulting Instead of Choosing"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "anti_pattern:critique_section_that_could_be_anywhere",
+      "source_file": "anti_pattern_rules.json",
+      "source_entry_id": "critique_section_that_could_be_anywhere",
+      "category": "anti_pattern",
+      "description": "Section That Could Be Anywhere",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "detector": "section_that_could_be_anywhere",
+        "is_anti_pattern": true,
+        "description": "Anti-pattern: Section That Could Be Anywhere"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "soft_corroborated"
+    },
+    {
+      "claim_id": "cadence:cad_pac_v7_i",
+      "source_file": "cadence_scripts.json",
+      "source_entry_id": "cad_pac_v7_i",
+      "category": "cadence",
+      "description": "Cadence script: cad_pac_v7_i",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "description": "Cadence type 'cad_pac_v7_i' should appear in corpus"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "cadence:cad_hc_v",
+      "source_file": "cadence_scripts.json",
+      "source_entry_id": "cad_hc_v",
+      "category": "cadence",
+      "description": "Cadence script: cad_hc_v",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "description": "Cadence type 'cad_hc_v' should appear in corpus"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "cadence:cad_deceptive_v_vi",
+      "source_file": "cadence_scripts.json",
+      "source_entry_id": "cad_deceptive_v_vi",
+      "category": "cadence",
+      "description": "Cadence script: cad_deceptive_v_vi",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "description": "Cadence type 'cad_deceptive_v_vi' should appear in corpus"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "cadence:cad_neapolitan_v_i",
+      "source_file": "cadence_scripts.json",
+      "source_entry_id": "cad_neapolitan_v_i",
+      "category": "cadence",
+      "description": "Cadence script: cad_neapolitan_v_i",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "description": "Cadence type 'cad_neapolitan_v_i' should appear in corpus"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "cadence:cad_cadenza_approach",
+      "source_file": "cadence_scripts.json",
+      "source_entry_id": "cad_cadenza_approach",
+      "category": "cadence",
+      "description": "Cadence script: cad_cadenza_approach",
+      "test_type": "presence",
+      "test_config": {
+        "metric": null,
+        "description": "Cadence type 'cad_cadenza_approach' should appear in corpus"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "hard_corroborated"
+    },
+    {
+      "claim_id": "prompt:joy",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "joy",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'joy'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          120,
+          152
+        ],
+        "mode_scale": [
+          "Major",
+          "Lydian"
+        ],
+        "dynamics": "mf-f",
+        "description": "Prompt word 'joy' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:sorrow",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "sorrow",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'sorrow'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          52,
+          72
+        ],
+        "mode_scale": [
+          "Minor",
+          "Aeolian"
+        ],
+        "dynamics": "p-mp",
+        "description": "Prompt word 'sorrow' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:anger",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "anger",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'anger'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          132,
+          168
+        ],
+        "mode_scale": [
+          "Minor",
+          "Phrygian"
+        ],
+        "dynamics": "ff-fff",
+        "description": "Prompt word 'anger' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:fear",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "fear",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'fear'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          60,
+          100
+        ],
+        "mode_scale": [
+          "Diminished",
+          "chromatic"
+        ],
+        "dynamics": "pp-mp",
+        "description": "Prompt word 'fear' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:love",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "love",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'love'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          66,
+          88
+        ],
+        "mode_scale": [
+          "Major",
+          "Mixolydian"
+        ],
+        "dynamics": "mp-mf",
+        "description": "Prompt word 'love' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:longing",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "longing",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'longing'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          56,
+          76
+        ],
+        "mode_scale": [
+          "Minor",
+          "Dorian"
+        ],
+        "dynamics": "p-mf",
+        "description": "Prompt word 'longing' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:triumph",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "triumph",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'triumph'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          108,
+          138
+        ],
+        "mode_scale": [
+          "Major",
+          "Lydian"
+        ],
+        "dynamics": "ff-fff",
+        "description": "Prompt word 'triumph' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:despair",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "despair",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'despair'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          40,
+          60
+        ],
+        "mode_scale": [
+          "Minor",
+          "Phrygian"
+        ],
+        "dynamics": "pp-p",
+        "description": "Prompt word 'despair' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:serenity",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "serenity",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'serenity'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          60,
+          80
+        ],
+        "mode_scale": [
+          "Major",
+          "pentatonic"
+        ],
+        "dynamics": "pp-mp",
+        "description": "Prompt word 'serenity' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:tension",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "tension",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'tension'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          80,
+          120
+        ],
+        "mode_scale": [
+          "Chromatic",
+          "octatonic"
+        ],
+        "dynamics": "mp-ff (growing)",
+        "description": "Prompt word 'tension' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:mystery",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "mystery",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'mystery'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          60,
+          84
+        ],
+        "mode_scale": [
+          "Whole-tone",
+          "Locrian"
+        ],
+        "dynamics": "pp-mp",
+        "description": "Prompt word 'mystery' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:wonder",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "wonder",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'wonder'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          72,
+          96
+        ],
+        "mode_scale": [
+          "Major",
+          "Lydian"
+        ],
+        "dynamics": "p-mf",
+        "description": "Prompt word 'wonder' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:nostalgia",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "nostalgia",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'nostalgia'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          66,
+          84
+        ],
+        "mode_scale": [
+          "Major turning minor"
+        ],
+        "dynamics": "mp",
+        "description": "Prompt word 'nostalgia' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:playfulness",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "playfulness",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'playfulness'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          120,
+          160
+        ],
+        "mode_scale": [
+          "Major",
+          "Mixolydian"
+        ],
+        "dynamics": "mf",
+        "description": "Prompt word 'playfulness' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:dignity",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "dignity",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'dignity'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          72,
+          92
+        ],
+        "mode_scale": [
+          "Major",
+          "Dorian"
+        ],
+        "dynamics": "mf-f",
+        "description": "Prompt word 'dignity' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:chaos",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "chaos",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'chaos'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          144,
+          200
+        ],
+        "mode_scale": [
+          "Atonal",
+          "chromatic"
+        ],
+        "dynamics": "ff-fff",
+        "description": "Prompt word 'chaos' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:resolution",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "resolution",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'resolution'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          60,
+          80
+        ],
+        "mode_scale": [
+          "Major"
+        ],
+        "dynamics": "mf-mp",
+        "description": "Prompt word 'resolution' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:melancholy",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "melancholy",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'melancholy'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          56,
+          76
+        ],
+        "mode_scale": [
+          "Minor",
+          "Aeolian"
+        ],
+        "dynamics": "p-mp",
+        "description": "Prompt word 'melancholy' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:ecstasy",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "ecstasy",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'ecstasy'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          132,
+          168
+        ],
+        "mode_scale": [
+          "Major",
+          "Lydian"
+        ],
+        "dynamics": "ff",
+        "description": "Prompt word 'ecstasy' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:fury",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "fury",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'fury'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          152,
+          184
+        ],
+        "mode_scale": [
+          "Minor",
+          "Phrygian dom."
+        ],
+        "dynamics": "fff",
+        "description": "Prompt word 'fury' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:tenderness",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "tenderness",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'tenderness'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          60,
+          76
+        ],
+        "mode_scale": [
+          "Major"
+        ],
+        "dynamics": "pp-p",
+        "description": "Prompt word 'tenderness' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:grandeur",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "grandeur",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'grandeur'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          76,
+          100
+        ],
+        "mode_scale": [
+          "Major",
+          "Mixolydian"
+        ],
+        "dynamics": "f-ff",
+        "description": "Prompt word 'grandeur' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:desolation",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "desolation",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'desolation'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          40,
+          56
+        ],
+        "mode_scale": [
+          "Minor",
+          "Phrygian"
+        ],
+        "dynamics": "ppp-pp",
+        "description": "Prompt word 'desolation' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:hope",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "hope",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'hope'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          72,
+          100
+        ],
+        "mode_scale": [
+          "Minor to Major"
+        ],
+        "dynamics": "p-mf (growing)",
+        "description": "Prompt word 'hope' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:anxiety",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "anxiety",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'anxiety'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          100,
+          132
+        ],
+        "mode_scale": [
+          "Minor",
+          "chromatic"
+        ],
+        "dynamics": "mp-f",
+        "description": "Prompt word 'anxiety' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:peace",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "peace",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'peace'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          56,
+          72
+        ],
+        "mode_scale": [
+          "Major",
+          "pentatonic"
+        ],
+        "dynamics": "pp-p",
+        "description": "Prompt word 'peace' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:passion",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "passion",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'passion'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          88,
+          120
+        ],
+        "mode_scale": [
+          "Minor",
+          "harmonic minor"
+        ],
+        "dynamics": "mf-ff",
+        "description": "Prompt word 'passion' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:reverence",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "reverence",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'reverence'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          52,
+          72
+        ],
+        "mode_scale": [
+          "Major",
+          "Dorian"
+        ],
+        "dynamics": "p-mf",
+        "description": "Prompt word 'reverence' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:whimsy",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "whimsy",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'whimsy'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          112,
+          144
+        ],
+        "mode_scale": [
+          "Major",
+          "Lydian"
+        ],
+        "dynamics": "mp-mf",
+        "description": "Prompt word 'whimsy' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:agony",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "agony",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'agony'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": [
+          56,
+          80
+        ],
+        "mode_scale": [
+          "Minor",
+          "chromatic"
+        ],
+        "dynamics": "p-fff (extremes)",
+        "description": "Prompt word 'agony' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:hero",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "hero",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'hero'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'hero' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:villain",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "villain",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'villain'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'villain' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:mentor",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "mentor",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'mentor'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'mentor' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:trickster",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "trickster",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'trickster'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'trickster' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:lover",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "lover",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'lover'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'lover' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:innocent",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "innocent",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'innocent'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'innocent' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:wanderer",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "wanderer",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'wanderer'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'wanderer' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:sovereign",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "sovereign",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'sovereign'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'sovereign' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:rebel",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "rebel",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'rebel'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'rebel' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:martyr",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "martyr",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'martyr'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'martyr' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:shadow/double",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "shadow/double",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'shadow/double'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'shadow/double' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:nature/elemental",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "nature/elemental",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'nature/elemental'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'nature/elemental' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:unity",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "unity",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'unity'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'unity' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:resolve",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "resolve",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'resolve'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'resolve' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:blankness",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "blankness",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'blankness'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'blankness' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:pain",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "pain",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'pain'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'pain' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:intimacy",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "intimacy",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'intimacy'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'intimacy' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:dread",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "dread",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'dread'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'dread' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:stepping",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "stepping",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'stepping'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'stepping' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:searching",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "searching",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'searching'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'searching' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:gentle tension",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "gentle tension",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'gentle tension'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'gentle tension' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:sadness",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "sadness",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'sadness'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'sadness' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:folk",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "folk",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'folk'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'folk' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:warmth",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "warmth",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'warmth'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'warmth' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:contentment",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "contentment",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'contentment'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'contentment' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:clarity",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "clarity",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'clarity'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'clarity' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:questioning",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "questioning",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'questioning'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'questioning' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:openness",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "openness",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'openness'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'openness' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:call",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "call",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'call'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'call' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:evil",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "evil",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'evil'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'evil' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:the forbidden",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "the forbidden",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'the forbidden'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'the forbidden' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:stability",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "stability",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'stability'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'stability' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:power",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "power",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'power'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'power' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:the open horizon",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "the open horizon",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'the open horizon'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'the open horizon' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:yearning",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "yearning",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'yearning'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'yearning' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:reaching",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "reaching",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'reaching'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'reaching' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:anguish",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "anguish",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'anguish'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'anguish' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:nobility",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "nobility",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'nobility'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'nobility' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:lyric sweep",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "lyric sweep",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'lyric sweep'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'lyric sweep' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:tension seeking resolution",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "tension seeking resolution",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'tension seeking resolution'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'tension seeking resolution' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:blues",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "blues",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'blues'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'blues' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:brightness with edge",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "brightness with edge",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'brightness with edge'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'brightness with edge' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:transcendence",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "transcendence",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'transcendence'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'transcendence' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    },
+    {
+      "claim_id": "prompt:reinforcement",
+      "source_file": "prompt_semantics.json",
+      "source_entry_id": "reinforcement",
+      "category": "prompt_semantic",
+      "description": "Prompt semantic: 'reinforcement'",
+      "test_type": "presence",
+      "test_config": {
+        "test_type": "presence",
+        "metric": null,
+        "tempo_range": null,
+        "mode_scale": [],
+        "dynamics": "",
+        "description": "Prompt word 'reinforcement' maps to specific parameters"
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "total_tested": 69,
+      "confidence": 0.0,
+      "current_grounding": "interpretive"
+    }
+  ]
+}

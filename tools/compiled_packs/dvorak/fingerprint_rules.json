@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "pentatonic_folk_melody_the_tune_that_everyone_knows",
+      "name": "Pentatonic/folk melody \u2014 the tune that everyone knows",
+      "description": "Dvo\u0159\u00e1k's melodies have the quality of folk songs: simple, memorable, singable, often pentatonic or hexatonic. They feel like they could have existed before Dvo\u0159\u00e1k wrote them. This is not a limitation ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "furiant_and_dumka_czech_dance_forms_as_structural_units",
+      "name": "Furiant and Dumka \u2014 Czech dance forms as structural units",
+      "description": "The Furiant is a fast (Presto/Vivace) dance in 3/4 with hemiola (cross-rhythm between 3/4 and 2/4) and strong, accented downbeats. The Dumka is a slow, melancholy Ukrainian/Czech form that alternates ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "flat_vii_chord_mixolydian_as_characteristic_color",
+      "name": "Flat-VII chord (Mixolydian) as characteristic color",
+      "description": "In major keys, Dvo\u0159\u00e1k regularly uses the chord built on the flat-7th degree (in C major: Bb major chord). This chord has a folk/modal quality \u2014 it sounds like it belongs in a village square, not a con",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "richly_lyrical_slow_movements_the_american_idiom",
+      "name": "Richly lyrical slow movements \u2014 the American idiom",
+      "description": "Dvo\u0159\u00e1k's Largo/Andante movements (especially the New World Symphony's Largo) are his most personal: a single sustained melody in a solo instrument (cor anglais, cello, violin), pp to p, harmonized wit",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "american_pentatonic_color_late_dvo_k",
+      "name": "American pentatonic color (late Dvo\u0159\u00e1k)",
+      "description": "After his American period (1892\u20131895), Dvo\u0159\u00e1k's pentatonic melodies took on an African-American spiritual and Native American inflection: gapped scales with no 4th or 7th degree, a specific melancholi",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

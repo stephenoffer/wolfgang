@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_surface_precision_crystalline_voicing",
+      "category": "fingerprint",
+      "description": "Surface precision \u2014 crystalline voicing",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_mechanical_regularity_as_aesthetic",
+      "category": "fingerprint",
+      "description": "Mechanical regularity as aesthetic",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_bitonality_polytonal_color",
+      "category": "fingerprint",
+      "description": "Bitonality / polytonal color",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_spanish_basque_iberian_color",
+      "category": "fingerprint",
+      "description": "Spanish / Basque / Iberian color",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_textural_stratification",
+      "category": "fingerprint",
+      "description": "Textural stratification",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Imprecise, impressionistic texture.** Ravel is NOT Debussy. Ravel's textures are precise, clear, a",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Rubato and expressive flexibility.** Ravel's music has metronomic precision. The Bolero must not b",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Melody that gets lost in texture.** In Ravel, you always know where the melody is. Even in the mos",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Romantic emotion-by-parameter.** Ravel is cool, ironic, observational. Emotional excess is wrong. ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Lack of repetition.** Ravel embraces repetition as structural principle (Bolero) or as hypnotic de",
+      "severity": "soft"
+    }
+  ]
+}

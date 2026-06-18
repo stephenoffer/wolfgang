@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "formal_subversion",
+      "name": "Formal subversion",
+      "description": "Haydn sets up a structural expectation and then violates it for effect: a false recapitulation in the wrong key, a theme that arrives too early or too late, a fermata on an unexpected chord followed b",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "simple_folk_like_themes_with_hidden_sophistication",
+      "name": "Simple, folk-like themes with hidden sophistication",
+      "description": "Haydn's themes often sound almost na\u00efvely simple at first (a scale, a repeated note, a folk-song interval). Their sophistication emerges in development: they turn out to be infinitely fragmented, sequ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "sudden_dynamic_contrast_as_punchline",
+      "name": "Sudden dynamic contrast as punchline",
+      "description": "The famous \"Surprise\" (a loud orchestral crash after a soft passage) is representative: Haydn uses sudden forte after piano, or subito piano after forte, as structural jokes with perfect timing. The c",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "monothematic_sonata_form",
+      "name": "Monothematic sonata form",
+      "description": "In many Haydn movements, the \"second theme\" is actually a transformation of the first theme \u2014 not a contrasting melody but the same melody in a new harmonic context. The listener expects contrast; Hay",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "string_quartet_as_conversation",
+      "name": "String quartet as conversation",
+      "description": "Each instrument in the quartet has an equal and individual voice. The first violin doesn't dominate \u2014 the cello gets melodic statements, the viola has its own character, the second violin completes wh",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

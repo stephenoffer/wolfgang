@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_parallel_major_minor_shift_the_schubertian_flip",
+      "category": "fingerprint",
+      "description": "Parallel major-minor shift (the Schubertian flip)",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_third_relation_harmony_mediant_motion",
+      "category": "fingerprint",
+      "description": "Third-relation harmony (mediant motion)",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_celestial_prolongation_the_moment_that_stops_time",
+      "category": "fingerprint",
+      "description": "Celestial prolongation \u2014 the moment that stops time",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_song_melody_in_instrumental_writing",
+      "category": "fingerprint",
+      "description": "Song melody in instrumental writing",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_wandering_harmonic_language_never_quite_settling",
+      "category": "fingerprint",
+      "description": "Wandering harmonic language \u2014 never quite settling",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Stable, goal-directed harmony.** Schubert doesn't drive toward cadences \u2014 he wanders. A Schubert p",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Absence of major-minor contrast.** The tonic major/minor oscillation is Schubert's most personal f",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Short, decisive phrases.** Schubert's phrases extend \u2014 they don't end where you expect. A phrase t",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Virtuosity as goal.** Schubert is not a showman. His piano writing can be technically demanding bu",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Rhythmic complexity.** Schubert's rhythm is simple: song meter, walking bass, gentle accompaniment",
+      "severity": "soft"
+    }
+  ]
+}

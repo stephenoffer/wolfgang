@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_nostalgic_nobilmente_english_nobility_tinged_with_regret",
+      "category": "fingerprint",
+      "description": "Nostalgic \"nobilmente\" \u2014 English nobility tinged with regret",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequence_with_emotional_momentum",
+      "category": "fingerprint",
+      "description": "Sequence with emotional momentum",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_enigmatic_inner_voice_counterpoint",
+      "category": "fingerprint",
+      "description": "Enigmatic inner-voice counterpoint",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_modal_harmony_and_english_pastoral_color",
+      "category": "fingerprint",
+      "description": "Modal harmony and English pastoral color",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_thematic_fingerprint_moments_the_tune_that_returns",
+      "category": "fingerprint",
+      "description": "Thematic \"fingerprint\" moments \u2014 the tune that returns",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**German heaviness.** Elgar's weight is not Brahmsian or Wagnerian \u2014 it is British: a different kind",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Absence of nostalgia.** An Elgar passage that is purely joyful, without the undertow of regret or ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Sparse texture.** Elgar almost always writes in full, rich textures. Chamber-like sparseness is re",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Absence of countermelody.** Elgar's textures always have inner-voice activity. A melody without an",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Programmatic vagueness.** Elgar is almost always writing about something: friendship, memory, Engl",
+      "severity": "soft"
+    }
+  ]
+}

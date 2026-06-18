@@ -3,6 +3,46 @@
 ## Era Span
 ~1880–1920. Wagner mature works through early Schoenberg/Strauss. Tonality stretched to breaking point.
 
+
+## Harmony at the Edge: Expression through Ambiguity
+
+Late Romantic harmony discovers that ambiguity itself is expressive content. Wagner's "endless melody" is a harmonic philosophy: perpetually deferred resolution creates continuous yearning — the listener reaches for a tonic that keeps receding, and that reaching IS the emotional experience. The Tristan chord's power lies not in any single analysis but in its resistance to definitive analysis: multiple valid readings coexist, and the listener's inability to find harmonic "home" IS the feeling.
+
+### Ambiguity as Emotional Content
+
+| Technique | What the Listener Feels | Why It Works |
+|-----------|------------------------|-------------|
+| Perpetual deferred cadence | Continuous yearning, desire without fulfillment | Resolution is always promised, never delivered — the reaching never ends |
+| Wandering tonality (key every 2-4 bars) | Emotional restlessness, searching | No key establishes itself long enough to feel like home |
+| Enharmonic fog (multiple valid analyses) | Disorientation, mystery | The mind tries to categorize the harmony but cannot — uncertainty becomes sensation |
+| Progressive tonality (start key ≠ end key) | Transformation, narrative arc | The key change across a movement IS the story — Mahler's C# minor to D major is the journey from funeral to triumph |
+| Leitmotif harmonic identity | Character recognition through harmony | Each motif carries its own harmonic world; when harmonies collide, characters collide |
+| Tonal parenthesis (brief clarity in fog) | Momentary recognition, nostalgia | An island of tonal stability in an ambiguous sea — the listener grasps it before it dissolves |
+
+### Leitmotif Harmony as Character
+
+When Wagner assigns each leitmotif its own harmonic color, the harmony tells the drama: the Sword motif's bright C major against the Ring motif's dark minor creates dramatic conflict through harmonic opposition. When a motif finally receives its "proper" resolution after hours of transformation, that harmonic arrival becomes dramatic resolution — the harmony and the story resolve simultaneously.
+
+### Progressive Tonality as Narrative
+
+| Work | Tonal Journey | What the Key Change Tells |
+|------|-------------|--------------------------|
+| Mahler Sym 2 | C minor → Eb major | Death yields to resurrection — the key literally rises |
+| Mahler Sym 5 | C# minor → D major | From funeral march to chorale of life — semitone ascent = transcendence |
+| Mahler Sym 9 | D major → Db major | Life dissolving into farewell — the semitone descent = letting go |
+| Nielsen Sym 4 | D minor → E major | The inextinguishable spirit rises by whole step |
+
+```abc
+X:50
+T:Deferred Resolution - Continuous Yearning
+M:6/8
+L:1/8
+K:Am
+[F,=BD^G] z [E,=BD^G] | [F,CA^F] z [E,=BD^G] | [F,=BD^G] z z3 |
+% Each phrase reaches toward resolution but slides to another dissonance
+% The yearning never fully resolves — the reaching IS the expression
+```
+
 ## Extended Tonality
 
 ### Tonal Ambiguity Techniques
@@ -21,7 +61,7 @@
 | Component | Analysis | Note |
 |---|---|---|
 | Spelling | F-B-D#-G# | Enharmonically ambiguous |
-| As half-dim7 | F-Ab-Cb-Eb (= ii half-dim in Eb) | Functional reading |
+| As half-dim7 | F-Ab-Cb-Eb (= ii half-dim in Eb minor) | Functional reading |
 | As Fr+6 | F-B-D#-G# in A minor | Augmented 6th reading |
 | As altered V | G#-B-D#-F (= V7b5 of A?) | Dominant reading |
 | Resolution | -> E-B-D#-G# (V7 of A minor) | Appoggiaturas resolve |
@@ -45,7 +85,7 @@ w: Tristan V7 Am
 | Dominant chains | V7 resolves to another V7 | Infinite postponement |
 | Elision | Cadence note = start of new phrase | Continuous flow |
 | Chromatic voice leading | All voices move by semitone | Smooth, inevitable |
-| Tritone substitution | bII7 replaces V7 | Remote color |
+| bII as dominant substitute | bII7 replaces V7 (retrospective jazz term: "tritone substitution") | Remote color |
 
 ```abc
 X:2
@@ -200,6 +240,40 @@ w: V7b9 I V7#5b9 i
 | Plagal substitution | IV replaces V for cadence | Softer closure |
 | Modal cadence | Aeolian: bVII -> i | Archaic, open |
 | Dissolution | Harmony dissolves rather than resolves | Evaporation |
+
+## Early Polytonality
+
+| Technique | Method | Composers |
+|---|---|---|
+| Bitonality | Two keys simultaneously (e.g., C major + F# major) | Strauss (Elektra), early Stravinsky |
+| Polytonal layers | Different keys in different registers/instruments | Ives, Mahler (distorted quotations) |
+| Tonal clash | Deliberately wrong key in one voice | Mahler (ironic passages) |
+| Superimposed triads | Two triads from different keys stacked | Strauss, Stravinsky (Petrushka chord) |
+
+```abc
+X:7
+T:Bitonal Passage (C major + F# major)
+M:4/4
+L:1/4
+K:C
+%%staves [Upper Lower]
+V:Upper
+V:Lower clef=bass
+[V:Upper] c e g c' |
+[V:Lower] ^F, ^A, ^C ^F |
+```
+
+## Non-Functional Harmonic Motion (Late Romantic)
+
+When tonal function weakens, Late Romantic composers characteristically guided harmony by:
+
+| Guiding Principle | Technique | Effect |
+|---|---|---|
+| Voice-leading driven | Each voice moves by smallest interval possible | Smooth, inevitable flow |
+| Color-driven | Chords chosen for sonority, not function | Painterly harmony |
+| Motif-driven | Leitmotif determines chord succession | Dramatic logic replaces tonal logic |
+| Pedal-anchored | Remote chords float over sustained bass | Tension without chaos |
+| Symmetrical | Chords related by equal divisions of octave | Suspended, otherworldly |
 
 ## Late Romantic Harmonic Vocabulary (Quick Reference)
 | Chord type | Example in C | Notation | Color |

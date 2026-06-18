@@ -240,3 +240,37 @@ V:Strings name="Strings"
 | Death/transfiguration arc | Two-part form (darkness -> light) |
 | Nature painting | Episodic/through-composed tone poem |
 | Heroic narrative | Extended sonata or rondo |
+
+## Mahler's Specific Formal Innovations
+
+| Innovation | Description | Example |
+|---|---|---|
+| Progressive tonality | Movement starts and ends in different keys — the tonal journey IS the meaning | Sym 2: C minor → Eb major |
+| Interpolated movements | A slow section embedded within a Scherzo, or a march within an Adagio | Sym 7: Nachtmusik within Scherzo |
+| Breakthrough | Radically new material suddenly irrupts into an ongoing form | Sym 1/iv: chorale bursting through |
+| Collapse | A massive climax that suddenly disintegrates | Sym 6: hammer blows |
+| Dissolution ending | Rather than affirming tonic, music dissolves into silence | Sym 9/iv: pppp farewell |
+| Nature sounds as structure | Birdsong, cowbells, distant fanfares function as formal pillars, not decoration | Sym 3/i, Sym 6/i |
+| Song-symphony fusion | Vocal movements integrated into symphonic architecture as equals | Das Lied von der Erde |
+| Ironic quotation | Folk tunes and popular music distorted, heard "through a broken mirror" | Sym 1/iii: Frère Jacques as funeral march |
+
+## Tone Poem Subtypes
+
+| Subtype | Structure | Subject | Key Models |
+|---|---|---|---|
+| Character portrait | Modified sonata — exposition presents character, development shows adventures | A person (real or fictional) | Strauss: Don Juan, Till |
+| Landscape/Nature | Through-composed or episodic — sections = scenes/views | Place, natural phenomenon | Strauss: Alpine Symphony; Sibelius: Tapiola |
+| Narrative | Multi-section following a story arc | Legend, literary work | Liszt: Les Préludes; Smetana: Vltava |
+| Philosophical | Sectional — each section = a concept/chapter | Abstract idea | Strauss: Zarathustra |
+| Autobiographical | Extended sonata with self-quotation | Composer's own life/works | Strauss: Ein Heldenleben |
+
+## Orchestral Lied (Late Romantic)
+
+| Feature | Standard Lied | Orchestral Lied |
+|---|---|---|
+| Accompaniment | Piano | Full orchestra |
+| Scale | 2-5 minutes | 5-15 minutes (Mahler) |
+| Texture | Voice + keyboard | Voice woven into orchestral fabric |
+| Piano role | Accompanist or equal partner | Replaced by orchestral color |
+| Formal expansion | Strophic or through-composed | Symphonic development of song material |
+| Integration | Standalone | May be movement of symphony (Mahler) |

@@ -3,6 +3,56 @@
 ## Core Principle
 Nationalistic harmony fuses Western tonal practice with folk-derived scales, modes, and melodic contours. The goal is local color within a functional framework.
 
+
+## Harmony as Cultural Memory
+
+Nationalistic harmony treats chords and modes as carriers of cultural identity. A modal cadence is not merely an alternative to V-I — it is a cultural statement: bVII-i sounds "Russian" where V-I sounds "Western," and that distinction IS the point. The harmonic choice declares allegiance to a tradition, a landscape, a people.
+
+### Folk Modes as Emotional Landscapes
+
+| Mode / Scale | Emotional Landscape | Cultural Association |
+|-------------|--------------------|--------------------|
+| Pentatonic (major) | Open prairie, childhood simplicity, innocence | Universal folk, Dvorak's "New World," Chinese, Scottish |
+| Phrygian | Heat, passion, dark intensity | Spain (flamenco), Hungary, Middle East |
+| Dorian | Warm melancholy, bittersweet memory | Russian folk, Nordic, Celtic |
+| Lydian | Luminous openness, vast sky | Nordic landscape, Polish highland |
+| Mixolydian | Earthy dance, communal celebration | Czech polka, English folk, Irish jig |
+| Hungarian minor | Exotic tension, fiery virtuosity | Roma/Gypsy, verbunkos tradition |
+| Aeolian | Noble sadness, epic breadth | Russian liturgy, Nordic winter |
+
+### The Drone as Symbol of Homeland
+
+The sustained open 5th beneath a folk melody represents the unchanging beneath the melodic journey — the land itself, the constant that remains while the story unfolds above. Bagpipe drones, hurdy-gurdy drones, and the orchestral pedal 5th all evoke this same archetype: rootedness, continuity, belonging.
+
+### Modal Cadences as Cultural Identity
+
+| Cadence | Sounds Like | Cultural Reading |
+|---------|------------|-----------------|
+| bVII - i (Aeolian) | Dark grandeur, weight | Russian epic — Mussorgsky, Borodin |
+| IV - i (plagal, minor) | Hymn-like solemnity | Russian Orthodox liturgical tradition |
+| bII - i (Phrygian) | Sharp, exotic, passionate | Spanish/Hungarian — flamenco gravity |
+| II - I (Lydian) | Bright, lifted, open | Nordic — Grieg's luminous landscapes |
+| bVII - IV - I (double plagal) | Sweeping, broad, folk | Celtic, pan-European folk tradition |
+| V-I (standard PAC) | Western classical convention | The choice NOT to use this cadence is itself a nationalistic statement |
+
+### Heterophony as Communal Expression
+
+When multiple voices sing the same melody with individual embellishments simultaneously, the resulting heterophony represents communal identity — individual voices within a shared tradition, unity in diversity. This is characteristic of Russian choral practice and creates a warmth and humanity that strict harmonization cannot achieve.
+
+```abc
+X:50
+T:Drone + Modal Melody - Homeland
+M:3/4
+L:1/8
+K:Am
+%%staves {1 2}
+V:1 name="Folk Melody"
+A2 B2 c2 | d2 c2 B2 | A2 G2 A2 | A6 |
+V:2 name="Drone (open 5th)"
+[A,,E,]6 | [A,,E,]6 | [A,,E,]6 | [A,,E,]6 |
+% The drone is the land; the melody is the story that unfolds upon it
+```
+
 ## National Scale Patterns
 
 | Tradition | Scale / Mode | Interval Pattern (semitones) | Character |
@@ -184,3 +234,95 @@ I - V/V - V - I (verbunkos cadential)
 | Mixolydian | Pastoral, dance-like | Czech, English |
 | Aeolian | Noble sadness | Russian epic, Nordic |
 | Locrian | Unstable (rare in folk) | Occasional color |
+
+## National Harmonic Styles — Detailed Comparison
+
+### Russian Harmonic Character
+| Feature | Description | Composers |
+|---|---|---|
+| Church Slavonic modes | Parallel chords derived from liturgical chant | Mussorgsky, Rimsky-Korsakov |
+| Plagal emphasis | IV-I motion preferred over V-I | Mussorgsky, Borodin |
+| Whole-tone color | Dissolving tonality for magic/supernatural scenes | Rimsky-Korsakov, Glinka |
+| Octatonic (diminished) scale | Symmetrical division for exotic/fantastical color | Rimsky-Korsakov |
+| Block chord motion | Parallel triads moving stepwise | Mussorgsky (Boris Godunov) |
+| Pedal-based harmony | Long tonic or dominant pedals under modal melody | Borodin |
+
+```abc
+X:5
+T:Russian Block Chords (Mussorgsky style)
+M:4/4
+L:1/2
+K:Am
+[ACE] [GBD] | [FAC] [EGB] | [DFA] [CEG] | [ACE]2 |
+w: Am G F Em Dm C Am
+%% Parallel triads — no functional voice leading, raw modal color
+```
+
+### Scandinavian Harmonic Character
+| Feature | Description | Composers |
+|---|---|---|
+| Open 5ths | Bare 5th intervals suggesting landscape space | Grieg, Sibelius |
+| Lydian inflections | Raised 4th degree creates brightness | Grieg |
+| Augmented triads | Color chord, not functional | Grieg |
+| Long dominant pedals | Extended tension creating atmospheric suspense | Sibelius |
+| Modal ambiguity | Simultaneously suggesting major and minor | Grieg, Nielsen |
+| Nature-derived stasis | Sustained chords representing natural phenomena | Sibelius |
+
+```abc
+X:6
+T:Scandinavian Open 5ths + Lydian Color (Grieg style)
+M:3/4
+L:1/4
+K:G
+[G,D] [G,D] [G,D] | [A,E] [A,^D] [A,E] | [G,D]3 |
+w: open_5th _ _ Lydian_4th _ _ open_5th
+%% Bare 5ths with raised 4th (D#) creating Lydian brightness
+```
+
+### Czech/Bohemian Harmonic Character
+| Feature | Description | Composers |
+|---|---|---|
+| Polka harmony | Simple I-V-I with rhythmic emphasis | Smetana, Dvořák |
+| Pentatonic inflection | 5-note scale patterns within diatonic framework | Dvořák (New World) |
+| Modal mixture | Major-minor alternation within single phrase | Dvořák |
+| Warm chromaticism | Romantic chromatic harmony with folk surface | Dvořák |
+| Dance-driven changes | Harmony follows dance rhythm, not harmonic rhythm | Smetana |
+
+```abc
+X:7
+T:Czech Pentatonic Melody Over Simple Harmony
+M:2/4
+L:1/8
+K:G
+[G,B,D]2 [G,B,D]2 | [D,A,D]2 [G,B,D]2 |
+w: I V I
+%% Simple harmony under pentatonic-flavored melody
+```
+
+### Eastern European Harmonic Character
+| Feature | Description | Composers |
+|---|---|---|
+| Phrygian dominant | Harmonic minor with characteristic b2 | Hungarian, Romani |
+| Augmented 2nd intervals | In melody AND harmony | Liszt, Bartók |
+| Double harmonic scale | 1-b2-3-4-5-b6-7 (Byzantine) | Used for exotic color |
+| Metric modulation in harmony | Harmonic changes driven by shifting meters | Bartók, Enescu |
+
+```abc
+X:8
+T:Phrygian Dominant (Hungarian color)
+M:4/4
+L:1/4
+K:Am
+A _B ^C D | E F ^G A |
+%% b2 + raised 3rd + raised 7th = harmonic minor with Phrygian flavor
+```
+
+## Folk Harmonization Approaches
+
+| Approach | Method | Effect |
+|---|---|---|
+| Drone + melody | Sustained 5th under modal melody | Ancient, folk-authentic |
+| Parallel chords | All voices move in same direction | Raw, pre-functional |
+| Heterophonic | All instruments play melody simultaneously, slightly varied | Folk ensemble effect |
+| Call-response | Soloist phrase answered by chordal response | Communal singing imitation |
+| Organum-style | Melody doubled at 4th or 5th below | Medieval/folk archaic color |

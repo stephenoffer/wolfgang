@@ -41,10 +41,10 @@
 
 | Instrument | Low | High | Sweet spot | ABC range |
 |-----------|-----|------|-----------|-----------|
-| Flute | D4 | C7 | D5-A6 | `D` to `c'''` |
+| Flute (Boehm; traverso: D4-A6) | D4 | C7 | D5-A6 | `D` to `c'''` |
 | Oboe | Bb3 | F6 | C4-C6 | `_B,` to `f''` |
-| Clarinet (Bb) | D3 (sounding) | Bb6 | E3-C6 | Written: `E,` to `=b''` |
-| Clarinet (A) | C#3 (sounding) | A6 | Eb3-Bb5 | Written: `E,` to `=b''` |
+| Clarinet (Bb) | D3 (sounding) | Bb6 (sounding) | E3-C6 | Written pitch: `E,` to `=b''` |
+| Clarinet (A) | C#3 (sounding) | A6 (sounding) | Eb3-Bb5 | Written pitch: `E,` to `=b''` |
 | Bassoon | Bb1 | Eb5 | C2-C4 | `_B,,,` to `_e'` |
 | Horn (F) | B1 (sounding) | F5 | C3-C5 | Harmonic series pitches |
 | Horn (Eb) | Ab1 | Eb5 | Bb2-Bb4 | Harmonic series pitches |
@@ -54,7 +54,7 @@
 | Violin | G3 | E7 | G3-E6 | `G,` to `e'''` |
 | Viola | C3 | E6 | C3-A5 | `C,` to `e''` |
 | Cello | C2 | A5 | C2-E4 | `C,,` to `a'` |
-| Double bass | E1 (sounding) | G4 | E2-D4 written | `E,` to `g` (sounds 8vb) |
+| Double bass | E1 (sounding) | G4 (sounding) | E2-D4 written | Written pitch: `E,` to `g` (sounds 8vb) |
 
 ## Natural Horn Pitches (in F)
 
@@ -244,3 +244,229 @@ B,,2 B,, | F,,2 F,, | B,,3 |
 | String crossings | Playable bowing patterns |
 | Bass doubling | Cello + bass normally move together |
 | Wind sustain | Breathing points required |
+
+## Disappearance of Basso Continuo
+
+The basso continuo, backbone of Baroque texture, gradually fades through the Classical period. The fully-written orchestral part replaces the improvised realization, giving composers precise control over inner voices and texture.
+
+### Continuo Transition Timeline
+
+| Period | Continuo role | Who plays | Context |
+|--------|-------------|-----------|---------|
+| 1740-1760 | Still present | Harpsichord/organ + cello | Early symphonies, opera |
+| 1760-1775 | Declining | Keyboard only in recitatives | Opera, sacred |
+| 1775-1790 | Vestigial | Recitativo secco only | Opera (Mozart) |
+| 1790-1810 | Absent | No keyboard in orchestra | Fully orchestral texture |
+
+### What Replaces Continuo
+
+| Baroque (continuo) | Classical (replacement) |
+|--------------------|----------------------|
+| Keyboard fills harmony | Violas, second violins fill harmony |
+| Figured bass guides chords | Fully written-out inner parts |
+| Cellist reads bass line only | Cellist reads specific written part |
+| Texture varies by performer | Texture fixed by composer |
+| Chordal padding throughout | Rests, breathing space, textural variety |
+
+## Clarinet's Introduction
+
+The clarinet enters the orchestra gradually, becoming a full member by the 1780s. Mozart's encounter with the Mannheim orchestra's clarinets (1777-78) transformed his orchestral palette — he reportedly wished he could rewrite all his earlier works to include it.
+
+### Clarinet Adoption Timeline
+
+| Composer / Venue | Date | Clarinet usage |
+|-----------------|------|----------------|
+| Mannheim orchestra | 1758+ | Early orchestral clarinets |
+| J.C. Bach (London) | 1760s | Symphonic clarinet parts |
+| Mozart (Paris Symphony) | 1778 | First Mozart symphony with clarinets |
+| Mozart (late operas, concerto) | 1786-91 | Fully soloistic, indispensable |
+| Beethoven (all symphonies) | 1800-12 | Standard pair in every symphony |
+
+### Clarinet Registers and Classical Usage
+
+| Register | Range | Name | Color | Typical use |
+|----------|-------|------|-------|-------------|
+| Chalumeau | E3-Bb3 | Low | Dark, woody, rich | Mysterious, shadowy passages |
+| Throat | B3-Bb4 | Middle | Pale, thin | Transitions, avoided for melody |
+| Clarion | B4-C6 | High | Bright, singing | Melody, brilliant passages |
+| Altissimo | C#6+ | Extreme | Piercing | Rare in Classical writing |
+
+### Mozart Clarinet Writing ABC Example
+```abc
+X:10
+T:Clarinet Solo over Strings (Mozartean texture)
+M:4/4
+L:1/8
+K:A
+V:Cl name="Clarinet (A)" clef=treble
+A2c2 e2a2 | g2f2 e2d2 | c2B2 A2G2 | A8 |
+V:Vn1 name="Violin I" clef=treble
+z2 [Ac]2 z2 [Ac]2 | z2 [Ac]2 z2 [GB]2 | z2 [FA]2 z2 [EG]2 | [Ac]8 |
+V:Vc name="Cello" clef=bass
+A,2 z2 A,2 z2 | E,2 z2 E,2 z2 | A,2 z2 E,2 z2 | A,8 |
+```
+
+## Fortepiano vs Harpsichord Transition
+
+The fortepiano displaces the harpsichord across the Classical era, offering dynamic expression that fundamentally changes keyboard writing.
+
+### Keyboard Instrument Timeline
+
+| Period | Instrument | Touch | Dynamic range | Implications for writing |
+|--------|-----------|-------|--------------|------------------------|
+| 1750-1770 | Harpsichord dominates | Plucked, no dynamics | Terraced only | Texture changes for contrast |
+| 1770-1785 | Fortepiano spreading | Hammer, touch-sensitive | pp to f | Cantabile melody, gradual dynamics |
+| 1785-1800 | Fortepiano standard | Lighter than modern piano | pp to ff | Singing tone, Alberti bass, legato |
+| 1800-1820 | Fortepiano evolving | Heavier, wider range | ppp to fff | Beethoven's power, wider compass |
+
+### Writing Differences
+
+| Feature | Harpsichord idiom | Fortepiano idiom |
+|---------|------------------|-----------------|
+| Dynamics | Terrace dynamics (f/p by texture) | Graduated crescendo/diminuendo |
+| Melody | Ornamental, trills sustain sound | Singing legato, sustained tone |
+| Accompaniment | Arpeggiated chords, continuo | Alberti bass, broken chords |
+| Sustain | No sustain; repeated notes | Damper pedal, connected melody |
+| Touch | Uniform, articulated | Varied: legato, staccato, portato |
+| Bass | Figured bass realization | Fully written, independent |
+
+## Classical Wind Writing — Independent Parts
+
+As the continuo disappears, winds evolve from doubling strings to serving as independent soloistic voices. This transformation characteristically unfolds between Haydn's Paris symphonies and Mozart's late works.
+
+### Wind Independence Progression
+
+| Stage | Typical scoring | Example |
+|-------|----------------|---------|
+| Early Classical | Winds double strings in tutti, silent in piano | Stamitz symphonies |
+| Developing | Winds sustain while strings rest | Haydn Symphonies 44-60 |
+| Mature | Winds carry melody, strings accompany | Mozart Symphonies 38-41 |
+| Late Classical | Winds as equal dialogue partners | Beethoven Symphonies 3-8 |
+
+### Wind Solo Characteristics by Instrument
+
+| Instrument | Solo character | Best context | Considerations |
+|-----------|---------------|-------------|----------------|
+| Flute | Light, pastoral, silvery | Gentle passages, high tessitura | Weak below D4 in tutti |
+| Oboe | Poignant, penetrating, pastoral | Slow movements, lyrical themes | Needs rest; tiring embouchure |
+| Clarinet | Warm, flexible, wide range | Melody in any register, chalumeau color | Transposing; choose Bb or A |
+| Bassoon | Agile, humorous, warm bass | Comic passages, bass solos, dialogue | Most flexible low wind |
+| Horn | Noble, heroic, sustained | Pedal tones, calls, slow melody | Natural horn: limited pitches |
+
+### Wind Dialogue with Strings ABC Example
+```abc
+X:11
+T:Wind-String Dialogue (Mature Classical)
+M:4/4
+L:1/8
+K:Eb
+V:Ob name="Oboe" clef=treble
+E2G2 B2e2 | d4 c4 | z8 | z8 |
+V:Cl name="Clarinet" clef=treble
+z8 | z8 | c2e2 g2b2 | a4 g4 |
+V:Vn1 name="Violin I" clef=treble
+z8 | z8 | z8 | z4 e2g2 |
+V:Vc name="Cello" clef=bass
+E,4 B,,4 | E,4 A,,4 | B,,4 E,4 | B,,4 E,4 |
+```
+
+## Texture Transitions: Tutti to Chamber Subgroup
+
+A hallmark of mature Classical orchestration is the fluid shift between full orchestral tutti and intimate chamber-like subgroups within the same movement. These transitions characteristically articulate formal boundaries.
+
+### Common Texture Contrasts
+
+| Context | Tutti scoring | Chamber subgroup | Transition method |
+|---------|-------------|-----------------|-------------------|
+| P to S theme | Full orchestra, forte | Strings alone or with solo wind, piano | Sudden drop, brief silence |
+| Exposition repeat | Tutti close | Opening texture returns | Attacca or brief link |
+| Development opening | Tutti cadence | 2-3 instruments, fragment | Texture thins gradually |
+| Recapitulation entry | Thin approach | Full restatement | Gradual buildup |
+| Slow movement | Strings + wind solos | Solo wind over pizzicato | Natural alternation |
+
+### Tutti-to-Chamber Transition ABC Example
+```abc
+X:12
+T:Tutti to Chamber Subgroup Transition
+M:4/4
+L:1/8
+K:G
+V:Fl name="Flute" clef=treble
+!f! d4 B4 | d8 | z8 | z4 d2e2 |
+V:Ob name="Oboe" clef=treble
+!f! d4 B4 | d8 | z8 | z8 |
+V:Vn1 name="Violin I" clef=treble
+!f! d4 B4 | d8 | !p! B2A2 G2F2 | G4 z4 |
+V:Vn2 name="Violin II" clef=treble
+!f! B4 G4 | B8 | !p! G2F2 E2D2 | D4 z4 |
+V:Vc name="Cello" clef=bass
+!f! G,4 D,4 | G,8 | !p! G,2 z2 D,2 z2 | G,4 z4 |
+% Bars 1-2: Tutti forte; Bars 3-4: Chamber (strings only, piano), then flute solo enters
+```
+
+## Timpani in the Classical Orchestra
+
+Classical timpani characteristically use just two drums, tuned to tonic and dominant. Their role is rhythmic reinforcement and dramatic punctuation rather than melodic contribution.
+
+### Timpani Conventions
+
+| Convention | Detail |
+|-----------|--------|
+| Tuning | Tonic and dominant of the movement's key |
+| Re-tuning | Possible between movements, not within |
+| Coupling | Almost always paired with trumpets |
+| Dynamics | pp rolls to ff strokes; wide range |
+| Rhythmic role | Reinforce strong beats, cadential weight |
+| Dramatic rolls | Sustained rolls for tension, especially slow introductions |
+| Solo moments | Rare but effective (Haydn "Drumroll" Symphony) |
+
+### Typical Timpani Patterns
+
+| Pattern | Notation | Context |
+|---------|----------|---------|
+| Tonic-dominant alternation | `C,2 G,,2 C,2 G,,2` | Standard tutti |
+| Dominant pedal roll | `G,,8~` | Retransition, building tension |
+| Rhythmic punctuation | `C,4 z4` | Downbeat accent |
+| Cadential reinforcement | `G,,4 C,4` | V-I cadence support |
+| Dramatic solo roll | `!pp! C,8~ \| !cresc! C,8~ \| !ff! C,4` | Introductions, Beethoven |
+
+## Concerto Orchestration: Soloist vs Orchestra Balance
+
+The Classical concerto demands careful balance between the soloist and the orchestral tutti. The relationship characteristically shifts between dialogue, accompaniment, and contrast throughout each movement.
+
+### Concerto Texture Types
+
+| Texture | Orchestra role | Soloist role | Dynamic |
+|---------|--------------|-------------|---------|
+| Orchestral ritornello | Full statement, tutti | Tacet | f |
+| Solo exposition | Light accompaniment | Thematic, virtuosic | p-mf |
+| Solo + wind dialogue | Solo winds respond | Melodic statement | p |
+| Accompanied passage | Strings sustain or pulse | Running figuration | mf |
+| Cadenza | Tacet (or cad 6/4 sustain) | Improvised virtuosity | varies |
+| Closing tutti | Full orchestra | Joins tutti or tacet | f-ff |
+
+### Orchestral Reduction During Solo
+
+| Full tutti scoring | Reduced (solo accompaniment) |
+|-------------------|------------------------------|
+| Vn I + Fl + Ob melody | Vn I alone, soft, or tacet |
+| Full harmony (Vn II, Vla) | Light repeated chords or tremolo |
+| Vc + Cb + Bsn bass | Vc alone, pizzicato or simple |
+| Horns sustaining | Horns tacet or single sustained note |
+| Trumpets + timpani | Tacet during solo passages |
+
+### Concerto Solo Entry ABC Example
+```abc
+X:13
+T:Concerto Solo Entry (after orchestral tutti)
+M:4/4
+L:1/8
+K:D
+V:Solo name="Solo Piano" clef=treble
+z8 | z8 | D2F2 A2d2 | f2e2 d2c2 |
+V:Vn1 name="Violin I" clef=treble
+!f! d4 c4 | B4 A4 | !p! z2 [FA]2 z2 [FA]2 | z2 [EA]2 z2 [EA]2 |
+V:Vc name="Cello" clef=bass
+!f! D,4 A,,4 | G,,4 D,4 | !p! D,2 z2 D,2 z2 | A,,2 z2 A,,2 z2 |
+% Bars 1-2: Orchestral tutti ends; Bars 3-4: Solo enters with light string accompaniment
+```

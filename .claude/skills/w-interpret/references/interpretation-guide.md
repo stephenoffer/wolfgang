@@ -1,5 +1,12 @@
 # Interpretation Guide — w-interpret
 
+Image-specific mappings, style mixing, and reference handling. Concept
+mappings live in canonical doctrine (`.claude/context/general/`):
+emotions → `emotional-vocabulary.md` · philosophical concepts →
+`philosophy-to-music.md` · narrative and nature programs →
+`program-music-narrative.md` · instrument ↔ sound-world →
+`instrumental-tone-painting.md`.
+
 ## Image to Music Mapping
 
 ### Color to Tonality
@@ -96,67 +103,12 @@
 
 ## Abstract Concept to Music Mapping
 
-### Emotions
-
-See `emotional-vocabulary.md` for complete mapping. Key principles:
-
-| Emotion       | Tempo     | Mode    | Rhythm          | Texture          |
-|---------------|-----------|---------|-----------------|------------------|
-| Joy           | Fast      | Major   | Rhythmic, dance | Light, active    |
-| Sorrow        | Slow      | Minor   | Sustained       | Thin, legato     |
-| Anger         | Fast      | Minor   | Driving, accent | Dense, dissonant |
-| Fear          | Variable  | Minor   | Irregular       | Sparse, sudden   |
-| Serenity      | Slow      | Major   | Even, flowing   | Open, consonant  |
-| Longing       | Moderate  | Minor   | Reaching phrases| Moderate, lyrical|
-| Triumph       | Fast      | Major   | March-like      | Full, brass      |
-| Nostalgia     | Moderate  | Mixed   | Gentle, waltz   | Warm, muted      |
-| Wonder        | Slow      | Modal   | Free, spacious  | Shimmering       |
-| Tension       | Variable  | Chromatic| Ostinato       | Building layers  |
-
-### Philosophical Concepts
-
-| Concept       | Structural Metaphor                                     |
-|---------------|---------------------------------------------------------|
-| Freedom       | Open form, wide leaps, no strict meter, modally free    |
-| Justice       | Strict counterpoint, balanced phrases, resolution       |
-| Time          | Ostinato (passage), augmentation (slowing), canon       |
-| Chaos         | Aleatoric elements, dissonance, irregular meter         |
-| Order         | Fugue, serial technique, symmetric form                 |
-| Infinity      | Perpetual canon, endless melody, no final cadence       |
-| Transformation| Theme and variations, developing variation              |
-| Duality       | Two contrasting themes, bitonal, double fugue           |
-| Unity         | Monothematic, cyclic form, shared motifs                |
-| Isolation     | Solo instrument, unaccompanied, silence                 |
-
-### Nature
-
-| Natural Element | Established Musical Topoi                              |
-|-----------------|--------------------------------------------------------|
-| Ocean           | 6/8 or 12/8 wave motion, rising/falling arpeggios      |
-| Storm           | Tremolo strings, diminished harmonies, timpani rolls    |
-| Forest          | Horn calls, woodwind bird-song, rustling strings        |
-| Mountains       | Open 5ths, brass chorale, wide spacing, slow tempo      |
-| River           | Continuous flowing 16ths, gradual modulation            |
-| Sunrise         | Long crescendo from pp, ascending melody, brightening   |
-| Rain            | Pizzicato or staccato, repetitive patterns, soft        |
-| Wind            | Chromatic scales in winds, flutter-tongue, tremolo      |
-| Fire            | Rapid ascending figures, sfz, bright brass/percussion   |
-| Snow/ice        | High register, celesta/glockenspiel, sparse, pp         |
-| Birdsong        | Flute/piccolo, short trills, high staccato motifs       |
-| Night           | Low register, muted strings, sustained, modal           |
-
-### Narrative Concepts
-
-| Narrative        | Form Choice                    | Key Musical Features           |
-|------------------|--------------------------------|--------------------------------|
-| Journey          | Rondo or sonata                | Key progression, transformation|
-| Conflict         | Sonata-allegro                 | Contrasting themes, development|
-| Resolution       | ABA or sonata recapitulation   | Return to tonic, thematic unity|
-| Memory           | Theme and variations           | Fragmented recall, nostalgia   |
-| Discovery        | Through-composed               | New material, modulation       |
-| Loss             | Passacaglia                    | Repeating bass, fading texture |
-| Celebration      | Rondo or dance suite           | Energetic, tutti, major mode   |
-| Mystery          | Slow introduction then allegro | Chromatic, pp, sparse texture  |
+Use canonical doctrine, not this file: emotions →
+`emotional-vocabulary.md`; philosophical concepts (freedom, time, chaos,
+duality…) → `philosophy-to-music.md`; nature topoi and narrative
+shapes (journey, conflict, loss…) → `program-music-narrative.md`;
+instrument assignments for programmatic sounds →
+`instrumental-tone-painting.md`. All under `.claude/context/general/`.
 
 ## Existing Piece Reference Handling
 
@@ -184,7 +136,7 @@ See `emotional-vocabulary.md` for complete mapping. Key principles:
 | "Homage to"       | Recognizable references             | Quote 1-2 motifs, transform them |
 | "Variations on"   | Theme preserved, elaborated         | Use original theme, vary freely  |
 | "Reimagining"     | Same program, new treatment         | Keep narrative, new music        |
-| "Arrangement"     | Same music, different forces        | Use w-reduce for re-scoring      |
+| "Arrangement"     | Same music, different forces        | Use `reduce_to_piano` / `orchestrate` modes |
 
 ## Style Mixing Guidelines
 

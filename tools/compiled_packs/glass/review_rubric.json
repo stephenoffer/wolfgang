@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_additive_process_building_by_addition",
+      "category": "fingerprint",
+      "description": "Additive process \u2014 building by addition",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_arpeggiated_keyboard_figuration_the_glass_pattern",
+      "category": "fingerprint",
+      "description": "Arpeggiated keyboard figuration \u2014 the Glass pattern",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_modal_harmony_no_functional_progression",
+      "category": "fingerprint",
+      "description": "Modal harmony \u2014 no functional progression",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_slow_harmonic_rhythm_under_fast_surface_figuration",
+      "category": "fingerprint",
+      "description": "Slow harmonic rhythm under fast surface figuration",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_repetition_as_hypnosis_the_listener_s_time_dissolves",
+      "category": "fingerprint",
+      "description": "Repetition as hypnosis \u2014 the listener's time dissolves",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Functional harmony.** V\u2192I, secondary dominants, harmonic resolution \u2014 none of these belong in Glas",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Varied rhythm or melody.** Glass's textures are relentlessly regular. Melodic development, rhythmi",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Short sections.** A Glass section that changes after 8 bars is not Glass. His sections continue fo",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Emotional expression in the Romantic sense.** Glass doesn't \"express\" \u2014 he creates states. The mus",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Interesting harmony.** Interesting, complex, or ambiguous harmony pulls the listener's attention. ",
+      "severity": "soft"
+    }
+  ]
+}

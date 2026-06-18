@@ -1,0 +1,8478 @@
+{
+  "unclassified|silence": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.375,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 2
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "pedal_point",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "walking_bass",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|pedal_point": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.5,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|block_chord_offbeat": {
+    "total_transitions": 59,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.271,
+        "count": 16
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.169,
+        "count": 10
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "unclassified",
+        "probability": 0.068,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.068,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.051,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.034,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.034,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.034,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.034,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.017,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|unclassified": {
+    "total_transitions": 17,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.235,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.176,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "unclassified",
+        "probability": 0.176,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.176,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.059,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|unclassified": {
+    "total_transitions": 374,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.374,
+        "count": 140
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.045,
+        "count": 17
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.037,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.035,
+        "count": 13
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.035,
+        "count": 13
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.029,
+        "count": 11
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.029,
+        "count": 11
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.024,
+        "count": 9
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.024,
+        "count": 9
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.019,
+        "count": 7
+      }
+    ]
+  },
+  "held_note|bass_melody": {
+    "total_transitions": 28,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "bass_melody",
+        "probability": 0.5,
+        "count": 14
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.214,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.071,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "silence",
+        "probability": 0.071,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "oscillation_trill",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.036,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|pedal_point": {
+    "total_transitions": 260,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.462,
+        "count": 120
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.112,
+        "count": 29
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.062,
+        "count": 16
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.038,
+        "count": 10
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "sparse_octaves",
+        "probability": 0.027,
+        "count": 7
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "pedal_point",
+        "probability": 0.027,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.027,
+        "count": 7
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.023,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.019,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.019,
+        "count": 5
+      }
+    ]
+  },
+  "singing_melody|block_chord_sparse": {
+    "total_transitions": 309,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.453,
+        "count": 140
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.091,
+        "count": 28
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.087,
+        "count": 27
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.058,
+        "count": 18
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.026,
+        "count": 8
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.023,
+        "count": 7
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.023,
+        "count": 7
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.023,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.019,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.016,
+        "count": 5
+      }
+    ]
+  },
+  "singing_melody|bass_melody": {
+    "total_transitions": 410,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.437,
+        "count": 179
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.093,
+        "count": 38
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.046,
+        "count": 19
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.039,
+        "count": 16
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.034,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.027,
+        "count": 11
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "bass_melody",
+        "probability": 0.024,
+        "count": 10
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.022,
+        "count": 9
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.02,
+        "count": 8
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.02,
+        "count": 8
+      }
+    ]
+  },
+  "scalar_run|bass_melody": {
+    "total_transitions": 26,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "bass_melody",
+        "probability": 0.269,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.192,
+        "count": 5
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "sparse_octaves",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.038,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|block_chord_sparse": {
+    "total_transitions": 88,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.239,
+        "count": 21
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.091,
+        "count": 8
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.091,
+        "count": 8
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.068,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.057,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.045,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.034,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.034,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.034,
+        "count": 3
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.034,
+        "count": 3
+      }
+    ]
+  },
+  "singing_melody|alberti": {
+    "total_transitions": 293,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.437,
+        "count": 128
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.075,
+        "count": 22
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.061,
+        "count": 18
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 14
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.038,
+        "count": 11
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.034,
+        "count": 10
+      },
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "alberti",
+        "probability": 0.034,
+        "count": 10
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.027,
+        "count": 8
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.02,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.017,
+        "count": 5
+      }
+    ]
+  },
+  "scalar_run|alberti": {
+    "total_transitions": 75,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.24,
+        "count": 18
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.173,
+        "count": 13
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.147,
+        "count": 11
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.067,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.04,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.027,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.027,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "pedal_point",
+        "probability": 0.027,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.027,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.027,
+        "count": 2
+      }
+    ]
+  },
+  "singing_melody|broken_chord_wave": {
+    "total_transitions": 105,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.286,
+        "count": 30
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.067,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.067,
+        "count": 7
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.067,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.057,
+        "count": 6
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.048,
+        "count": 5
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.048,
+        "count": 5
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.029,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.029,
+        "count": 3
+      }
+    ]
+  },
+  "singing_melody|oscillation_trill": {
+    "total_transitions": 32,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "oscillation_trill",
+        "probability": 0.188,
+        "count": 6
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "oscillation_trill",
+        "probability": 0.188,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.125,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.094,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.062,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.062,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|block_chord_offbeat": {
+    "total_transitions": 15,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.2,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.2,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.067,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|block_chord_offbeat": {
+    "total_transitions": 15,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.2,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "pedal_point",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.067,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|broken_chord_descending": {
+    "total_transitions": 64,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.234,
+        "count": 15
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.156,
+        "count": 10
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.125,
+        "count": 8
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.047,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.047,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.047,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 2
+      }
+    ]
+  },
+  "chordal|alberti": {
+    "total_transitions": 215,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.563,
+        "count": 121
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.074,
+        "count": 16
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.028,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.028,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.019,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.019,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.019,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.019,
+        "count": 4
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "alberti",
+        "probability": 0.019,
+        "count": 4
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.014,
+        "count": 3
+      }
+    ]
+  },
+  "singing_melody|walking_bass_chromatic": {
+    "total_transitions": 83,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.386,
+        "count": 32
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.241,
+        "count": 20
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.108,
+        "count": 9
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.036,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.024,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.024,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "oscillation_trill",
+        "probability": 0.024,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.024,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.012,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.012,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|walking_bass_chromatic": {
+    "total_transitions": 17,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.059,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|unclassified": {
+    "total_transitions": 115,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.348,
+        "count": 40
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.096,
+        "count": 11
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.087,
+        "count": 10
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.043,
+        "count": 5
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.035,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.035,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.035,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.026,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.026,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.017,
+        "count": 2
+      }
+    ]
+  },
+  "scalar_run|sparse_octaves": {
+    "total_transitions": 15,
+    "top_next": [
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "alberti",
+        "probability": 0.4,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.2,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "pedal_point",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "sparse_octaves",
+        "probability": 0.067,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|pedal_point": {
+    "total_transitions": 70,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.371,
+        "count": 26
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.086,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.086,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.071,
+        "count": 5
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.057,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.043,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_octaves",
+        "probability": 0.029,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.029,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.029,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.029,
+        "count": 2
+      }
+    ]
+  },
+  "silence|unclassified": {
+    "total_transitions": 14,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "unclassified",
+        "probability": 0.857,
+        "count": 12
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.143,
+        "count": 2
+      }
+    ]
+  },
+  "scalar_run|unclassified": {
+    "total_transitions": 110,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.364,
+        "count": 40
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.191,
+        "count": 21
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.064,
+        "count": 7
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.045,
+        "count": 5
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.045,
+        "count": 5
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.027,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.018,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.018,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.018,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.018,
+        "count": 2
+      }
+    ]
+  },
+  "zigzag_figuration|unclassified": {
+    "total_transitions": 156,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.218,
+        "count": 34
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.096,
+        "count": 15
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.09,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.058,
+        "count": 9
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.058,
+        "count": 9
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.038,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 6
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.032,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.032,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.019,
+        "count": 3
+      }
+    ]
+  },
+  "singing_melody|sparse_punctuation": {
+    "total_transitions": 51,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.275,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.118,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.098,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.059,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.059,
+        "count": 3
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.059,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.039,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.039,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "pedal_point",
+        "probability": 0.039,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.039,
+        "count": 2
+      }
+    ]
+  },
+  "chordal|block_chord_offbeat": {
+    "total_transitions": 26,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.269,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.192,
+        "count": 5
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.115,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.115,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|walking_bass": {
+    "total_transitions": 159,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.208,
+        "count": 33
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.201,
+        "count": 32
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.088,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.057,
+        "count": 9
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.044,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.044,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.038,
+        "count": 6
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.038,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.038,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.031,
+        "count": 5
+      }
+    ]
+  },
+  "singing_melody|silence": {
+    "total_transitions": 72,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.444,
+        "count": 32
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.083,
+        "count": 6
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "silence",
+        "probability": 0.069,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.042,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.042,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.042,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.042,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.028,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.028,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "silence",
+        "probability": 0.028,
+        "count": 2
+      }
+    ]
+  },
+  "passage_work|silence": {
+    "total_transitions": 22,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "silence",
+        "probability": 0.455,
+        "count": 10
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.227,
+        "count": 5
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_octaves",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.045,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|block_chord_sparse": {
+    "total_transitions": 53,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.226,
+        "count": 12
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.132,
+        "count": 7
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.075,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.075,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.075,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.057,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.038,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.038,
+        "count": 2
+      }
+    ]
+  },
+  "passage_work|block_chord_sparse": {
+    "total_transitions": 65,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.246,
+        "count": 16
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.154,
+        "count": 10
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.154,
+        "count": 10
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.062,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.046,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.046,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 2
+      }
+    ]
+  },
+  "dotted_pairs|walking_bass": {
+    "total_transitions": 41,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.171,
+        "count": 7
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.146,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.098,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.098,
+        "count": 4
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.073,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.024,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|bass_melody": {
+    "total_transitions": 98,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.367,
+        "count": 36
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.102,
+        "count": 10
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.082,
+        "count": 8
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.041,
+        "count": 4
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.031,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "oscillation_trill",
+        "probability": 0.02,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.02,
+        "count": 2
+      }
+    ]
+  },
+  "dotted_pairs|bass_melody": {
+    "total_transitions": 105,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.514,
+        "count": 54
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.095,
+        "count": 10
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.048,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.029,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.029,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.029,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.029,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.019,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.019,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "pedal_point",
+        "probability": 0.019,
+        "count": 2
+      }
+    ]
+  },
+  "passage_work|bass_melody": {
+    "total_transitions": 87,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.31,
+        "count": 27
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.138,
+        "count": 12
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.057,
+        "count": 5
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass",
+        "probability": 0.057,
+        "count": 5
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "oscillation_trill",
+        "probability": 0.057,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.057,
+        "count": 5
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.046,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.034,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.034,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.023,
+        "count": 2
+      }
+    ]
+  },
+  "singing_melody|sparse_octaves": {
+    "total_transitions": 36,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.139,
+        "count": 5
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.111,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.083,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.056,
+        "count": 2
+      }
+    ]
+  },
+  "dialogue_chords|bass_melody": {
+    "total_transitions": 36,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "bass_melody",
+        "probability": 0.528,
+        "count": 19
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "oscillation_trill",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.056,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.028,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.028,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.028,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.028,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|walking_bass": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.333,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "pedal_point",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "walking_bass",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|pedal_point": {
+    "total_transitions": 18,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.222,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.167,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "pedal_point",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.056,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|alberti": {
+    "total_transitions": 63,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.476,
+        "count": 30
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.063,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.063,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.016,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass",
+        "probability": 0.016,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.016,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.016,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|walking_bass": {
+    "total_transitions": 18,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.167,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "sparse_octaves",
+        "probability": 0.056,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|pedal_point": {
+    "total_transitions": 17,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "pedal_point",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.059,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|alberti": {
+    "total_transitions": 131,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.573,
+        "count": 75
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.13,
+        "count": 17
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.023,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.023,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.015,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.015,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.015,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.015,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.015,
+        "count": 2
+      }
+    ]
+  },
+  "zigzag_figuration|alberti": {
+    "total_transitions": 165,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.412,
+        "count": 68
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.097,
+        "count": 16
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.079,
+        "count": 13
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 8
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.042,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.024,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.018,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.018,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.018,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.018,
+        "count": 3
+      }
+    ]
+  },
+  "stammer_repeat|alberti": {
+    "total_transitions": 21,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.238,
+        "count": 5
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.143,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "sparse_octaves",
+        "probability": 0.143,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.095,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|sparse_punctuation": {
+    "total_transitions": 12,
+    "top_next": [
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "alberti",
+        "probability": 0.25,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.167,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "silence",
+        "probability": 0.167,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.083,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|broken_chord_ascending": {
+    "total_transitions": 25,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.36,
+        "count": 9
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.36,
+        "count": 9
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.16,
+        "count": 4
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "oscillation_trill",
+        "probability": 0.12,
+        "count": 3
+      }
+    ]
+  },
+  "chordal|bass_melody": {
+    "total_transitions": 94,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.34,
+        "count": 32
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.096,
+        "count": 9
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.085,
+        "count": 8
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.074,
+        "count": 7
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.032,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.032,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "silence",
+        "probability": 0.021,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.021,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.021,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.021,
+        "count": 2
+      }
+    ]
+  },
+  "scalar_run|silence": {
+    "total_transitions": 22,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "silence",
+        "probability": 0.182,
+        "count": 4
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "silence",
+        "probability": 0.182,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.136,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.091,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.091,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.091,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.045,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass",
+        "probability": 0.045,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|unclassified": {
+    "total_transitions": 233,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.361,
+        "count": 84
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.086,
+        "count": 20
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.069,
+        "count": 16
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.043,
+        "count": 10
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.043,
+        "count": 10
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.039,
+        "count": 9
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.034,
+        "count": 8
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.03,
+        "count": 7
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.021,
+        "count": 5
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.017,
+        "count": 4
+      }
+    ]
+  },
+  "scalar_run|broken_chord_wave": {
+    "total_transitions": 41,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.341,
+        "count": 14
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.146,
+        "count": 6
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.098,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "oscillation_trill",
+        "probability": 0.073,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "pedal_point",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.049,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.024,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.024,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.024,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|broken_chord_descending": {
+    "total_transitions": 16,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.438,
+        "count": 7
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.25,
+        "count": 4
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.25,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.062,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|alberti": {
+    "total_transitions": 10,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.4,
+        "count": 4
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 0.2,
+        "count": 2
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "alberti",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "alberti",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.1,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|sparse_punctuation": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|broken_chord_ascending": {
+    "total_transitions": 65,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.185,
+        "count": 12
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.185,
+        "count": 12
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.185,
+        "count": 12
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.062,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.031,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.031,
+        "count": 2
+      }
+    ]
+  },
+  "chordal|walking_bass": {
+    "total_transitions": 42,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.167,
+        "count": 7
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.143,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.095,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.095,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.071,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.048,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.048,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.048,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.048,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.048,
+        "count": 2
+      }
+    ]
+  },
+  "unclassified|walking_bass": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|sparse_punctuation": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.375,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.25,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "pedal_point",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|pedal_point": {
+    "total_transitions": 14,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "pedal_point",
+        "probability": 0.5,
+        "count": 7
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.143,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.071,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|oscillation_trill": {
+    "total_transitions": 30,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.2,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "oscillation_trill",
+        "probability": 0.1,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.1,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.1,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.067,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.067,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.067,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.033,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.033,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "bass_melody",
+        "probability": 0.033,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|block_chord_tremolo": {
+    "total_transitions": 46,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.435,
+        "count": 20
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.174,
+        "count": 8
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.13,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.043,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.043,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.043,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.022,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|block_chord_tremolo": {
+    "total_transitions": 31,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.387,
+        "count": 12
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.194,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.129,
+        "count": 4
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.065,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.065,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.065,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.032,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.032,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.032,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|block_chord_tremolo": {
+    "total_transitions": 40,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.35,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.175,
+        "count": 7
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.125,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.075,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.05,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.05,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.05,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.05,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.025,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.025,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|block_chord_sparse": {
+    "total_transitions": 95,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.411,
+        "count": 39
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.126,
+        "count": 12
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.095,
+        "count": 9
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.053,
+        "count": 5
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.042,
+        "count": 4
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "unclassified",
+        "probability": 0.032,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.021,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.021,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "bass_melody",
+        "probability": 0.021,
+        "count": 2
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.021,
+        "count": 2
+      }
+    ]
+  },
+  "scalar_run|broken_chord_ascending": {
+    "total_transitions": 28,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.321,
+        "count": 9
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.143,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.107,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.071,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "bass_melody",
+        "probability": 0.036,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.036,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|broken_chord_ascending": {
+    "total_transitions": 10,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.2,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.1,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|sparse_punctuation": {
+    "total_transitions": 23,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.217,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.174,
+        "count": 4
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.13,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.087,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.087,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "silence",
+        "probability": 0.087,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.043,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.043,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.043,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.043,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|block_chord_sparse": {
+    "total_transitions": 192,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.448,
+        "count": 86
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.104,
+        "count": 20
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.068,
+        "count": 13
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.062,
+        "count": 12
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.042,
+        "count": 8
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.036,
+        "count": 7
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.031,
+        "count": 6
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 6
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.016,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.016,
+        "count": 3
+      }
+    ]
+  },
+  "zigzag_figuration|block_chord_sparse": {
+    "total_transitions": 101,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.188,
+        "count": 19
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.129,
+        "count": 13
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.089,
+        "count": 9
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.079,
+        "count": 8
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.069,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.04,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.04,
+        "count": 4
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.04,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.03,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.03,
+        "count": 3
+      }
+    ]
+  },
+  "zigzag_figuration|walking_bass": {
+    "total_transitions": 48,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.146,
+        "count": 7
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.125,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.104,
+        "count": 5
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.104,
+        "count": 5
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.083,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "pedal_point",
+        "probability": 0.062,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.062,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "oscillation_trill",
+        "probability": 0.042,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.042,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.021,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|broken_chord_wave": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 1.0,
+        "count": 2
+      }
+    ]
+  },
+  "zigzag_figuration|broken_chord_wave": {
+    "total_transitions": 87,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.368,
+        "count": 32
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.092,
+        "count": 8
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.069,
+        "count": 6
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.046,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.046,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.034,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.023,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.023,
+        "count": 2
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.023,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.023,
+        "count": 2
+      }
+    ]
+  },
+  "chordal|broken_chord_wave": {
+    "total_transitions": 121,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.57,
+        "count": 69
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.058,
+        "count": 7
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.041,
+        "count": 5
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.041,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.033,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.033,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.025,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.025,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.025,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.017,
+        "count": 2
+      }
+    ]
+  },
+  "zigzag_figuration|pedal_point": {
+    "total_transitions": 56,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "pedal_point",
+        "probability": 0.554,
+        "count": 31
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "pedal_point",
+        "probability": 0.071,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.036,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "bass_melody",
+        "probability": 0.036,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.018,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.018,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.018,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.018,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.018,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.018,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|broken_chord_ascending": {
+    "total_transitions": 38,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.368,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.105,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.079,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.053,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.053,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.053,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.053,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.026,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.026,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "bass_melody",
+        "probability": 0.026,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|broken_chord_ascending": {
+    "total_transitions": 54,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.259,
+        "count": 14
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.13,
+        "count": 7
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.111,
+        "count": 6
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.074,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.056,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.037,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.037,
+        "count": 2
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_octaves",
+        "probability": 0.019,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.019,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|oscillation_trill": {
+    "total_transitions": 30,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "oscillation_trill",
+        "probability": 0.4,
+        "count": 12
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.1,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.1,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "oscillation_trill",
+        "probability": 0.1,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.067,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.033,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass",
+        "probability": 0.033,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.033,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.033,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.033,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|alberti": {
+    "total_transitions": 25,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "alberti",
+        "probability": 0.16,
+        "count": 4
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.16,
+        "count": 4
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.12,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "pedal_point",
+        "probability": 0.08,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.08,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.08,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.08,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.08,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.04,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "alberti",
+        "probability": 0.04,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|walking_bass": {
+    "total_transitions": 27,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.185,
+        "count": 5
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.074,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.074,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.074,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.074,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.074,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.037,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.037,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.037,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.037,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|sparse_punctuation": {
+    "total_transitions": 20,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "silence",
+        "probability": 0.5,
+        "count": 10
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.1,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.05,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|silence": {
+    "total_transitions": 13,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.462,
+        "count": 6
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.231,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.077,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|broken_chord_descending": {
+    "total_transitions": 35,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.286,
+        "count": 10
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass",
+        "probability": 0.143,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.114,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.057,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.057,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.057,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.029,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.029,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.029,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.029,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|block_chord_tremolo": {
+    "total_transitions": 13,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.846,
+        "count": 11
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.077,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|block_chord_sparse": {
+    "total_transitions": 63,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.238,
+        "count": 15
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.19,
+        "count": 12
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.127,
+        "count": 8
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.111,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.063,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.032,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.032,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.032,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.016,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.016,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|block_chord_offbeat": {
+    "total_transitions": 21,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.333,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.095,
+        "count": 2
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.095,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "bass_melody",
+        "probability": 0.048,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|sparse_punctuation": {
+    "total_transitions": 17,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.353,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.059,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|broken_chord_wave": {
+    "total_transitions": 17,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.176,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.176,
+        "count": 3
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_octaves",
+        "probability": 0.118,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.059,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.059,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|alberti": {
+    "total_transitions": 11,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "alberti",
+        "probability": 0.364,
+        "count": 4
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.273,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.091,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.091,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "sparse_octaves",
+        "probability": 0.091,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.091,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|pedal_point": {
+    "total_transitions": 37,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.243,
+        "count": 9
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "pedal_point",
+        "probability": 0.162,
+        "count": 6
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.108,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.081,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.027,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.027,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.027,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.027,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|silence": {
+    "total_transitions": 19,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "silence",
+        "probability": 0.316,
+        "count": 6
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "silence",
+        "probability": 0.211,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_octaves",
+        "probability": 0.158,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.105,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.105,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_octaves",
+        "probability": 0.053,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.053,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|broken_chord_descending": {
+    "total_transitions": 16,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.188,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.188,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.125,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "alberti",
+        "probability": 0.125,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.125,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "oscillation_trill",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.062,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|broken_chord_wave": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.75,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|broken_chord_descending": {
+    "total_transitions": 14,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.286,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.214,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.214,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.143,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.071,
+        "count": 1
+      }
+    ]
+  },
+  "singing_melody|broken_chord_descending": {
+    "total_transitions": 74,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.311,
+        "count": 23
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.135,
+        "count": 10
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.122,
+        "count": 9
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.068,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.054,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "sparse_octaves",
+        "probability": 0.041,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.027,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.027,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.014,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.014,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|sparse_octaves": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.333,
+        "count": 2
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_octaves",
+        "probability": 0.333,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "silence|pedal_point": {
+    "total_transitions": 25,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.28,
+        "count": 7
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.24,
+        "count": 6
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "sparse_octaves",
+        "probability": 0.12,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.08,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.04,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "walking_bass",
+        "probability": 0.04,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.04,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.04,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "pedal_point",
+        "probability": 0.04,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "silence",
+        "probability": 0.04,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|sparse_punctuation": {
+    "total_transitions": 46,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.5,
+        "count": 23
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.13,
+        "count": 6
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.065,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.043,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "silence",
+        "probability": 0.022,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.022,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|sparse_punctuation": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.625,
+        "count": 5
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "silence",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|sparse_octaves": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "silence",
+        "probability": 0.75,
+        "count": 6
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|pedal_point": {
+    "total_transitions": 29,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.345,
+        "count": 10
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.207,
+        "count": 6
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.103,
+        "count": 3
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.103,
+        "count": 3
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.034,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.034,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "bass_melody",
+        "probability": 0.034,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "bass_melody",
+        "probability": 0.034,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.034,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.034,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|oscillation_trill": {
+    "total_transitions": 13,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "oscillation_trill",
+        "probability": 0.308,
+        "count": 4
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "oscillation_trill",
+        "probability": 0.308,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.077,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|block_chord_sparse": {
+    "total_transitions": 12,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.333,
+        "count": 4
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.083,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|oscillation_trill": {
+    "total_transitions": 12,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "oscillation_trill",
+        "probability": 0.583,
+        "count": 7
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "sparse_octaves",
+        "probability": 0.25,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "oscillation_trill",
+        "probability": 0.083,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "oscillation_trill",
+        "probability": 0.083,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|silence": {
+    "total_transitions": 26,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "silence",
+        "probability": 0.346,
+        "count": 9
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "bass_melody",
+        "probability": 0.154,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.115,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "pedal_point",
+        "probability": 0.115,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.038,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|unclassified": {
+    "total_transitions": 49,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.245,
+        "count": 12
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.122,
+        "count": 6
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.061,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.041,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.041,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.041,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.041,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.041,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.02,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.02,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|broken_chord_descending": {
+    "total_transitions": 18,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.222,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|bass_melody": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "bass_melody",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|walking_bass_chromatic": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.5,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_octaves",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|sparse_octaves": {
+    "total_transitions": 15,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "silence",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_octaves",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "silence",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "bass_melody",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "silence",
+        "probability": 0.067,
+        "count": 1
+      }
+    ]
+  },
+  "silence|alberti": {
+    "total_transitions": 15,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 0.267,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.133,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "oscillation_trill",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "alberti",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "alberti",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "unclassified",
+        "probability": 0.067,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.067,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|broken_chord_descending": {
+    "total_transitions": 37,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.243,
+        "count": 9
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.054,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.054,
+        "count": 2
+      }
+    ]
+  },
+  "passage_work|broken_chord_descending": {
+    "total_transitions": 18,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.333,
+        "count": 6
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 1
+      }
+    ]
+  },
+  "silence|broken_chord_wave": {
+    "total_transitions": 7,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.286,
+        "count": 2
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "oscillation_trill",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.143,
+        "count": 1
+      }
+    ]
+  },
+  "silence|walking_bass_chromatic": {
+    "total_transitions": 3,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "silence",
+        "probability": 0.333,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|sparse_punctuation": {
+    "total_transitions": 7,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.571,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|unclassified": {
+    "total_transitions": 56,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.232,
+        "count": 13
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.161,
+        "count": 9
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.089,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.089,
+        "count": 5
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.036,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.036,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.036,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.036,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "bass_melody",
+        "probability": 0.018,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_octaves",
+        "probability": 0.018,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|oscillation_trill": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "oscillation_trill",
+        "probability": 0.333,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "bass_melody",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|walking_bass_chromatic": {
+    "total_transitions": 14,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.214,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.214,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.143,
+        "count": 2
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "alberti",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "oscillation_trill",
+        "probability": 0.071,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.071,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|unclassified": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.25,
+        "count": 2
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "unclassified",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|sparse_octaves": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "silence",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "sparse_octaves",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|broken_chord_ascending": {
+    "total_transitions": 9,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.444,
+        "count": 4
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.111,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|block_chord_offbeat": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.5,
+        "count": 3
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.5,
+        "count": 3
+      }
+    ]
+  },
+  "dialogue_chords|alberti": {
+    "total_transitions": 32,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "alberti",
+        "probability": 0.438,
+        "count": 14
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.156,
+        "count": 5
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.062,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.031,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|broken_chord_wave": {
+    "total_transitions": 21,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.238,
+        "count": 5
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.19,
+        "count": 4
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "bass_melody",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.048,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.048,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|walking_bass_chromatic": {
+    "total_transitions": 10,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.3,
+        "count": 3
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "pedal_point",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "walking_bass",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.1,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.1,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|sparse_octaves": {
+    "total_transitions": 9,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "pedal_point",
+        "probability": 0.333,
+        "count": 3
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_octaves",
+        "probability": 0.222,
+        "count": 2
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "silence",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "silence",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.111,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|walking_bass": {
+    "total_transitions": 18,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "walking_bass",
+        "probability": 0.222,
+        "count": 4
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "pedal_point",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "pedal_point",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.056,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|walking_bass_chromatic": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "bass_melody",
+        "probability": 0.5,
+        "count": 2
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|sparse_punctuation": {
+    "total_transitions": 9,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.556,
+        "count": 5
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.222,
+        "count": 2
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "sparse_octaves",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|block_chord_offbeat": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.75,
+        "count": 3
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|unclassified": {
+    "total_transitions": 32,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.219,
+        "count": 7
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.219,
+        "count": 7
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.125,
+        "count": 4
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "oscillation_trill",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "pedal_point",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "unclassified",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.031,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "alberti",
+        "probability": 0.031,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|oscillation_trill": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|sparse_octaves": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|pedal_point": {
+    "total_transitions": 9,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "pedal_point",
+        "probability": 0.667,
+        "count": 6
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.222,
+        "count": 2
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.111,
+        "count": 1
+      }
+    ]
+  },
+  "silence|broken_chord_ascending": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "scalar_run|oscillation_trill": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "oscillation_trill",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "alberti",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "oscillation_trill",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "silence|walking_bass": {
+    "total_transitions": 5,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "sparse_octaves",
+        "probability": 0.2,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.2,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "unclassified",
+        "probability": 0.2,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "pedal_point",
+        "probability": 0.2,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.2,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|broken_chord_wave": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "unclassified",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "silence|broken_chord_descending": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.5,
+        "count": 2
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "pedal_point",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|broken_chord_wave": {
+    "total_transitions": 26,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.385,
+        "count": 10
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.308,
+        "count": 8
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.115,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.077,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.038,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "silence",
+        "probability": 0.038,
+        "count": 1
+      }
+    ]
+  },
+  "silence|block_chord_sparse": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.375,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 2
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "sparse_octaves",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|block_chord_offbeat": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "sparse_punctuation",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "pedal_point",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  },
+  "passage_work|block_chord_offbeat": {
+    "total_transitions": 9,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.222,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.222,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.111,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.111,
+        "count": 1
+      }
+    ]
+  },
+  "chordal|sparse_octaves": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 1.0,
+        "count": 2
+      }
+    ]
+  },
+  "passage_work|block_chord_tremolo": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|block_chord_tremolo": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|block_chord_tremolo": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.5,
+        "count": 3
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "unclassified",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "zigzag_figuration|walking_bass_chromatic": {
+    "total_transitions": 7,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.286,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "oscillation_trill",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "bass_melody",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "silence",
+        "probability": 0.143,
+        "count": 1
+      }
+    ]
+  },
+  "held_note|walking_bass_chromatic": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "held_note",
+        "to_lh": "walking_bass",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "alberti",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|silence": {
+    "total_transitions": 8,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "silence",
+        "probability": 0.375,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "oscillation_trill",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "silence",
+        "probability": 0.125,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "sparse_octaves",
+        "probability": 0.125,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|oscillation_trill": {
+    "total_transitions": 18,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "oscillation_trill",
+        "probability": 0.278,
+        "count": 5
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "oscillation_trill",
+        "probability": 0.167,
+        "count": 3
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.111,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "oscillation_trill",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "pedal_point",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.056,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.056,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|broken_chord_wave": {
+    "total_transitions": 16,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.25,
+        "count": 4
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.188,
+        "count": 3
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.125,
+        "count": 2
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "alberti",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "alberti",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "oscillation_trill",
+        "probability": 0.062,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "alberti",
+        "probability": 0.062,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|unclassified": {
+    "total_transitions": 5,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.6,
+        "count": 3
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.2,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "bass_melody",
+        "probability": 0.2,
+        "count": 1
+      }
+    ]
+  },
+  "silence|bass_melody": {
+    "total_transitions": 3,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "silence",
+        "probability": 0.667,
+        "count": 2
+      },
+      {
+        "to_rh": "silence",
+        "to_lh": "unclassified",
+        "probability": 0.333,
+        "count": 1
+      }
+    ]
+  },
+  "silence|sparse_octaves": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "walking_bass",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "silence|oscillation_trill": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "silence",
+        "to_lh": "alberti",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "unclassified|oscillation_trill": {
+    "total_transitions": 3,
+    "top_next": [
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "unclassified",
+        "to_lh": "oscillation_trill",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "oscillation_trill",
+        "probability": 0.333,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|walking_bass": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|block_chord_offbeat": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "unclassified",
+        "probability": 0.5,
+        "count": 2
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "unclassified",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "held_note",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|oscillation_trill": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "oscillation_trill",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|broken_chord_ascending": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.5,
+        "count": 2
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "dialogue_chords|broken_chord_ascending": {
+    "total_transitions": 3,
+    "top_next": [
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "dialogue_chords",
+        "to_lh": "alberti",
+        "probability": 0.333,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|block_chord_sparse": {
+    "total_transitions": 20,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.55,
+        "count": 11
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.1,
+        "count": 2
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.1,
+        "count": 2
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "unclassified",
+        "probability": 0.05,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.05,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|block_chord_tremolo": {
+    "total_transitions": 3,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.333,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.333,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|block_chord_tremolo": {
+    "total_transitions": 6,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.5,
+        "count": 3
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "unclassified",
+        "probability": 0.167,
+        "count": 1
+      },
+      {
+        "to_rh": "scalar_run",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.167,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|broken_chord_descending": {
+    "total_transitions": 13,
+    "top_next": [
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_descending",
+        "probability": 0.462,
+        "count": 6
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "alberti",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "alberti",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "alberti",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_tremolo",
+        "probability": 0.077,
+        "count": 1
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.077,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|walking_bass_chromatic": {
+    "total_transitions": 7,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.429,
+        "count": 3
+      },
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "walking_bass",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "zigzag_figuration",
+        "to_lh": "walking_bass",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "passage_work",
+        "to_lh": "walking_bass_chromatic",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "bass_melody",
+        "probability": 0.143,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|block_chord_sparse": {
+    "total_transitions": 4,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.5,
+        "count": 2
+      },
+      {
+        "to_rh": "stammer_repeat",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "block_chord_sparse",
+        "probability": 0.25,
+        "count": 1
+      }
+    ]
+  },
+  "stammer_repeat|broken_chord_descending": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "broken_chord_descending",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|broken_chord_ascending": {
+    "total_transitions": 7,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "chordal",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_wave",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "unclassified",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "broken_chord_ascending",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "block_chord_offbeat",
+        "probability": 0.143,
+        "count": 1
+      },
+      {
+        "to_rh": "ornamental_cascade",
+        "to_lh": "alberti",
+        "probability": 0.143,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|silence": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "unclassified",
+        "to_lh": "block_chord_sparse",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "ornamental_cascade|walking_bass_chromatic": {
+    "total_transitions": 1,
+    "top_next": [
+      {
+        "to_rh": "singing_melody",
+        "to_lh": "alberti",
+        "probability": 1.0,
+        "count": 1
+      }
+    ]
+  },
+  "dotted_pairs|sparse_octaves": {
+    "total_transitions": 2,
+    "top_next": [
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "silence",
+        "probability": 0.5,
+        "count": 1
+      },
+      {
+        "to_rh": "dotted_pairs",
+        "to_lh": "walking_bass",
+        "probability": 0.5,
+        "count": 1
+      }
+    ]
+  }
+}

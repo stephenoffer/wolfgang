@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_frozen_pedal_stasis",
+      "category": "fingerprint",
+      "description": "Frozen pedal stasis",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_motivic_cells_that_don_t_develop_they_accumulate",
+      "category": "fingerprint",
+      "description": "Motivic cells that don't \"develop\" \u2014 they accumulate",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_nordic_modal_language",
+      "category": "fingerprint",
+      "description": "Nordic modal language",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_orchestral_texture_as_landscape",
+      "category": "fingerprint",
+      "description": "Orchestral texture as landscape",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_structural_organicism_the_form_grows",
+      "category": "fingerprint",
+      "description": "Structural organicism \u2014 the form grows",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Regular 4-bar phrases.** Sibelius's late music has irregular phrase lengths determined by organic ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Obvious development.** Taking a theme and modifying it through standard Beethoven-style developmen",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Conventional harmonic resolution.** A V\u2192I cadence sounds Classical, not Sibelian. The plagal caden",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Constant texture change.** Sibelius holds textures for long stretches. A texture that changes ever",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Warm, Romantic orchestral sound.** Sibelius's late sound is cold, spare, sometimes bleak. Lush str",
+      "severity": "soft"
+    }
+  ]
+}

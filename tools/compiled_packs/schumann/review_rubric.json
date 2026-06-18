@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_inner_voice_melody_the_hidden_tune",
+      "category": "fingerprint",
+      "description": "Inner-voice melody \u2014 the hidden tune",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhythmic_displacement_and_syncopation",
+      "category": "fingerprint",
+      "description": "Rhythmic displacement and syncopation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sudden_tonal_leaps_the_schumannesque_shift",
+      "category": "fingerprint",
+      "description": "Sudden tonal leaps \u2014 the Schumannesque shift",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_literary_poetic_program_florestan_and_eusebius",
+      "category": "fingerprint",
+      "description": "Literary/poetic program \u2014 Florestan and Eusebius",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_piano_texture_as_interior_monologue",
+      "category": "fingerprint",
+      "description": "Piano texture as interior monologue",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Melody on top throughout.** A Schumann piano piece where the melody is always the top voice is mis",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Smooth, predictable harmonic rhythm.** Schumann's harmonies don't change on schedule. They linger,",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Extrovert brightness.** Schumann's major-key writing always has shadow \u2014 a modal chord, a flat-VI,",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Clear phrase structure.** Schumann's phrases run on \u2014 they don't cadence cleanly. They elide, inte",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Programmatic vagueness.** Every Schumann piece has a specific emotional state. \"Lyrical and expres",
+      "severity": "soft"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "static_hypnotic_repetition_furniture_music",
+      "name": "Static, hypnotic repetition \u2014 furniture music",
+      "description": "Satie invented \"furniture music\" (musique d'ameublement): music meant to exist as sonic environment, not drama. His pieces often repeat short harmonic progressions or melodic cells without development",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "parallel_chord_movement_without_functional_resolution",
+      "name": "Parallel chord movement without functional resolution",
+      "description": "Satie moves chords in parallel motion (all voices moving the same direction, same interval) \u2014 a technique Classical harmony forbids. He uses parallel 9ths, parallel 7ths, parallel quartal chords. The ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "extreme_simplicity_as_artistic_choice",
+      "name": "Extreme simplicity as artistic choice",
+      "description": "Satie's surfaces are deceptively simple: a 4-bar melody repeated, three chords, no ornamentation. This simplicity is not naivety \u2014 it is the result of extreme artistic self-restraint. Everything unnec",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "humor_as_structural_element_the_sardonic_title",
+      "name": "Humor as structural element \u2014 the sardonic title",
+      "description": "Satie's titles are ironic, absurd, or deadpan: \"Three Pieces in the Shape of a Pear,\" \"Genuine Flabby Preludes (for a Dog),\" \"Cold Pieces.\" The humor is embedded in the structure: the music contradict",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "medieval_gregorian_modal_color",
+      "name": "Medieval/Gregorian modal color",
+      "description": "Satie was influenced by Gregorian chant and medieval modes. His melodies use modes (especially Dorian and Phrygian) that give his music an archaic, timeless quality \u2014 as if the music predates the 19th",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "cadence_vocabulary": [
+    {
+      "type": "PAC",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "deceptive",
+      "frequency_weight": 0.5
+    }
+  ],
+  "chromatic_techniques": [
+    {
+      "name": "borrowed chord",
+      "frequency_weight": 0.3
+    }
+  ]
+}

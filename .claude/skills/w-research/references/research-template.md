@@ -7,8 +7,13 @@ Each researched composer/style produces two files in `workspace/<piece-id>/resea
 ```
 workspace/<piece-id>/research/
   <composer-slug>.json        # Machine-readable parameters
-  <composer-slug>.md          # Human-readable summary with ABC examples
+  <composer-slug>.md          # Human-readable summary with notation examples
 ```
+
+These research artifacts are the input to the ContextCompiler
+(`compiler.compile('<composer>', '<genre>')`), which emits the loadable
+ComposerPack to `tools/compiled_packs/<composer>/` — the pack, not these
+files, is what the StyleResolver consumes.
 
 ## JSON Profile Schema
 
@@ -85,10 +90,10 @@ workspace/<piece-id>/research/
       "notable_features": ["feature1", "feature2"]
     }
   ],
-  "abc_examples": {
-    "typical_melody": "ABC notation string",
-    "typical_accompaniment": "ABC notation string",
-    "characteristic_progression": "ABC notation string"
+  "notation_examples": {
+    "typical_melody": "shorthand bar(s), e.g. '(D5q E5e F5e G5q:tr A5q)'",
+    "typical_accompaniment": "shorthand bar(s), e.g. 'D3e A3e F3e A3e D3e A3e F3e A3e'",
+    "characteristic_progression": "Roman numerals, e.g. 'i - iv6 - V7 - i'"
   },
   "confidence": "high|medium|low",
   "sources": ["source1", "source2"]
@@ -107,7 +112,7 @@ workspace/<piece-id>/research/
 | High     | formal_characteristics   | Use standard forms for period                |
 | Medium   | orchestration            | Use period standard orchestration            |
 | Medium   | biographical_summary     | Skip; not musically critical                 |
-| Low      | abc_examples             | Generate from parameters                     |
+| Low      | notation_examples        | Generate from parameters                     |
 
 ## Search Query Templates
 
@@ -246,24 +251,20 @@ Period: [period]. 2-3 sentence overview.
 ## Harmonic Language
 - Primary mode: [major/minor/modal]
 - Chord vocabulary: [list]
-- Characteristic progressions: [with ABC examples]
+- Characteristic progressions: [Roman numerals]
 - Modulation: [habits]
 
 ## Melodic Style
 - Range: [typical range]
 - Phrase structure: [type, typical lengths]
 - Characteristic intervals: [list]
-- Example:
-X:1
-T:Typical Melody
-M:4/4
-K:Cmaj
-[ABC notation]
+- Example: [shorthand bar(s), e.g. `(D5q E5e F5e G5q:tr A5q)` — grammar:
+  `.claude/skills/w-compose/references/note-writing-craft.md` §8]
 
 ## Rhythmic Profile
 - Preferred meters: [list]
 - Tempo range: [range]
-- Characteristic patterns: [with ABC]
+- Characteristic patterns: [described, or as shorthand rhythms]
 
 ## Orchestration
 - Preferred ensembles: [list]
@@ -301,7 +302,7 @@ Before finalizing a research profile, verify:
 - [ ] All critical fields populated (or defaults noted)
 - [ ] At least 3 representative works listed with key details
 - [ ] Harmonic vocabulary matches claimed style period
-- [ ] ABC examples parse without errors
+- [ ] Notation examples use valid shorthand (craft reference §8)
 - [ ] No contradictory claims (e.g., "diatonic" + "highly chromatic")
 - [ ] Confidence level honestly assessed
 - [ ] Sources documented

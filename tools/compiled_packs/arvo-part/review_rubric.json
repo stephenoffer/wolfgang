@@ -1,0 +1,88 @@
+{
+  "checks": [
+    {
+      "id": "fp_tintinnabuli_two_voice_system",
+      "category": "fingerprint",
+      "description": "Tintinnabuli \u2014 two-voice system",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_stepwise_diatonic_movement_only",
+      "category": "fingerprint",
+      "description": "Stepwise diatonic movement only",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_silence_as_structural_material",
+      "category": "fingerprint",
+      "description": "Silence as structural material",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_extreme_simplicity_as_transcendence",
+      "category": "fingerprint",
+      "description": "Extreme simplicity as transcendence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_single_tonal_center_no_modulation",
+      "category": "fingerprint",
+      "description": "Single tonal center, no modulation",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Harmonic complexity.** A P\u00e4rt piece with chord progressions, secondary dominants, or modulation is",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Melodic leaps.** The M-voice NEVER leaps. A melody that jumps a third is already wrong in tintinna",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Development or variation.** P\u00e4rt does not develop themes or vary them in the traditional sense. Th",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Loud dynamics.** A P\u00e4rt piece at ff is wrong in all but the most specific contexts. The spirituali",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Complex rhythm.** Complex rhythmic patterns, syncopation, or cross-rhythms are antithetical to tin",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_11",
+      "category": "anti_pattern",
+      "description": "**Multiple tonal centers.** One triad. One key. Always.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_12",
+      "category": "anti_pattern",
+      "description": "**Busy accompaniment at the peak.** At the moment of greatest register extremity, the T-voice must n",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_13",
+      "category": "anti_pattern",
+      "description": "**Peak without silence.** A tintinnabuli peak that is not surrounded by silence on at least one side",
+      "severity": "soft"
+    }
+  ]
+}

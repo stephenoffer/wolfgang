@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_ritornello_anchor",
+      "category": "fingerprint",
+      "description": "Ritornello anchor",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_soloist_as_elaborator_not_inventor",
+      "category": "fingerprint",
+      "description": "Soloist as elaborator, not inventor",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_driving_rhythmic_ostinato_in_the_accompaniment",
+      "category": "fingerprint",
+      "description": "Driving rhythmic ostinato in the accompaniment",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_violin_derived_figuration",
+      "category": "fingerprint",
+      "description": "Violin-derived figuration",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_clear_direct_harmony_with_sudden_contrast",
+      "category": "fingerprint",
+      "description": "Clear, direct harmony with sudden contrast",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Ritornello that doesn't return.** The ritornello MUST return. An \"opening theme\" that's stated onc",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Soloist who ignores the ritornello material.** The solo episodes should transform ritornello fragm",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Slow, ruminative accompaniment in fast movements.** The driving eighth-note pulse IS Vivaldi's fas",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Overly complex counterpoint.** Vivaldi doesn't write fugue \u2014 he writes melody + bass + supporting ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Gradual dynamic changes (crescendo/diminuendo).** Vivaldi's dynamics are terraced: forte tutti, pi",
+      "severity": "soft"
+    }
+  ]
+}

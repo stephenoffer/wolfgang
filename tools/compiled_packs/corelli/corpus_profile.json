@@ -1,0 +1,103 @@
+{
+ "composer": "corelli",
+ "total_bars": 19,
+ "total_movements": 1,
+ "movements_used": 1,
+ "min_movement_bars": 6,
+ "metrics": {
+  "events_per_bar": {
+   "mean": 8.053,
+   "stdev": 0.0,
+   "min": 8.053,
+   "max": 8.053,
+   "n": 1
+  },
+  "events_per_bar_rh": {
+   "mean": 4.158,
+   "stdev": 0.0,
+   "min": 4.158,
+   "max": 4.158,
+   "n": 1
+  },
+  "events_per_bar_lh": {
+   "mean": 3.895,
+   "stdev": 0.0,
+   "min": 3.895,
+   "max": 3.895,
+   "n": 1
+  },
+  "texture_change_pct": {
+   "mean": 0.1667,
+   "stdev": 0.0,
+   "min": 0.1667,
+   "max": 0.1667,
+   "n": 1
+  },
+  "lh_texture_change_pct": {
+   "mean": 0.6667,
+   "stdev": 0.0,
+   "min": 0.6667,
+   "max": 0.6667,
+   "n": 1
+  },
+  "rh_texture_change_pct": {
+   "mean": 0.2778,
+   "stdev": 0.0,
+   "min": 0.2778,
+   "max": 0.2778,
+   "n": 1
+  },
+  "density_cv": {
+   "mean": 0.3159,
+   "stdev": 0.0,
+   "min": 0.3159,
+   "max": 0.3159,
+   "n": 1
+  },
+  "direction_changes_per_bar": {
+   "mean": 0.6111,
+   "stdev": 0.0,
+   "min": 0.6111,
+   "max": 0.6111,
+   "n": 1
+  },
+  "grace_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 1
+  },
+  "dotted_ratio": {
+   "mean": 0.3684,
+   "stdev": 0.0,
+   "min": 0.3684,
+   "max": 0.3684,
+   "n": 1
+  },
+  "register_span": {
+   "mean": 19.0,
+   "stdev": 0.0,
+   "min": 19.0,
+   "max": 19.0,
+   "n": 1
+  }
+ },
+ "lh_texture_distribution": {
+  "bass_melody": 0.5263,
+  "broken_chord_wave": 0.3158,
+  "pedal_point": 0.1579
+ },
+ "rh_texture_distribution": {
+  "singing_melody": 0.7895,
+  "held_note": 0.1053,
+  "scalar_run": 0.1053
+ },
+ "lh_l1_baseline": {
+  "mean": 0.0,
+  "stdev": 0.0,
+  "min": 0.0,
+  "max": 0.0,
+  "n": 1
+ }
+}

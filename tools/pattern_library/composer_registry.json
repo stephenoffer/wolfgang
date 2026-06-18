@@ -1,0 +1,331 @@
+{
+  "bach": {
+    "genre": "baroque",
+    "has_corpus": true,
+    "pattern_count": 1609,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "handel": {
+    "genre": "baroque",
+    "has_corpus": true,
+    "pattern_count": 54,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "vivaldi": {
+    "genre": "baroque",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "baroque"
+  },
+  "beethoven": {
+    "genre": "classical",
+    "has_corpus": true,
+    "pattern_count": 11422,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "haydn": {
+    "genre": "classical",
+    "has_corpus": true,
+    "pattern_count": 981,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "mozart": {
+    "genre": "classical",
+    "has_corpus": true,
+    "pattern_count": 4789,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "brahms": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "chopin": {
+    "genre": "romantic",
+    "has_corpus": true,
+    "pattern_count": 2163,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "liszt": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "mendelssohn": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "rachmaninoff": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "schubert": {
+    "genre": "romantic",
+    "has_corpus": true,
+    "pattern_count": 82,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "schumann": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "tchaikovsky": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "wagner": {
+    "genre": "romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "romantic"
+  },
+  "bruckner": {
+    "genre": "late-romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "late-romantic"
+  },
+  "elgar": {
+    "genre": "late-romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "late-romantic"
+  },
+  "mahler": {
+    "genre": "late-romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "late-romantic"
+  },
+  "strauss-r": {
+    "genre": "late-romantic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "late-romantic"
+  },
+  "debussy": {
+    "genre": "impressionist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "impressionist"
+  },
+  "faure": {
+    "genre": "impressionist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "impressionist"
+  },
+  "ravel": {
+    "genre": "impressionist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "impressionist"
+  },
+  "satie": {
+    "genre": "impressionist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "impressionist"
+  },
+  "dvorak": {
+    "genre": "nationalistic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "nationalistic"
+  },
+  "grieg": {
+    "genre": "nationalistic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "nationalistic"
+  },
+  "mussorgsky": {
+    "genre": "nationalistic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "nationalistic"
+  },
+  "rimsky-korsakov": {
+    "genre": "nationalistic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "nationalistic"
+  },
+  "sibelius": {
+    "genre": "nationalistic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "nationalistic"
+  },
+  "smetana": {
+    "genre": "nationalistic",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "nationalistic"
+  },
+  "bartok": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "copland": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "messiaen": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "prokofiev": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "schoenberg": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "shostakovich": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "stravinsky": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "webern": {
+    "genre": "modern",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "modern"
+  },
+  "arvo-part": {
+    "genre": "minimalist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "minimalist"
+  },
+  "glass": {
+    "genre": "minimalist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "minimalist"
+  },
+  "reich": {
+    "genre": "minimalist",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "minimalist"
+  },
+  "morricone": {
+    "genre": "film-score",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "film-score"
+  },
+  "williams": {
+    "genre": "film-score",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "film-score"
+  },
+  "zimmer": {
+    "genre": "film-score",
+    "has_corpus": false,
+    "pattern_count": 0,
+    "transition_source": "genre",
+    "inherits_from": "film-score"
+  },
+  "palestrina": {
+    "genre": "baroque",
+    "has_corpus": true,
+    "pattern_count": 7545,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "monteverdi": {
+    "genre": "baroque",
+    "has_corpus": true,
+    "pattern_count": 3372,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "corelli": {
+    "genre": "baroque",
+    "has_corpus": true,
+    "pattern_count": 19,
+    "transition_source": "composer",
+    "inherits_from": null
+  },
+  "weber": {
+    "genre": "romantic",
+    "has_corpus": true,
+    "pattern_count": 233,
+    "transition_source": "composer",
+    "inherits_from": null
+  }
+}

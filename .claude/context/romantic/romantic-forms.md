@@ -251,3 +251,64 @@ K:Cm
 | Voice + piano, 5-15 min | Ballad or scene |
 | Chamber, 20-35 min | Sonata or multi-movement |
 | Orchestral with narrative | Program symphony or tone poem |
+
+## Character Piece Structural Details
+
+### Nocturne Structure (ABA')
+| Section | Character | Harmony | Texture |
+|---|---|---|---|
+| A (16-24 bars) | Lyrical melody over arpeggiated accompaniment | Tonic, diatonic | Singing melody + broken-chord LH |
+| B (16-32 bars) | Contrasting — more agitated, chromatic, or passionate | Remote key or parallel mode | Thicker texture, faster figuration |
+| A' (16-24 bars) | Return of melody, often with added ornamentation | Tonic, cadential elaboration | Embellished version of A |
+| Coda (4-16 bars) | Dying away, reflective | Tonic, often plagal close | Thinning, morendo |
+
+### Ballade Structure (multi-sectional narrative)
+| Section | Function | Typical treatment |
+|---|---|---|
+| Introduction | Sets mood, may preview motifs | Slow, dramatic or mysterious |
+| Episode 1 | First narrative event | Theme A, tonic key |
+| Episode 2 | Contrasting event/character | Theme B, new key |
+| Development | Conflict, transformation | Themes combined, fragmented |
+| Climax | Narrative peak | Maximum intensity, tempo, dynamics |
+| Denouement | Resolution or tragic close | Return of A material or new synthesis |
+| Coda | Final commentary | Quiet reflection or dramatic final gesture |
+
+### Scherzo Structure (ABA with Trio)
+| Section | Character | Tempo |
+|---|---|---|
+| Scherzo (A) | Turbulent, demonic, or humorous | Fast, often 3/4 |
+| Trio (B) | Lyrical contrast, often major mode | Slower or same tempo, different character |
+| Scherzo da capo (A) | Exact or varied return | Same as A |
+| Coda | May combine Scherzo and Trio elements | Accelerating or emphatic |
+
+## Song Cycle Form
+
+### Structural Principles
+| Element | Function |
+|---|---|
+| Key narrative | Cycle may trace a tonal journey (e.g., starting in D major, ending in D minor) |
+| Thematic recall | Motifs from early songs return in later songs |
+| Emotional arc | Songs arranged to create overall narrative (not random) |
+| Piano interludes | Between-song passages connecting emotional states |
+| Framing | First and last songs often related musically |
+
+### Song Cycle Models
+| Cycle | Composer | Structure | Arc |
+|---|---|---|---|
+| Winterreise | Schubert | 24 through-composed songs | Hope → despair → madness |
+| Dichterliebe | Schumann | 16 songs, piano postlude | Love → betrayal → burial of pain |
+| Frauenliebe und -leben | Schumann | 8 songs, piano epilogue | Meeting → love → loss |
+| Liederkreis Op. 39 | Schumann | 12 songs, circular key scheme | Wandering → nature → return |
+
+## Form as Expression
+
+Romantic composers characteristically bent or broke formal conventions to serve emotional narrative:
+
+| Convention-Breaking | Technique | Effect | Example |
+|---|---|---|---|
+| Recapitulation avoidance | Development leads directly to coda | No formal "return" — forward momentum only | Liszt Sonata |
+| Key mismatch | Recapitulation in "wrong" key | Unresolved tension | Schubert late sonatas |
+| Thematic substitution | New theme replaces expected return | Surprise, narrative twist | Chopin Ballade 4 |
+| Formal elision | One section overlaps the next | Continuous flow | Schumann |
+| Interpolated movement | Movement within a movement | Disruption, dream sequence | Berlioz Symphonie fantastique |
+| Reversed recapitulation | Themes return in opposite order | Chiastic symmetry | Brahms symphonies |

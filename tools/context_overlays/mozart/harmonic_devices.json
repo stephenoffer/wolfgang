@@ -1,0 +1,51 @@
+[
+  {
+    "id": "b6_melodic_inflection",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  },
+  {
+    "id": "neapolitan_6th_bii6",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  },
+  {
+    "id": "diminished_7th_pivot",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  },
+  {
+    "id": "augmented_6th_chords",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  },
+  {
+    "id": "chromatic_bass_descent",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  },
+  {
+    "id": "enharmonic_reinterpretation",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  },
+  {
+    "id": "secondary_dominants",
+    "frequency_weight": 0.225,
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 0.0,
+    "last_updated": "2026-04-19"
+  }
+]

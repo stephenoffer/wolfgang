@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_phasing_the_same_pattern_in_two_voices_slightly_out_of_sync",
+      "category": "fingerprint",
+      "description": "Phasing \u2014 the same pattern in two voices, slightly out of sync",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_gradual_process_the_process_is_the_music",
+      "category": "fingerprint",
+      "description": "Gradual process \u2014 the process is the music",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_pulsing_pattern_texture_the_constant_eighth_note_stream",
+      "category": "fingerprint",
+      "description": "Pulsing pattern texture \u2014 the constant eighth-note stream",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_diatonic_tonality_simple_harmony_complex_rhythm",
+      "category": "fingerprint",
+      "description": "Diatonic tonality \u2014 simple harmony, complex rhythm",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhythmic_canons_and_interlocking_parts",
+      "category": "fingerprint",
+      "description": "Rhythmic canons and interlocking parts",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Sudden changes.** Reich's processes are gradual. A sudden change of texture, key, or tempo is wron",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Complex harmony.** Simple, diatonic, unchanging \u2014 the harmony should never be interesting on its o",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Emotional expression.** Reich's music is process-driven, not emotion-driven. An \"expressive\" dynam",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Individual solos.** Reich's music is ensemble music. Individual soloistic passages with elaborate ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Silence.** Reich's music doesn't stop. Unlike P\u00e4rt or Webern, the pulse is constant. A bar of sile",
+      "severity": "soft"
+    }
+  ]
+}

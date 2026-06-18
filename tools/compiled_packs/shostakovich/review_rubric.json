@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_ironic_major_key_grotesquerie",
+      "category": "fingerprint",
+      "description": "Ironic major-key grotesquerie",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_obsessive_ostinato_under_chromatic_distress",
+      "category": "fingerprint",
+      "description": "Obsessive ostinato under chromatic distress",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_parody_of_familiar_styles",
+      "category": "fingerprint",
+      "description": "Parody of familiar styles",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_extremely_high_or_extremely_low_instruments_at_climaxes",
+      "category": "fingerprint",
+      "description": "Extremely high or extremely low instruments at climaxes",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_dsch_motif_or_initials_based_cells",
+      "category": "fingerprint",
+      "description": "DSCH motif or initials-based cells",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Genuine, unironic happiness.** If a major-key passage is straightforwardly, innocently joyful, it'",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Smooth, Romantic orchestral writing.** Shostakovich's orchestral sound is spare, dry, and often de",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Development that \"resolves.\"** Shostakovich's music often ends ambiguously, or ends with the wrong",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Absence of obsessive repetition.** A Shostakovich passage that varies constantly without ostinato ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Ornamentation for beauty.** Ornaments in Shostakovich (grace notes, trills) are expressive of some",
+      "severity": "soft"
+    }
+  ]
+}

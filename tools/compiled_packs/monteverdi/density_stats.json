@@ -1,0 +1,50 @@
+{
+ "composer": "monteverdi",
+ "total_bars": 3885,
+ "rh": {
+  "singing_melody": {
+   "median": 4,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.76,
+   "n": 1751
+  },
+  "held_note": {
+   "median": 2,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.52,
+   "n": 1579
+  },
+  "scalar_run": {
+   "median": 8,
+   "p25": 7,
+   "p75": 8,
+   "mean": 7.66,
+   "n": 71
+  }
+ },
+ "lh": {
+  "pedal_point": {
+   "median": 2.0,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.55,
+   "n": 1596
+  },
+  "bass_melody": {
+   "median": 3,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.36,
+   "n": 1359
+  },
+  "broken_chord_wave": {
+   "median": 5.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.62,
+   "n": 414
+  }
+ }
+}

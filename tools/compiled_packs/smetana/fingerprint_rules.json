@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "czech_dance_idiom_polka_and_furiant",
+      "name": "Czech dance idiom \u2014 Polka and Furiant",
+      "description": "The Polka is a fast 2/4 Bohemian couple dance with characteristic dotted rhythm (\u2669. \u266a \u2669.) and strong downbeats. Smetana brought the polka into art music with complete conviction \u2014 it is not a \"nationa",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "vltava_landscape_program_the_tone_poem_tradition",
+      "name": "Vltava/landscape program \u2014 the tone poem tradition",
+      "description": "M\u00e1 vlast (My Homeland) is the paradigm: music that represents specific Czech landscapes, legends, and places. The water surface of the Vltava river, the Bohemian forests, Vy\u0161ehrad castle \u2014 Smetana des",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "folk_melody_as_structural_theme",
+      "name": "Folk melody as structural theme",
+      "description": "Smetana's main themes often sound folk-like: singable, diatonic, with the character of Czech village music. But unlike Dvo\u0159\u00e1k, Smetana frequently uses real Czech folk tunes as his thematic material (e",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "clear_classical_formal_logic",
+      "name": "Clear, Classical formal logic",
+      "description": "Despite nationalistic content, Smetana's musical language is rooted in Germanic Classicism (he studied with Liszt's influence, was inspired by Schumann). His forms are clear: sonata structure with ide",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "idyllic_vs_heroic_contrast",
+      "name": "Idyllic vs. heroic contrast",
+      "description": "Smetana alternates between two emotional worlds: the pastoral/idyllic (the Bohemian countryside, village life, gentle rippling water) and the heroic/epic (Vy\u0161ehrad, Libu\u0161e, the Hussite legacy). The co",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

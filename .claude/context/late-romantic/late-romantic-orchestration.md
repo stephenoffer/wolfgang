@@ -218,3 +218,42 @@ V:Hn name="Horn"
 | Progressive orchestration | Instrumentation evolves across movement |
 | Anti-doubling | Mahler: solo timbres, avoid blending |
 | Over-doubling | Bruckner: massive unisons for power |
+
+## Bruckner's "Orchestral Organ"
+
+Bruckner characteristically translated organ registration thinking to orchestral scoring:
+
+| Organ Concept | Orchestral Equivalent | Effect |
+|---|---|---|
+| Full organ (tutti) | Full brass + strings + timpani | Massive, cathedral-like climax |
+| Foundation stops | Horns + trombones + tuba sustained | Warm, dark foundation |
+| Principal chorus | Trumpets + horns in octaves | Brilliant, clear |
+| Flute stops | Woodwinds sustained, no brass | Gentle, transparent |
+| Reed stops | Oboes + clarinets, or solo brass | Penetrating, vocal |
+| Swell box crescendo | Gradual orchestral build (strings tremolo → +winds → +brass) | The Bruckner crescendo |
+| Manual change | Sudden shift between orchestral groups | Terraced dynamics |
+| Pedal point | Sustained bass (tuba + contrabass + timpani roll) | Harmonic anchor |
+
+## Strauss's Transparent Scoring
+
+Despite using massive forces, Strauss characteristically maintained clarity through:
+
+| Technique | Method | Effect |
+|---|---|---|
+| Virtuosic solo within tutti | Solo horn or violin above sustained orchestra | Concertante brilliance |
+| Conversational woodwinds | Rapid dialogues between individual winds | Chamber-music clarity |
+| Dynamic differentiation | Each section at different dynamic (brass f, strings mf, winds p) | Layered transparency |
+| Register separation | Keep families in different octave registers | No mud |
+| Selective doubling | Double only at climaxes; elsewhere, pure timbres | Color diversity |
+| Rest architecture | Instruments rest frequently, re-enter fresh | Prevents fatigue, maintains variety |
+
+## Orchestral Density Control (100+ Musicians)
+
+| Problem | Solution | Example |
+|---|---|---|
+| Bass mud | Space low instruments widely; avoid doubling bass + contrabass at unison | Use octave doublings below C3 |
+| Mid-range congestion | Assign different rhythms to instruments in same register | Contrapuntal independence |
+| Climax without mud | Use octave doublings rather than same-octave doublings | Unisons at octave, not unison pitch |
+| Sustain vs. attack | Separate sustained tones (brass/winds) from moving lines (strings) | Functional role clarity |
+| Balance at ppp | Use single instruments or solo desks | Chamber-like scoring within large orchestra |
+| Maximum impact at fff | All instruments on chord tones, wide spacing, percussion punctuation | Spread across 5+ octaves |

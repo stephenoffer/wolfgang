@@ -18,6 +18,44 @@
 | b | Lower interval | Flattened interval | |
 | + | Augmented | Raised leading tone | |
 
+
+## Harmonic Expression in Baroque Style
+
+The Baroque doctrine of Affektenlehre holds that each movement embodies a single, unified affect — and harmony is the engine that generates it. Consider: the suspension is not merely a voice-leading rule. The 4-3 suspension IS the feeling — the moment of ache before release, the held breath before exhaling. A chain of suspensions creates sustained pathos precisely because each dissonance is prepared, felt, and resolved.
+
+### Affect-to-Harmony Map
+
+| Affect | Harmonic Technique | Why It Creates the Effect |
+|--------|-------------------|--------------------------|
+| Grief / Lament | Descending chromatic tetrachord (lament bass) | Stepwise chromatic descent feels like slow, inevitable falling — the body sinking under sorrow |
+| Devotion / Pleading | 4-3 and 7-6 suspension chains | Each suspension creates a moment of yearning; resolution brings brief peace, then yearning returns |
+| Joy / Triumph | Circle-of-5ths in major, strong PACs | Functional momentum creates forward-flowing energy; the arrival IS the triumph |
+| Fury / Agitation | Rapid harmonic rhythm, dim 7ths, cross-relations | Harmonic instability mirrors emotional turbulence — the listener cannot find rest |
+| Wonder / Awe | Neapolitan chord, deceptive cadence | The unexpected harmony jolts the listener out of expectation — the gasp IS the wonder |
+| Pastoral peace | Pedal tones, slow harmonic rhythm, plagal | The drone beneath creates unchanging ground; time itself seems to slow |
+| Heroic resolve | Extended dominant preparation, Picardy 3rd | The longer the preparation, the greater the sense of overcoming |
+
+### Suspension Chain Creating Sustained Pathos
+
+The listener feels each suspension as a small wound that heals, only for another to open. The figured bass `4-3` is not a number — it is an emotional event.
+
+```abc
+X:50
+T:Suspension Chain - Affective Pathos
+M:4/4
+L:1/4
+K:Dm
+V:1 clef=treble
+[DA] [DA] [^CG] [^CE] | [DF] [CF] [B,F] [B,E] | [A,E] [A,D] [A,^C] [D2F2] |
+V:2 clef=bass
+D, A,, D, A,, | B,, F,, G,, G,, | A,, D,, A,, D,,2 |
+% 4-3 sus --- 7-6 sus --- 4-3 sus --- resolution to D minor
+```
+
+The lament bass — a descending chromatic tetrachord — is the era's universal grief archetype (Purcell's Dido, Bach's Crucifixus). Its power lies in chromatic inevitability: each semitone descent feels like a step further into darkness, and the listener senses where it leads but cannot stop the descent.
+
+Figured bass, far from being a constraint, represents creative freedom. The continuo player improvises within the harmonic framework, making each performance a living conversation — the affect is specified, but its moment-to-moment expression is spontaneous and personal.
+
 ## Accidentals in Figured Bass
 
 | Symbol | Meaning |
@@ -180,14 +218,16 @@ C, F,, B,, E,, | A,, D,, G,, C, |
 | Cross-relation | Chromatic clash between voices | English baroque (Purcell) |
 | Picardy 3rd | Major I at end of minor piece | Final cadence convention |
 
-## Voice-Leading Rules (Strict Baroque)
+## Voice-Leading Rules (Baroque Period Conventions)
+
+> **Note:** These are period conventions of Baroque style, not universal laws. They represent the norms that Baroque composers worked within, but individual composers occasionally departed from them for expressive effect.
 
 | Rule | Description |
 |------|-------------|
 | No parallel 5ths/8ves | Between any pair of voices |
 | Contrary motion preferred | Especially outer voices |
 | Leading tone resolves up | To tonic (except inner voice descending to 5th) |
-| 7th resolves down | By step, always |
+| 7th resolves down | By step, characteristically |
 | Diminished 5th resolves inward | Augmented 4th resolves outward |
 | Largest leap: octave | Avoid augmented intervals in melody |
 | After a leap | Resolve by step in opposite direction |

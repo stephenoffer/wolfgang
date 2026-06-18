@@ -1,18 +1,24 @@
-# Generated output
-output/*.musicxml
-output/*.mxl
-output/*.mid
+# Generated output scores (regenerable) and per-piece working state.
+# NOTE: corpus data under tools/ (compiled_packs, reference_index,
+# pattern_library, texture_templates, context_*) IS tracked — do not ignore it.
+output/
+workspace/
 
-# Working state during generation
-workspace/*/
+# Raw reference scores — large (200MB+), regenerable third-party clones with
+# their own nested .git repos. Bar records / compiled corpus artifacts are
+# tracked instead; raw scores are not needed in this repo.
+tools/reference_scores/
 
 # Python
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*.egg-info/
+build/
+dist/
 .venv/
 venv/
-*.egg-info/
+.pytest_cache/
+.ruff_cache/
 
 # OS
 .DS_Store

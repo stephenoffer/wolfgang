@@ -1,0 +1,50 @@
+{
+ "composer": "palestrina",
+ "total_bars": 8302,
+ "rh": {
+  "held_note": {
+   "median": 1.0,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.49,
+   "n": 3312
+  },
+  "singing_melody": {
+   "median": 4.0,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.8,
+   "n": 3986
+  },
+  "scalar_run": {
+   "median": 7,
+   "p25": 7,
+   "p75": 7,
+   "mean": 7.22,
+   "n": 107
+  }
+ },
+ "lh": {
+  "pedal_point": {
+   "median": 2,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.52,
+   "n": 3109
+  },
+  "bass_melody": {
+   "median": 3.0,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.42,
+   "n": 3486
+  },
+  "broken_chord_wave": {
+   "median": 5.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.48,
+   "n": 950
+  }
+ }
+}

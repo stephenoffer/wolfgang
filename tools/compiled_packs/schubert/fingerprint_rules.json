@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "parallel_major_minor_shift_the_schubertian_flip",
+      "name": "Parallel major-minor shift (the Schubertian flip)",
+      "description": "Schubert moves between tonic major and tonic minor as a primary expressive device: C major \u2192 C minor \u2192 C major, without modulation. The shift carries immediate emotional weight: major is daylight, min",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "third_relation_harmony_mediant_motion",
+      "name": "Third-relation harmony (mediant motion)",
+      "description": "Harmonic moves by major or minor third instead of fifth: C major \u2192 E major, or C major \u2192 Ab major, or C major \u2192 A major. These are not modulations \u2014 they are color shifts. The key a third away is not ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "celestial_prolongation_the_moment_that_stops_time",
+      "name": "Celestial prolongation \u2014 the moment that stops time",
+      "description": "Schubert's slow movements contain passages where the music seems to stop being in time: a single chord sustained for many bars, pp or ppp, high strings tremolo or no accompaniment at all, melody suspe",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "song_melody_in_instrumental_writing",
+      "name": "Song melody in instrumental writing",
+      "description": "Every Schubert melody sings. It's not abstract \u2014 it has breath, phrase shape, the cadence of a spoken sentence. The melody could be set to words. The piano or strings sing the melody; the accompanimen",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "wandering_harmonic_language_never_quite_settling",
+      "name": "Wandering harmonic language \u2014 never quite settling",
+      "description": "Schubert's harmonic language creates restlessness: even in the tonic, a chromatic inflection or unexpected chord color suggests that rest is not final. His music wanders, and the listener never quite ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

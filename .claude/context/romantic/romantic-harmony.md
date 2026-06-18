@@ -3,6 +3,42 @@
 ## Era Span
 ~1820–1900. Beethoven late works through Brahms/Tchaikovsky/Dvorak.
 
+
+## The Romantic Harmonic Imagination
+
+Romantic chromaticism is not decoration — it is the expansion of harmonic language to express deeper, more personal feeling. Where Classical composers found intensity through restraint, Romantic composers found it through abundance: every new dissonance expresses something that could not be said before. Schoenberg described this trajectory as the "emancipation of dissonance" — each generation freed another chord from the obligation to resolve, giving composers access to previously inexpressible emotional states.
+
+### Chromatic Techniques as Emotional Purposes
+
+| Chromatic Technique | Emotional Purpose | How the Listener Experiences It |
+|--------------------|------------------|-------------------------------|
+| Chromatic mediants (C to Ab, C to E) | Sudden emotional transport | A door opens to another world — wonder, magic, or shadow |
+| Augmented 6th chords | Intensified yearning before resolution | The harmony leans harder into the dominant — the ache deepens |
+| Neapolitan chord (bII) | Dark gravitas, fateful weight | The bass drops to an alien note — solemnity, inevitability |
+| Extended dominant chains | Perpetual seeking, restless motion | Each resolution becomes a new question — the heart cannot rest |
+| Deceptive cadences to bVI | Expansive surprise | The expected home is replaced by something vast and unexpected |
+| Enharmonic modulation | Sudden recontextualization | The same sound acquires new meaning — the world shifts underfoot |
+| Omnibus progression | Inexorable chromatic fate | Contrary chromatic motion creates the feeling of forces converging |
+
+### The Bass Line as Protagonist
+
+In Romantic harmony, the bass line carries its own emotional narrative. A chromatic bass descent (C - B - Bb - A - Ab) creates the effect of slow, weighty sinking — the listener feels gravitational pull downward. A chromatic bass ascent creates intensification, as if pressure is building from beneath. These bass narratives operate independently from the upper-voice harmony, giving Romantic music its characteristic depth.
+
+### Mode Mixture as Psychological Depth
+
+Borrowing from the parallel minor in a major-key passage creates the effect of shadow entering the light — psychological complexity within a single phrase. The iv chord in major is not "wrong"; it is the sound of memory tinged with loss, or happiness aware of its own fragility.
+
+```abc
+X:50
+T:Mode Mixture - Shadow in the Light
+M:4/4
+L:1/2
+K:C
+[CEG] [CF_A] | [C_EG] [C_E_A] | [B,DF] [CEG] |
+w: I iv i bVI V7 I
+% The borrowed chords create the feeling of clouds passing through sunlight
+```
+
 ## Core Chromatic Techniques
 
 ### Chromatic Mediants
@@ -14,6 +50,8 @@
 | Lower double chromatic | C -> A major | M -> M | Luminous |
 | Upper chromatic mediant (minor) | C -> E minor | M -> m | Wistful |
 | Lower chromatic mediant (minor) | C -> Ab minor | M -> m | Ominous |
+
+**Classification:** "Chromatic" = 1 chromatic alteration from the diatonic mediant (iii=Em or vi=Am in C). "Double chromatic" = 2 alterations (no common tones with tonic triad). Some textbooks use different taxonomies; this table follows the alteration-count system.
 
 Common voice-leading: hold common tone, move other voices by semitone.
 
@@ -224,3 +262,70 @@ w: I IV7 bVII bIII7 bVI bII7
 | Inverted pedal | Sustained top voice | Ethereal, floating |
 | Double pedal | Tonic + dominant held | Maximum stability |
 | Chromatic over pedal | Remote harmonies over pedal | Tension without losing key |
+
+## Harmonic Rhythm in Romantic Style
+
+| Context | Typical Rate | Effect |
+|---|---|---|
+| Lyrical melody | 1 chord per bar or slower | Spacious, singing quality |
+| Building tension | Accelerating: 1/bar → 2/bar → 1/beat | Intensification toward climax |
+| Climax | Often 1 chord sustained or rapid changes | Maximum tension or maximum weight |
+| Post-climax release | Decelerating back to 1/bar | Resolution, breathing space |
+| Recitative-like passages | Irregular, following text/gesture | Dramatic, speech-like |
+| Sequential passages | Regular harmonic rhythm matching sequence | Momentum, forward drive |
+
+```abc
+X:10
+T:Harmonic Rhythm Acceleration
+M:4/4
+L:1/4
+K:C
+%% Slow harmonic rhythm (1/bar)
+[CEG]4 | [FAc]4 |
+%% Accelerating (2/bar)
+[DFA]2 [GBd]2 | [Ace]2 [DFB]2 |
+%% Fast (1/beat) approaching cadence
+[_A,C_E^F] [G,BDF] [CEGc] [CEGc] |
+w: _ _ Ger+6 V I _
+```
+
+## Chromatic Voice-Leading Patterns
+
+Romantic composers characteristically prioritized smooth chromatic voice leading over functional root movement:
+
+| Pattern | Voice Motion | Musical Effect |
+|---|---|---|
+| Chromatic tenor descent | E → Eb → D → Db → C in inner voice | Yearning, Schumann/Brahms |
+| Chromatic bass ascent | C → C# → D → D# → E under held chord | Intensification |
+| Contrary chromatic | Bass descends, soprano ascends chromatically | Expanding tension |
+| Parallel chromatic 3rds | Two voices move in chromatic 3rds | Lush, Brahms signature |
+| Common-tone diminished 7th | Hold one note, slide other 3 chromatically | Smooth color shift |
+
+```abc
+X:11
+T:Chromatic Inner Voice Descent (Brahms style)
+M:3/4
+L:1/4
+K:C
+[CEGc] [CE_Gc] [CE_G_B] | [CF_A_B] [CFAB] [CEGc] |
+w: I _ _ iv6 IV I
+```
+
+## Suspension Chains
+
+| Type | Pattern | Period association |
+|---|---|---|
+| 4-3 chain | Suspensions cascade through voices | Brahms, Franck |
+| 7-6 chain | Series of prepared dissonances | Chopin, Schumann |
+| 9-8 chain | Upper voice suspensions | Wagner, Bruckner |
+| Mixed chain | Combining 4-3 and 7-6 | Late Romantic complexity |
+
+```abc
+X:12
+T:Suspension Chain (7-6)
+M:4/4
+L:1/2
+K:C
+[EGc]- [EGB] | [DFA]- [DFG] | [CEG]2 |
+w: 7th-6th 7th-6th I
+```

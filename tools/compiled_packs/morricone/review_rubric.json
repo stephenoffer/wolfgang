@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_eclectic_instrumentation_wrong_instruments_for_the_context",
+      "category": "fingerprint",
+      "description": "Eclectic instrumentation \u2014 \"wrong\" instruments for the context",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_simple_singable_primary_melody_over_complex_texture",
+      "category": "fingerprint",
+      "description": "Simple, singable primary melody over complex texture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_spaghetti_western_sonic_world_open_spaces_and_silence",
+      "category": "fingerprint",
+      "description": "Spaghetti Western sonic world \u2014 open spaces and silence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_modal_folk_melodic_language_not_classical_not_pop",
+      "category": "fingerprint",
+      "description": "Modal/folk melodic language \u2014 not Classical, not pop",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_countermelody_architecture_multiple_layers_singing_simultaneously",
+      "category": "fingerprint",
+      "description": "Countermelody architecture \u2014 multiple layers singing simultaneously",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Conventional Hollywood orchestration.** Morricone doesn't sound like John Williams or Howard Shore",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Complex melody.** The primary melody must be simple. A complicated, hard-to-sing melody lacks Morr",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Filling all the space.** The silence is part of the composition. A texture that is constantly acti",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Single melodic layer.** Morricone builds simultaneous melodies. A single-melody texture is simpler",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Emotional homogeneity.** Morricone's best scores have extreme emotional contrasts within a single ",
+      "severity": "soft"
+    }
+  ]
+}

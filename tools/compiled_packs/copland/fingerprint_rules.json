@@ -1,0 +1,44 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "open_widely_spaced_harmonies_the_american_landscape",
+      "name": "Open, widely-spaced harmonies \u2014 the American landscape",
+      "description": "Copland's most immediately recognizable sound: chords with open 5ths and 4ths in the bass, wide spacing (bass in the lowest register, melody in the highest, virtually nothing in between), and lots of ",
+      "texture_affinities": [
+        "silence"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "pandiatonicism_all_notes_of_the_key_simultaneously",
+      "name": "Pandiatonicism \u2014 all notes of the key simultaneously",
+      "description": "Copland uses all seven notes of a diatonic scale simultaneously or in rapid succession, without any one note functioning as a tension/resolution agent. The result is a bright, major-sounding, \"all-whi",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "american_folk_and_hymn_melody",
+      "name": "American folk and hymn melody",
+      "description": "From Appalachian Spring and Billy the Kid: the folk melody (Simple Gifts, Western cowboy tunes, hoedown tunes) is used as direct thematic material or as the model for Copland's own composed folk-like ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "sudden_silence_and_wide_dynamic_range",
+      "name": "Sudden silence and wide dynamic range",
+      "description": "Copland punctuates his music with complete silence \u2014 rests of 2\u20134 bars \u2014 as structural events. The silence represents the openness of the American landscape: the space between events is as important a",
+      "texture_affinities": [
+        "silence"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "jazz_influenced_rhythm_the_hoedown_energy",
+      "name": "Jazz-influenced rhythm \u2014 the \"hoedown\" energy",
+      "description": "In fast movements (Rodeo Hoedown, El Sal\u00f3n M\u00e9xico), Copland uses jazz-influenced syncopation: off-beat accents, irregular groupings (3+3+2 in a 4/4 bar), and dance rhythm. This is not jazz harmony \u2014 i",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

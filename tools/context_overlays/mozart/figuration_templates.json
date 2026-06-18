@@ -1,0 +1,10 @@
+[
+  {
+    "id": "fig_1_alberti",
+    "grounding": "hard_corroborated",
+    "evidence_source": "corpus_feedback",
+    "evidence_confidence": 1.0,
+    "support_count": 66,
+    "last_updated": "2026-04-19"
+  }
+]

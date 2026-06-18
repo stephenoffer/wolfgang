@@ -1,0 +1,2397 @@
+{
+ "composer": "schubert",
+ "source_bar_index": "reference_index/schubert/bar_index.json",
+ "total_gestures": 82,
+ "function_distribution": {
+  "answer_with_space": 41,
+  "answer": 35,
+  "pickup": 2,
+  "cadential_push": 2,
+  "cadential_release": 2
+ },
+ "contour_distribution": {
+  "static": 49,
+  "descending": 21,
+  "ascending": 12
+ },
+ "gestures": [
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b1",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b2",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b3",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b4",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b5",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b6",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b7",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b8",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b9",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b10",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b11",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b12",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b13",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b14",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b15",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b16",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b17",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 17",
+   "source_bar_range": [
+    17,
+    17
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b18",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 18",
+   "source_bar_range": [
+    18,
+    18
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b19",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 19",
+   "source_bar_range": [
+    19,
+    19
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b20",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 20",
+   "source_bar_range": [
+    20,
+    20
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b21",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 21",
+   "source_bar_range": [
+    21,
+    21
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b22",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 22",
+   "source_bar_range": [
+    22,
+    22
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b23",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 23",
+   "source_bar_range": [
+    23,
+    23
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b24",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 24",
+   "source_bar_range": [
+    24,
+    24
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b25",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 25",
+   "source_bar_range": [
+    25,
+    25
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b26",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 26",
+   "source_bar_range": [
+    26,
+    26
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b27",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 27",
+   "source_bar_range": [
+    27,
+    27
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b28",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 28",
+   "source_bar_range": [
+    28,
+    28
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b29",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 29",
+   "source_bar_range": [
+    29,
+    29
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b30",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 30",
+   "source_bar_range": [
+    30,
+    30
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b31",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 31",
+   "source_bar_range": [
+    31,
+    31
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b32",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 32",
+   "source_bar_range": [
+    32,
+    32
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b33",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 33",
+   "source_bar_range": [
+    33,
+    33
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b34",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 34",
+   "source_bar_range": [
+    34,
+    34
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b35",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 35",
+   "source_bar_range": [
+    35,
+    35
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b36",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 36",
+   "source_bar_range": [
+    36,
+    36
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b37",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 37",
+   "source_bar_range": [
+    37,
+    37
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b38",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 38",
+   "source_bar_range": [
+    38,
+    38
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b39",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 39",
+   "source_bar_range": [
+    39,
+    39
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b40",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 40",
+   "source_bar_range": [
+    40,
+    40
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b41",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 41",
+   "source_bar_range": [
+    41,
+    41
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b42",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 42",
+   "source_bar_range": [
+    42,
+    42
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b43",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 43",
+   "source_bar_range": [
+    43,
+    43
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b44",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 44",
+   "source_bar_range": [
+    44,
+    44
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b45",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 45",
+   "source_bar_range": [
+    45,
+    45
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b46",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 46",
+   "source_bar_range": [
+    46,
+    46
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b47",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 47",
+   "source_bar_range": [
+    47,
+    47
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b48",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 48",
+   "source_bar_range": [
+    48,
+    48
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b49",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 49",
+   "source_bar_range": [
+    49,
+    49
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b50",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 50",
+   "source_bar_range": [
+    50,
+    50
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b51",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 51",
+   "source_bar_range": [
+    51,
+    51
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b52",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 52",
+   "source_bar_range": [
+    52,
+    52
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b53",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 53",
+   "source_bar_range": [
+    53,
+    53
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b54",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 54",
+   "source_bar_range": [
+    54,
+    54
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b55",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 55",
+   "source_bar_range": [
+    55,
+    55
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b56",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 56",
+   "source_bar_range": [
+    56,
+    56
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b57",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 57",
+   "source_bar_range": [
+    57,
+    57
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b58",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 58",
+   "source_bar_range": [
+    58,
+    58
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b59",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 59",
+   "source_bar_range": [
+    59,
+    59
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b60",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 60",
+   "source_bar_range": [
+    60,
+    60
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b61",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 61",
+   "source_bar_range": [
+    61,
+    61
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b62",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 62",
+   "source_bar_range": [
+    62,
+    62
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b63",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 63",
+   "source_bar_range": [
+    63,
+    63
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b64",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 64",
+   "source_bar_range": [
+    64,
+    64
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b65",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 65",
+   "source_bar_range": [
+    65,
+    65
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b66",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 66",
+   "source_bar_range": [
+    66,
+    66
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b67",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 67",
+   "source_bar_range": [
+    67,
+    67
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b68",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 68",
+   "source_bar_range": [
+    68,
+    68
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b69",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 69",
+   "source_bar_range": [
+    69,
+    69
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b70",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 70",
+   "source_bar_range": [
+    70,
+    70
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b71",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 71",
+   "source_bar_range": [
+    71,
+    71
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b72",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 72",
+   "source_bar_range": [
+    72,
+    72
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b73",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 73",
+   "source_bar_range": [
+    73,
+    73
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b74",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 74",
+   "source_bar_range": [
+    74,
+    74
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b75",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 75",
+   "source_bar_range": [
+    75,
+    75
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b76",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 76",
+   "source_bar_range": [
+    76,
+    76
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b77",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 77",
+   "source_bar_range": [
+    77,
+    77
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b78",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 78",
+   "source_bar_range": [
+    78,
+    78
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b79",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 79",
+   "source_bar_range": [
+    79,
+    79
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b80",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 80",
+   "source_bar_range": [
+    80,
+    80
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b81",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 81",
+   "source_bar_range": [
+    81,
+    81
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "schubert_schubert_Lindenbaumxml_b82",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "schubert/Lindenbaum.xml bar 82",
+   "source_bar_range": [
+    82,
+    82
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+  "composer": "weber",
+  "genre": "",
+  "support_tier": "B",
+  "corpus_bar_count": 241,
+  "profile_files": [],
+  "corpus_files": [
+    "bar_index.json"
+  ],
+  "pattern_count": 233
+}

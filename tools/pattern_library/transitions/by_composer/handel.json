@@ -1,0 +1,24 @@
+{
+  "counts": {
+    "pedal_point": {
+      "pedal_point": 13,
+      "bass_melody": 13,
+      "broken_chord_wave": 1
+    },
+    "bass_melody": {
+      "pedal_point": 8,
+      "bass_melody": 5,
+      "broken_chord_wave": 6
+    },
+    "broken_chord_wave": {
+      "pedal_point": 6,
+      "bass_melody": 1
+    }
+  },
+  "self_continuation": {
+    "pedal_point": 0.4815,
+    "bass_melody": 0.2632,
+    "broken_chord_wave": 0.0
+  },
+  "total_transitions": 53
+}

@@ -1,153 +1,66 @@
 ---
 name: w-research
 description: "Research unknown composers or styles via web search. Build temporary composer profiles for Wolfgang composition."
-argument-hint: "<piece-id> <composer-name>"
+argument-hint: "<composer-name or style description>"
 ---
 
-# /w-research -- Build Composer Profile from Web Research
+# w-research — Composer/Style Research
 
-You are researching a composer to build a compositional profile that the Wolfgang pipeline can use during generation. Parse the arguments to extract the piece-id and composer-name.
+Research unknown composers or styles and build a temporary **text profile**
+(harmonic/melodic/textural prose) for composition.
 
-## Step 1: Initial Research
+**Important — this skill does NOT acquire reference scores.** It builds the
+*doctrine/profile* layer from web text; it does not download or index any
+real corpus bars. A profile alone produces a brief with no exemplars, which
+the commit gate now blocks (`brief_insufficient`). To actually **arm** a
+composer with real corpus material (the bars Claude composes from), use the
+acquisition pipeline instead:
 
-Use WebSearch to gather comprehensive information about the composer. Run multiple searches:
-
-1. **"[composer-name] compositional style analysis"** -- for overviews of their approach
-2. **"[composer-name] harmonic language techniques"** -- for harmony specifics
-3. **"[composer-name] orchestration"** -- for instrumentation preferences
-4. **"[composer-name] most important works list"** -- for representative pieces
-5. **"[composer-name] musical innovations contributions"** -- for signature devices
-6. **"[composer-name] biography musical education influences"** -- for context and influences
-
-If the composer is very obscure and initial searches return little, broaden:
-- Search for the composer's nationality/era + "composers" to find them in lists
-- Search for specific works if known
-- Search music encyclopedia entries
-
-## Step 2: Build the Profile
-
-Construct a composer profile in dense, tabular format matching the existing profiles in `.claude/context/`. The profile should be approximately 150-200 lines and follow this structure:
-
-```markdown
-# [Composer Full Name] ([Birth Year]-[Death Year]) -- Composer Profile
-
-## Quick Reference
-| Attribute | Value |
-|-----------|-------|
-| Era | [Baroque/Classical/Romantic/Modern/etc.] |
-| Nationality | [Country] |
-| Active Period | [Year range] |
-| Primary Forms | [Symphony, Opera, Chamber, etc.] |
-| Harmonic Language | [Brief descriptor] |
-| Melodic Character | [Brief descriptor] |
-| Rhythmic Character | [Brief descriptor] |
-| Key Influences | [Names] |
-| Influenced | [Names] |
-
-## Harmonic Language
-[Dense paragraph on harmonic practices: preferred progressions, cadential patterns,
-chromaticism level, modulation habits, use of dissonance, pedal tones, etc.]
-
-| Technique | Usage | Example Context |
-|-----------|-------|-----------------|
-| [e.g., Augmented sixths] | [Frequency/context] | [Which works] |
-| ... | ... | ... |
-
-## Melodic Style
-[Dense paragraph on melodic construction: phrase lengths, contour preferences,
-interval preferences, ornamentation, sequence usage, etc.]
-
-### Characteristic Intervals and Contours
-| Pattern | Frequency | Context |
-|---------|-----------|---------|
-| [e.g., Rising 4th opening] | Common | Heroic themes |
-| ... | ... | ... |
-
-## Rhythmic Characteristics
-[Paragraph on rhythmic practices: preferred meters, rhythmic motifs,
-syncopation usage, tempo relationships, rubato, etc.]
-
-## Orchestration / Instrumentation
-[Paragraph on orchestral palette: preferred instruments, doublings,
-solo writing, texture preferences, dynamic range habits]
-
-| Instrument/Section | Typical Role | Signature Usage |
-|--------------------|-------------|-----------------|
-| [e.g., Horns] | [Harmonic fill, heroic calls] | [Specific technique] |
-| ... | ... | ... |
-
-## Formal Innovations
-[How the composer treats form: adherence to convention vs. innovation,
-preferred structures, transition techniques, development strategies]
-
-## Representative Works
-| Work | Form | Key Features | Good Reference For |
-|------|------|-------------|-------------------|
-| [Title] | [Symphony/Sonata/etc.] | [Notable aspects] | [What to study it for] |
-| ... | ... | ... | ... |
-
-(List 8-12 representative works spanning their career)
-
-## Signature Devices
-[Bullet list of 5-10 distinctive compositional fingerprints that
-distinguish this composer from contemporaries]
-
-- **[Device name]**: [Description and context]
-- ...
-
-## ABC Notation Examples
-Where possible, provide short ABC snippets illustrating characteristic patterns:
-
-X:1
-T:[Composer] - Characteristic melodic pattern
-M:4/4
-L:1/8
-K:[key]
-[4-8 bars illustrating a typical melodic gesture]
-
-X:2
-T:[Composer] - Characteristic harmonic progression
-M:4/4
-L:1/4
-K:[key]
-[Short chord progression in ABC]
-
-(Include 2-4 ABC examples if enough information is available to construct them
-accurately. If not enough detail is known, omit rather than fabricate.)
-
-## Style Summary for Generation
-[A concise paragraph that a composition engine can use as a prompt:
-"When composing in the style of [composer], prioritize X, Y, Z.
-Avoid A, B, C. The texture should tend toward... The harmonic rhythm
-typically moves at... Melodies characteristically..."]
+```bash
+# music21 local corpus first, allowlisted web fallback (KernScores) second
+python3 -m scripts.acquire_composer <composer>           # run from tools/
+python3 -m scripts.acquire_composer --status <composer>  # just the tier
 ```
 
-## Step 3: Save the Profile
+Acquisition writes `reference_index/<composer>/` + `corpus_profile.json` +
+`density_stats.json` and lifts the coverage tier. Run it BEFORE composing
+for any composer that isn't already armed. Use w-research to add the prose
+profile on top of (not instead of) an armed corpus.
 
-1. Ensure the directory `workspace/<piece-id>/research/` exists.
-2. Write the profile to `workspace/<piece-id>/research/<composer-name>.md` (use lowercase, hyphens for spaces in filename).
+Read `references/research-template.md` for the profile schema, search
+query templates, source-reliability tiers, and the output checklist.
 
-## Step 4: Offer Permanent Save
+## When to Use
 
-Ask the user:
+- User requests a composer not in `.claude/context/`
+- User requests a style blend with an unknown component
+- User references a specific piece that needs analysis
 
-> "Composer profile for [Name] saved to workspace/<piece-id>/research/. Would you like to save this permanently to the context library? If so, which genre directory should it go in?"
+## Process
 
-If the user confirms, determine the appropriate genre directory from the existing structure under `.claude/context/` and copy the profile to `.claude/context/<genre>/composer-profiles/<composer-name>.md`.
+1. **Web search** for the composer/style (query templates: research-template.md)
+2. **Extract** key characteristics: harmonic language, melodic style, preferred forms, texture approach, rhythmic character — written as research artifacts in `workspace/<piece-id>/research/` per the template schema
+3. **Build** a temporary ComposerPack from them:
 
-## Quality Standards
+```bash
+python3 -c "
+import sys; sys.path.insert(0, 'tools')
+from scales.context_compiler import ContextCompiler
+compiler = ContextCompiler()
+result = compiler.compile('<composer>', '<genre>')
+print(result)
+"
+```
 
-- **Accuracy over completeness**: Only include information that WebSearch actually found. Do not fabricate compositional details. If information is sparse, note gaps explicitly: "Limited information available on orchestration preferences."
-- **Dense tables**: Prefer tabular format over long prose. Tables are faster to scan during generation.
-- **ABC examples**: Only include ABC notation if you have enough concrete information (specific themes, known progressions) to write them accurately. A shorter, accurate profile is better than a longer one with guesses.
-- **Cross-reference**: If the composer is known to have influenced or been influenced by composers already in the context library, note those connections.
-- **Target length**: 150-200 lines. Shorter is acceptable for obscure composers with limited available information. Do not pad with speculation.
+4. **Set expectations** honestly — report the support tier:
 
-## Report
+| Tier | Description | Example |
+|------|-------------|---------|
+| A | Large corpus + full profile | Mozart, Beethoven, Chopin |
+| B | Good corpus in related style | Haydn, Schubert |
+| C | Sparse data + profile exists | Brahms, Debussy, Liszt |
+| D | Unknown — pure era/genre inference | Any unlisted composer |
 
-Print a summary:
-- Composer name and era
-- How much information was found (rich / moderate / sparse)
-- Key stylistic takeaways (3-5 bullets)
-- File location
-- Whether permanent save was offered
+## Output
+
+A compiled ComposerPack at `tools/compiled_packs/<composer>/` that the StyleResolver can load.

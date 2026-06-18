@@ -1,5 +1,52 @@
 # Modern Harmony Reference (c. 1900–1975)
 
+
+## Constructive Dissonance: Modernist Harmonic Expression
+
+Modernist harmony does not abandon expression — it discovers new kinds of expression that earlier eras could not access. Hindemith's tension gradation reveals that every interval carries quantifiable tension, and compositional drama becomes the art of managing a tension arc across time. Dissonance is not "ugly" — it is a broader emotional vocabulary.
+
+### Interval Tension as Expressive Resource
+
+| Interval | Tension Level | Expressive Character |
+|----------|-------------|---------------------|
+| Unison / Octave | None | Stillness, identity, void |
+| Perfect 5th | Very low | Openness, space, Copland's American prairie |
+| Perfect 4th | Low | Ambiguity, suspended expectation |
+| Major 3rd / Minor 6th | Low-Medium | Warmth, consonance — the old world |
+| Minor 3rd / Major 6th | Medium | Tenderness, mild shadow |
+| Major 2nd / Minor 7th | Medium-High | Folk-openness (M2) or jazz-warmth (m7) |
+| Minor 2nd / Major 7th | High | Bite, sting, urgency |
+| Tritone | Maximum | Restlessness, the axis of symmetry |
+
+### Pitch-Class Sets as Expressive Entities
+
+Different pitch-class sets carry distinct emotional fingerprints — not by convention but by intervallic content:
+
+| Set (prime form) | Interval Content | Expressive Character |
+|-----------------|-----------------|---------------------|
+| (0,1,6) | m2 + tritone | Harsh, anxious, angular — creates the effect of a blade |
+| (0,2,5) | M2 + P4 | Open, folk-like, accessible — the listener hears wide spaces |
+| (0,1,3) | m2 + m3 | Chromatic grief, Webern's concentrated sorrow |
+| (0,2,7) | M2 + P5 | Spacious, pentatonic-adjacent — pastoral modernism |
+| (0,1,4) | m2 + M3 | Tense beauty — dissonance and consonance in close quarters |
+| (0,3,6,9) | Diminished 7th symmetry | Hovering, symmetrical — no direction, all directions |
+
+### Neo-Classical Irony and Bartok's Night Music
+
+Stravinsky and Prokofiev's "wrong notes" function as humor — the listener expects a diatonic resolution and receives a semitone displacement, creating the effect of a wink or a sardonic smile. This is not error but commentary: the old harmonic world seen through a distorting mirror.
+
+Bartok's "night music" achieves nocturnal mystery through clusters and sparse texture: isolated dissonant intervals (m2, tritone) placed against silence create the sensation of sounds heard in darkness — each event heightened by the emptiness surrounding it.
+
+```abc
+X:50
+T:Night Music - Nocturnal Mystery (Bartok style)
+M:4/4
+L:1/4
+K:C
+z [^F,C] z2 | z2 [B,F] z | [E,_B,] z z2 | z z z [^G,D] |
+% Sparse intervals in silence — each sound isolated, mysterious, heightened by emptiness
+```
+
 ## Polytonality & Bitonality
 
 | Technique | Description | Common Usage |

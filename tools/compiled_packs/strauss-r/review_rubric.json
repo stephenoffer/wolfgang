@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_tone_poem_narrative_music_as_biography_or_story",
+      "category": "fingerprint",
+      "description": "Tone poem narrative \u2014 music as biography or story",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_post_wagnerian_orchestral_mastery_100_players_as_a_single_instrument",
+      "category": "fingerprint",
+      "description": "Post-Wagnerian orchestral mastery \u2014 100+ players as a single instrument",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_lushness_the_straussian_harmonic_swell",
+      "category": "fingerprint",
+      "description": "Chromatic lushness \u2014 the Straussian harmonic swell",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_ironic_self_quotation_and_musical_joke",
+      "category": "fingerprint",
+      "description": "Ironic self-quotation and musical joke",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_late_style_autumnal_lyricism_der_rosenkavalier_four_last_songs",
+      "category": "fingerprint",
+      "description": "Late style \u2014 autumnal lyricism (Der Rosenkavalier, Four Last Songs)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Abstract, non-programmatic writing.** Strauss almost always has a program. Music that is purely fo",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Sparse orchestration.** Even in \"chamber\" moments, Strauss maintains at least 3 independent orches",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Harmonic timidity.** A Strauss passage that stays in one key and uses only triads sounds like earl",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Short climaxes.** A Strauss climax builds for 30\u201360 bars before arrival. A sudden fortissimo witho",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Emotional one-dimensionality.** Strauss is complex: heroic and comic, tender and ironic, lush and ",
+      "severity": "soft"
+    }
+  ]
+}

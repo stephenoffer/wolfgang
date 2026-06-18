@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "id": "fp_norwegian_folk_scale_the_raised_4th_lydian_inflection",
+      "category": "fingerprint",
+      "description": "Norwegian folk scale \u2014 the raised 4th (Lydian inflection)",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_short_atmospheric_miniature_forms",
+      "category": "fingerprint",
+      "description": "Short, atmospheric miniature forms",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_pedal_point_under_changing_harmonies",
+      "category": "fingerprint",
+      "description": "Pedal point under changing harmonies",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_halling_and_springar_rhythms_norwegian_dance_idiom",
+      "category": "fingerprint",
+      "description": "Halling and Springar rhythms \u2014 Norwegian dance idiom",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sudden_tonal_juxtaposition_grieg_s_harmonic_freshness",
+      "category": "fingerprint",
+      "description": "Sudden tonal juxtaposition \u2014 Grieg's harmonic freshness",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Large-form symphonic architecture.** Grieg's natural scale is small. Forcing his material into a 3",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Complex chromatic harmony (Wagner-style).** Grieg's chromatic moments are fresh and surprising, no",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**German Romantic emotional weight.** Grieg's emotions are clear and fresh \u2014 he doesn't brood. A Gri",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Absence of folk or dance idiom.** Grieg's music always touches folk tradition, either in melody (f",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Dense orchestral texture.** Grieg's orchestration (in Peer Gynt) is clear and chamber-like, even i",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_11",
+      "category": "anti_pattern",
+      "description": "**Alberti bass.** Grieg does not use Alberti bass. He uses open-5th drones, waltz bass (3/4), or arp",
+      "severity": "soft"
+    }
+  ]
+}

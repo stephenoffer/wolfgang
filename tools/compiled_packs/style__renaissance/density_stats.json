@@ -1,0 +1,50 @@
+{
+ "composer": "style__renaissance",
+ "total_bars": 12187,
+ "rh": {
+  "held_note": {
+   "median": 2,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.5,
+   "n": 4891
+  },
+  "singing_melody": {
+   "median": 4,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.79,
+   "n": 5737
+  },
+  "scalar_run": {
+   "median": 7.0,
+   "p25": 7,
+   "p75": 8,
+   "mean": 7.4,
+   "n": 178
+  }
+ },
+ "lh": {
+  "pedal_point": {
+   "median": 2,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.53,
+   "n": 4705
+  },
+  "bass_melody": {
+   "median": 3,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.4,
+   "n": 4845
+  },
+  "broken_chord_wave": {
+   "median": 5.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.52,
+   "n": 1364
+  }
+ }
+}

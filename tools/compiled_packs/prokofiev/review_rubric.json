@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_tonal_but_wrong_the_prokofiev_harmonic_stab",
+      "category": "fingerprint",
+      "description": "Tonal but \"wrong\" \u2014 the Prokofiev harmonic stab",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_motoric_percussive_drive_the_scythian_energy",
+      "category": "fingerprint",
+      "description": "Motoric, percussive drive \u2014 the Scythian energy",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_lyrical_melodic_gift_the_unexpected_tenderness",
+      "category": "fingerprint",
+      "description": "Lyrical melodic gift \u2014 the unexpected tenderness",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_grotesque_and_sardonic_character",
+      "category": "fingerprint",
+      "description": "Grotesque and sardonic character",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_neo_classical_formal_clarity",
+      "category": "fingerprint",
+      "description": "Neo-Classical formal clarity",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Pure, uncomplicated Romanticism.** A Prokofiev passage with no harmonic \"bite,\" no wrong note, no ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Atonal or serial writing.** Prokofiev is tonal throughout. He never goes fully atonal. If there's ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Consistent emotional darkness.** Shostakovich carries constant darkness. Prokofiev alternates: gro",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Impressionistic vagueness.** Prokofiev's clarity is the opposite of Debussy's blur. Clear melodies",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Smooth legato fast passages.** Prokofiev's fast music is staccato, marcato, dry. Smooth legato in ",
+      "severity": "soft"
+    }
+  ]
+}

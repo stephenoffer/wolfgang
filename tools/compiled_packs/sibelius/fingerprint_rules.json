@@ -1,0 +1,42 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "frozen_pedal_stasis",
+      "name": "Frozen pedal stasis",
+      "description": "Entire passages built over a sustained single pitch or harmonic interval in the bass (pedal point), while harmonies and melodic fragments appear and disappear above it. Time feels suspended, not movin",
+      "texture_affinities": [
+        "pedal_point"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "motivic_cells_that_don_t_develop_they_accumulate",
+      "name": "Motivic cells that don't \"develop\" \u2014 they accumulate",
+      "description": "Sibelius fragments his themes into 2\u20133 note cells and repeats them in different instruments at different dynamic levels, gradually accumulating density until the theme emerges complete. The theme is n",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "nordic_modal_language",
+      "name": "Nordic modal language",
+      "description": "Modal scales (especially Dorian and Aeolian) rather than standard major/minor, combined with specific harmonic moves: bVII\u2192I (lowered 7th to tonic), IV\u2192I (plagal), and modal mixture (major and minor s",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "orchestral_texture_as_landscape",
+      "name": "Orchestral texture as landscape",
+      "description": "The orchestral texture doesn't change for dramatic reasons \u2014 it changes to describe something physical (mist thickening, wind strengthening, forest deepening). Texture IS the musical narrative, not ju",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "structural_organicism_the_form_grows",
+      "name": "Structural organicism \u2014 the form grows",
+      "description": "A Sibelius movement doesn't announce its themes and then develop them. Fragments appear, repeat, grow, join together, and at some point you realize the full theme has been present all along in pieces.",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

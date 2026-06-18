@@ -1,5 +1,9 @@
 # Counterpoint Essentials
 
+> **Framing note:** These are common-practice conventions (~1600–1900) that represent the foundation of Western tonal counterpoint. They are not universal laws of music. Parallel 5ths are idiomatic in Impressionist planing, Nationalistic folk harmonization, Minimalist textures, and Medieval/Renaissance organum. Some "rules" (like resolution of tendency tones) represent strong stylistic norms that even rule-breaking composers usually followed — others (like strict species exercises) are pedagogical tools, not compositional requirements. Consult the period-specific context files when composing outside common practice.
+>
+> **Intentional departures are characteristic of many styles:** Debussy's parallel chords, Mussorgsky's raw folk voice-leading, Stravinsky's dissonant doublings, and Bartók's quartal harmonies all deliberately violate these norms to powerful effect. When departing from these conventions, do so with clear artistic intent rather than by accident.
+
 ## Species Counterpoint (Condensed)
 
 ### First Species (1:1 — note against note)
@@ -37,19 +41,21 @@
 | Contrary | Voices move in opposite directions | Preferred; maximizes independence |
 | Oblique | One voice moves, the other sustains | Good for pedal points, common tones |
 | Similar | Same direction, different intervals | Acceptable; watch for hidden parallels |
-| Parallel | Same direction, same interval | Forbidden for P5, P8, P1. OK for 3rds/6ths |
+| Parallel | Same direction, same interval | Avoid for P5, P8, P1 in common practice. OK for 3rds/6ths |
 
 ---
 
 ## Forbidden Parallels & Related Errors
 
-| Error | Rule | Why |
+> These are common-practice norms. Intentional departures are characteristic of many styles (see framing note above).
+
+| Error | Guideline | Why |
 |---|---|---|
-| Parallel 5ths | Two voices moving in P5 to P5 | Destroys voice independence |
-| Parallel octaves | Two voices moving in P8 to P8 | Destroys voice independence |
-| Parallel unisons | Two voices moving in P1 to P1 | Complete loss of independence |
-| Direct (hidden) 5ths/8ves | Similar motion into P5/P8 | In outer voices: allowed only if soprano moves by step. Between inner voices: generally acceptable |
-| Consecutive diminished 5ths | d5 to d5 in parallel | Tolerated only in inner voices |
+| Parallel 5ths | Two voices moving in P5 to P5 — avoid in common-practice contexts | Destroys voice independence in tonal style |
+| Parallel octaves | Two voices moving in P8 to P8 — avoid in common-practice contexts | Destroys voice independence |
+| Parallel unisons | Two voices moving in P1 to P1 — avoid in common-practice contexts | Complete loss of independence |
+| Direct (hidden) 5ths/8ves | Similar motion into P5/P8 — in outer voices: typically allowed only if soprano moves by step. Between inner voices: generally acceptable | |
+| Consecutive diminished 5ths | d5 to d5 in parallel — tolerated only in inner voices | |
 
 **Note:** Parallel 3rds and 6ths are encouraged (up to ~4 consecutive); they provide smooth consonance while maintaining independence.
 
@@ -59,35 +65,37 @@
 |---|---|---|
 | P5 → d5 | Acceptable | Common in descending sequences (e.g., I-ii in major) |
 | d5 → P5 | Acceptable | Common in ascending resolution (e.g., viio-I) |
-| P5 → A5 | Avoid | Harsh sound, poor voice leading |
-| A5 → P5 | Avoid | Equally problematic |
+| P5 → A5 | Generally avoid | Harsh sound, poor voice leading |
+| A5 → P5 | Generally avoid | Equally problematic |
 
-**Rule of thumb:** Consecutive 5ths involving one diminished 5th are acceptable when they arise naturally from diatonic progressions. Consecutive 5ths involving augmented intervals should be avoided.
+**Guideline:** Consecutive 5ths involving one diminished 5th are acceptable when they arise naturally from diatonic progressions. Consecutive 5ths involving augmented intervals are best avoided.
 
 ---
 
 ## Voice-Leading Principles
 
-| Principle | Rule |
+> These are common-practice norms; intentional departures are characteristic of many styles (Impressionist planing, Nationalistic folk harmony, Modern extended techniques, etc.).
+
+| Principle | Guideline |
 |---|---|
-| Resolve 7ths | Chord 7ths resolve stepwise DOWN |
-| Leading tone | Resolves UP by half step to tonic (may descend in inner voice to complete chord) |
+| Resolve 7ths | Chord 7ths typically resolve stepwise DOWN |
+| Leading tone | Characteristically resolves UP by half step to tonic (may descend in inner voice to complete chord) |
 | Common-tone retention | Keep shared tones in the same voice between chords |
 | Nearest position | Move each voice to the nearest available chord tone |
-| Avoid large leaps | Prefer stepwise motion; leaps > P4 should resolve by step in opposite direction |
-| Tritone resolution | Augmented 4th resolves outward; diminished 5th resolves inward |
-| Doubled notes | Double the root (preferred) > 5th > 3rd (never double the leading tone) |
+| Prefer stepwise motion | Leaps > P4 typically resolve by step in opposite direction |
+| Tritone resolution | Augmented 4th characteristically resolves outward; diminished 5th resolves inward |
+| Doubled notes | Double the root (preferred) > 5th > 3rd. Avoid doubling the leading tone in common-practice contexts |
 
 ---
 
 ## Voice Crossing & Overlap
 
-| Rule | Description |
+| Guideline | Description |
 |---|---|
-| No crossing | A lower voice should not move above the note currently in the voice above it (and vice versa) |
-| No overlap | A voice should not move to a pitch that crosses where the adjacent voice JUST WAS on the previous beat |
-| Spacing limits | S-A and A-T: no more than an octave apart. T-B: up to a 12th (P8 + P5) acceptable |
-| Range limits | S: C4-G5, A: F3-D5, T: C3-G4, B: E2-D4 (approximate) |
+| Avoid crossing | A lower voice should generally not move above the note currently in the voice above it (and vice versa) |
+| Avoid overlap | A voice should generally not move to a pitch that crosses where the adjacent voice was on the previous beat |
+| Spacing limits | S-A and A-T: typically no more than an octave apart. T-B: up to a 12th (P8 + P5) acceptable |
+| Range limits | S: C4-G5, A: F3-D5, T: C3-G4, B: E2-D4 (approximate — these are physical constraints for vocal writing) |
 
 ---
 
@@ -121,18 +129,18 @@
 
 ---
 
-## SATB Part-Writing Rules (4-Voice)
+## SATB Part-Writing Guidelines (4-Voice)
 
 ### Chord Spacing & Doubling
 
-| Rule | Detail |
+| Guideline | Detail |
 |---|---|
-| Doubling priority | Root > 5th > 3rd. NEVER double the leading tone or altered tones |
+| Doubling priority | Root > 5th > 3rd. Avoid doubling the leading tone or altered tones in common-practice contexts |
 | Spacing | S-A and A-T: max octave. T-B: max 12th (more flexible) |
-| Complete chords | Include all chord members when possible; omit 5th if needed (never root or 3rd) |
+| Complete chords | Include all chord members when possible; omit 5th if needed (the root and 3rd are most essential) |
 | Root-position triads | Double the root |
 | First-inversion triads | Double soprano note (or root); avoid doubling bass if it's the leading tone |
-| Second-inversion triads | Rare; use only as cadential 6/4, passing 6/4, or pedal 6/4. Double the bass (5th) |
+| Second-inversion triads | Rare in common practice; use typically as cadential 6/4, passing 6/4, or pedal 6/4. Double the bass (5th) |
 | Seventh chords | All four members present; in root position, may omit 5th and double root |
 
 ### Voice-Leading Checklist

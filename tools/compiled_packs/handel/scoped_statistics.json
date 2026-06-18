@@ -1,0 +1,21 @@
+{
+  "total_bars": 54,
+  "lh_distribution": {},
+  "rh_distribution": {},
+  "transition_matrix": {
+    "pedal_point": {
+      "pedal_point": 0.4815,
+      "bass_melody": 0.4815,
+      "broken_chord_wave": 0.037
+    },
+    "bass_melody": {
+      "pedal_point": 0.4211,
+      "bass_melody": 0.2632,
+      "broken_chord_wave": 0.3158
+    },
+    "broken_chord_wave": {
+      "pedal_point": 0.8571,
+      "bass_melody": 0.1429
+    }
+  }
+}

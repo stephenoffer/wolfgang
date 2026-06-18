@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_the_bruckner_rhythm",
+      "category": "fingerprint",
+      "description": "The Bruckner rhythm",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_blocks_of_sound_tutti_vs_silence",
+      "category": "fingerprint",
+      "description": "Blocks of sound \u2014 tutti vs. silence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chorale_like_brass_writing_the_bruckner_brass",
+      "category": "fingerprint",
+      "description": "Chorale-like brass writing \u2014 the Bruckner brass",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_very_slow_harmonic_rhythm_in_long_passages",
+      "category": "fingerprint",
+      "description": "Very slow harmonic rhythm in long passages",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_massive_symphonic_architecture_cathedral_scale",
+      "category": "fingerprint",
+      "description": "Massive symphonic architecture \u2014 cathedral scale",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Constant texture change.** Bruckner holds textures. A Bruckner passage that changes texture every ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Gradual dynamics.** Bruckner's dynamics are not gradual \u2014 they are sudden. The jump from pp to ff ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Short time scale.** A 16-bar \"Bruckner passage\" is not Bruckner \u2014 it's a sketch. His textures need",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Complex rhythm.** Bruckner's rhythm is either the specific Bruckner rhythm or it is simple and ste",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Small orchestration.** Bruckner writes for large orchestra as his default. Chamber or transparent ",
+      "severity": "soft"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "cadence_vocabulary": [
+    {
+      "type": "plagal",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "deceptive",
+      "frequency_weight": 0.5
+    }
+  ],
+  "chromatic_techniques": [
+    {
+      "name": "chromatic",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "secondary dominant",
+      "frequency_weight": 0.3
+    }
+  ]
+}

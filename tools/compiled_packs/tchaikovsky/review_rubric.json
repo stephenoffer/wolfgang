@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_long_sweeping_melody_with_a_built_in_arch",
+      "category": "fingerprint",
+      "description": "Long, sweeping melody with a built-in arch",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_waltz_rhythm_as_emotional_vehicle",
+      "category": "fingerprint",
+      "description": "Waltz rhythm as emotional vehicle",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequence_as_escalation",
+      "category": "fingerprint",
+      "description": "Sequence as escalation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_russian_modal_color_within_tonal_framework",
+      "category": "fingerprint",
+      "description": "Russian modal color within tonal framework",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_fate_doom_bass_ostinato_at_crisis_moments",
+      "category": "fingerprint",
+      "description": "Fate/doom bass ostinato at crisis moments",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Short, symmetrical themes.** Tchaikovsky's themes are long and asymmetrical (5-bar + 7-bar = 12 ba",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Restrained climax.** Tchaikovsky is not restrained at climaxes. The peak of a Tchaikovsky theme is",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Absence of sequential approach.** A Tchaikovsky climax that arrives without sequential preparation",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Neutral harmonic language.** Tchaikovsky's harmony always has Russian color \u2014 a flat-six, a Phrygi",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Irony or emotional distance.** Tchaikovsky wears his heart on his sleeve. Emotional restraint, iro",
+      "severity": "soft"
+    }
+  ]
+}

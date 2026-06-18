@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_raw_unpolished_harmonic_language_intentional_wrong_notes",
+      "category": "fingerprint",
+      "description": "Raw, unpolished harmonic language \u2014 intentional \"wrong\" notes",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_speech_melody_vocal_rhythm_following_natural_russian_speech",
+      "category": "fingerprint",
+      "description": "Speech-melody \u2014 vocal rhythm following natural Russian speech",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_whole_tone_and_octatonic_fragments",
+      "category": "fingerprint",
+      "description": "Whole-tone and octatonic fragments",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_modal_russian_church_idiom_bells_and_liturgy",
+      "category": "fingerprint",
+      "description": "Modal Russian church idiom \u2014 bells and liturgy",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_programmatic_specificity_portraits_and_places",
+      "category": "fingerprint",
+      "description": "Programmatic specificity \u2014 portraits and places",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Smooth, academic voice-leading.** If the chord connections are perfectly smooth with no parallels ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Italian bel canto melody.** Long, arching, ornamental melody is not Mussorgsky. His melody is shor",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**German formal structure.** Sonata form, development section, formal recapitulation \u2014 these are not",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Absence of Russian color.** The bell bass, the church mode, the speech-rhythm \u2014 without at least o",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Consistent \"nice\" harmony.** Mussorgsky has ugly moments by choice. A passage that is harmonically",
+      "severity": "soft"
+    }
+  ]
+}

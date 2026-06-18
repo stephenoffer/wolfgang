@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "continuous_forward_motion",
+      "name": "Continuous forward motion",
+      "description": "The melody never stops moving. Sixteenth-note figuration fills most bars; rests are structural arrivals, not breathing spaces. Baroque spinning (Fortspinnung): a short head-motif generates the rest of",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "imitative_counterpoint",
+      "name": "Imitative counterpoint",
+      "description": "At least one other voice echoes or responds to the main voice within 2\u20134 bars. In fugue: strict imitation at a fifth above/below. In invention: freer imitation. In accompanied melody: the bass line de",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "sequence_as_developmental_engine",
+      "name": "Sequence as developmental engine",
+      "description": "Ascending or descending sequences of 3\u20134 repetitions move the music forward. The sequence is harmonically directed (circle-of-fifths, descending thirds, ascending seconds) and never just decorative.",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "functional_harmony_with_expressive_chromaticism",
+      "name": "Functional harmony with expressive chromaticism",
+      "description": "IV, V, I as the harmonic backbone. But within that, altered chords (diminished sevenths, secondary dominants, augmented sixths) appear freely \u2014 not as surprises but as logical voice-leading consequenc",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "motivic_saturation",
+      "name": "Motivic saturation",
+      "description": "A short 2\u20134 note cell from the opening generates everything: the melody, the bass line, the inner voices, the countersubject. If you can trace every important note back to the opening motif, it's Bach",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

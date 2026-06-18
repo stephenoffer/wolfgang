@@ -1,0 +1,14 @@
+{
+  "forms": {
+    "sonata": {
+      "sections": [],
+      "key_scheme": {
+        "exposition_keys": [
+          "I",
+          "V"
+        ],
+        "recap_rule": "tonic"
+      }
+    }
+  }
+}

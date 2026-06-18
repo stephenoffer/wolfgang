@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "id": "fp_block_juxtaposition",
+      "category": "fingerprint",
+      "description": "Block juxtaposition",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_ostinato_as_hypnosis",
+      "category": "fingerprint",
+      "description": "Ostinato as hypnosis",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_polytonality_polytonal_harmony",
+      "category": "fingerprint",
+      "description": "Polytonality / polytonal harmony",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_asymmetric_constantly_changing_meter",
+      "category": "fingerprint",
+      "description": "Asymmetric, constantly changing meter",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_pagan_folk_rawness_unresolved_dissonance",
+      "category": "fingerprint",
+      "description": "Pagan/folk rawness \u2014 unresolved dissonance",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "**Russian period:**",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Smooth transitions.** No transition, no preparation. Blocks are cut.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Development.** Stravinsky doesn't develop motivically. He juxtaposes, accumulates, returns.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Romantic expression.** The Rite of Spring is not expressive in the Romantic sense \u2014 it's ritualist",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Neo-Classical:**",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Complete harmonic correctness.** Neo-Classical Stravinsky is intentionally, ironically \"wrong.\" Pe",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_11",
+      "category": "anti_pattern",
+      "description": "**Romantic orchestral warmth.** Dry and precise is the sound. Vibrato and portamento are wrong.",
+      "severity": "soft"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_scherzo_lightness_the_fleet_elfin_texture",
+      "category": "fingerprint",
+      "description": "Scherzo lightness \u2014 the fleet, elfin texture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_singing_tone_bel_canto_melody_in_instruments",
+      "category": "fingerprint",
+      "description": "Singing tone \u2014 bel canto melody in instruments",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_formal_clarity_with_romantic_content",
+      "category": "fingerprint",
+      "description": "Formal clarity with Romantic content",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_venetian_barcarolle_lilt",
+      "category": "fingerprint",
+      "description": "Venetian barcarolle lilt",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_bright_unclouded_orchestration_the_protestant_clarity",
+      "category": "fingerprint",
+      "description": "Bright, unclouded orchestration \u2014 the Protestant clarity",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Darkness, angst, or existential struggle.** Mendelssohn is not Schumann or Brahms. His minor-key m",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Harmonic ambiguity or wandering.** Mendelssohn's harmony is clear and functional. He doesn't wande",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Heavy, massive orchestration.** Mendelssohn's orchestra is never heavy. Thick brass doublings, sus",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Rhythmic irregularity.** Mendelssohn's rhythms are regular and song-like. Syncopation and metric i",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Irony or modernism.** Mendelssohn is sincere, not ironic. His use of Classical forms is genuine, n",
+      "severity": "soft"
+    }
+  ]
+}

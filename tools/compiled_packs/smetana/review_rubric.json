@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "id": "fp_czech_dance_idiom_polka_and_furiant",
+      "category": "fingerprint",
+      "description": "Czech dance idiom \u2014 Polka and Furiant",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_vltava_landscape_program_the_tone_poem_tradition",
+      "category": "fingerprint",
+      "description": "Vltava/landscape program \u2014 the tone poem tradition",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_folk_melody_as_structural_theme",
+      "category": "fingerprint",
+      "description": "Folk melody as structural theme",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_clear_classical_formal_logic",
+      "category": "fingerprint",
+      "description": "Clear, Classical formal logic",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_idyllic_vs_heroic_contrast",
+      "category": "fingerprint",
+      "description": "Idyllic vs. heroic contrast",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Abstract, non-programmatic writing.** Smetana's orchestral music is almost always about something ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Complex chromatic harmony.** Smetana's language is clear and tonal. Wagner-style chromaticism is n",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Refined, aristocratic character.** Even the \"beautiful\" passages in Smetana have a folk directness",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Absence of Czech dance rhythm.** At least one section should have identifiable Czech dance charact",
+      "severity": "soft"
+    }
+  ]
+}

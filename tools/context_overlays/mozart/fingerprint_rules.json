@@ -1,0 +1,36 @@
+{
+  "evidence_annotations": [
+    {
+      "id": "vocal_thinking_in_instrumental_writing",
+      "evidence_confidence": 0.913,
+      "evidence_source": "corpus_feedback",
+      "support_count": 63,
+      "contradiction_count": 6,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "chromatic_inflection_for_emotional_nuance",
+      "evidence_confidence": 0.9855,
+      "evidence_source": "corpus_feedback",
+      "support_count": 68,
+      "contradiction_count": 1,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "transparent_chamber_like_texture",
+      "evidence_confidence": 0.9855,
+      "evidence_source": "corpus_feedback",
+      "support_count": 68,
+      "contradiction_count": 1,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "minor_mode_shadow_in_major_contexts",
+      "evidence_confidence": 0.9855,
+      "evidence_source": "corpus_feedback",
+      "support_count": 68,
+      "contradiction_count": 1,
+      "last_updated": "2026-04-19"
+    }
+  ]
+}

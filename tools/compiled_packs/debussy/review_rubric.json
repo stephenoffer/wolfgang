@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_parallel_chord_movement",
+      "category": "fingerprint",
+      "description": "Parallel chord movement",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_pentatonic_whole_tone_melodic_surface",
+      "category": "fingerprint",
+      "description": "Pentatonic/whole-tone melodic surface",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_texture_as_primary_parameter",
+      "category": "fingerprint",
+      "description": "Texture as primary parameter",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_static_harmony_non_functional_chord_successions",
+      "category": "fingerprint",
+      "description": "Static harmony / non-functional chord successions",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_orchestral_color_as_melody",
+      "category": "fingerprint",
+      "description": "Orchestral color as melody",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Resolving every dissonance.** In Debussy, a chord that \"should\" resolve doesn't. Dominant 7ths mov",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Functional bass line.** A walking bass or bass line that outlines functional harmonic motion (I\u2013IV",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Regular phrase rhythm.** Debussy's phrases don't breathe in 4-bar or 8-bar units. They expand and ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Melody in middle register with accompaniment above and below.** Debussy's melody is always high (e",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Loud, full-orchestra climaxes.** Debussy's climaxes are often textural, not dynamic. A climax in D",
+      "severity": "soft"
+    }
+  ]
+}

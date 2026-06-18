@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_extreme_brevity_the_haiku_principle",
+      "category": "fingerprint",
+      "description": "Extreme brevity \u2014 the haiku principle",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_pointillism_single_notes_in_isolated_voices",
+      "category": "fingerprint",
+      "description": "Pointillism \u2014 single notes in isolated voices",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_silence_as_primary_structural_material",
+      "category": "fingerprint",
+      "description": "Silence as primary structural material",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_perfect_symmetry_and_palindrome",
+      "category": "fingerprint",
+      "description": "Perfect symmetry and palindrome",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_twelve_tone_serial_method_strict_application",
+      "category": "fingerprint",
+      "description": "Twelve-tone serial method \u2014 strict application",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Long melodic lines in a single instrument.** In Webern, no single instrument carries melody for mo",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Dense, continuous texture.** Webern's textures are very sparse. A passage with all instruments pla",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Emotional display.** Webern's music is cool, precise, abstract. Romantic emotional expression is a",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Ignoring the serial method.** Webern's post-1924 music is strictly serial. Writing \"atonal\" notes ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Long duration.** A \"Webern-style\" piece that lasts 10 minutes has already become something else.",
+      "severity": "soft"
+    }
+  ]
+}

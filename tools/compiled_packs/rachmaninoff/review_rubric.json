@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "id": "fp_long_arching_melodic_line",
+      "category": "fingerprint",
+      "description": "Long arching melodic line",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_wide_range_piano_texture",
+      "category": "fingerprint",
+      "description": "Wide-range piano texture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_subdominant_approach_to_climax",
+      "category": "fingerprint",
+      "description": "Subdominant approach to climax",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_bell_like_resonance_tonic_pedal_under_chromatic_harmony",
+      "category": "fingerprint",
+      "description": "Bell-like resonance \u2014 tonic pedal under chromatic harmony",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequence_in_long_ascending_sweeps",
+      "category": "fingerprint",
+      "description": "Sequence in long ascending sweeps",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Short, fragmented melody.** Rachmaninoff does not do short motifs. His melodies unfold. A 4-bar th",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Light, transparent texture.** Rachmaninoff's piano writing is thick and resonant. A Debussy-like t",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Major mode throughout.** Rachmaninoff's natural habitat is minor. A section in the pure major mode",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Climax by volume alone.** The climax must arrive through the ascending sequence buildup AND the ha",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Moderate tempo.** Rachmaninoff's slow movements are extremely slow (Adagio, not Andante). His fast",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_11",
+      "category": "anti_pattern",
+      "description": "**Formula references for the melody.** Never. The long arching Rachmaninoff melody must be written n",
+      "severity": "soft"
+    }
+  ]
+}

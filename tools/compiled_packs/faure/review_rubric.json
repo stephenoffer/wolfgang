@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_modal_harmony_within_tonal_framework_the_slipping_tonic",
+      "category": "fingerprint",
+      "description": "Modal harmony within tonal framework \u2014 the slipping tonic",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_gentle_rhythmic_displacement_the_nocturne_pulse",
+      "category": "fingerprint",
+      "description": "Gentle rhythmic displacement \u2014 the nocturne pulse",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_long_melodic_line_with_subtle_modal_inflection",
+      "category": "fingerprint",
+      "description": "Long melodic line with subtle modal inflection",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_harmonic_non_resolution_the_elided_cadence",
+      "category": "fingerprint",
+      "description": "Harmonic non-resolution \u2014 the elided cadence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_intimacy_as_primary_aesthetic_chamber_scale",
+      "category": "fingerprint",
+      "description": "Intimacy as primary aesthetic \u2014 chamber scale",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Emotional excess.** Faur\u00e9 is not Tchaikovsky. His music does not weep or thunder. The emotional te",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Loud dynamics.** Faur\u00e9's music rarely exceeds mf. A fortissimo in Faur\u00e9 is reserved for extraordin",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Clear cadential resolution.** If the phrase ends with a full V\u2192I cadence that sounds closed and sa",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Germanic density.** Faur\u00e9's textures are light. The French quality is transparency, airiness, clar",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Programmatic drama.** Faur\u00e9 doesn't tell stories or depict events. His music is atmospheric, emoti",
+      "severity": "soft"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "p": "F#5",
+        "d": "dh",
+        "dyn": "mf",
+        "art": "tenuto",
+        "expr": "con passione"
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": [
+        {
+          "p": "C2",
+          "d": "q"
+        },
+        {
+          "p": "G3",
+          "d": "q"
+        },
+        {
+          "p": "Eb4",
+          "d": "q"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        }
+      ]
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "formula": "arpeggiated_up",
+        "bass": "C2",
+        "chord_tones": [
+          "G3",
+          "Eb4",
+          "C5"
+        ]
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "p": "C2",
+        "d": "w",
+        "dyn": "p"
+      }
+    }
+  ]
+}

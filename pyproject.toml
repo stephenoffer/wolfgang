@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wolfgang"
+version = "6.0.0"
+description = "Wolfgang — corpus-armed classical music generation agent (SCALES engine)"
+readme = "CLAUDE.md"
+requires-python = ">=3.10"
+dependencies = [
+    "music21>=9.1",
+    "lxml>=4.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+]
+
+# The source root is ``tools/``; ``scales`` and ``scripts`` are imported as
+# top-level packages (preserving existing ``from scales....`` import paths).
+[tool.setuptools.packages.find]
+where = ["tools"]
+include = ["scales*", "scripts*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [
+    ".venv",
+    "compiled_packs",
+    "reference_index",
+    "pattern_library",
+    "texture_templates",
+    "context_overlays",
+    "context_evidence",
+    "reference_scores",
+    "output",
+    "workspace",
+]
+
+[tool.ruff.lint]
+# E/W = pycodestyle, F = pyflakes, I = isort.
+# E501 (line length) is delegated to the formatter — not enforced as a lint error
+# on this existing codebase (long strings/comments can't be auto-wrapped).
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tools/scales/tests"]
+# The corpus self-pass harness is a slow, corpus-dependent calibration report
+# (not a deterministic unit test); deselect it from the default run. Run it
+# explicitly with: pytest -m calibration
+addopts = "-m 'not calibration'"
+markers = [
+    "calibration: corpus-dependent calibration harness, run on demand",
+]

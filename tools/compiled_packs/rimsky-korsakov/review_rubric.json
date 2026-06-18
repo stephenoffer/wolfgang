@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_orchestral_color_as_the_primary_compositional_parameter",
+      "category": "fingerprint",
+      "description": "Orchestral color as the primary compositional parameter",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_the_rimsky_korsakov_scale_octatonic_as_exotic_color",
+      "category": "fingerprint",
+      "description": "The Rimsky-Korsakov scale (octatonic) as exotic color",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_arabian_nights_exotic_color_modal_scales_and_augmented_2nds",
+      "category": "fingerprint",
+      "description": "Arabian Nights exotic color \u2014 modal scales and augmented 2nds",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_brilliant_solo_woodwind_writing_the_storyteller_s_voice",
+      "category": "fingerprint",
+      "description": "Brilliant solo woodwind writing \u2014 the storyteller's voice",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_narrative_orchestration_music_as_visual_image",
+      "category": "fingerprint",
+      "description": "Narrative orchestration \u2014 music as visual image",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Generic orchestration.** In Rimsky, every orchestral choice has a reason tied to color or imagery.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Absence of exotic modal color.** A Rimsky-style passage that uses only Western diatonic major/mino",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Emotional abstraction.** Rimsky's music is almost always about something specific and often visual",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Thick, muddy orchestration.** Despite the large orchestra, Rimsky's orchestration is clear. Each f",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Undecorated solo lines.** Rimsky's solos have ornaments: trills at phrase peaks, grace notes, turn",
+      "severity": "soft"
+    }
+  ]
+}

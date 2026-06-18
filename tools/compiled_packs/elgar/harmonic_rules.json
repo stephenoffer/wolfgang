@@ -1,0 +1,14 @@
+{
+  "cadence_vocabulary": [
+    {
+      "type": "IAC",
+      "frequency_weight": 0.5
+    }
+  ],
+  "chromatic_techniques": [
+    {
+      "name": "chromatic",
+      "frequency_weight": 0.3
+    }
+  ]
+}

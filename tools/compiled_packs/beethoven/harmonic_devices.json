@@ -1,0 +1,64 @@
+[
+  {
+    "id": "semitone_key_juxtaposition",
+    "name": "Semitone key juxtaposition",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Tonal vertigo; the listener's sense of key is suspended"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "tritone_relationship",
+    "name": "Tritone relationship",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Maximum tonal distance traversed instantly"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "extended_trills_as_harmonic_events",
+    "name": "Extended trills as harmonic events",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The surface is static; the ground moves"
+    ],
+    "frequency_weight": 0.04,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "recitative_in_instrumental_music",
+    "name": "Recitative in instrumental music",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Op. 31/2 (Tempest)",
+      "Op. 110",
+      "Ninth Symphony"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "fugue_as_harmonic_compression",
+    "name": "Fugue as harmonic compression",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Grosse Fuge \u2014 the harmony strains under contrapuntal pressure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  }
+]

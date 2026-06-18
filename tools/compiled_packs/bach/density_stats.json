@@ -1,0 +1,71 @@
+{
+ "composer": "bach",
+ "total_bars": 4893,
+ "rh": {
+  "held_note": {
+   "median": 1.0,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.46,
+   "n": 1490
+  },
+  "singing_melody": {
+   "median": 4.0,
+   "p25": 4,
+   "p75": 5,
+   "mean": 4.18,
+   "n": 3110
+  },
+  "scalar_run": {
+   "median": 8,
+   "p25": 7,
+   "p75": 9,
+   "mean": 8.23,
+   "n": 101
+  },
+  "zigzag_figuration": {
+   "median": 14,
+   "p25": 14,
+   "p75": 14,
+   "mean": 14.11,
+   "n": 9
+  },
+  "passage_work": {
+   "median": 13.5,
+   "p25": 13,
+   "p75": 16,
+   "mean": 14.55,
+   "n": 22
+  }
+ },
+ "lh": {
+  "pedal_point": {
+   "median": 1.0,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.4,
+   "n": 1192
+  },
+  "bass_melody": {
+   "median": 4.0,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.63,
+   "n": 1752
+  },
+  "alberti": {
+   "median": 5.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.79,
+   "n": 564
+  },
+  "broken_chord_wave": {
+   "median": 5.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.67,
+   "n": 1182
+  }
+ }
+}

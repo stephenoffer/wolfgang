@@ -1,0 +1,43 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "ritornello_anchor",
+      "name": "Ritornello anchor",
+      "description": "A complete orchestral theme that opens the movement, returns in related keys at structural points, and closes in the home key. The ritornello is the structural frame; everything else happens between i",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "soloist_as_elaborator_not_inventor",
+      "name": "Soloist as elaborator, not inventor",
+      "description": "The solo episodes develop material from the ritornello: fragmenting it, sequencing it, ornamenting it, taking it to new keys. The soloist doesn't introduce fundamentally new material \u2014 they transform ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "driving_rhythmic_ostinato_in_the_accompaniment",
+      "name": "Driving rhythmic ostinato in the accompaniment",
+      "description": "The string accompaniment (when not playing ritornello) provides a relentless repeated pattern: usually repeated eighth notes or a short rhythmic cell. The drive never stops. This energy is what makes ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "violin_derived_figuration",
+      "name": "Violin-derived figuration",
+      "description": "Melodies are built from what the violin does naturally: arpeggiated runs, scale passages with string crossings, double stops at phrase endings, high-register singing lines. Even when writing for other",
+      "texture_affinities": [
+        "singing_melody",
+        "broken_chord_wave"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "clear_direct_harmony_with_sudden_contrast",
+      "name": "Clear, direct harmony with sudden contrast",
+      "description": "Vivaldi's harmony is functionally clear (I-IV-V), but he deploys sudden moves to the parallel minor or Neapolitan for expressive color \u2014 without preparation. The surprise IS the effect.",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

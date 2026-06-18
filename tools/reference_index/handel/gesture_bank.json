@@ -1,0 +1,1585 @@
+{
+ "composer": "handel",
+ "source_bar_index": "reference_index/handel/bar_index.json",
+ "total_gestures": 54,
+ "function_distribution": {
+  "answer_with_space": 32,
+  "answer": 16,
+  "pickup": 2,
+  "cadential_push": 2,
+  "cadential_release": 2
+ },
+ "contour_distribution": {
+  "static": 32,
+  "descending": 12,
+  "ascending": 10
+ },
+ "gestures": [
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b1",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b2",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b3",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b4",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b5",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b6",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b7",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b8",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b9",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b10",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b11",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b12",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b13",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b14",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b15",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b16",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b17",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 17",
+   "source_bar_range": [
+    17,
+    17
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b18",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 18",
+   "source_bar_range": [
+    18,
+    18
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b19",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 19",
+   "source_bar_range": [
+    19,
+    19
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b20",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 20",
+   "source_bar_range": [
+    20,
+    20
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b21",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 21",
+   "source_bar_range": [
+    21,
+    21
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b22",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 22",
+   "source_bar_range": [
+    22,
+    22
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b23",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 23",
+   "source_bar_range": [
+    23,
+    23
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b24",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 24",
+   "source_bar_range": [
+    24,
+    24
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b25",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 25",
+   "source_bar_range": [
+    25,
+    25
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b26",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 26",
+   "source_bar_range": [
+    26,
+    26
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b27",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 27",
+   "source_bar_range": [
+    27,
+    27
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b28",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 28",
+   "source_bar_range": [
+    28,
+    28
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b29",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 29",
+   "source_bar_range": [
+    29,
+    29
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b30",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 30",
+   "source_bar_range": [
+    30,
+    30
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b31",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 31",
+   "source_bar_range": [
+    31,
+    31
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b32",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 32",
+   "source_bar_range": [
+    32,
+    32
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b33",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 33",
+   "source_bar_range": [
+    33,
+    33
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b34",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 34",
+   "source_bar_range": [
+    34,
+    34
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b35",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 35",
+   "source_bar_range": [
+    35,
+    35
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b36",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 36",
+   "source_bar_range": [
+    36,
+    36
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b37",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 37",
+   "source_bar_range": [
+    37,
+    37
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b38",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 38",
+   "source_bar_range": [
+    38,
+    38
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b39",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 39",
+   "source_bar_range": [
+    39,
+    39
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b40",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 40",
+   "source_bar_range": [
+    40,
+    40
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b41",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 41",
+   "source_bar_range": [
+    41,
+    41
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b42",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 42",
+   "source_bar_range": [
+    42,
+    42
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b43",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 43",
+   "source_bar_range": [
+    43,
+    43
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b44",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 44",
+   "source_bar_range": [
+    44,
+    44
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b45",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 45",
+   "source_bar_range": [
+    45,
+    45
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b46",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 46",
+   "source_bar_range": [
+    46,
+    46
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b47",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 47",
+   "source_bar_range": [
+    47,
+    47
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b48",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 48",
+   "source_bar_range": [
+    48,
+    48
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b49",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 49",
+   "source_bar_range": [
+    49,
+    49
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b50",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 50",
+   "source_bar_range": [
+    50,
+    50
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b51",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 51",
+   "source_bar_range": [
+    51,
+    51
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b52",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 52",
+   "source_bar_range": [
+    52,
+    52
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b53",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 53",
+   "source_bar_range": [
+    53,
+    53
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "handel_rinaldo_Lascia_chio_pianga_b54",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rinaldo/Lascia_chio_pianga bar 54",
+   "source_bar_range": [
+    54,
+    54
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  }
+ ]
+}

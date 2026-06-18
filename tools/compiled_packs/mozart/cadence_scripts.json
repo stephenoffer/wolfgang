@@ -1,0 +1,57 @@
+[
+  {
+    "id": "cad_pac_v7_i",
+    "type": "PAC (V7-I)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2
+  },
+  {
+    "id": "cad_hc_v",
+    "type": "HC (->V)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2
+  },
+  {
+    "id": "cad_deceptive_v_vi",
+    "type": "Deceptive (V-vi)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2
+  },
+  {
+    "id": "cad_neapolitan_v_i",
+    "type": "Neapolitan -> V -> i",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2
+  },
+  {
+    "id": "cad_cadenza_approach",
+    "type": "Cadenza approach",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_static_hypnotic_repetition_furniture_music",
+      "category": "fingerprint",
+      "description": "Static, hypnotic repetition \u2014 furniture music",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_parallel_chord_movement_without_functional_resolution",
+      "category": "fingerprint",
+      "description": "Parallel chord movement without functional resolution",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_extreme_simplicity_as_artistic_choice",
+      "category": "fingerprint",
+      "description": "Extreme simplicity as artistic choice",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_humor_as_structural_element_the_sardonic_title",
+      "category": "fingerprint",
+      "description": "Humor as structural element \u2014 the sardonic title",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_medieval_gregorian_modal_color",
+      "category": "fingerprint",
+      "description": "Medieval/Gregorian modal color",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Emotional development or climax.** Satie does not build toward climaxes. His music has no arc. A S",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Ornamental richness.** Satie has no ornaments. No trills, no mordents, no grace notes. The melody ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Complex texture.** Satie's piano writing is two or three layers at most: melody + simple accompani",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Emotional weight.** Satie is not sad and not happy \u2014 he is neutral, or subtly ironic. The Gymnop\u00e9d",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Functional harmony.** A V\u2192I cadence in Satie is unusual. His harmonies float without resolution. I",
+      "severity": "soft"
+    }
+  ]
+}

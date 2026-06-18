@@ -1,0 +1,62 @@
+{
+  "composer": "mozart",
+  "total_claims": 270,
+  "by_category": {
+    "distribution": {
+      "count": 108,
+      "supported": 2275,
+      "contradicted": 254,
+      "avg_confidence": 0.9,
+      "tested": 2850
+    },
+    "fingerprint": {
+      "count": 5,
+      "supported": 309,
+      "contradicted": 36,
+      "avg_confidence": 0.896,
+      "tested": 345
+    },
+    "figuration": {
+      "count": 12,
+      "supported": 66,
+      "contradicted": 0,
+      "avg_confidence": 1.0,
+      "tested": 828
+    },
+    "melody_prior": {
+      "count": 16,
+      "supported": 0,
+      "contradicted": 0,
+      "avg_confidence": 0.0,
+      "tested": 1104
+    },
+    "harmonic_device": {
+      "count": 7,
+      "supported": 0,
+      "contradicted": 0,
+      "avg_confidence": 0.0,
+      "tested": 483
+    },
+    "anti_pattern": {
+      "count": 43,
+      "supported": 13,
+      "contradicted": 0,
+      "avg_confidence": 1.0,
+      "tested": 2967
+    },
+    "cadence": {
+      "count": 5,
+      "supported": 0,
+      "contradicted": 0,
+      "avg_confidence": 0.0,
+      "tested": 345
+    },
+    "prompt_semantic": {
+      "count": 74,
+      "supported": 0,
+      "contradicted": 0,
+      "avg_confidence": 0.0,
+      "tested": 5106
+    }
+  }
+}

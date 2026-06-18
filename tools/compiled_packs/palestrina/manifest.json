@@ -1,0 +1,11 @@
+{
+  "composer": "palestrina",
+  "genre": "",
+  "support_tier": "A",
+  "corpus_bar_count": 8302,
+  "profile_files": [],
+  "corpus_files": [
+    "bar_index.json"
+  ],
+  "pattern_count": 7545
+}

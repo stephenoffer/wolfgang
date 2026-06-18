@@ -15,6 +15,55 @@ Each character/concept gets a distinct harmonic "color" that recurs whenever the
 | Nostalgia | IV chord emphasis, plagal motion, added 9ths | Up theme (Giacchino) |
 | Power/Fate | Power chords, pedal points, Aeolian mode | Dark Knight (Zimmer) |
 
+
+## Harmony as Instant Storytelling
+
+Film score harmony exploits the audience's accumulated harmonic memory — decades of film-watching train listeners to associate specific harmonic gestures with emotional states. The composer uses this shared vocabulary to tell stories without words: a minor iv chord in a major love scene foreshadows betrayal before the plot reveals it. Harmony becomes subtext.
+
+### The Temperature Metaphor
+
+Film composers think in terms of harmonic temperature — warm, cold, or neutral — to control the audience's emotional state moment by moment:
+
+| Temperature | Harmonic Characteristics | Emotional Effect |
+|------------|------------------------|-----------------|
+| Warm | Major triads, added 6ths, plagal motion, Lydian | Safety, love, nostalgia, home |
+| Cool | Open 5ths, suspended chords, modal ambiguity | Mystery, wonder, uncertainty |
+| Cold | Minor 2nds, tritones, chromatic clusters | Danger, dread, isolation |
+| Neutral | Unison, octaves, single sustained tone | Anticipation, blankness, the moment before |
+| Shifting (warm→cold) | Major to minor, diatonic to chromatic | Loss, betrayal — the audience feels the ground shifting |
+| Shifting (cold→warm) | Chromatic to diatonic, minor to major (Picardy) | Hope, rescue, dawn breaking |
+
+### Harmonic Subtext — Telling a Different Story
+
+The most powerful film scoring occurs when the harmony tells a DIFFERENT story than the visual:
+
+| Visual | Harmonic Subtext | What the Audience Feels |
+|--------|-----------------|------------------------|
+| Happy reunion | Minor coloring, unresolved sus | Something is wrong — this happiness will not last |
+| Villain's calm speech | Gentle major 7ths | The villain is genuinely charming — more terrifying |
+| Battle scene | Lyrical, major, hymn-like | These warriors believe they are righteous — tragic nobility |
+| Child playing | Chromatic descent, ambiguity | Innocence in danger — dread beneath the surface |
+| Triumphant arrival | Deceptive cadence, V → bVI | The triumph is hollow or premature — more trials await |
+
+### The Power of Simplicity After Complexity
+
+After extended chromatic or dissonant passages, a simple major triad creates the effect of clouds parting. Film composers leverage this contrast: the resolution's power is proportional to the complexity that preceded it. Williams's most transcendent moments (E.T. flying, Star Wars throne room) arrive on simple triads, but those triads carry the weight of everything that came before.
+
+```abc
+X:50
+T:Harmonic Temperature Shift (Warm to Cold)
+M:4/4
+L:1/2
+K:C
+%% Warm: bright major with added 6th
+[CEGA]2 [FAcD]2 |
+%% Cooling: open 5th, ambiguity enters
+[C,G,]2 [D,A,]2 |
+%% Cold: minor 2nd, tritone
+[C,_D,]2 [C,^F,]2 |
+% The audience feels temperature dropping — something has changed
+```
+
 ## Chromatic Mediant Relationships
 
 Major third shifts create wonder, magic, otherworldliness.

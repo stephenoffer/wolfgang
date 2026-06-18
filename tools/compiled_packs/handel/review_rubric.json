@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_grand_choral_ensemble_gesture",
+      "category": "fingerprint",
+      "description": "Grand choral/ensemble gesture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_immediately_memorable_theme",
+      "category": "fingerprint",
+      "description": "Immediately memorable theme",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_da_capo_architecture",
+      "category": "fingerprint",
+      "description": "Da capo architecture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequences_that_build_dramatic_momentum",
+      "category": "fingerprint",
+      "description": "Sequences that build dramatic momentum",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_dramatic_contrast_between_major_and_minor",
+      "category": "fingerprint",
+      "description": "Dramatic contrast between major and minor",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Continuous Baroque spinning.** Handel's melodies state themselves and breathe \u2014 they don't generat",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Counterpoint for its own sake.** Handel uses counterpoint as a means to a dramatic end (building t",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Ambiguous themes.** Handel's themes are unambiguous, direct, memorable. If a listener couldn't hum",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Chromaticism without dramatic purpose.** Handel uses chromatic harmony (diminished sevenths, Neapo",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Quiet, understated climaxes.** Handel's climaxes are loud, direct, and celebratory. A subdued clim",
+      "severity": "soft"
+    }
+  ]
+}

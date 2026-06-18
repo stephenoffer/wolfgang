@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_thematic_transformation_one_idea_many_faces",
+      "category": "fingerprint",
+      "description": "Thematic transformation \u2014 one idea, many faces",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_virtuosic_transcendence_the_piano_as_orchestra",
+      "category": "fingerprint",
+      "description": "Virtuosic transcendence \u2014 the piano as orchestra",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_saturation_and_enharmonic_pivot",
+      "category": "fingerprint",
+      "description": "Chromatic saturation and enharmonic pivot",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhetorical_silence_and_dramatic_tempo_changes",
+      "category": "fingerprint",
+      "description": "Rhetorical silence and dramatic tempo changes",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_hungarian_color_verbunkos_style",
+      "category": "fingerprint",
+      "description": "Hungarian color (verbunkos style)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Technical restraint.** Liszt doesn't hold back. If a passage calls for octaves, it calls for doubl",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Static harmonic language.** A Liszt passage that stays in one key for 16 bars is unusual. The harm",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Monolithic texture.** Liszt doesn't sustain one texture for long passages (unlike Beethoven's Op. ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**No thematic relationship across sections.** If you're using a Liszt formal model, all themes shoul",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Absence of rhetorical gesture.** A Liszt piece without at least one dramatic pause or sudden tempo",
+      "severity": "soft"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "id": "fp_middle_period_the_most_requested_op_59_symphony_5_waldstein_appassionata__motivic_cell_driving_everything",
+      "category": "fingerprint",
+      "description": "Motivic cell driving everything",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_middle_period_the_most_requested_op_59_symphony_5_waldstein_appassionata__sudden_dynamic_contrasts",
+      "category": "fingerprint",
+      "description": "Sudden dynamic contrasts",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_middle_period_the_most_requested_op_59_symphony_5_waldstein_appassionata__modal_mixture_as_drama",
+      "category": "fingerprint",
+      "description": "Modal mixture as drama",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_middle_period_the_most_requested_op_59_symphony_5_waldstein_appassionata__sustained_development_that_escalates",
+      "category": "fingerprint",
+      "description": "Sustained development that escalates",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_middle_period_the_most_requested_op_59_symphony_5_waldstein_appassionata__false_recapitulation_structural_deception",
+      "category": "fingerprint",
+      "description": "False recapitulation / structural deception",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_late_period_op_106_op_111_op_131_symphony_9__fugue_as_struggle",
+      "category": "fingerprint",
+      "description": "Fugue as struggle",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_late_period_op_106_op_111_op_131_symphony_9__variation_as_transcendence",
+      "category": "fingerprint",
+      "description": "Variation as transcendence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_late_period_op_106_op_111_op_131_symphony_9__radical_harmonic_relationship",
+      "category": "fingerprint",
+      "description": "Radical harmonic relationship",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_late_period_op_106_op_111_op_131_symphony_9__extreme_register_contrasts",
+      "category": "fingerprint",
+      "description": "Extreme register contrasts",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_late_period_op_106_op_111_op_131_symphony_9__rests_as_structural_events",
+      "category": "fingerprint",
+      "description": "Rests as structural events",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_11",
+      "category": "anti_pattern",
+      "description": "**Smooth, predictable dynamics.** Beethoven's dynamics are violent: fff followed immediately by ppp.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_12",
+      "category": "anti_pattern",
+      "description": "**Development that meanders.** A development that passes through keys without building tension is un",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_13",
+      "category": "anti_pattern",
+      "description": "**Themes that don't develop.** Middle-period Beethoven themes exist *to be developed* \u2014 they are des",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_14",
+      "category": "anti_pattern",
+      "description": "**Late-period music without strangeness.** If a piece is described as late Beethoven and sounds comf",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_15",
+      "category": "anti_pattern",
+      "description": "**Missing sforzandi.** The sfz is Beethoven's rhythmic disruption tool \u2014 it should appear where the ",
+      "severity": "soft"
+    }
+  ]
+}

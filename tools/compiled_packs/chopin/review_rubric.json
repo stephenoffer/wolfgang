@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "id": "fp_nocturne_bass",
+      "category": "fingerprint",
+      "description": "Nocturne bass",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_grace_note_entry",
+      "category": "fingerprint",
+      "description": "Grace-note entry",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_inner_voice",
+      "category": "fingerprint",
+      "description": "Chromatic inner voice",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_enharmonic_modulation",
+      "category": "fingerprint",
+      "description": "Enharmonic modulation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_ornamental_passagework_as_melody",
+      "category": "fingerprint",
+      "description": "Ornamental passagework as melody",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "**: A smooth pp\u2192p\u2192mp\u2192mf\u2192f\u2192ff\u2192p\u2192pp arc over 100 bars. Real Chopin dynamics are *volatile* \u2014 they chan",
+      "severity": "soft"
+    }
+  ]
+}

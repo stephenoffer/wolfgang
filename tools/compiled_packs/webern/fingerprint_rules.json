@@ -1,0 +1,42 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "extreme_brevity_the_haiku_principle",
+      "name": "Extreme brevity \u2014 the haiku principle",
+      "description": "Webern's entire output fits on a few CDs. His pieces are extraordinarily short: Symphony Op.21 is under 10 minutes; the Five Pieces Op.10 for orchestra total under 4 minutes. This is not minimalism \u2014 ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "pointillism_single_notes_in_isolated_voices",
+      "name": "Pointillism \u2014 single notes in isolated voices",
+      "description": "Webern fragments melody across instruments so that no single instrument plays more than 1\u20132 consecutive notes before passing to another instrument. A \"melody\" may consist of one note in the flute, one",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "silence_as_primary_structural_material",
+      "name": "Silence as primary structural material",
+      "description": "More than any other composer, Webern uses silence. Between each Klangfarbenmelodie note: a rest. The rests are as long as the notes, or longer. The silence is not empty \u2014 it is the space in which each",
+      "texture_affinities": [
+        "silence"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "perfect_symmetry_and_palindrome",
+      "name": "Perfect symmetry and palindrome",
+      "description": "Webern's serial works are often perfectly symmetrical: the second half of a movement is the retrograde of the first half (palindrome). The structure can only be perceived on paper, not by the ear \u2014 bu",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "twelve_tone_serial_method_strict_application",
+      "name": "Twelve-tone serial method \u2014 strict application",
+      "description": "Webern applies serial technique more strictly than Schoenberg or Berg. His rows are often themselves symmetrical (a row built from repeated interval patterns), and the serial transformations (P, R, I,",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

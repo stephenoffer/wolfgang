@@ -1,0 +1,33 @@
+{
+  "composer": "mozart",
+  "genre": "classical",
+  "support_tier": "A",
+  "corpus_bar_count": 6987,
+  "profile_files": [
+    "biography.md",
+    "composition-guide.md",
+    "cross-references.md",
+    "formal-approach.md",
+    "harmonic-language.md",
+    "index.md",
+    "melodic-style.md",
+    "orchestration.md",
+    "stylistic-evolution.md"
+  ],
+  "corpus_files": [
+    "bar_index.json",
+    "bars_00.json",
+    "bars_01.json",
+    "bars_02.json",
+    "bars_03.json",
+    "gesture_bank.json",
+    "phrase_catalog.json",
+    "window_index.json",
+    "window_index_00.json",
+    "window_index_01.json",
+    "window_index_02.json",
+    "window_index_03.json",
+    "window_index_04.json"
+  ],
+  "pattern_count": 4789
+}

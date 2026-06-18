@@ -1,0 +1,45 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "parallel_chord_movement",
+      "name": "Parallel chord movement",
+      "description": "Entire chords slide in parallel motion (parallel 7ths, 9ths, 11ths, major triads) without voice-leading. These are not individual chord tones moving \u2014 entire harmonic structures float together as bloc",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "pentatonic_whole_tone_melodic_surface",
+      "name": "Pentatonic/whole-tone melodic surface",
+      "description": "Melody and harmony built from scales that avoid the leading tone and traditional tonal gravity: pentatonic (five notes, no semitones), whole-tone (all whole steps), or Debussy's modes (Lydian, Dorian,",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "texture_as_primary_parameter",
+      "name": "Texture as primary parameter",
+      "description": "The register, density, and timbre of each moment defines its character more than the pitch content. A cluster of harmonics in the top of the piano range IS a different musical idea from a unison in th",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "static_harmony_non_functional_chord_successions",
+      "name": "Static harmony / non-functional chord successions",
+      "description": "Chords don't progress (I\u2192IV\u2192V\u2192I); they are juxtaposed or sustained as color. A chord may last 8 bars. Two unrelated chords may follow each other without preparation. The absence of progression IS the ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "orchestral_color_as_melody",
+      "name": "Orchestral color as melody",
+      "description": "In orchestral works, the \"melody\" is often a timbral blend \u2014 flute+muted strings, or horn+harp \u2014 rather than a single instrument carrying a tune. Debussy's melodies can be disassembled across instrume",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
+}

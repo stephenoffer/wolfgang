@@ -1,0 +1,777 @@
+{
+ "composer": "handel",
+ "source_bar_index": "reference_index/handel/bar_index.json",
+ "total_phrases": 8,
+ "avg_phrase_length": 6.75,
+ "length_distribution": {
+  "1": 4,
+  "2": 1,
+  "16": 3
+ },
+ "role_distribution": {
+  "opening": 2,
+  "middle": 2,
+  "closing": 4
+ },
+ "cadence_distribution": {
+  "none": 4,
+  "authentic": 2,
+  "half": 2
+ },
+ "phrases": [
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p0",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    1,
+    1
+   ],
+   "length": 1,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p1",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    2,
+    17
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    0.8571,
+    0.8571,
+    0.8571,
+    0.1429,
+    0.5714,
+    0.8571,
+    0.4286,
+    0.0,
+    0.4286,
+    0.2857,
+    0.4286,
+    0.2857,
+    0.7143
+   ],
+   "register_curve": [
+    0.7143,
+    0.4286,
+    0.6429,
+    0.7143,
+    0.3571,
+    0.5714,
+    1.0,
+    0.6429,
+    0.5714,
+    0.5,
+    0.0,
+    0.4286,
+    0.5,
+    0.5,
+    0.4286,
+    0.9286
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "bass_melody",
+    "pedal_point",
+    "bass_melody",
+    "bass_melody",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1875,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 7,
+    "register_center": 70,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 73,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p2",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    18,
+    33
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6,
+    1.0,
+    0.2,
+    0.6,
+    0.4,
+    0.6,
+    0.8,
+    1.0,
+    0.2,
+    0.6,
+    0.4,
+    0.6,
+    0.4,
+    1.0,
+    0.6,
+    1.0
+   ],
+   "register_curve": [
+    0.8182,
+    0.1818,
+    0.0,
+    0.7273,
+    0.5455,
+    1.0,
+    0.7273,
+    0.8182,
+    0.6364,
+    0.3636,
+    0.4545,
+    0.4545,
+    0.3636,
+    1.0,
+    0.8182,
+    0.1818
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "broken_chord_wave",
+    "pedal_point",
+    "broken_chord_wave",
+    "pedal_point",
+    "bass_melody",
+    "bass_melody",
+    "broken_chord_wave",
+    "pedal_point",
+    "bass_melody",
+    "pedal_point",
+    "bass_melody",
+    "bass_melody",
+    "pedal_point",
+    "bass_melody",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 3.125,
+   "entry_state": {
+    "density": 3,
+    "register_center": 71,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p3",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    34,
+    49
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.2,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.6,
+    0.4,
+    0.6,
+    0.6,
+    1.0,
+    0.8,
+    1.0
+   ],
+   "register_curve": [
+    0.1429,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.7143,
+    0.5714,
+    0.7143,
+    1.0,
+    1.0,
+    0.7143,
+    0.7143
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "bass_melody",
+    "pedal_point",
+    "bass_melody",
+    "bass_melody",
+    "broken_chord_wave",
+    "bass_melody",
+    "broken_chord_wave",
+    "pedal_point",
+    "bass_melody",
+    "pedal_point",
+    "bass_melody",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 13,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 1.625,
+   "entry_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p4",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    50,
+    51
+   ],
+   "length": 2,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "B",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.5,
+   "entry_state": {
+    "density": 3,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p5",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    52,
+    52
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p6",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    53,
+    53
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "handel_rinaldo_Lascia_chio_pianga_p7",
+   "source": "rinaldo/Lascia_chio_pianga",
+   "bar_range": [
+    54,
+    54
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 66,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 66,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  }
+ ]
+}

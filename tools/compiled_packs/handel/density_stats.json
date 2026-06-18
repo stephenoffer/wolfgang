@@ -1,0 +1,43 @@
+{
+ "composer": "handel",
+ "total_bars": 54,
+ "rh": {
+  "singing_melody": {
+   "median": 4,
+   "p25": 3,
+   "p75": 5,
+   "mean": 4.13,
+   "n": 31
+  },
+  "held_note": {
+   "median": 2,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.55,
+   "n": 11
+  }
+ },
+ "lh": {
+  "pedal_point": {
+   "median": 1.5,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.5,
+   "n": 28
+  },
+  "bass_melody": {
+   "median": 3,
+   "p25": 3,
+   "p75": 3,
+   "mean": 3.05,
+   "n": 19
+  },
+  "broken_chord_wave": {
+   "median": 8,
+   "p25": 5,
+   "p75": 8,
+   "mean": 6.71,
+   "n": 7
+  }
+ }
+}

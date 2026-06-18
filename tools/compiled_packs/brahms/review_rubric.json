@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_hemiola_at_cadences",
+      "category": "fingerprint",
+      "description": "Hemiola at cadences",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_low_register_density_thick_inner_voices",
+      "category": "fingerprint",
+      "description": "Low register density \u2014 thick inner voices",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_subdominant_gravity_plagal_coloring",
+      "category": "fingerprint",
+      "description": "Subdominant gravity \u2014 plagal coloring",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_motivic_saturation_theme_permeates_accompaniment",
+      "category": "fingerprint",
+      "description": "Motivic saturation \u2014 theme permeates accompaniment",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_harmonic_ambiguity_at_phrase_openings",
+      "category": "fingerprint",
+      "description": "Harmonic ambiguity at phrase openings",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Transparent, single-note melody.** Brahms never presents a melody bare in his mature works. It's a",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Regular, undisrupted meter.** A Brahms movement that flows in regular 3/4 without hemiola or cross",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Dominant-function climaxes.** Brahms ends sections and movements with subdominant or plagal motion",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Light, high-register texture.** Brahms's sound is warm and low. A texture that sits entirely in th",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Development that doesn't combine voices.** Brahms developments are contrapuntal \u2014 themes appear si",
+      "severity": "soft"
+    }
+  ]
+}

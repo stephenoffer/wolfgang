@@ -1,0 +1,4250 @@
+{
+  "composer": "chopin",
+  "total_bars_analyzed": 4692,
+  "instrument_family": "keyboard",
+  "lh_templates": {
+    "unclassified": {
+      "frequency": 2591,
+      "pct_of_bars": 55.2,
+      "avg_event_count": 3.4,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2046
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 107
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 46
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 45
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 35
+        }
+      ],
+      "register_range": {
+        "low": 45,
+        "high": 62
+      },
+      "stepwise_ratio_avg": 0.506,
+      "examples": [
+        "mazurka-51:48",
+        "mazurka-51:4",
+        "mazurka-51:33",
+        "mazurka-50:60",
+        "mazurka-50:73"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.002,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.041,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0,
+            12,
+            12
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 388
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            0,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 379
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            7,
+            7
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 313
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            8,
+            8
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 64
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            19,
+            19
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 55
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.44,
+        "dyad": 0.181,
+        "major": 0.18,
+        "minor": 0.108,
+        "dominant_7th": 0.054,
+        "diminished": 0.022,
+        "single": 0.008,
+        "augmented": 0.007
+      }
+    },
+    "bass_melody": {
+      "frequency": 603,
+      "pct_of_bars": 12.9,
+      "avg_event_count": 4.7,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 56
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 44
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 44
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 28
+        },
+        {
+          "signature": [
+            1.0,
+            2.0,
+            2.0,
+            1.0
+          ],
+          "frequency": 27
+        }
+      ],
+      "register_range": {
+        "low": 45,
+        "high": 58
+      },
+      "stepwise_ratio_avg": 0.242,
+      "examples": [
+        "mazurka-50:32",
+        "mazurka-50:20",
+        "mazurka-50:28",
+        "mazurka-50:6",
+        "mazurka-50:23"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.013,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.216,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            7,
+            0,
+            7,
+            5
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 16
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            24,
+            16,
+            7
+          ],
+          "rhythm": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 13
+        },
+        {
+          "intervals_from_bass": [
+            7,
+            0,
+            2,
+            3,
+            0
+          ],
+          "rhythm": [
+            0.75,
+            3.0,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 12
+        },
+        {
+          "intervals_from_bass": [
+            8,
+            5,
+            0,
+            2
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 11
+        },
+        {
+          "intervals_from_bass": [
+            7,
+            0,
+            7
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            2.0
+          ],
+          "frequency": 8
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.556,
+        "dyad": 0.197,
+        "minor": 0.096,
+        "major": 0.095,
+        "single": 0.04,
+        "diminished": 0.015,
+        "dominant_7th": 0.002
+      }
+    },
+    "pedal_point": {
+      "frequency": 397,
+      "pct_of_bars": 8.5,
+      "avg_event_count": 2.7,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 258
+        },
+        {
+          "signature": [
+            3.0
+          ],
+          "frequency": 30
+        },
+        {
+          "signature": [
+            2.0,
+            1.0
+          ],
+          "frequency": 29
+        },
+        {
+          "signature": [
+            1.0,
+            2.0
+          ],
+          "frequency": 23
+        },
+        {
+          "signature": [
+            1.0,
+            3.0,
+            2.0
+          ],
+          "frequency": 16
+        }
+      ],
+      "register_range": {
+        "low": 46,
+        "high": 60
+      },
+      "stepwise_ratio_avg": 0.091,
+      "examples": [
+        "mazurka-51:16",
+        "mazurka-50:9",
+        "mazurka-51:91",
+        "mazurka-51:87",
+        "mazurka-51:12"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.003,
+        "turns": 0.0,
+        "dotted_pairs": 0.003,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0,
+            7,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 77
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            7,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 52
+        },
+        {
+          "intervals_from_bass": [
+            0
+          ],
+          "rhythm": [
+            3.0
+          ],
+          "frequency": 30
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            12,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 23
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            19,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 10
+        }
+      ],
+      "harmony_quality_dist": {
+        "major": 0.222,
+        "dyad": 0.219,
+        "single": 0.179,
+        "unknown": 0.164,
+        "minor": 0.164,
+        "dominant_7th": 0.028,
+        "diminished": 0.025
+      }
+    },
+    "block_chord_offbeat": {
+      "frequency": 355,
+      "pct_of_bars": 7.6,
+      "avg_event_count": 3.9,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 216
+        },
+        {
+          "signature": [
+            1.0,
+            3.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 83
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 24
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 14
+        },
+        {
+          "signature": [
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 6
+        }
+      ],
+      "register_range": {
+        "low": 48,
+        "high": 61
+      },
+      "stepwise_ratio_avg": 0.717,
+      "examples": [
+        "mazurka07-2:17",
+        "mazurka07-2:2",
+        "mazurka07-2:11",
+        "mazurka07-2:21",
+        "mazurka07-2:19"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.008,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 184
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            7,
+            7
+          ],
+          "rhythm": [
+            1.0,
+            3.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 22
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            4,
+            9,
+            5,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 17
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            4,
+            4
+          ],
+          "rhythm": [
+            1.0,
+            3.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 13
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 12
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.532,
+        "dyad": 0.175,
+        "minor": 0.146,
+        "major": 0.11,
+        "dominant_7th": 0.014,
+        "single": 0.011,
+        "augmented": 0.008,
+        "diminished": 0.003
+      }
+    },
+    "block_chord_sparse": {
+      "frequency": 218,
+      "pct_of_bars": 4.6,
+      "avg_event_count": 2.3,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 93
+        },
+        {
+          "signature": [
+            3.0
+          ],
+          "frequency": 50
+        },
+        {
+          "signature": [
+            1.0,
+            2.0
+          ],
+          "frequency": 37
+        },
+        {
+          "signature": [
+            2.0,
+            1.0
+          ],
+          "frequency": 31
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            2.0
+          ],
+          "frequency": 2
+        }
+      ],
+      "register_range": {
+        "low": 44,
+        "high": 59
+      },
+      "stepwise_ratio_avg": 0.253,
+      "examples": [
+        "mazurka-51:27",
+        "mazurka-51:29",
+        "mazurka-51:103",
+        "mazurka-51:9",
+        "mazurka-51:13"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0
+          ],
+          "rhythm": [
+            3.0
+          ],
+          "frequency": 50
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            2.0
+          ],
+          "frequency": 19
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 14
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            19,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 11
+        },
+        {
+          "intervals_from_bass": [
+            4,
+            0,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 10
+        }
+      ],
+      "harmony_quality_dist": {
+        "dyad": 0.431,
+        "unknown": 0.294,
+        "major": 0.202,
+        "dominant_7th": 0.032,
+        "minor": 0.028,
+        "single": 0.014
+      }
+    },
+    "silence": {
+      "frequency": 152,
+      "pct_of_bars": 3.2,
+      "avg_event_count": 1.0,
+      "rhythm_variants": [
+        {
+          "signature": [
+            3.0
+          ],
+          "frequency": 116
+        },
+        {
+          "signature": [
+            1.0
+          ],
+          "frequency": 34
+        },
+        {
+          "signature": [
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            0.25,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "register_range": {
+        "low": 36,
+        "high": 60
+      },
+      "stepwise_ratio_avg": 0.0,
+      "examples": [
+        "mazurka-50:70",
+        "mazurka-50:44",
+        "mazurka-50:78",
+        "mazurka-50:45",
+        "mazurka-50:37"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [],
+      "harmony_quality_dist": {}
+    },
+    "walking_bass": {
+      "frequency": 136,
+      "pct_of_bars": 2.9,
+      "avg_event_count": 5.2,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 20
+        },
+        {
+          "signature": [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 17
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 14
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5
+          ],
+          "frequency": 12
+        },
+        {
+          "signature": [
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5,
+            1.0
+          ],
+          "frequency": 10
+        }
+      ],
+      "register_range": {
+        "low": 52,
+        "high": 59
+      },
+      "stepwise_ratio_avg": 0.752,
+      "examples": [
+        "mazurka-50:101",
+        "mazurka-50:99",
+        "mazurka-50:18",
+        "mazurka-50:4",
+        "mazurka-50:97"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.015,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.412,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            1,
+            3,
+            1,
+            0,
+            3,
+            1
+          ],
+          "rhythm": [
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5,
+            1.0
+          ],
+          "frequency": 10
+        },
+        {
+          "intervals_from_bass": [
+            7,
+            5,
+            3,
+            5,
+            3,
+            2,
+            0
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            5,
+            0,
+            1,
+            5,
+            8,
+            10
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 7
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            5,
+            3,
+            2,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 7
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            0,
+            3,
+            1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 6
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.632,
+        "minor": 0.176,
+        "major": 0.125,
+        "single": 0.029,
+        "augmented": 0.022,
+        "diminished": 0.007,
+        "dyad": 0.007
+      }
+    },
+    "walking_bass_chromatic": {
+      "frequency": 74,
+      "pct_of_bars": 1.6,
+      "avg_event_count": 4.7,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 13
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 9
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 9
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 8
+        },
+        {
+          "signature": [
+            0.3333,
+            0.3333,
+            0.3333,
+            1.0,
+            1.0
+          ],
+          "frequency": 5
+        }
+      ],
+      "register_range": {
+        "low": 53,
+        "high": 58
+      },
+      "stepwise_ratio_avg": 0.844,
+      "examples": [
+        "mazurka-51:83",
+        "mazurka-51:76",
+        "mazurka-51:19",
+        "mazurka-51:35",
+        "mazurka-51:23"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.054,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.203,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            1,
+            0,
+            1,
+            3
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            0,
+            1,
+            2,
+            1
+          ],
+          "rhythm": [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 6
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            0,
+            1,
+            3,
+            1
+          ],
+          "rhythm": [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            8,
+            1,
+            0,
+            1,
+            3,
+            4
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            5,
+            4,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            2.0
+          ],
+          "frequency": 3
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.838,
+        "augmented": 0.054,
+        "dyad": 0.041,
+        "diminished": 0.041,
+        "minor": 0.014,
+        "major": 0.014
+      }
+    },
+    "sparse_punctuation": {
+      "frequency": 51,
+      "pct_of_bars": 1.1,
+      "avg_event_count": 3.9,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 31
+        },
+        {
+          "signature": [
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 11
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "register_range": {
+        "low": 48,
+        "high": 59
+      },
+      "stepwise_ratio_avg": 0.0,
+      "examples": [
+        "mazurka17-4:125",
+        "mazurka50-3:97",
+        "mazurka30-2:16",
+        "mazurka30-3:60",
+        "mazurka33-1:30"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 18
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 12
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            7,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 10
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            -1,
+            -1,
+            -1,
+            16,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        }
+      ],
+      "harmony_quality_dist": {
+        "dyad": 0.51,
+        "unknown": 0.275,
+        "minor": 0.098,
+        "major": 0.059,
+        "single": 0.059
+      }
+    },
+    "oscillation_trill": {
+      "frequency": 40,
+      "pct_of_bars": 0.9,
+      "avg_event_count": 4.5,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            2.0,
+            2.0,
+            1.0
+          ],
+          "frequency": 12
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 8
+        },
+        {
+          "signature": [
+            0.5,
+            2.0,
+            0.25,
+            0.25,
+            2.0,
+            1.0
+          ],
+          "frequency": 8
+        },
+        {
+          "signature": [
+            1.5,
+            0.5,
+            0.75,
+            0.25
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            1.0,
+            3.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 3
+        }
+      ],
+      "register_range": {
+        "low": 52,
+        "high": 58
+      },
+      "stepwise_ratio_avg": 0.519,
+      "examples": [
+        "mazurka33-3:12",
+        "mazurka30-4:98",
+        "mazurka30-4:96",
+        "mazurka30-4:99",
+        "mazurka-50:48"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.475,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            7,
+            0,
+            7,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            2.0,
+            2.0,
+            1.0
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 5
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "rhythm": [
+            1.5,
+            0.5,
+            0.75,
+            0.25
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            0,
+            -1,
+            12,
+            12,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            2.0,
+            0.25,
+            0.25,
+            2.0,
+            1.0
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            12,
+            0,
+            -1,
+            12,
+            12,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            2.0,
+            0.25,
+            0.25,
+            2.0,
+            1.0
+          ],
+          "frequency": 4
+        }
+      ],
+      "harmony_quality_dist": {
+        "dyad": 0.675,
+        "single": 0.3,
+        "unknown": 0.025
+      }
+    },
+    "alberti": {
+      "frequency": 32,
+      "pct_of_bars": 0.7,
+      "avg_event_count": 8.8,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            2.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        }
+      ],
+      "register_range": {
+        "low": 42,
+        "high": 58
+      },
+      "stepwise_ratio_avg": 0.184,
+      "examples": [
+        "mazurka-51:93",
+        "mazurka50-1:4",
+        "mazurka50-1:28",
+        "mazurka33-2:130",
+        "mazurka50-3:161"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.125,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            7,
+            7,
+            9,
+            6,
+            11,
+            5,
+            12,
+            3,
+            11,
+            2,
+            12,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "intervals_from_bass": [
+            24,
+            4,
+            26,
+            28,
+            22,
+            29,
+            0,
+            31
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            14,
+            0,
+            17,
+            17,
+            0,
+            17,
+            16,
+            0,
+            12
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            -1,
+            19,
+            12,
+            17,
+            16,
+            19
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            2.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            8,
+            0,
+            10,
+            12,
+            0,
+            10,
+            0,
+            8
+          ],
+          "rhythm": [
+            0.75,
+            1.0,
+            0.25,
+            1.0,
+            1.0,
+            0.75,
+            1.0,
+            0.25
+          ],
+          "frequency": 2
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.375,
+        "major": 0.25,
+        "minor": 0.156,
+        "dominant_7th": 0.125,
+        "dyad": 0.062,
+        "augmented": 0.031
+      }
+    },
+    "sparse_octaves": {
+      "frequency": 31,
+      "pct_of_bars": 0.7,
+      "avg_event_count": 3.4,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 27
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            0.75,
+            1.0,
+            0.25,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "register_range": {
+        "low": 50,
+        "high": 51
+      },
+      "stepwise_ratio_avg": 0.0,
+      "examples": [
+        "mazurka50-3:101",
+        "mazurka33-1:11",
+        "mazurka33-3:9",
+        "mazurka33-1:43",
+        "mazurka33-1:37"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            -1,
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 19
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            -1,
+            12,
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            7,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            8,
+            0,
+            11,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            0.75,
+            1.0,
+            0.25,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "harmony_quality_dist": {
+        "single": 0.903,
+        "dyad": 0.065,
+        "unknown": 0.032
+      }
+    },
+    "broken_chord_descending": {
+      "frequency": 5,
+      "pct_of_bars": 0.1,
+      "avg_event_count": 8.2,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.0,
+            0.75,
+            0.25,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        }
+      ],
+      "register_range": {
+        "low": 47,
+        "high": 61
+      },
+      "stepwise_ratio_avg": 0.852,
+      "examples": [
+        "mazurka63-1:67",
+        "mazurka-50:109",
+        "mazurka-50:25",
+        "mazurka-50:21",
+        "mazurka-50:29"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.8,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.8,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0,
+            15,
+            14,
+            12,
+            14,
+            12,
+            10,
+            8
+          ],
+          "rhythm": [
+            0.0,
+            0.75,
+            0.25,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            12,
+            11,
+            9,
+            11,
+            9,
+            7,
+            5
+          ],
+          "rhythm": [
+            0.0,
+            0.75,
+            0.25,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            15,
+            3,
+            5,
+            -1,
+            3,
+            2,
+            -1,
+            1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 1.0
+      }
+    },
+    "broken_chord_wave": {
+      "frequency": 5,
+      "pct_of_bars": 0.1,
+      "avg_event_count": 52.8,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0,
+            0.5,
+            0.5,
+            2.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "signature": [
+            0.3333,
+            3.0,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            2.0,
+            0.0,
+            0.5,
+            0.5,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "register_range": {
+        "low": 41,
+        "high": 60
+      },
+      "stepwise_ratio_avg": 0.499,
+      "examples": [
+        "mazurka50-3:167",
+        "mazurka30-3:7",
+        "mazurka50-1:8",
+        "mazurka59-1:24",
+        "mazurka50-1:24"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.2,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            -1,
+            12,
+            19,
+            17,
+            16,
+            19
+          ],
+          "rhythm": [
+            1.0,
+            0.5,
+            0.5,
+            2.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            3,
+            -1,
+            5,
+            3,
+            0,
+            1,
+            3,
+            5
+          ],
+          "rhythm": [
+            0.3333,
+            3.0,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            16,
+            0,
+            -1,
+            12,
+            16,
+            -1,
+            14,
+            12
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            27,
+            19,
+            31,
+            26,
+            27,
+            -1,
+            24,
+            7,
+            -1,
+            19,
+            12,
+            19,
+            11,
+            10,
+            22,
+            27
+          ],
+          "rhythm": [
+            2.0,
+            0.0,
+            0.5,
+            0.5,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.4,
+        "major": 0.4,
+        "dominant_7th": 0.2
+      }
+    },
+    "broken_chord_ascending": {
+      "frequency": 2,
+      "pct_of_bars": 0.0,
+      "avg_event_count": 9.0,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        }
+      ],
+      "register_range": {
+        "low": 45,
+        "high": 60
+      },
+      "stepwise_ratio_avg": 0.667,
+      "examples": [
+        "mazurka56-2:33",
+        "mazurka56-2:29"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            7,
+            0,
+            9,
+            11,
+            -1,
+            12,
+            14,
+            -1,
+            15
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        }
+      ],
+      "harmony_quality_dist": {
+        "minor": 1.0
+      }
+    }
+  },
+  "rh_templates": {
+    "singing_melody": {
+      "frequency": 2855,
+      "pct_of_bars": 60.8,
+      "avg_event_count": 5.3,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 250
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 214
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 116
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.5,
+            0.5
+          ],
+          "frequency": 86
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 81
+        }
+      ],
+      "examples": [
+        "mazurka-50:32",
+        "mazurka-50:18",
+        "mazurka-50:21",
+        "mazurka-50:40",
+        "mazurka-50:48"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.001,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.1,
+        "trills": 0.023,
+        "turns": 0.0,
+        "dotted_pairs": 0.193,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            11,
+            -1,
+            9,
+            0,
+            7,
+            6,
+            0,
+            4
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 21
+        },
+        {
+          "intervals_from_bass": [
+            2,
+            0
+          ],
+          "rhythm": [
+            2.0,
+            1.0
+          ],
+          "frequency": 19
+        },
+        {
+          "intervals_from_bass": [
+            5,
+            3,
+            1,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 15
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            0
+          ],
+          "rhythm": [
+            2.0,
+            1.0
+          ],
+          "frequency": 15
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            5,
+            3,
+            7,
+            8,
+            5
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 15
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.589,
+        "major": 0.12,
+        "minor": 0.108,
+        "dyad": 0.092,
+        "diminished": 0.049,
+        "augmented": 0.02,
+        "single": 0.011,
+        "dominant_7th": 0.011
+      }
+    },
+    "chordal": {
+      "frequency": 909,
+      "pct_of_bars": 19.4,
+      "avg_event_count": 4.2,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 189
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 132
+        },
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 95
+        },
+        {
+          "signature": [
+            0.5,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 60
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            2.0
+          ],
+          "frequency": 44
+        }
+      ],
+      "examples": [
+        "mazurka-50:9",
+        "mazurka-50:4",
+        "mazurka-50:6",
+        "mazurka-50:27",
+        "mazurka-50:23"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.069,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.283,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0,
+            0,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 33
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 24
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            0,
+            0,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 24
+        },
+        {
+          "intervals_from_bass": [
+            2,
+            -1,
+            0,
+            2,
+            3
+          ],
+          "rhythm": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 22
+        },
+        {
+          "intervals_from_bass": [
+            2,
+            0,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.5,
+            2.0
+          ],
+          "frequency": 18
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.63,
+        "minor": 0.107,
+        "diminished": 0.103,
+        "major": 0.079,
+        "dyad": 0.05,
+        "dominant_7th": 0.017,
+        "augmented": 0.013,
+        "single": 0.001
+      }
+    },
+    "passage_work": {
+      "frequency": 189,
+      "pct_of_bars": 4.0,
+      "avg_event_count": 9.1,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 44
+        },
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 26
+        },
+        {
+          "signature": [
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 14
+        },
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.0,
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 9
+        },
+        {
+          "signature": [
+            0.75,
+            1.0,
+            0.25,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 8
+        }
+      ],
+      "examples": [
+        "mazurka-50:78",
+        "mazurka-51:107",
+        "mazurka-52:15",
+        "mazurka-51:9",
+        "mazurka-52:5"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.164,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.037,
+        "written_ornaments": 0.011
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            3,
+            -1,
+            7,
+            8,
+            0,
+            10,
+            12,
+            0,
+            13
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 13
+        },
+        {
+          "intervals_from_bass": [
+            4,
+            0,
+            5,
+            7,
+            1,
+            9,
+            0,
+            7
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            3,
+            0,
+            7,
+            8,
+            0,
+            10,
+            12,
+            0,
+            13
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 7
+        },
+        {
+          "intervals_from_bass": [
+            12,
+            1,
+            10,
+            9,
+            7,
+            1,
+            9,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.25,
+            0.25,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 6
+        },
+        {
+          "intervals_from_bass": [
+            12,
+            0,
+            11,
+            9,
+            0,
+            2,
+            0,
+            11
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 6
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.529,
+        "minor": 0.243,
+        "major": 0.132,
+        "diminished": 0.058,
+        "dominant_7th": 0.026,
+        "augmented": 0.011
+      }
+    },
+    "held_note": {
+      "frequency": 188,
+      "pct_of_bars": 4.0,
+      "avg_event_count": 1.0,
+      "rhythm_variants": [
+        {
+          "signature": [
+            3.0
+          ],
+          "frequency": 178
+        },
+        {
+          "signature": [
+            2.0,
+            1.0
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            1.0,
+            2.0
+          ],
+          "frequency": 3
+        },
+        {
+          "signature": [
+            3.0,
+            3.0
+          ],
+          "frequency": 2
+        },
+        {
+          "signature": [
+            2.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "examples": [
+        "mazurka-51:19",
+        "mazurka-50:20",
+        "mazurka-51:33",
+        "mazurka-51:35",
+        "mazurka-50:28"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0
+          ],
+          "rhythm": [
+            3.0
+          ],
+          "frequency": 178
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1
+          ],
+          "rhythm": [
+            2.0,
+            1.0
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            2.0
+          ],
+          "frequency": 3
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1
+          ],
+          "rhythm": [
+            3.0,
+            3.0
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            0
+          ],
+          "rhythm": [
+            2.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "harmony_quality_dist": {
+        "single": 0.58,
+        "dyad": 0.25,
+        "diminished": 0.106,
+        "major": 0.032,
+        "minor": 0.016,
+        "unknown": 0.016
+      }
+    },
+    "dotted_pairs": {
+      "frequency": 176,
+      "pct_of_bars": 3.8,
+      "avg_event_count": 6.4,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.75,
+            0.25,
+            1.5,
+            0.5
+          ],
+          "frequency": 29
+        },
+        {
+          "signature": [
+            0.75,
+            0.75,
+            0.25,
+            0.25,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 21
+        },
+        {
+          "signature": [
+            0.75,
+            1.0,
+            0.25,
+            1.5,
+            2.0,
+            0.5
+          ],
+          "frequency": 16
+        },
+        {
+          "signature": [
+            0.75,
+            3.0,
+            0.25,
+            1.5,
+            0.5
+          ],
+          "frequency": 14
+        },
+        {
+          "signature": [
+            0.75,
+            1.0,
+            0.25,
+            1.5,
+            1.0,
+            1.0,
+            0.5
+          ],
+          "frequency": 11
+        }
+      ],
+      "examples": [
+        "mazurka-50:44",
+        "mazurka-52:54",
+        "mazurka-52:14",
+        "mazurka-50:69",
+        "mazurka-50:37"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.028,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 1.273,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            4,
+            0,
+            4,
+            4,
+            2
+          ],
+          "rhythm": [
+            0.75,
+            3.0,
+            0.25,
+            1.5,
+            0.5
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            2,
+            3,
+            0,
+            5
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            1.5,
+            0.5
+          ],
+          "frequency": 6
+        },
+        {
+          "intervals_from_bass": [
+            7,
+            0,
+            5,
+            7,
+            0
+          ],
+          "rhythm": [
+            0.75,
+            0.25,
+            1.0,
+            0.75,
+            0.25
+          ],
+          "frequency": 5
+        },
+        {
+          "intervals_from_bass": [
+            21,
+            9,
+            12,
+            0,
+            21,
+            9,
+            12,
+            7
+          ],
+          "rhythm": [
+            0.75,
+            0.75,
+            0.25,
+            0.25,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            26,
+            14,
+            16,
+            0,
+            26,
+            14,
+            16,
+            12
+          ],
+          "rhythm": [
+            0.75,
+            0.75,
+            0.25,
+            0.25,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 4
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.642,
+        "diminished": 0.108,
+        "major": 0.102,
+        "minor": 0.068,
+        "dominant_7th": 0.034,
+        "dyad": 0.028,
+        "augmented": 0.011,
+        "single": 0.006
+      }
+    },
+    "zigzag_figuration": {
+      "frequency": 145,
+      "pct_of_bars": 3.1,
+      "avg_event_count": 9.6,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 25
+        },
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 17
+        },
+        {
+          "signature": [
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 11
+        },
+        {
+          "signature": [
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            2.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 8
+        },
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "frequency": 7
+        }
+      ],
+      "examples": [
+        "mazurka-51:27",
+        "mazurka-51:16",
+        "mazurka-51:103",
+        "mazurka06-1:27",
+        "mazurka-51:101"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.007,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.234,
+        "trills": 0.014,
+        "turns": 0.0,
+        "dotted_pairs": 0.055,
+        "written_ornaments": 0.021
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            3,
+            -1,
+            8,
+            8,
+            0,
+            10,
+            8,
+            7,
+            0,
+            5
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 10
+        },
+        {
+          "intervals_from_bass": [
+            2,
+            -1,
+            6,
+            6,
+            0,
+            7,
+            6,
+            4,
+            0,
+            2
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.5,
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 10
+        },
+        {
+          "intervals_from_bass": [
+            4,
+            1,
+            6,
+            4,
+            -1,
+            0,
+            1,
+            2,
+            4
+          ],
+          "rhythm": [
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            2.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            7,
+            4,
+            9,
+            7,
+            6,
+            2,
+            7,
+            9,
+            0,
+            4
+          ],
+          "rhythm": [
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5,
+            0.75,
+            1.0,
+            0.25
+          ],
+          "frequency": 6
+        },
+        {
+          "intervals_from_bass": [
+            6,
+            -1,
+            7,
+            6,
+            5,
+            0,
+            6,
+            7,
+            0,
+            9
+          ],
+          "rhythm": [
+            0.3333,
+            1.0,
+            0.3333,
+            0.3333,
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 5
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.379,
+        "major": 0.269,
+        "minor": 0.214,
+        "diminished": 0.124,
+        "dominant_7th": 0.007,
+        "dyad": 0.007
+      }
+    },
+    "silence": {
+      "frequency": 81,
+      "pct_of_bars": 1.7,
+      "avg_event_count": 1.0,
+      "rhythm_variants": [
+        {
+          "signature": [
+            3.0
+          ],
+          "frequency": 78
+        },
+        {
+          "signature": [
+            1.0
+          ],
+          "frequency": 3
+        }
+      ],
+      "examples": [
+        "mazurka17-1:42",
+        "mazurka07-1:0",
+        "mazurka06-3:2",
+        "mazurka07-5:1",
+        "mazurka06-3:4"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [],
+      "harmony_quality_dist": {}
+    },
+    "scalar_run": {
+      "frequency": 47,
+      "pct_of_bars": 1.0,
+      "avg_event_count": 8.9,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          "frequency": 13
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            0.0,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            0.0,
+            0.0,
+            3.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "signature": [
+            0.0,
+            0.0,
+            3.0,
+            0.3333,
+            0.3333,
+            0.3333,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "signature": [
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3333
+          ],
+          "frequency": 3
+        }
+      ],
+      "examples": [
+        "mazurka06-1:42",
+        "mazurka07-2:11",
+        "mazurka06-1:55",
+        "mazurka06-1:49",
+        "mazurka06-1:56"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 1.638,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.064,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            2,
+            0,
+            2,
+            0,
+            2,
+            0,
+            2,
+            0
+          ],
+          "rhythm": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          "frequency": 6
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "rhythm": [
+            0.0,
+            0.5,
+            0.0,
+            0.5,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          "frequency": 6
+        },
+        {
+          "intervals_from_bass": [
+            9,
+            7,
+            5,
+            3,
+            3,
+            3,
+            2,
+            0
+          ],
+          "rhythm": [
+            0.0,
+            0.0,
+            3.0,
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "intervals_from_bass": [
+            9,
+            7,
+            5,
+            3,
+            3,
+            3,
+            3,
+            2,
+            0
+          ],
+          "rhythm": [
+            0.0,
+            0.0,
+            3.0,
+            0.3333,
+            0.3333,
+            0.3333,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 3
+        },
+        {
+          "intervals_from_bass": [
+            3,
+            5,
+            3,
+            2,
+            3,
+            4,
+            5,
+            0
+          ],
+          "rhythm": [
+            0.1667,
+            0.1667,
+            0.1667,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 2
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.553,
+        "minor": 0.34,
+        "diminished": 0.064,
+        "dominant_7th": 0.043
+      }
+    },
+    "unclassified": {
+      "frequency": 44,
+      "pct_of_bars": 0.9,
+      "avg_event_count": 1.6,
+      "rhythm_variants": [
+        {
+          "signature": [
+            1.0
+          ],
+          "frequency": 30
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 12
+        },
+        {
+          "signature": [
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "signature": [
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "examples": [
+        "mazurka-50:104",
+        "mazurka-51:0",
+        "mazurka07-2:0",
+        "mazurka-50:24",
+        "mazurka07-4:0"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.0,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.0,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0
+          ],
+          "rhythm": [
+            1.0
+          ],
+          "frequency": 30
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            -1
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 8
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 3
+        },
+        {
+          "intervals_from_bass": [
+            0
+          ],
+          "rhythm": [
+            0.5
+          ],
+          "frequency": 1
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0
+          ],
+          "frequency": 1
+        }
+      ],
+      "harmony_quality_dist": {
+        "single": 0.864,
+        "unknown": 0.068,
+        "dyad": 0.068
+      }
+    },
+    "dialogue_chords": {
+      "frequency": 42,
+      "pct_of_bars": 0.9,
+      "avg_event_count": 6.5,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            1.0,
+            0.25,
+            0.25,
+            1.0,
+            2.0,
+            1.0
+          ],
+          "frequency": 6
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 6
+        },
+        {
+          "signature": [
+            1.0,
+            3.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            2.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        }
+      ],
+      "examples": [
+        "mazurka30-4:91",
+        "mazurka30-4:92",
+        "mazurka30-4:93",
+        "mazurka30-3:52",
+        "mazurka17-4:107"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.071,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.119,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            3,
+            -1,
+            -1,
+            1,
+            12,
+            3,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            1.0,
+            0.25,
+            0.25,
+            1.0,
+            2.0,
+            1.0
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            0,
+            -1,
+            4,
+            5,
+            7
+          ],
+          "rhythm": [
+            1.0,
+            3.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            18,
+            -1,
+            9,
+            0,
+            -1
+          ],
+          "rhythm": [
+            2.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            -1,
+            -1,
+            1,
+            1,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            0,
+            5,
+            -1,
+            5,
+            0,
+            7
+          ],
+          "rhythm": [
+            0.75,
+            1.0,
+            0.25,
+            1.0,
+            1.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        }
+      ],
+      "harmony_quality_dist": {
+        "unknown": 0.548,
+        "dominant_7th": 0.167,
+        "minor": 0.167,
+        "major": 0.071,
+        "augmented": 0.048
+      }
+    },
+    "stammer_repeat": {
+      "frequency": 16,
+      "pct_of_bars": 0.3,
+      "avg_event_count": 4.9,
+      "rhythm_variants": [
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 6
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "signature": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "signature": [
+            0.75,
+            1.0,
+            0.25,
+            1.0,
+            1.0,
+            0.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "signature": [
+            0.5,
+            0.25,
+            0.25,
+            1.5,
+            0.5
+          ],
+          "frequency": 1
+        }
+      ],
+      "examples": [
+        "mazurka67-2:4",
+        "mazurka63-3:19",
+        "mazurka56-3:134",
+        "mazurka56-3:48",
+        "mazurka63-2:45"
+      ],
+      "avg_nct_density": {
+        "suspension": 0.0,
+        "appoggiatura": 0.0,
+        "passing": 0.0,
+        "neighbor": 0.0
+      },
+      "avg_ornament_density": {
+        "grace_notes": 0.125,
+        "trills": 0.0,
+        "turns": 0.0,
+        "dotted_pairs": 0.25,
+        "written_ornaments": 0.0
+      },
+      "top_raw_patterns": [
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            0,
+            0,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.25,
+            0.25,
+            1.0,
+            1.0
+          ],
+          "frequency": 5
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            0,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            0.5,
+            0.5
+          ],
+          "frequency": 4
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            0,
+            0
+          ],
+          "rhythm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            14,
+            12,
+            7,
+            11
+          ],
+          "rhythm": [
+            0.75,
+            1.0,
+            0.25,
+            1.0,
+            1.0,
+            0.0,
+            0.5,
+            1.0,
+            0.5
+          ],
+          "frequency": 2
+        },
+        {
+          "intervals_from_bass": [
+            1,
+            -1,
+            1,
+            1,
+            0
+          ],
+          "rhythm": [
+            0.5,
+            0.25,
+            0.25,
+            1.5,
+            0.5
+          ],
+          "frequency": 1
+        }
+      ],
+      "harmony_quality_dist": {
+        "single": 0.75,
+        "major": 0.125,
+        "unknown": 0.062,
+        "dyad": 0.062
+      }
+    }
+  },
+  "lh_transition_probabilities": {
+    "unclassified \u2192 pedal_point": 0.0912,
+    "pedal_point \u2192 unclassified": 0.0804,
+    "unclassified \u2192 bass_melody": 0.0564,
+    "unclassified \u2192 block_chord_sparse": 0.0564,
+    "unclassified \u2192 block_chord_offbeat": 0.0547,
+    "block_chord_offbeat \u2192 unclassified": 0.0502,
+    "bass_melody \u2192 unclassified": 0.0485,
+    "block_chord_sparse \u2192 unclassified": 0.0485,
+    "walking_bass \u2192 bass_melody": 0.0268,
+    "silence \u2192 unclassified": 0.0262,
+    "bass_melody \u2192 walking_bass": 0.0239,
+    "bass_melody \u2192 pedal_point": 0.0228,
+    "block_chord_offbeat \u2192 pedal_point": 0.0217,
+    "pedal_point \u2192 silence": 0.0211,
+    "pedal_point \u2192 bass_melody": 0.02,
+    "walking_bass_chromatic \u2192 bass_melody": 0.0148,
+    "bass_melody \u2192 walking_bass_chromatic": 0.0137,
+    "bass_melody \u2192 block_chord_sparse": 0.0125,
+    "pedal_point \u2192 block_chord_offbeat": 0.0125,
+    "walking_bass \u2192 walking_bass_chromatic": 0.0114,
+    "oscillation_trill \u2192 bass_melody": 0.0108,
+    "unclassified \u2192 sparse_punctuation": 0.0103,
+    "walking_bass_chromatic \u2192 unclassified": 0.0097,
+    "walking_bass \u2192 unclassified": 0.0091,
+    "sparse_punctuation \u2192 unclassified": 0.0091,
+    "block_chord_sparse \u2192 pedal_point": 0.0086,
+    "bass_melody \u2192 alberti": 0.0086,
+    "bass_melody \u2192 oscillation_trill": 0.0086,
+    "silence \u2192 bass_melody": 0.008,
+    "unclassified \u2192 walking_bass": 0.0074
+  },
+  "rh_transition_probabilities": {
+    "singing_melody \u2192 chordal": 0.1198,
+    "chordal \u2192 singing_melody": 0.1192,
+    "singing_melody \u2192 passage_work": 0.0701,
+    "passage_work \u2192 singing_melody": 0.0618,
+    "singing_melody \u2192 dotted_pairs": 0.0548,
+    "dotted_pairs \u2192 singing_melody": 0.0523,
+    "held_note \u2192 singing_melody": 0.0516,
+    "zigzag_figuration \u2192 singing_melody": 0.0491,
+    "singing_melody \u2192 held_note": 0.0491,
+    "singing_melody \u2192 zigzag_figuration": 0.0472,
+    "singing_melody \u2192 scalar_run": 0.0229,
+    "unclassified \u2192 singing_melody": 0.0191,
+    "scalar_run \u2192 singing_melody": 0.0191,
+    "chordal \u2192 zigzag_figuration": 0.0166,
+    "passage_work \u2192 chordal": 0.0159,
+    "chordal \u2192 held_note": 0.0147,
+    "silence \u2192 singing_melody": 0.0147,
+    "zigzag_figuration \u2192 chordal": 0.014,
+    "chordal \u2192 dialogue_chords": 0.0127,
+    "held_note \u2192 chordal": 0.0127,
+    "dialogue_chords \u2192 chordal": 0.0121,
+    "passage_work \u2192 dotted_pairs": 0.0089,
+    "chordal \u2192 passage_work": 0.0083,
+    "stammer_repeat \u2192 singing_melody": 0.0083,
+    "singing_melody \u2192 unclassified": 0.0076,
+    "zigzag_figuration \u2192 passage_work": 0.0076,
+    "singing_melody \u2192 dialogue_chords": 0.0076,
+    "dialogue_chords \u2192 singing_melody": 0.0076,
+    "dotted_pairs \u2192 passage_work": 0.007,
+    "dotted_pairs \u2192 chordal": 0.007
+  }
+}

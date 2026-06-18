@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_leitmotif_system_wagnerian_in_cinema",
+      "category": "fingerprint",
+      "description": "Leitmotif system \u2014 Wagnerian in cinema",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_post_romantic_orchestral_mastery_holst_korngold_strauss",
+      "category": "fingerprint",
+      "description": "Post-Romantic orchestral mastery \u2014 Holst, Korngold, Strauss",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_march_and_fanfare_idiom_for_heroism",
+      "category": "fingerprint",
+      "description": "March and fanfare idiom for heroism",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_lyrical_soloistic_heart_themes",
+      "category": "fingerprint",
+      "description": "Lyrical soloistic \"heart\" themes",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_specific_harmonic_fingerprints_the_williams_sound",
+      "category": "fingerprint",
+      "description": "Specific harmonic fingerprints \u2014 the Williams sound",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Generic background music.** Williams's scores are not background \u2014 they are active storytelling. A",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Atonal or serial harmony.** Williams uses the full range of tonal language, including chromatic in",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Absent Leitmotif structure.** A Williams-style score without specific thematic tags for specific s",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Electronic or synthesizer sound.** Williams writes for orchestra. Synthesizers and electronic elem",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Undifferentiated loudness.** Williams controls dynamic levels carefully. Not every dramatic moment",
+      "severity": "soft"
+    }
+  ]
+}

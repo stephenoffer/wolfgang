@@ -1,0 +1,30 @@
+{
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 5,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "A4",
+                "C5",
+                "D#5",
+                "E5"
+              ],
+              "d": "h",
+              "dyn": "mf"
+            }
+          ],
+          "bass": [
+            {
+              "p": "A2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

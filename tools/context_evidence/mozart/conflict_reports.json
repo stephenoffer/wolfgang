@@ -1,0 +1,165 @@
+{
+  "composer": "mozart",
+  "generated_date": "2026-04-19",
+  "total_claims": 270,
+  "total_conflicts": 5,
+  "high_severity": 0,
+  "medium_severity": 2,
+  "low_severity": 3,
+  "conflicts": [
+    {
+      "claim_id": "dist:lh:alberti",
+      "conflict_type": "statistical_contradiction",
+      "expected": {
+        "claim_description": "LH texture 'alberti' should be ~19.3% of bars",
+        "test_type": "distribution",
+        "test_config": {
+          "field": "lh_texture_distribution",
+          "key": "alberti",
+          "expected_proportion": 0.193,
+          "tolerance": 0.15
+        },
+        "current_grounding": "hard_corroborated"
+      },
+      "observed": {
+        "support_count": 20,
+        "contradiction_count": 22,
+        "total_tested": 69,
+        "contradiction_ratio": 0.524
+      },
+      "confidence": 0.524,
+      "severity": "low",
+      "recommendation": "log_only",
+      "possible_resolutions": [
+        "update_expected_proportion",
+        "narrow_scope_to_period",
+        "add_genre_exception"
+      ],
+      "sources_tested": 69
+    },
+    {
+      "claim_id": "trans:walking_bass:alberti",
+      "conflict_type": "statistical_contradiction",
+      "expected": {
+        "claim_description": "Transition walking_bass\u2192alberti should be ~6.5%",
+        "test_type": "distribution",
+        "test_config": {
+          "field": "transition_counts",
+          "src": "walking_bass",
+          "tgt": "alberti",
+          "expected_proportion": 0.0653,
+          "tolerance": 0.15
+        },
+        "current_grounding": "hard_corroborated"
+      },
+      "observed": {
+        "support_count": 2,
+        "contradiction_count": 5,
+        "total_tested": 8,
+        "contradiction_ratio": 0.714
+      },
+      "confidence": 0.714,
+      "severity": "medium",
+      "recommendation": "downgrade_grounding",
+      "possible_resolutions": [
+        "update_expected_proportion",
+        "narrow_scope_to_period",
+        "add_genre_exception"
+      ],
+      "sources_tested": 8
+    },
+    {
+      "claim_id": "trans:block_chord_sparse:block_chord_sparse",
+      "conflict_type": "statistical_contradiction",
+      "expected": {
+        "claim_description": "Transition block_chord_sparse\u2192block_chord_sparse should be ~39.7%",
+        "test_type": "distribution",
+        "test_config": {
+          "field": "transition_counts",
+          "src": "block_chord_sparse",
+          "tgt": "block_chord_sparse",
+          "expected_proportion": 0.3974,
+          "tolerance": 0.15
+        },
+        "current_grounding": "hard_corroborated"
+      },
+      "observed": {
+        "support_count": 11,
+        "contradiction_count": 11,
+        "total_tested": 30,
+        "contradiction_ratio": 0.5
+      },
+      "confidence": 0.5,
+      "severity": "low",
+      "recommendation": "log_only",
+      "possible_resolutions": [
+        "update_expected_proportion",
+        "narrow_scope_to_period",
+        "add_genre_exception"
+      ],
+      "sources_tested": 30
+    },
+    {
+      "claim_id": "trans:broken_chord_wave:alberti",
+      "conflict_type": "statistical_contradiction",
+      "expected": {
+        "claim_description": "Transition broken_chord_wave\u2192alberti should be ~13.3%",
+        "test_type": "distribution",
+        "test_config": {
+          "field": "transition_counts",
+          "src": "broken_chord_wave",
+          "tgt": "alberti",
+          "expected_proportion": 0.1331,
+          "tolerance": 0.15
+        },
+        "current_grounding": "hard_corroborated"
+      },
+      "observed": {
+        "support_count": 21,
+        "contradiction_count": 25,
+        "total_tested": 50,
+        "contradiction_ratio": 0.543
+      },
+      "confidence": 0.543,
+      "severity": "low",
+      "recommendation": "log_only",
+      "possible_resolutions": [
+        "update_expected_proportion",
+        "narrow_scope_to_period",
+        "add_genre_exception"
+      ],
+      "sources_tested": 50
+    },
+    {
+      "claim_id": "trans:broken_chord_wave:broken_chord_wave",
+      "conflict_type": "statistical_contradiction",
+      "expected": {
+        "claim_description": "Transition broken_chord_wave\u2192broken_chord_wave should be ~46.8%",
+        "test_type": "distribution",
+        "test_config": {
+          "field": "transition_counts",
+          "src": "broken_chord_wave",
+          "tgt": "broken_chord_wave",
+          "expected_proportion": 0.4677,
+          "tolerance": 0.15
+        },
+        "current_grounding": "hard_corroborated"
+      },
+      "observed": {
+        "support_count": 10,
+        "contradiction_count": 31,
+        "total_tested": 50,
+        "contradiction_ratio": 0.756
+      },
+      "confidence": 0.756,
+      "severity": "medium",
+      "recommendation": "downgrade_grounding",
+      "possible_resolutions": [
+        "update_expected_proportion",
+        "narrow_scope_to_period",
+        "add_genre_exception"
+      ],
+      "sources_tested": 50
+    }
+  ]
+}

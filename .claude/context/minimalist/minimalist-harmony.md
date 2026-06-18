@@ -13,6 +13,43 @@
 | Process over progression | Harmony results from process, not planned progression |
 | Drone foundation | Sustained or repeated bass provides ground |
 
+
+## Harmony as Process and Meditation
+
+Minimalist harmony discovers that repetition transforms the nature of a chord. After 16 bars, a triad ceases to be "a chord" and becomes an environment — the listener stops hearing it as an event and begins to inhabit it. This is harmony as architecture of attention: the slow accretion of small changes creates the effect of watching a landscape from a moving train, where the vast background remains constant while details shift in the foreground.
+
+### Repetition as Harmonic Deepening
+
+| Repetition Duration | What the Listener Experiences | Compositional Effect |
+|--------------------|------------------------------|---------------------|
+| 1-4 bars | Recognition — "this is the chord" | Establishing identity |
+| 4-8 bars | Acceptance — the chord becomes expected | Settling, comfort |
+| 8-16 bars | Immersion — the chord becomes the world | The listener stops analyzing and starts inhabiting |
+| 16-32 bars | Transformation — overtones, beating, room acoustics become audible | Perception itself changes; the chord reveals hidden interior details |
+| 32+ bars | Transcendence — the distinction between listener and sound blurs | Deep listening, meditative absorption |
+
+### Emergent Harmony from Phase Processes
+
+In Reich's phasing technique, harmony is not composed — it emerges from the interaction of two identical patterns gradually shifting out of sync. The resulting harmonies are both inevitable (determined by the process) and surprising (unpredictable to the ear). This creates a unique emotional quality: the listener senses an underlying logic but cannot predict the next moment, producing a state of alert relaxation.
+
+### Consonance as Radical Act
+
+After a century of increasing dissonance (Schoenberg, Webern, Boulez), the return to simple triads by Part, Gorecki, and Tavener was itself shocking and deeply moving. A bare A minor triad in Part's "Spiegel im Spiegel" carries more emotional weight than any twelve-tone row — not because triads are inherently superior, but because the historical context makes simplicity a radical statement. The listener hears both the chord and the century of complexity it renounces.
+
+```abc
+X:50
+T:Consonance as Radical Act - Tintinnabuli Stillness
+M:3/4
+L:1/4
+K:Am
+%%staves {1 2}
+V:1 name="T-voice"
+E A E | C E A | E C E | A E C |
+V:2 name="M-voice"
+B A G | F E D | C B, A, | B, C D |
+% Simple triadic + stepwise motion — after a century of complexity, this IS the radical gesture
+```
+
 ## Diatonic Simplicity
 
 | Mode | Character | Common Use |

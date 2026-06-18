@@ -1,0 +1,150 @@
+{
+ "composer": "style__baroque",
+ "style": "baroque",
+ "members": [
+  "bach",
+  "handel",
+  "corelli"
+ ],
+ "total_bars": 4966,
+ "total_movements": 299,
+ "movements_used": 299,
+ "min_movement_bars": 6,
+ "metrics": {
+  "events_per_bar": {
+   "mean": 7.2532,
+   "stdev": 1.5171,
+   "min": 0.519,
+   "max": 14.0,
+   "n": 299,
+   "p25": 6.667,
+   "p50": 7.429,
+   "p75": 8.1
+  },
+  "events_per_bar_rh": {
+   "mean": 3.4283,
+   "stdev": 0.9382,
+   "min": 0.259,
+   "max": 11.071,
+   "n": 299,
+   "p25": 3.056,
+   "p50": 3.429,
+   "p75": 3.833
+  },
+  "events_per_bar_lh": {
+   "mean": 3.8249,
+   "stdev": 0.8377,
+   "min": 0.259,
+   "max": 7.733,
+   "n": 299,
+   "p25": 3.4,
+   "p50": 3.933,
+   "p75": 4.3
+  },
+  "texture_change_pct": {
+   "mean": 0.3745,
+   "stdev": 0.1803,
+   "min": 0.0,
+   "max": 0.9286,
+   "n": 299,
+   "p25": 0.25,
+   "p50": 0.3846,
+   "p75": 0.5
+  },
+  "lh_texture_change_pct": {
+   "mean": 0.6094,
+   "stdev": 0.1689,
+   "min": 0.0,
+   "max": 0.9412,
+   "n": 299,
+   "p25": 0.5,
+   "p50": 0.6364,
+   "p75": 0.7143
+  },
+  "rh_texture_change_pct": {
+   "mean": 0.3519,
+   "stdev": 0.1857,
+   "min": 0.0,
+   "max": 1.0,
+   "n": 299,
+   "p25": 0.25,
+   "p50": 0.3571,
+   "p75": 0.4615
+  },
+  "density_cv": {
+   "mean": 0.4148,
+   "stdev": 0.2995,
+   "min": 0.1,
+   "max": 4.4032,
+   "n": 299,
+   "p25": 0.3151,
+   "p50": 0.3797,
+   "p75": 0.4676
+  },
+  "direction_changes_per_bar": {
+   "mean": 0.5794,
+   "stdev": 0.2088,
+   "min": 0.0,
+   "max": 1.0,
+   "n": 299,
+   "p25": 0.4545,
+   "p50": 0.6,
+   "p75": 0.7273
+  },
+  "grace_ratio": {
+   "mean": 0.0006,
+   "stdev": 0.0073,
+   "min": 0.0,
+   "max": 0.1053,
+   "n": 299,
+   "p25": 0.0,
+   "p50": 0.0,
+   "p75": 0.0
+  },
+  "dotted_ratio": {
+   "mean": 0.1044,
+   "stdev": 0.1206,
+   "min": 0.0,
+   "max": 0.5385,
+   "n": 299,
+   "p25": 0.0,
+   "p50": 0.0714,
+   "p75": 0.1667
+  },
+  "register_span": {
+   "mean": 9.4013,
+   "stdev": 3.4948,
+   "min": 0.0,
+   "max": 26.0,
+   "n": 299,
+   "p25": 7.0,
+   "p50": 9.0,
+   "p75": 11.0
+  }
+ },
+ "lh_texture_distribution": {
+  "pedal_point": 0.2463,
+  "bass_melody": 0.3586,
+  "silence": 0.0403,
+  "alberti": 0.1136,
+  "broken_chord_wave": 0.2406,
+  "walking_bass": 0.0006
+ },
+ "rh_texture_distribution": {
+  "held_note": 0.3369,
+  "singing_melody": 0.6355,
+  "scalar_run": 0.0213,
+  "zigzag_figuration": 0.0018,
+  "passage_work": 0.0044
+ },
+ "lh_l1_baseline": {
+  "mean": 0.7083,
+  "stdev": 0.2499,
+  "min": 0.309,
+  "max": 1.7728,
+  "n": 299,
+  "p25": 0.5236,
+  "p50": 0.6828,
+  "p75": 0.8521
+ }
+}

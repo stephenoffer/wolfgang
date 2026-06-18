@@ -1,0 +1,30 @@
+{
+  "cadence_vocabulary": [
+    {
+      "type": "PAC",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "plagal",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "deceptive",
+      "frequency_weight": 0.5
+    }
+  ],
+  "chromatic_techniques": [
+    {
+      "name": "Neapolitan",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "augmented sixth",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "chromatic",
+      "frequency_weight": 0.3
+    }
+  ]
+}

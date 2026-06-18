@@ -1,0 +1,56 @@
+{
+  "counts": {
+    "pedal_point": {
+      "bass_melody": 690,
+      "pedal_point": 887,
+      "silence": 127,
+      "alberti": 33,
+      "broken_chord_wave": 133
+    },
+    "bass_melody": {
+      "bass_melody": 1065,
+      "pedal_point": 719,
+      "alberti": 49,
+      "silence": 31,
+      "broken_chord_wave": 299
+    },
+    "silence": {
+      "bass_melody": 46,
+      "silence": 291,
+      "pedal_point": 161,
+      "alberti": 4,
+      "broken_chord_wave": 7
+    },
+    "alberti": {
+      "bass_melody": 57,
+      "alberti": 68,
+      "pedal_point": 26,
+      "broken_chord_wave": 1,
+      "silence": 3
+    },
+    "broken_chord_wave": {
+      "pedal_point": 127,
+      "bass_melody": 307,
+      "broken_chord_wave": 114,
+      "silence": 5,
+      "alberti": 0
+    }
+  },
+  "self_continuation": {
+    "pedal_point": 0.4743,
+    "bass_melody": 0.4924,
+    "silence": 0.5717,
+    "alberti": 0.4387,
+    "broken_chord_wave": 0.2061
+  },
+  "total_transitions": 5250,
+  "genre": "baroque",
+  "source_composers": [
+    "bach",
+    "palestrina",
+    "monteverdi",
+    "handel",
+    "corelli"
+  ],
+  "synthetic": false
+}

@@ -1,0 +1,19 @@
+{
+  "composer": "rimsky-korsakov",
+  "genre": "nationalistic",
+  "support_tier": "C",
+  "corpus_bar_count": 0,
+  "profile_files": [
+    "biography.md",
+    "composition-guide.md",
+    "cross-references.md",
+    "formal-approach.md",
+    "harmonic-language.md",
+    "index.md",
+    "melodic-style.md",
+    "orchestration.md",
+    "stylistic-evolution.md"
+  ],
+  "corpus_files": [],
+  "pattern_count": 0
+}

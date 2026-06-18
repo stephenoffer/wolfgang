@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_pentatonic_folk_melody_the_tune_that_everyone_knows",
+      "category": "fingerprint",
+      "description": "Pentatonic/folk melody \u2014 the tune that everyone knows",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_furiant_and_dumka_czech_dance_forms_as_structural_units",
+      "category": "fingerprint",
+      "description": "Furiant and Dumka \u2014 Czech dance forms as structural units",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_flat_vii_chord_mixolydian_as_characteristic_color",
+      "category": "fingerprint",
+      "description": "Flat-VII chord (Mixolydian) as characteristic color",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_richly_lyrical_slow_movements_the_american_idiom",
+      "category": "fingerprint",
+      "description": "Richly lyrical slow movements \u2014 the American idiom",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_american_pentatonic_color_late_dvo_k",
+      "category": "fingerprint",
+      "description": "American pentatonic color (late Dvo\u0159\u00e1k)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Sophisticated harmonic language.** Dvo\u0159\u00e1k's harmony is functional and straightforward. Secondary d",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Emotional complexity or irony.** Dvo\u0159\u00e1k's emotional language is direct: joyful, melancholy, energe",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Thin, chamber-like textures in orchestral writing.** Dvo\u0159\u00e1k's orchestration is full-bodied, warm, ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Abstract, non-melodic writing.** Every Dvo\u0159\u00e1k passage has a tune. Development sections still have ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Absence of folk character.** A Dvo\u0159\u00e1k piece without a folk-like melody (pentatonic, modal, singabl",
+      "severity": "soft"
+    }
+  ]
+}

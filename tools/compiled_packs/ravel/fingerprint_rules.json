@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "surface_precision_crystalline_voicing",
+      "name": "Surface precision \u2014 crystalline voicing",
+      "description": "Where Debussy's harmonies float, Ravel's are meticulously voiced and crystalline. Every note of every chord is placed in a specific register for a specific timbral reason. The harmonies may be extende",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "mechanical_regularity_as_aesthetic",
+      "name": "Mechanical regularity as aesthetic",
+      "description": "Ravel embraces repetition, ostinato, and clockwork regularity (Bol\u00e9ro is the extreme example). Unlike Debussy who flows fluidly, Ravel often uses strict rhythmic patterns, exactly repeated accompanime",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "bitonality_polytonal_color",
+      "name": "Bitonality / polytonal color",
+      "description": "Two key areas sounding simultaneously, or a melody harmonized by chords from a different key than the bass. The effect is a slight \"wrongness\" \u2014 almost right, but with a beautiful friction. Ravel uses",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "spanish_basque_iberian_color",
+      "name": "Spanish / Basque / Iberian color",
+      "description": "Ravel's Basque heritage manifests in specific rhythmic patterns (bolero rhythm, habanera rhythm), ornamental gestures (guitar-like strumming, castenet-imitating percussion), and modal scales with Phry",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "textural_stratification",
+      "name": "Textural stratification",
+      "description": "Multiple independent musical layers sounding simultaneously, each in its own register and with its own rhythm. The melody is one layer, the accompaniment another, the bass a third \u2014 and they can be fr",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

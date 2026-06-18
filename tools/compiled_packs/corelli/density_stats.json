@@ -1,0 +1,29 @@
+{
+ "composer": "corelli",
+ "total_bars": 19,
+ "rh": {
+  "singing_melody": {
+   "median": 4,
+   "p25": 4,
+   "p75": 5,
+   "mean": 4.13,
+   "n": 15
+  }
+ },
+ "lh": {
+  "bass_melody": {
+   "median": 3.5,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.5,
+   "n": 10
+  },
+  "broken_chord_wave": {
+   "median": 6.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.67,
+   "n": 6
+  }
+ }
+}

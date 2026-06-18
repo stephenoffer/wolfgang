@@ -1,0 +1,93 @@
+[
+  {
+    "id": "b6_melodic_inflection",
+    "name": "b6 melodic inflection",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Any major-key phrase \u2014 the signature shadow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan_6th_bii6",
+    "name": "Neapolitan 6th (bII6)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Slow movements",
+      "minor-key cadences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "diminished_7th_pivot",
+    "name": "Diminished 7th pivot",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Development sections",
+      "operatic transitions"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "augmented_6th_chords",
+    "name": "Augmented 6th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dramatic cadential moments",
+      "late works"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_bass_descent",
+    "name": "Chromatic bass descent",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Lament",
+      "grief",
+      "slow introductions"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_reinterpretation",
+    "name": "Enharmonic reinterpretation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Late works",
+      "development sections"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "secondary_dominants",
+    "name": "Secondary dominants",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Transitions",
+      "sequences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "mozart/harmonic-language.md"
+  }
+]

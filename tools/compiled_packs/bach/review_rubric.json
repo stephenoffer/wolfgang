@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "id": "fp_continuous_forward_motion",
+      "category": "fingerprint",
+      "description": "Continuous forward motion",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_imitative_counterpoint",
+      "category": "fingerprint",
+      "description": "Imitative counterpoint",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequence_as_developmental_engine",
+      "category": "fingerprint",
+      "description": "Sequence as developmental engine",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_functional_harmony_with_expressive_chromaticism",
+      "category": "fingerprint",
+      "description": "Functional harmony with expressive chromaticism",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_motivic_saturation",
+      "category": "fingerprint",
+      "description": "Motivic saturation",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "**Melody that rests mid-phrase.** Bach melodies breathe via phrase overlap, not actual rests. A melo",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Block chord accompaniment.** Every voice must move \u2014 the bass line is a melody.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Dynamic hair-pins within a phrase.** Baroque dynamics are terraced (forte vs. piano) not graduated",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Simple diatonic melody without motivic development.** A melody that just steps up and down without",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Parallel fifths or octaves between outer voices.** These are forbidden. Check every bar.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Sequences that don't modulate.** Bach's sequences almost always pass through a key area.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_11",
+      "category": "anti_pattern",
+      "description": "**Cadence without a trill** on the penultimate note. No trill = no cadence in this style.",
+      "severity": "soft"
+    }
+  ]
+}

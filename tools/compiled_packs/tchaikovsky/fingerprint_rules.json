@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "long_sweeping_melody_with_a_built_in_arch",
+      "name": "Long, sweeping melody with a built-in arch",
+      "description": "Tchaikovsky's themes have a specific architecture: they begin relatively low, rise in a long sustained ascent over 8\u201316 bars, peak on a sustained high note with full orchestra, then descend in a short",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "waltz_rhythm_as_emotional_vehicle",
+      "name": "Waltz rhythm as emotional vehicle",
+      "description": "The waltz (3/4, or 12/8 implied) pervades Tchaikovsky's writing beyond ballet: symphonies, string quartets, piano pieces. The lilt of the waltz is emotional vulnerability \u2014 the grace and sadness of so",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "sequence_as_escalation",
+      "name": "Sequence as escalation",
+      "description": "Tchaikovsky drives toward climaxes through relentless sequential repetition: the same 2-bar gesture a step higher, then a step higher again, then again. Each repetition adds orchestral mass. The seque",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "russian_modal_color_within_tonal_framework",
+      "name": "Russian modal color within tonal framework",
+      "description": "Despite writing in standard keys, Tchaikovsky uses Russian folk-modal inflections: the lowered 6th degree (bVI in major keys), the Phrygian-style cadence (bII\u2192I), and the Dorian raised 6th in minor. T",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "fate_doom_bass_ostinato_at_crisis_moments",
+      "name": "Fate/doom bass ostinato at crisis moments",
+      "description": "At points of highest emotional tension, the lower strings and brass sustain a repeated bass figure \u2014 often a chromatic descent or a repeated threatening rhythm \u2014 while the melody tries to escape above",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

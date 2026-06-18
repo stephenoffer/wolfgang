@@ -185,3 +185,69 @@ Layer 5: Harp — occasional glissando sparkle
 | Piccolo + triangle | Dance sparkle | Rimsky-Korsakov |
 | Bassoon + cello bass | Deep folk gravity | Mussorgsky |
 | Full woodwind choir in 3rds | Village band | Czech tradition |
+
+## National Orchestral Colors — Detailed
+
+### Russian Orchestral Palette
+| Technique | Instruments | Effect | Example |
+|---|---|---|---|
+| English horn melody over string tremolo | English horn solo, strings pp tremolo | Melancholy landscape | Borodin: In the Steppes |
+| Bass clarinet darkness | Solo bass clarinet, sparse scoring | Ominous, nocturnal | Rimsky-Korsakov: Scheherazade |
+| Tambourine + triangle dance | Percussion over pizzicato strings | Folk celebration | Rimsky-Korsakov |
+| Brass fanfares | Horns + trumpets in octaves | Military, heroic | Mussorgsky: Pictures |
+| Glockenspiel shimmer | Glockenspiel doubling melody | Magical, bell-like | Rimsky-Korsakov: Tsar Saltan |
+| Celesta for magic | Celesta solo or doubled | Enchantment, fairy tale | Tchaikovsky: Nutcracker |
+
+### Scandinavian Orchestral Palette
+| Technique | Instruments | Effect | Example |
+|---|---|---|---|
+| String tremolo over pedal | Divided strings, pp, sustained | Vast landscape, frost | Sibelius: Symphony 2 opening |
+| Solo wind over empty texture | Solo oboe or clarinet, minimal accompaniment | Solitude, nature voice | Grieg: Peer Gynt |
+| Harp as landscape | Harp arpeggios under sustained winds | Mountain, water | Grieg |
+| Solo violin (Hardanger style) | Open-string double stops, folk ornaments | Norwegian fiddle | Grieg: Holberg Suite |
+| Low brass chorales | Trombones + tuba, hymnlike | Nordic solemnity | Sibelius: Finlandia |
+| Timpani as nature | Quiet sustained rolls | Thunder, earth | Sibelius |
+
+### Czech Orchestral Palette
+| Technique | Instruments | Effect | Example |
+|---|---|---|---|
+| Clarinet warmth | Solo clarinet, chalumeau register | Folk nostalgia | Dvořák |
+| Wind serenade texture | Paired winds (2 ob, 2 cl, 2 hn, 2 bsn) | Village band, Harmoniemusik | Dvořák: Serenade |
+| Pizzicato dance | Strings pizzicato, light scoring | Polka character | Smetana |
+| Flute ripples | Rapid flute figuration over strings | Water, flowing river | Smetana: Vltava |
+| Horn calls | Natural horn-style calls | Hunting, forest | Smetana: From Bohemia's Fields |
+
+## Suggesting Folk Instruments with Standard Orchestra
+
+| Folk instrument | Orchestral substitute | Technique |
+|---|---|---|
+| Balalaika | Pizzicato strings (mandolin-like) | Short, strummed pizzicato patterns |
+| Hardingfele (Norwegian fiddle) | Solo violin with open-string drones | Double stops with open E or A string |
+| Cimbalom | Piano, harp, or vibraphone | Rapid repeated notes/tremolando |
+| Duduk/zurna | Oboe or English horn | Sustained melody, nasal quality |
+| Gusli | Harp arpeggios | Arpeggiated patterns |
+| Kantele | Harp harmonics | Delicate plucked patterns |
+| Bagpipe | Sustained wind drone + melody | Oboe/clarinet melody over horn/bassoon drone |
+
+```abc
+X:3
+T:Hardanger Fiddle Effect (solo violin with open-string drone)
+M:3/4
+L:1/8
+K:D
+V:Solo name="Solo Violin"
+!p! [DA]2 [DA]2 [DA]2 | [Df]2 [De]2 [DA]2 | [DB]2 [DA]2 [DF]2 | [DA]6 |
+%% D string played open as drone while melody on A string
+```
+
+## Orchestral Landscape Painting (Nationalistic)
+
+| Landscape | Scoring approach | Characteristic texture |
+|---|---|---|
+| River/water | Flowing woodwind figuration, harp arpeggios, string undulation | Smetana: flute triplets |
+| Mountain/fjord | Brass chorales, wide spacing, open 5ths | Grieg/Sibelius: horn calls |
+| Steppe/plain | English horn melody, sustained string drone, emptiness | Borodin: minimal texture |
+| Forest | Horn calls, woodwind bird imitation, rustling strings | Weber/Smetana |
+| Storm | Full tutti tremolo, timpani rolls, rapid chromatic scales | Universal |
+| Dawn/sunrise | Gradual orchestral build from solo to tutti, brightening harmony | Smetana: Vltava ending |
+| Winter/ice | High harmonics, celesta, sparse texture, cold register | Sibelius: Tapiola |

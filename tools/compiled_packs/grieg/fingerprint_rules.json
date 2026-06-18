@@ -1,0 +1,42 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "norwegian_folk_scale_the_raised_4th_lydian_inflection",
+      "name": "Norwegian folk scale \u2014 the raised 4th (Lydian inflection)",
+      "description": "The characteristic \"Grieg note\" is the raised 4th degree: in A minor, a D# appears as a passing tone or as a chord color. This comes from the Hardanger fiddle tradition. Combined with natural minor or",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "short_atmospheric_miniature_forms",
+      "name": "Short, atmospheric miniature forms",
+      "description": "Grieg's natural habitat is the short character piece: the Lyric Pieces for piano (66 pieces, each 1\u20134 minutes). His large-form work (Piano Concerto, Peer Gynt) is the exception. The miniature form is ",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "pedal_point_under_changing_harmonies",
+      "name": "Pedal point under changing harmonies",
+      "description": "Grieg frequently sustains a tonic or dominant pedal in the bass while the harmonies above it change freely \u2014 often to unexpected chromatic chords. The pedal gives stability; the chromatic harmonies ab",
+      "texture_affinities": [
+        "pedal_point"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "halling_and_springar_rhythms_norwegian_dance_idiom",
+      "name": "Halling and Springar rhythms \u2014 Norwegian dance idiom",
+      "description": "The Halling is a lively solo dance in 2/4 with strong downbeats and wide leaps. The Springar is a triple-time dance (3/4 or 3/8) with irregular accent patterns (sometimes 2+3+2, sometimes 3+2+2). Thes",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "sudden_tonal_juxtaposition_grieg_s_harmonic_freshness",
+      "name": "Sudden tonal juxtaposition \u2014 Grieg's harmonic freshness",
+      "description": "Grieg moves between harmonically distant keys by simply placing them next to each other: A minor \u2192 F# major, or E major \u2192 C major. The move is not prepared, not modulatory \u2014 it is a juxtaposition of t",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

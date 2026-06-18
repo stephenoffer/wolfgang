@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "id": "fp_vocal_thinking_in_instrumental_writing",
+      "category": "fingerprint",
+      "description": "Vocal thinking in instrumental writing",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_inflection_for_emotional_nuance",
+      "category": "fingerprint",
+      "description": "Chromatic inflection for emotional nuance",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_transparent_chamber_like_texture",
+      "category": "fingerprint",
+      "description": "Transparent, chamber-like texture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_symmetrical_phrase_structure_subverted_at_one_moment",
+      "category": "fingerprint",
+      "description": "Symmetrical phrase structure subverted at one moment",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_minor_mode_shadow_in_major_contexts",
+      "category": "fingerprint",
+      "description": "Minor-mode shadow in major contexts",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "**Thick, heavy textures.** Mozart's music breathes. Four instruments all forte simultaneously is Bee",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Dramatic gestures in early positions.** Mozart's ff outburst in bar 3 is wrong. It belongs at bar ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Melody without vocal shape.** If a singer couldn't make sense of it, it's not Mozart.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**No chromatic inflection.** Completely diatonic Mozart is flavorless. One expressive chromatic note",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Both phrases ending identically.** The antecedent (HC) and consequent (PAC) must diverge at bar 7.",
+      "severity": "soft"
+    }
+  ]
+}

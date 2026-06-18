@@ -203,3 +203,88 @@ V:Db name="Bass" clef=bass
 - Harp audible only in lighter textures (p-mf) or with rests in other parts
 - Contrabassoon and tuba rarely double; choose one for bass weight
 - English horn solo projects well against light string accompaniment
+
+## Berlioz's Orchestral Innovations
+
+Berlioz characteristically treated the orchestra as a palette of pure color rather than functional blocks:
+
+| Innovation | Technique | Effect |
+|---|---|---|
+| Idée fixe orchestration | Same theme recolored by different instruments across movements | Character transformation |
+| Unusual solos | English horn, viola, harp as lead voices | Fresh timbral identity |
+| Spatial scoring | Offstage brass, distant drums | Three-dimensional sound |
+| Extreme dynamic range | ppppp to ffff in single passages | Unprecedented contrast |
+| Col legno, ponticello | Extended string techniques for color | Eerie, skeletal texture |
+| Orchestral recitative | Solo instrument with orchestral "punctuation" | Dramatic speech |
+
+## Harp Integration
+
+The harp became a standard orchestral member in the Romantic period (~1830s onward):
+
+| Usage | Technique | Context |
+|---|---|---|
+| Arpeggiated chords | Broken chord figures across full range | Transitions, color washes |
+| Glissando | Full sweep across strings | Climactic moments, magic |
+| Bisbigliando | Tremolo between enharmonic strings | Shimmering, ethereal |
+| Doubled with winds | Harp + flute or clarinet | Delicate melody |
+| Harmonic glissando | Harmonics only | Otherworldly |
+| Pedal changes | Enharmonic respelling for chromatic glissandi | Debussy/Ravel technique |
+
+## Expanded Brass Writing
+
+| Development | Pre-Romantic | Romantic Innovation |
+|---|---|---|
+| Horn | Natural horn, hand-stopping | Valved horn: full chromatic melody |
+| Trumpet | Limited to fanfare/signals | Valved: lyrical melody, chromatic passages |
+| Trombone | Church/opera only | Full orchestral section, chorale texture |
+| Tuba | Did not exist | Bass foundation (from ~1835) |
+| Brass section | Rarely independent | Self-contained chorale unit |
+
+```abc
+X:2
+T:Romantic Brass Chorale
+M:4/4
+L:1/2
+K:Bb
+%%staves [Hn Tpt Tbn Tba]
+V:Hn name="Horns"
+V:Tpt name="Trumpets"
+V:Tbn name="Trombones" clef=bass
+V:Tba name="Tuba" clef=bass
+[V:Hn] !f!!maestoso! Bd | cB | AF | B4 |
+[V:Tpt] FB | AF | FE | D4 |
+[V:Tbn] D,F, | F,D, | C,C, | B,,4 |
+[V:Tba] B,,B,, | F,,F,, | F,,F,, | B,,4 |
+```
+
+## String Divisi
+
+| Divisi Type | Notation | Effect | Best For |
+|---|---|---|---|
+| Simple div. (a 2) | Half the section each note | Fuller harmony | Sustained chords |
+| 3-part div. | Thirds of section | Rich but thinner | Impressionistic color |
+| 4-part div. | Quarters of section | Lush but quiet | pp sustained textures |
+| Solo + section | Solo desk + remainder | Exposed melody + cushion | Concertante moments |
+| Desk by desk | Each desk different | Cluster effects | Late Romantic/Modern |
+
+## Piano in Orchestral Context
+
+| Role | Technique | Example |
+|---|---|---|
+| Concerto soloist | Protagonist against orchestra | Standard concerto |
+| Obbligato | Equal partner, not competing | Franck: Symphonic Variations |
+| Color instrument | Punctuation, shimmer | Stravinsky (later) |
+| Continuo replacement | Harmonic fill in thin textures | Early Romantic transitions |
+| Cadenza | Unaccompanied showcase | Integrated or standalone |
+
+## Dynamic Range Expansion (Romantic Era)
+
+| Marking | Typical use | First systematic use |
+|---|---|---|
+| pppp | Barely perceptible, single instrument | Verdi, Tchaikovsky |
+| ppp | Hushed, chamber-like moment in orchestra | Beethoven late works |
+| pp-fff range | Standard Romantic dynamic span | Universal by 1840s |
+| ffff | Maximum orchestral force + percussion | Berlioz, Wagner |
+| sfp, sfpp | Accent followed by sudden quiet | Beethoven onward |
+| fp | Forte attack, immediate piano | Dramatic punctuation |
+| Hairpin over 20+ bars | Gradual orchestral crescendo | Rossini, Wagner |

@@ -1,0 +1,40 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "hybrid_orchestra_electronics_integrated_with_acoustic",
+      "name": "Hybrid orchestra \u2014 electronics integrated with acoustic",
+      "description": "Zimmer's core sound combines synthesizers, electronic textures, and sampled sounds with live orchestra. The electronics and orchestra are not separate layers \u2014 they are one integrated palette. A susta",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "ostinato_driven_momentum_the_engine",
+      "name": "Ostinato-driven momentum \u2014 the engine",
+      "description": "Zimmer's action and tension cues are built on ostinato patterns: a short rhythmic cell (often 4 notes) repeated relentlessly in the strings or brass, gradually thickening, while other musical elements",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "slow_harmonic_language_minimal_changes_maximum_weight",
+      "name": "Slow harmonic language \u2014 minimal changes, maximum weight",
+      "description": "Zimmer changes harmony slowly (every 4\u201316 bars) and uses only 2\u20134 chords in any cue. The chords themselves are simple (often just triads or power chords), but the harmonic stasis gives each chord enor",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "braaam_the_modern_climactic_sound",
+      "name": "BRAAAM \u2014 the modern climactic sound",
+      "description": "The massive, distorted, low-frequency horn blast (the \"Inception BRAAAM,\" extended through Interstellar, Dunkirk) is Zimmer's signature climactic sound. It is not a chord or a melody \u2014 it is a sonic e",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "emotional_directness_the_score_tells_you_what_to_feel",
+      "name": "Emotional directness \u2014 the score tells you what to feel",
+      "description": "Zimmer's scores are emotionally direct in a way that Classical music never is. The \"sad\" cue sounds sad using every tool available. The \"heroic\" cue sounds heroic. The emotional effect is the goal; th",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

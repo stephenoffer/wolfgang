@@ -1,0 +1,38 @@
+{
+  "total_bars": 241,
+  "lh_distribution": {},
+  "rh_distribution": {},
+  "transition_matrix": {
+    "bass_melody": {
+      "alberti": 0.0256,
+      "bass_melody": 0.359,
+      "broken_chord_wave": 0.3333,
+      "pedal_point": 0.2051,
+      "silence": 0.0769
+    },
+    "alberti": {
+      "broken_chord_wave": 0.2632,
+      "alberti": 0.6316,
+      "pedal_point": 0.0526,
+      "bass_melody": 0.0526
+    },
+    "broken_chord_wave": {
+      "pedal_point": 0.1525,
+      "broken_chord_wave": 0.6949,
+      "alberti": 0.0508,
+      "bass_melody": 0.1017
+    },
+    "pedal_point": {
+      "pedal_point": 0.5,
+      "bass_melody": 0.1429,
+      "broken_chord_wave": 0.2857,
+      "silence": 0.0714
+    },
+    "silence": {
+      "broken_chord_wave": 0.25,
+      "silence": 0.125,
+      "pedal_point": 0.25,
+      "bass_melody": 0.375
+    }
+  }
+}

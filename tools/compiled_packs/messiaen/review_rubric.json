@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_modes_of_limited_transposition",
+      "category": "fingerprint",
+      "description": "Modes of limited transposition",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_bird_song_transcription_and_imitation",
+      "category": "fingerprint",
+      "description": "Bird song transcription and imitation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_color_chord_organ",
+      "category": "fingerprint",
+      "description": "Color-chord organ",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhythm_the_non_retrogradable_rhythms_and_greek_hindu_influence",
+      "category": "fingerprint",
+      "description": "Rhythm \u2014 the non-retrogradable rhythms and Greek/Hindu influence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_catholic_mysticism_and_transcendence",
+      "category": "fingerprint",
+      "description": "Catholic mysticism and transcendence",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Standard equal temperament harmony.** Messiaen's modes are not major or minor. A passage with diat",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Regular, metric rhythm.** Messiaen's rhythm is consistently irregular. Regular 4+4+4+4 metric patt",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Absent spiritual dimension.** Messiaen's music always has a transcendent or theological dimension.",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Speed without specific birdlike character.** Fast ornamental passages need to sound like a specifi",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Conventional orchestration.** Messiaen uses the orchestra (and especially the Ondes Martenot) for ",
+      "severity": "soft"
+    }
+  ]
+}

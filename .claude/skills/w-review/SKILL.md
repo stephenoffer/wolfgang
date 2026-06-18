@@ -1,115 +1,130 @@
 ---
 name: w-review
-description: "Review and refine a composed section of a Wolfgang composition. Checks for voice-leading errors, range violations, stylistic consistency, and thematic coherence."
-argument-hint: "<piece-id> <section-id> [iteration-number]"
+description: "Fresh-ears musical review of composed sections — judges what the commit gate can't hear (singing line, narrative arc, memorable moments, cross-section continuity). Writes structured RevisionScripts."
+argument-hint: "<piece-id> <section-id>"
 ---
 
-# W-Review — Section Quality Reviewer
+# w-review — Listening Review
 
-You are the quality control agent for Wolfgang. You review a single composed section and either fix issues or approve it.
+With blocking commit gates catching density, anti-patterns, and
+playability per phrase, review focuses on what gates cannot hear. A
+section that passed every commit gate can still fail review for being
+correct-but-dead. That is the point of this phase. You are listening as
+a musician, not auditing metrics — count nothing; ask why.
 
-## Input
+## Run it fresh-ears
 
-Read:
-1. `workspace/$ARGUMENTS[0]/composed/m<N>_$ARGUMENTS[1].abc` — the section to review
-2. `workspace/$ARGUMENTS[0]/themes.json` — to verify theme usage
-3. `workspace/$ARGUMENTS[0]/harmony/m<N>_$ARGUMENTS[1].json` — to verify chord adherence
-4. `workspace/$ARGUMENTS[0]/orchestration/m<N>_$ARGUMENTS[1].json` — to verify instrumentation
-5. `workspace/$ARGUMENTS[0]/rhythm/m<N>_$ARGUMENTS[1].json` — to verify rhythmic plan adherence
-6. `workspace/$ARGUMENTS[0]/narrative-arc.json` — to verify emotional target
-7. [Review Checklist](./references/review-checklist.md)
+Run the review through the `music-critic` subagent (Agent tool) so the
+reviewer has NOT seen the composition rationale. Give it ONLY:
+`piece_id`, `section_id`, the assembled paths, and the discriminator
+report below. Never paste briefs, sketch reasoning, or composer
+summaries into its prompt — that destroys the fresh-ears value.
 
-Also read the previous section's ABC for boundary checking.
+The review criteria (does the melody sing · does the arc land · one
+memorable moment · do phrases connect · person-or-machine · sounds-like-
+THIS-composer) live in `.claude/agents/music-critic.md`. The fresh-ears
+subagent is the **default and the norm** — dispatch it. Inline review (the
+main conversation judging its own work) defeats the purpose and is a
+last resort only when the subagent is genuinely unavailable; if you must,
+read that file, apply its criteria, and **say in your report that review
+was done inline (not fresh-ears)** so the loss of independence is visible.
 
-## Review Checklist
+## Step 1: Discriminator report (evidence, not verdict)
 
-### A. Notation Correctness (CRITICAL)
-- [ ] Every measure has the correct duration for the time signature
-- [ ] All voices declared in header are present in body
-- [ ] Barlines are consistent across all voices
-- [ ] Key and time signatures are correct
-- [ ] No invalid ABC syntax
+```bash
+python3 -c "
+import sys, json; sys.path.insert(0, 'tools')
+from scales.scales import self_evaluate
+print(json.dumps(self_evaluate('<piece-id>', '<section-id>'), indent=1))
+"
+```
 
-### B. Voice Leading (HIGH)
-- [ ] No parallel 5ths between any voice pair
-- [ ] No parallel octaves between any voice pair
-- [ ] No parallel unisons between any voice pair
-- [ ] Leading tones resolve upward
-- [ ] 7ths resolve downward
-- [ ] No augmented melodic intervals
-- [ ] Voices don't cross unnecessarily
+Compares the assembled section against corpus norms on the metrics that
+most separate human music from AI output — texture_change_pct above all
+(corpus ≈ 0.4-0.7; AI tends to ≈ 0.1), direction changes, density
+variation, rest ratio, stepwise mix. Flags are evidence for ears, not a
+checklist.
 
-### C. Instrument Ranges (HIGH)
-- [ ] All notes within playable range for each instrument
-- [ ] No extreme registers used without musical justification
-- [ ] Transposing instruments written at correct pitch
+`self_evaluate` now also embeds two things the critic should weigh:
+- **`corpus_divergence`** — the section scored against THIS composer's own
+  per-movement distribution (z-scores; `|z|>2` = outside the spread of real
+  movements for that trait). Run it standalone for the whole piece with
+  `compare_to_corpus(piece_id, section_id)`. This is composer-specific, unlike
+  the generic bands above.
+- **`authoring`** — how many phrases were agent-authored vs engine-realized,
+  and any `composed_blind` phrases (a committed surface that resembled none of
+  its briefed exemplars). A blind phrase ignored the corpus that was put in
+  front of it — treat it as a prime revision target.
+- **`section_gate`** — a hard pass/fail verdict (`passed` + `hard_failures`)
+  derived from the egregious cases (mechanically static texture, composed-blind
+  phrases, many traits far outside the corpus). A failed section_gate must be
+  resolved or explicitly justified before the section is accepted — it is not
+  advisory.
 
-### D. Theme Verification (HIGH)
-- [ ] All themes listed in usage_plan for this section are present
-- [ ] Theme transformations are correct (inversion reverses intervals, etc.)
-- [ ] Connecting motif appears if planned for this section
-- [ ] Themes are recognizable (interval pattern matches themes.json)
+The numeric style gate (`run_style_review_section`) also runs these
+targets and can emit a machine RevisionScript for engine-realized
+phrases; it never auto-targets agent-authored phrases.
 
-### E. Harmonic Adherence (MEDIUM)
-- [ ] Chords match the harmony plan at each beat/measure
-- [ ] Modulations occur where planned
-- [ ] Cadences at section boundaries match the plan
+## Step 2: Dispatch the critic, then check the ledger
 
-### F. Rhythmic Plan (MEDIUM)
-- [ ] Time signature matches rhythm plan
-- [ ] Tempo marking present and correct
-- [ ] Characteristic rhythmic patterns are used
+After the critic's verdict, check the ExpectationLedger yourself: are
+musical promises kept — motif returns due in this section, pending
+resolutions, climax delivery, texture-variety debts?
 
-### G. Orchestration Plan (MEDIUM)
-- [ ] Correct instruments assigned to melody/bass/harmony roles
-- [ ] Dynamics markings present
-- [ ] Articulation markings present
-- [ ] Texture matches plan (homophonic, contrapuntal, etc.)
+## Step 3: RevisionScript (if revising)
 
-### H. Boundary Continuity (MEDIUM)
-- [ ] Smooth transition from previous section's ending
-- [ ] Register, dynamics, and texture connect naturally
+Structured ops, not prose. Target the SMALLEST change that fixes the
+problem; never wholesale re-realize an agent-authored phrase — propose
+bar-level edits instead.
 
-### I. Musical Quality (LOW — subjective)
-- [ ] Music sounds natural and expressive
-- [ ] Accompaniment patterns are varied (not just block chords)
-- [ ] Dynamic arc within the section makes sense
-
-## Review Process
-
-1. Read the ABC carefully, voice by voice
-2. Check each item in the checklist above
-3. For each issue found, note: category, severity (CRITICAL/HIGH/MEDIUM/LOW), specific location (measure, voice), and the fix needed
-
-## Output
-
-If issues found:
-- **CRITICAL or HIGH issues**: Edit the ABC file directly to fix them, then write the review log
-- **MEDIUM issues**: Fix if straightforward, otherwise note in the review log
-- **LOW issues**: Note but don't block approval
-
-Write review results to `workspace/$ARGUMENTS[0]/reviews/m<N>_$ARGUMENTS[1]_review_$ARGUMENTS[2].json`:
 ```json
 {
-  "section_id": "<section-id>",
-  "iteration": <N>,
-  "status": "approved" | "fixed" | "needs_recomposition",
-  "issues_found": [
+  "section_id": "m1_a",
+  "ops": [
     {
-      "category": "voice_leading",
-      "severity": "HIGH",
-      "location": "measure 12, V1-V2",
-      "description": "Parallel 5ths between Violin I and Violin II",
-      "fix_applied": "Changed V2 from G to A at beat 3"
+      "target_phrase": "m1_a_p1",
+      "target_layer": "principal_line",
+      "target_bars": [5, 6],
+      "operation": "re_sketch",
+      "params": {"reason": "melody too predictable"},
+      "reason": "Needs chromatic surprise before cadence"
     }
   ],
-  "issues_remaining": [],
-  "quality_notes": "Overall good voice leading, effective use of Theme A"
+  "priority": "important",
+  "max_iterations": 3
 }
 ```
 
-If status is "approved": update `state.json` to mark this section as reviewed.
+Apply via `apply_revision(piece_id, section_id, ops)`. Max 3 review
+iterations per section — after that, accept or escalate to the user with
+your honest assessment.
 
-## Iteration Limit
+## Step 4: Bounded corpus-divergence loop (auto-revision)
 
-Maximum 3 review iterations per section. After iteration 3, approve with remaining issues logged as warnings. The holistic review will catch systemic problems later.
+After the ears review, close the loop against the corpus distribution.
+This catches statistical drift the critic may not name — a section that
+sounds fine bar-to-bar but, as a whole, sits outside the composer's real
+spread (too flat, too dense, monotone texture).
+
+Run up to **2 passes**:
+
+1. `compare_to_corpus(piece_id, section_id)` → read `flags` (`|z|>2`),
+   `texture_divergence.over`, and `authoring.composed_blind_phrases`.
+2. If nothing is flagged, stop — the section is corpus-faithful.
+3. Otherwise, translate each flag into a targeted revision and dispatch the
+   `music-critic` with the divergence flags (it returns bar-level
+   `revision_ops`). Map the drift to where it lives:
+   - `texture_change_pct` / `lh_texture_change_pct` **low** → the most
+     monotonous phrases (identical density bar-to-bar); vary the
+     accompaniment, change figure at phrase boundaries.
+   - `events_per_bar` **low** → skeletal phrases; raise figuration to the
+     density target. **high** → overstuffed; thin under the melody.
+   - `density_cv` **low** → flat dynamics of activity; add ebb and flow.
+   - `composed_blind` phrases → re-compose adapting the briefed exemplars
+     (re-read the brief first).
+4. `apply_revision(...)`, then re-run `compare_to_corpus` to confirm.
+
+Stop after 2 passes regardless. **Log the residual** — never hide an
+unresolved drift: report which metrics are still `|z|>2` and which phrases
+were recomposed, so the final state is honest. Targeted bar edits only;
+never wholesale re-realize an agent-authored phrase.

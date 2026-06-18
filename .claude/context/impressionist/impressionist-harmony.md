@@ -3,6 +3,44 @@
 ## Core Principle
 Impressionist harmony treats chords as autonomous color events rather than functional steps in a progression. Dissonance is emancipated; resolution is optional. Atmosphere replaces argument.
 
+
+## Harmony as Sensation
+
+Debussy's rejection of functional harmony is not a technical choice but a philosophical one: chords are sensations, not functions. A chord need not "go" anywhere — it can simply exist, like a color on canvas. The dominant seventh chord, freed from its obligation to resolve, becomes a resting sonority, warm and complete in itself. This liberation transforms harmony from argument into atmosphere.
+
+### Sensation-to-Harmony Map
+
+| Sensation | Harmonic Technique | Why It Creates the Effect |
+|-----------|-------------------|--------------------------|
+| Water (shimmering, flowing) | Oscillating chords, arpeggiated 9ths | Alternation between two chords creates the effect of light on moving water — never still, never changing |
+| Wind (movement without weight) | Parallel motion (planing) | Voices moving together in the same direction feel like a gust — effortless, directionless |
+| Light (filtered, dappled) | Messiaen Mode 3, Lydian coloring | Symmetrical scales create colors that exist between major and minor — neither warm nor cold, but luminous |
+| Mist / Fog | Whole-tone harmony, no leading tones | Without half-step pulls, harmony floats without gravity — edges dissolve |
+| Warmth (sunlight, nostalgia) | Added 6ths, pentatonic clusters | Pentatonic intervals carry no tension; the listener relaxes into the sound |
+| Distance / Memory | Unresolved suspensions, pedal tones | A chord that never resolves feels like a thought that trails off — present but receding |
+| Awakening | Exit from whole-tone to diatonic | Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream — gravity returns |
+
+### Timbre-Harmony Fusion
+
+In Impressionist practice, how a chord is voiced and orchestrated IS what it means. A C major 9th chord spread across muted strings creates an entirely different sensation than the same pitches in close-position piano. The chord's identity is inseparable from its color — orchestration and harmony merge into a single expressive act.
+
+### Nature as Harmonic Model
+
+Debussy listened to nature and translated its behaviors into harmonic motion. Water is not "represented" by arpeggios — the oscillation between two chords IS the water, capturing the play of light on a surface that is always changing and always the same.
+
+```abc
+X:50
+T:Water - Oscillating Color Chords
+M:6/8
+L:1/8
+K:C
+[CEGBd]3 [DFAce]3 | [CEGBd]3 [DFAce]3 |
+[CEGBd]3 [_E_G_Bd_f]3 | [CEGBd]6 |
+% Two chords alternate like light on water; the shift to Eb is a cloud passing
+```
+
+The whole-tone passage functions as a harmonic dream-state: without half steps, there are no leading tones, no pull toward resolution, no "here" or "there." When the composer exits whole-tone space into a diatonic chord, the listener experiences an awakening — the return of harmonic gravity feels like eyes opening.
+
 ## Foundational Scales
 
 | Scale | Pitches (from C) | Interval Pattern | Character |

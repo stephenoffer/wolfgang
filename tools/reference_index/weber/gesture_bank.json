@@ -1,0 +1,7009 @@
+{
+ "composer": "weber",
+ "source_bar_index": "reference_index/weber/bar_index.json",
+ "total_gestures": 241,
+ "function_distribution": {
+  "answer_with_space": 115,
+  "insist": 62,
+  "answer": 58,
+  "pickup": 2,
+  "cadential_push": 2,
+  "cadential_release": 2
+ },
+ "contour_distribution": {
+  "static": 129,
+  "descending": 55,
+  "ascending": 57
+ },
+ "gestures": [
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b1",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b2",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b3",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b4",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b5",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b6",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b7",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b8",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b9",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b10",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b11",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b12",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b13",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b14",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b15",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b16",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b17",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 17",
+   "source_bar_range": [
+    17,
+    17
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b18",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 18",
+   "source_bar_range": [
+    18,
+    18
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b19",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 19",
+   "source_bar_range": [
+    19,
+    19
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b20",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 20",
+   "source_bar_range": [
+    20,
+    20
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b21",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 21",
+   "source_bar_range": [
+    21,
+    21
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b22",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 22",
+   "source_bar_range": [
+    22,
+    22
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b23",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 23",
+   "source_bar_range": [
+    23,
+    23
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b24",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 24",
+   "source_bar_range": [
+    24,
+    24
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b25",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 25",
+   "source_bar_range": [
+    25,
+    25
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b26",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 26",
+   "source_bar_range": [
+    26,
+    26
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b27",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 27",
+   "source_bar_range": [
+    27,
+    27
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b28",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 28",
+   "source_bar_range": [
+    28,
+    28
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b29",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 29",
+   "source_bar_range": [
+    29,
+    29
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b30",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 30",
+   "source_bar_range": [
+    30,
+    30
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b31",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 31",
+   "source_bar_range": [
+    31,
+    31
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b32",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 32",
+   "source_bar_range": [
+    32,
+    32
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b33",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 33",
+   "source_bar_range": [
+    33,
+    33
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b34",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 34",
+   "source_bar_range": [
+    34,
+    34
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b35",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 35",
+   "source_bar_range": [
+    35,
+    35
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b36",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 36",
+   "source_bar_range": [
+    36,
+    36
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b37",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 37",
+   "source_bar_range": [
+    37,
+    37
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b38",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 38",
+   "source_bar_range": [
+    38,
+    38
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b39",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 39",
+   "source_bar_range": [
+    39,
+    39
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b40",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 40",
+   "source_bar_range": [
+    40,
+    40
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b41",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 41",
+   "source_bar_range": [
+    41,
+    41
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b42",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 42",
+   "source_bar_range": [
+    42,
+    42
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b43",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 43",
+   "source_bar_range": [
+    43,
+    43
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b44",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 44",
+   "source_bar_range": [
+    44,
+    44
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b45",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 45",
+   "source_bar_range": [
+    45,
+    45
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b46",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 46",
+   "source_bar_range": [
+    46,
+    46
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b47",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 47",
+   "source_bar_range": [
+    47,
+    47
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b48",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 48",
+   "source_bar_range": [
+    48,
+    48
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b49",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 49",
+   "source_bar_range": [
+    49,
+    49
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b50",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 50",
+   "source_bar_range": [
+    50,
+    50
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b51",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 51",
+   "source_bar_range": [
+    51,
+    51
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b52",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 52",
+   "source_bar_range": [
+    52,
+    52
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b53",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 53",
+   "source_bar_range": [
+    53,
+    53
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b54",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 54",
+   "source_bar_range": [
+    54,
+    54
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b55",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 55",
+   "source_bar_range": [
+    55,
+    55
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b56",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 56",
+   "source_bar_range": [
+    56,
+    56
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b57",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 57",
+   "source_bar_range": [
+    57,
+    57
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b58",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 58",
+   "source_bar_range": [
+    58,
+    58
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b59",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 59",
+   "source_bar_range": [
+    59,
+    59
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b60",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 60",
+   "source_bar_range": [
+    60,
+    60
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 14,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b61",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 61",
+   "source_bar_range": [
+    61,
+    61
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 11,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b62",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 62",
+   "source_bar_range": [
+    62,
+    62
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 15,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b63",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 63",
+   "source_bar_range": [
+    63,
+    63
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 11,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b64",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 64",
+   "source_bar_range": [
+    64,
+    64
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 15,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b65",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 65",
+   "source_bar_range": [
+    65,
+    65
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b66",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 66",
+   "source_bar_range": [
+    66,
+    66
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 15,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b67",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 67",
+   "source_bar_range": [
+    67,
+    67
+   ],
+   "key_mode": "minor",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 15,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b68",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 68",
+   "source_bar_range": [
+    68,
+    68
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b69",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 69",
+   "source_bar_range": [
+    69,
+    69
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 7,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b70",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 70",
+   "source_bar_range": [
+    70,
+    70
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b71",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 71",
+   "source_bar_range": [
+    71,
+    71
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b72",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 72",
+   "source_bar_range": [
+    72,
+    72
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b73",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 73",
+   "source_bar_range": [
+    73,
+    73
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b74",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 74",
+   "source_bar_range": [
+    74,
+    74
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b75",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 75",
+   "source_bar_range": [
+    75,
+    75
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b76",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 76",
+   "source_bar_range": [
+    76,
+    76
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b77",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 77",
+   "source_bar_range": [
+    77,
+    77
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b78",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 78",
+   "source_bar_range": [
+    78,
+    78
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b79",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 79",
+   "source_bar_range": [
+    79,
+    79
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b80",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 80",
+   "source_bar_range": [
+    80,
+    80
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b81",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 81",
+   "source_bar_range": [
+    81,
+    81
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b82",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 82",
+   "source_bar_range": [
+    82,
+    82
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b83",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 83",
+   "source_bar_range": [
+    83,
+    83
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b84",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 84",
+   "source_bar_range": [
+    84,
+    84
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b85",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 85",
+   "source_bar_range": [
+    85,
+    85
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b86",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 86",
+   "source_bar_range": [
+    86,
+    86
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 13,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b87",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 87",
+   "source_bar_range": [
+    87,
+    87
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b88",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 88",
+   "source_bar_range": [
+    88,
+    88
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b89",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 89",
+   "source_bar_range": [
+    89,
+    89
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b90",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 90",
+   "source_bar_range": [
+    90,
+    90
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b91",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 91",
+   "source_bar_range": [
+    91,
+    91
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b92",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 92",
+   "source_bar_range": [
+    92,
+    92
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b93",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 93",
+   "source_bar_range": [
+    93,
+    93
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b94",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 94",
+   "source_bar_range": [
+    94,
+    94
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b95",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 95",
+   "source_bar_range": [
+    95,
+    95
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b96",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 96",
+   "source_bar_range": [
+    96,
+    96
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b97",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 97",
+   "source_bar_range": [
+    97,
+    97
+   ],
+   "key_mode": "minor",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b98",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 98",
+   "source_bar_range": [
+    98,
+    98
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b99",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 99",
+   "source_bar_range": [
+    99,
+    99
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b100",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 100",
+   "source_bar_range": [
+    100,
+    100
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 15,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b101",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 101",
+   "source_bar_range": [
+    101,
+    101
+   ],
+   "key_mode": "minor",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b102",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 102",
+   "source_bar_range": [
+    102,
+    102
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b103",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 103",
+   "source_bar_range": [
+    103,
+    103
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b104",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 104",
+   "source_bar_range": [
+    104,
+    104
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b105",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 105",
+   "source_bar_range": [
+    105,
+    105
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 13,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b106",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 106",
+   "source_bar_range": [
+    106,
+    106
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "alberti",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b107",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 107",
+   "source_bar_range": [
+    107,
+    107
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b108",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 108",
+   "source_bar_range": [
+    108,
+    108
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 13,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b109",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 109",
+   "source_bar_range": [
+    109,
+    109
+   ],
+   "key_mode": "minor",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b110",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 110",
+   "source_bar_range": [
+    110,
+    110
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b111",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 111",
+   "source_bar_range": [
+    111,
+    111
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b112",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 112",
+   "source_bar_range": [
+    112,
+    112
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b113",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 113",
+   "source_bar_range": [
+    113,
+    113
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b114",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 114",
+   "source_bar_range": [
+    114,
+    114
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b115",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 115",
+   "source_bar_range": [
+    115,
+    115
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b116",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 116",
+   "source_bar_range": [
+    116,
+    116
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b117",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 117",
+   "source_bar_range": [
+    117,
+    117
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b118",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 118",
+   "source_bar_range": [
+    118,
+    118
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b119",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 119",
+   "source_bar_range": [
+    119,
+    119
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b120",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 120",
+   "source_bar_range": [
+    120,
+    120
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b121",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 121",
+   "source_bar_range": [
+    121,
+    121
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b122",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 122",
+   "source_bar_range": [
+    122,
+    122
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b123",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 123",
+   "source_bar_range": [
+    123,
+    123
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b124",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 124",
+   "source_bar_range": [
+    124,
+    124
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b125",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 125",
+   "source_bar_range": [
+    125,
+    125
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b126",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 126",
+   "source_bar_range": [
+    126,
+    126
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b127",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 127",
+   "source_bar_range": [
+    127,
+    127
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b128",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 128",
+   "source_bar_range": [
+    128,
+    128
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b129",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 129",
+   "source_bar_range": [
+    129,
+    129
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b130",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 130",
+   "source_bar_range": [
+    130,
+    130
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b131",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 131",
+   "source_bar_range": [
+    131,
+    131
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b132",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 132",
+   "source_bar_range": [
+    132,
+    132
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b133",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 133",
+   "source_bar_range": [
+    133,
+    133
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b134",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 134",
+   "source_bar_range": [
+    134,
+    134
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b135",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 135",
+   "source_bar_range": [
+    135,
+    135
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b136",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 136",
+   "source_bar_range": [
+    136,
+    136
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b137",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 137",
+   "source_bar_range": [
+    137,
+    137
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b138",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 138",
+   "source_bar_range": [
+    138,
+    138
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b139",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 139",
+   "source_bar_range": [
+    139,
+    139
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b140",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 140",
+   "source_bar_range": [
+    140,
+    140
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b141",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 141",
+   "source_bar_range": [
+    141,
+    141
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b142",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 142",
+   "source_bar_range": [
+    142,
+    142
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b143",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 143",
+   "source_bar_range": [
+    143,
+    143
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b144",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 144",
+   "source_bar_range": [
+    144,
+    144
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b145",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 145",
+   "source_bar_range": [
+    145,
+    145
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b146",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 146",
+   "source_bar_range": [
+    146,
+    146
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b147",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 147",
+   "source_bar_range": [
+    147,
+    147
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b148",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 148",
+   "source_bar_range": [
+    148,
+    148
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b149",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 149",
+   "source_bar_range": [
+    149,
+    149
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b150",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 150",
+   "source_bar_range": [
+    150,
+    150
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b151",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 151",
+   "source_bar_range": [
+    151,
+    151
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b152",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 152",
+   "source_bar_range": [
+    152,
+    152
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b153",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 153",
+   "source_bar_range": [
+    153,
+    153
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b154",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 154",
+   "source_bar_range": [
+    154,
+    154
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b155",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 155",
+   "source_bar_range": [
+    155,
+    155
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b156",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 156",
+   "source_bar_range": [
+    156,
+    156
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b157",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 157",
+   "source_bar_range": [
+    157,
+    157
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b158",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 158",
+   "source_bar_range": [
+    158,
+    158
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b159",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 159",
+   "source_bar_range": [
+    159,
+    159
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b160",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 160",
+   "source_bar_range": [
+    160,
+    160
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b161",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 161",
+   "source_bar_range": [
+    161,
+    161
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b162",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 162",
+   "source_bar_range": [
+    162,
+    162
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b163",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 163",
+   "source_bar_range": [
+    163,
+    163
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b164",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 164",
+   "source_bar_range": [
+    164,
+    164
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b165",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 165",
+   "source_bar_range": [
+    165,
+    165
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b166",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 166",
+   "source_bar_range": [
+    166,
+    166
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b167",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 167",
+   "source_bar_range": [
+    167,
+    167
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b168",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 168",
+   "source_bar_range": [
+    168,
+    168
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b169",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 169",
+   "source_bar_range": [
+    169,
+    169
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b170",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 170",
+   "source_bar_range": [
+    170,
+    170
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b171",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 171",
+   "source_bar_range": [
+    171,
+    171
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b172",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 172",
+   "source_bar_range": [
+    172,
+    172
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b173",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 173",
+   "source_bar_range": [
+    173,
+    173
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b174",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 174",
+   "source_bar_range": [
+    174,
+    174
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 9,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b175",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 175",
+   "source_bar_range": [
+    175,
+    175
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b176",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 176",
+   "source_bar_range": [
+    176,
+    176
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b177",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 177",
+   "source_bar_range": [
+    177,
+    177
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 19,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b178",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 178",
+   "source_bar_range": [
+    178,
+    178
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b179",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 179",
+   "source_bar_range": [
+    179,
+    179
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b180",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 180",
+   "source_bar_range": [
+    180,
+    180
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b181",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 181",
+   "source_bar_range": [
+    181,
+    181
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b182",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 182",
+   "source_bar_range": [
+    182,
+    182
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b183",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 183",
+   "source_bar_range": [
+    183,
+    183
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b184",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 184",
+   "source_bar_range": [
+    184,
+    184
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b185",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 185",
+   "source_bar_range": [
+    185,
+    185
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b186",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 186",
+   "source_bar_range": [
+    186,
+    186
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b187",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 187",
+   "source_bar_range": [
+    187,
+    187
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 6,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b188",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 188",
+   "source_bar_range": [
+    188,
+    188
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b189",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 189",
+   "source_bar_range": [
+    189,
+    189
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b190",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 190",
+   "source_bar_range": [
+    190,
+    190
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b191",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 191",
+   "source_bar_range": [
+    191,
+    191
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b192",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 192",
+   "source_bar_range": [
+    192,
+    192
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b193",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 193",
+   "source_bar_range": [
+    193,
+    193
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b194",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 194",
+   "source_bar_range": [
+    194,
+    194
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b195",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 195",
+   "source_bar_range": [
+    195,
+    195
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 5,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b196",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 196",
+   "source_bar_range": [
+    196,
+    196
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b197",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 197",
+   "source_bar_range": [
+    197,
+    197
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 5,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b198",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 198",
+   "source_bar_range": [
+    198,
+    198
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b199",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 199",
+   "source_bar_range": [
+    199,
+    199
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 5,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b200",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 200",
+   "source_bar_range": [
+    200,
+    200
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "alberti",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b201",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 201",
+   "source_bar_range": [
+    201,
+    201
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 6,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b202",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 202",
+   "source_bar_range": [
+    202,
+    202
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b203",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 203",
+   "source_bar_range": [
+    203,
+    203
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b204",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 204",
+   "source_bar_range": [
+    204,
+    204
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b205",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 205",
+   "source_bar_range": [
+    205,
+    205
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b206",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 206",
+   "source_bar_range": [
+    206,
+    206
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b207",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 207",
+   "source_bar_range": [
+    207,
+    207
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b208",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 208",
+   "source_bar_range": [
+    208,
+    208
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b209",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 209",
+   "source_bar_range": [
+    209,
+    209
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b210",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 210",
+   "source_bar_range": [
+    210,
+    210
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b211",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 211",
+   "source_bar_range": [
+    211,
+    211
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b212",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 212",
+   "source_bar_range": [
+    212,
+    212
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b213",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 213",
+   "source_bar_range": [
+    213,
+    213
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b214",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 214",
+   "source_bar_range": [
+    214,
+    214
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b215",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 215",
+   "source_bar_range": [
+    215,
+    215
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b216",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 216",
+   "source_bar_range": [
+    216,
+    216
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b217",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 217",
+   "source_bar_range": [
+    217,
+    217
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b218",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 218",
+   "source_bar_range": [
+    218,
+    218
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b219",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 219",
+   "source_bar_range": [
+    219,
+    219
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b220",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 220",
+   "source_bar_range": [
+    220,
+    220
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b221",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 221",
+   "source_bar_range": [
+    221,
+    221
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b222",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 222",
+   "source_bar_range": [
+    222,
+    222
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b223",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 223",
+   "source_bar_range": [
+    223,
+    223
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 16,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b224",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 224",
+   "source_bar_range": [
+    224,
+    224
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b225",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 225",
+   "source_bar_range": [
+    225,
+    225
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 17,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b226",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 226",
+   "source_bar_range": [
+    226,
+    226
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b227",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 227",
+   "source_bar_range": [
+    227,
+    227
+   ],
+   "key_mode": "major",
+   "rh_texture": "passage_work",
+   "lh_texture": "pedal_point",
+   "melody_density": 17,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b228",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 228",
+   "source_bar_range": [
+    228,
+    228
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b229",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 229",
+   "source_bar_range": [
+    229,
+    229
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b230",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 230",
+   "source_bar_range": [
+    230,
+    230
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b231",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 231",
+   "source_bar_range": [
+    231,
+    231
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "pedal_point",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b232",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 232",
+   "source_bar_range": [
+    232,
+    232
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "silence",
+   "melody_density": 12,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b233",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 233",
+   "source_bar_range": [
+    233,
+    233
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b234",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 234",
+   "source_bar_range": [
+    234,
+    234
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "bass_melody",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b235",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 235",
+   "source_bar_range": [
+    235,
+    235
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b236",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 236",
+   "source_bar_range": [
+    236,
+    236
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b237",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 237",
+   "source_bar_range": [
+    237,
+    237
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 3,
+   "has_grace_notes": true,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b238",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 238",
+   "source_bar_range": [
+    238,
+    238
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b239",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 239",
+   "source_bar_range": [
+    239,
+    239
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b240",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 240",
+   "source_bar_range": [
+    240,
+    240
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "weber_weber_concertino_clarinet_b241",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "weber/concertino_clarinet bar 241",
+   "source_bar_range": [
+    241,
+    241
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  }
+ ]
+}

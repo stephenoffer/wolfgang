@@ -1,0 +1,25 @@
+{
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "m": 19,
+        "_feel": "The silence after the peak \u2014 let it last its full duration. Do not rush the next phrase.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

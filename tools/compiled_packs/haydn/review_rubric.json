@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_formal_subversion",
+      "category": "fingerprint",
+      "description": "Formal subversion",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_simple_folk_like_themes_with_hidden_sophistication",
+      "category": "fingerprint",
+      "description": "Simple, folk-like themes with hidden sophistication",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sudden_dynamic_contrast_as_punchline",
+      "category": "fingerprint",
+      "description": "Sudden dynamic contrast as punchline",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_monothematic_sonata_form",
+      "category": "fingerprint",
+      "description": "Monothematic sonata form",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_string_quartet_as_conversation",
+      "category": "fingerprint",
+      "description": "String quartet as conversation",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Second themes that are completely different in character from the first.** Haydn's second themes o",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**No formal wit.** A perfectly regular Haydn movement that never subverts a single expectation is no",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**First violin dominance.** If the cello only plays bass notes for the entire movement, it's not a H",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Heavy orchestration.** Haydn's sound is clear and balanced. Thick, doubly-reinforced textures belo",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Undifferentiated instruments.** In a symphony, the woodwind instruments should have distinct perso",
+      "severity": "soft"
+    }
+  ]
+}

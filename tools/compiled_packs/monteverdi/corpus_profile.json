@@ -1,0 +1,141 @@
+{
+ "composer": "monteverdi",
+ "total_bars": 3885,
+ "total_movements": 49,
+ "movements_used": 49,
+ "min_movement_bars": 6,
+ "metrics": {
+  "events_per_bar": {
+   "mean": 4.9008,
+   "stdev": 1.019,
+   "min": 3.189,
+   "max": 8.573,
+   "n": 49,
+   "p25": 4.324,
+   "p50": 4.819,
+   "p75": 5.436
+  },
+  "events_per_bar_rh": {
+   "mean": 2.4686,
+   "stdev": 0.5252,
+   "min": 1.71,
+   "max": 4.387,
+   "n": 49,
+   "p25": 2.206,
+   "p50": 2.439,
+   "p75": 2.721
+  },
+  "events_per_bar_lh": {
+   "mean": 2.4322,
+   "stdev": 0.5177,
+   "min": 1.459,
+   "max": 4.187,
+   "n": 49,
+   "p25": 2.141,
+   "p50": 2.462,
+   "p75": 2.656
+  },
+  "texture_change_pct": {
+   "mean": 0.2135,
+   "stdev": 0.09,
+   "min": 0.0588,
+   "max": 0.5405,
+   "n": 49,
+   "p25": 0.1509,
+   "p50": 0.2143,
+   "p75": 0.2716
+  },
+  "lh_texture_change_pct": {
+   "mean": 0.4967,
+   "stdev": 0.0809,
+   "min": 0.2793,
+   "max": 0.6757,
+   "n": 49,
+   "p25": 0.4407,
+   "p50": 0.5,
+   "p75": 0.557
+  },
+  "rh_texture_change_pct": {
+   "mean": 0.3645,
+   "stdev": 0.0847,
+   "min": 0.1471,
+   "max": 0.5811,
+   "n": 49,
+   "p25": 0.3146,
+   "p50": 0.35,
+   "p75": 0.411
+  },
+  "density_cv": {
+   "mean": 0.5579,
+   "stdev": 0.1025,
+   "min": 0.3364,
+   "max": 0.9115,
+   "n": 49,
+   "p25": 0.4844,
+   "p50": 0.5542,
+   "p75": 0.591
+  },
+  "direction_changes_per_bar": {
+   "mean": 0.422,
+   "stdev": 0.1135,
+   "min": 0.1011,
+   "max": 0.6346,
+   "n": 49,
+   "p25": 0.358,
+   "p50": 0.4444,
+   "p75": 0.4815
+  },
+  "grace_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 49,
+   "p25": 0.0,
+   "p50": 0.0,
+   "p75": 0.0
+  },
+  "dotted_ratio": {
+   "mean": 0.113,
+   "stdev": 0.0552,
+   "min": 0.0118,
+   "max": 0.2683,
+   "n": 49,
+   "p25": 0.0676,
+   "p50": 0.1,
+   "p75": 0.1538
+  },
+  "register_span": {
+   "mean": 17.4694,
+   "stdev": 2.2141,
+   "min": 13.0,
+   "max": 21.0,
+   "n": 49,
+   "p25": 16.0,
+   "p50": 17.0,
+   "p75": 19.0
+  }
+ },
+ "lh_texture_distribution": {
+  "silence": 0.132,
+  "pedal_point": 0.4108,
+  "bass_melody": 0.3498,
+  "broken_chord_wave": 0.1066,
+  "alberti": 0.0008
+ },
+ "rh_texture_distribution": {
+  "singing_melody": 0.4507,
+  "held_note": 0.531,
+  "scalar_run": 0.0183
+ },
+ "lh_l1_baseline": {
+  "mean": 0.3107,
+  "stdev": 0.1442,
+  "min": 0.0542,
+  "max": 0.7796,
+  "n": 49,
+  "p25": 0.2148,
+  "p50": 0.2914,
+  "p75": 0.3735
+ }
+}

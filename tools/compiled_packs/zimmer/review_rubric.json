@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_hybrid_orchestra_electronics_integrated_with_acoustic",
+      "category": "fingerprint",
+      "description": "Hybrid orchestra \u2014 electronics integrated with acoustic",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_ostinato_driven_momentum_the_engine",
+      "category": "fingerprint",
+      "description": "Ostinato-driven momentum \u2014 the engine",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_slow_harmonic_language_minimal_changes_maximum_weight",
+      "category": "fingerprint",
+      "description": "Slow harmonic language \u2014 minimal changes, maximum weight",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_braaam_the_modern_climactic_sound",
+      "category": "fingerprint",
+      "description": "BRAAAM \u2014 the modern climactic sound",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_emotional_directness_the_score_tells_you_what_to_feel",
+      "category": "fingerprint",
+      "description": "Emotional directness \u2014 the score tells you what to feel",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Complex polyphony.** Zimmer's textures are layered but not contrapuntal. Independent melodic lines",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Sophisticated harmonic movement.** A Zimmer cue with many chord changes is atypical. His power com",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Chamber-scale intimacy.** Zimmer writes at cinematic scale \u2014 large forces, large dynamics. Intimat",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Conventional Classical form.** Sonata form, development sections, formal recapitulation \u2014 these Cl",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**Academic counterpoint.** Voice-leading rules, prepared dissonances, proper resolutions \u2014 these bel",
+      "severity": "soft"
+    }
+  ]
+}

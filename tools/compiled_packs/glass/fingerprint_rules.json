@@ -1,0 +1,44 @@
+{
+  "required_count": 3,
+  "items": [
+    {
+      "id": "additive_process_building_by_addition",
+      "name": "Additive process \u2014 building by addition",
+      "description": "Glass's primary compositional technique: a short pattern (e.g., 3 eighth notes) is repeated, then one note is added (4 eighth notes), repeated again, then another added (5 eighth notes), and so on. Th",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "arpeggiated_keyboard_figuration_the_glass_pattern",
+      "name": "Arpeggiated keyboard figuration \u2014 the Glass pattern",
+      "description": "The most recognized Glass texture: rapid, continuous arpeggiated patterns in the keyboard (piano or organ/synthesizer), steady eighth-note or sixteenth-note stream, cycling through the chord tones. Th",
+      "texture_affinities": [
+        "broken_chord_wave"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "modal_harmony_no_functional_progression",
+      "name": "Modal harmony \u2014 no functional progression",
+      "description": "Glass uses a small number of diatonic chords from a modal scale, cycling through them in sequence. The sequence has no goal \u2014 it cycles back to the beginning. There is no tension-resolution, no domina",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    },
+    {
+      "id": "slow_harmonic_rhythm_under_fast_surface_figuration",
+      "name": "Slow harmonic rhythm under fast surface figuration",
+      "description": "The surface (the arpeggio pattern) moves very fast (eighth notes at \u2669 = 120+). The harmony changes very slowly (every 4\u20138 bars). This combination \u2014 fast surface / slow harmony \u2014 creates the specifical",
+      "texture_affinities": [
+        "broken_chord_wave"
+      ],
+      "frequency": "per_section"
+    },
+    {
+      "id": "repetition_as_hypnosis_the_listener_s_time_dissolves",
+      "name": "Repetition as hypnosis \u2014 the listener's time dissolves",
+      "description": "Glass's pieces repeat patterns many more times than seems necessary. A pattern that has \"arrived\" repeats 8 more times. The purpose: the repetition dissolves the listener's sense of measured time. The",
+      "texture_affinities": [],
+      "frequency": "per_section"
+    }
+  ]
+}

@@ -135,3 +135,82 @@ K:Dm
 | Epic narrative | Ballade | Grieg: Ballade Op. 24 |
 | Patriotic celebration | Fantasia | Glinka: Kamarinskaya |
 | Symphonic integration | Symphony with folk themes | Dvorak: Symphony No. 9 |
+
+## National Dance Forms
+
+### Characteristic Rhythmic/Metric Patterns
+
+| Dance | Nation | Meter | Tempo | Rhythmic signature |
+|---|---|---|---|---|
+| Mazurka | Poland | 3/4 | Moderate-fast | Accent on beat 2 or 3 (not 1) |
+| Polonaise | Poland | 3/4 | Stately | Dotted rhythm: `D3/2E/2 F G` |
+| Polka | Czech/Bohemian | 2/4 | Fast | Even eighth notes with accent on 1 |
+| Furiant | Czech | 3/4 ↔ 2/4 | Fast | Hemiola: alternating 3/4 and 6/8 feel |
+| Dumka | Ukrainian | Variable | Slow ↔ fast | Alternating tempi (see Dumka form above) |
+| Hopak | Ukrainian | 2/4 | Very fast | Driving, stamping, accelerating to end |
+| Kolo | Serbian/Balkan | Variable (7/8, 11/8) | Moderate-fast | Asymmetric additive meters |
+| Csárdás | Hungarian | 2/4 or 4/4 | Slow → fast | Lassan (slow, rubato) → Friska (fast, accelerating) |
+| Halling | Norwegian | 2/4 | Moderate | Strong, athletic, leaping |
+| Springar | Norwegian | 3/4 (uneven) | Moderate | Asymmetric triple (long-short-medium) |
+
+```abc
+X:2
+T:Mazurka Rhythm (accent on beat 3)
+M:3/4
+L:1/8
+K:Am
+A,2 C2 !accent!E2 | A,2 C2 !accent!E2 | D2 F2 !accent!A2 | E4 z2 |
+```
+
+```abc
+X:3
+T:Furiant Hemiola (3/4 vs 6/8)
+M:3/4
+L:1/8
+K:D
+%% 3/4 feel
+D2 F2 A2 | d2 A2 F2 |
+%% Hemiola: 6/8 feel within 3/4 bars
+D2F2 A2d2 A2F2 |
+```
+
+```abc
+X:4
+T:Polka Pattern (Czech)
+M:2/4
+L:1/16
+K:G
+!f! G2A2B2c2 | d2c2B2A2 | G2B2d2B2 | G4 z4 |
+```
+
+## Opera Forms in Nationalistic Context
+
+| Tradition | Opera style | Vocal approach | Orchestra role |
+|---|---|---|---|
+| Russian (Mussorgsky) | Declamatory, speech-rhythm | Vocal line follows speech accent, not lyrical melody | Dramatic commentary |
+| Russian (Rimsky-Korsakov) | More Italianate, lyrical | Set pieces within continuous texture | Colorful, descriptive |
+| Czech (Smetana) | Comic/folk opera | Folk-song style, accessible | Dance rhythms, folk color |
+| Czech (Dvořák) | Romantic opera | Lyrical, Wagnerian influence | Rich, symphonic |
+| Scandinavian (Grieg) | Incidental music model | Song-like | Atmospheric, landscape |
+
+## Nationalistic Symphony Integration
+
+How folk material integrates into Classical symphonic form:
+
+| Integration level | Approach | Example |
+|---|---|---|
+| Surface | Folk melody as theme within standard sonata form | Dvořák: Symphony No. 9 |
+| Structural | Folk dance rhythms shape the form (hemiola, additive meter) | Bartók: Concerto for Orchestra |
+| Deep | Folk modes replace functional tonality | Sibelius: Symphony No. 6 (Dorian) |
+| Transformative | Folk material fragmented and developed symphonically | Sibelius: thematic genesis approach |
+| Atmospheric | Folk character without direct quotation | Grieg: Peer Gynt Suite |
+
+## Section ID Mapping (Nationalistic)
+
+| Form | Section IDs |
+|---|---|
+| Symphonic poem | `intro`, `theme_a`, `theme_b`, `development`, `climax`, `theme_a_transformed`, `coda` |
+| Rhapsody | `lassan_intro`, `lassan_main`, `transition`, `friss_a`, `friss_b`, `coda_presto` |
+| Dance suite | `m1_dance_a`, `m2_dance_b`, `m3_dance_c` (etc.) |
+| Dumka | `slow_a`, `fast_b`, `slow_a2`, `fast_b2`, `slow_a3`, `coda` |
+| Fantasia | `intro`, `theme_1`, `cadenza`, `theme_2`, `development`, `finale` |

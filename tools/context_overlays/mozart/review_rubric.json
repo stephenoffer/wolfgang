@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "id": "fp_vocal_thinking_in_instrumental_writing",
+      "severity": "important",
+      "evidence_source": "corpus_feedback",
+      "evidence_confidence": 0.913,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "fp_chromatic_inflection_for_emotional_nuance",
+      "severity": "important",
+      "evidence_source": "corpus_feedback",
+      "evidence_confidence": 0.9855,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "fp_transparent_chamber_like_texture",
+      "severity": "important",
+      "evidence_source": "corpus_feedback",
+      "evidence_confidence": 0.9855,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "fp_minor_mode_shadow_in_major_contexts",
+      "severity": "important",
+      "evidence_source": "corpus_feedback",
+      "evidence_confidence": 0.9855,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "ap_2_same_accompaniment_pattern_throughout",
+      "severity": "error",
+      "evidence_source": "corpus_feedback",
+      "evidence_confidence": 1.0,
+      "last_updated": "2026-04-19"
+    },
+    {
+      "id": "ap_4_flat_dynamics",
+      "severity": "error",
+      "evidence_source": "corpus_feedback",
+      "evidence_confidence": 1.0,
+      "last_updated": "2026-04-19"
+    }
+  ]
+}

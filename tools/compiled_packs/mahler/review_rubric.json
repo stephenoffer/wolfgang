@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "id": "fp_chamber_within_orchestra",
+      "category": "fingerprint",
+      "description": "Chamber-within-orchestra",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_folk_song_march_dance_material_in_unexpected_contexts",
+      "category": "fingerprint",
+      "description": "Folk song / march / dance material in unexpected contexts",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_tonal_dissolution_key_wandering_without_arrival",
+      "category": "fingerprint",
+      "description": "Tonal dissolution \u2014 key wandering without arrival",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_postlude_as_the_real_climax",
+      "category": "fingerprint",
+      "description": "Postlude as the real climax",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_song_like_melody_in_orchestral_context",
+      "category": "fingerprint",
+      "description": "Song-like melody in orchestral context",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Constant tutti writing.** Mahler's texture is in constant flux \u2014 tutti moments are climaxes, not n",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Generic Romantic melody.** Mahler's melodies have the quality of someone telling you something urg",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Resolved, stable harmony.** Mahler's harmonies are in motion. A tonally stable passage (clearly in",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_9",
+      "category": "anti_pattern",
+      "description": "**Missing the postlude.** A Mahler movement that ends at its climax is truncated. The long dissoluti",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_10",
+      "category": "anti_pattern",
+      "description": "**No stylistic contrast.** The coexistence of \"low\" (dance, march) and \"high\" (symphonic development",
+      "severity": "soft"
+    }
+  ]
+}

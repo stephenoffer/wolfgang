@@ -1,0 +1,51 @@
+{
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "7/8 as 2+2+3: short|short | short|short | long-long-long",
+        "voices": {
+          "soprano": [
+            {
+              "p": "D5",
+              "d": "e",
+              "art": "marcato"
+            },
+            {
+              "p": "E5",
+              "d": "e"
+            },
+            {
+              "p": "F5",
+              "d": "e",
+              "art": "marcato"
+            },
+            {
+              "p": "G5",
+              "d": "e"
+            },
+            {
+              "p": "A5",
+              "d": "dq"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "D3",
+              "d": "dq"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
