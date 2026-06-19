@@ -6,21 +6,24 @@
       "name": "Thematic transformation \u2014 one idea, many faces",
       "description": "Liszt's signature formal invention: a single theme appears in completely different forms across a work \u2014 as a march, a lyrical song, a virtuosic display, a funeral chorale. The transformations change ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "virtuosic_transcendence_the_piano_as_orchestra",
       "name": "Virtuosic transcendence \u2014 the piano as orchestra",
       "description": "Liszt treats the piano as if it contained an entire orchestra: thundering octaves in the bass, soaring melody in the soprano, rapid passagework in inner voices, all simultaneously. The textures are ph",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "chromatic_saturation_and_enharmonic_pivot",
       "name": "Chromatic saturation and enharmonic pivot",
       "description": "Liszt uses chromatic harmony more intensively than any composer before Wagner: chains of augmented chords, whole-tone fragments, chromatic inner-voice motion that makes the key ambiguous for bars at a",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "rhetorical_silence_and_dramatic_tempo_changes",
@@ -29,14 +32,16 @@
       "texture_affinities": [
         "silence"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "hungarian_color_verbunkos_style",
       "name": "Hungarian color (verbunkos style)",
       "description": "The verbunkos dance: dotted rhythms (long-short-short), augmented second intervals (characteristic \"Gypsy\" scale: A-B-C-D-Eb-F#-G-A), rapid triplet ornaments before main beats, and sudden dynamic cont",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

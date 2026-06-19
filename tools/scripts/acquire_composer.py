@@ -5,12 +5,17 @@ brief. A composer with no corpus yields an insufficient brief and the commit
 gate refuses it (see scales._gated_commit). This script arms a composer end to
 end so the brief has real material to anchor on.
 
-Acquisition is local-first, web-fallback:
+Acquisition is local-first, web-fallback. Web sources are tried in order
+until one yields scores:
   1. LOCAL — music21's built-in corpus (offline, public-domain: Bach, Mozart,
      Beethoven, Haydn, Palestrina, Joplin, …). No network.
-  2. WEB   — if music21 ships nothing for the composer, fetch public-domain
-     Humdrum **kern from an ALLOWLISTED source (KernScores). Network is
-     isolated to this script; every file is validated with music21 before use.
+  2. WEB — if music21 ships nothing, fetch from ALLOWLISTED public-domain
+     archives, each validated with music21 before use:
+       a. KernScores — Humdrum **kern (clean, but a limited composer set).
+       b. Mutopia Project — engraving-derived MIDI (clean barlines/meter),
+          covering many Romantic/virtuoso composers KernScores lacks (Liszt,
+          Chopin, …). A recursive /ftp/<Code>/ crawl collects every .mid.
+     Network is isolated to this script.
 
 Then it runs the existing arming pipeline on the extracted bars:
      reference_index/<composer>/bar_index.json
@@ -29,8 +34,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import urllib.error
 import urllib.request
+from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -41,9 +48,13 @@ REFERENCE_INDEX = _TOOLS / "reference_index"
 _SOURCE_ALLOWLIST = (
     "https://kern.humdrum.org",
     "https://kernscores.stanford.edu",
+    "https://www.mutopiaproject.org",
 )
 _HTTP_TIMEOUT = 30
 _HTTP_RETRIES = 3
+
+# music21-parseable symbolic score extensions we collect from web archives.
+_SCORE_EXTS = (".mxl", ".xml", ".krn", ".musicxml", ".mid", ".midi")
 
 
 # ─── Local acquisition (music21 built-in corpus) ─────────────────────────────
@@ -88,7 +99,7 @@ def _http_get(url: str) -> Optional[bytes]:
     return None
 
 
-def _fetch_web_scores(composer: str, dest: Path, max_files: int) -> List[str]:
+def _fetch_kernscores(composer: str, dest: Path, max_files: int) -> List[str]:
     """Fetch public-domain kern files for a composer from KernScores into dest.
 
     KernScores exposes a per-composer listing; we pull the listing, then each
@@ -129,7 +140,117 @@ def _fetch_web_scores(composer: str, dest: Path, max_files: int) -> List[str]:
     return saved
 
 
+# ─── Mutopia Project (recursive /ftp crawl of engraving-derived MIDI) ─────────
+
+_MUTOPIA_ROOT = "https://www.mutopiaproject.org/ftp/"
+_HREF_RE = re.compile(r'href="([^"?][^"]*)"', re.IGNORECASE)
+_MUTOPIA_MAX_DIRS = 400  # crawl-request backstop per composer
+
+
+def _html_hrefs(html: str) -> List[str]:
+    """Relative hrefs from an Apache autoindex page (skip sort/parent links)."""
+    out: List[str] = []
+    for href in _HREF_RE.findall(html):
+        # Skip absolute paths, externals, and '../' parent links.
+        if href.startswith(("/", "http://", "https://", "..")):
+            continue
+        out.append(href)
+    return out
+
+
+def _mutopia_composer_code(composer: str) -> Optional[str]:
+    """Resolve a composer name to a Mutopia folder code (e.g. liszt → LisztF).
+
+    Mutopia codes are '<Surname><Initials>'. We list the /ftp/ root and match
+    the first folder whose lowercased name starts with the requested surname
+    (the last whitespace-separated token), so 'liszt' and 'franz liszt' both
+    resolve to 'LisztF'.
+    """
+    raw = _http_get(_MUTOPIA_ROOT)
+    if not raw:
+        return None
+    surname = composer.split()[-1].replace("-", "").lower()
+    codes = [h.rstrip("/") for h in _html_hrefs(raw.decode("utf-8", "replace")) if h.endswith("/")]
+    for code in codes:
+        if code.replace("-", "").lower().startswith(surname):
+            return code
+    return None
+
+
+def _crawl_mutopia_midis(base_url: str, max_files: int) -> List[str]:
+    """Recursively collect score-file URLs under a Mutopia composer directory."""
+    found: List[str] = []
+    seen: set[str] = set()
+    queue: List[str] = [base_url if base_url.endswith("/") else base_url + "/"]
+    dirs_fetched = 0
+    while queue and len(found) < max_files and dirs_fetched < _MUTOPIA_MAX_DIRS:
+        url = queue.pop(0)
+        if url in seen:
+            continue
+        seen.add(url)
+        raw = _http_get(url)
+        dirs_fetched += 1
+        if not raw:
+            continue
+        for href in _html_hrefs(raw.decode("utf-8", "replace")):
+            child = url + href
+            if href.endswith("/"):
+                if child not in seen:
+                    queue.append(child)
+            elif href.lower().endswith(_SCORE_EXTS):
+                found.append(child)
+                if len(found) >= max_files:
+                    break
+    return found
+
+
+def _fetch_mutopia(composer: str, dest: Path, max_files: int) -> List[str]:
+    """Fetch public-domain MIDI for a composer from the Mutopia Project.
+
+    Resolves the composer's folder code, recursively crawls it for score
+    files, downloads each. Degrades to 'no files' on any network/lookup miss.
+    """
+    code = _mutopia_composer_code(composer)
+    if not code:
+        print("  Mutopia: no matching composer folder")
+        return []
+    base = _MUTOPIA_ROOT + code + "/"
+    print(f"  Mutopia: crawling {base}")
+    urls = _crawl_mutopia_midis(base, max_files)
+    if not urls:
+        return []
+    dest.mkdir(parents=True, exist_ok=True)
+    saved: List[str] = []
+    for url in urls:
+        if not _allowlisted(url):
+            continue
+        data = _http_get(url)
+        if not data:
+            continue
+        # Leaf folders reuse the same basename (piece/piece.mid); disambiguate
+        # with the parent folder to avoid clobbering distinct pieces.
+        parent = Path(url).parent.name
+        fp = dest / f"{parent}__{Path(url).name}"
+        fp.write_bytes(data)
+        saved.append(str(fp))
+    return saved
+
+
+# Web sources, tried in order until one yields scores.
+_WEB_SOURCES: Tuple[Tuple[str, Any], ...] = (
+    ("kernscores-web", _fetch_kernscores),
+    ("mutopia-web", _fetch_mutopia),
+)
+
+
 # ─── Extraction → arming pipeline ────────────────────────────────────────────
+
+
+def _json_default(obj: Any) -> float:
+    """JSON encoder fallback: serialize music21 Fraction durations as float."""
+    if isinstance(obj, Fraction):
+        return float(obj)
+    raise TypeError(f"Object of type {obj.__class__.__name__} is not JSON serializable")
 
 
 def _extract_bars(
@@ -168,7 +289,11 @@ def _arm_from_bars(composer: str, bars: List[Dict[str, Any]]) -> Dict[str, Any]:
     cdir = REFERENCE_INDEX / composer
     cdir.mkdir(parents=True, exist_ok=True)
     bar_index = {"composer": composer, "total_bars": len(bars), "bars": bars}
-    (cdir / "bar_index.json").write_text(json.dumps(bar_index, separators=(",", ":")))
+    # MIDI-parsed bars carry music21 Fraction durations (tuplets/irregular
+    # values); store them as floats so the index matches the kern/mxl corpora.
+    (cdir / "bar_index.json").write_text(
+        json.dumps(bar_index, separators=(",", ":"), default=_json_default)
+    )
     print(f"  wrote {len(bars)} bars → {cdir / 'bar_index.json'}")
 
     idx = build_corpus_indexes.build_composer(composer, force=True)
@@ -195,8 +320,12 @@ def acquire(composer: str, use_web: bool = True, max_files: int = 60) -> Dict[st
     if not paths and use_web:
         print(f"  none locally; → web fallback (allowlist: {', '.join(_SOURCE_ALLOWLIST)})")
         tmp = _TOOLS / "reference_scores" / f"_fetch_{composer}"
-        paths = _fetch_web_scores(composer, tmp, max_files)
-        source = "kernscores-web"
+        for src_name, fetcher in _WEB_SOURCES:
+            print(f"→ web: {src_name}")
+            paths = fetcher(composer, tmp, max_files)
+            if paths:
+                source = src_name
+                break
     if not paths:
         return {
             "ok": False,

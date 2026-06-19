@@ -19,8 +19,74 @@ REF_INDEX = BASE / "reference_index"
 REF_INDEX.mkdir(exist_ok=True)
 
 
+def _voice_records(notes_and_rests, tonic_pc, cap=16):
+    """Build (display, events, has_rests) for one hand's measure content.
+
+    Matches the rich bar-record format the composition briefs consume:
+    each note/chord carries ``interval_from_root`` (semitones above the bar's
+    tonic, key-agnostic) so the corpus adapter can transpose it to any key.
+    ``display`` keeps absolute pitch names; ``events`` is pitch-free.
+    """
+    display, events = [], []
+    has_rests = False
+    for el in notes_and_rests:
+        dur = round(float(el.quarterLength), 4)
+        is_grace = bool(getattr(el.duration, "isGrace", False))
+        if el.isRest:
+            has_rests = True
+            if len(display) < cap:
+                display.append({"type": "rest", "dur": dur})
+                events.append({"type": "rest", "dur": dur})
+            continue
+        if getattr(el, "isChord", False):
+            pitches = list(el.pitches)
+            iroot = (min(p.pitchClass for p in pitches) - tonic_pc) % 12
+            if len(display) < cap:
+                display.append(
+                    {
+                        "type": "chord",
+                        "pitches": [p.nameWithOctave for p in pitches],
+                        "intervals": [(p.pitchClass - tonic_pc) % 12 for p in pitches],
+                        "interval_from_root": iroot,
+                        "dur": dur,
+                        "is_grace": is_grace,
+                    }
+                )
+                events.append(
+                    {
+                        "type": "chord",
+                        "intervals": [(p.pitchClass - tonic_pc) % 12 for p in pitches],
+                        "interval_from_root": iroot,
+                        "dur": dur,
+                        "is_grace": is_grace,
+                    }
+                )
+        elif hasattr(el, "pitch"):
+            iroot = (el.pitch.pitchClass - tonic_pc) % 12
+            if len(display) < cap:
+                display.append(
+                    {
+                        "type": "note",
+                        "pitch": el.pitch.nameWithOctave,
+                        "interval_from_root": iroot,
+                        "dur": dur,
+                        "is_grace": is_grace,
+                    }
+                )
+                events.append(
+                    {
+                        "type": "note",
+                        "interval_from_root": iroot,
+                        "dur": dur,
+                        "is_grace": is_grace,
+                    }
+                )
+    return display, events, has_rests
+
+
 def analyze_score_bars(score, composer, source_name):
     """Extract bar-level data from a music21 score, matching the existing bar_index format."""
+    from music21 import meter as m21meter
     from music21 import stream
 
     bars = []
@@ -37,6 +103,11 @@ def analyze_score_bars(score, composer, source_name):
 
     for mi, measure in enumerate(measures_rh):
         bar_num = measure.number if measure.number else mi + 1
+
+        # Time signature: prefer a local marking, else the active one in context
+        # (MIDI/score TS often declared only at the first bar). Default 4/4.
+        ts_obj = measure.timeSignature or measure.getContextByClass(m21meter.TimeSignature)
+        time_sig = [ts_obj.numerator, ts_obj.denominator] if ts_obj else [4, 4]
 
         # RH analysis
         rh_notes = list(measure.recurse().notes)
@@ -75,7 +146,7 @@ def analyze_score_bars(score, composer, source_name):
         # LH analysis
         lh_density = 0
         lh_texture = "silence"
-        lh_display = []
+        lh_measure = None
 
         if lh_part:
             lh_measures = list(lh_part.getElementsByClass(stream.Measure))
@@ -107,36 +178,28 @@ def analyze_score_bars(score, composer, source_name):
                 else:
                     lh_texture = "walking_bass"
 
-                # LH display data
-                for n in lh_notes[:16]:
-                    if hasattr(n, "pitch"):
-                        lh_display.append(
-                            {
-                                "type": "note",
-                                "pitch": n.nameWithOctave,
-                                "dur": round(n.quarterLength, 4),
-                                "is_grace": n.duration.isGrace
-                                if hasattr(n.duration, "isGrace")
-                                else False,
-                            }
-                        )
-                    elif hasattr(n, "pitches"):  # chord
-                        lh_display.append(
-                            {
-                                "type": "chord",
-                                "pitches": [p.nameWithOctave for p in n.pitches],
-                                "dur": round(n.quarterLength, 4),
-                            }
-                        )
-
         # Key detection
         try:
             k = measure.analyze("key")
             key_name = k.tonic.name if k.tonic else "C"
             key_mode = k.mode if k.mode else "major"
+            tonic_pc = k.tonic.pitchClass if k.tonic else 0
         except Exception:
             key_name = "C"
             key_mode = "major"
+            tonic_pc = 0
+
+        # Note-level display + events (with interval_from_root for transposition)
+        rh_display, rh_events, rh_has_rests = _voice_records(
+            measure.recurse().notesAndRests, tonic_pc
+        )
+        if lh_measure is not None:
+            lh_display, lh_events, lh_has_rests = _voice_records(
+                lh_measure.recurse().notesAndRests, tonic_pc
+            )
+        else:
+            lh_display, lh_events, lh_has_rests = [], [], False
+        has_rests = rh_has_rests or lh_has_rests
 
         # Register center
         register = sum(rh_midis) / len(rh_midis) if rh_midis else 60
@@ -155,6 +218,7 @@ def analyze_score_bars(score, composer, source_name):
         bar_data = {
             "source": source_name,
             "bar_num": bar_num,
+            "time_sig": time_sig,
             "key": key_name,
             "key_mode": key_mode,
             "phrase_position": position,
@@ -165,9 +229,13 @@ def analyze_score_bars(score, composer, source_name):
             "melody_direction": direction,
             "has_grace_notes": has_grace,
             "has_dotted_rhythms": has_dotted,
+            "has_rests": has_rests,
             "register_center": round(register),
             "harmony_quality": key_mode,
+            "rh_display": rh_display,
+            "rh_events": rh_events,
             "lh_display": lh_display,
+            "lh_events": lh_events,
         }
         bars.append(bar_data)
 

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "unresolved_augmented_triads",
+    "name": "Unresolved augmented triads",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Nuages gris (1881)"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "liszt/harmonic-language.md"
+  },
+  {
+    "id": "bare_parallel_fifths",
+    "name": "Bare parallel fifths",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Via Crucis (1879)"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "liszt/harmonic-language.md"
+  },
+  {
+    "id": "tritone_oscillation",
+    "name": "Tritone oscillation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Unstern! (1881)"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "liszt/harmonic-language.md"
+  },
+  {
+    "id": "whole_tone_melody_over_silence",
+    "name": "Whole-tone melody over silence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Bagatelle sans tonalite (1885)"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "liszt/harmonic-language.md"
+  },
+  {
+    "id": "chords_built_on_fourths",
+    "name": "Chords built on fourths",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Late pieces anticipate Scriabin",
+      "Bartok"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "liszt/harmonic-language.md"
+  },
+  {
+    "id": "no_cadence_at_end",
+    "name": "No cadence at end",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Multiple late works \u2014 the void"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "liszt/harmonic-language.md"
+  }
+]
