@@ -18,15 +18,6 @@ Then the work gets checked. A **commit gate** blocks the usual failure modes of 
 
 The whole piece lives in one file on disk (the PieceGraph) that every step reads from and writes to. That means a long work can be interrupted and resumed, and every decision — including every time the gate was overridden, and the honest reason why — is recorded rather than hidden.
 
-## Hear it for yourself
-
-The `output/` directory holds real pieces this system has produced. A few worth opening:
-
-- **Mozart Piano Sonata in G minor** (`mozart-piano-sonata-gm-20260331/`) — three complete movements, the most fully developed piece in the repo.
-- **Forest Nocturne in D-flat, "Forest Reverie"** (`forest-nocturne-db-20260324/`) — a single-movement nocturne in a Chopin idiom with Lisztian figuration and Bach-like inner voices.
-- **Winter Forest Sonata** (`winter-forest-sonata-mvt1/2/3.musicxml`) — a three-movement programmatic sonata.
-- **Yellowstone Rhapsody in E-flat** (`yellowstone-rhapsody-eb-20260323/`).
-
 Open the `.musicxml` files in [MuseScore](https://musescore.org) (free) to read and play them. The `.mid` files are quick playback previews.
 
 ## Quick start
