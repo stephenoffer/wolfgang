@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_rolled_tenths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rolled tenths",
+    "description": "`C2e E3e C2e E3e`. Brahms's hands were large and the tenth is his signature interval. Wider and warmer than an octave.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_broken_chords_in_wide_spacing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Broken chords in wide spacing",
+    "description": "`F2e C3e Ab3e C4e F3e C3e`. Spanning two octaves, filling the middle register that Chopin leaves open.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cross_rhythm_against_the_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cross-rhythm against the melody",
+    "description": "triplets in the left hand under duple in the right, or the reverse, sustained for whole phrases. Two against three is his normal state, not an effect.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_hemiola_at_cadences",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Hemiola at cadences",
+    "description": "the 3/4 regrouped as 3/2 across two bars approaching a close. So characteristic it is almost a fingerprint.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_doubled_octaves_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Doubled octaves in the bass",
+    "description": "`[C2,C3]h`. Weight and darkness.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chorale_texture_in_the_left_hand",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chorale texture in the left hand",
+    "description": "four real voices moving together in the lower register, drawn from his study of early music.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_contrapuntal_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Contrapuntal bass",
+    "description": "the left hand imitates or answers the melody rather than accompanying it. Brahms is the most contrapuntal Romantic.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_inner_pedal",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained inner pedal",
+    "description": "a held middle voice while the bass and melody move around it. Thickens without adding motion.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggio_with_the_thumb_carrying_a_countermelody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggio with the thumb carrying a countermelody",
+    "description": "the top of the LH figure forms a second tune.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_syncopated_accompaniment",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Syncopated accompaniment",
+    "description": "the chord entering off the beat throughout a phrase, so the downbeat has no chord under it.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_for_a_stark_statement",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves for a stark statement",
+    "description": "usually at an opening or a return.",
+    "source_file": "brahms/brahms-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -19,7 +118,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -37,7 +136,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -261,5 +360,194 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_hemiola",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Hemiola",
+    "description": "3/4 heard as 3/2 across two bars, especially before a cadence. The single most Brahmsian rhythmic gesture.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_two_against_three",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Two against three",
+    "description": "duple in one hand, triple in the other, sustained.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_syncopation_across_the_barline",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Syncopation across the barline",
+    "description": "the melody entering off the beat and tied over, so the metre is felt rather than heard.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_metric_displacement",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Metric displacement",
+    "description": "the same figure re-entered a beat later than expected, holding the displacement for several bars.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_rhythmic_augmentation_of_a_motif",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Rhythmic augmentation of a motif",
+    "description": "within the same passage.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_developing_variation",
+    "category": "composer_device",
+    "section": "Melodic and motivic devices",
+    "name": "Developing variation",
+    "description": "each restatement of a motif differs: an interval widened, a rhythm dotted, a note added. Never a literal repeat.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_motivic_saturation",
+    "category": "composer_device",
+    "section": "Melodic and motivic devices",
+    "name": "Motivic saturation",
+    "description": "every voice derived from the same cell, including the accompaniment.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_built_from_thirds_and_sixths",
+    "category": "composer_device",
+    "section": "Melodic and motivic devices",
+    "name": "Melody built from thirds and sixths",
+    "description": "the intervals themselves are the signature sound.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_breathed_line_over_a_shorter_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Melodic and motivic devices",
+    "name": "Long-breathed line over a shorter harmonic rhythm.",
+    "description": "Long-breathed line over a shorter harmonic rhythm.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_falling_third_as_a_motto",
+    "category": "composer_device",
+    "section": "Melodic and motivic devices",
+    "name": "The falling third as a motto",
+    "description": "three descending notes, used to open and to unify.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture_throughout",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture throughout",
+    "description": "\u266dVI, \u266dIII and iv in a major key as constant colour rather than as an event.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_third_related_key_areas",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Third-related key areas",
+    "description": "rather than dominant ones.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suspension_and_appoggiatura_on_nearly_every_strong_beat",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Suspension and appoggiatura on nearly every strong beat",
+    "description": "the harmonic surface is dense with prepared dissonance.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pedal_point_with_chromatic_movement_above",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Pedal point with chromatic movement above",
+    "description": "for a long build.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_plagal_inflection_at_the_end",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Plagal inflection at the end",
+    "description": "the final cadence coloured by the subdominant.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_inner_voice_motion",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic inner-voice motion",
+    "description": "while the outer voices hold.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sonata_form_with_a_developing_exposition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sonata form with a developing exposition",
+    "description": "development begins before the exposition ends.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_variation_form_as_a_whole_movement",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Variation form as a whole movement",
+    "description": "a ground bass or a passacaglia.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_return_of_a_motif_across_movements",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic return of a motif across movements.",
+    "description": "Cyclic return of a motif across movements.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The quiet ending",
+    "description": "dissolving rather than concluding loudly.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_archaism",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Archaism",
+    "description": "a chorale, a canon, a passacaglia embedded in Romantic harmony.",
+    "source_file": "brahms/brahms-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

@@ -1,0 +1,47 @@
+{
+ "composer": "tchaikovsky",
+ "schema": 1,
+ "total_bars": 773,
+ "textures": {
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1324,
+   "n": 408
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0306,
+   "n": 98
+  },
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.5608,
+   "n": 189
+  },
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0517,
+   "n": 58
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 15
+  }
+ }
+}

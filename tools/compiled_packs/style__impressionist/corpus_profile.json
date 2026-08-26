@@ -1,0 +1,174 @@
+{
+ "composer": "style__impressionist",
+ "style": "impressionist",
+ "members": [
+  "debussy",
+  "satie"
+ ],
+ "total_bars": 1255,
+ "total_movements": 20,
+ "movements_used": 20,
+ "min_movement_bars": 6,
+ "metrics": {
+  "events_per_bar": {
+   "mean": 7.2509,
+   "stdev": 3.1529,
+   "min": 3.185,
+   "max": 14.528,
+   "n": 20,
+   "p25": 4.559,
+   "p50": 6.8435,
+   "p75": 9.147
+  },
+  "events_per_bar_rh": {
+   "mean": 4.3296,
+   "stdev": 1.8894,
+   "min": 1.035,
+   "max": 7.764,
+   "n": 20,
+   "p25": 2.794,
+   "p50": 4.239,
+   "p75": 6.226
+  },
+  "events_per_bar_lh": {
+   "mean": 2.9212,
+   "stdev": 1.6366,
+   "min": 1.0,
+   "max": 7.736,
+   "n": 20,
+   "p25": 1.765,
+   "p50": 2.7715,
+   "p75": 3.235
+  },
+  "texture_change_pct": {
+   "mean": 0.169,
+   "stdev": 0.1651,
+   "min": 0.0,
+   "max": 0.5152,
+   "n": 20,
+   "p25": 0.0282,
+   "p50": 0.0994,
+   "p75": 0.3585
+  },
+  "lh_texture_change_pct": {
+   "mean": 0.3041,
+   "stdev": 0.1484,
+   "min": 0.0,
+   "max": 0.5962,
+   "n": 20,
+   "p25": 0.2143,
+   "p50": 0.3211,
+   "p75": 0.3944
+  },
+  "rh_texture_change_pct": {
+   "mean": 0.3822,
+   "stdev": 0.1265,
+   "min": 0.131,
+   "max": 0.6667,
+   "n": 20,
+   "p25": 0.3095,
+   "p50": 0.3844,
+   "p75": 0.4623
+  },
+  "density_cv": {
+   "mean": 0.3312,
+   "stdev": 0.1076,
+   "min": 0.1812,
+   "max": 0.6769,
+   "n": 20,
+   "p25": 0.2899,
+   "p50": 0.3142,
+   "p75": 0.3594
+  },
+  "melody_direction_change_pct": {
+   "mean": 0.456,
+   "stdev": 0.15,
+   "min": 0.1667,
+   "max": 0.6981,
+   "n": 20,
+   "p25": 0.3333,
+   "p50": 0.4824,
+   "p75": 0.5915
+  },
+  "grace_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 20,
+   "p25": 0.0,
+   "p50": 0.0,
+   "p75": 0.0
+  },
+  "dotted_ratio": {
+   "mean": 0.4466,
+   "stdev": 0.2582,
+   "min": 0.1059,
+   "max": 1.0,
+   "n": 20,
+   "p25": 0.25,
+   "p50": 0.4105,
+   "p75": 0.5814
+  },
+  "register_span": {
+   "mean": 29.6,
+   "stdev": 9.4202,
+   "min": 12.0,
+   "max": 43.0,
+   "n": 20,
+   "p25": 22.0,
+   "p50": 33.0,
+   "p75": 38.0
+  },
+  "rest_bar_ratio": {
+   "mean": 0.6861,
+   "stdev": 0.2492,
+   "min": 0.1294,
+   "max": 1.0,
+   "n": 20,
+   "p25": 0.5047,
+   "p50": 0.757,
+   "p75": 0.9057
+  },
+  "rest_event_ratio": {
+   "mean": 0.2843,
+   "stdev": 0.1079,
+   "min": 0.0596,
+   "max": 0.4624,
+   "n": 20,
+   "p25": 0.2143,
+   "p50": 0.2969,
+   "p75": 0.375
+  }
+ },
+ "lh_texture_distribution": {
+  "alberti": 0.0279,
+  "broken_chord_wave": 0.0932,
+  "pedal_point": 0.1418,
+  "bass_melody": 0.0494,
+  "broken_chord_asc": 0.0239,
+  "walking_bass": 0.1402,
+  "block_chord_sparse": 0.2948,
+  "silence": 0.1187,
+  "block_chord_offbeat": 0.0948,
+  "broken_chord_desc": 0.0151
+ },
+ "rh_texture_distribution": {
+  "singing_melody": 0.4151,
+  "zigzag_figuration": 0.1171,
+  "scalar_run": 0.0319,
+  "chordal": 0.2948,
+  "held_note": 0.0295,
+  "silence": 0.1116
+ },
+ "lh_l1_baseline": {
+  "mean": 0.9646,
+  "stdev": 0.2634,
+  "min": 0.5786,
+  "max": 1.7162,
+  "n": 20,
+  "p25": 0.8091,
+  "p50": 0.9764,
+  "p75": 1.1266
+ }
+}

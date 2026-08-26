@@ -1,5 +1,95 @@
 [
   {
+    "id": "lh_idiom_drone_fifths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Drone fifths",
+    "description": "`[D2,A2]w` held under a modal melody. The Hardanger fiddle sound and his most characteristic device.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_open_fifths_moving_in_parallel",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Open fifths moving in parallel",
+    "description": "`[D2,A2]h [E2,B2]h`, bare and archaic.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_springar_halling_dance_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Springar / halling dance rhythm",
+    "description": "a lilting 3/4 with an uneven second beat.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_inner_voice_over_a_static_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic inner voice over a static bass",
+    "description": "his standard intensifier in the lyric pieces.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggiated_wide_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggiated wide chords",
+    "description": "warm, in the Romantic manner.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_quiet",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, quiet",
+    "description": "under a simple melody.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves",
+    "description": "for a stark or heroic statement.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_chord_with_a_moving_top_voice",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained chord with a moving top voice",
+    "description": "the accompaniment carries a counter-melody.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_in_octaves_for_weight",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass in octaves for weight",
+    "description": "at a climax of a short piece.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence",
+    "description": "the miniatures use rests generously.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -19,7 +109,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -37,7 +127,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -261,5 +351,185 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_grieg_motif",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The Grieg motif",
+    "description": "a falling second then a falling third, used as a signature.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal harmony",
+    "description": "Lydian raised fourth, Mixolydian flat seventh, Aeolian.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_drone_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Drone fifths",
+    "description": "as harmonic foundation.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_descending_inner_voice",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic descending inner voice",
+    "description": "over a held bass.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_fifths_and_open_sonorities",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel fifths and open sonorities",
+    "description": "deliberately archaic.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sudden_modal_shift",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Sudden modal shift",
+    "description": "major to minor of the same tonic, folk-style.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_sevenths_and_added_seconds",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved sevenths and added seconds",
+    "description": "as folk colour.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_third_related_keys",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Third-related keys",
+    "description": "for section contrast.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_springar_lilt",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Springar lilt",
+    "description": "an uneven 3/4 with a lengthened second beat.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_halling_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Halling rhythm",
+    "description": "a duple dance, angular and accented.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pentatonic_melodic_fragments",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Pentatonic melodic fragments.",
+    "description": "Pentatonic melodic fragments.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_short_repeated_melodic_cell",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "The short repeated melodic cell",
+    "description": "folk-song construction.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ornamental_grace_notes",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Ornamental grace notes",
+    "description": "imitating fiddle playing.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_octaves",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Melody in octaves",
+    "description": "for a full statement in a short piece.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ternary_lyric_piece",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ternary lyric piece",
+    "description": "A, contrasting B, varied A. The default form.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_character_piece_with_a_title",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The character piece with a title",
+    "description": "naming a scene or mood.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suite_of_short_movements",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Suite of short movements",
+    "description": "rather than a single long argument.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_motif_across_a_suite",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic motif across a suite.",
+    "description": "Cyclic motif across a suite.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The quiet ending",
+    "description": "most of the lyric pieces end softly.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sharp_sectional_contrast",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sharp sectional contrast",
+    "description": "rather than transition.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

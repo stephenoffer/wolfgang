@@ -84,6 +84,90 @@
    "period": ""
   },
   {
+   "id": "inner_voice_melody_the_hidden_tune",
+   "name": "Inner-voice melody \u2014 the hidden tune",
+   "description": "Schumann's most distinctive habit: the main melody is not in the top voice but hidden inside the texture \u2014 in the tenor register, an inner piano voice, or doubled in a mid-range instrument. The sopran",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "rhythmic_displacement_and_syncopation",
+   "name": "Rhythmic displacement and syncopation",
+   "description": "Schumann systematically shifts melodic accents away from the downbeat: long notes arrive on weak beats, phrases begin mid-bar, hemiola creates cross-rhythm against the notated meter. The effect is of ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "sudden_tonal_leaps_the_schumannesque_shift",
+   "name": "Sudden tonal leaps \u2014 the Schumannesque shift",
+   "description": "Abrupt moves to distantly related keys without preparation: from E major to C major, or C minor to A major. Not modulation \u2014 just arrival. The new key is stated as a fact. The effect is like a sudden ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "literary_poetic_program_florestan_and_eusebius",
+   "name": "Literary/poetic program \u2014 Florestan and Eusebius",
+   "description": "Every piece has a hidden narrative or character: the extrovert Florestan (fast, loud, bold) or introvert Eusebius (slow, soft, inward). Sometimes both appear in the same piece, alternating. The music ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "piano_texture_as_interior_monologue",
+   "name": "Piano texture as interior monologue",
+   "description": "Schumann's piano writing is dense, often impractical, richly layered. The piano doesn't accompany \u2014 it thinks. The texture has multiple simultaneous ideas: melody, countermelody, bass, inner harmony, ",
+   "texture_affinities": [
+    "pedal_point"
+   ],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "hemiola_at_cadences",
+   "name": "Hemiola at cadences",
+   "description": "3-against-2 rhythmic displacement before structural arrivals. In 3/4 time, the last two bars before a cadence feel like 6/4 (two groups of three becoming three groups of two). The bar line is subverte",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "low_register_density_thick_inner_voices",
+   "name": "Low register density \u2014 thick inner voices",
+   "description": "Brahms's texture is bottom-heavy. The LH in piano writing, or the low strings and violas in orchestral writing, carry complex inner voice parts. Where Mozart is transparent and high, Brahms is thick a",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "subdominant_gravity_plagal_coloring",
+   "name": "Subdominant gravity \u2014 plagal coloring",
+   "description": "IV\u2013I (plagal cadence), bVII\u2013I, bVI\u2013I \u2014 subdominant-family chords resolving to the tonic. Brahms leans toward the flat side of the key. Where Beethoven uses dominant function for drama, Brahms uses sub",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "motivic_saturation_theme_permeates_accompaniment",
+   "name": "Motivic saturation \u2014 theme permeates accompaniment",
+   "description": "The main theme's interval, rhythm, or contour appears in the accompaniment, the bass line, the inner voices. Every strand of the texture is derived from the same material. The accompaniment is not jus",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "harmonic_ambiguity_at_phrase_openings",
+   "name": "Harmonic ambiguity at phrase openings",
+   "description": "Brahms avoids the tonic on the downbeat of phrase beginnings. Phrases often start on I6 (first inversion tonic), or on IV, or with a pedal that delays the harmonic resolution. The tonic is always arri",
+   "texture_affinities": [
+    "pedal_point"
+   ],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
    "id": "operatic_melody_in_instrumental_clothing",
    "name": "Operatic melody in instrumental clothing",
    "description": "Themes are singers' lines: an arching phrase with a clear breath point, an appoggiatura leaning into the strong beat, and a cadential turn. Even a piano theme is written as though someone has to breat",
@@ -161,6 +245,86 @@
    "id": "hungarian_color_verbunkos_style",
    "name": "Hungarian color (verbunkos style)",
    "description": "The verbunkos dance: dotted rhythms (long-short-short), augmented second intervals (characteristic \"Gypsy\" scale: A-B-C-D-Eb-F#-G-A), rapid triplet ornaments before main beats, and sudden dynamic cont",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "scherzo_lightness_the_fleet_elfin_texture",
+   "name": "Scherzo lightness \u2014 the fleet, elfin texture",
+   "description": "Mendelssohn invented a specific sound: fast (Presto or Vivace), pp or ppp, staccato, very high register, strings playing sul ponticello or without vibrato, like fireflies or fairy wings. This texture ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "singing_tone_bel_canto_melody_in_instruments",
+   "name": "Singing tone \u2014 bel canto melody in instruments",
+   "description": "Mendelssohn's slow melodies are modeled on Italian bel canto: long, arching phrases, beautifully shaped, without extremes of dissonance or angst. The melody is always lovely. This is not a limitation ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "formal_clarity_with_romantic_content",
+   "name": "Formal clarity with Romantic content",
+   "description": "Mendelssohn inhabits Classical forms (sonata, rondo, variation) with complete conviction, without irony. His development sections actually develop. His recapitulations feel like returns. The form is n",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "venetian_barcarolle_lilt",
+   "name": "Venetian barcarolle lilt",
+   "description": "In 6/8 or 12/8, a gentle rocking accompaniment (bass-chord-chord in the left hand, or pizzicato lower strings with sustained upper strings) suggesting water motion. The \"Songs Without Words\" barcaroll",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "bright_unclouded_orchestration_the_protestant_clarity",
+   "name": "Bright, unclouded orchestration \u2014 the Protestant clarity",
+   "description": "Mendelssohn's orchestration is transparent: each instrument section audible, no muddy doublings, brass used for weight not color, strings predominant. Even his fortissimos are clear, not thick. This i",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "long_sweeping_melody_with_a_built_in_arch",
+   "name": "Long, sweeping melody with a built-in arch",
+   "description": "Tchaikovsky's themes have a specific architecture: they begin relatively low, rise in a long sustained ascent over 8\u201316 bars, peak on a sustained high note with full orchestra, then descend in a short",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "waltz_rhythm_as_emotional_vehicle",
+   "name": "Waltz rhythm as emotional vehicle",
+   "description": "The waltz (3/4, or 12/8 implied) pervades Tchaikovsky's writing beyond ballet: symphonies, string quartets, piano pieces. The lilt of the waltz is emotional vulnerability \u2014 the grace and sadness of so",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "sequence_as_escalation",
+   "name": "Sequence as escalation",
+   "description": "Tchaikovsky drives toward climaxes through relentless sequential repetition: the same 2-bar gesture a step higher, then a step higher again, then again. Each repetition adds orchestral mass. The seque",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "russian_modal_color_within_tonal_framework",
+   "name": "Russian modal color within tonal framework",
+   "description": "Despite writing in standard keys, Tchaikovsky uses Russian folk-modal inflections: the lowered 6th degree (bVI in major keys), the Phrygian-style cadence (bII\u2192I), and the Dorian raised 6th in minor. T",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "fate_doom_bass_ostinato_at_crisis_moments",
+   "name": "Fate/doom bass ostinato at crisis moments",
+   "description": "At points of highest emotional tension, the lower strings and brass sustain a repeated bass figure \u2014 often a chromatic descent or a repeated threatening rhythm \u2014 while the melody tries to escape above",
    "texture_affinities": [],
    "frequency": "per_section",
    "period": ""

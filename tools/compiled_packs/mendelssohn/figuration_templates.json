@@ -1,5 +1,95 @@
 [
   {
+    "id": "lh_idiom_rippling_broken_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rippling broken chords",
+    "description": "`C3e G3e E4e G3e C3e G3e E4e G3e`, even and light, in the middle register. The Song Without Words accompaniment.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_light_staccato_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Light staccato chords",
+    "description": "`[C3,E3]e:stacc \u00d78` at `pp`. The scherzo idiom: fast, dry and even.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_oom_pah_transparent",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Oom-pah, transparent",
+    "description": "bass and chord, but higher and lighter than a Classical version.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggio_spanning_an_octave_and_a_half",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggio spanning an octave and a half",
+    "description": "smooth and unhurried.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_chorale_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained chorale chords",
+    "description": "for the hymn-like slow movements and the religious works.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_note_pulse",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated-note pulse",
+    "description": "under a sustained melody.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_bass_in_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking bass in octaves",
+    "description": "for the more serious movements.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_contrapuntal_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Contrapuntal bass",
+    "description": "from his Bach revival work; a real second line.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_pedal_with_light_figuration_above_it",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held pedal with light figuration above it.",
+    "description": "Held pedal with light figuration above it.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves",
+    "description": "at a dramatic opening.",
+    "source_file": "mendelssohn/mendelssohn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -19,7 +109,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -55,7 +145,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -212,7 +302,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -261,5 +351,158 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_song_without_words",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The song without words",
+    "description": "an unbroken vocal melody over a rippling accompaniment, in a clear ternary shape.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_breathed_lyrical_line",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long-breathed lyrical line",
+    "description": "with a single arch.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_thirds_and_sixths",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody in thirds and sixths",
+    "description": "for warmth.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_fairy_scherzo_idiom",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The fairy scherzo idiom",
+    "description": "rapid, light, staccato, high, `pp`, in even note values. His invention and unmistakable.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ornamental_turn_on_an_arrival_note",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Ornamental turn on an arrival note.",
+    "description": "Ornamental turn on an arrival note.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melodic_sequence_rising_to_a_peak",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melodic sequence rising to a peak.",
+    "description": "Melodic sequence rising to a peak.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_diatonic_clarity",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Diatonic clarity",
+    "description": "the harmony is simpler than his contemporaries', and the effect is transparency.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_passing_motion_inside_a_diatonic_frame",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic passing motion inside a diatonic frame.",
+    "description": "Chromatic passing motion inside a diatonic frame.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture_for_a_shadow",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture for a shadow",
+    "description": "used sparingly and therefore effectively.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_plagal_hymn_like_cadence",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The plagal, hymn-like cadence",
+    "description": "in the sacred and slow movements.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequence_through_closely_related_keys",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Sequence through closely related keys.",
+    "description": "Sequence through closely related keys.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_strict_ternary_aba_with_a_varied_return",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Strict ternary (ABA) with a varied return.",
+    "description": "Strict ternary (ABA) with a varied return.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sonata_form_classically_proportioned",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sonata form, Classically proportioned",
+    "description": "no expanded development, no disruptive coda.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_scherzo_and_trio",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Scherzo and trio",
+    "description": "the scherzo fast and light, the trio contrasting in texture rather than in tempo.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_return_of_a_theme_at_the_end_of_a_work",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic return of a theme at the end of a work.",
+    "description": "Cyclic return of a theme at the end of a work.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_fugato_episode",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The fugato episode",
+    "description": "a short contrapuntal passage inside a homophonic movement, from his Bach study.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_overture_form_for_a_programmatic_single_movement",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Overture form for a programmatic single movement.",
+    "description": "Overture form for a programmatic single movement.",
+    "source_file": "mendelssohn/mendelssohn-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

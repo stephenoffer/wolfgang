@@ -384,6 +384,186 @@
   "source_file": "schubert/melodic-style.md"
  },
  {
+  "id": "melodic_voice_inner_voice_melody",
+  "category": "composer_melodic_voice",
+  "description": "Inner-voice melody: The primary tune placed in tenor or alto, not soprano; outer voices play accompaniment around it",
+  "parameters": {
+   "feature": "Inner-voice melody",
+   "note": "Kreisleriana, Humoreske, Kinderszenen \u2014 the Schumann signature"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_song_like_instrumental_writing",
+  "category": "composer_melodic_voice",
+  "description": "Song-like instrumental writing: Piano melodies that breathe like vocal lines; phrase lengths follow speech, not symmetry",
+  "parameters": {
+   "feature": "Song-like instrumental writing",
+   "note": "Kinderszenen, Fantasie Op.17, slow movements"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_rhythmic_displacement",
+  "category": "composer_melodic_voice",
+  "description": "Rhythmic displacement: Melody enters on beat 2 or 3; long notes on weak beats; ties across barlines",
+  "parameters": {
+   "feature": "Rhythmic displacement",
+   "note": "Everywhere \u2014 the melody resists the meter"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_florestan_eusebius_duality",
+  "category": "composer_melodic_voice",
+  "description": "Florestan/Eusebius duality: Two melodic characters: bold, leaping, rhythmically insistent (F) vs. soft, stepwise, floating (E)",
+  "parameters": {
+   "feature": "Florestan/Eusebius duality",
+   "note": "Carnaval, Davidsbundlertaenze, Kreisleriana"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_literary_cryptographic_melody",
+  "category": "composer_melodic_voice",
+  "description": "Literary/cryptographic melody: Themes built on letter-names (ASCH, CLARA, ABEGG); the melody IS a message",
+  "parameters": {
+   "feature": "Literary/cryptographic melody",
+   "note": "Carnaval (S-C-H-A = Eb-C-B-A), ABEGG Variations"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_phrase_elision",
+  "category": "composer_melodic_voice",
+  "description": "Phrase elision: Phrases overlap \u2014 the end of one is the beginning of the next; no clear breathing points",
+  "parameters": {
+   "feature": "Phrase elision",
+   "note": "Kreisleriana, Fantasie Op.17, symphonic first movements"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_motivic_obsession",
+  "category": "composer_melodic_voice",
+  "description": "Motivic obsession: A short figure (2-4 notes) repeated, transposed, varied across an entire piece",
+  "parameters": {
+   "feature": "Motivic obsession",
+   "note": "Carnaval ASCH motif, Dichterliebe descending 4th"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_motto_themes",
+  "category": "composer_melodic_voice",
+  "description": "Motto themes: A short motif that returns across an entire cycle or multi-movement work",
+  "parameters": {
+   "feature": "Motto themes",
+   "note": "Clara theme (5 descending notes) across multiple works"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schumann/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_wide_compass",
+  "category": "composer_melodic_voice",
+  "description": "Wide compass: Melodies spanning an octave or more; large intervallic leaps (6ths, octaves) within the line",
+  "parameters": {
+   "feature": "Wide compass",
+   "note": "Symphony themes, concerto themes, Requiem vocal lines"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_developing_variation",
+  "category": "composer_melodic_voice",
+  "description": "Developing variation: The theme transforms motivically across the movement \u2014 never literal repetition; always growth",
+  "parameters": {
+   "feature": "Developing variation",
+   "note": "All mature works; the organizing principle of Brahms's melodic thought"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_inner_voice_melody",
+  "category": "composer_melodic_voice",
+  "description": "Inner-voice melody: The primary melody placed in tenor or alto register, not soprano",
+  "parameters": {
+   "feature": "Inner-voice melody",
+   "note": "Clarinet Quintet, Symphony 3 mvt 3, Intermezzi"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_folk_song_contour",
+  "category": "composer_melodic_voice",
+  "description": "Folk-song contour: Simple, stepwise melodies with narrow range \u2014 borrowed from German Volkslieder",
+  "parameters": {
+   "feature": "Folk-song contour",
+   "note": "Wiegenlied, Academic Festival Overture, symphony second themes"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_parallel_third_harmonization",
+  "category": "composer_melodic_voice",
+  "description": "Parallel-third harmonization: Melody doubled a third below (or sixth above); never left bare in climactic passages",
+  "parameters": {
+   "feature": "Parallel-third harmonization",
+   "note": "Piano works, orchestral doublings, choral writing"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_rhythmic_displacement",
+  "category": "composer_melodic_voice",
+  "description": "Rhythmic displacement: Melody avoids downbeat; enters on beat 2 or 3, or after the bar line",
+  "parameters": {
+   "feature": "Rhythmic displacement",
+   "note": "Symphony 1 mvt 1, most first themes"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_phrase_extension",
+  "category": "composer_melodic_voice",
+  "description": "Phrase extension: 4-bar phrases extended to 5, 7, or 9 bars by internal repetition or suffix",
+  "parameters": {
+   "feature": "Phrase extension",
+   "note": "Everywhere \u2014 regular 4+4 phrasing is rare in mature Brahms"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "brahms/melodic-style.md"
+ },
+ {
   "id": "melodic_voice_singer_s_arch_with_a_breath_point",
   "category": "composer_melodic_voice",
   "description": "Singer's arch with a breath point: A rising phrase, a clear peak, a falling answer, and an audible place to breathe in the middle",
@@ -562,5 +742,161 @@
   "conditions": {},
   "grounding": "profile",
   "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_bel_canto_linearity",
+  "category": "composer_melodic_voice",
+  "description": "Bel canto linearity: Long, arching phrases shaped like vocal melodies; conjunct motion with expressive leaps",
+  "parameters": {
+   "feature": "Bel canto linearity",
+   "note": "Slow movements, Songs Without Words, Violin Concerto"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_singing_tone",
+  "category": "composer_melodic_voice",
+  "description": "Singing tone: Even in fast passages, the melody \"sings\" \u2014 connected, legato, breathing at phrase junctions",
+  "parameters": {
+   "feature": "Singing tone",
+   "note": "All lyrical writing"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_8_bar_symmetry",
+  "category": "composer_melodic_voice",
+  "description": "8-bar symmetry: Phrases overwhelmingly in 4+4 or 8+8 bar groups; antecedent-consequent structure",
+  "parameters": {
+   "feature": "8-bar symmetry",
+   "note": "Standard Mendelssohn phrase"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_peak_placement",
+  "category": "composer_melodic_voice",
+  "description": "Peak placement: Melodic climax near the 3/4 point of the phrase \u2014 ascent through bars 1-6, peak at bar 6, descent through 7-8",
+  "parameters": {
+   "feature": "Peak placement",
+   "note": "Consistent across all periods"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_cadential_ornament",
+  "category": "composer_melodic_voice",
+  "description": "Cadential ornament: Turns, mordents, or short trills at cadence points \u2014 never mid-phrase",
+  "parameters": {
+   "feature": "Cadential ornament",
+   "note": "Cadences of slow movements, Songs Without Words"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_scalar_fluency",
+  "category": "composer_melodic_voice",
+  "description": "Scalar fluency: Running passages are scalic (stepwise), not arpeggiated; this gives the elfin scherzo its quality",
+  "parameters": {
+   "feature": "Scalar fluency",
+   "note": "Fast movements, scherzi, finales"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_long_breathed_arch_8_16_bars",
+  "category": "composer_melodic_voice",
+  "description": "Long-breathed arch (8-16 bars): Begin low, ascend stepwise, peak on sustained high note, descend",
+  "parameters": {
+   "feature": "Long-breathed arch (8-16 bars)",
+   "note": "The melody has a built-in narrative: aspiration \u2192 climax \u2192 aftermath"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_asymmetric_phrase_lengths",
+  "category": "composer_melodic_voice",
+  "description": "Asymmetric phrase lengths: 5+7, 6+4, 3+3+6 rather than 4+4",
+  "parameters": {
+   "feature": "Asymmetric phrase lengths",
+   "note": "Phrases feel organic, not constructed; the ear cannot predict the ending"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_sequence_as_melody_builder",
+  "category": "composer_melodic_voice",
+  "description": "Sequence as melody-builder: A 2-bar fragment repeated a step higher becomes the ascending line",
+  "parameters": {
+   "feature": "Sequence as melody-builder",
+   "note": "The melody seems to grow from its own momentum; inevitability"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_wide_range_often_octave",
+  "category": "composer_melodic_voice",
+  "description": "Wide range (often >octave): Themes span a 10th to two octaves across the full arc",
+  "parameters": {
+   "feature": "Wide range (often >octave)",
+   "note": "Emotional extremes physically mapped: low = sorrow, high = ecstasy"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_peak_on_sustained_note",
+  "category": "composer_melodic_voice",
+  "description": "Peak on sustained note: The highest note is held longest (half-note or dotted half)",
+  "parameters": {
+   "feature": "Peak on sustained note",
+   "note": "The climax lingers \u2014 it is the structural center, not a passing event"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_stepwise_descent_after_peak",
+  "category": "composer_melodic_voice",
+  "description": "Stepwise descent after peak: Post-peak descent is faster, softer, stepwise",
+  "parameters": {
+   "feature": "Stepwise descent after peak",
+   "note": "Resignation; the emotional exhale after the peak"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_folk_song_influence",
+  "category": "composer_melodic_voice",
+  "description": "Folk-song influence: Modal scales, narrow-range internal phrases, dance rhythms",
+  "parameters": {
+   "feature": "Folk-song influence",
+   "note": "Russian character embedded in the melodic DNA"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "tchaikovsky/melodic-style.md"
  }
 ]

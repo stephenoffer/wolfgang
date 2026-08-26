@@ -141,3 +141,20 @@ w: IV-I iv-I bVII-IV-I
 - [orchestration.md](orchestration.md) — Transparent voicing serves harmonic clarity
 - [../../impressionist-harmony.md](../../impressionist-harmony.md) — Shared Impressionist harmonic vocabulary
 - [cross-references.md](cross-references.md) — Harmonic bridge from Saint-Saens to Debussy
+
+---
+
+## Cadence table
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Perfect authentic (PAC) | V7–I, frequently with the 7th prepared as a suspension | Ends of songs and movements | Closure, but gently taken |
+| Half cadence (HC) | ii7 or IV to V, the dominant often with a 9th | Antecedent phrases | Poised question |
+| Modal cadence | bVII–I, or a Phrygian ii–i | Modal-inflected passages | The archaic colour that is his signature |
+| Deceptive | V–vi, or V to a chromatic mediant | Extending a lyrical line | Postponement without drama |
+| Chain of sevenths | Sevenths resolving into further sevenths before the close | Approaching a cadence | Continuous motion; the harmony never quite settles until it does |
+| Enharmonic pivot close | A chord respelled to land in an unexpected key | Middle sections | Quiet dislocation |
+| Plagal | IV–I, often with the subdominant coloured by mixture | Final bars | Serenity |
+
+Fauré's cadences are functional but soft-edged: the resolution usually arrives
+on a weak beat, or with a suspension still sounding.

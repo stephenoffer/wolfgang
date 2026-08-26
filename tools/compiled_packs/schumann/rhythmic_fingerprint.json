@@ -1,0 +1,32 @@
+{
+ "composer": "schumann",
+ "schema": 1,
+ "bars": 1456,
+ "notes": 5945,
+ "rest_bar_pct": 0.489,
+ "dotted_bar_pct": 0.2349,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.5168,
+ "top_note_values": [
+  [
+   0.5,
+   0.4614
+  ],
+  [
+   0.25,
+   0.2638
+  ],
+  [
+   1.0,
+   0.1685
+  ],
+  [
+   1.5,
+   0.0384
+  ],
+  [
+   2.0,
+   0.032
+  ]
+ ]
+}

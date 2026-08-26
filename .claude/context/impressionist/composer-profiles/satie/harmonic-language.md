@@ -128,3 +128,23 @@ E F G A|G F E F|G A G F|E4|
 - [formal-approach.md](formal-approach.md) — Repetition-based form
 - [../../impressionist-harmony.md](../../impressionist-harmony.md) — Shared Impressionist harmonic vocabulary
 - [cross-references.md](cross-references.md) — Contrast with Debussy's richer harmonic palette
+
+---
+
+## Cadences
+
+Satie's harmony is deliberately static and deliberately plain. Cadences exist,
+but they are declined as often as they are taken — the Gymnopédies never really
+close until they stop.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Perfect authentic (PAC) | V7–I, bare and unornamented | Ends of pieces, sparingly | Plain statement of an ending |
+| Half cadence (HC) | Arrival on a sustained dominant, often a 7th or 9th left hanging | Between the repeated modules | Nothing is being asked; the music just leans |
+| Modal / plagal | IV–I, bVII–I with no leading tone | The default | Ending without rhetoric |
+| Seventh-chord drift | Major sevenths moving in parallel to the final chord | Gymnopédie-style closes | Suspended, unhurried |
+| Cycle return | The two-chord ostinato returns to its first chord | Every section | Closure by return, not resolution |
+| Unresolved stop | The music ceases on a non-tonic sonority | Some Gnossiennes | Refusal of an ending |
+
+The characteristic gesture is a dominant that never resolves because the piece
+has moved on to repeating something else.

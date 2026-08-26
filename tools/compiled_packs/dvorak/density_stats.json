@@ -1,0 +1,71 @@
+{
+ "composer": "dvorak",
+ "schema": 4,
+ "total_bars": 46,
+ "rh": {
+  "chordal": {
+   "median": 4,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.8,
+   "n": 15,
+   "by_meter": {
+    "2": {
+     "median": 4,
+     "p25": 3,
+     "p75": 4,
+     "mean": 3.8,
+     "n": 15
+    }
+   }
+  },
+  "singing_melody": {
+   "median": 5,
+   "p25": 3,
+   "p75": 6,
+   "mean": 4.7,
+   "n": 23,
+   "by_meter": {
+    "2": {
+     "median": 5,
+     "p25": 3,
+     "p75": 6,
+     "mean": 4.7,
+     "n": 23
+    }
+   }
+  },
+  "zigzag_figuration": {
+   "median": 8,
+   "p25": 7,
+   "p75": 8,
+   "mean": 7.8,
+   "n": 5
+  }
+ },
+ "lh": {
+  "block_chord_offbeat": {
+   "median": 4,
+   "p25": 4,
+   "p75": 4,
+   "mean": 4.0,
+   "n": 5
+  },
+  "block_chord_sparse": {
+   "median": 3.0,
+   "p25": 3,
+   "p75": 3,
+   "mean": 3.0,
+   "n": 40,
+   "by_meter": {
+    "2": {
+     "median": 3.0,
+     "p25": 3,
+     "p75": 3,
+     "mean": 3.0,
+     "n": 40
+    }
+   }
+  }
+ }
+}

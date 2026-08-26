@@ -1,0 +1,47 @@
+{
+ "composer": "mussorgsky",
+ "schema": 1,
+ "total_bars": 458,
+ "textures": {
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1042,
+   "n": 48
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1852,
+   "n": 243
+  },
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1132,
+   "n": 106
+  },
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2727,
+   "n": 22
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.125,
+   "n": 32
+  }
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "counts": {
+  "pedal_point": {
+   "bass_melody": 4,
+   "block_chord_sparse": 2,
+   "pedal_point": 4,
+   "silence": 1
+  },
+  "bass_melody": {
+   "pedal_point": 5,
+   "bass_melody": 4
+  },
+  "block_chord_sparse": {
+   "block_chord_sparse": 4,
+   "bass_melody": 1
+  },
+  "silence": {
+   "pedal_point": 1
+  }
+ },
+ "self_continuation": {
+  "pedal_point": 0.3636,
+  "bass_melody": 0.4444,
+  "block_chord_sparse": 0.8,
+  "silence": 0.0
+ },
+ "total_transitions": 26
+}

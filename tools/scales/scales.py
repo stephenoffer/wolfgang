@@ -28,6 +28,7 @@ from .context_utilization import compute_utilization
 from .craft_checker import CraftChecker
 from .cross_scale_ledger import CrossScaleLedger
 from .donor_strategy import DonorStrategy
+from .duration import bar_duration
 from .enums import (
     AccompType,
     CadenceTarget,
@@ -1517,7 +1518,7 @@ def _make_slot(
         harmony,
         key,
         cadence,
-        beats=int(meter[0] * 4 / meter[1]) if meter else 4,
+        beats=int(bar_duration(meter)) if meter else 4,
         seed=bar_start,
     )
 
@@ -1673,7 +1674,7 @@ def _default_texture_plan(
     rate = _lh_change_rate(style)
     rh_rate_of_change = _rh_change_rate(style)
 
-    beats = (meter[0] * 4.0 / meter[1]) if meter else 4.0
+    beats = float(bar_duration(meter)) if meter else 4.0
     rh_rate = {
         "held_note": 0.35,
         "singing_melody": 1.2,

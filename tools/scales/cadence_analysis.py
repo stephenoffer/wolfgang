@@ -381,11 +381,16 @@ def _beat_readings(spans, bar: int, meter, tonic_pc: int, mode: str):
     if not in_bar:
         return []
     origin = min(sp.start for sp in in_bar)
+    # Via the one guarded implementation: a zero denominator made Fraction(0, 0)
+    # and raised out of read_cadence for any phrase with a malformed meter.
+    from .duration import bar_duration
+
+    bar_len = float(bar_duration(meter))
     try:
-        num, den = int(meter[0]), int(meter[1])
-    except (TypeError, ValueError, IndexError):  # a malformed meter, not a bug here
-        num, den = 4, 4
-    bar_len = float(Fraction(num * 4, den))
+        den = int(meter[1])
+        den = den if den > 0 else 4
+    except (TypeError, ValueError, IndexError):
+        den = 4
     beat_len = float(Fraction(4, den))
     triples = []
     for sp in spans:

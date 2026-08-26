@@ -1,0 +1,15 @@
+{
+ "composer": "bruckner",
+ "schema": 1,
+ "total_bars": 27,
+ "textures": {
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.5714,
+   "n": 14
+  }
+ }
+}

@@ -1,8 +1,8 @@
 {
   "composer": "rachmaninoff",
-  "genre": "romantic",
-  "support_tier": "C",
-  "corpus_bar_count": 0,
+  "genre": "",
+  "support_tier": "B",
+  "corpus_bar_count": 657,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -14,6 +14,13 @@
     "orchestration.md",
     "stylistic-evolution.md"
   ],
-  "corpus_files": [],
+  "corpus_files": [
+    "bar_index.json",
+    "bars_00.json",
+    "gesture_bank.json",
+    "phrase_catalog.json",
+    "window_index.json",
+    "window_index_00.json"
+  ],
   "pattern_count": 0
 }

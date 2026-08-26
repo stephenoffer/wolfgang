@@ -3,13 +3,6 @@
   "sonata": {
    "sections": [
     {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
-    },
-    {
      "role": "3",
      "proportion_range": [
       0.0,
@@ -27,6 +20,20 @@
      "role": "1",
      "proportion_range": [
       0.0,
+      0.2
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.05,
+      0.3
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.0,
       0.15
      ]
     },
@@ -35,6 +42,20 @@
      "proportion_range": [
       0.0,
       0.7
+     ]
+    },
+    {
+     "role": "3",
+     "proportion_range": [
+      0.05,
+      0.4
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.05,
+      0.2
      ]
     }
    ],
@@ -49,6 +70,128 @@
     ],
     "recap_rule": "tonic"
    }
+  },
+  "rondo": {
+   "sections": [
+    {
+     "role": "3",
+     "proportion_range": [
+      0.0,
+      0.35
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.0,
+      0.25
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.0,
+      0.25
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.0,
+      0.2
+     ]
+    },
+    {
+     "role": "3",
+     "proportion_range": [
+      0.05,
+      0.4
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.05,
+      0.3
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.0,
+      0.15
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.05,
+      0.2
+     ]
+    }
+   ],
+   "key_scheme": {}
+  },
+  "ternary": {
+   "sections": [
+    {
+     "role": "3",
+     "proportion_range": [
+      0.0,
+      0.35
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.0,
+      0.25
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.0,
+      0.25
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.0,
+      0.2
+     ]
+    },
+    {
+     "role": "3",
+     "proportion_range": [
+      0.05,
+      0.4
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.05,
+      0.3
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.0,
+      0.15
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.05,
+      0.2
+     ]
+    }
+   ],
+   "key_scheme": {}
   }
  }
 }

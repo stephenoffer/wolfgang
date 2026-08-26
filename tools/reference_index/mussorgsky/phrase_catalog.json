@@ -1,0 +1,6293 @@
+{
+ "composer": "mussorgsky",
+ "source_bar_index": "reference_index/mussorgsky/bar_index.json",
+ "total_phrases": 65,
+ "avg_phrase_length": 7.05,
+ "length_distribution": {
+  "1": 13,
+  "2": 9,
+  "3": 5,
+  "4": 5,
+  "5": 5,
+  "6": 3,
+  "9": 4,
+  "10": 1,
+  "11": 1,
+  "12": 2,
+  "14": 2,
+  "16": 15
+ },
+ "role_distribution": {
+  "opening": 37,
+  "closing": 23,
+  "middle": 5
+ },
+ "cadence_distribution": {
+  "none": 15,
+  "half": 44,
+  "authentic": 6
+ },
+ "phrases": [
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p0",
+   "source": "nobm__nobm",
+   "bar_range": [
+    1,
+    16
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    0.9333,
+    0.8667,
+    0.8,
+    0.8,
+    1.0,
+    1.0,
+    0.8,
+    0.5333,
+    0.5333,
+    0.5333,
+    0.5333,
+    0.5333
+   ],
+   "register_curve": [
+    0.8333,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.9167,
+    1.0,
+    0.8333,
+    0.8333,
+    1.0,
+    1.0,
+    0.8333,
+    0.6667,
+    0.6667,
+    0.1667,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "dim",
+    "dim",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 8,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.125,
+   "avg_melody_density": 11.3125,
+   "entry_state": {
+    "density": 12,
+    "register_center": 81,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p1",
+   "source": "nobm__nobm",
+   "bar_range": [
+    17,
+    30
+   ],
+   "length": 14,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6667,
+    0.6667,
+    0.6667,
+    0.6667,
+    0.6667,
+    0.6667,
+    0.6667,
+    0.0833,
+    0.0833,
+    1.0,
+    1.0,
+    0.6667,
+    0.6667,
+    0.0833
+   ],
+   "register_curve": [
+    0.3636,
+    0.3182,
+    0.4545,
+    0.1818,
+    0.2273,
+    0.1818,
+    0.1818,
+    0.9091,
+    1.0,
+    0.4091,
+    0.2727,
+    0.3636,
+    0.3182,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dim7",
+    "dim7",
+    "minor",
+    "minor",
+    "min7",
+    "min7",
+    "minor",
+    "halfdim7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.0714,
+   "entry_state": {
+    "density": 8,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p2",
+   "source": "nobm__nobm",
+   "bar_range": [
+    31,
+    33
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    0.6667,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    0.8333
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "dim"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.6667,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 85,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p3",
+   "source": "nobm__nobm",
+   "bar_range": [
+    34,
+    35
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.0625
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.5,
+   "entry_state": {
+    "density": 16,
+    "register_center": 82,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 81,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p4",
+   "source": "nobm__nobm",
+   "bar_range": [
+    36,
+    51
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    1.0,
+    0.9333,
+    0.8,
+    0.8,
+    1.0,
+    1.0,
+    0.8,
+    0.5333,
+    0.5333,
+    0.5333,
+    0.5333,
+    0.5333
+   ],
+   "register_curve": [
+    0.8333,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.9167,
+    1.0,
+    0.8333,
+    0.8333,
+    1.0,
+    1.0,
+    0.8333,
+    0.75,
+    0.75,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "dim",
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "maj7",
+    "maj7"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.125,
+   "avg_melody_density": 11.4375,
+   "entry_state": {
+    "density": 12,
+    "register_center": 82,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p5",
+   "source": "nobm__nobm",
+   "bar_range": [
+    52,
+    60
+   ],
+   "length": 9,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.125,
+    0.125
+   ],
+   "register_curve": [
+    0.8333,
+    0.6667,
+    1.0,
+    0.3333,
+    0.1667,
+    0.3333,
+    0.1667,
+    0.0,
+    0.3333
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dim",
+    "dim",
+    "minor",
+    "minor",
+    "min7",
+    "halfdim7",
+    "minor",
+    "dim7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.4444,
+   "entry_state": {
+    "density": 8,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p6",
+   "source": "nobm__nobm",
+   "bar_range": [
+    61,
+    76
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.875,
+    1.0,
+    0.875,
+    1.0,
+    0.875,
+    1.0,
+    0.875,
+    1.0,
+    0.875,
+    0.25
+   ],
+   "register_curve": [
+    0.9706,
+    1.0,
+    0.8824,
+    0.4706,
+    0.4706,
+    0.4118,
+    0.2941,
+    0.2353,
+    0.5,
+    0.7941,
+    0.3529,
+    0.2353,
+    0.4706,
+    0.8235,
+    0.0,
+    0.0294
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "halfdim7",
+    "dom7",
+    "dom7",
+    "halfdim7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4375,
+   "avg_melody_density": 7.3125,
+   "entry_state": {
+    "density": 8,
+    "register_center": 93,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 61,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p7",
+   "source": "nobm__nobm",
+   "bar_range": [
+    77,
+    92
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.5,
+    0.75,
+    0.375,
+    0.75,
+    0.375,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    0.875,
+    0.75
+   ],
+   "register_curve": [
+    0.1852,
+    0.1111,
+    0.037,
+    0.037,
+    0.0,
+    0.8889,
+    1.0,
+    0.8889,
+    1.0,
+    0.8519,
+    0.8148,
+    0.8519,
+    0.8148,
+    0.963,
+    0.7407,
+    0.963
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 6.0625,
+   "entry_state": {
+    "density": 8,
+    "register_center": 57,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p8",
+   "source": "nobm__nobm",
+   "bar_range": [
+    93,
+    94
+   ],
+   "length": 2,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.8571
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 85,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p9",
+   "source": "nobm__nobm",
+   "bar_range": [
+    95,
+    110
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6,
+    0.3,
+    0.2,
+    0.6,
+    0.5,
+    0.6,
+    0.5,
+    0.6,
+    0.5,
+    0.6,
+    0.5,
+    1.0,
+    0.6,
+    1.0,
+    0.8,
+    0.5
+   ],
+   "register_curve": [
+    0.5556,
+    0.2222,
+    1.0,
+    0.0,
+    0.6111,
+    0.0,
+    0.5,
+    0.0,
+    0.3333,
+    0.0,
+    0.4444,
+    0.4444,
+    0.7222,
+    0.4444,
+    0.6667,
+    0.5556
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "aug",
+    "minor",
+    "halfdim7",
+    "major",
+    "halfdim7",
+    "major",
+    "dim",
+    "major",
+    "dim",
+    "minor",
+    "minor",
+    "major",
+    "dom7",
+    "min7"
+   ],
+   "peak_bar_offset": 11,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5625,
+   "avg_melody_density": 5.875,
+   "entry_state": {
+    "density": 6,
+    "register_center": 81,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 81,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p10",
+   "source": "nobm__nobm",
+   "bar_range": [
+    111,
+    126
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.3125,
+    0.1875,
+    0.25,
+    0.4375,
+    0.5,
+    0.4375,
+    0.5,
+    0.5,
+    0.5625,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    1.0
+   ],
+   "register_curve": [
+    0.7333,
+    0.5333,
+    0.6667,
+    0.0,
+    0.6667,
+    0.0,
+    0.6667,
+    0.7333,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "silence",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "descending",
+    "static",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "min7",
+    "min7",
+    "dom7",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "halfdim7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 15,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.6875,
+   "entry_state": {
+    "density": 5,
+    "register_center": 80,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 16,
+    "register_center": 84,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p11",
+   "source": "nobm__nobm",
+   "bar_range": [
+    127,
+    135
+   ],
+   "length": 9,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.0,
+    0.375
+   ],
+   "register_curve": [
+    0.6957,
+    0.6087,
+    1.0,
+    0.8696,
+    0.6957,
+    0.8696,
+    0.6957,
+    0.0,
+    0.5217
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "silence",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "dim",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "aug"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.5556,
+   "entry_state": {
+    "density": 16,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p12",
+   "source": "nobm__nobm",
+   "bar_range": [
+    136,
+    139
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.7273,
+    0.9091,
+    0.7273,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.2,
+    0.8,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "zigzag_figuration",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "minor",
+    "aug"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.25,
+   "entry_state": {
+    "density": 8,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p13",
+   "source": "nobm__nobm",
+   "bar_range": [
+    140,
+    148
+   ],
+   "length": 9,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.875,
+    0.875,
+    0.875,
+    0.875,
+    0.25
+   ],
+   "register_curve": [
+    0.5385,
+    0.5385,
+    0.5385,
+    0.5385,
+    0.0,
+    0.1538,
+    0.1538,
+    0.3077,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dim",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.8889,
+   "entry_state": {
+    "density": 8,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 85,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p14",
+   "source": "nobm__nobm",
+   "bar_range": [
+    149,
+    154
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.375,
+    0.25,
+    0.375,
+    0.375,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.6667,
+    1.0,
+    0.6667,
+    0.0,
+    0.5,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "descending",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "halfdim7",
+    "halfdim7",
+    "major",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.8333,
+   "entry_state": {
+    "density": 3,
+    "register_center": 81,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p15",
+   "source": "nobm__nobm",
+   "bar_range": [
+    155,
+    166
+   ],
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6667,
+    0.5,
+    0.4167,
+    0.5833,
+    0.5833,
+    0.5,
+    0.4167,
+    0.5833,
+    0.5833,
+    0.8333,
+    1.0,
+    0.0833
+   ],
+   "register_curve": [
+    1.0,
+    0.5882,
+    0.8235,
+    0.5882,
+    0.5294,
+    0.5882,
+    0.7647,
+    0.5882,
+    0.5294,
+    0.0,
+    0.0,
+    0.9412
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "scalar_run",
+    "scalar_run",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_sparse",
+    "pedal_point",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "min7",
+    "minor"
+   ],
+   "peak_bar_offset": 10,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 6.75,
+   "entry_state": {
+    "density": 8,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p16",
+   "source": "nobm__nobm",
+   "bar_range": [
+    167,
+    167
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p17",
+   "source": "nobm__nobm",
+   "bar_range": [
+    168,
+    170
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8333,
+    1.0,
+    0.0833
+   ],
+   "register_curve": [
+    0.125,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "pedal_point",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "min7",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.6667,
+   "entry_state": {
+    "density": 10,
+    "register_center": 64,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p18",
+   "source": "nobm__nobm",
+   "bar_range": [
+    171,
+    171
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p19",
+   "source": "nobm__nobm",
+   "bar_range": [
+    172,
+    173
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.75
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 67,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p20",
+   "source": "nobm__nobm",
+   "bar_range": [
+    174,
+    174
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "min7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p21",
+   "source": "nobm__nobm",
+   "bar_range": [
+    175,
+    175
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 63,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 63,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p22",
+   "source": "nobm__nobm",
+   "bar_range": [
+    176,
+    177
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 12,
+    "register_center": 73,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p23",
+   "source": "nobm__nobm",
+   "bar_range": [
+    178,
+    181
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6667,
+    0.6667,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.4,
+    1.0,
+    0.0,
+    0.2
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.75,
+   "entry_state": {
+    "density": 8,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p24",
+   "source": "nobm__nobm",
+   "bar_range": [
+    182,
+    197
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6154,
+    0.6154,
+    0.9231,
+    1.0,
+    0.6154,
+    0.6154,
+    0.6154,
+    0.6154,
+    0.6154,
+    0.6154,
+    0.6154,
+    0.6154,
+    0.7692,
+    0.9231,
+    0.6154,
+    0.6154
+   ],
+   "register_curve": [
+    0.1333,
+    0.3333,
+    0.0,
+    0.0,
+    0.0667,
+    0.0667,
+    0.2,
+    0.2,
+    0.3333,
+    0.3333,
+    0.6667,
+    0.6,
+    0.0,
+    0.0,
+    0.8667,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static",
+    "ascending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "major",
+    "dom7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "dim",
+    "dom7",
+    "halfdim7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0625,
+   "avg_melody_density": 8.9375,
+   "entry_state": {
+    "density": 8,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 89,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p25",
+   "source": "nobm__nobm",
+   "bar_range": [
+    198,
+    202
+   ],
+   "length": 5,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8333,
+    1.0,
+    0.6667,
+    0.6667,
+    0.4167
+   ],
+   "register_curve": [
+    0.0625,
+    0.0,
+    0.75,
+    1.0,
+    0.6875
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "halfdim7",
+    "major",
+    "major",
+    "maj7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.6,
+   "entry_state": {
+    "density": 10,
+    "register_center": 75,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p26",
+   "source": "nobm__nobm",
+   "bar_range": [
+    203,
+    206
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8,
+    0.9,
+    1.0,
+    0.7
+   ],
+   "register_curve": [
+    0.4375,
+    0.0,
+    0.5625,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "minor",
+    "min7",
+    "maj7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.5,
+   "entry_state": {
+    "density": 8,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p27",
+   "source": "nobm__nobm",
+   "bar_range": [
+    207,
+    218
+   ],
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.5,
+    0.5625,
+    0.625,
+    0.8125,
+    1.0,
+    0.5,
+    0.5,
+    0.8125,
+    1.0,
+    0.5,
+    0.5,
+    0.0625
+   ],
+   "register_curve": [
+    0.2333,
+    0.1667,
+    0.1667,
+    0.8,
+    1.0,
+    0.6,
+    0.5333,
+    0.5667,
+    0.5333,
+    0.2667,
+    0.1333,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "bass_melody",
+    "bass_melody",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "bass_melody",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "static",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "minor",
+    "min7",
+    "major",
+    "min7",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.8333,
+   "entry_state": {
+    "density": 8,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 68,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p28",
+   "source": "nobm__nobm",
+   "bar_range": [
+    219,
+    223
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    1.0,
+    0.5,
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.4444,
+    0.3889,
+    0.8889,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 4.2,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p29",
+   "source": "nobm__nobm",
+   "bar_range": [
+    224,
+    224
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 65,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 65,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p30",
+   "source": "nobm__nobm",
+   "bar_range": [
+    225,
+    238
+   ],
+   "length": 14,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    0.8571,
+    0.4286,
+    0.8571,
+    0.8571,
+    0.5714,
+    0.5714,
+    0.5714,
+    0.5714,
+    0.8571,
+    0.7143,
+    1.0,
+    1.0,
+    0.1429
+   ],
+   "register_curve": [
+    0.0,
+    0.3077,
+    0.2692,
+    0.6154,
+    0.6923,
+    1.0,
+    1.0,
+    0.4615,
+    0.5385,
+    0.2308,
+    0.2692,
+    0.1538,
+    0.1154,
+    0.1923
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 11,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3571,
+   "avg_melody_density": 4.5,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 65,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p31",
+   "source": "nobm__nobm",
+   "bar_range": [
+    239,
+    244
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    1.0,
+    0.5,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    0.0,
+    0.7273,
+    0.8636,
+    1.0,
+    1.0,
+    0.4091
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "dom7",
+    "minor",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 3.6667,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 69,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p32",
+   "source": "nobm__nobm",
+   "bar_range": [
+    245,
+    260
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    0.5,
+    0.25,
+    0.5,
+    0.5,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.5,
+    0.4167,
+    0.5833,
+    0.5833,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.5455,
+    0.6818,
+    0.6364,
+    1.0,
+    0.9091,
+    1.0,
+    0.7273,
+    0.3636,
+    0.3636,
+    0.1818,
+    0.2727,
+    0.5,
+    0.3636,
+    0.3182,
+    0.9545
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "silence",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "singing_melody",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "dom7",
+    "major",
+    "dim",
+    "maj7",
+    "maj7",
+    "dim",
+    "major",
+    "major",
+    "major",
+    "major",
+    "maj7"
+   ],
+   "peak_bar_offset": 15,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3125,
+   "avg_melody_density": 5.125,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 81,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p33",
+   "source": "nobm__nobm",
+   "bar_range": [
+    261,
+    276
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.75,
+    1.0,
+    1.0,
+    0.75,
+    0.75,
+    1.0,
+    1.0,
+    0.75,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.8889,
+    0.8889,
+    1.0,
+    1.0,
+    0.8889,
+    0.8889,
+    1.0,
+    0.8889,
+    0.8889,
+    0.0,
+    0.0,
+    0.1111,
+    0.2222,
+    0.1111,
+    0.2222
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dim",
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "dim7",
+    "dim7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 11.0,
+   "entry_state": {
+    "density": 12,
+    "register_center": 81,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p34",
+   "source": "nobm__nobm",
+   "bar_range": [
+    277,
+    282
+   ],
+   "length": 6,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8889,
+    0.8889,
+    0.8889,
+    1.0,
+    0.2222,
+    0.3333
+   ],
+   "register_curve": [
+    0.0833,
+    0.0,
+    0.0,
+    1.0,
+    0.75,
+    0.9167
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "min7",
+    "min7",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.3333,
+   "entry_state": {
+    "density": 8,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 83,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p35",
+   "source": "nobm__nobm",
+   "bar_range": [
+    283,
+    298
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8571,
+    0.4286,
+    0.8571,
+    0.4286,
+    0.8571,
+    0.5714,
+    0.8571,
+    0.5714,
+    0.8571,
+    1.0,
+    0.8571,
+    1.0,
+    0.7143,
+    0.7143,
+    0.4286,
+    0.2857
+   ],
+   "register_curve": [
+    0.6154,
+    1.0,
+    0.6154,
+    1.0,
+    0.5385,
+    1.0,
+    0.5385,
+    1.0,
+    0.0,
+    0.4615,
+    0.0,
+    0.6154,
+    0.2308,
+    0.3077,
+    0.3846,
+    0.4615
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "ascending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "maj7",
+    "maj7",
+    "halfdim7",
+    "aug"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5625,
+   "avg_melody_density": 4.9375,
+   "entry_state": {
+    "density": 6,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p36",
+   "source": "nobm__nobm",
+   "bar_range": [
+    299,
+    303
+   ],
+   "length": 5,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.6667,
+    0.8333,
+    1.0,
+    0.8333
+   ],
+   "register_curve": [
+    0.0,
+    0.2333,
+    1.0,
+    0.0667,
+    0.6
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "halfdim7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 5.2,
+   "entry_state": {
+    "density": 6,
+    "register_center": 70,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 88,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p37",
+   "source": "nobm__nobm",
+   "bar_range": [
+    304,
+    308
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.6667,
+    0.8333,
+    1.0,
+    0.8333
+   ],
+   "register_curve": [
+    0.0,
+    0.4444,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dim",
+    "halfdim7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 5.2,
+   "entry_state": {
+    "density": 6,
+    "register_center": 70,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 88,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p38",
+   "source": "nobm__nobm",
+   "bar_range": [
+    309,
+    324
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.8,
+    1.0,
+    0.8,
+    0.5,
+    0.5,
+    0.3,
+    0.4,
+    0.7,
+    0.8,
+    0.7,
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    0.8
+   ],
+   "register_curve": [
+    0.3478,
+    0.4783,
+    0.3913,
+    0.5217,
+    0.8696,
+    0.8261,
+    0.7826,
+    1.0,
+    0.0,
+    0.6522,
+    0.0435,
+    0.6522,
+    0.8696,
+    0.6522,
+    0.5217,
+    0.5217
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "maj7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "min7",
+    "dom7",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.125,
+   "avg_melody_density": 7.1875,
+   "entry_state": {
+    "density": 10,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p39",
+   "source": "nobm__nobm",
+   "bar_range": [
+    325,
+    340
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.0,
+    0.5625,
+    0.5,
+    0.625
+   ],
+   "register_curve": [
+    0.6667,
+    0.6667,
+    0.6667,
+    0.6667,
+    0.8889,
+    0.5926,
+    0.6667,
+    1.0,
+    0.8889,
+    0.7407,
+    0.8889,
+    0.7407,
+    0.0,
+    0.1111,
+    0.4444,
+    0.5185
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "silence",
+    "scalar_run",
+    "singing_melody",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "halfdim7",
+    "halfdim7",
+    "halfdim7",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "aug",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.6875,
+   "entry_state": {
+    "density": 8,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p40",
+   "source": "nobm__nobm",
+   "bar_range": [
+    341,
+    342
+   ],
+   "length": 2,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p41",
+   "source": "nobm__nobm",
+   "bar_range": [
+    343,
+    351
+   ],
+   "length": 9,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.875,
+    0.875,
+    0.875,
+    0.875,
+    0.25
+   ],
+   "register_curve": [
+    0.5385,
+    0.5385,
+    0.5385,
+    0.5385,
+    0.1538,
+    0.3077,
+    0.1538,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "min7",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.8889,
+   "entry_state": {
+    "density": 8,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 89,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p42",
+   "source": "nobm__nobm",
+   "bar_range": [
+    352,
+    353
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.5,
+   "entry_state": {
+    "density": 3,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 89,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p43",
+   "source": "nobm__nobm",
+   "bar_range": [
+    354,
+    364
+   ],
+   "length": 11,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.375,
+    0.25,
+    0.375,
+    0.25,
+    0.375,
+    0.625,
+    0.5,
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.6957,
+    0.6957,
+    0.5217,
+    0.1739,
+    0.5217,
+    0.087,
+    0.3478,
+    0.913,
+    1.0,
+    0.0,
+    0.3478
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "descending",
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "dim",
+    "minor",
+    "dim",
+    "major",
+    "dim"
+   ],
+   "peak_bar_offset": 7,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.1818,
+   "entry_state": {
+    "density": 3,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p44",
+   "source": "nobm__nobm",
+   "bar_range": [
+    365,
+    367
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.25
+   ],
+   "register_curve": [
+    0.8,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 90,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p45",
+   "source": "nobm__nobm",
+   "bar_range": [
+    368,
+    369
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "aug",
+    "aug"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p46",
+   "source": "nobm__nobm",
+   "bar_range": [
+    370,
+    385
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.25,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.125,
+    0.0625,
+    0.0625,
+    0.0625,
+    0.0625
+   ],
+   "register_curve": [
+    0.6154,
+    0.8462,
+    0.8462,
+    0.8462,
+    0.8462,
+    0.8462,
+    0.8462,
+    1.0,
+    0.6923,
+    0.3846,
+    0.1538,
+    0.4615,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "halfdim7",
+    "halfdim7",
+    "halfdim7",
+    "major",
+    "halfdim7",
+    "halfdim7",
+    "halfdim7",
+    "halfdim7",
+    "halfdim7"
+   ],
+   "peak_bar_offset": 7,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0625,
+   "avg_melody_density": 7.625,
+   "entry_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p47",
+   "source": "nobm__nobm",
+   "bar_range": [
+    386,
+    389
+   ],
+   "length": 4,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "held_note",
+    "held_note",
+    "held_note",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "halfdim7",
+    "halfdim7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p48",
+   "source": "nobm__nobm",
+   "bar_range": [
+    390,
+    390
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p49",
+   "source": "nobm__nobm",
+   "bar_range": [
+    391,
+    391
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p50",
+   "source": "nobm__nobm",
+   "bar_range": [
+    392,
+    392
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p51",
+   "source": "nobm__nobm",
+   "bar_range": [
+    393,
+    408
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.4,
+    0.4,
+    0.8,
+    0.8,
+    0.4,
+    0.4,
+    0.8,
+    0.8,
+    0.4,
+    0.5,
+    0.9,
+    0.8,
+    0.4,
+    0.4,
+    1.0,
+    0.9
+   ],
+   "register_curve": [
+    0.7,
+    0.4,
+    0.2,
+    0.8,
+    0.0,
+    0.2,
+    0.1,
+    0.4,
+    0.3,
+    0.1,
+    0.2,
+    0.6,
+    0.6,
+    0.2,
+    1.0,
+    0.9
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "pedal_point",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "dom7",
+    "dim",
+    "minor",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "dom7",
+    "dom7",
+    "dom7",
+    "dom7",
+    "min7",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 14,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.125,
+   "avg_melody_density": 6.3125,
+   "entry_state": {
+    "density": 4,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p52",
+   "source": "nobm__nobm",
+   "bar_range": [
+    409,
+    424
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.8889,
+    0.8889,
+    0.8889,
+    0.4444,
+    0.4444,
+    0.8889,
+    0.8889,
+    0.4444,
+    0.4444,
+    0.8889,
+    0.8889,
+    0.4444,
+    0.5556,
+    1.0,
+    0.8889
+   ],
+   "register_curve": [
+    0.0,
+    0.3889,
+    0.1667,
+    0.6111,
+    0.7778,
+    0.7222,
+    0.7778,
+    1.0,
+    0.7222,
+    0.6667,
+    0.6111,
+    0.8333,
+    0.7222,
+    0.6111,
+    0.6667,
+    0.9444
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "pedal_point",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "descending",
+    "static",
+    "ascending",
+    "descending",
+    "static",
+    "ascending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "dim",
+    "dom7",
+    "dim",
+    "major",
+    "aug",
+    "minor",
+    "minor",
+    "minor",
+    "dom7",
+    "dom7",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.6875,
+   "entry_state": {
+    "density": 9,
+    "register_center": 63,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 80,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p53",
+   "source": "nobm__nobm",
+   "bar_range": [
+    425,
+    434
+   ],
+   "length": 10,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.4444,
+    0.4444,
+    0.8889,
+    1.0,
+    1.0,
+    0.8889,
+    0.8889,
+    0.8889,
+    0.3333,
+    0.5556
+   ],
+   "register_curve": [
+    0.6842,
+    0.6316,
+    0.6316,
+    1.0,
+    0.0,
+    0.3684,
+    0.1579,
+    0.5789,
+    1.0,
+    0.9474
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "scalar_run",
+    "zigzag_figuration",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1,
+   "avg_melody_density": 6.6,
+   "entry_state": {
+    "density": 4,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 81,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p54",
+   "source": "nobm__nobm",
+   "bar_range": [
+    435,
+    439
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.3333,
+    1.0,
+    1.0,
+    0.3333
+   ],
+   "register_curve": [
+    1.0,
+    0.8571,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "minor",
+    "major",
+    "dim"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2,
+   "avg_melody_density": 4.4,
+   "entry_state": {
+    "density": 6,
+    "register_center": 77,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 70,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p55",
+   "source": "nobm__nobm",
+   "bar_range": [
+    440,
+    440
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p56",
+   "source": "nobm__nobm",
+   "bar_range": [
+    441,
+    443
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.3333,
+    0.5556
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    0.8571
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.6667,
+   "entry_state": {
+    "density": 9,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 81,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p57",
+   "source": "nobm__nobm",
+   "bar_range": [
+    444,
+    445
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.2222
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "min7",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 78,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 74,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p58",
+   "source": "nobm__nobm",
+   "bar_range": [
+    446,
+    448
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.3333
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.6667,
+   "entry_state": {
+    "density": 6,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 80,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p59",
+   "source": "nobm__nobm",
+   "bar_range": [
+    449,
+    449
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p60",
+   "source": "nobm__nobm",
+   "bar_range": [
+    450,
+    453
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.2222,
+    0.4444,
+    0.3333
+   ],
+   "register_curve": [
+    0.0,
+    0.8333,
+    1.0,
+    0.5
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "broken_chord_asc"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p61",
+   "source": "nobm__nobm",
+   "bar_range": [
+    454,
+    455
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 92,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p62",
+   "source": "nobm__nobm",
+   "bar_range": [
+    456,
+    456
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p63",
+   "source": "nobm__nobm",
+   "bar_range": [
+    457,
+    457
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "mussorgsky_nobm__nobm_p64",
+   "source": "nobm__nobm",
+   "bar_range": [
+    458,
+    458
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 90,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  }
+ ]
+}

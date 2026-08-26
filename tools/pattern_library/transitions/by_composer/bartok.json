@@ -1,0 +1,11 @@
+{
+ "counts": {
+  "block_chord_sparse": {
+   "block_chord_sparse": 15
+  }
+ },
+ "self_continuation": {
+  "block_chord_sparse": 1.0
+ },
+ "total_transitions": 15
+}

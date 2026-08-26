@@ -1,0 +1,32 @@
+{
+ "composer": "satie",
+ "schema": 1,
+ "bars": 913,
+ "notes": 2369,
+ "rest_bar_pct": 0.6747,
+ "dotted_bar_pct": 0.448,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.2752,
+ "top_note_values": [
+  [
+   0.5,
+   0.4508
+  ],
+  [
+   0.25,
+   0.1845
+  ],
+  [
+   1.0,
+   0.152
+  ],
+  [
+   0.75,
+   0.0743
+  ],
+  [
+   2.0,
+   0.0532
+  ]
+ ]
+}

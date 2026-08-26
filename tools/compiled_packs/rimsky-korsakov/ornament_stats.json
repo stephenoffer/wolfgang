@@ -1,0 +1,31 @@
+{
+ "composer": "rimsky-korsakov",
+ "schema": 1,
+ "total_bars": 352,
+ "textures": {
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2414,
+   "n": 29
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0884,
+   "n": 147
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0186,
+   "n": 161
+  }
+ }
+}

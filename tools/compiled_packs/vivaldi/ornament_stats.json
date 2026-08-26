@@ -1,0 +1,39 @@
+{
+ "composer": "vivaldi",
+ "schema": 1,
+ "total_bars": 421,
+ "textures": {
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 40
+  },
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2353,
+   "n": 102
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.3918,
+   "n": 245
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2121,
+   "n": 33
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "composer": "bartok",
+ "schema": 1,
+ "total_bars": 16,
+ "textures": {
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 11
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "composer": "vivaldi",
+ "schema": 1,
+ "bars": 421,
+ "notes": 2267,
+ "rest_bar_pct": 0.4489,
+ "dotted_bar_pct": 0.3017,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.4667,
+ "top_note_values": [
+  [
+   0.25,
+   0.6259
+  ],
+  [
+   0.5,
+   0.2082
+  ],
+  [
+   0.75,
+   0.0543
+  ],
+  [
+   0.3333,
+   0.0423
+  ],
+  [
+   1.0,
+   0.0375
+  ]
+ ]
+}

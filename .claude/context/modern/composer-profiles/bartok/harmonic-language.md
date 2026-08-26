@@ -169,6 +169,8 @@ and by the modal degrees of the folk sources.
 
 | Cadence | Construction | Where it belongs | Effect |
 |---------|--------------|------------------|--------|
+| Perfect authentic (PAC) | V–i, or the axis dominant to the tonic, in root position | Ends of folk-derived and Mikrokosmos pieces, where the tune implies it | Plain tonal closure, used deliberately |
+| Half cadence (HC) | Arrival and pause on the dominant degree, or on the tonic's tritone axis partner | Between strains of a dance | Breath between repetitions |
 | Unison / octave close | All voices converge on one pitch class | Movement ends | Absolute, primitive |
 | Axis close | Arrival on the tonic of the axis system, approached from its tritone | Structural closes | Functional weight without a dominant |
 | Modal cadence | bVII–i, or Lydian 4th falling to the final | Folk-derived material | The tune's own ending |
@@ -176,4 +178,4 @@ and by the modal degrees of the folk sources.
 | Cluster resolution | A dense chord thinning to a bare fifth or octave | Night-music endings | Clearing |
 | Pizzicato snap | A single sharp attack after silence | Fast movements | Punctuation |
 
-An authentic V–i cadence in Bartók is a deliberate archaism, not a default.
+An authentic V-i is available to him and he uses it where a folk tune asks for it — but it is a choice, never the default, and the concert works close by symmetry and unison far more often.

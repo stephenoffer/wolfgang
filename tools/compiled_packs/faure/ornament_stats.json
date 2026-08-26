@@ -1,0 +1,47 @@
+{
+ "composer": "faure",
+ "schema": 1,
+ "total_bars": 517,
+ "textures": {
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2909,
+   "n": 165
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.5446,
+   "n": 202
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.4045,
+   "n": 89
+  },
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2778,
+   "n": 18
+  },
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.475,
+   "n": 40
+  }
+ }
+}

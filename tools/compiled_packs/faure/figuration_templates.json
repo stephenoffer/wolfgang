@@ -1,5 +1,95 @@
 [
   {
+    "id": "lh_idiom_flowing_broken_chords_unbroken",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Flowing broken chords, unbroken",
+    "description": "`C3e G3e E4e G3e` continuously, even and quiet, for whole sections.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_gently_syncopated_accompaniment",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Gently syncopated accompaniment",
+    "description": "the chord entering just off the beat.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggio_spanning_an_octave_and_a_half",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggio spanning an octave and a half",
+    "description": "smooth and unhurried.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_chords_with_a_moving_inner_voice",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained chords with a moving inner voice",
+    "description": "the harmony shifting underneath a still surface.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_soft",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, soft",
+    "description": "under a vocal line.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_contrapuntal_inner_voice",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Contrapuntal inner voice",
+    "description": "Faur\u00e9's textures are more linear than they sound.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_bass_in_slow_harmonic_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking bass in slow harmonic rhythm.",
+    "description": "Walking bass in slow harmonic rhythm.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_pedal_note_with_the_harmony_changing_above_it",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held pedal note with the harmony changing above it.",
+    "description": "Held pedal note with the harmony changing above it.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_wide_spacing_without_weight",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide spacing without weight",
+    "description": "open, but never heavy.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_barcarolle_lilt",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The barcarolle lilt",
+    "description": "a rocking 6/8 accompaniment.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -19,7 +109,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -261,5 +351,176 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_constant_gentle_modulation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Constant, gentle modulation",
+    "description": "moving through several keys in a phrase without any of them being announced.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_writing",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal writing",
+    "description": "Lydian and Aeolian inflections inside a tonal frame.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_seventh_and_ninth_chords_as_stable_sonorities",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Seventh and ninth chords as stable sonorities",
+    "description": "not as tensions.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediant_shifts",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediant shifts",
+    "description": "made smooth by common tones.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_unresolved_appoggiatura",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The unresolved appoggiatura",
+    "description": "left as colour.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_enharmonic_reinterpretation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Enharmonic reinterpretation",
+    "description": "used quietly rather than dramatically.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_avoided_cadences",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Avoided cadences",
+    "description": "the expected resolution sidestepped repeatedly so the phrase extends.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_plagal_colour",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Plagal colour",
+    "description": "at closes.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_calm_vocal_line",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The long, calm vocal line",
+    "description": "Faur\u00e9 is a song composer above all.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stepwise_melody_with_a_narrow_range",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Stepwise melody with a narrow range.",
+    "description": "Stepwise melody with a narrow range.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melodic_sequence_rising_gently",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melodic sequence rising gently",
+    "description": "without a dramatic peak.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_line_that_begins_mid_phrase",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The line that begins mid-phrase",
+    "description": "as though already in progress.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_elided_phrase_endings",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Elided phrase endings",
+    "description": "one phrase begins before the last has closed.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_continuous_flow",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Continuous flow",
+    "description": "very few full stops.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_gentle_syncopation",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Gentle syncopation",
+    "description": "as a constant, not as an effect.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_barcarolle_and_nocturne_forms",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Barcarolle and nocturne forms.",
+    "description": "Barcarolle and nocturne forms.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ternary_with_a_subtly_varied_return",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Ternary with a subtly varied return.",
+    "description": "Ternary with a subtly varied return.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_ending",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "The quiet ending",
+    "description": "almost always.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_restrained_climax",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Restrained climax",
+    "description": "the peak of a Faur\u00e9 piece may be `mf`.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

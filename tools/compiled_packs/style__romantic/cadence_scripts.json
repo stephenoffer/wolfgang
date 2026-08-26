@@ -344,6 +344,345 @@
   "source_file": "schubert/harmonic-language.md"
  },
  {
+  "id": "cad_evaded_v_to_vi",
+  "type": "Evaded (V to vi)",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "Chains of deception; arrival perpetually postponed",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_plagal_iv_i",
+  "type": "Plagal (IV-I)",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "Closing gesture; warmth after tension",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_half_cadence_on_v",
+  "type": "Half-cadence on V",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "Piece or section ends on dominant \u2014 no resolution given",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_authentic_v_i",
+  "type": "Authentic (V-I)",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "Reserved for structural downbeats; never casual",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_picardy_third_minor_to_major_final_chord",
+  "type": "Picardy third (minor to major final chord)",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "Eusebius yielding to Florestan at the last moment",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_plagal_with_added_6th",
+  "type": "Plagal with added 6th",
+  "approach_chords": [
+   "IV",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Warm, hymn-like",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_chromatic_plagal",
+  "type": "Chromatic plagal",
+  "approach_chords": [
+   "iv",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Darker plagal",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_deceptive_to_bvi",
+  "type": "Deceptive to bVI",
+  "approach_chords": [
+   "V",
+   "bVI"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-6",
+  "usage": "Expansive, unexpected",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_evaded",
+  "type": "Evaded",
+  "approach_chords": [
+   "V",
+   "I6"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "Continuation required",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_half_cadence_on_v_with_app",
+  "type": "Half-cadence on V with app.",
+  "approach_chords": [
+   "ii",
+   "I64",
+   "V"
+  ],
+  "soprano_line": [],
+  "bass_motion": "2-1-5",
+  "usage": "Extended suspense",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_romantic_pac",
+  "type": "Romantic PAC",
+  "approach_chords": [
+   "I64",
+   "V7",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "1-5-1",
+  "usage": "Full Romantic",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "schumann/harmonic-language.md"
+ },
+ {
+  "id": "cad_pure_plagal",
+  "type": "Pure plagal",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "IV - I",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_dark_plagal",
+  "type": "Dark plagal",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "iv - I",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_flat_vii_approach",
+  "type": "Flat-VII approach",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "bVII - I",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_double_plagal",
+  "type": "Double plagal",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "bVII - IV - I",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_phrygian_half",
+  "type": "Phrygian half",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "iv6 - V (in minor)",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_deceptive_to_iv",
+  "type": "Deceptive to IV",
+  "approach_chords": [],
+  "soprano_line": [],
+  "bass_motion": "",
+  "usage": "V - IV6",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_plagal_with_added_6th",
+  "type": "Plagal with added 6th",
+  "approach_chords": [
+   "IV",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Warm, hymn-like",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_chromatic_plagal",
+  "type": "Chromatic plagal",
+  "approach_chords": [
+   "iv",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Darker plagal",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_deceptive_to_bvi",
+  "type": "Deceptive to bVI",
+  "approach_chords": [
+   "V",
+   "bVI"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-6",
+  "usage": "Expansive, unexpected",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_evaded",
+  "type": "Evaded",
+  "approach_chords": [
+   "V",
+   "I6"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "Continuation required",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_half_cadence_on_v_with_app",
+  "type": "Half-cadence on V with app.",
+  "approach_chords": [
+   "ii",
+   "I64",
+   "V"
+  ],
+  "soprano_line": [],
+  "bass_motion": "2-1-5",
+  "usage": "Extended suspense",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
+  "id": "cad_romantic_pac",
+  "type": "Romantic PAC",
+  "approach_chords": [
+   "I64",
+   "V7",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "1-5-1",
+  "usage": "Full Romantic",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "brahms/harmonic-language.md"
+ },
+ {
   "id": "cad_perfect_authentic",
   "type": "Perfect authentic",
   "approach_chords": [],
@@ -704,5 +1043,297 @@
   "typical_texture": "",
   "preparation_bars": 2,
   "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "cad_plagal_with_added_6th",
+  "type": "Plagal with added 6th",
+  "approach_chords": [
+   "IV",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Warm, hymn-like",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "mendelssohn/harmonic-language.md"
+ },
+ {
+  "id": "cad_chromatic_plagal",
+  "type": "Chromatic plagal",
+  "approach_chords": [
+   "iv",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Darker plagal",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "mendelssohn/harmonic-language.md"
+ },
+ {
+  "id": "cad_deceptive_to_bvi",
+  "type": "Deceptive to bVI",
+  "approach_chords": [
+   "V",
+   "bVI"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-6",
+  "usage": "Expansive, unexpected",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "mendelssohn/harmonic-language.md"
+ },
+ {
+  "id": "cad_evaded",
+  "type": "Evaded",
+  "approach_chords": [
+   "V",
+   "I6"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "Continuation required",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "mendelssohn/harmonic-language.md"
+ },
+ {
+  "id": "cad_half_cadence_on_v_with_app",
+  "type": "Half-cadence on V with app.",
+  "approach_chords": [
+   "ii",
+   "I64",
+   "V"
+  ],
+  "soprano_line": [],
+  "bass_motion": "2-1-5",
+  "usage": "Extended suspense",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "mendelssohn/harmonic-language.md"
+ },
+ {
+  "id": "cad_romantic_pac",
+  "type": "Romantic PAC",
+  "approach_chords": [
+   "I64",
+   "V7",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "1-5-1",
+  "usage": "Full Romantic",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "mendelssohn/harmonic-language.md"
+ },
+ {
+  "id": "cad_standard_pac",
+  "type": "Standard PAC",
+  "approach_chords": [
+   "V7",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "Phrase endings in cheerful/dance movements",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_deceptive_to_bvi",
+  "type": "Deceptive to bVI",
+  "approach_chords": [
+   "V7",
+   "bVI"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-6",
+  "usage": "Withholding resolution; extending tragic passages",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_phrygian_half_cadence",
+  "type": "Phrygian half-cadence",
+  "approach_chords": [
+   "iv6",
+   "V"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-5",
+  "usage": "Pauses with dark, Russian weight",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_plagal_iv_i",
+  "type": "Plagal (iv\u2192I)",
+  "approach_chords": [
+   "iv",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Coda endings; added gravity after resolution",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_collapse_cadence",
+  "type": "Collapse cadence",
+  "approach_chords": [
+   "V",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "The resolution comes, but broken \u2014 no triumph",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_evaded",
+  "type": "Evaded",
+  "approach_chords": [
+   "V",
+   "I6"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "Extending the melody beyond expected phrase length",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_plagal_with_added_6th",
+  "type": "Plagal with added 6th",
+  "approach_chords": [
+   "IV",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Warm, hymn-like",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_chromatic_plagal",
+  "type": "Chromatic plagal",
+  "approach_chords": [
+   "iv",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "4-1",
+  "usage": "Darker plagal",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_deceptive_to_bvi",
+  "type": "Deceptive to bVI",
+  "approach_chords": [
+   "V",
+   "bVI"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-6",
+  "usage": "Expansive, unexpected",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_evaded",
+  "type": "Evaded",
+  "approach_chords": [
+   "V",
+   "I6"
+  ],
+  "soprano_line": [],
+  "bass_motion": "5-1",
+  "usage": "Continuation required",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_half_cadence_on_v_with_app",
+  "type": "Half-cadence on V with app.",
+  "approach_chords": [
+   "ii",
+   "I64",
+   "V"
+  ],
+  "soprano_line": [],
+  "bass_motion": "2-1-5",
+  "usage": "Extended suspense",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
+ },
+ {
+  "id": "cad_romantic_pac",
+  "type": "Romantic PAC",
+  "approach_chords": [
+   "I64",
+   "V7",
+   "I"
+  ],
+  "soprano_line": [],
+  "bass_motion": "1-5-1",
+  "usage": "Full Romantic",
+  "inner_voice_rules": [],
+  "strength": 3,
+  "typical_texture": "",
+  "preparation_bars": 2,
+  "source_file": "tchaikovsky/harmonic-language.md"
  }
 ]

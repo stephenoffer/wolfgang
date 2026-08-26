@@ -52,8 +52,16 @@ _DYN_VELOCITY = {
 _DEFAULT_VELOCITY = 80
 
 
-def _beats_per_bar(meter: tuple[int, int]) -> float:
-    return meter[0] * 4.0 / meter[1]
+def _beats_per_bar(meter) -> float:
+    """Beats in a bar, via the one guarded implementation.
+
+    `meter[0] * 4.0 / meter[1]` raised ZeroDivisionError out of
+    `build_performance_ir` for any phrase whose meter was malformed — and a
+    performance IR is built for every phrase that gets rendered.
+    """
+    from .duration import beats_per_bar as _bpb
+
+    return _bpb(meter)
 
 
 def build_performance_ir(
@@ -140,6 +148,18 @@ def build_performance_ir(
                 seen_points.add((mb, round(mbeat, 2)))
             open_hp = None
     perf.dynamic_curve.sort(key=lambda p: (p.bar, p.beat))
+
+    # ── The phrase's own arch, under whatever the composer wrote ─────────────
+    #
+    # A performer shapes every phrase toward its high point and away again
+    # whether or not a hairpin is written — that is what phrasing means. Without
+    # this the renderer follows only EXPLICIT dynamics, so a phrase with no
+    # marks is played at one velocity from end to end, which no player has ever
+    # done. Measured: 91.3% of notes this project has ever committed carry no
+    # dynamic at all.
+    #
+    # Merged UNDER the written marks, so the composer's page always wins.
+    merge_arch_under_dynamics(perf, phrase_arch_points(layer))
 
     # ── Tempo arc + cadential rubato (one unified window over the phrase) ──
     # A real performance pushes through rising tension and broadens at the
@@ -282,7 +302,59 @@ def build_performance_ir(
             TimingOffset(bar=b, beat=bt, offset_ms=profile.downbeat_stress_ms + 6.0)
         )
 
+    # ── Agogic accent ───────────────────────────────────────────────────────
+    #
+    # A pianist stresses a note on an instrument that cannot swell by giving it
+    # more TIME. A long note on a strong beat, an accented note, a leaning
+    # appoggiatura — none of it was modelled, so every note took exactly its
+    # notated length. This reaches the render through `microtiming`, which the
+    # MIDI stage already reads.
+    #
+    # MELODIC LEAD IS DELIBERATELY NOT APPLIED HERE, and the reason is worth
+    # recording: `TimingOffset` is keyed by (bar, beat) alone, so it cannot
+    # express "the melody is struck 12ms ahead of the bass on the same beat" —
+    # which is exactly what melodic lead is. Writing it through this channel
+    # made the melody and the bass collide on one key and take whichever was
+    # recorded first, so both moved together and the effect was silently the
+    # opposite of the intent. `melodic_lead_beats` remains available for a
+    # caller with a per-voice timing channel; the MIDI stage's own
+    # `profile.hand_offset_ms` is the existing, working approximation.
+    ms_per_beat = 60000.0 / max(1.0, float(getattr(slot, "tempo_bpm", 0) or 90))
+    seen_offsets = {(m.bar, round(m.beat, 3)) for m in perf.microtiming}
+    for e in layer.principal_line + layer.bass_foundation:
+        if e.pitch == "rest":
+            continue
+        shift = agogic_stretch(e, meter, profile)
+        if abs(shift) < 1e-4:
+            continue
+        key = (e.bar, round(e.beat, 3))
+        if key in seen_offsets:
+            continue
+        seen_offsets.add(key)
+        perf.microtiming.append(
+            TimingOffset(bar=e.bar, beat=e.beat, offset_ms=shift * ms_per_beat)
+        )
+
     return perf
+
+
+def _top_midi_of(event):
+    """Highest sounding MIDI of an event, or None."""
+    from .pitch import pitch_to_midi
+
+    pitch = getattr(event, "pitch", None)
+    if not pitch or pitch == "rest":
+        return None
+    names = pitch if isinstance(pitch, list) else [pitch]
+    vals = []
+    for n in names:
+        try:
+            m = pitch_to_midi(n)
+        except (ValueError, KeyError, TypeError):
+            continue
+        if m is not None:
+            vals.append(m)
+    return max(vals) if vals else None
 
 
 # ─── Metric hierarchy ────────────────────────────────────────────────────────
@@ -443,7 +515,11 @@ def merge_arch_under_dynamics(
 
 
 def melodic_lead_beats(
-    event, profile: StylePerfProfile, ms_per_beat: float, is_peak: bool = False
+    event,
+    profile: StylePerfProfile,
+    ms_per_beat: float,
+    is_peak: bool = False,
+    is_melody: bool | None = None,
 ) -> float:
     """How far AHEAD of the accompaniment a melody note is struck.
 
@@ -458,8 +534,17 @@ def melodic_lead_beats(
     here grows at expressive peaks and on long notes, which is what a player
     actually does.
     """
-    layer = getattr(event, "source_layer", "") or ""
-    if layer not in ("principal_line", "foreground"):
+    # `is_melody` is passed EXPLICITLY rather than read from `source_layer`,
+    # which only `direct_compose` populates — every other producer leaves it
+    # None, so keying on it meant the melodic lead silently never fired for
+    # most material. Reading a field that is often unset, and taking the
+    # default as an answer, is this codebase's most repeated bug.
+    if is_melody is None:  # legacy callers: fall back to the layer tag
+        is_melody = (getattr(event, "source_layer", "") or "") in (
+            "principal_line",
+            "foreground",
+        )
+    if not is_melody:
         return 0.0
     lead_ms = profile.hand_offset_ms * 1.5
     if is_peak:

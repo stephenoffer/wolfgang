@@ -1,0 +1,32 @@
+{
+ "composer": "bartok",
+ "schema": 1,
+ "bars": 16,
+ "notes": 52,
+ "rest_bar_pct": 0.25,
+ "dotted_bar_pct": 0.0,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.0,
+ "top_note_values": [
+  [
+   0.5,
+   0.6346
+  ],
+  [
+   0.25,
+   0.1538
+  ],
+  [
+   1.0,
+   0.1154
+  ],
+  [
+   2.0,
+   0.0577
+  ],
+  [
+   0.3333,
+   0.0385
+  ]
+ ]
+}

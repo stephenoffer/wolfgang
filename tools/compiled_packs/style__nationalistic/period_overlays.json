@@ -1,0 +1,16 @@
+{
+ "periods": [
+  {
+   "id": "early",
+   "stat_modifiers": {}
+  },
+  {
+   "id": "late",
+   "stat_modifiers": {}
+  },
+  {
+   "id": "final",
+   "stat_modifiers": {}
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "composer": "grieg",
+ "schema": 1,
+ "bars": 748,
+ "notes": 2769,
+ "rest_bar_pct": 0.5882,
+ "dotted_bar_pct": 0.1658,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.3936,
+ "top_note_values": [
+  [
+   0.5,
+   0.4048
+  ],
+  [
+   0.25,
+   0.3597
+  ],
+  [
+   1.0,
+   0.1455
+  ],
+  [
+   2.0,
+   0.052
+  ],
+  [
+   0.75,
+   0.0141
+  ]
+ ]
+}

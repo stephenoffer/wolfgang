@@ -1,0 +1,32 @@
+{
+ "composer": "rachmaninoff",
+ "schema": 1,
+ "bars": 657,
+ "notes": 4376,
+ "rest_bar_pct": 0.7473,
+ "dotted_bar_pct": 0.3592,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.3628,
+ "top_note_values": [
+  [
+   0.25,
+   0.6357
+  ],
+  [
+   0.5,
+   0.1716
+  ],
+  [
+   1.0,
+   0.0686
+  ],
+  [
+   0.3333,
+   0.0551
+  ],
+  [
+   0.75,
+   0.021
+  ]
+ ]
+}

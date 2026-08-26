@@ -1,0 +1,39 @@
+{
+ "composer": "rachmaninoff",
+ "schema": 1,
+ "total_bars": 657,
+ "textures": {
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.4133,
+   "n": 421
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1538,
+   "n": 156
+  },
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.566,
+   "n": 53
+  },
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1333,
+   "n": 15
+  }
+ }
+}

@@ -1,0 +1,530 @@
+[
+ {
+  "id": "melodic_voice_pentatonic_construction",
+  "category": "composer_melodic_voice",
+  "description": "Pentatonic construction: Melodies built from 5-note scales (no semitones): C-D-E-G-A",
+  "parameters": {
+   "feature": "Pentatonic construction",
+   "note": "New World Symphony, American Quartet, Cello Concerto"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_folk_song_contour",
+  "category": "composer_melodic_voice",
+  "description": "Folk-song contour: Arch shape: rise in first half, fall in second; question-answer phrasing",
+  "parameters": {
+   "feature": "Folk-song contour",
+   "note": "Everywhere \u2014 the default Dvorak melody shape"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_singable_range",
+  "category": "composer_melodic_voice",
+  "description": "Singable range: Most themes stay within an octave; comfortable vocal range",
+  "parameters": {
+   "feature": "Singable range",
+   "note": "All periods; even instrumental themes are \"singable\""
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_immediate_memorability",
+  "category": "composer_melodic_voice",
+  "description": "Immediate memorability: The melody works on first hearing; no preparation needed",
+  "parameters": {
+   "feature": "Immediate memorability",
+   "note": "The defining Dvorak quality"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_dance_character",
+  "category": "composer_melodic_voice",
+  "description": "Dance character: Melodies carry rhythmic identity of specific dances (furiant, dumka, polka)",
+  "parameters": {
+   "feature": "Dance character",
+   "note": "Slavonic Dances, scherzo movements, finales"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_repetition_with_variation",
+  "category": "composer_melodic_voice",
+  "description": "Repetition with variation: A phrase stated, then repeated with slight melodic or rhythmic change",
+  "parameters": {
+   "feature": "Repetition with variation",
+   "note": "Folk song practice absorbed into symphonic writing"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_major_minor_modal_shift",
+  "category": "composer_melodic_voice",
+  "description": "Major/minor modal shift: Same melody in major, then minor (or vice versa) \u2014 the dumka principle",
+  "parameters": {
+   "feature": "Major/minor modal shift",
+   "note": "Across all periods; emotional duality"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "dvorak/melodic-style.md"
+ },
+ {
+  "id": "phrase_structure_cell",
+  "category": "phrase_structure",
+  "description": "Cell: Smallest recognizable unit",
+  "parameters": {
+   "unit": "Cell",
+   "typical_length": "2-3 notes",
+   "function": "Smallest recognizable unit"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_motif",
+  "category": "phrase_structure",
+  "description": "Motif: Characteristic rhythm + interval pattern",
+  "parameters": {
+   "unit": "Motif",
+   "typical_length": "1-2 bars",
+   "function": "Characteristic rhythm + interval pattern"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_phrase",
+  "category": "phrase_structure",
+  "description": "Phrase: Complete musical thought, ends with cadence",
+  "parameters": {
+   "unit": "Phrase",
+   "typical_length": "4 bars",
+   "function": "Complete musical thought, ends with cadence"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_period",
+  "category": "phrase_structure",
+  "description": "Period: Two complementary phrases",
+  "parameters": {
+   "unit": "Period",
+   "typical_length": "8 bars (4+4)",
+   "function": "Two complementary phrases"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_double period",
+  "category": "phrase_structure",
+  "description": "Double period: Extended period structure",
+  "parameters": {
+   "unit": "Double period",
+   "typical_length": "16 bars (4+4+4+4)",
+   "function": "Extended period structure"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_section",
+  "category": "phrase_structure",
+  "description": "Section: Structural unit (exposition, development, etc.)",
+  "parameters": {
+   "unit": "Section",
+   "typical_length": "Multiple periods",
+   "function": "Structural unit (exposition, development, etc.)"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_arch_(rise-fall)",
+  "category": "contour",
+  "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+  "parameters": {
+   "contour": "Arch (rise-fall)",
+   "shape": "\u2227",
+   "association": "Completion, singing quality"
+  },
+  "conditions": {
+   "best_for": "Lyrical themes"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_ascending",
+  "category": "contour",
+  "description": "Ascending (/): Aspiration, tension, hope",
+  "parameters": {
+   "contour": "Ascending",
+   "shape": "/",
+   "association": "Aspiration, tension, hope"
+  },
+  "conditions": {
+   "best_for": "Building passages"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_descending",
+  "category": "contour",
+  "description": "Descending (\\): Resolution, grief, relaxation",
+  "parameters": {
+   "contour": "Descending",
+   "shape": "\\",
+   "association": "Resolution, grief, relaxation"
+  },
+  "conditions": {
+   "best_for": "Closing phrases"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_wave",
+  "category": "contour",
+  "description": "Wave (\u223c): Lyrical, flowing",
+  "parameters": {
+   "contour": "Wave",
+   "shape": "\u223c",
+   "association": "Lyrical, flowing"
+  },
+  "conditions": {
+   "best_for": "Sustained melodies"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_static/plateau",
+  "category": "contour",
+  "description": "Static/plateau (\u2014): Contemplation, suspense",
+  "parameters": {
+   "contour": "Static/plateau",
+   "shape": "\u2014",
+   "association": "Contemplation, suspense"
+  },
+  "conditions": {
+   "best_for": "Recitative, tension"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_inverted_arch",
+  "category": "contour",
+  "description": "Inverted arch (\u2228): Settling then rising",
+  "parameters": {
+   "contour": "Inverted arch",
+   "shape": "\u2228",
+   "association": "Settling then rising"
+  },
+  "conditions": {
+   "best_for": "Surprise, rebound"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_phrase",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+  "parameters": {
+   "scale": "Within a phrase",
+   "placement": "Near the end (~bar 3 of 4)"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_melody",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a melody level: ~60-75% through",
+  "parameters": {
+   "scale": "Within a melody",
+   "placement": "~60-75% through"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_section",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a section level: After development/buildup",
+  "parameters": {
+   "scale": "Within a section",
+   "placement": "After development/buildup"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_multiple_levels",
+  "category": "peak_timing",
+  "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+  "parameters": {
+   "scale": "Multiple levels",
+   "placement": "Local (phrase), regional (period), global (section)"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "melodic_voice_short_atmospheric_phrases",
+  "category": "composer_melodic_voice",
+  "description": "Short, atmospheric phrases: 2-4 bar phrases that capture one mood completely",
+  "parameters": {
+   "feature": "Short, atmospheric phrases",
+   "note": "Lyric Pieces \u2014 every piece is a single atmosphere"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_norwegian_raised_4th_d",
+  "category": "composer_melodic_voice",
+  "description": "Norwegian raised 4th (D#): Chromatic passing tone between D and E in A minor context",
+  "parameters": {
+   "feature": "Norwegian raised 4th (D#)",
+   "note": "Throughout \u2014 the single most recognizable Grieg melodic fingerprint"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_pentatonic_foundation",
+  "category": "composer_melodic_voice",
+  "description": "Pentatonic foundation: Many melodies use only 5 notes: A-C-D-E-G (minor pentatonic)",
+  "parameters": {
+   "feature": "Pentatonic foundation",
+   "note": "Folk-song settings, simple themes, atmospheric openings"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_descending_opening_gesture",
+  "category": "composer_melodic_voice",
+  "description": "Descending opening gesture: Melodies begin high and fall \u2014 the view from the mountain looking down",
+  "parameters": {
+   "feature": "Descending opening gesture",
+   "note": "Lyric Pieces, Piano Concerto, Peer Gynt themes"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_dance_rhythm_as_melody",
+  "category": "composer_melodic_voice",
+  "description": "Dance rhythm as melody: Halling (2/4, wide leaps) and Springar (asymmetric 3/4) rhythms shape the melodic contour",
+  "parameters": {
+   "feature": "Dance rhythm as melody",
+   "note": "Norwegian Dances, Slatter, dance movements"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_narrow_dynamic_range",
+  "category": "composer_melodic_voice",
+  "description": "Narrow dynamic range: Most melodies live between pp and mp; ff reserved for dance climaxes",
+  "parameters": {
+   "feature": "Narrow dynamic range",
+   "note": "The intimate scale \u2014 not Romantic declaration"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_one_melody_per_piece",
+  "category": "composer_melodic_voice",
+  "description": "One melody per piece: Each Lyric Piece has essentially one melody; no contrasting second theme",
+  "parameters": {
+   "feature": "One melody per piece",
+   "note": "The miniature principle: one idea, fully realized"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "grieg/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_speech_melody_intoned_declamation",
+  "category": "composer_melodic_voice",
+  "description": "Speech-melody (intoned declamation): Note lengths follow natural Russian speech stress; long on stressed syllables, short on unstressed",
+  "parameters": {
+   "feature": "Speech-melody (intoned declamation)",
+   "note": "Boris Godunov vocal lines, The Nursery, Sunless cycle"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mussorgsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_irregular_phrase_lengths",
+  "category": "composer_melodic_voice",
+  "description": "Irregular phrase lengths: 3-bar, 5-bar, 7-bar phrases determined by text, not musical convention",
+  "parameters": {
+   "feature": "Irregular phrase lengths",
+   "note": "All vocal music; instrumental music inherits this irregularity"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mussorgsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_narrow_range_stepwise_motion",
+  "category": "composer_melodic_voice",
+  "description": "Narrow range, stepwise motion: Melodies move by step within a narrow range \u2014 speech does not leap octaves",
+  "parameters": {
+   "feature": "Narrow range, stepwise motion",
+   "note": "Boris monologues, Songs and Dances of Death"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mussorgsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_folk_song_contour",
+  "category": "composer_melodic_voice",
+  "description": "Folk-song contour: Arched shape: rises to a peak in the middle, descends to close; pentatonic skeleton",
+  "parameters": {
+   "feature": "Folk-song contour",
+   "note": "Pictures promenade, folk scenes in Boris"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mussorgsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_repeated_notes_recitation_tone",
+  "category": "composer_melodic_voice",
+  "description": "Repeated notes (recitation tone): Same pitch repeated with changing rhythm \u2014 like liturgical chanting",
+  "parameters": {
+   "feature": "Repeated notes (recitation tone)",
+   "note": "Boris prayer scenes, Khovanshchina"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mussorgsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_promenade_as_structural_melody",
+  "category": "composer_melodic_voice",
+  "description": "Promenade as structural melody: The Pictures promenade theme: a walking melody that returns transformed between movements",
+  "parameters": {
+   "feature": "Promenade as structural melody",
+   "note": "Pictures at an Exhibition \u2014 the structural innovation"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "mussorgsky/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_decorated_solo_lines",
+  "category": "composer_melodic_voice",
+  "description": "Decorated solo lines: Melodies written for specific instruments, with ornaments that exploit the instrument's character",
+  "parameters": {
+   "feature": "Decorated solo lines",
+   "note": "Scheherazade violin, Capriccio espagnol clarinet, Sadko gusli imitation"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "rimsky-korsakov/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_exotic_modal_inflection",
+  "category": "composer_melodic_voice",
+  "description": "Exotic modal inflection: Augmented 2nds, Phrygian lowered 2nd, harmonic minor 7th \u2014 specific interval colors",
+  "parameters": {
+   "feature": "Exotic modal inflection",
+   "note": "Scheherazade, Antar, all oriental subjects"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "rimsky-korsakov/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_russian_folk_contour",
+  "category": "composer_melodic_voice",
+  "description": "Russian folk contour: Arched shape; pentatonic skeleton; modal; stepwise with occasional 4th/5th leaps",
+  "parameters": {
+   "feature": "Russian folk contour",
+   "note": "Folk scenes in operas, Russian Easter Overture"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "rimsky-korsakov/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_coloratura_fairy_tale_vocal_lines",
+  "category": "composer_melodic_voice",
+  "description": "Coloratura fairy-tale vocal lines: Soprano roles for supernatural characters: high, decorated, florid, otherworldly",
+  "parameters": {
+   "feature": "Coloratura fairy-tale vocal lines",
+   "note": "Snow Maiden, Volkhova (Sadko), Queen of Shemakha (Golden Cockerel)"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "rimsky-korsakov/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_octatonic_melody",
+  "category": "composer_melodic_voice",
+  "description": "Octatonic melody: Melodies using alternating whole-half steps for magic characters",
+  "parameters": {
+   "feature": "Octatonic melody",
+   "note": "Snow Maiden's supernatural music, Kashchei"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "rimsky-korsakov/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_narrative_instrumental_melody",
+  "category": "composer_melodic_voice",
+  "description": "Narrative instrumental melody: The melody tells a story; sequential phrases build narrative tension",
+  "parameters": {
+   "feature": "Narrative instrumental melody",
+   "note": "Scheherazade's four movements"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "rimsky-korsakov/melodic-style.md"
+ }
+]

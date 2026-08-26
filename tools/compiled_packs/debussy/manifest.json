@@ -1,12 +1,14 @@
 {
   "composer": "debussy",
   "genre": "impressionist",
-  "support_tier": "C",
-  "corpus_bar_count": 0,
+  "support_tier": "B",
+  "corpus_bar_count": 342,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
     "cross-references.md",
+    "debussy-devices.md",
+    "debussy-lh-vocabulary.md",
     "formal-approach.md",
     "harmonic-language.md",
     "index.md",
@@ -14,6 +16,13 @@
     "orchestration.md",
     "stylistic-evolution.md"
   ],
-  "corpus_files": [],
+  "corpus_files": [
+    "bar_index.json",
+    "bars_00.json",
+    "gesture_bank.json",
+    "phrase_catalog.json",
+    "window_index.json",
+    "window_index_00.json"
+  ],
   "pattern_count": 0
 }

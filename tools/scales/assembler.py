@@ -936,7 +936,10 @@ def _split_events_over_barlines(
 
     def _capacity(bar: int) -> Fraction:
         meta = bar_meta.get(bar) or {}
-        cap = bar_duration(tuple(meta.get("meter", default_meter)))
+        # `bar_duration` guards a malformed meter; `tuple(None)` does not, and a
+        # partially-initialised slot reaches here.
+        raw = meta.get("meter", default_meter)
+        cap = bar_duration(tuple(raw) if isinstance(raw, (list, tuple)) else raw)
         pickup = meta.get("pickup_beats")
         if pickup:
             cap = Fraction(pickup).limit_denominator(96)
@@ -1131,7 +1134,7 @@ def _add_event_to_measure(
     """
     import music21
 
-    beats_per_bar = Fraction(int(meter[0]) * 4, int(meter[1]))
+    beats_per_bar = bar_duration(meter)
     # music21 uses 0-based offsets. In an anacrusis the IR keeps the metrically
     # TRUE beat (a one-beat pickup in 4/4 sits on beat 4), while music21 wants the
     # content at offset 0 of a measure declared short via paddingLeft — so shift.

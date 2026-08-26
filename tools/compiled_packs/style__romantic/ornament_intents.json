@@ -238,5 +238,55 @@
   "position": "any",
   "grounding": "profile",
   "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "composer_ornament_turn",
+  "category": "composer_ornament_usage",
+  "ornament": "Turn",
+  "usage": "Cadential \u2014 penultimate bar",
+  "intent": "Common",
+  "position": "any",
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "composer_ornament_short_trill",
+  "category": "composer_ornament_usage",
+  "ornament": "Short trill",
+  "usage": "On dominant note before final resolution",
+  "intent": "Moderate",
+  "position": "any",
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "composer_ornament_mordent",
+  "category": "composer_ornament_usage",
+  "ornament": "Mordent",
+  "usage": "On downbeat of arriving note",
+  "intent": "Occasional",
+  "position": "any",
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "composer_ornament_appoggiatura",
+  "category": "composer_ornament_usage",
+  "ornament": "Appoggiatura",
+  "usage": "On strong beats in slow melodies",
+  "intent": "Moderate",
+  "position": "any",
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
+ },
+ {
+  "id": "composer_ornament_gruppetto",
+  "category": "composer_ornament_usage",
+  "ornament": "Gruppetto",
+  "usage": "Between two notes of a step",
+  "intent": "Rare",
+  "position": "any",
+  "grounding": "profile",
+  "source_file": "mendelssohn/melodic-style.md"
  }
 ]

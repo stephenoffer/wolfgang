@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from .corpus_adapter import AdaptedBar, CorpusAdapter, CorpusQuery
-from .duration import beats_to_dur, dur_to_beats
+from .duration import bar_duration, beats_to_dur, dur_to_beats
 from .pitch import is_minor_key, pitch_to_midi
 
 logger = logging.getLogger(__name__)
@@ -1311,7 +1311,7 @@ def _lh_vocabulary(composer: str, slot, key: str, max_patterns: int = 2) -> List
                 lh_textures.append(lh)
         out: List[Dict[str, Any]] = []
         meter = tuple(getattr(slot, "meter", (4, 4)) or (4, 4))
-        capacity = meter[0] * 4.0 / meter[1]
+        capacity = float(bar_duration(meter))
         for tex in lh_textures[:2]:
             patterns = pr.retrieve(tex, density_range=(3, 18), n=1)
             for p in patterns:
@@ -2127,7 +2127,7 @@ def _retrieve_exemplars(
             # multi-voice flatten in the corpus record. Showing them misleads
             # Claude and they fail meter validation if copied. (See
             # _shorthand_overflows_bar.)
-            capacity = meter[0] * 4.0 / meter[1]
+            capacity = float(bar_duration(meter))
             if _shorthand_overflows_bar(rh_sh, capacity) or _shorthand_overflows_bar(
                 lh_sh, capacity
             ):

@@ -1,5 +1,31 @@
 [
   {
+    "id": "cad_perfect_authentic_pac",
+    "type": "Perfect authentic (PAC)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V\u2013i, or the axis dominant to the tonic, in root position",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "cad_half_cadence_hc",
+    "type": "Half cadence (HC)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Arrival and pause on the dominant degree, or on the tonic's tritone axis partner",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
     "id": "cad_unison_octave_close",
     "type": "Unison / octave close",
     "approach_chords": [],

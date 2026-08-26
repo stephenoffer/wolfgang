@@ -137,3 +137,23 @@ Debussy does not cadence in the Classical sense. Phrases end by:
 - [melodic-style.md](melodic-style.md) — pentatonic and whole-tone melody
 - [orchestration.md](orchestration.md) — how harmony and timbre fuse
 - [../../impressionist-harmony.md](../../impressionist-harmony.md) — shared scales, chord types, planing techniques
+
+---
+
+## Cadences
+
+Debussy keeps the *sound* of cadence while removing its obligation. The chords
+are functional shapes used as colours, so a dominant seventh may simply move
+somewhere else and nothing sounds unresolved.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Perfect authentic (PAC) | V7–I, root position | Rare, and reserved | Deliberately old-fashioned; used when he wants closure to be heard as closure |
+| Half cadence (HC) | Arrival on an unresolved dominant, often with added 9th | Sectional joints | Suspension rather than question |
+| Plagal / modal | IV–I, bVII–I, no leading tone | The default close | Ending without assertion |
+| Planing close | Parallel chords sliding to the final sonority | Ends of phrases | Colour arriving, not harmony resolving |
+| Whole-tone dissolve | The harmony evaporates into a whole-tone chord | Transitions and endings | Weightlessness |
+| Added-note tonic | Final chord with a 6th, 9th or 4th in it | Final bars | Rest without finality |
+| Pentatonic settle | The line comes to rest on a pentatonic degree over a pedal | Nature pieces | Stillness |
+
+A leading tone resolving upward is a special effect here, not a default.

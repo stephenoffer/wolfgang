@@ -1,0 +1,22 @@
+{
+ "counts": {
+  "block_chord_offbeat": {
+   "block_chord_offbeat": 1,
+   "block_chord_sparse": 4
+  },
+  "block_chord_sparse": {
+   "block_chord_sparse": 35,
+   "block_chord_offbeat": 3,
+   "walking_bass": 1
+  },
+  "walking_bass": {
+   "block_chord_sparse": 1
+  }
+ },
+ "self_continuation": {
+  "block_chord_offbeat": 0.2,
+  "block_chord_sparse": 0.8974,
+  "walking_bass": 0.0
+ },
+ "total_transitions": 45
+}

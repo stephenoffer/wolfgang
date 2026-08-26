@@ -224,3 +224,98 @@ def test_a_dict_shaped_intent_is_read_too():
 
     perf = build_performance_ir(ir, slot, control=_DictIntent())
     assert "bass" in {v.voice for v in perf.voicing_emphasis}
+
+
+# ─── The humanization that existed and was wired to nothing ──────────────────
+#
+# `phrase_arch_points`, `merge_arch_under_dynamics` and `agogic_stretch` were
+# written, tested in isolation, and called by no code — the same "it exists,
+# nothing reads it" pattern this session kept finding in other people's work,
+# committed here in my own. A dead-function sweep found them.
+
+
+def _unmarked_phrase():
+    """Four bars with a clear melodic peak and NO written dynamics at all.
+
+    91.3% of the notes this project has ever committed are in this state.
+    """
+    ir = LayerIR(key="C major", meter=(4, 4))
+    tune = ["C5", "E5", "G5", "C6", "B5", "A5", "G5", "E5"]
+    for b in range(1, 5):
+        for i in range(2):
+            ir.principal_line.append(
+                LayerEvent(bar=b, beat=1.0 + i * 2, pitch=tune[(b - 1) * 2 + i], duration="h")
+            )
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
+    slot = PhraseSlot(
+        phrase_id="p", bar_start=1, bar_count=4, key="C major", meter=(4, 4), tempo_bpm=90
+    )
+    return ir, slot
+
+
+def test_a_phrase_with_no_written_dynamics_is_still_shaped():
+    """It was played at one velocity end to end, which no player has ever done."""
+    from scales.performance_renderer import velocity_at
+
+    ir, slot = _unmarked_phrase()
+    perf = build_performance_ir(ir, slot)
+    velocities = [velocity_at(perf, b, 1.0, 4.0) for b in range(1, 5)]
+    assert len(set(velocities)) > 1, f"flat across the phrase: {velocities}"
+
+
+def test_the_shape_follows_the_melodys_own_peak():
+    from scales.performance_renderer import velocity_at
+
+    ir, slot = _unmarked_phrase()  # peak is C6, in bar 3's first half
+    perf = build_performance_ir(ir, slot)
+    velocities = [velocity_at(perf, b, 1.0, 4.0) for b in range(1, 5)]
+    assert velocities[2] == max(velocities), velocities
+    assert velocities[0] < velocities[2] > velocities[3]
+
+
+def test_a_written_dynamic_still_wins_over_the_arch():
+    """The arch is merged UNDER the composer's marks, never over them."""
+    from scales.performance_renderer import velocity_at
+
+    ir, slot = _unmarked_phrase()
+    ir.principal_line[0].dynamic = "ff"
+    perf = build_performance_ir(ir, slot)
+    assert velocity_at(perf, 1, 1.0, 4.0) >= 110
+
+
+def test_an_accented_note_is_given_more_time():
+    """Agogic accent: a pianist stresses a note by lengthening it."""
+    from scales.performance_renderer import microtiming_at
+
+    ir, slot = _unmarked_phrase()
+    plain = build_performance_ir(ir, slot)
+    before = microtiming_at(plain, 3, 1.0)
+
+    ir2, slot2 = _unmarked_phrase()
+    ir2.principal_line[4].articulation = "accent"  # bar 3, beat 1
+    after = microtiming_at(build_performance_ir(ir2, slot2), 3, 1.0)
+    assert after > before, f"{after} !> {before}"
+
+
+def test_a_flat_line_gets_no_invented_arch():
+    """Faking a shape on a line that has none is worse than leaving it alone."""
+    from scales.performance_renderer import phrase_arch_points
+
+    ir = LayerIR(key="C major", meter=(4, 4))
+    ir.principal_line = [
+        LayerEvent(bar=b, beat=1.0, pitch="C5", duration="w") for b in range(1, 9)
+    ]
+    assert phrase_arch_points(ir) == []
+
+
+def test_melodic_lead_is_not_written_through_a_channel_that_cannot_carry_it():
+    """`TimingOffset` is keyed by (bar, beat) alone, so it cannot say "the
+    melody is ahead of the bass on this beat" — writing the lead through it made
+    both voices move together, the opposite of the intent."""
+    from scales.performance_renderer import microtiming_at
+
+    ir, slot = _unmarked_phrase()
+    perf = build_performance_ir(ir, slot)
+    # Melody and bass share bar 1 beat 1; whatever offset exists applies to both,
+    # so it must be the agogic one (>= 0), never a negative lead.
+    assert microtiming_at(perf, 1, 1.0) >= 0

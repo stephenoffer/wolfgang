@@ -1,0 +1,286 @@
+{
+ "composer": "dvorak",
+ "total_bars": 46,
+ "total_movements": 1,
+ "movements_used": 1,
+ "min_movement_bars": 6,
+ "metrics": {
+  "events_per_bar": {
+   "mean": 7.652,
+   "stdev": 0.0,
+   "min": 7.652,
+   "max": 7.652,
+   "n": 1
+  },
+  "events_per_bar_rh": {
+   "mean": 4.5,
+   "stdev": 0.0,
+   "min": 4.5,
+   "max": 4.5,
+   "n": 1
+  },
+  "events_per_bar_lh": {
+   "mean": 3.152,
+   "stdev": 0.0,
+   "min": 3.152,
+   "max": 3.152,
+   "n": 1
+  },
+  "texture_change_pct": {
+   "mean": 0.2444,
+   "stdev": 0.0,
+   "min": 0.2444,
+   "max": 0.2444,
+   "n": 1
+  },
+  "lh_texture_change_pct": {
+   "mean": 0.2,
+   "stdev": 0.0,
+   "min": 0.2,
+   "max": 0.2,
+   "n": 1
+  },
+  "rh_texture_change_pct": {
+   "mean": 0.4667,
+   "stdev": 0.0,
+   "min": 0.4667,
+   "max": 0.4667,
+   "n": 1
+  },
+  "density_cv": {
+   "mean": 0.2545,
+   "stdev": 0.0,
+   "min": 0.2545,
+   "max": 0.2545,
+   "n": 1
+  },
+  "melody_direction_change_pct": {
+   "mean": 0.3778,
+   "stdev": 0.0,
+   "min": 0.3778,
+   "max": 0.3778,
+   "n": 1
+  },
+  "grace_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 1
+  },
+  "dotted_ratio": {
+   "mean": 0.8478,
+   "stdev": 0.0,
+   "min": 0.8478,
+   "max": 0.8478,
+   "n": 1
+  },
+  "register_span": {
+   "mean": 19.0,
+   "stdev": 0.0,
+   "min": 19.0,
+   "max": 19.0,
+   "n": 1
+  },
+  "rest_bar_ratio": {
+   "mean": 0.1739,
+   "stdev": 0.0,
+   "min": 0.1739,
+   "max": 0.1739,
+   "n": 1
+  },
+  "rest_event_ratio": {
+   "mean": 0.1178,
+   "stdev": 0.0,
+   "min": 0.1178,
+   "max": 0.1178,
+   "n": 1
+  },
+  "chromatic_ratio": {
+   "mean": 0.039,
+   "stdev": 0.0,
+   "min": 0.039,
+   "max": 0.039,
+   "n": 1
+  },
+  "chord_pct": {
+   "mean": 1.6522,
+   "stdev": 0.0,
+   "min": 1.6522,
+   "max": 1.6522,
+   "n": 1
+  },
+  "maj_chord_ratio": {
+   "mean": 0.1053,
+   "stdev": 0.0,
+   "min": 0.1053,
+   "max": 0.1053,
+   "n": 1
+  },
+  "min_chord_ratio": {
+   "mean": 0.1184,
+   "stdev": 0.0,
+   "min": 0.1184,
+   "max": 0.1184,
+   "n": 1
+  },
+  "dim_aug_chord_ratio": {
+   "mean": 0.0263,
+   "stdev": 0.0,
+   "min": 0.0263,
+   "max": 0.0263,
+   "n": 1
+  },
+  "seventh_chord_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 1
+  },
+  "avg_chord_size": {
+   "mean": 2.868,
+   "stdev": 0.0,
+   "min": 2.868,
+   "max": 2.868,
+   "n": 1
+  },
+  "harmonic_rhythm": {
+   "mean": 1.587,
+   "stdev": 0.0,
+   "min": 1.587,
+   "max": 1.587,
+   "n": 1
+  },
+  "mean_abs_interval": {
+   "mean": 2.562,
+   "stdev": 0.0,
+   "min": 2.562,
+   "max": 2.562,
+   "n": 1
+  },
+  "step_ratio": {
+   "mean": 0.55,
+   "stdev": 0.0,
+   "min": 0.55,
+   "max": 0.55,
+   "n": 1
+  },
+  "third_ratio": {
+   "mean": 0.15,
+   "stdev": 0.0,
+   "min": 0.15,
+   "max": 0.15,
+   "n": 1
+  },
+  "leap_ratio": {
+   "mean": 0.15,
+   "stdev": 0.0,
+   "min": 0.15,
+   "max": 0.15,
+   "n": 1
+  },
+  "wide_leap_ratio": {
+   "mean": 0.05,
+   "stdev": 0.0,
+   "min": 0.05,
+   "max": 0.05,
+   "n": 1
+  },
+  "melodic_range": {
+   "mean": 13.0,
+   "stdev": 0.0,
+   "min": 13.0,
+   "max": 13.0,
+   "n": 1
+  },
+  "repeat_ratio": {
+   "mean": 0.15,
+   "stdev": 0.0,
+   "min": 0.15,
+   "max": 0.15,
+   "n": 1
+  },
+  "sixteenth_ratio": {
+   "mean": 0.0314,
+   "stdev": 0.0,
+   "min": 0.0314,
+   "max": 0.0314,
+   "n": 1
+  },
+  "eighth_ratio": {
+   "mean": 0.178,
+   "stdev": 0.0,
+   "min": 0.178,
+   "max": 0.178,
+   "n": 1
+  },
+  "dotted_eighth_ratio": {
+   "mean": 0.2042,
+   "stdev": 0.0,
+   "min": 0.2042,
+   "max": 0.2042,
+   "n": 1
+  },
+  "quarter_ratio": {
+   "mean": 0.178,
+   "stdev": 0.0,
+   "min": 0.178,
+   "max": 0.178,
+   "n": 1
+  },
+  "dotted_quarter_ratio": {
+   "mean": 0.288,
+   "stdev": 0.0,
+   "min": 0.288,
+   "max": 0.288,
+   "n": 1
+  },
+  "half_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 1
+  },
+  "whole_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 1
+  },
+  "triplet_ratio": {
+   "mean": 0.0,
+   "stdev": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n": 1
+  },
+  "dur_variety": {
+   "mean": 8.0,
+   "stdev": 0.0,
+   "min": 8.0,
+   "max": 8.0,
+   "n": 1
+  }
+ },
+ "lh_texture_distribution": {
+  "block_chord_offbeat": 0.1087,
+  "block_chord_sparse": 0.8696,
+  "walking_bass": 0.0217
+ },
+ "rh_texture_distribution": {
+  "chordal": 0.3261,
+  "singing_melody": 0.5,
+  "held_note": 0.0652,
+  "zigzag_figuration": 0.1087
+ },
+ "lh_l1_baseline": {
+  "mean": 0.0,
+  "stdev": 0.0,
+  "min": 0.0,
+  "max": 0.0,
+  "n": 1
+ }
+}

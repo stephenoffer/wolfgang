@@ -1,0 +1,160 @@
+{
+ "composer": "mussorgsky",
+ "schema": 4,
+ "total_bars": 458,
+ "rh": {
+  "scalar_run": {
+   "median": 12.0,
+   "p25": 12,
+   "p75": 14,
+   "mean": 12.44,
+   "n": 48,
+   "by_meter": {
+    "2": {
+     "median": 12.0,
+     "p25": 12,
+     "p75": 14,
+     "mean": 12.44,
+     "n": 48
+    }
+   }
+  },
+  "chordal": {
+   "median": 7,
+   "p25": 4,
+   "p75": 8,
+   "mean": 6.03,
+   "n": 243,
+   "by_meter": {
+    "2": {
+     "median": 7,
+     "p25": 4,
+     "p75": 8,
+     "mean": 6.03,
+     "n": 243
+    }
+   }
+  },
+  "singing_melody": {
+   "median": 8.0,
+   "p25": 5,
+   "p75": 8,
+   "mean": 6.47,
+   "n": 106,
+   "by_meter": {
+    "2": {
+     "median": 8.0,
+     "p25": 5,
+     "p75": 8,
+     "mean": 6.47,
+     "n": 106
+    }
+   }
+  },
+  "held_note": {
+   "median": 1.5,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.5,
+   "n": 22,
+   "by_meter": {
+    "2": {
+     "median": 1.5,
+     "p25": 1,
+     "p75": 2,
+     "mean": 1.5,
+     "n": 22
+    }
+   }
+  },
+  "zigzag_figuration": {
+   "median": 11.5,
+   "p25": 9,
+   "p75": 16,
+   "mean": 12.25,
+   "n": 32,
+   "by_meter": {
+    "2": {
+     "median": 11.5,
+     "p25": 9,
+     "p75": 16,
+     "mean": 12.25,
+     "n": 32
+    }
+   }
+  }
+ },
+ "lh": {
+  "walking_bass": {
+   "median": 12.0,
+   "p25": 9,
+   "p75": 17,
+   "mean": 11.82,
+   "n": 38,
+   "by_meter": {
+    "2": {
+     "median": 12.0,
+     "p25": 9,
+     "p75": 17,
+     "mean": 11.82,
+     "n": 38
+    }
+   }
+  },
+  "block_chord_sparse": {
+   "median": 2.0,
+   "p25": 1,
+   "p75": 4,
+   "mean": 2.58,
+   "n": 230,
+   "by_meter": {
+    "2": {
+     "median": 2.0,
+     "p25": 1,
+     "p75": 4,
+     "mean": 2.58,
+     "n": 230
+    }
+   }
+  },
+  "broken_chord_wave": {
+   "median": 9,
+   "p25": 8,
+   "p75": 16,
+   "mean": 11.05,
+   "n": 43,
+   "by_meter": {
+    "2": {
+     "median": 9,
+     "p25": 8,
+     "p75": 16,
+     "mean": 11.05,
+     "n": 43
+    }
+   }
+  },
+  "block_chord_offbeat": {
+   "median": 7.0,
+   "p25": 5,
+   "p75": 8,
+   "mean": 6.97,
+   "n": 128,
+   "by_meter": {
+    "2": {
+     "median": 7.0,
+     "p25": 5,
+     "p75": 8,
+     "mean": 6.97,
+     "n": 128
+    }
+   }
+  },
+  "pedal_point": {
+   "median": 1,
+   "p25": 1,
+   "p75": 1,
+   "mean": 1.6,
+   "n": 5
+  }
+ }
+}

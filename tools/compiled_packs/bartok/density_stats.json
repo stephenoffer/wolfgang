@@ -1,0 +1,32 @@
+{
+ "composer": "bartok",
+ "schema": 4,
+ "total_bars": 16,
+ "rh": {
+  "singing_melody": {
+   "median": 4,
+   "p25": 3,
+   "p75": 4,
+   "mean": 3.64,
+   "n": 11
+  }
+ },
+ "lh": {
+  "block_chord_sparse": {
+   "median": 2.0,
+   "p25": 2,
+   "p75": 2,
+   "mean": 1.81,
+   "n": 16,
+   "by_meter": {
+    "2": {
+     "median": 2.0,
+     "p25": 2,
+     "p75": 2,
+     "mean": 1.81,
+     "n": 16
+    }
+   }
+  }
+ }
+}

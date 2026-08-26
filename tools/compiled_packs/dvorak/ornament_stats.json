@@ -1,0 +1,23 @@
+{
+ "composer": "dvorak",
+ "schema": 1,
+ "total_bars": 46,
+ "textures": {
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.8667,
+   "n": 15
+  },
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.7826,
+   "n": 23
+  }
+ }
+}

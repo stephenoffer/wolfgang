@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_off_beat_chords_with_an_empty_downbeat",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Off-beat chords with an empty downbeat",
+    "description": "`rest_e [C3,E3,G3]e [C3,E3,G3]e [C3,E3,G3]e`. The bar has no floor under beat 1. His most recognisable texture.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_syncopated_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Syncopated bass",
+    "description": "the bass note tied over from the previous bar, so it is never struck on the downbeat.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_broken_chord_spanning_a_tenth",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Broken chord spanning a tenth",
+    "description": "`C2e G2e E3e G2e`, warmer than an octave figure.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_inner_voice_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Inner-voice melody",
+    "description": "the tune in the middle of the texture, played by the left hand's thumb, with accompaniment above and below.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_agitated",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, agitated",
+    "description": "`[C3,E3,G3]s \u00d716` under a declamatory melody.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_contrapuntal_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Contrapuntal bass",
+    "description": "a real second line, from his Bach study.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_widely_spaced_sustained_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Widely-spaced sustained chords",
+    "description": "for the intimate slow pieces.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_dotted_rhythm_march_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Dotted-rhythm march bass",
+    "description": "`C2dq C2e G2dq G2e`, for the character pieces.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggio_crossing_above_the_right_hand",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggio crossing above the right hand",
+    "description": "hand crossing as colour.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves",
+    "description": "for a declamatory opening.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence_for_a_beat_mid_phrase",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence for a beat mid-phrase",
+    "description": "the texture stops and restarts.",
+    "source_file": "schumann/schumann-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -19,7 +118,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -37,7 +136,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -55,7 +154,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -261,5 +360,185 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_persistent_syncopation",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Persistent syncopation",
+    "description": "the melody or the accompaniment consistently off the beat for a whole piece.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_empty_downbeat",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Empty downbeat",
+    "description": "beat 1 with nothing on it, repeatedly.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_metric_ambiguity",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Metric ambiguity",
+    "description": "the notated metre and the heard metre disagreeing for long stretches.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dotted_march_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Dotted march rhythm",
+    "description": "as a character marker.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cross_rhythm_between_the_hands",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Cross-rhythm between the hands.",
+    "description": "Cross-rhythm between the hands.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_motto_cipher",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The motto cipher",
+    "description": "a short pitch sequence used as a signature and woven through a cycle (ASCH, or a name spelled in notes).",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_inner_voice_melody",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Inner-voice melody",
+    "description": "the tune buried in the middle of the texture.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fragmented_aphoristic_phrases",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Fragmented, aphoristic phrases",
+    "description": "a piece can be sixteen bars long and complete.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_sighing_appoggiatura",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The sighing appoggiatura",
+    "description": "densely used.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_dialogue_between_the_hands",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody in dialogue between the hands",
+    "description": "a phrase begun by one and finished by the other.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_inner_voices",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic inner voices",
+    "description": "over a static bass.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_deceptive_resolutions",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Deceptive resolutions",
+    "description": "used repeatedly so the tonic is delayed.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture",
+    "description": "for sudden shadow.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequences_of_dominant_sevenths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Sequences of dominant sevenths",
+    "description": "sliding chromatically.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ending_on_an_unresolved_or_ambiguous_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Ending on an unresolved or ambiguous harmony",
+    "description": "several of the character pieces simply stop.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_cycle",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The cycle",
+    "description": "eight to twenty short pieces, each characterised, unified by a motto or a key scheme.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_contrasting_alter_egos",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Contrasting alter egos",
+    "description": "two opposed characters (impetuous / dreamy) alternating across a set. Florestan and Eusebius.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_quotation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Quotation",
+    "description": "a phrase from another work or another movement appearing briefly.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_unexpected_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The unexpected ending",
+    "description": "a piece that stops mid-gesture.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_literary_titles_and_programmes",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Literary titles and programmes",
+    "description": "driving the character of each piece.",
+    "source_file": "schumann/schumann-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

@@ -30,17 +30,38 @@ def test_members_armed_filtering():
 
 
 def test_resolve_composer_vs_style_vs_unknown():
+    """The unknown fixture is DERIVED, not hardcoded. This named
+    "rachmaninoff" as the unarmed composer; arming him then failed a test that
+    was describing the corpus rather than the resolver."""
     assert SR.resolve_reference("mozart")["kind"] == "composer"
     r_style = SR.resolve_reference("classical")
     assert r_style["kind"] == "style" and r_style["id"] == "style__classical"
     assert r_style["armed"] and r_style["members"]
-    r_unknown = SR.resolve_reference("rachmaninoff")
-    assert r_unknown["kind"] == "unknown" and not r_unknown["armed"]
+
+    from scales.composition_brief import available_corpus_composers
+
+    armed = set(available_corpus_composers())
+    unarmed = next(
+        (c for m in SR._STYLE_MEMBERS.values() for c in m if c not in armed),
+        "notacomposeratall",
+    )
+    r_unknown = SR.resolve_reference(unarmed)
+    assert r_unknown["kind"] == "unknown" and not r_unknown["armed"], unarmed
 
 
 def test_unknown_style_with_no_armed_members():
-    # impressionist is a known style but has no armed composers in this repo
-    r = SR.resolve_reference("impressionist")
+    """Likewise derived: this hardcoded "impressionist", which had no armed
+    members until Debussy and Satie were acquired."""
+    from scales.composition_brief import available_corpus_composers
+
+    armed = set(available_corpus_composers())
+    empty = next(
+        (st for st, m in SR._STYLE_MEMBERS.items() if not (set(m) & armed)), None
+    )
+    if empty is None:
+        pytest.skip("every known style now has at least one armed member")
+        return
+    r = SR.resolve_reference(empty)
     assert r["kind"] == "style"
     assert r["armed"] is False
     assert r["members"] == []

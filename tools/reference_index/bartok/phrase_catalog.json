@@ -1,0 +1,272 @@
+{
+ "composer": "bartok",
+ "source_bar_index": "reference_index/bartok/bar_index.json",
+ "total_phrases": 3,
+ "avg_phrase_length": 5.33,
+ "length_distribution": {
+  "4": 2,
+  "8": 1
+ },
+ "role_distribution": {
+  "opening": 3
+ },
+ "cadence_distribution": {
+  "half": 2,
+  "authentic": 1
+ },
+ "phrases": [
+  {
+   "phrase_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_p0",
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok",
+   "bar_range": [
+    1,
+    4
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.75,
+    0.25
+   ],
+   "register_curve": [
+    0.0,
+    0.3333,
+    1.0,
+    0.8333
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 69,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_p1",
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok",
+   "bar_range": [
+    5,
+    12
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8,
+    0.8,
+    0.6,
+    0.2,
+    0.8,
+    1.0,
+    0.8,
+    0.6
+   ],
+   "register_curve": [
+    0.6667,
+    0.8333,
+    0.6667,
+    0.5,
+    0.6667,
+    1.0,
+    0.1667,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_p2",
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok",
+   "bar_range": [
+    13,
+    16
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.75,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 62,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  }
+ ]
+}

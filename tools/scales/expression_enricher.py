@@ -340,11 +340,17 @@ def _all_layers(layer_ir) -> list[tuple[str, list]]:
 
 
 def _beats_per_bar(meter) -> Fraction:
-    try:
-        num, den = int(meter[0]), int(meter[1])
-        return Fraction(num * 4, den)
-    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
-        return Fraction(4)
+    """Beats in a bar, via the ONE guarded implementation.
+
+    Computed inline here before. A denominator of zero — which a
+    partially-initialised slot or a malformed corpus record has — made
+    `Fraction(0, 0)` and raised ZeroDivisionError out of every entry point in
+    this module. Twenty-one places in the codebase did this arithmetic inline;
+    duplicated inline arithmetic is this repository's most reliable bug source.
+    """
+    from .duration import bar_duration
+
+    return bar_duration(meter)
 
 
 def _is_compound(meter) -> bool:

@@ -533,6 +533,109 @@ def detect_rhythm_vocabulary_poverty(bars: List[Dict[str, Any]], cap: int = 2):
     return out
 
 
+
+_LH_VOCAB_CACHE: Dict[str, Any] = {}
+
+
+def _accompaniment_vocabulary_floor(composer: str) -> Optional[int]:
+    """The 5th-percentile count of distinct accompaniment bar-shapes for this
+    composer, measured from his own movements. None when unmeasurable."""
+    if composer in _LH_VOCAB_CACHE:
+        return _LH_VOCAB_CACHE[composer]
+    floor = None
+    try:
+        from collections import defaultdict
+
+        from .composition_brief import _iter_corpus_bars
+
+        per = defaultdict(list)
+        for bar in _iter_corpus_bars(composer):
+            ev = bar.get("lh_display") or []
+            # NOTES ONLY, and (duration, chord-size) — the score side reads
+            # `durations`/`chord_sizes`, which exclude rests, so the corpus side
+            # must exclude them too or the floor is measured on a different
+            # quantity than the thing compared against it.
+            sig = tuple(
+                (
+                    round(float(e.get("dur") or 0), 3),
+                    len(e.get("pitches") or ()) if e.get("type") == "chord" else 1,
+                )
+                for e in ev
+                if isinstance(e, dict) and e.get("type") != "rest"
+            )
+            if sig:
+                per[bar.get("source")].append(sig)
+        vals = sorted(len(Counter(v)) for v in per.values() if len(v) >= 30)
+        if len(vals) >= 8:
+            floor = vals[int(0.05 * (len(vals) - 1))]
+    except Exception:
+        floor = None
+    _LH_VOCAB_CACHE[composer] = floor
+    return floor
+
+
+def detect_accompaniment_vocabulary_poverty(
+    bars: List[Dict[str, Any]], composer: str = "", melody_staff: int = 0
+):
+    """How MANY different shapes the accompaniment knows, not how often it
+    repeats its favourite.
+
+    Found by reading a finished score rather than measuring it. The left hand of
+    a B-flat andante used 9 distinct bar-shapes across 41 bars; its
+    most-common-shape share was 24%, sitting exactly on Mozart's median of 25%,
+    so `accompaniment_monoculture` had nothing to say. Real Mozart movements use
+    **16-43 shapes (median 27, p10 16)**. The hand was not monotonous — it was
+    working from a tiny vocabulary, which is a different defect and reads as
+    "lacks texture".
+
+    The threshold has to be COMPOSER-RELATIVE. Chopin's mazurka accompaniments
+    genuinely run on 3-11 shapes (median 11, p05 4), so any fixed bound taken
+    from Mozart would reject most of real Chopin. Measured across 253 movements
+    of five composers, an absolute floor of 6 fires on 3.6% of them and is used
+    only when the composer's own distribution is unavailable.
+    """
+    out: List[Dict[str, Any]] = []
+    staves = sorted({b["staff"] for b in bars})
+    accomp = [st for st in staves if st != melody_staff]
+    if not accomp:
+        return out
+    st = accomp[0]
+    recs = [b for b in bars if b["staff"] == st]
+    if len(recs) < 24:
+        return out
+
+    shapes = Counter()
+    for b in recs:
+        sig = tuple(zip(b.get("durations") or (), b.get("chord_sizes") or ()))
+        if sig:
+            shapes[sig] += 1
+    distinct = len(shapes)
+    if not distinct:
+        return out
+
+    floor = _accompaniment_vocabulary_floor(composer) if composer else None
+    basis = f"{composer}'s own 5th percentile" if floor is not None else "an absolute floor"
+    if floor is None:
+        floor = 6
+    if distinct >= floor:
+        return out
+    return [
+        _finding(
+            "accompaniment_vocabulary_poverty",
+            recs[0]["bar"] if recs else None,
+            _WARN,
+            f"The accompaniment uses only {distinct} distinct bar-shapes across "
+            f"{len(recs)} bars — below {floor} ({basis}). It is not repeating one "
+            f"figure; it simply does not know many.",
+            "Bring in shapes the hand has not used yet — a walking bass, an "
+            "offbeat chord pair, a held pedal under a moving inner voice, a bar "
+            "of octaves, a bar of silence under a solo line. Vocabulary is a "
+            "different thing from variation.",
+            distinct_shapes=distinct,
+            floor=floor,
+        )
+    ]
+
 def detect_syncopation_absence(bars: List[Dict[str, Any]], cap: int = 1):
     """Every attack on the beat, in every bar, for the whole piece.
 
@@ -1062,6 +1165,7 @@ def realism_report(
     findings += detect_dynamic_poverty(bars, spanners["hairpin"])
     findings += detect_voicing_poverty(bars, melody_staff)
     findings += detect_rhythm_vocabulary_poverty(bars)
+    findings += detect_accompaniment_vocabulary_poverty(bars, composer=composer, melody_staff=melody_staff)
     findings += detect_syncopation_absence(bars)
     findings += detect_uniform_phrase_lengths(bounds["lengths"])
     findings += detect_identical_phrase_openings(bars, bounds["starts"])

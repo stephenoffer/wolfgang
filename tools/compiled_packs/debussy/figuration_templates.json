@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_wide_low_sustained_fifths_and_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide, low, sustained fifths and octaves",
+    "description": "`[C1,G1]w`, pedalled, as a resonant floor rather than a bass line.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_parallel_chords_moving_in_blocks",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Parallel chords moving in blocks",
+    "description": "the whole chord shape sliding by step or third, `[C3,E3,G3]q [D3,F3,A3]q`. Planing; the defining Impressionist texture.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rippling_wide_arpeggios",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rippling wide arpeggios",
+    "description": "spanning two or more octaves, pedalled into a wash.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_ostinato_figure_repeated_unchanged",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Ostinato figure repeated unchanged",
+    "description": "under changing upper harmony.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pentatonic_figuration",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pentatonic figuration",
+    "description": "black-key patterns, no leading tone.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_whole_tone_arpeggio",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Whole-tone arpeggio",
+    "description": "symmetrical, keyless, floating.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_fifths_in_the_deep_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare fifths in the deep bass",
+    "description": "for archaism and openness.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chord_with_an_added_second_or_sixth",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chord with an added second or sixth",
+    "description": "`[C3,D3,G3,A3]` \u2014 resonance rather than function.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_silence_between_gestures",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The silence between gestures",
+    "description": "Debussy's textures are episodic and the gaps are part of them.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_quiet_and_blurred",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo, quiet and blurred",
+    "description": "under a sustained upper line.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cross_hand_arpeggio_covering_four_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cross-hand arpeggio covering four octaves",
+    "description": "as a single sweeping gesture.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -19,7 +118,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -37,7 +136,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -55,7 +154,7 @@
     "variation_operators": [],
     "density_suggestion": null,
     "register_suggestion": "",
-    "grounding": "interpretive",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -261,5 +360,194 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_planing",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Planing",
+    "description": "a chord shape moved in parallel, all voices in the same direction by the same interval. Parallel fifths and ninths are the point, not an error.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_scale",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone scale",
+    "description": "symmetrical, no leading tone, no tonic. Used for suspension and unreality.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pentatonic_collections",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Pentatonic collections",
+    "description": "five notes, no semitones, no tendency.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modes",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modes",
+    "description": "Dorian, Lydian, Mixolydian, chosen for colour.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_added_note_chords",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Added-note chords",
+    "description": "sixths, seconds and ninths added to triads for resonance.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_dominant_sevenths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved dominant sevenths",
+    "description": "used as stable sonorities.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bitonal_or_ambiguous_bass",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bitonal or ambiguous bass",
+    "description": "the bass and the upper harmony implying different centres.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chord_streams_over_a_pedal",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chord streams over a pedal",
+    "description": "the harmony moving while the bass does not.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_tritone_as_a_structural_interval",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The tritone as a structural interval",
+    "description": "rather than a dissonance to resolve.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_avoiding_the_leading_tone",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Avoiding the leading tone",
+    "description": "almost entirely.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_veiled_pulse",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Veiled pulse",
+    "description": "the metre deliberately obscured by ties, irregular groupings and rests on strong beats.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_irregular_groupings",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Irregular groupings",
+    "description": "5, 7 and 11 against the beat.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_register_as_colour",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Register as colour",
+    "description": "the same material moved octaves for a different quality.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_extreme_dynamic_range_at_the_quiet_end",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Extreme dynamic range at the quiet end",
+    "description": "`pppp` markings, and most of the music below `mf`.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_silence_as_material",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Silence as material",
+    "description": "gaps between gestures rather than continuous flow.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_layered_ostinati",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Layered ostinati",
+    "description": "two or three repeating figures at different lengths.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_episodic_image_based_form",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Episodic, image-based form",
+    "description": "sections defined by texture and colour rather than by key.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_arch_shape",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Arch shape",
+    "description": "building to one climax and receding.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_a_title_that_names_an_image",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "A title that names an image",
+    "description": "with the music depicting it directly.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_gesture_that_does_not_return",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The gesture that does not return",
+    "description": "material used once and abandoned.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ending_by_evaporation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ending by evaporation",
+    "description": "thinning to nothing rather than cadencing.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

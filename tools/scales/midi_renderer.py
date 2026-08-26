@@ -24,7 +24,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from .duration import DURATION_VALUES
+from .duration import DURATION_VALUES, bar_duration
 from .models import EventIR, PerformanceIR
 from .music_io import layer_ir_to_event_ir
 from .piece_graph import PieceGraph
@@ -221,14 +221,14 @@ def render_midi(
     bar_starts: Dict[int, float] = {}
     cursor = 0.0
     for events, _perf, meter, _key in phrase_renders:
-        per_bar = meter[0] * 4.0 / meter[1]
+        per_bar = float(bar_duration(meter))
         for bar in sorted({e.bar for e in events}):
             if bar not in bar_starts:
                 bar_starts[bar] = cursor
                 cursor += per_bar
 
     for events, perf, meter, key in phrase_renders:
-        beats_per_bar = meter[0] * 4.0 / meter[1]
+        beats_per_bar = float(bar_duration(meter))
         pedaled = set(pedal_bars(perf)) if perf else set()
         # Tendency-tone pitch class (the leading tone) for harmony-aware
         # emphasis: it pulls toward the tonic and is played with a touch more

@@ -587,6 +587,186 @@
   "grounding": "hard_corroborated"
  },
  {
+  "id": "device_the_general_pause",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "The general pause",
+  "description": "everything stops mid-phrase, for a beat or a whole bar, then the music resumes. His signature, and it appears in most fast movements.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_false_recapitulation",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "The false recapitulation",
+  "description": "the theme returns in the wrong key, is allowed to continue for a few bars, and is then corrected. The listener is caught out twice: once by the early return and once by its being wrong.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_extra_bar",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "The extra bar",
+  "description": "a four-bar phrase becomes five because one bar is repeated, or seven because the cadence is delayed. Hyper-regular phrase rhythm is not his; irregularity is.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_repeated_cadence",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "The repeated cadence",
+  "description": "a phrase cadences, then cadences again, then a third time, each slightly different. Comic when fast, emphatic when slow.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_sudden_dynamic",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "The sudden dynamic",
+  "description": "one bar of `pp` in the middle of a forte passage, or a `ff` chord after a long quiet stretch (the \"Surprise\" gesture, and it works because everything before it is regular).",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_ending_on_the_wrong_thing",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "Ending on the wrong thing",
+  "description": "a movement that stops on a dominant, or on a fragment, or simply trails off. He does not always close firmly.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_wrong_key_opening",
+  "category": "composer_device",
+  "section": "Structural surprises",
+  "name": "The wrong-key opening",
+  "description": "beginning somewhere other than the tonic and arriving at it a few bars in.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_monothematicism",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Monothematicism",
+  "description": "the second subject is the first subject in the dominant. Write one good theme and re-use it rather than inventing a second.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_motivic_development_from_a_tiny_cell",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Motivic development from a tiny cell",
+  "description": "like Beethoven, but wittier: the fragment is turned over, inverted, and handed between the hands.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_two_part_texture",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Two-part texture",
+  "description": "melody and a single bass line, no chords at all, for whole phrases. Far more common in Haydn than in Mozart and one of the cheapest ways to make a texture change.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_folk_derived_material",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Folk-derived material",
+  "description": "drone fifths, modal inflections, and dance rhythms, especially in finales. The rustic register is deliberate.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_hand_crossing",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Hand crossing",
+  "description": "the left hand plays above the right for a bar or two. A colour effect and unmistakably his.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_unison_passages",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Unison passages",
+  "description": "both hands on the same line for a bare, attention-getting statement, usually at a development's opening.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_ornament_as_punctuation",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "Ornament as punctuation",
+  "description": "a turn or a trill placed at the *end* of a gesture rather than on a long note, closing it off like a spoken inflection.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_rhetorical_question",
+  "category": "composer_device",
+  "section": "Melodic and textural devices",
+  "name": "The rhetorical question",
+  "description": "a phrase that ends on a rising interval, on the dominant, unanswered, followed by a pause.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_remote_modulation_by_common_tone",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Remote modulation by common tone",
+  "description": "one note is held while the harmony around it changes into an unexpected key.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_deceptive_cadence_used_comically",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Deceptive cadence used comically",
+  "description": "the resolution avoided and then immediately made fun of by repetition.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_long_dominant_preparation_then_the_theme_arrives_early",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Long dominant preparation, then the theme arrives early",
+  "description": "the setup and the payoff deliberately mismatched.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_minore_variation",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Minore variation",
+  "description": "in a variation set, one variation in the parallel minor, usually more chromatic and more serious than its neighbours.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_sudden_chromatic_side_step",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Sudden chromatic side-step",
+  "description": "in an otherwise diatonic passage, held for one bar, then corrected.",
+  "source_file": "haydn/haydn-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
   "id": "lh_idiom_repeated_chord_motor",
   "category": "composer_hand_idiom",
   "hand": "lh",
@@ -880,6 +1060,15 @@
   "section": "Structural devices",
   "name": "Thematic transformation across movements",
   "description": "the same cell appears in a later movement in a different character. In a multi-movement work this is what makes it one work.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_written_out_accelerando_by_note_value",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Written-out accelerando by note value",
+  "description": "into a final cadence.",
   "source_file": "beethoven/beethoven-devices.md",
   "grounding": "hard_corroborated"
  }

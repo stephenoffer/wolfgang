@@ -1,0 +1,256 @@
+{
+ "checks": [
+  {
+   "id": "fp_pentatonic_folk_melody_the_tune_that_everyone_knows",
+   "category": "fingerprint",
+   "description": "Pentatonic/folk melody \u2014 the tune that everyone knows",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_furiant_and_dumka_czech_dance_forms_as_structural_units",
+   "category": "fingerprint",
+   "description": "Furiant and Dumka \u2014 Czech dance forms as structural units",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_flat_vii_chord_mixolydian_as_characteristic_color",
+   "category": "fingerprint",
+   "description": "Flat-VII chord (Mixolydian) as characteristic color",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_richly_lyrical_slow_movements_the_american_idiom",
+   "category": "fingerprint",
+   "description": "Richly lyrical slow movements \u2014 the American idiom",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_american_pentatonic_color_late_dvo_k",
+   "category": "fingerprint",
+   "description": "American pentatonic color (late Dvo\u0159\u00e1k)",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_5",
+   "category": "anti_pattern",
+   "description": "s (what sounds wrong)",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_6",
+   "category": "anti_pattern",
+   "description": "**Sophisticated harmonic language.** Dvo\u0159\u00e1k's harmony is functional and straightforward. Secondary d",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_7",
+   "category": "anti_pattern",
+   "description": "**Emotional complexity or irony.** Dvo\u0159\u00e1k's emotional language is direct: joyful, melancholy, energe",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_8",
+   "category": "anti_pattern",
+   "description": "**Thin, chamber-like textures in orchestral writing.** Dvo\u0159\u00e1k's orchestration is full-bodied, warm, ",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_9",
+   "category": "anti_pattern",
+   "description": "**Abstract, non-melodic writing.** Every Dvo\u0159\u00e1k passage has a tune. Development sections still have ",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_10",
+   "category": "anti_pattern",
+   "description": "**Absence of folk character.** A Dvo\u0159\u00e1k piece without a folk-like melody (pentatonic, modal, singabl",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_norwegian_folk_scale_the_raised_4th_lydian_inflection",
+   "category": "fingerprint",
+   "description": "Norwegian folk scale \u2014 the raised 4th (Lydian inflection)",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_short_atmospheric_miniature_forms",
+   "category": "fingerprint",
+   "description": "Short, atmospheric miniature forms",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_pedal_point_under_changing_harmonies",
+   "category": "fingerprint",
+   "description": "Pedal point under changing harmonies",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_halling_and_springar_rhythms_norwegian_dance_idiom",
+   "category": "fingerprint",
+   "description": "Halling and Springar rhythms \u2014 Norwegian dance idiom",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_sudden_tonal_juxtaposition_grieg_s_harmonic_freshness",
+   "category": "fingerprint",
+   "description": "Sudden tonal juxtaposition \u2014 Grieg's harmonic freshness",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_6",
+   "category": "anti_pattern",
+   "description": "**Large-form symphonic architecture.** Grieg's natural scale is small. Forcing his material into a 3",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_7",
+   "category": "anti_pattern",
+   "description": "**Complex chromatic harmony (Wagner-style).** Grieg's chromatic moments are fresh and surprising, no",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_8",
+   "category": "anti_pattern",
+   "description": "**German Romantic emotional weight.** Grieg's emotions are clear and fresh \u2014 he doesn't brood. A Gri",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_9",
+   "category": "anti_pattern",
+   "description": "**Absence of folk or dance idiom.** Grieg's music always touches folk tradition, either in melody (f",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_10",
+   "category": "anti_pattern",
+   "description": "**Dense orchestral texture.** Grieg's orchestration (in Peer Gynt) is clear and chamber-like, even i",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_11",
+   "category": "anti_pattern",
+   "description": "**Alberti bass.** Grieg does not use Alberti bass. He uses open-5th drones, waltz bass (3/4), or arp",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_raw_unpolished_harmonic_language_intentional_wrong_notes",
+   "category": "fingerprint",
+   "description": "Raw, unpolished harmonic language \u2014 intentional \"wrong\" notes",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_speech_melody_vocal_rhythm_following_natural_russian_speech",
+   "category": "fingerprint",
+   "description": "Speech-melody \u2014 vocal rhythm following natural Russian speech",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_whole_tone_and_octatonic_fragments",
+   "category": "fingerprint",
+   "description": "Whole-tone and octatonic fragments",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_modal_russian_church_idiom_bells_and_liturgy",
+   "category": "fingerprint",
+   "description": "Modal Russian church idiom \u2014 bells and liturgy",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_programmatic_specificity_portraits_and_places",
+   "category": "fingerprint",
+   "description": "Programmatic specificity \u2014 portraits and places",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_6",
+   "category": "anti_pattern",
+   "description": "**Smooth, academic voice-leading.** If the chord connections are perfectly smooth with no parallels ",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_7",
+   "category": "anti_pattern",
+   "description": "**Italian bel canto melody.** Long, arching, ornamental melody is not Mussorgsky. His melody is shor",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_8",
+   "category": "anti_pattern",
+   "description": "**German formal structure.** Sonata form, development section, formal recapitulation \u2014 these are not",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_9",
+   "category": "anti_pattern",
+   "description": "**Absence of Russian color.** The bell bass, the church mode, the speech-rhythm \u2014 without at least o",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_10",
+   "category": "anti_pattern",
+   "description": "**Consistent \"nice\" harmony.** Mussorgsky has ugly moments by choice. A passage that is harmonically",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_orchestral_color_as_the_primary_compositional_parameter",
+   "category": "fingerprint",
+   "description": "Orchestral color as the primary compositional parameter",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_the_rimsky_korsakov_scale_octatonic_as_exotic_color",
+   "category": "fingerprint",
+   "description": "The Rimsky-Korsakov scale (octatonic) as exotic color",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_arabian_nights_exotic_color_modal_scales_and_augmented_2nds",
+   "category": "fingerprint",
+   "description": "Arabian Nights exotic color \u2014 modal scales and augmented 2nds",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_brilliant_solo_woodwind_writing_the_storyteller_s_voice",
+   "category": "fingerprint",
+   "description": "Brilliant solo woodwind writing \u2014 the storyteller's voice",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_narrative_orchestration_music_as_visual_image",
+   "category": "fingerprint",
+   "description": "Narrative orchestration \u2014 music as visual image",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_6",
+   "category": "anti_pattern",
+   "description": "**Generic orchestration.** In Rimsky, every orchestral choice has a reason tied to color or imagery.",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_7",
+   "category": "anti_pattern",
+   "description": "**Absence of exotic modal color.** A Rimsky-style passage that uses only Western diatonic major/mino",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_8",
+   "category": "anti_pattern",
+   "description": "**Emotional abstraction.** Rimsky's music is almost always about something specific and often visual",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_9",
+   "category": "anti_pattern",
+   "description": "**Thick, muddy orchestration.** Despite the large orchestra, Rimsky's orchestration is clear. Each f",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_10",
+   "category": "anti_pattern",
+   "description": "**Undecorated solo lines.** Rimsky's solos have ornaments: trills at phrase peaks, grace notes, turn",
+   "severity": "soft"
+  }
+ ]
+}

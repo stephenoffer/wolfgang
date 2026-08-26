@@ -1,0 +1,10230 @@
+{
+ "composer": "faure",
+ "source_bar_index": "reference_index/faure/bar_index.json",
+ "total_phrases": 140,
+ "avg_phrase_length": 3.69,
+ "length_distribution": {
+  "1": 44,
+  "2": 22,
+  "3": 15,
+  "4": 30,
+  "5": 7,
+  "6": 6,
+  "7": 2,
+  "8": 4,
+  "11": 1,
+  "12": 2,
+  "16": 7
+ },
+ "role_distribution": {
+  "opening": 89,
+  "closing": 47,
+  "middle": 4
+ },
+ "cadence_distribution": {
+  "half": 115,
+  "authentic": 18,
+  "none": 7
+ },
+ "phrases": [
+  {
+   "phrase_id": "faure_matelots__matelots_p0",
+   "source": "matelots__matelots",
+   "bar_range": [
+    1,
+    6
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.5455,
+    0.5455,
+    0.8182,
+    0.9091,
+    1.0,
+    0.6364
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "maj7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1667,
+   "avg_melody_density": 8.1667,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p1",
+   "source": "matelots__matelots",
+   "bar_range": [
+    7,
+    10
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.8182,
+    0.9091,
+    1.0,
+    0.7273
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p2",
+   "source": "matelots__matelots",
+   "bar_range": [
+    11,
+    18
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.8333,
+    0.6667,
+    0.9167,
+    0.75,
+    0.75,
+    0.5833,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.1667,
+    0.5,
+    0.5,
+    0.6667,
+    0.6667,
+    0.8333,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "dim7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 6,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.375,
+   "avg_melody_density": 9.125,
+   "entry_state": {
+    "density": 10,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p3",
+   "source": "matelots__matelots",
+   "bar_range": [
+    19,
+    19
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p4",
+   "source": "matelots__matelots",
+   "bar_range": [
+    20,
+    25
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.5455,
+    0.5455,
+    0.8182,
+    0.9091,
+    1.0,
+    0.6364
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "maj7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1667,
+   "avg_melody_density": 8.1667,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p5",
+   "source": "matelots__matelots",
+   "bar_range": [
+    26,
+    29
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.8182,
+    0.9091,
+    1.0,
+    0.6364
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 9.25,
+   "entry_state": {
+    "density": 9,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p6",
+   "source": "matelots__matelots",
+   "bar_range": [
+    30,
+    37
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.9167,
+    0.6667,
+    0.9167,
+    0.6667,
+    0.8333,
+    0.5833,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.1667,
+    0.5,
+    0.5,
+    0.6667,
+    0.6667,
+    0.8333,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "dim7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 6,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.375,
+   "avg_melody_density": 9.25,
+   "entry_state": {
+    "density": 11,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p7",
+   "source": "matelots__matelots",
+   "bar_range": [
+    38,
+    38
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p8",
+   "source": "matelots__matelots",
+   "bar_range": [
+    39,
+    42
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.5455,
+    0.5455,
+    1.0,
+    0.7273
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    0.8571
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.75,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p9",
+   "source": "matelots__matelots",
+   "bar_range": [
+    43,
+    44
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.6364
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 11,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p10",
+   "source": "matelots__matelots",
+   "bar_range": [
+    45,
+    48
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7273,
+    1.0,
+    0.7273
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 11,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p11",
+   "source": "matelots__matelots",
+   "bar_range": [
+    49,
+    56
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.8333,
+    0.6667,
+    0.9167,
+    0.75,
+    0.75,
+    0.5833,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.1667,
+    0.5,
+    0.5,
+    0.6667,
+    0.6667,
+    0.8333,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "dim7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 6,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.375,
+   "avg_melody_density": 9.125,
+   "entry_state": {
+    "density": 10,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p12",
+   "source": "matelots__matelots",
+   "bar_range": [
+    57,
+    57
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_matelots__matelots_p13",
+   "source": "matelots__matelots",
+   "bar_range": [
+    58,
+    58
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p0",
+   "source": "apres__apres",
+   "bar_range": [
+    1,
+    4
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    0.75,
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    0.7857,
+    1.0,
+    0.7857
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.75,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p1",
+   "source": "apres__apres",
+   "bar_range": [
+    5,
+    8
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.9167,
+    0.8333,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    1.0,
+    0.75,
+    0.5,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "aug",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 11,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p2",
+   "source": "apres__apres",
+   "bar_range": [
+    9,
+    11
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.9167,
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "min7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 10.3333,
+   "entry_state": {
+    "density": 11,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 68,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p3",
+   "source": "apres__apres",
+   "bar_range": [
+    12,
+    15
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    0.75,
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.2857,
+    0.1429
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "halfdim7",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p4",
+   "source": "apres__apres",
+   "bar_range": [
+    16,
+    19
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    0.75,
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    0.7857,
+    1.0,
+    0.7857
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "aug",
+    "minor",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.75,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p5",
+   "source": "apres__apres",
+   "bar_range": [
+    20,
+    23
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.9167,
+    0.8333,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    1.0,
+    0.75,
+    0.5,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "aug",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 11,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p6",
+   "source": "apres__apres",
+   "bar_range": [
+    24,
+    35
+   ],
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.7857,
+    0.7857,
+    0.6429,
+    0.8571,
+    0.6429,
+    1.0,
+    0.6429,
+    0.5714,
+    0.9286,
+    0.8571,
+    0.6429,
+    0.5714
+   ],
+   "register_curve": [
+    0.2,
+    0.2,
+    0.1,
+    0.0,
+    0.0,
+    0.3,
+    0.4,
+    0.7,
+    0.5,
+    0.8,
+    0.7,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "pedal_point",
+    "walking_bass",
+    "pedal_point",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "aug",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1667,
+   "avg_melody_density": 10.4167,
+   "entry_state": {
+    "density": 11,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p7",
+   "source": "apres__apres",
+   "bar_range": [
+    36,
+    38
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 10.6667,
+   "entry_state": {
+    "density": 12,
+    "register_center": 69,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p8",
+   "source": "apres__apres",
+   "bar_range": [
+    39,
+    39
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p9",
+   "source": "apres__apres",
+   "bar_range": [
+    40,
+    41
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7778
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p10",
+   "source": "apres__apres",
+   "bar_range": [
+    42,
+    42
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p11",
+   "source": "apres__apres",
+   "bar_range": [
+    43,
+    46
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    0.8333,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.0,
+    0.1429
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "major",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 9.25,
+   "entry_state": {
+    "density": 8,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_apres__apres_p12",
+   "source": "apres__apres",
+   "bar_range": [
+    47,
+    47
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p0",
+   "source": "djinns__djinns",
+   "bar_range": [
+    1,
+    1
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p1",
+   "source": "djinns__djinns",
+   "bar_range": [
+    2,
+    2
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p2",
+   "source": "djinns__djinns",
+   "bar_range": [
+    3,
+    3
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p3",
+   "source": "djinns__djinns",
+   "bar_range": [
+    4,
+    4
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 62,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 62,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p4",
+   "source": "djinns__djinns",
+   "bar_range": [
+    5,
+    9
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    0.5,
+    0.75,
+    0.75,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7",
+    "dom7",
+    "halfdim7",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 66,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p5",
+   "source": "djinns__djinns",
+   "bar_range": [
+    10,
+    11
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.7143,
+    1.0
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 71,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p6",
+   "source": "djinns__djinns",
+   "bar_range": [
+    12,
+    13
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p7",
+   "source": "djinns__djinns",
+   "bar_range": [
+    14,
+    17
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6364,
+    0.7273,
+    1.0,
+    0.3636
+   ],
+   "register_curve": [
+    0.8571,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor",
+    "halfdim7",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p8",
+   "source": "djinns__djinns",
+   "bar_range": [
+    18,
+    33
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.3636,
+    0.5,
+    0.5,
+    0.5455,
+    0.5,
+    0.5455,
+    0.5909,
+    0.5909,
+    0.5455,
+    0.7727,
+    0.9545,
+    0.9545,
+    0.9545,
+    0.7727,
+    0.9545,
+    1.0
+   ],
+   "register_curve": [
+    0.3529,
+    0.0,
+    0.5294,
+    0.5882,
+    0.5882,
+    0.5882,
+    0.4706,
+    0.5882,
+    0.2941,
+    0.0,
+    0.7059,
+    0.5294,
+    0.1176,
+    0.2941,
+    1.0,
+    0.8235
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "walking_bass",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "block_chord_sparse",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor",
+    "halfdim7",
+    "minor",
+    "dom7",
+    "dom7",
+    "halfdim7",
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 15,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.375,
+   "avg_melody_density": 15.1875,
+   "entry_state": {
+    "density": 8,
+    "register_center": 67,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 22,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p9",
+   "source": "djinns__djinns",
+   "bar_range": [
+    34,
+    49
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "E-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.9545,
+    0.8182,
+    1.0,
+    0.7727,
+    0.9545,
+    0.9091,
+    0.8182,
+    0.9545,
+    0.7727,
+    0.7727,
+    1.0,
+    0.9545,
+    0.9091,
+    0.9545,
+    0.9545,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.2,
+    1.0,
+    0.6667,
+    0.4667,
+    0.7333,
+    0.5333,
+    0.8667,
+    0.6,
+    0.8,
+    0.6667,
+    0.2667,
+    0.4,
+    0.3333,
+    0.1333,
+    0.6
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "minor",
+    "dom7",
+    "minor",
+    "dom7",
+    "minor",
+    "dom7",
+    "minor",
+    "dim7",
+    "major",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5625,
+   "avg_melody_density": 19.25,
+   "entry_state": {
+    "density": 21,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p10",
+   "source": "djinns__djinns",
+   "bar_range": [
+    50,
+    65
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    0.9091,
+    0.8182,
+    0.8636,
+    0.8636,
+    0.8636,
+    0.9545,
+    0.8636,
+    0.7727,
+    1.0,
+    0.8636,
+    1.0,
+    0.8636,
+    1.0,
+    0.8636,
+    1.0
+   ],
+   "register_curve": [
+    0.4,
+    0.2,
+    0.2,
+    0.6,
+    0.2,
+    0.4,
+    0.5,
+    0.4,
+    0.0,
+    0.3,
+    0.6,
+    0.5,
+    0.9,
+    1.0,
+    0.8,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "static",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "halfdim7",
+    "major",
+    "dim",
+    "major",
+    "dim7",
+    "major",
+    "dim7",
+    "major",
+    "dim7",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 19.25,
+   "entry_state": {
+    "density": 11,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 22,
+    "register_center": 73,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p11",
+   "source": "djinns__djinns",
+   "bar_range": [
+    66,
+    67
+   ],
+   "length": 2,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.1875
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "alberti",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 16,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 68,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p12",
+   "source": "djinns__djinns",
+   "bar_range": [
+    68,
+    83
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6316,
+    0.1053,
+    0.6316,
+    0.2632,
+    0.6316,
+    0.1579,
+    0.6316,
+    1.0,
+    0.7368,
+    1.0,
+    0.8421,
+    0.9474,
+    0.8947,
+    0.8947,
+    0.5789,
+    0.5263
+   ],
+   "register_curve": [
+    0.5625,
+    0.6875,
+    0.6875,
+    1.0,
+    0.5625,
+    0.4375,
+    0.0,
+    0.0,
+    0.25,
+    0.1875,
+    0.375,
+    0.3125,
+    0.1875,
+    0.25,
+    0.5,
+    0.5625
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "chordal",
+    "scalar_run",
+    "chordal",
+    "scalar_run",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "halfdim7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 7,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.375,
+   "avg_melody_density": 12.4375,
+   "entry_state": {
+    "density": 12,
+    "register_center": 68,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p13",
+   "source": "djinns__djinns",
+   "bar_range": [
+    84,
+    99
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.5882,
+    0.8824,
+    0.7059,
+    0.8824,
+    0.6471,
+    0.8824,
+    0.7059,
+    0.8824,
+    0.9412,
+    1.0,
+    0.8824,
+    0.5882,
+    0.4706,
+    0.2353,
+    0.4118,
+    0.6471
+   ],
+   "register_curve": [
+    0.3846,
+    0.6154,
+    0.3077,
+    0.4615,
+    0.1538,
+    0.3077,
+    0.0,
+    0.2308,
+    0.0,
+    0.1538,
+    0.3077,
+    0.2308,
+    0.3077,
+    0.1538,
+    1.0,
+    0.2308
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "alberti",
+    "block_chord_offbeat",
+    "alberti",
+    "block_chord_offbeat",
+    "alberti",
+    "block_chord_offbeat",
+    "alberti",
+    "alberti",
+    "alberti",
+    "walking_bass",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "dom7",
+    "dom7",
+    "dom7",
+    "minor",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5625,
+   "avg_melody_density": 12.0625,
+   "entry_state": {
+    "density": 10,
+    "register_center": 64,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p14",
+   "source": "djinns__djinns",
+   "bar_range": [
+    100,
+    107
+   ],
+   "length": 8,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.7333,
+    0.8,
+    0.7333,
+    0.8,
+    0.8667,
+    1.0,
+    0.6,
+    0.4667
+   ],
+   "register_curve": [
+    0.8,
+    1.0,
+    1.0,
+    1.0,
+    0.8,
+    0.0,
+    0.8,
+    0.6
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "minor",
+    "dom7",
+    "dom7",
+    "dom7",
+    "minor",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 11.25,
+   "entry_state": {
+    "density": 11,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p15",
+   "source": "djinns__djinns",
+   "bar_range": [
+    108,
+    109
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p16",
+   "source": "djinns__djinns",
+   "bar_range": [
+    110,
+    113
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6364,
+    0.7273,
+    1.0,
+    0.3636
+   ],
+   "register_curve": [
+    0.8571,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor",
+    "halfdim7",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_djinns__djinns_p17",
+   "source": "djinns__djinns",
+   "bar_range": [
+    114,
+    116
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5556,
+    0.5556
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.2857
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 6.3333,
+   "entry_state": {
+    "density": 9,
+    "register_center": 67,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 62,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p0",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    1,
+    5
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    0.1818,
+    0.2727,
+    0.8182,
+    1.0,
+    0.2727
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "min7",
+    "major"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2,
+   "avg_melody_density": 5.6,
+   "entry_state": {
+    "density": 2,
+    "register_center": 85,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 85,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p1",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    6,
+    6
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 49,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 49,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p2",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    7,
+    9
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    0.9,
+    1.0,
+    0.4
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 7.6667,
+   "entry_state": {
+    "density": 9,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 85,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p3",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    10,
+    10
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 37,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 37,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p4",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    11,
+    11
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p5",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    12,
+    12
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 84,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 84,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p6",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    13,
+    15
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.3333,
+    0.4444
+   ],
+   "register_curve": [
+    0.3333,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 5.3333,
+   "entry_state": {
+    "density": 9,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 80,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p7",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    16,
+    18
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    0.7273,
+    1.0,
+    0.2727
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 7.3333,
+   "entry_state": {
+    "density": 8,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p8",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    19,
+    19
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 37,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 37,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p9",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    20,
+    22
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    0.8333,
+    1.0,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 8.3333,
+   "entry_state": {
+    "density": 10,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p10",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    23,
+    23
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 37,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 37,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p11",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    24,
+    24
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 10,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p12",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    25,
+    25
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p13",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    26,
+    32
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.3333,
+    0.3333,
+    0.3333,
+    1.0,
+    0.6667,
+    1.0
+   ],
+   "register_curve": [
+    1.0,
+    0.7222,
+    0.8333,
+    0.1667,
+    0.0,
+    0.3333,
+    0.1111
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "held_note",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "dim",
+    "dim7",
+    "halfdim7",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2857,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 88,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 72,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p14",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    33,
+    33
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G#",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p15",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    34,
+    34
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G#",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p16",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    35,
+    35
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G#",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p17",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    36,
+    41
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6364,
+    0.5455,
+    0.8182,
+    0.5455,
+    1.0,
+    0.2727
+   ],
+   "register_curve": [
+    0.3333,
+    0.1667,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "bass_melody",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "dim7",
+    "halfdim7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p18",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    42,
+    42
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p19",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    43,
+    43
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p20",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    44,
+    45
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.7692
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "maj7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 11.5,
+   "entry_state": {
+    "density": 13,
+    "register_center": 65,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p21",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    46,
+    49
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C#",
+   "key_mode": "minor",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    0.9091,
+    0.8182,
+    1.0,
+    0.2727
+   ],
+   "register_curve": [
+    0.0,
+    0.2857,
+    0.7143,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "halfdim7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 8.25,
+   "entry_state": {
+    "density": 10,
+    "register_center": 64,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 85,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p22",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    50,
+    50
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 49,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 49,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p23",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    51,
+    52
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.2727
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "min7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 11,
+    "register_center": 85,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p24",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    53,
+    53
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 37,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 37,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p25",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    54,
+    54
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p26",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    55,
+    55
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_le_pays_des_reves__le_pays_des_reves_p27",
+   "source": "le_pays_des_reves__le_pays_des_reves",
+   "bar_range": [
+    56,
+    60
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D-",
+   "key_mode": "major",
+   "time_sig": [
+    12,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.3333,
+    0.3333,
+    0.2222,
+    0.1111
+   ],
+   "register_curve": [
+    0.3571,
+    0.0,
+    0.1429,
+    0.9286,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 3.6,
+   "entry_state": {
+    "density": 9,
+    "register_center": 88,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 97,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p0",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    1,
+    7
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    0.75,
+    0.75,
+    1.0,
+    1.0,
+    0.25,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "min7",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2857,
+   "avg_melody_density": 2.8571,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p1",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    8,
+    18
+   ],
+   "length": 11,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    0.8889,
+    0.7778,
+    0.8889,
+    0.7778,
+    0.5556,
+    0.4444,
+    0.4444,
+    0.7778,
+    1.0,
+    0.5556
+   ],
+   "register_curve": [
+    0.5455,
+    0.5455,
+    0.9091,
+    0.8182,
+    0.5455,
+    0.5455,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.8182
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3636,
+   "avg_melody_density": 6.3636,
+   "entry_state": {
+    "density": 6,
+    "register_center": 66,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p2",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    19,
+    19
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p3",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    20,
+    20
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p4",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    21,
+    22
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5714
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 62,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p5",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    23,
+    26
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.6,
+    0.6,
+    0.8,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "chordal",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 3.75,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p6",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    27,
+    30
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    1.0,
+    0.75,
+    0.875
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 6.75,
+   "entry_state": {
+    "density": 6,
+    "register_center": 66,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p7",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    31,
+    32
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5556
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p8",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    33,
+    33
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p9",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    34,
+    37
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.4444,
+    0.7778,
+    1.0,
+    0.4444
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    1.0,
+    0.8182
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p10",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    38,
+    39
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7143
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p11",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    40,
+    41
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 66,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p12",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    42,
+    42
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 66,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 66,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p13",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    43,
+    43
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "aug"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p14",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    44,
+    44
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p15",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    45,
+    46
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.875
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.5,
+   "entry_state": {
+    "density": 8,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p16",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    47,
+    51
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8889,
+    0.6667,
+    1.0,
+    0.6667,
+    0.4444
+   ],
+   "register_curve": [
+    0.3333,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 6.6,
+   "entry_state": {
+    "density": 8,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p17",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    52,
+    57
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.875,
+    1.0,
+    0.625,
+    0.875,
+    1.0,
+    0.625
+   ],
+   "register_curve": [
+    0.4444,
+    0.0,
+    0.6667,
+    0.6667,
+    0.5556,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "min7",
+    "minor",
+    "dom7",
+    "min7",
+    "dim7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 6.6667,
+   "entry_state": {
+    "density": 7,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p18",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    58,
+    58
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dim7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p19",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    59,
+    62
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.6,
+    0.6,
+    0.6,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p20",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    63,
+    65
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.875,
+    1.0,
+    0.625
+   ],
+   "register_curve": [
+    0.0,
+    0.2,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 6.6667,
+   "entry_state": {
+    "density": 7,
+    "register_center": 65,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p21",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    66,
+    68
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7778,
+    0.5556
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p22",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    69,
+    72
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    0.7778,
+    1.0,
+    0.4444
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    1.0,
+    0.3333
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 6.5,
+   "entry_state": {
+    "density": 6,
+    "register_center": 68,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p23",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    73,
+    73
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p24",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    74,
+    74
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 69,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p25",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    75,
+    76
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5714
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 62,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_les_roses_d_ispahan__les_roses_d_ispahan_p26",
+   "source": "les_roses_d_ispahan__les_roses_d_ispahan",
+   "bar_range": [
+    77,
+    77
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 62,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 62,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p0",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    1,
+    5
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.0,
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    1.0,
+    0.75,
+    0.125
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "silence",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6,
+   "avg_melody_density": 3.4,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 61,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p1",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    6,
+    9
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 4,
+    "register_center": 75,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 73,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p2",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    10,
+    13
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.7143,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 61,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p3",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    14,
+    25
+   ],
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    1.0,
+    1.0,
+    0.1667,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.6667,
+    0.1667
+   ],
+   "register_curve": [
+    0.4615,
+    0.4615,
+    0.0769,
+    0.0,
+    0.7692,
+    0.9231,
+    0.7692,
+    0.9231,
+    0.6154,
+    0.6154,
+    1.0,
+    0.8462
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "maj7",
+    "minor",
+    "major",
+    "minor",
+    "major",
+    "maj7",
+    "minor",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.8333,
+   "avg_melody_density": 4.8333,
+   "entry_state": {
+    "density": 4,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 77,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p4",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    26,
+    30
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.1667,
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    0.5714,
+    1.0,
+    1.0,
+    0.7143,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "minor",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6,
+   "avg_melody_density": 3.6,
+   "entry_state": {
+    "density": 1,
+    "register_center": 77,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 73,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p5",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    31,
+    34
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 4,
+    "register_center": 87,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 85,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p6",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    35,
+    38
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.7143,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 4,
+    "register_center": 80,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 73,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_GF_pavane50__GF_pavane50_p7",
+   "source": "GF_pavane50__GF_pavane50",
+   "bar_range": [
+    39,
+    42
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F#",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6667,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.1667,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "maj7",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 4,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 78,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p0",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    1,
+    3
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "silence",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 0.6667,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p1",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    4,
+    7
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.8889,
+    0.4444,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p2",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    8,
+    11
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.125,
+    0.25,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 90,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p3",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    12,
+    15
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.9,
+    0.6,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 89,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 90,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p4",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    16,
+    18
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.3333,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.3333,
+   "entry_state": {
+    "density": 4,
+    "register_center": 89,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 86,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p5",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    19,
+    19
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p6",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    20,
+    23
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.8889,
+    0.4444,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p7",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    24,
+    27
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.1667,
+    0.3333,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 88,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p8",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    28,
+    29
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 88,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p9",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    30,
+    31
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "min7",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 84,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p10",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    32,
+    34
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "maj7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 2.3333,
+   "entry_state": {
+    "density": 4,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 76,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p11",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    35,
+    37
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.6667,
+   "entry_state": {
+    "density": 2,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p12",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    38,
+    39
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.75
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 75,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p13",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    40,
+    40
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p14",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    41,
+    43
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.3333,
+   "entry_state": {
+    "density": 4,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 77,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p15",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    44,
+    45
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p16",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    46,
+    47
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.75
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p17",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    48,
+    51
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    1.0,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.0,
+    0.5
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.25,
+   "entry_state": {
+    "density": 3,
+    "register_center": 80,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p18",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    52,
+    53
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p19",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    54,
+    55
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.75
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p20",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    56,
+    56
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p21",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    57,
+    62
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    1.0,
+    1.0,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    0.7895,
+    0.3684,
+    0.3158,
+    0.1053,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "block_chord_offbeat",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.1667,
+   "entry_state": {
+    "density": 4,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 64,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p22",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    63,
+    63
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 71,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 71,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p23",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    64,
+    66
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    0.3333,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 64,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p24",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    67,
+    71
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    1.0,
+    1.0,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.75,
+    0.0,
+    0.25,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.2,
+   "entry_state": {
+    "density": 2,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p25",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    72,
+    72
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p26",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    73,
+    73
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p27",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    74,
+    77
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5
+   ],
+   "register_curve": [
+    0.8889,
+    0.4444,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 83,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure_dolly_berceuse__faure_dolly_berceuse_p28",
+   "source": "faure_dolly_berceuse__faure_dolly_berceuse",
+   "bar_range": [
+    78,
+    83
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.5,
+    0.5,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    0.5,
+    0.0,
+    0.0,
+    0.0,
+    0.25
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.5,
+   "entry_state": {
+    "density": 4,
+    "register_center": 82,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 76,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "faure_faure-sicilienne-guitare-doigtee__faure-sicilienne-guitare-doigtee_p0",
+   "source": "faure-sicilienne-guitare-doigtee__faure-sicilienne-guitare-doigtee",
+   "bar_range": [
+    1,
+    16
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.9231,
+    0.9231,
+    0.7692,
+    1.0,
+    0.9231,
+    0.9231,
+    0.6154,
+    1.0,
+    0.9231,
+    0.9231,
+    0.7692,
+    1.0,
+    0.9231,
+    0.9231,
+    0.6154
+   ],
+   "register_curve": [
+    0.0909,
+    1.0,
+    0.7273,
+    0.3636,
+    0.0909,
+    0.7273,
+    0.4545,
+    0.0,
+    0.1818,
+    1.0,
+    0.3636,
+    0.3636,
+    0.0909,
+    0.7273,
+    0.4545,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "static",
+    "descending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "min7",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "min7",
+    "minor",
+    "minor",
+    "min7",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "min7",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.875,
+   "avg_melody_density": 11.5,
+   "entry_state": {
+    "density": 13,
+    "register_center": 55,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 54,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure-sicilienne-guitare-doigtee__faure-sicilienne-guitare-doigtee_p1",
+   "source": "faure-sicilienne-guitare-doigtee__faure-sicilienne-guitare-doigtee",
+   "bar_range": [
+    17,
+    32
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.8462,
+    0.9231,
+    0.9231,
+    0.6154,
+    0.8462,
+    0.9231,
+    0.9231,
+    0.6154,
+    0.8462,
+    0.9231,
+    0.9231,
+    0.8462,
+    1.0,
+    0.9231,
+    0.9231,
+    0.6154
+   ],
+   "register_curve": [
+    1.0,
+    0.9,
+    0.1,
+    0.3,
+    1.0,
+    0.9,
+    0.1,
+    0.3,
+    0.5,
+    0.7,
+    0.4,
+    0.0,
+    0.5,
+    0.7,
+    0.4,
+    0.1
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "min7",
+    "dom7",
+    "major",
+    "dom7",
+    "min7",
+    "dom7",
+    "major",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 12,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 11.0625,
+   "entry_state": {
+    "density": 11,
+    "register_center": 65,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 56,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "faure_faure-sicilienne-guitare-doigtee__faure-sicilienne-guitare-doigtee_p2",
+   "source": "faure-sicilienne-guitare-doigtee__faure-sicilienne-guitare-doigtee",
+   "bar_range": [
+    33,
+    34
+   ],
+   "length": 2,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.125
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 4.5,
+   "entry_state": {
+    "density": 8,
+    "register_center": 56,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 43,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  }
+ ]
+}

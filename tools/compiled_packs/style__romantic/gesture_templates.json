@@ -1311,5 +1311,110 @@
   ],
   "source_file": "schubert/composition-guide.md",
   "source_heading": "Note-Level Technique 2: Third-Relation Key Shift (C major \u2192 Ab major)"
+ },
+ {
+  "id": "tchaikovsky__note_level_technique_2_waltz_bass_explicit_notes_3_4",
+  "name": "Note-Level Technique 2: Waltz Bass (Explicit Notes, 3/4)",
+  "situation": "Waltz \u2014 beat 1 bass, beats 2\u20133 inner chord. Melody is already present.",
+  "voice_events": {
+   "vln1": [
+    {
+     "p": "E5",
+     "d": "h",
+     "dyn": "mp"
+    },
+    {
+     "p": "F5",
+     "d": "q"
+    },
+    {
+     "p": "G5",
+     "d": "dh"
+    },
+    {
+     "p": "F5",
+     "d": "q"
+    },
+    {
+     "p": "E5",
+     "d": "q"
+    },
+    {
+     "p": "D5",
+     "d": "q"
+    }
+   ],
+   "vla": [
+    {
+     "p": "rest",
+     "d": "q"
+    },
+    {
+     "p": "E3",
+     "d": "q"
+    },
+    {
+     "p": "G3",
+     "d": "q"
+    },
+    {
+     "p": "rest",
+     "d": "q"
+    },
+    {
+     "p": "G3",
+     "d": "q"
+    },
+    {
+     "p": "B3",
+     "d": "q"
+    },
+    {
+     "p": "rest",
+     "d": "q"
+    },
+    {
+     "p": "F3",
+     "d": "q"
+    },
+    {
+     "p": "A3",
+     "d": "q"
+    }
+   ],
+   "vc": [
+    {
+     "p": "C2",
+     "d": "q"
+    },
+    {
+     "p": "rest",
+     "d": "h"
+    },
+    {
+     "p": "G2",
+     "d": "q"
+    },
+    {
+     "p": "rest",
+     "d": "h"
+    },
+    {
+     "p": "F2",
+     "d": "q"
+    },
+    {
+     "p": "rest",
+     "d": "h"
+    }
+   ]
+  },
+  "harmonic_context": "",
+  "phrase_functions": [],
+  "composer_affinities": [
+   "tchaikovsky"
+  ],
+  "source_file": "tchaikovsky/composition-guide.md",
+  "source_heading": "Note-Level Technique 2: Waltz Bass (Explicit Notes, 3/4)"
  }
 ]

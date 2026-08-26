@@ -1,0 +1,962 @@
+{
+ "composer": "bruckner",
+ "source_bar_index": "reference_index/bruckner/bar_index.json",
+ "total_phrases": 16,
+ "avg_phrase_length": 1.69,
+ "length_distribution": {
+  "1": 8,
+  "2": 5,
+  "3": 3
+ },
+ "role_distribution": {
+  "closing": 8,
+  "opening": 8
+ },
+ "cadence_distribution": {
+  "half": 14,
+  "authentic": 2
+ },
+ "phrases": [
+  {
+   "phrase_id": "bruckner_perger__perger_p0",
+   "source": "perger__perger",
+   "bar_range": [
+    1,
+    1
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p1",
+   "source": "perger__perger",
+   "bar_range": [
+    2,
+    4
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.75,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody",
+    "held_note"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "pedal_point",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 65,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 65,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p2",
+   "source": "perger__perger",
+   "bar_range": [
+    5,
+    7
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.3333,
+    0.3333,
+    1.0
+   ],
+   "register_curve": [
+    0.1667,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "held_note",
+    "held_note",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dim7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 1.6667,
+   "entry_state": {
+    "density": 1,
+    "register_center": 64,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 74,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p3",
+   "source": "perger__perger",
+   "bar_range": [
+    8,
+    9
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6667,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 2.5,
+   "entry_state": {
+    "density": 2,
+    "register_center": 64,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p4",
+   "source": "perger__perger",
+   "bar_range": [
+    10,
+    11
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p5",
+   "source": "perger__perger",
+   "bar_range": [
+    12,
+    12
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 75,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 75,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p6",
+   "source": "perger__perger",
+   "bar_range": [
+    13,
+    13
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p7",
+   "source": "perger__perger",
+   "bar_range": [
+    14,
+    15
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.3333
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "maj7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 64,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p8",
+   "source": "perger__perger",
+   "bar_range": [
+    16,
+    17
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "silence",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 1.5,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p9",
+   "source": "perger__perger",
+   "bar_range": [
+    18,
+    20
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    0.1667,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "pedal_point",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "aug"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 65,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p10",
+   "source": "perger__perger",
+   "bar_range": [
+    21,
+    22
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.6,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 67,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 67,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p11",
+   "source": "perger__perger",
+   "bar_range": [
+    23,
+    23
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p12",
+   "source": "perger__perger",
+   "bar_range": [
+    24,
+    24
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p13",
+   "source": "perger__perger",
+   "bar_range": [
+    25,
+    25
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p14",
+   "source": "perger__perger",
+   "bar_range": [
+    26,
+    26
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "bruckner_perger__perger_p15",
+   "source": "perger__perger",
+   "bar_range": [
+    27,
+    27
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "held_note"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 1.0,
+   "entry_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 1,
+    "register_center": 60,
+    "texture": "held_note",
+    "has_rests": true
+   }
+  }
+ ]
+}

@@ -1,0 +1,6599 @@
+{
+ "composer": "vivaldi",
+ "source_bar_index": "reference_index/vivaldi/bar_index.json",
+ "total_phrases": 77,
+ "avg_phrase_length": 5.47,
+ "length_distribution": {
+  "1": 22,
+  "2": 8,
+  "3": 6,
+  "4": 8,
+  "5": 3,
+  "6": 3,
+  "7": 4,
+  "8": 4,
+  "9": 3,
+  "10": 6,
+  "12": 1,
+  "13": 1,
+  "16": 8
+ },
+ "role_distribution": {
+  "opening": 48,
+  "closing": 28,
+  "middle": 1
+ },
+ "cadence_distribution": {
+  "none": 8,
+  "half": 52,
+  "authentic": 17
+ },
+ "phrases": [
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p0",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    1,
+    16
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.3333,
+    0.8333,
+    0.6667,
+    0.8333,
+    0.5,
+    0.8333,
+    0.6667,
+    0.8333,
+    0.6667,
+    1.0,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.6667,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dim",
+    "maj7",
+    "major",
+    "major",
+    "dim",
+    "maj7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.4375,
+   "entry_state": {
+    "density": 2,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p1",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    17,
+    26
+   ],
+   "length": 10,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.5,
+    0.5,
+    0.75,
+    0.75,
+    0.75,
+    1.0,
+    1.0,
+    0.75,
+    0.125,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "held_note",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "bass_melody",
+    "walking_bass",
+    "alberti",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "maj7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2,
+   "avg_melody_density": 5.3,
+   "entry_state": {
+    "density": 4,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p2",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    27,
+    34
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8,
+    0.7,
+    1.0,
+    0.7,
+    0.8,
+    0.7,
+    1.0,
+    0.7
+   ],
+   "register_curve": [
+    1.0,
+    0.875,
+    0.875,
+    0.375,
+    1.0,
+    0.875,
+    0.875,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "ascending",
+    "static",
+    "static",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 63,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 55,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p3",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    35,
+    36
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.7143,
+    1.0
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 60,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 53,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p4",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    37,
+    46
+   ],
+   "length": 10,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.9167,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.8333,
+    0.6667,
+    0.6667,
+    1.0,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.7273,
+    1.0,
+    0.7273,
+    0.5455,
+    0.3636,
+    0.0,
+    0.0,
+    0.0909,
+    0.7273,
+    0.6364
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "bass_melody",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 7,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2,
+   "avg_melody_density": 9.8,
+   "entry_state": {
+    "density": 11,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 59,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p5",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    47,
+    47
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p6",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    48,
+    55
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.375,
+    1.0,
+    1.0,
+    0.5,
+    0.875,
+    0.25,
+    0.875,
+    0.25
+   ],
+   "register_curve": [
+    1.0,
+    0.6667,
+    0.0833,
+    0.0,
+    0.4167,
+    0.25,
+    0.4167,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "bass_melody",
+    "bass_melody",
+    "broken_chord_desc",
+    "bass_melody",
+    "walking_bass",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "maj7",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 10.25,
+   "entry_state": {
+    "density": 6,
+    "register_center": 65,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 53,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p7",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    56,
+    59
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8,
+    1.0,
+    0.8
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "maj7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.5,
+   "entry_state": {
+    "density": 5,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 65,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p8",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    60,
+    63
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8,
+    0.7,
+    1.0,
+    0.7
+   ],
+   "register_curve": [
+    1.0,
+    0.875,
+    0.875,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 8,
+    "register_center": 63,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 55,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p9",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    64,
+    65
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5714
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 53,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p10",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    66,
+    68
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8182,
+    0.8182
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.6667,
+   "entry_state": {
+    "density": 11,
+    "register_center": 58,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 58,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p11",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    69,
+    71
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.9091,
+    1.0,
+    0.8182
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 10,
+    "register_center": 56,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 60,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p12",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    72,
+    75
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.5556,
+    0.6667,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    0.3333,
+    1.0,
+    0.3333
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "bass_melody",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 60,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p13",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    76,
+    76
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 59,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 59,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p14",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    77,
+    79
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.5,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 13.3333,
+   "entry_state": {
+    "density": 16,
+    "register_center": 59,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 56,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p15",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    80,
+    80
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 58,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 58,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p16",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    81,
+    89
+   ],
+   "length": 9,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8125,
+    0.75,
+    1.0,
+    1.0,
+    0.75,
+    0.875,
+    0.25,
+    0.875,
+    0.25
+   ],
+   "register_curve": [
+    0.2222,
+    1.0,
+    0.7778,
+    0.0,
+    0.2222,
+    1.0,
+    0.6667,
+    1.0,
+    0.4444
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "singing_melody",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "walking_bass",
+    "alberti",
+    "bass_melody",
+    "alberti",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dim",
+    "major",
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2222,
+   "avg_melody_density": 11.6667,
+   "entry_state": {
+    "density": 13,
+    "register_center": 56,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 58,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p17",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    90,
+    105
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8333,
+    0.6667,
+    0.8333,
+    0.5,
+    0.8333,
+    0.6667,
+    0.8333,
+    0.6667,
+    1.0,
+    0.6667,
+    0.6667,
+    0.6667,
+    1.0,
+    0.6667,
+    0.6667,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "singing_melody",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "maj7",
+    "major",
+    "major",
+    "dim",
+    "maj7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "halfdim7"
+   ],
+   "peak_bar_offset": 8,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0625,
+   "avg_melody_density": 4.5625,
+   "entry_state": {
+    "density": 5,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p18",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    106,
+    114
+   ],
+   "length": 9,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    1.0,
+    1.0,
+    0.875,
+    0.5,
+    0.875,
+    0.5,
+    0.875,
+    0.375
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "bass_melody",
+    "bass_melody",
+    "alberti",
+    "bass_melody",
+    "alberti",
+    "bass_melody",
+    "alberti",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "dim",
+    "major",
+    "dim",
+    "major",
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1111,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 55,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p19",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    115,
+    118
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8182,
+    0.8182,
+    0.8182,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "dim",
+    "minor"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 57,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 57,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p20",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    119,
+    119
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p21",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    120,
+    127
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.7,
+    0.7,
+    0.7,
+    1.0,
+    1.0,
+    0.9,
+    0.7,
+    0.9
+   ],
+   "register_curve": [
+    1.0,
+    0.625,
+    0.25,
+    0.0,
+    0.0,
+    0.25,
+    0.375,
+    0.125
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "bass_melody",
+    "walking_bass",
+    "broken_chord_wave",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "dim",
+    "major",
+    "major",
+    "major",
+    "min7",
+    "minor"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 8.25,
+   "entry_state": {
+    "density": 7,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 55,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p22",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    128,
+    132
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.625,
+    1.0,
+    0.875,
+    0.625
+   ],
+   "register_curve": [
+    0.5,
+    0.8333,
+    1.0,
+    0.1667,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "alberti",
+    "broken_chord_asc",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 6.6,
+   "entry_state": {
+    "density": 8,
+    "register_center": 60,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 57,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p23",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    133,
+    133
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 57,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 57,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DellAlmaSuperba__DellAlmaSuperba_p24",
+   "source": "DellAlmaSuperba__DellAlmaSuperba",
+   "bar_range": [
+    134,
+    139
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.9,
+    0.8,
+    1.0,
+    0.6,
+    1.0,
+    0.2
+   ],
+   "register_curve": [
+    0.8,
+    1.0,
+    0.0,
+    0.6,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 7.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 61,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 62,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p0",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    1,
+    16
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.8182,
+    0.8182,
+    0.8182,
+    0.5455,
+    0.5455,
+    0.9091,
+    0.8182,
+    0.8182,
+    0.5455,
+    0.6364,
+    1.0,
+    1.0,
+    0.8182,
+    0.8182,
+    0.8182,
+    0.8182
+   ],
+   "register_curve": [
+    0.3077,
+    0.4615,
+    0.7692,
+    0.6154,
+    0.3077,
+    0.2308,
+    0.1538,
+    0.2308,
+    0.0769,
+    1.0,
+    0.0,
+    0.6154,
+    0.2308,
+    0.3846,
+    0.4615,
+    0.5385
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "silence",
+    "broken_chord_desc",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "dom7",
+    "minor",
+    "dom7"
+   ],
+   "peak_bar_offset": 10,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6875,
+   "avg_melody_density": 8.625,
+   "entry_state": {
+    "density": 9,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p1",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    17,
+    21
+   ],
+   "length": 5,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    0.75,
+    1.0,
+    1.0,
+    0.1667
+   ],
+   "register_curve": [
+    1.0,
+    0.25,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 8.8,
+   "entry_state": {
+    "density": 9,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 70,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p2",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    22,
+    31
+   ],
+   "length": 10,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    0.6667,
+    0.6667,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.4444
+   ],
+   "register_curve": [
+    0.375,
+    0.5,
+    1.0,
+    0.75,
+    0.25,
+    0.125,
+    0.0,
+    0.125,
+    0.375,
+    0.75
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.8,
+   "avg_melody_density": 7.9,
+   "entry_state": {
+    "density": 9,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p3",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    32,
+    35
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.6364,
+    0.6364
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 11,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p4",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    36,
+    51
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.4286,
+    0.7143,
+    0.7143,
+    0.6429,
+    0.6429,
+    0.6429,
+    1.0,
+    0.5714,
+    0.7857,
+    0.7143,
+    0.7143,
+    0.7143,
+    0.7143,
+    0.7143,
+    0.5714,
+    0.7857
+   ],
+   "register_curve": [
+    0.0,
+    0.6667,
+    0.2667,
+    0.4,
+    0.4667,
+    0.6,
+    1.0,
+    0.9333,
+    0.1333,
+    0.2,
+    0.4667,
+    0.8,
+    0.8,
+    0.7333,
+    1.0,
+    0.8
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "dim",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 6,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6875,
+   "avg_melody_density": 9.6875,
+   "entry_state": {
+    "density": 6,
+    "register_center": 62,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p5",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    52,
+    67
+   ],
+   "length": 16,
+   "role": "middle",
+   "cadence_type": "none",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    0.6667,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.6667,
+    0.7778,
+    1.0,
+    1.0,
+    1.0,
+    0.8889,
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    0.2222,
+    0.3333,
+    0.7778,
+    0.5556,
+    1.0,
+    0.4444,
+    0.5556,
+    1.0,
+    0.7778,
+    0.4444,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.4444,
+    0.6667
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "static",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "major",
+    "min7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 8.4375,
+   "entry_state": {
+    "density": 9,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 73,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p6",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    68,
+    77
+   ],
+   "length": 10,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8182,
+    0.5455,
+    0.8182,
+    0.8182,
+    0.8182,
+    0.8182,
+    0.7273,
+    0.7273,
+    0.5455
+   ],
+   "register_curve": [
+    0.6667,
+    0.0,
+    0.1111,
+    0.0,
+    0.2222,
+    0.3333,
+    0.4444,
+    1.0,
+    0.2222,
+    0.6667
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "walking_bass",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "min7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "minor",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 8.4,
+   "entry_state": {
+    "density": 11,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 70,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p7",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    78,
+    93
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.7143,
+    0.7143,
+    0.7143,
+    0.6429,
+    0.6429,
+    0.7143,
+    0.6429,
+    0.6429,
+    0.4286,
+    0.4286,
+    0.6429,
+    0.6429,
+    0.6429,
+    0.5,
+    1.0,
+    0.5714
+   ],
+   "register_curve": [
+    0.6,
+    0.6,
+    0.6,
+    0.8,
+    0.0,
+    0.4,
+    0.6,
+    1.0,
+    0.8,
+    0.4,
+    0.3,
+    0.2,
+    0.3,
+    0.3,
+    0.6,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "broken_chord_desc",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "static",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "min7",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "major",
+    "dom7",
+    "major",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 14,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4375,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 10,
+    "register_center": 70,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 64,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p8",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    94,
+    94
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 63,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 63,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p9",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    95,
+    104
+   ],
+   "length": 10,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.5556,
+    0.5556
+   ],
+   "register_curve": [
+    0.625,
+    0.5,
+    0.4375,
+    0.75,
+    0.625,
+    0.75,
+    1.0,
+    0.5,
+    0.0,
+    0.3125
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "halfdim7",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.8,
+   "avg_melody_density": 8.2,
+   "entry_state": {
+    "density": 9,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_DelDestin__DelDestin_p10",
+   "source": "DelDestin__DelDestin",
+   "bar_range": [
+    105,
+    111
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    4
+   ],
+   "density_curve": [
+    0.7778,
+    0.7778,
+    1.0,
+    1.0,
+    1.0,
+    0.8889,
+    0.2222
+   ],
+   "register_curve": [
+    1.0,
+    0.7059,
+    0.8235,
+    0.9412,
+    0.7647,
+    0.4118,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "minor",
+    "minor",
+    "dim7",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.2857,
+   "avg_melody_density": 7.2857,
+   "entry_state": {
+    "density": 7,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 55,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p0",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    1,
+    1
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p1",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    2,
+    4
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.75,
+    0.6875
+   ],
+   "register_curve": [
+    0.0,
+    1.0,
+    0.6667
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 13.0,
+   "entry_state": {
+    "density": 16,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 77,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p2",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    5,
+    5
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 12.0,
+   "entry_state": {
+    "density": 12,
+    "register_center": 80,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 80,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p3",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    6,
+    9
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6897,
+    1.0,
+    0.4828,
+    0.1379
+   ],
+   "register_curve": [
+    1.0,
+    0.5333,
+    0.1333,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "alberti",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 16.75,
+   "entry_state": {
+    "density": 20,
+    "register_center": 83,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 68,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p4",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    10,
+    10
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 14.0,
+   "entry_state": {
+    "density": 14,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 14,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p5",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    11,
+    11
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 16.0,
+   "entry_state": {
+    "density": 16,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 16,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p6",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    12,
+    13
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8421
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 17.5,
+   "entry_state": {
+    "density": 19,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 16,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p7",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    14,
+    14
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 16.0,
+   "entry_state": {
+    "density": 16,
+    "register_center": 72,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 16,
+    "register_center": 72,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p8",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    15,
+    16
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.2667
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 15,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p9",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    17,
+    19
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6957,
+    1.0,
+    0.1739
+   ],
+   "register_curve": [
+    0.5333,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 14.3333,
+   "entry_state": {
+    "density": 16,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p10",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    20,
+    23
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.95,
+    0.6,
+    0.6
+   ],
+   "register_curve": [
+    0.1429,
+    0.0,
+    0.4286,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 15.75,
+   "entry_state": {
+    "density": 20,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 82,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p11",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    24,
+    29
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8919,
+    0.5405,
+    0.5405,
+    0.3784,
+    0.2703
+   ],
+   "register_curve": [
+    1.0,
+    0.25,
+    0.4167,
+    0.6667,
+    0.0,
+    0.9167
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "static",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "min7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 22.3333,
+   "entry_state": {
+    "density": 37,
+    "register_center": 82,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p12",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    30,
+    30
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 12.0,
+   "entry_state": {
+    "density": 12,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p13",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    31,
+    31
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 12.0,
+   "entry_state": {
+    "density": 12,
+    "register_center": 71,
+    "texture": "scalar_run",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 71,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_MentreDormi__MentreDormi_p14",
+   "source": "MentreDormi__MentreDormi",
+   "bar_range": [
+    32,
+    41
+   ],
+   "length": 10,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.6364,
+    0.8182,
+    0.4091,
+    0.4091,
+    0.7273,
+    0.3636,
+    0.5455,
+    0.5909,
+    0.0909
+   ],
+   "register_curve": [
+    1.0,
+    0.2727,
+    0.2727,
+    0.6364,
+    0.2727,
+    0.7273,
+    0.2727,
+    0.0,
+    0.3636,
+    0.5455
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "minor",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 12.3,
+   "entry_state": {
+    "density": 22,
+    "register_center": 77,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p0",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    1,
+    7
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    0.75,
+    0.75,
+    0.5714,
+    1.0,
+    0.7143,
+    0.6071
+   ],
+   "register_curve": [
+    0.2941,
+    0.7059,
+    1.0,
+    0.7647,
+    0.6471,
+    0.0,
+    0.4118
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "block_chord_offbeat",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 20.5714,
+   "entry_state": {
+    "density": 21,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 17,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p1",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    8,
+    8
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "dim"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 18.0,
+   "entry_state": {
+    "density": 18,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 18,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p2",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    9,
+    10
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7826
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "silence"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 20.5,
+   "entry_state": {
+    "density": 23,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 18,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p3",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    11,
+    12
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7391
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "broken_chord_desc"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 20.0,
+   "entry_state": {
+    "density": 23,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 17,
+    "register_center": 79,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p4",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    13,
+    14
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.4688
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "halfdim7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 23.5,
+   "entry_state": {
+    "density": 32,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 15,
+    "register_center": 64,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p5",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    15,
+    20
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.5517,
+    0.8276,
+    0.7241,
+    0.6207,
+    1.0,
+    0.6552
+   ],
+   "register_curve": [
+    0.0,
+    0.5,
+    1.0,
+    0.8182,
+    0.7273,
+    0.2727
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 21.1667,
+   "entry_state": {
+    "density": 16,
+    "register_center": 60,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 19,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p6",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    21,
+    21
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 20.0,
+   "entry_state": {
+    "density": 20,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 20,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p7",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    22,
+    23
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.7391
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "silence"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 20.0,
+   "entry_state": {
+    "density": 23,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 17,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p8",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    24,
+    24
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 20.0,
+   "entry_state": {
+    "density": 20,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 20,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p9",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    25,
+    25
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 16.0,
+   "entry_state": {
+    "density": 16,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 16,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p10",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    26,
+    32
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.875,
+    0.875,
+    0.875,
+    0.75,
+    0.875,
+    0.3438
+   ],
+   "register_curve": [
+    0.6667,
+    0.7619,
+    0.9524,
+    1.0,
+    0.5714,
+    0.5238,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "scalar_run",
+    "chordal",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_desc",
+    "alberti",
+    "walking_bass",
+    "alberti",
+    "walking_bass",
+    "alberti",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 25.5714,
+   "entry_state": {
+    "density": 32,
+    "register_center": 69,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 55,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p11",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    33,
+    33
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 21.0,
+   "entry_state": {
+    "density": 21,
+    "register_center": 80,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 21,
+    "register_center": 80,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p12",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    34,
+    34
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "dim"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 21.0,
+   "entry_state": {
+    "density": 21,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 21,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p13",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    35,
+    35
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 15.0,
+   "entry_state": {
+    "density": 15,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 15,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p14",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    36,
+    42
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.7143,
+    0.8214,
+    0.7143,
+    0.8214,
+    0.6071
+   ],
+   "register_curve": [
+    0.5,
+    0.0,
+    0.7,
+    0.2,
+    0.9,
+    0.4,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "block_chord_offbeat",
+    "pedal_point",
+    "block_chord_offbeat",
+    "silence",
+    "block_chord_offbeat",
+    "broken_chord_desc"
+   ],
+   "melody_directions": [
+    "static",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "major",
+    "dim",
+    "major",
+    "dim",
+    "min7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4286,
+   "avg_melody_density": 22.7143,
+   "entry_state": {
+    "density": 28,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 17,
+    "register_center": 79,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p15",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    43,
+    47
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8966,
+    0.8966,
+    0.931,
+    0.5517
+   ],
+   "register_curve": [
+    0.0,
+    0.5455,
+    1.0,
+    0.5455,
+    0.8182
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "major",
+    "major",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 24.8,
+   "entry_state": {
+    "density": 29,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 16,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p16",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    48,
+    55
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.875,
+    0.875,
+    0.375,
+    0.875,
+    0.9375,
+    1.0,
+    1.0,
+    0.25
+   ],
+   "register_curve": [
+    0.4444,
+    1.0,
+    0.3333,
+    0.7778,
+    0.7778,
+    0.0,
+    0.3333,
+    0.3333
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "chordal",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "alberti",
+    "walking_bass",
+    "broken_chord_desc",
+    "walking_bass",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static",
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "min7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 24.75,
+   "entry_state": {
+    "density": 28,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "scalar_run",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p17",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    56,
+    67
+   ],
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.25,
+    0.5312,
+    0.875,
+    0.875,
+    0.9375,
+    0.9375,
+    0.875,
+    1.0,
+    0.625,
+    0.5,
+    0.625,
+    0.375
+   ],
+   "register_curve": [
+    0.0,
+    0.8333,
+    0.8333,
+    0.7222,
+    0.6111,
+    1.0,
+    0.5,
+    0.6111,
+    0.6667,
+    0.7778,
+    0.7222,
+    0.5556
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "walking_bass",
+    "alberti",
+    "alberti",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "broken_chord_wave",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "min7",
+    "minor",
+    "minor",
+    "major",
+    "dom7",
+    "minor",
+    "dom7",
+    "major",
+    "minor",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 7,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0833,
+   "avg_melody_density": 22.4167,
+   "entry_state": {
+    "density": 8,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 70,
+    "texture": "scalar_run",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_SiamNavi__SiamNavi_p18",
+   "source": "SiamNavi__SiamNavi",
+   "bar_range": [
+    68,
+    68
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p0",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    1,
+    13
+   ],
+   "length": 13,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.375,
+    0.5,
+    0.5,
+    0.375,
+    0.5,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1.0,
+    0.9062,
+    0.9062,
+    0.125
+   ],
+   "register_curve": [
+    0.2632,
+    0.3684,
+    0.3158,
+    0.0,
+    0.1053,
+    0.0526,
+    1.0,
+    0.8947,
+    0.5789,
+    0.3158,
+    0.3158,
+    0.5789,
+    0.2632
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point",
+    "block_chord_tremolo",
+    "pedal_point",
+    "pedal_point",
+    "block_chord_tremolo",
+    "silence",
+    "silence",
+    "pedal_point",
+    "walking_bass",
+    "walking_bass",
+    "block_chord_tremolo",
+    "block_chord_tremolo"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "static",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "ascending",
+    "ascending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6154,
+   "avg_melody_density": 19.5385,
+   "entry_state": {
+    "density": 12,
+    "register_center": 67,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p1",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    14,
+    16
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6429,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    1.0,
+    0.4167,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 20.0,
+   "entry_state": {
+    "density": 18,
+    "register_center": 79,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 14,
+    "register_center": 67,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p2",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    17,
+    32
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.375,
+    0.5938,
+    0.625,
+    0.375,
+    0.5625,
+    0.625,
+    0.5625,
+    0.5938,
+    0.25,
+    0.375,
+    0.6562,
+    0.8125,
+    0.7812,
+    0.875,
+    1.0,
+    0.7188
+   ],
+   "register_curve": [
+    0.2632,
+    0.3684,
+    0.3158,
+    0.0,
+    0.1053,
+    0.0526,
+    0.4211,
+    0.4211,
+    0.0526,
+    0.2632,
+    1.0,
+    0.8947,
+    0.7895,
+    0.5789,
+    0.2632,
+    0.6316
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point",
+    "block_chord_tremolo",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "silence",
+    "silence",
+    "walking_bass",
+    "walking_bass",
+    "silence",
+    "silence",
+    "bass_melody",
+    "bass_melody",
+    "bass_melody",
+    "broken_chord_wave"
+   ],
+   "melody_directions": [
+    "ascending",
+    "ascending",
+    "static",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "static",
+    "ascending",
+    "static",
+    "descending",
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "halfdim7",
+    "halfdim7",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 14,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4375,
+   "avg_melody_density": 19.5625,
+   "entry_state": {
+    "density": 12,
+    "register_center": 67,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 23,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p3",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    33,
+    41
+   ],
+   "length": 9,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.75,
+    0.375,
+    0.5938,
+    0.5938,
+    0.5625,
+    0.5625,
+    1.0,
+    1.0,
+    0.1875
+   ],
+   "register_curve": [
+    1.0,
+    0.0,
+    0.1538,
+    0.0769,
+    0.9231,
+    0.7692,
+    0.3846,
+    0.5385,
+    0.6154
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "silence",
+    "silence",
+    "alberti",
+    "alberti",
+    "block_chord_tremolo"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "ascending",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 6,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.8889,
+   "avg_melody_density": 20.0,
+   "entry_state": {
+    "density": 24,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p4",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    42,
+    42
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_tremolo"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 62,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p5",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    43,
+    58
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    0.6562,
+    0.8125,
+    0.7812,
+    0.9062,
+    1.0,
+    1.0,
+    0.7188,
+    1.0,
+    1.0,
+    0.875,
+    0.875,
+    0.5,
+    0.8125,
+    0.75,
+    0.8125,
+    0.8125
+   ],
+   "register_curve": [
+    0.9333,
+    0.8,
+    0.8667,
+    0.7333,
+    0.3333,
+    1.0,
+    0.0,
+    0.0,
+    0.1333,
+    0.8,
+    0.0667,
+    0.0667,
+    0.4,
+    0.4667,
+    0.4,
+    0.8667
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence",
+    "bass_melody",
+    "bass_melody",
+    "pedal_point",
+    "silence",
+    "broken_chord_wave",
+    "alberti",
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "alberti",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "descending",
+    "descending",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0625,
+   "avg_melody_density": 26.625,
+   "entry_state": {
+    "density": 21,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 26,
+    "register_center": 80,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "vivaldi_StaPiangendo__StaPiangendo_p6",
+   "source": "StaPiangendo__StaPiangendo",
+   "bar_range": [
+    59,
+    62
+   ],
+   "length": 4,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "A",
+   "key_mode": "minor",
+   "time_sig": [
+    4,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8889,
+    0.8889,
+    0.6111
+   ],
+   "register_curve": [
+    0.0,
+    0.3333,
+    1.0,
+    0.6667
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "broken_chord_wave",
+    "alberti",
+    "walking_bass",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 15.25,
+   "entry_state": {
+    "density": 18,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 11,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  }
+ ]
+}

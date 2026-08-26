@@ -1,0 +1,142 @@
+[
+ {
+  "context": "phrase_entry_bar_1",
+  "what_moment_needs": "Signal fresh beginning; draw attention",
+  "common_choice": "Grace note from below",
+  "why": "Mimics a singer's intake of breath before the first word",
+  "density_arc": ""
+ },
+ {
+  "context": "approaching_phrase_climax",
+  "what_moment_needs": "Intensify anticipation; build yearning",
+  "common_choice": "Appoggiatura (lean-resolve)",
+  "why": "Dissonance on strong beat creates longing before the peak",
+  "density_arc": ""
+ },
+ {
+  "context": "sustained_note_in_slow_melody",
+  "what_moment_needs": "Fill silence; keep the line alive",
+  "common_choice": "Turn group around held note",
+  "why": "Mimics a singer's vibrato or melismatic turn; the note breathes",
+  "density_arc": ""
+ },
+ {
+  "context": "cadential_arrival_v_i",
+  "what_moment_needs": "Mark the structural boundary",
+  "common_choice": "Trill on supertonic",
+  "why": "Dominant tension sustained and released at resolution",
+  "density_arc": ""
+ },
+ {
+  "context": "emotional_peak_of_section",
+  "what_moment_needs": "Maximize expressiveness",
+  "common_choice": "Chromatic neighbor sigh",
+  "why": "Half-step dissonance = most intimate, most painful interval",
+  "density_arc": ""
+ },
+ {
+  "context": "between_two_phrases_link",
+  "what_moment_needs": "Bridge the gap; maintain momentum",
+  "common_choice": "Scalar or arpeggiated flourish",
+  "why": "Fills silence with directional motion toward next phrase",
+  "density_arc": ""
+ },
+ {
+  "context": "theme_return_recap_rondo",
+  "what_moment_needs": "Mark the return as evolved",
+  "common_choice": "Add ornaments absent from first statement",
+  "why": "Ornamented return = the character has grown; bare original = innocence",
+  "density_arc": ""
+ },
+ {
+  "context": "deceptive_cadence",
+  "what_moment_needs": "Heighten surprise",
+  "common_choice": "Escape tone or unexpected leap after V",
+  "why": "The ornament \"misses\" the expected resolution \u2014 surprise through misdirection",
+  "density_arc": ""
+ },
+ {
+  "context": "dying_away_morendo",
+  "what_moment_needs": "Express fading life/energy",
+  "common_choice": "Fragmenting ornaments, slowing",
+  "why": "Full turn \u2192 half-turn \u2192 single grace \u2192 bare note: the ornament dissolves",
+  "density_arc": ""
+ },
+ {
+  "context": "silence_after_intensity",
+  "what_moment_needs": "Let the absence speak",
+  "common_choice": "NO ornament \u2014 deliberate nakedness",
+  "why": "Stripping ornaments where expected creates more power than adding them",
+  "density_arc": ""
+ },
+ {
+  "context": "emotion_serenity_peace",
+  "what_moment_needs": "**Serenity, peace**",
+  "common_choice": "Occasional gentle grace note, simple neighbor",
+  "why": "One grace per 8-bar phrase; let the melody breathe",
+  "density_arc": "Low \u2014 sparse, gentle"
+ },
+ {
+  "context": "emotion_tenderness_love",
+  "what_moment_needs": "**Tenderness, love**",
+  "common_choice": "Appoggiaturas (sighing), gentle turns, portamento",
+  "why": "Appoggiatura on the most tender word/note of each phrase",
+  "density_arc": "Medium-low \u2014 selective"
+ },
+ {
+  "context": "emotion_joy_delight",
+  "what_moment_needs": "**Joy, delight**",
+  "common_choice": "Rapid turns, mordents, quick ascending grace notes",
+  "why": "Turns at phrase peaks; mordents on strong beats; everything dances",
+  "density_arc": "Medium-high \u2014 sparkling"
+ },
+ {
+  "context": "emotion_passion_yearning",
+  "what_moment_needs": "**Passion, yearning**",
+  "common_choice": "Written-out chromatic ornaments, arpeggiated flourishes, wide-span grace groups",
+  "why": "Chopin-style filigree; the ornament IS the melody's emotional content",
+  "density_arc": "High \u2014 filigree"
+ },
+ {
+  "context": "emotion_grief_lament",
+  "what_moment_needs": "**Grief, lament**",
+  "common_choice": "Slow appoggiaturas, suspensions, chromatic neighbors, descending sighs",
+  "why": "Each appoggiatura is a wound; the dissonance lingers before resolving",
+  "density_arc": "Medium \u2014 weighted"
+ },
+ {
+  "context": "emotion_agitation_anxiety",
+  "what_moment_needs": "**Agitation, anxiety**",
+  "common_choice": "Trills, tremolo, rapid mordents, nervous repeated notes",
+  "why": "Trills that don't resolve cleanly; tremolo that builds without release",
+  "density_arc": "High \u2014 restless"
+ },
+ {
+  "context": "emotion_triumph_grandeur",
+  "what_moment_needs": "**Triumph, grandeur**",
+  "common_choice": "Written-out trills as texture, broad cadential flourishes, fanfare grace notes",
+  "why": "Cadential trills at structural arrivals; grace notes announce, not whisper",
+  "density_arc": "Low-medium \u2014 structural"
+ },
+ {
+  "context": "emotion_terror_dread",
+  "what_moment_needs": "**Terror, dread**",
+  "common_choice": "Either stark bare notes (frozen terror) or frantic over-ornamentation (panic)",
+  "why": "Choose one extreme: the music is either paralyzed or hysterical",
+  "density_arc": "Extremes \u2014 stark OR frantic"
+ },
+ {
+  "context": "emotion_nostalgia_memory",
+  "what_moment_needs": "**Nostalgia, memory**",
+  "common_choice": "Fragments of earlier ornaments, simplified versions",
+  "why": "Quote an ornament from an earlier section, but incomplete \u2014 as if remembered imperfectly",
+  "density_arc": "Low-medium \u2014 ghostlike"
+ },
+ {
+  "context": "emotion_wonder_awe",
+  "what_moment_needs": "**Wonder, awe**",
+  "common_choice": "Wide-spaced arpeggiated chords, bell-like grace notes, high harmonics",
+  "why": "Bell sonority; high sustained notes with occasional ethereal grace",
+  "density_arc": "Low \u2014 spacious"
+ }
+]

@@ -1903,3 +1903,52 @@ def test_the_lh_idioms_are_not_crowded_out_by_the_devices():
     ).get("figuration") or []
     assert any(f.startswith("LH idiom") for f in figs), figs
     assert any(not f.startswith("LH idiom") for f in figs), figs
+
+
+@pytest.mark.parametrize("meter", [(0, 0), (4, 0), (0, 4), None, (2,), "4/4", [3, 4]])
+def test_a_malformed_meter_does_not_take_out_the_notation_path(meter):
+    """`Fraction(int(meter[0]) * 4, int(meter[1]))` computed inline is
+    `Fraction(0, 0)` for a zero denominator, which raises. Twenty-one places in
+    the codebase did that arithmetic inline, so a partially-initialised slot or
+    a corpus record that failed to parse took out every call on that phrase at
+    once. `duration.bar_duration` was the canonical implementation all along,
+    guarded and unused."""
+    from scales.assembler import _split_events_over_barlines
+    from scales.direct_compose import compose_phrase
+    from scales.models import EventIR, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    compose_phrase([{"rh": "C5q", "lh": "C3q"}], key="C", bar_start=1,
+                   phrase_id="p", meter=meter)
+    _split_events_over_barlines(
+        [EventIR(bar=1, beat=1.0, pitch="C5", duration="w")], {}, meter
+    )
+    _repair_engine_surface(LayerIR(phrase_id="p", key="C", meter=(4, 4)), meter)
+
+
+def test_beats_per_bar_is_computed_in_one_place():
+    """Duplicated inline arithmetic is this repository's most reliable bug
+    source — four key parsers, the phrase-slot loader, three float beat cursors,
+    and twenty-one beats-per-bar computations."""
+    import re
+    from pathlib import Path
+
+    pattern = re.compile(
+        r"Fraction\(int\(meter\[0\]\) \* 4, int\(meter\[1\]\)\)"
+        r"|meter\[0\] \* 4(\.0)? / meter\[1\]"
+    )
+    offenders = []
+    for path in Path("tools/scales").glob("*.py"):
+        if path.name == "duration.py":
+            continue
+        for i, line in enumerate(path.read_text().split("\n"), 1):
+            hit = pattern.search(line)
+            if not hit:
+                continue
+            # Prose describing the old arithmetic is not the old arithmetic:
+            # skip comments and anything quoted in backticks inside a docstring.
+            stripped = line.lstrip()
+            if stripped.startswith("#") or "`" in line:
+                continue
+            offenders.append(f"{path.name}:{i}")
+    assert not offenders, f"compute it with duration.bar_duration: {offenders}"

@@ -62,6 +62,7 @@ from .duration import (
     DURATION_VALUES,
     GRACE_ORNAMENTS,
     TRIPLET_OF,
+    bar_duration,
     dur_codes_longest_first,
     normalize_dot_suffix,
 )
@@ -652,7 +653,7 @@ def _pickup_start_beat(bar_data, meter) -> Fraction:
     whole beat long, so it landed on beat 3 with an eighth of silence in front of
     it instead of on the second half of the beat.
     """
-    capacity = Fraction(int(meter[0]) * 4, int(meter[1]))
+    capacity = bar_duration(meter)
     longest = Fraction(0)
     for hand in ("rh", "lh"):
         for voice in _split_voices(bar_data.get(hand, [])):
@@ -736,7 +737,7 @@ def compose_phrase(
         pickup_start = _pickup_start_beat(bar_data, meter) if bar_data.get("pickup") else None
         if pickup_start is not None:
             layer.pickup_beats = float(
-                Fraction(int(meter[0]) * 4, int(meter[1])) - (pickup_start - 1)
+                bar_duration(meter) - (pickup_start - 1)
             )
 
         # Right hand: voice 0 → principal_line (the melody); any further '//'
@@ -773,7 +774,7 @@ def compose_phrase(
         # Left hand. Explicit '//' voices → bass_foundation + response_layer as
         # independent voices. Otherwise the single-stream pedal-under-figuration
         # split (backward compatible).
-        beats_per_bar = Fraction(int(meter[0]) * 4, int(meter[1]))
+        beats_per_bar = bar_duration(meter)
         lh_voices = _split_voices(bar_data.get("lh", []))
         if len(lh_voices) > 1:
             _emit_voice(

@@ -1,0 +1,956 @@
+[
+ {
+  "id": "dim7_reinterpretation",
+  "name": "Dim7 reinterpretation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "4 keys equally accessible"
+  ],
+  "frequency_weight": 0.07,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "augmented_triad_pivot",
+  "name": "Augmented triad pivot",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "3 keys by major thirds"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "german_6th_v7",
+  "name": "German 6th = V7",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Semitone-related keys"
+  ],
+  "frequency_weight": 0.06,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "common_tone_pivot",
+  "name": "Common-tone pivot",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Any key sharing that pitch"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "unison_bridge",
+  "name": "Unison bridge",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Any key at all"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "perpetual_deferred_cadence",
+  "name": "Perpetual deferred cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Resolution is always promised",
+   "never delivered \u2014 the reaching never ends"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "wandering_tonality_key_every_2_4_bars",
+  "name": "Wandering tonality (key every 2-4 bars)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "No key establishes itself long enough to feel like home"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_fog_multiple_valid_analyses",
+  "name": "Enharmonic fog (multiple valid analyses)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The mind tries to categorize the harmony but cannot \u2014 uncertainty becomes sensation"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "progressive_tonality_start_key_end_key",
+  "name": "Progressive tonality (start key \u2260 end key)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The key change across a movement IS the story \u2014 Mahler's C# minor to D major is the journey from funeral to triumph"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "leitmotif_harmonic_identity",
+  "name": "Leitmotif harmonic identity",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Each motif carries its own harmonic world; when harmonies collide",
+   "characters collide"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "tonal_parenthesis_brief_clarity_in_fog",
+  "name": "Tonal parenthesis (brief clarity in fog)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "An island of tonal stability in an ambiguous sea \u2014 the listener grasps it before it dissolves"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_saturation",
+  "name": "Chromatic saturation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Tonal center obscured"
+  ],
+  "frequency_weight": 0.12,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "wandering_tonality",
+  "name": "Wandering tonality",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "No stable center"
+  ],
+  "frequency_weight": 0.02,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_resolution_chains",
+  "name": "Deceptive resolution chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Perpetual avoidance"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "suspended_tonality",
+  "name": "Suspended tonality",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Floating tension"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "tonal_parenthesis",
+  "name": "Tonal parenthesis",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Island of clarity"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_fog",
+  "name": "Enharmonic fog",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Multiple interpretations"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_sequence",
+  "name": "Chromatic sequence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Leitmotif development"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "appoggiatura_chords",
+  "name": "Appoggiatura chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Continuous tension"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "dominant_chains",
+  "name": "Dominant chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Infinite postponement"
+  ],
+  "frequency_weight": 0.07,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "elision",
+  "name": "Elision",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Continuous flow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_voice_leading",
+  "name": "Chromatic voice leading",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Smooth",
+   "inevitable"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "bii_as_dominant_substitute",
+  "name": "bII as dominant substitute",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Remote color"
+  ],
+  "frequency_weight": 0.07,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "phrase_level",
+  "name": "Phrase level",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "4-8 bars",
+   "functional"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "period_level",
+  "name": "Period level",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "16-32 bars",
+   "modulation"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "section_level",
+  "name": "Section level",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Minutes-long",
+   "structural"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "movement_level",
+  "name": "Movement level",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "15-30 min",
+   "progressive"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "multi_movement",
+  "name": "Multi-movement",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Full symphony",
+   "60-90 min"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "motif_specific_harmony",
+  "name": "Motif + specific harmony",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "harmonic_transformation",
+  "name": "Harmonic transformation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "harmonic_collision",
+  "name": "Harmonic collision",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "harmonic_resolution",
+  "name": "Harmonic resolution",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_resolution",
+  "name": "Deceptive resolution",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Continuation forced"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "evaded_cadence",
+  "name": "Evaded cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Weakened arrival"
+  ],
+  "frequency_weight": 0.06,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "interrupted_cadence",
+  "name": "Interrupted cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Breathless"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "elided_cadence",
+  "name": "Elided cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Continuous flow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "plagal_substitution",
+  "name": "Plagal substitution",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Softer closure"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "modal_cadence",
+  "name": "Modal cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Archaic",
+   "open"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "dissolution",
+  "name": "Dissolution",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Evaporation"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "bitonality",
+  "name": "Bitonality",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Strauss (Elektra)",
+   "early Stravinsky"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "polytonal_layers",
+  "name": "Polytonal layers",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Ives",
+   "Mahler (distorted quotations)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "tonal_clash",
+  "name": "Tonal clash",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Mahler (ironic passages)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "superimposed_triads",
+  "name": "Superimposed triads",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Strauss",
+   "Stravinsky (Petrushka chord)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "voice_leading_driven",
+  "name": "Voice-leading driven",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Smooth",
+   "inevitable flow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "color_driven",
+  "name": "Color-driven",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Painterly harmony"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "motif_driven",
+  "name": "Motif-driven",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Dramatic logic replaces tonal logic"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "pedal_anchored",
+  "name": "Pedal-anchored",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Tension without chaos"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "symmetrical",
+  "name": "Symmetrical",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Suspended",
+   "otherworldly"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bruckner/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_mediants_c_to_ab_c_to_e",
+  "name": "Chromatic mediants (C to Ab, C to E)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "A door opens to another world \u2014 wonder",
+   "magic",
+   "or shadow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "augmented_6th_chords",
+  "name": "Augmented 6th chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The harmony leans harder into the dominant \u2014 the ache deepens"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "neapolitan_chord_bii",
+  "name": "Neapolitan chord (bII)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The bass drops to an alien note \u2014 solemnity",
+   "inevitability"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "extended_dominant_chains",
+  "name": "Extended dominant chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Each resolution becomes a new question \u2014 the heart cannot rest"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_cadences_to_bvi",
+  "name": "Deceptive cadences to bVI",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The expected home is replaced by something vast and unexpected"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_modulation",
+  "name": "Enharmonic modulation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The same sound acquires new meaning \u2014 the world shifts underfoot"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "omnibus_progression",
+  "name": "Omnibus progression",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Contrary chromatic motion creates the feeling of forces converging"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "rachmaninoff/harmonic-language.md"
+ },
+ {
+  "id": "water_shimmering_flowing",
+  "name": "Water (shimmering, flowing)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Alternation between two chords creates the effect of light on moving water \u2014 never still",
+   "never changing"
+  ],
+  "frequency_weight": 0.09,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "wind_movement_without_weight",
+  "name": "Wind (movement without weight)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Voices moving together in the same direction feel like a gust \u2014 effortless",
+   "directionless"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "light_filtered_dappled",
+  "name": "Light (filtered, dappled)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
+   "but luminous"
+  ],
+  "frequency_weight": 0.03,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "mist_fog",
+  "name": "Mist / Fog",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Without half-step pulls",
+   "harmony floats without gravity \u2014 edges dissolve"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "warmth_sunlight_nostalgia",
+  "name": "Warmth (sunlight, nostalgia)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Pentatonic intervals carry no tension; the listener relaxes into the sound"
+  ],
+  "frequency_weight": 0.06,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "distance_memory",
+  "name": "Distance / Memory",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "A chord that never resolves feels like a thought that trails off \u2014 present but receding"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "awakening",
+  "name": "Awakening",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "color_chord_succession",
+  "name": "Color chord succession",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Floating",
+   "non-directional"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "common_tone_linking",
+  "name": "Common-tone linking",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Smooth",
+   "connected"
+  ],
+  "frequency_weight": 0.01,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "bass_pedal_with_moving_chords",
+  "name": "Bass pedal with moving chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Grounded yet colorful"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_mediant",
+  "name": "Chromatic mediant",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Sudden color shift"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "modal_interchange",
+  "name": "Modal interchange",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Expanded palette"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "tritone_substitution",
+  "name": "Tritone substitution",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Smooth chromatic motion"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "oscillation",
+  "name": "Oscillation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Shimmering",
+   "static"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "sideslip",
+  "name": "Sideslip",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Elegant slide"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "melody",
+  "name": "Melody",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "chord_construction",
+  "name": "Chord construction",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "ostinato",
+  "name": "Ostinato",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "layered_pentatonics",
+  "name": "Layered pentatonics",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "gamelan_effect",
+  "name": "Gamelan effect",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "superimposed_triads",
+  "name": "Superimposed triads",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Shimmering tension"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "melody_in_one_key_harmony_in_another",
+  "name": "Melody in one key, harmony in another",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Dreamlike disconnect"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "left_hand_right_hand_split",
+  "name": "Left hand / right hand split",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Piano color effect"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ },
+ {
+  "id": "pedal_in_foreign_key",
+  "name": "Pedal in foreign key",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Grounded dissonance"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "faure/harmonic-language.md"
+ }
+]

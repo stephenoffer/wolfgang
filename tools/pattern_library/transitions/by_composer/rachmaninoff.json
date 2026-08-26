@@ -1,0 +1,95 @@
+{
+ "counts": {
+  "silence": {
+   "silence": 44,
+   "block_chord_sparse": 2,
+   "broken_chord_wave": 1,
+   "block_chord_offbeat": 1,
+   "pedal_point": 2
+  },
+  "block_chord_sparse": {
+   "block_chord_sparse": 27,
+   "broken_chord_wave": 5,
+   "bass_melody": 3,
+   "pedal_point": 2,
+   "block_chord_offbeat": 1,
+   "silence": 1
+  },
+  "broken_chord_wave": {
+   "alberti": 8,
+   "broken_chord_wave": 172,
+   "block_chord_sparse": 2,
+   "block_chord_offbeat": 16,
+   "broken_chord_desc": 4,
+   "walking_bass": 14,
+   "broken_chord_asc": 5,
+   "bass_melody": 6
+  },
+  "alberti": {
+   "walking_bass": 6,
+   "alberti": 8,
+   "broken_chord_wave": 5,
+   "block_chord_offbeat": 5,
+   "bass_melody": 1
+  },
+  "walking_bass": {
+   "alberti": 4,
+   "broken_chord_wave": 19,
+   "block_chord_offbeat": 12,
+   "walking_bass": 13,
+   "silence": 1,
+   "block_chord_sparse": 5,
+   "bass_melody": 8,
+   "pedal_point": 2
+  },
+  "block_chord_offbeat": {
+   "block_chord_offbeat": 130,
+   "broken_chord_wave": 8,
+   "alberti": 2,
+   "silence": 1,
+   "block_chord_sparse": 6,
+   "walking_bass": 19,
+   "broken_chord_desc": 2,
+   "bass_melody": 1,
+   "pedal_point": 1
+  },
+  "broken_chord_desc": {
+   "broken_chord_wave": 3,
+   "block_chord_sparse": 1,
+   "block_chord_offbeat": 2
+  },
+  "broken_chord_asc": {
+   "broken_chord_wave": 3,
+   "block_chord_sparse": 2,
+   "silence": 1
+  },
+  "pedal_point": {
+   "bass_melody": 7,
+   "block_chord_sparse": 2,
+   "pedal_point": 1,
+   "walking_bass": 1,
+   "broken_chord_asc": 1
+  },
+  "bass_melody": {
+   "bass_melody": 23,
+   "broken_chord_wave": 7,
+   "pedal_point": 3,
+   "block_chord_sparse": 1,
+   "walking_bass": 11,
+   "alberti": 3
+  }
+ },
+ "self_continuation": {
+  "silence": 0.88,
+  "block_chord_sparse": 0.6923,
+  "broken_chord_wave": 0.7577,
+  "alberti": 0.32,
+  "walking_bass": 0.2031,
+  "block_chord_offbeat": 0.7647,
+  "broken_chord_desc": 0.0,
+  "broken_chord_asc": 0.0,
+  "pedal_point": 0.0833,
+  "bass_melody": 0.4792
+ },
+ "total_transitions": 647
+}

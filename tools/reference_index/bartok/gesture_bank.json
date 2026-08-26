@@ -1,0 +1,623 @@
+{
+ "composer": "bartok",
+ "source_bar_index": "reference_index/bartok/bar_index.json",
+ "total_gestures": 16,
+ "function_distribution": {
+  "answer": 6,
+  "answer_with_space": 4,
+  "pickup": 3,
+  "cadential_push": 2,
+  "cadential_release": 1
+ },
+ "contour_distribution": {
+  "ascending": 2,
+  "static": 10,
+  "descending": 4
+ },
+ "gestures": [
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b1",
+   "function": "pickup",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "chordal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b2",
+   "function": "answer",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b3",
+   "function": "answer_with_space",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "e",
+    "s"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b4",
+   "function": "cadential_push",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b5",
+   "function": "pickup",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "chordal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b6",
+   "function": "answer",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "trip_e",
+    "trip_e",
+    "s"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "minor",
+   "rh_texture": "chordal",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b7",
+   "function": "answer_with_space",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "e",
+    "s"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b8",
+   "function": "answer_with_space",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b9",
+   "function": "answer",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b10",
+   "function": "answer",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "s",
+    "s",
+    "s",
+    "s"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "minor",
+   "rh_texture": "scalar_run",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b11",
+   "function": "answer",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b12",
+   "function": "cadential_push",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b13",
+   "function": "pickup",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "chordal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b14",
+   "function": "answer",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b15",
+   "function": "answer_with_space",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "e",
+    "s"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "bartok_rom_folk_dance_1_bartok__rom_folk_dance_1_bartok_b16",
+   "function": "cadential_release",
+   "span_beats": 2.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "chordal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "rom_folk_dance_1_bartok__rom_folk_dance_1_bartok bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "block_chord_sparse",
+   "melody_density": 1,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  }
+ ]
+}

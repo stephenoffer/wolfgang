@@ -1,0 +1,32 @@
+{
+ "composer": "mussorgsky",
+ "schema": 1,
+ "bars": 458,
+ "notes": 2815,
+ "rest_bar_pct": 0.5284,
+ "dotted_bar_pct": 0.1572,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.3326,
+ "top_note_values": [
+  [
+   0.5,
+   0.5254
+  ],
+  [
+   0.25,
+   0.232
+  ],
+  [
+   0.3333,
+   0.092
+  ],
+  [
+   1.0,
+   0.0899
+  ],
+  [
+   2.0,
+   0.0202
+  ]
+ ]
+}

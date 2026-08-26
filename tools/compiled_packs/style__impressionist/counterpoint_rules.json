@@ -1,0 +1,256 @@
+[
+ {
+  "id": "cp_motion_contrary",
+  "category": "motion_balance",
+  "description": "Contrary: Voices move in opposite directions. Preferred; maximizes independence",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": true,
+   "modern": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {
+   "motion_type": "contrary"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_motion_oblique",
+  "category": "motion_balance",
+  "description": "Oblique: One voice moves, the other sustains. Good for pedal points, common tones",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": true,
+   "modern": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {
+   "motion_type": "oblique"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_motion_similar",
+  "category": "motion_balance",
+  "description": "Similar: Same direction, different intervals. Acceptable; watch for hidden parallels",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": true,
+   "modern": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {
+   "motion_type": "similar"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_motion_parallel",
+  "category": "motion_balance",
+  "description": "Parallel: Same direction, same interval. Avoid for P5, P8, P1 in common practice. OK for 3rds/6ths",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": true,
+   "modern": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {
+   "motion_type": "parallel"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_forbidden_parallel_5ths",
+  "category": "parallel_prohibition",
+  "description": "Parallel 5ths: Two voices moving in P5 to P5 \u2014 avoid in common-practice contexts. Destroys voice independence in tonal style",
+  "severity": "warning",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": false,
+   "nationalistic": false,
+   "minimalist": false,
+   "modern": false
+  },
+  "repair_recipe": "Adjust one voice to create contrary or oblique motion",
+  "detection_heuristic": {
+   "check": "parallel_5ths"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_forbidden_parallel_octaves",
+  "category": "parallel_prohibition",
+  "description": "Parallel octaves: Two voices moving in P8 to P8 \u2014 avoid in common-practice contexts. Destroys voice independence",
+  "severity": "warning",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": false,
+   "nationalistic": false,
+   "minimalist": false,
+   "modern": false
+  },
+  "repair_recipe": "Adjust one voice to create contrary or oblique motion",
+  "detection_heuristic": {
+   "check": "parallel_octaves"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_forbidden_parallel_unisons",
+  "category": "parallel_prohibition",
+  "description": "Parallel unisons: Two voices moving in P1 to P1 \u2014 avoid in common-practice contexts. Complete loss of independence",
+  "severity": "warning",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": false,
+   "nationalistic": false,
+   "minimalist": false,
+   "modern": false
+  },
+  "repair_recipe": "Adjust one voice to create contrary or oblique motion",
+  "detection_heuristic": {
+   "check": "parallel_unisons"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_forbidden_direct_hidden_5ths_8ves",
+  "category": "parallel_prohibition",
+  "description": "Direct (hidden) 5ths/8ves: Similar motion into P5/P8 \u2014 in outer voices: typically allowed only if soprano moves by step. Between inner voices: generally acceptable. ",
+  "severity": "warning",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": false,
+   "nationalistic": false,
+   "minimalist": false,
+   "modern": false
+  },
+  "repair_recipe": "Adjust one voice to create contrary or oblique motion",
+  "detection_heuristic": {
+   "check": "direct_(hidden)_5ths/8ves"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_forbidden_consecutive_diminished_5ths",
+  "category": "parallel_prohibition",
+  "description": "Consecutive diminished 5ths: d5 to d5 in parallel \u2014 tolerated only in inner voices. ",
+  "severity": "warning",
+  "style_permissions": {
+   "common_practice": true,
+   "impressionist": false,
+   "nationalistic": false,
+   "minimalist": false,
+   "modern": false
+  },
+  "repair_recipe": "Adjust one voice to create contrary or oblique motion",
+  "detection_heuristic": {
+   "check": "consecutive_diminished_5ths"
+  },
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_resolve_7ths",
+  "category": "voice_leading",
+  "description": "Resolve 7ths: Chord 7ths typically resolve stepwise DOWN",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_leading_tone",
+  "category": "voice_leading",
+  "description": "Leading tone: Characteristically resolves UP by half step to tonic (may descend in inner voice to complete chord)",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_common_tone_retention",
+  "category": "voice_leading",
+  "description": "Common-tone retention: Keep shared tones in the same voice between chords",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_nearest_position",
+  "category": "voice_leading",
+  "description": "Nearest position: Move each voice to the nearest available chord tone",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_prefer_stepwise_motion",
+  "category": "voice_leading",
+  "description": "Prefer stepwise motion: Leaps > P4 typically resolve by step in opposite direction",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_tritone_resolution",
+  "category": "voice_leading",
+  "description": "Tritone resolution: Augmented 4th characteristically resolves outward; diminished 5th resolves inward",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ },
+ {
+  "id": "cp_vl_doubled_notes",
+  "category": "voice_leading",
+  "description": "Doubled notes: Double the root (preferred) > 5th > 3rd. Avoid doubling the leading tone in common-practice contexts",
+  "severity": "suggestion",
+  "style_permissions": {
+   "common_practice": true
+  },
+  "repair_recipe": "",
+  "detection_heuristic": {},
+  "grounding": "hard_corroborated",
+  "source_file": "counterpoint-essentials.md"
+ }
+]

@@ -1,0 +1,32 @@
+{
+ "composer": "bruckner",
+ "schema": 1,
+ "bars": 27,
+ "notes": 42,
+ "rest_bar_pct": 0.037,
+ "dotted_bar_pct": 0.3704,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.5385,
+ "top_note_values": [
+  [
+   2.0,
+   0.2857
+  ],
+  [
+   4.0,
+   0.2381
+  ],
+  [
+   3.0,
+   0.2143
+  ],
+  [
+   1.0,
+   0.2143
+  ],
+  [
+   0.5,
+   0.0476
+  ]
+ ]
+}

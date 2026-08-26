@@ -1,3 +1,33 @@
 {
-  "forms": {}
+ "forms": {
+  "sonata": {
+   "sections": [
+    {
+     "role": "1",
+     "proportion_range": [
+      0.02,
+      0.2
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.02,
+      0.18
+     ]
+    }
+   ],
+   "key_scheme": {
+    "exposition_keys_major": [
+     "I",
+     "V"
+    ],
+    "exposition_keys_minor": [
+     "i",
+     "III"
+    ],
+    "recap_rule": "tonic"
+   }
+  }
+ }
 }

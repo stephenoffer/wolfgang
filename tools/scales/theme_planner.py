@@ -173,10 +173,9 @@ def _theme_span_beats(theme) -> float:
     if not evs:
         return 0.0
     meter = tuple(getattr(theme, "meter", (4, 4)) or (4, 4))
-    try:
-        bpb = float(int(meter[0]) * 4 / int(meter[1]))
-    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
-        bpb = 4.0
+    from .duration import beats_per_bar
+
+    bpb = beats_per_bar(meter)
     bars = {int(getattr(e, "bar", 1)) for e in evs}
     span = len(bars) * bpb
     written = 0.0

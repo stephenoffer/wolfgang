@@ -1,0 +1,1191 @@
+{
+ "composer": "dvorak",
+ "source_bar_index": "reference_index/dvorak/bar_index.json",
+ "total_phrases": 18,
+ "avg_phrase_length": 2.56,
+ "length_distribution": {
+  "1": 8,
+  "2": 6,
+  "3": 2,
+  "8": 1,
+  "12": 1
+ },
+ "role_distribution": {
+  "opening": 10,
+  "closing": 8
+ },
+ "cadence_distribution": {
+  "half": 15,
+  "authentic": 3
+ },
+ "phrases": [
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p0",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    1,
+    12
+   ],
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.1667,
+    1.0,
+    1.0,
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.5385
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "minor",
+    "min7",
+    "dom7"
+   ],
+   "peak_bar_offset": 8,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4167,
+   "avg_melody_density": 3.6667,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p1",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    13,
+    15
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "maj7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.0,
+   "entry_state": {
+    "density": 6,
+    "register_center": 71,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p2",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    16,
+    16
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p3",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    17,
+    17
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p4",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    18,
+    19
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.5714
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.5,
+   "entry_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p5",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    20,
+    21
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.75,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "dim7",
+    "minor"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 3,
+    "register_center": 73,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p6",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    22,
+    23
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    1.0
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p7",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    24,
+    24
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p8",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    25,
+    32
+   ],
+   "length": 8,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.375,
+    0.625,
+    0.125,
+    0.125,
+    0.75,
+    0.75,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.8667,
+    0.8667,
+    1.0,
+    0.4667
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "held_note",
+    "held_note",
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "minor",
+    "minor",
+    "major",
+    "minor",
+    "min7",
+    "dom7"
+   ],
+   "peak_bar_offset": 6,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 67,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p9",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    33,
+    35
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.75,
+    0.75,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.6667,
+   "entry_state": {
+    "density": 6,
+    "register_center": 71,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 73,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p10",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    36,
+    36
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 66,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p11",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    37,
+    37
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 71,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p12",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    38,
+    39
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.4286
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "min7",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p13",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    40,
+    40
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p14",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    41,
+    41
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p15",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    42,
+    43
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.8
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.5,
+   "entry_state": {
+    "density": 5,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 73,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p16",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    44,
+    45
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "A",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.4444
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 6.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "dvorak_dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter_p17",
+   "source": "dvorak-als-die-alte-mutter__dvorak-als-die-alte-mutter",
+   "bar_range": [
+    46,
+    46
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "D",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 69,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  }
+ ]
+}

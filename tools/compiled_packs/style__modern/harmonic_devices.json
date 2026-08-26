@@ -1,0 +1,271 @@
+[
+ {
+  "id": "total_chromatic_within_tonal_frame",
+  "name": "Total chromatic within tonal frame",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Dense but not directionless"
+  ],
+  "frequency_weight": 0.12,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_wedge",
+  "name": "Chromatic wedge",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Increasing tension as pitches approach"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "semitone_cluster",
+  "name": "Semitone cluster",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Night music; mysterious",
+   "static"
+  ],
+  "frequency_weight": 0.03,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_saturation_crescendo",
+  "name": "Chromatic saturation crescendo",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Climax = maximum chromatic density"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "bitonality",
+  "name": "Bitonality",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Milhaud",
+   "Stravinsky Petrushka chord"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "polytonality",
+  "name": "Polytonality",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Ives",
+   "Milhaud"
+  ],
+  "frequency_weight": 0.03,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "petrushka_chord",
+  "name": "Petrushka chord",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Iconic bitonal sonority"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "polytonal_cadence",
+  "name": "Polytonal cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Independence of strata"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "bitonal_melody",
+  "name": "Bitonal melody",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Tension without atonality"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "diatonic_dissonance",
+  "name": "Diatonic dissonance",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Stravinsky Pulcinella"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "wrong_note_style",
+  "name": "Wrong-note style",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Prokofiev"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "pandiatonic_clusters",
+  "name": "Pandiatonic clusters",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Copland",
+   "Stravinsky"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "modal_cadence",
+  "name": "Modal cadence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Mixolydian bVII-I"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "ostinato_harmony",
+  "name": "Ostinato harmony",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Stravinsky"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "superimposed_triads",
+  "name": "Superimposed triads",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Ravel",
+   "Stravinsky"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "lyrical_theme",
+  "name": "Lyrical theme",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Low-Medium"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "development",
+  "name": "Development",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "High"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "climax",
+  "name": "Climax",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Very High"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "resolution",
+  "name": "Resolution",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Medium-Low"
+  ],
+  "frequency_weight": 0.05,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "ostinato_passage",
+  "name": "Ostinato passage",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Medium"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "recapitulation",
+  "name": "Recapitulation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Medium"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ },
+ {
+  "id": "coda",
+  "name": "Coda",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Variable"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "bartok/harmonic-language.md"
+ }
+]

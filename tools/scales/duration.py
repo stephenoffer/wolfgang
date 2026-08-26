@@ -219,13 +219,39 @@ def largest_dur_at_most(beats) -> str:
     )
 
 
-def bar_duration(time_sig: tuple) -> Fraction:
+# What a bar holds when the time signature is unusable. A malformed meter is
+# DATA — it arrives from a corpus record, a hand-written slot, a partially
+# written phrase — and it must not take down the analysis layer.
+_DEFAULT_METER = (4, 4)
+
+
+def bar_duration(time_sig) -> Fraction:
     """Total beats in a bar given a time signature (num, denom), exact.
 
     (4, 4) -> 4, (3, 4) -> 3, (6, 8) -> 3, (4, 2) -> 8
+
+    Malformed input falls back to 4/4 rather than raising. Twenty-one places in
+    this codebase computed this inline as ``Fraction(int(meter[0]) * 4,
+    int(meter[1]))``, and a denominator of zero — which a partially-initialised
+    slot has — made ``Fraction(0, 0)`` and took out **twelve separate analysis
+    entry points** with a ZeroDivisionError: every counterpoint, voicing,
+    cadence, expression, craft and performance call on that phrase.
+
+    One guarded implementation, since duplicated inline arithmetic is this
+    repository's most reliable bug source.
     """
-    num, denom = time_sig
-    return Fraction(int(num) * 4, int(denom))
+    try:
+        num, denom = int(time_sig[0]), int(time_sig[1])
+    except (TypeError, ValueError, IndexError, KeyError):
+        num, denom = _DEFAULT_METER
+    if num <= 0 or denom <= 0:
+        num, denom = _DEFAULT_METER
+    return Fraction(num * 4, denom)
+
+
+def beats_per_bar(time_sig) -> float:
+    """``bar_duration`` as a float, for callers that want one."""
+    return float(bar_duration(time_sig))
 
 
 def is_strong_beat(beat: float, time_sig: tuple) -> bool:

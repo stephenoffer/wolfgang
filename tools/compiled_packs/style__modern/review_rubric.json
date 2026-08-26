@@ -1,0 +1,70 @@
+{
+ "checks": [
+  {
+   "id": "fp_folk_derived_melodic_cells",
+   "category": "fingerprint",
+   "description": "Folk-derived melodic cells",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_axis_system_tonality",
+   "category": "fingerprint",
+   "description": "Axis system tonality",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_night_music_texture",
+   "category": "fingerprint",
+   "description": "Night music texture",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_bulgarian_balkan_asymmetric_rhythms",
+   "category": "fingerprint",
+   "description": "Bulgarian/Balkan asymmetric rhythms",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_percussive_motoric_piano_writing",
+   "category": "fingerprint",
+   "description": "Percussive, motoric piano writing",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_5",
+   "category": "anti_pattern",
+   "description": "s (what sounds wrong)",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_6",
+   "category": "anti_pattern",
+   "description": "**Generic \"atonal\" writing.** Bart\u00f3k is not random \u2014 he has a tonal system (axis system). Writing ch",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_7",
+   "category": "anti_pattern",
+   "description": "**Western European melody.** A melody that sounds like Romantic or Classical Western music over chro",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_8",
+   "category": "anti_pattern",
+   "description": "**Smooth, connected textures in fast movements.** Bart\u00f3k's fast movements are percussive and spiky \u2014",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_9",
+   "category": "anti_pattern",
+   "description": "**Night music without the atmosphere.** The \"night music\" texture requires the specific combination:",
+   "severity": "soft"
+  },
+  {
+   "id": "anti_10",
+   "category": "anti_pattern",
+   "description": "**Regular meter in folk-dance sections.** If you're writing in Bart\u00f3k's folk-dance idiom, irregular ",
+   "severity": "soft"
+  }
+ ]
+}

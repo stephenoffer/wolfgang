@@ -119,3 +119,23 @@ K:Dm
 - [orchestration.md](orchestration.md) — How registration changes create harmonic events
 - [../../late-romantic-harmony.md](../../late-romantic-harmony.md) — Shared Late Romantic harmonic vocabulary
 - [cross-references.md](cross-references.md) — Contrast with Wagner's continuous chromatic motion
+
+---
+
+## Cadences
+
+Bruckner cadences like an organist — plainly, in blocks, and after enormous
+preparation. The harmony in between is Wagnerian; the cadences themselves are
+often startlingly plain, and that plainness is the effect.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Perfect authentic (PAC) | V–I in root position, full orchestra, after a long dominant pedal | End of a movement or a huge paragraph | Arrival as a monument |
+| Half cadence (HC) | Any chord to V, then SILENCE | Between blocks — the Bruckner pause | The general rest is part of the cadence |
+| Plagal | IV–I, brass chorale scoring | Codas; the chorale endings | Benediction, the organ registration |
+| Deceptive | V–bVI or V–vi | Delaying the peroration | Postponement on a symphonic scale |
+| Chromatic-mediant arrival | Tonic approached from bIII or bVI | Entry of a chorale theme | The sudden opening of space |
+| Unison cadence | All voices on the bare tonic octave | Openings and severe closes | Primeval, unharmonised |
+
+The **general pause** after a half cadence is structural, not decorative. Writing
+continuous music through a Bruckner cadence removes the form.

@@ -1,265 +1,1164 @@
 [
-  {
-    "id": "fig_1_alberti",
-    "name": "Alberti bass",
-    "pattern_keyword": "alberti",
-    "period_style": [
-      "Classical (Mozart",
-      "Haydn)"
-    ],
-    "tempo_range": [
-      100,
-      140
-    ],
-    "character": "Graceful, flowing, elegant",
-    "when_to_use": [
-      "Grace and elegance",
-      "Simple support (stay out of melody's way)"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_2_broken_chord_asc",
-    "name": "Ascending arpeggio",
-    "pattern_keyword": "broken_chord_asc",
-    "period_style": [
-      "All periods; Romantic esp."
-    ],
-    "tempo_range": null,
-    "character": "Rising energy, openness, aspiration",
-    "when_to_use": [
-      "Building energy"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_3_broken_chord_desc",
-    "name": "Descending arpeggio",
-    "pattern_keyword": "broken_chord_desc",
-    "period_style": [
-      "All periods; Romantic esp."
-    ],
-    "tempo_range": null,
-    "character": "Falling, sighing, resolution, descent",
-    "when_to_use": [
-      "Winding down"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_4_murky_bass",
-    "name": "Murky bass (octave alternation)",
-    "pattern_keyword": "murky_bass",
-    "period_style": [
-      "Early Classical",
-      "Galant"
-    ],
-    "tempo_range": [
-      80,
-      120
-    ],
-    "character": "Solid, grounded, simple support",
-    "when_to_use": [
-      "Rhythmic drive",
-      "Simple support (stay out of melody's way)"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_5_waltz_bass",
-    "name": "Waltz bass (3/4, L:1/8)",
-    "pattern_keyword": "waltz_bass",
-    "period_style": [
-      "Romantic (Chopin",
-      "Strauss)"
-    ],
-    "tempo_range": [
-      120,
-      180
-    ],
-    "character": "Dance-like, lilting, elegant",
-    "when_to_use": [
-      "Grace and elegance",
-      "Lyrical expansion",
-      "Simple support (stay out of melody's way)"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_6_wide_span_arpeggio",
-    "name": "Rachmaninoff wide-span",
-    "pattern_keyword": "wide_span_arpeggio",
-    "period_style": [
-      "Late Romantic"
-    ],
-    "tempo_range": [
-      60,
-      100
-    ],
-    "character": "Expansive, passionate, sweeping",
-    "when_to_use": [
-      "Lyrical expansion",
-      "Virtuosic display",
-      "Climactic density"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_7_turn_based",
-    "name": "Turn-based",
-    "pattern_keyword": "turn_based",
-    "period_style": [
-      "Classical",
-      "Baroque"
-    ],
-    "tempo_range": [
-      100,
-      140
-    ],
-    "character": "Ornamental, playful, decorative",
-    "when_to_use": [
-      "Grace and elegance"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_8_scalar_asc",
-    "name": "Scalar fill ascending",
-    "pattern_keyword": "scalar_asc",
-    "period_style": [
-      "All periods"
-    ],
-    "tempo_range": [
-      100,
-      160
-    ],
-    "character": "Building, forward motion, urgency",
-    "when_to_use": [
-      "Building energy",
-      "Virtuosic display"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_9_scalar_desc",
-    "name": "Scalar fill descending",
-    "pattern_keyword": "scalar_desc",
-    "period_style": [
-      "All periods"
-    ],
-    "tempo_range": [
-      100,
-      160
-    ],
-    "character": "Releasing, calming, closing",
-    "when_to_use": [
-      "Winding down",
-      "Virtuosic display"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_10_tremolo",
-    "name": "Tremolo",
-    "pattern_keyword": "tremolo",
-    "period_style": [
-      "Romantic",
-      "orchestral"
-    ],
-    "tempo_range": null,
-    "character": "Tension, suspense, sustained energy",
-    "when_to_use": [
-      "Building energy",
-      "Rhythmic drive",
-      "Climactic density"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_11_broken_octave",
-    "name": "Broken octave with fill",
-    "pattern_keyword": "broken_octave",
-    "period_style": [
-      "Classical",
-      "early Romantic"
-    ],
-    "tempo_range": [
-      100,
-      140
-    ],
-    "character": "Busy, perpetual motion, industrious",
-    "when_to_use": [
-      "Rhythmic drive",
-      "Virtuosic display"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_12_chordal_passing",
-    "name": "Chordal with passing tones",
-    "pattern_keyword": "chordal_passing",
-    "period_style": [
-      "Romantic",
-      "choral style"
-    ],
-    "tempo_range": [
-      60,
-      110
-    ],
-    "character": "Hymn-like, rich, warm, broadening",
-    "when_to_use": [
-      "Winding down",
-      "Lyrical expansion",
-      "Climactic density"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  }
+ {
+  "id": "lh_idiom_walking_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Walking bass",
+  "description": "steady quarters or eighths stepping and leaping through the harmony with a shape of its own: `C2q D2q E2q F2q` / `C2e G2e E2e C2e G1e B1e C2e D2e`. The default in the chorale-derived and continuo textures. It should move mostly by step with an occasional leap of a fourth or fifth to a new harmony.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_imitation_of_the_right_hand",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Imitation of the right hand",
+  "description": "the left hand states the subject a bar or two after the right, usually at the octave or the fifth below. This is the single most characteristic Baroque texture and it is nearly absent from generated writing. If the piece has a subject, the bass must state it.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_running_sixteenths_in_one_voice",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Running sixteenths in one voice",
+  "description": "a continuous line, the same rhythmic value throughout, changing direction and register as the harmony moves: `C2s D2s E2s F2s G2s A2s B2s C3s \u2026`. The invention and prelude engine. Its *continuity* is the point; a rest inside it is an event.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_broken_chord_figuration",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Broken-chord figuration",
+  "description": "`C2s G2s E3s G2s C2s G2s E3s G2s`. The C major prelude shape. Note it is written as one unbroken stream, not as bass-plus- chord: the harmony is *implied* by the figure rather than stated under it.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_pedal_point",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Pedal point",
+  "description": "the bass holds one note, usually the dominant, for four to sixteen bars while everything above changes: `G1w` repeated, or `G1w~` tied. Bach's standard preparation for a final cadence.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_suspension_chain_in_an_inner_voice",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Suspension chain in an inner voice",
+  "description": "a held note becomes a dissonance when the bass moves, then falls by step, then is held again. Written with ties: `F3h~ F3q E3q`. This is where Baroque expression lives, and a texture with no suspensions sounds bland however correct the chords are.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_two_independent_voices_in_the_left_hand",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Two independent voices in the left hand",
+  "description": "a held tenor over a moving bass, written with `//`: `C2h G2h // E3q F3q E3q D3q`. Real three- and four-voice writing needs this; a single-stream left hand cannot do it.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sequence",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sequence",
+  "description": "the same figure transposed down a fifth or up a fourth, two to four times. `C2e E2e G2e C3e` then `F1e A1e C2e F2e` then `B1e D2e F2e B2e`. Bach's principal method of continuation, and it should be *exact* transposition, not an approximation.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_alberti",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Alberti",
+  "description": "does not exist here. It is a Classical invention. Using it makes the music mid-eighteenth-century at the earliest.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_chordal_all_voices_together",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Chordal, all voices together",
+  "description": "reserved for chorale texture and for cadential arrivals: `[C2,C3,E3,G3]q`. Four real voices moving in the same rhythm, each singable.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_the_bass_rests_while_an_inner_voice_takes_over",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "The bass rests while an inner voice takes over",
+  "description": "a texture change without a change of idiom. Bach thins from four voices to two and back constantly.",
+  "source_file": "bach/bach-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "fig_1_alberti",
+  "name": "Alberti bass",
+  "pattern_keyword": "alberti",
+  "period_style": [
+   "Classical (Mozart",
+   "Haydn)"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Graceful, flowing, elegant",
+  "when_to_use": [
+   "Grace and elegance",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_2_broken_chord_asc",
+  "name": "Ascending arpeggio",
+  "pattern_keyword": "broken_chord_asc",
+  "period_style": [
+   "All periods; Romantic esp."
+  ],
+  "tempo_range": null,
+  "character": "Rising energy, openness, aspiration",
+  "when_to_use": [
+   "Building energy"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_3_broken_chord_desc",
+  "name": "Descending arpeggio",
+  "pattern_keyword": "broken_chord_desc",
+  "period_style": [
+   "All periods; Romantic esp."
+  ],
+  "tempo_range": null,
+  "character": "Falling, sighing, resolution, descent",
+  "when_to_use": [
+   "Winding down"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_4_murky_bass",
+  "name": "Murky bass (octave alternation)",
+  "pattern_keyword": "murky_bass",
+  "period_style": [
+   "Early Classical",
+   "Galant"
+  ],
+  "tempo_range": [
+   80,
+   120
+  ],
+  "character": "Solid, grounded, simple support",
+  "when_to_use": [
+   "Rhythmic drive",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_5_waltz_bass",
+  "name": "Waltz bass (3/4, L:1/8)",
+  "pattern_keyword": "waltz_bass",
+  "period_style": [
+   "Romantic (Chopin",
+   "Strauss)"
+  ],
+  "tempo_range": [
+   120,
+   180
+  ],
+  "character": "Dance-like, lilting, elegant",
+  "when_to_use": [
+   "Grace and elegance",
+   "Lyrical expansion",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_6_wide_span_arpeggio",
+  "name": "Rachmaninoff wide-span",
+  "pattern_keyword": "wide_span_arpeggio",
+  "period_style": [
+   "Late Romantic"
+  ],
+  "tempo_range": [
+   60,
+   100
+  ],
+  "character": "Expansive, passionate, sweeping",
+  "when_to_use": [
+   "Lyrical expansion",
+   "Virtuosic display",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_7_turn_based",
+  "name": "Turn-based",
+  "pattern_keyword": "turn_based",
+  "period_style": [
+   "Classical",
+   "Baroque"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Ornamental, playful, decorative",
+  "when_to_use": [
+   "Grace and elegance"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_8_scalar_asc",
+  "name": "Scalar fill ascending",
+  "pattern_keyword": "scalar_asc",
+  "period_style": [
+   "All periods"
+  ],
+  "tempo_range": [
+   100,
+   160
+  ],
+  "character": "Building, forward motion, urgency",
+  "when_to_use": [
+   "Building energy",
+   "Virtuosic display"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_9_scalar_desc",
+  "name": "Scalar fill descending",
+  "pattern_keyword": "scalar_desc",
+  "period_style": [
+   "All periods"
+  ],
+  "tempo_range": [
+   100,
+   160
+  ],
+  "character": "Releasing, calming, closing",
+  "when_to_use": [
+   "Winding down",
+   "Virtuosic display"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_10_tremolo",
+  "name": "Tremolo",
+  "pattern_keyword": "tremolo",
+  "period_style": [
+   "Romantic",
+   "orchestral"
+  ],
+  "tempo_range": null,
+  "character": "Tension, suspense, sustained energy",
+  "when_to_use": [
+   "Building energy",
+   "Rhythmic drive",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_11_broken_octave",
+  "name": "Broken octave with fill",
+  "pattern_keyword": "broken_octave",
+  "period_style": [
+   "Classical",
+   "early Romantic"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Busy, perpetual motion, industrious",
+  "when_to_use": [
+   "Rhythmic drive",
+   "Virtuosic display"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_12_chordal_passing",
+  "name": "Chordal with passing tones",
+  "pattern_keyword": "chordal_passing",
+  "period_style": [
+   "Romantic",
+   "choral style"
+  ],
+  "tempo_range": [
+   60,
+   110
+  ],
+  "character": "Hymn-like, rich, warm, broadening",
+  "when_to_use": [
+   "Winding down",
+   "Lyrical expansion",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "device_imitation_at_the_octave_or_fifth",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Imitation at the octave or fifth",
+  "description": "a voice states the subject, another follows one or two bars later. The basic Baroque texture, and the thing most often missing from generated writing.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_inversion",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Inversion",
+  "description": "the same shape upside down: every rising interval falls by the same amount. Used for the answer, for an episode, or for a later entry.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_augmentation_and_diminution",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Augmentation and diminution",
+  "description": "the subject in double or half values. Augmentation at a final entry is a standard climax device.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_stretto",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Stretto",
+  "description": "entries overlapping more closely than the subject's length, so the voices pile up. Reserved for the end of a fugue; it is the intensification.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_countersubject",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Countersubject",
+  "description": "a fixed second line that accompanies the subject every time it appears. Invertible: it must work above *or* below.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_sequence",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Sequence",
+  "description": "a one- or two-bar unit transposed exactly, three or four times, usually falling by step or by fifth. The engine of every episode.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_pedal_point",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Pedal point",
+  "description": "the bass locks on the dominant while the upper voices work above it, for four to sixteen bars before a final cadence.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_voice_count_change_as_punctuation",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Voice-count change as punctuation",
+  "description": "four voices thin to two for an episode and return for the next entry. This is Baroque dynamics.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_suspension_chain",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Suspension chain",
+  "description": "a held note becomes dissonant when the bass moves, falls by step, is held again. Chains of four or six are ordinary. Baroque expression lives here; a texture with no suspensions is bland however correct.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_circle_of_fifths",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Circle of fifths",
+  "description": "the bass falling a fifth and rising a fourth for six or eight chords. Combined with a sequence in the upper voices it will fill any episode.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_chromatic_fourth_the_lament",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Chromatic fourth (the lament)",
+  "description": "a descending line covering a fourth by semitones: `A3 Ab3 G3 Gb3 F3 E3`. Used for grief, and often as a ground bass.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_compound_melody",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Compound melody",
+  "description": "a single line implying two voices by alternating registers: `G3s D4s F3s D4s E3s D4s`. One hand, two audible parts. This is how a solo violin or a keyboard line implies harmony.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_written_out_ornamentation",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Written-out ornamentation",
+  "description": "the melodic line decorated in real note values rather than with symbols, especially in slow movements.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_neapolitan_sixth_and_the_diminished_seventh",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Neapolitan sixth and the diminished seventh",
+  "description": "at moments of intensity, usually approaching a cadence in a minor key.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_picardy_third",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Picardy third",
+  "description": "a minor-key piece ending on a major tonic chord. The period default for a final cadence.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_modulation_through_the_relative_and_dominant_keys",
+  "category": "composer_device",
+  "section": "Melodic and harmonic devices",
+  "name": "Modulation through the relative and dominant keys",
+  "description": "returning through the subdominant. Bach's tonal plan is systematic, not exploratory.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_ritornello",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Ritornello",
+  "description": "a fixed passage returning in different keys between episodes. The concerto and many arias are built on it.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_binary_form_with_a_repeat",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Binary form with a repeat",
+  "description": "two halves, the first modulating to the dominant, the second returning. The dance-suite default.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_final_entry_in_augmentation_over_a_pedal",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "The final entry in augmentation over a pedal",
+  "description": "the standard fugal peroration: subject slowed to double values, bass locked on the dominant.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_written_out_cadenza_before_the_final_cadence",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Written-out cadenza before the final cadence",
+  "description": "a free flourish, often over a held chord, in the preludes and concertos.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_terraced_dynamics",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Terraced dynamics",
+  "description": "the level changes at a structural point and holds. Not hairpins, which are a later notation.",
+  "source_file": "bach/bach-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_steady_continuo_quarters",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Steady continuo quarters",
+  "description": "`D2q A2q D3q A2q`. Root and fifth alternating, one chord per bar or per half bar. The default, and it should sound unhurried.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_walking_eighths",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Walking eighths",
+  "description": "`D2e E2e F#2e G2e A2e B2e C#3e D3e`. Drives an aria or a fast movement; mostly stepwise with an occasional leap to the next harmony.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_repeated_notes_on_one_pitch",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Repeated notes on one pitch",
+  "description": "`D2e \u00d78`. Insistent, and used under a sequence where the harmony above is doing the moving.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_dotted_rhythm_bass_the_french_overture",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Dotted-rhythm bass (the French overture)",
+  "description": "`D2dq D2e A2dq A2e`. Stately and ceremonial. Paired with a dotted upper part; this is the single most recognisable Handel gesture and it belongs at openings.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_descending_tetrachord_ground_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Descending tetrachord / ground bass",
+  "description": "`D2h C2h Bb1h A1h`, repeated as an ostinato under changing upper material. The lament bass. Handel builds whole movements on one.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_octave_leaps_between_root_and_its_octave",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Octave leaps between root and its octave",
+  "description": "`D2q D3q D2q D3q`. Solid and plain; gives weight without motion.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sustained_pedal_on_the_dominant",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sustained pedal on the dominant",
+  "description": "`A1w` held for four or eight bars while the upper parts intensify. Handel's standard preparation for a final cadence and for a chorus entry.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sequential_descent_by_fifths",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sequential descent by fifths",
+  "description": "the bass falling a fourth and rising a second: `D2q G1q E2q A1q F#2q B1q`. The circle-of-fifths engine, and Handel uses it plainly and often.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_unison_with_the_upper_parts",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Unison with the upper parts",
+  "description": "everything on the same line, in octaves, for a declamatory opening or a sudden fortissimo. Bare and public.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_silence_under_a_solo_entry",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Silence under a solo entry",
+  "description": "the bass drops out entirely for a phrase so a voice or a solo instrument can be heard alone, then re-enters at the cadence. Common in the arias and almost never generated.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_broken_octaves_for_agitation",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Broken octaves for agitation",
+  "description": "`D2e D3e D2e D3e`. The storm and rage idiom; heavier and slower than a Classical tremolo.",
+  "source_file": "handel/handel-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "fig_1_alberti",
+  "name": "Alberti bass",
+  "pattern_keyword": "alberti",
+  "period_style": [
+   "Classical (Mozart",
+   "Haydn)"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Graceful, flowing, elegant",
+  "when_to_use": [
+   "Grace and elegance",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_2_broken_chord_asc",
+  "name": "Ascending arpeggio",
+  "pattern_keyword": "broken_chord_asc",
+  "period_style": [
+   "All periods; Romantic esp."
+  ],
+  "tempo_range": null,
+  "character": "Rising energy, openness, aspiration",
+  "when_to_use": [
+   "Building energy"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_3_broken_chord_desc",
+  "name": "Descending arpeggio",
+  "pattern_keyword": "broken_chord_desc",
+  "period_style": [
+   "All periods; Romantic esp."
+  ],
+  "tempo_range": null,
+  "character": "Falling, sighing, resolution, descent",
+  "when_to_use": [
+   "Winding down"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_10_tremolo",
+  "name": "Tremolo",
+  "pattern_keyword": "tremolo",
+  "period_style": [
+   "Romantic",
+   "orchestral"
+  ],
+  "tempo_range": null,
+  "character": "Tension, suspense, sustained energy",
+  "when_to_use": [
+   "Building energy",
+   "Rhythmic drive",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "device_the_french_overture_opening",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "The French overture opening",
+  "description": "dotted rhythms, slow, ceremonial, both hands in the same rhythm: `[D4,F#4,A4]dq [D4,F#4,A4]e`. Followed by a fast fugal section. The standard way to begin something important.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_terraced_dynamics",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "Terraced dynamics",
+  "description": "`f` for a whole section, `p` for the next. No hairpins. The contrast is architectural.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_echo",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "The echo",
+  "description": "a phrase repeated immediately and softer, often by a smaller group. The period's dynamic vocabulary in one gesture.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_grand_pause_before_a_final_cadence",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "The grand pause before a final cadence",
+  "description": "everything stops, then the cadence. Used in every chorus.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_homophonic_declamation",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "Homophonic declamation",
+  "description": "all voices in the same rhythm on one line of text or one gesture, then back to counterpoint. Rare enough to be striking.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_long_dominant_pedal",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "The long dominant pedal",
+  "description": "eight to sixteen bars, with the upper parts accumulating. The build to a final entry.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_unison_statement",
+  "category": "composer_device",
+  "section": "Rhetorical devices",
+  "name": "Unison statement",
+  "description": "everything on one line in octaves, for an opening or a sudden emphasis.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_sequential_repetition",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "Sequential repetition",
+  "description": "a four-bar idea stated, then a step or a third lower, then again. Handel builds by sequence more than by development, and the transposition should be exact.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_ground_bass",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "The ground bass",
+  "description": "a repeating bass pattern (often a descending tetrachord) with continuously varied material above. Whole movements are built this way.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_ritornello",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "Ritornello",
+  "description": "a fixed instrumental passage returning between vocal or solo episodes, in different keys.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_da_capo_aria",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "Da capo aria",
+  "description": "A, contrasting B, then A again ornamented by the performer. If writing out the return, decorate it.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_written_out_cadenza_before_the_final_cadence_of_an_aria_13_melodic_sequence_over_a_walking_bass",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "The written-out cadenza before the final cadence** of an aria.\n\n13. **Melodic sequence over a walking bass",
+  "description": "the two most common ingredients, combined; it will fill any transitional passage idiomatically.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_wide_singable_intervals",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "Wide, singable intervals",
+  "description": "Handel's lines leap more than Bach's and are more vocal in shape: a rising fourth or fifth, then stepwise descent.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_repeated_note_declamation",
+  "category": "composer_device",
+  "section": "Melodic and structural devices",
+  "name": "Repeated-note declamation",
+  "description": "the same pitch several times in speech rhythm, for emphasis.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_circle_of_fifths",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Circle of fifths",
+  "description": "plain, long, and used without embarrassment.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_suspension_chains_at_cadences",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Suspension chains at cadences",
+  "description": "4-3 and 7-6, the standard Baroque approach.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_neapolitan_sixth_at_a_moment_of_pathos_in_a_minor_key_aria_19_picardy_third_to_end_a_minor_key_movement_20_slow_harmonic_rhythm",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "The Neapolitan sixth** at a moment of pathos in a minor-key aria.\n\n19. **Picardy third** to end a minor-key movement.\n\n20. **Slow harmonic rhythm",
+  "description": "one chord per bar or per two bars, especially in the grand choruses. Handel prolongs where Bach moves.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_deceptive_cadence_to_extend_a_close",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Deceptive cadence to extend a close",
+  "description": "V to vi, then the cadence restated and completed.",
+  "source_file": "handel/handel-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_walking_quarters_through_the_harmony",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Walking quarters through the harmony",
+  "description": "`D3q A2q Bb2q F2q G2q D2q Eb2q A2q`. Steady, mostly by step or by fourth, one note per chord. The default and the sound of the style.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_circle_of_fifths_exact",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Circle of fifths, exact",
+  "description": "the bass falling a fifth and rising a fourth, four to eight chords in a row: `D3q G2q C3q F2q Bb2q E2q A2q D2q`. Corelli uses longer circles than anyone before him, and the exactness is the point.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_suspension_chain_the_7_6_or_4_3_chain",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Suspension chain (the 7-6 or 4-3 chain)",
+  "description": "the upper voices suspend in alternation while the bass walks down by step. `D3q C3q Bb2q A2q` under suspending violins. This is the single most Corellian texture there is.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_pedal_on_the_dominant",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Pedal on the dominant",
+  "description": "`A2w` held for four to eight bars before a final cadence, with the violins intensifying above.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_repeated_notes_for_insistence",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Repeated notes for insistence",
+  "description": "`D3e \u00d78` under a sequential passage.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_bass_imitating_the_violins",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Bass imitating the violins",
+  "description": "in the fugal movements the bass takes the subject at the octave below. The trio sonata's fast movements are usually fugal and the bass must participate.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_descending_tetrachord_ground",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Descending tetrachord ground",
+  "description": "`D3h C3h Bb2h A2h`, repeated. Used for the slow movements and the chaconne-like finales.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_long_notes_under_a_solo_passage",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Long notes under a solo passage",
+  "description": "whole notes while a violin ornaments freely above. The slow-movement texture.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_cadential_4_3_with_the_bass_falling_a_fifth",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Cadential 4-3 with the bass falling a fifth",
+  "description": "`A2h D2h` under a suspended fourth resolving. Every phrase ends this way; that is not monotony, it is the period's punctuation.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sequences_of_one_bar_units",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sequences of one-bar units",
+  "description": "the same bar transposed down a step or a third, three or four times. Corelli's principal method of continuation, and the transposition should be exact.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_silence_for_one_beat_before_a_cadence",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Silence for one beat before a cadence",
+  "description": "the whole texture stops, then the cadence lands. Sparing and effective.",
+  "source_file": "corelli/corelli-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_suspension_chain",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "The suspension chain",
+  "description": "the two violins suspending in alternation while the bass walks down by step, 7-6 or 4-3, for four to eight bars. The single most Corellian texture, and the sound the whole style is remembered for.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_imitation_between_the_two_violins",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Imitation between the two violins",
+  "description": "one states, the other answers a bar later at the unison or the octave. Constant in the fast movements.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_voice_crossing_between_the_violins",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Voice crossing between the violins",
+  "description": "the second rising above the first for a bar or two. Gives the trio texture its interweaving quality.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_fugal_exposition_in_a_fast_movement",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Fugal exposition in a fast movement",
+  "description": "subject in violin 1, answer in violin 2, then the bass. The church sonata's second movement.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_parallel_thirds_and_sixths_between_the_violins",
+  "category": "composer_device",
+  "section": "Contrapuntal devices",
+  "name": "Parallel thirds and sixths between the violins",
+  "description": "for a lyrical passage or the approach to a cadence.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_circle_of_fifths",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Circle of fifths",
+  "description": "longer than anyone before him, six or eight chords, with a sequence in the upper parts. His signature progression.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_4_3_cadence",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "The 4-3 cadence",
+  "description": "the upper voice suspends a fourth over the bass's penultimate note and resolves down to the third. Every phrase ends this way, and that consistency is the period's punctuation, not monotony.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_corelli_clash",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "The Corelli clash",
+  "description": "the resolution of a suspension sounding briefly against the note it resolves to, in another voice. Named after him.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_secondary_dominants_inside_a_sequence",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Secondary dominants inside a sequence",
+  "description": "each step of a circle tonicised. Systematic rather than expressive.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_pedal_on_the_dominant_before_a_final_cadence_four_to_eight_bars_11_picardy_third_to_end_a_minor_key_movement_12_even_harmonic_rhythm",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "The pedal on the dominant** before a final cadence, four to eight bars.\n\n11. **Picardy third** to end a minor-key movement.\n\n12. **Even harmonic rhythm",
+  "description": "one chord per beat or per bar, held for a whole section. Irregular harmonic rhythm sounds later than this style.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_exact_sequence",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Exact sequence",
+  "description": "a one- or two-bar unit transposed without variation, three or four times, usually falling by step or by fifth. Do not vary it; the exactness is the idiom.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_slow_fast_slow_fast",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Slow\u2013fast\u2013slow\u2013fast",
+  "description": "the church sonata's four movements: suspensions over a walking bass, fugal, a shorter slow movement often in the relative key, and a dance-like finale in triple time.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_dance_suite_alternative",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "The dance suite alternative",
+  "description": "allemande, corrente, sarabande, giga, each in binary form with repeats.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_ground_bass",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Ground bass",
+  "description": "a descending tetrachord repeated with varied upper material, for a slow movement or a chaconne finale.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_ritornello_contrast_in_the_concerto_grosso",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Ritornello contrast in the concerto grosso",
+  "description": "the full group (*concerto grosso*) answering the soloists (*concertino*), with the same material.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_regular_four_and_eight_bar_phrases",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Regular four- and eight-bar phrases",
+  "description": "Corelli is squarer than almost anyone, and the regularity is the frame the suspensions hang on.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_written_skeleton_performer_ornamented",
+  "category": "composer_device",
+  "section": "Ornamentation",
+  "name": "The written skeleton, performer-ornamented",
+  "description": "slow movement lines are intentionally plain and were decorated in performance. If writing the ornamentation out, use passing notes, cadential trills and turns around long notes.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_cadential_trill",
+  "category": "composer_device",
+  "section": "Ornamentation",
+  "name": "The cadential trill",
+  "description": "on the penultimate note of every significant cadence, resolving to the final.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_terraced_echo",
+  "category": "composer_device",
+  "section": "Ornamentation",
+  "name": "Terraced echo",
+  "description": "a phrase repeated softer. The whole dynamic vocabulary.",
+  "source_file": "corelli/corelli-devices.md",
+  "grounding": "hard_corroborated"
+ }
 ]
