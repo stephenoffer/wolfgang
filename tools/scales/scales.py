@@ -2084,6 +2084,15 @@ def _gated_commit(
 
     graph.commit_agent_phrase(phrase_id, layer)
 
+    # 4. Craft checklist. This ran only inside `run_scales_section` — the ENGINE
+    #    FALLBACK path — so it never saw a single agent-authored phrase, which
+    #    is the path every piece actually takes. The checks ask the questions a
+    #    composer asks of their own bar (does the melody make a claim, does the
+    #    rhythm have an identity, does the bass have a purpose, does the phrase
+    #    breathe, is there one detail worth remembering) and they are advisory:
+    #    a phrase may fail one deliberately.
+    craft = _craft_check_phrase(graph, phrase_id, layer)
+
     # Capture the piece's principal theme from the first phrase whose dramatic
     # role is to state it. The theme machinery was entirely inert on the default
     # path: `motif_bank` is empty at plan time so no theme was ever elected, and
@@ -2091,6 +2100,7 @@ def _gated_commit(
     # later phrase's brief had no theme to develop and a piece came out as N
     # independently-composed phrases with nothing binding them.
     _capture_theme_if_first_statement(graph, phrase_id)
+    _settle_expectations(graph, phrase_id)
 
     # Overrides are auditable: every waived check lands in the history
     for ov in gate.overrides:
@@ -2112,7 +2122,94 @@ def _gated_commit(
         "rejected_waivers": gate.rejected_waivers,
     }
     out["engraving"] = engraving
+    if craft:
+        out["craft"] = craft
     return out
+
+
+def _settle_expectations(graph, phrase_id: str) -> None:
+    """Close the obligations this phrase discharges, on commit.
+
+    The ledger had a ``satisfy`` method on both implementations and NOTHING in
+    the project ever called it. Expectations were recorded at plan time and never
+    resolved, so every debt stayed open for the whole piece and the brief's
+    ledger section only ever grew — which is not a working memory, it is a list
+    that gets longer. A composer told to resolve a cadence it already resolved
+    four phrases ago learns to ignore the section.
+
+    A section's cadence debt is discharged by the LAST phrase of that section
+    (that is where its cadence lands); a theme-return promise by the first
+    committed phrase of a section whose role is a return.
+    """
+    from .cross_scale_ledger import ensure_ledger, persist_ledger
+
+    state = graph.phrases.get(phrase_id)
+    slot = getattr(state, "slot", None) if state else None
+    if slot is None:
+        return
+    section_id = slot.section_id or ""
+    order = graph.get_section_phrases(section_id) or []
+    is_last_of_section = bool(order) and order[-1] == phrase_id
+    role = _infer_section_role(section_id).lower()
+    is_return = any(k in role for k in ("recap", "rec_", "a2", "return", "reprise"))
+
+    try:
+        ledger = ensure_ledger(graph)
+    except Exception:
+        return
+    settled = False
+    for exp in list(getattr(ledger, "expectations", []) or []):
+        if getattr(exp, "status", "") != "open":
+            continue
+        ref = str(getattr(exp, "object_ref", "") or "")
+        if is_last_of_section and ref == f"cadence_resolution_{section_id}":
+            settled |= bool(ledger.satisfy(exp.id, phrase_id))
+        elif is_return and ref.startswith("theme_recap_after_"):
+            settled |= bool(ledger.satisfy(exp.id, phrase_id))
+    if settled:
+        persist_ledger(graph, ledger)
+
+
+def _craft_check_phrase(graph, phrase_id: str, layer: LayerIR) -> Optional[Dict[str, Any]]:
+    """Run the craft checklist over a just-committed agent surface.
+
+    Returns the failed checks with what each one is asking, or None when the
+    phrase satisfies all of them. Advisory: a phrase may fail one on purpose
+    (a deliberately static bass under a moving melody, a phrase with no rest
+    because it elides into the next).
+    """
+    from .craft_checker import CraftChecker
+
+    state = graph.phrases.get(phrase_id)
+    if state is None:
+        return None
+    try:
+        result = CraftChecker().check(
+            layer,
+            control=getattr(state, "control", None),
+            bundles=getattr(state, "onset_bundles", None),
+        )
+    except Exception as exc:  # a checklist must never block a good commit
+        return {"error": f"{type(exc).__name__}: {exc}"}
+    state.craft_check = result
+
+    asks = {
+        "melodic_claim_clear": "the melody makes a claim rather than filling time",
+        "rhythm_has_identity": "the rhythm is a shape, not an even stream",
+        "bass_has_purpose": "the bass is a line, not a series of roots",
+        "harmony_is_voiced": "the harmony is voiced, not implied",
+        "has_breath_point": "the phrase breathes somewhere",
+        "accompaniment_responds_to_melody": "the accompaniment answers the melody",
+        "entry_exit_earned": "the phrase's entry and exit are prepared",
+        "has_memorable_detail": "one detail is worth remembering",
+        "all_notes_justified": "every note has a reason",
+    }
+    failed = [
+        {"check": name, "asks": text}
+        for name, text in asks.items()
+        if getattr(result, name, True) is False
+    ]
+    return {"failed": failed, "passed": len(asks) - len(failed), "of": len(asks)} if failed else None
 
 
 def _capture_theme_if_first_statement(graph, phrase_id: str) -> None:

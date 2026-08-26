@@ -183,6 +183,11 @@ class CompositionBrief:
     # (form, themes, harmonic language, what makes them work) — its understanding
     # of real music, fed forward so every phrase composes from it.
     reference_study: List[Dict[str, str]] = field(default_factory=list)
+    # How well this composer is actually armed. Composing "as Corelli" from 19
+    # bars is a different act from composing as Mozart from 7,022, and the brief
+    # said so only obliquely, through scattered "no corpus stats for texture X"
+    # warnings the agent had to add up for itself.
+    coverage: Dict[str, Any] = field(default_factory=dict)
 
 
 # ─── Composer resolution ─────────────────────────────────────────────────────
@@ -1203,8 +1208,28 @@ def _adapted_to_shorthand(adapted: AdaptedBar) -> Tuple[str, str]:
 def _shorthand_beats(shorthand: str) -> Optional[float]:
     """Total metrical beats of a shorthand string (grace notes count 0).
 
-    Returns None if a token can't be parsed (so callers don't falsely judge
-    an unparseable bar as overflowing)."""
+    A ``//`` string carries **independent voices**, each of which fills the bar
+    on its own, so the length of the bar is the length of its longest voice —
+    not the sum. The previous version had no case for ``//`` at all: the token
+    failed the note regex, the function returned ``None``, and both callers
+    read ``None`` as "unparseable, don't judge it". So **every multi-voice
+    exemplar bypassed the malformed-bar filter entirely** — which is most
+    exemplars for exactly the composers where it matters most (a Bach sample
+    averages four voices per bar). Measured across the armed corpus, 5% of the
+    voices handed to the composer did not fill their bar, and the composer is
+    told to adapt them.
+
+    Returns None only if a token genuinely cannot be parsed.
+    """
+    if "//" in (shorthand or ""):
+        lengths = [
+            _shorthand_beats(v.strip()) for v in shorthand.split("//") if v.strip()
+        ]
+        real = [x for x in lengths if x is not None]
+        if not real:
+            return None
+        return round(max(real), 4)
+
     import re
 
     total = 0.0
@@ -1752,18 +1777,50 @@ def _ledger_constraints(graph, phrase_id: str) -> Dict[str, List[Dict[str, Any]]
 
 
 def _ledger_lines(graph, phrase_id: str) -> List[str]:
+    """Open expectations THIS phrase can act on, plus a count of the rest.
+
+    Every open entry was listed, so a phrase in the exposition was shown the
+    recapitulation's cadence debt and the coda's — eight obligations, most of
+    them belonging to sections that have not happened yet. A list where almost
+    nothing is this phrase's business reads as noise and gets skipped, which
+    defeats the point of a ledger.
+    """
     ledger = _reconstruct_ledger(graph)
-    lines: List[str] = []
-    entries = getattr(ledger, "entries", None) if ledger else None
-    if entries:
-        for e in entries:
-            status = getattr(e, "status", "")
-            if status in ("fulfilled", "expired", "satisfied", "violated"):
-                continue
-            kind = getattr(e, "kind", getattr(e, "type", "expectation"))
-            obj = getattr(e, "object_ref", "")
-            lines.append(f"{kind}: {obj} ({status or 'open'})")
-    return lines[:8]
+    entries = (getattr(ledger, "entries", None) if ledger else None) or []
+    state = graph.phrases.get(phrase_id)
+    slot = getattr(state, "slot", None) if state else None
+    section = (getattr(slot, "section_id", "") or "").lower()
+
+    mine: List[str] = []
+    elsewhere = 0
+    for e in entries:
+        status = getattr(e, "status", "")
+        if status in ("fulfilled", "expired", "satisfied", "violated"):
+            continue
+        kind = getattr(e, "kind", getattr(e, "type", "expectation"))
+        obj = str(getattr(e, "object_ref", "") or "")
+        scale = str(getattr(e, "scale", "") or "").lower()
+        low = obj.lower()
+        # A movement-scale obligation is everyone's business; a section-scale one
+        # is only the business of phrases in that section.
+        # Match the section EXACTLY, as the trailing component of the reference.
+        # A substring test makes "m1_a" match "m1_a2", so every phrase of the A
+        # section was also shown the return section's debt.
+        owner = low.split("cadence_resolution_")[-1] if "cadence_resolution_" in low else ""
+        relevant = (
+            scale in ("movement", "piece")
+            or (section and owner == section)
+            or (section and not owner and section in low)
+        )
+        if relevant:
+            mine.append(f"{kind}: {obj} ({status or 'open'})")
+        else:
+            elsewhere += 1
+    if elsewhere:
+        mine.append(
+            f"({elsewhere} more open elsewhere in the piece — not this phrase's to pay)"
+        )
+    return mine[:8]
 
 
 def _last_events_summary(layer, n: int = 4) -> Dict[str, Any]:
@@ -2346,6 +2403,35 @@ def _register_target(graph, slot) -> List[str]:
     return out
 
 
+def _coverage_note(composer: str) -> Dict[str, Any]:
+    """How much real music stands behind this brief, in one line.
+
+    `composer_coverage_tier` has always known this; nothing put it in front of
+    the agent. Corelli, Handel, Schubert and Weber are all "armed" and all
+    report tier C, on 19, 54, 82 and 241 bars respectively — against Mozart's
+    7,022. An exemplar drawn from 19 bars is not weak evidence of a style, it is
+    a single page of one piece, and the agent should know that before it decides
+    how much weight to give it.
+    """
+    try:
+        rep = composer_coverage_tier(composer)
+    except Exception:
+        return {}
+    tier = rep.get("tier")
+    bars = rep.get("bars") or 0
+    advice = {
+        "A": "richly armed — the exemplars are representative; follow them closely.",
+        "B": "armed — the exemplars are real but the sample is small; treat them "
+        "as evidence, not as the whole style.",
+        "C": "THIN CORPUS. There is very little real music behind this brief, so "
+        "the exemplars are a sample of one or two pieces rather than of a style. "
+        "Lean on the written doctrine and your own study of the scores, and do "
+        "not read a statistic drawn from this few bars as a target.",
+        "D": "UNARMED — there is no corpus for this composer at all.",
+    }.get(tier, "")
+    return {"tier": tier, "bars": bars, "advice": advice}
+
+
 def _dramatic_brief(slot, graph=None) -> List[str]:
     """Why this phrase exists — its role in the piece's arc, in plain language.
 
@@ -2555,6 +2641,7 @@ def build_brief(
         chord_frame=_chord_frame(slot, key),
         theme_block=_theme_block(graph, slot),
         reference_study=_reference_study_lines(graph, resolved),
+        coverage=_coverage_note(resolved),
         warnings=warnings,
     )
     # Say it when a section of the brief is empty. A composer can be armed by
@@ -2662,6 +2749,12 @@ def render_text(brief: CompositionBrief) -> str:
         _MINDSET,
         "",
     ]
+    cov = brief.coverage or {}
+    if cov.get("tier"):
+        lines.append(
+            f"CORPUS COVERAGE: tier {cov['tier']} — {cov.get('bars', 0)} real bars "
+            f"on disk. {cov.get('advice', '')}"
+        )
     if brief.dramatic:
         lines.append("")
         lines.append("── WHY THIS PHRASE EXISTS (the dramatic plan) ──")

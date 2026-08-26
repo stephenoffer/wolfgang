@@ -295,3 +295,53 @@ re-extractable sources and keep their older, thinner records (no `roman`);
   (fewest accidentals wins; ties go to sharpening the fourth and seventh, and the
   third and sixth in minor, so G minor writes its Picardy third `B` rather than
   `Cb` and D-flat major writes `D` rather than `E-double-flat`).
+
+---
+
+## Round 3 — the field census
+
+wolfgang-v2-40 suggested a census over `workspace/*/piece_graph.json`: of every
+field the graph can hold, has it ever held a value? It is ~20 lines and it finds
+in one pass what three sessions had each stumbled on by accident. Run against the
+brief as well as the graph, it found two more here.
+
+**The theme system had never been active in a real run.** Five of the twelve
+pieces have a populated motif bank — 3, 5, 6, 3 and 3 motifs — and **not one had
+an elected principal theme or a single placement on any of its 113 phrases**.
+`elect_principal_theme` works correctly on every one of those banks; the problem
+is order. `build_form_graph` writes `slot.motif_transforms` only if
+`graph.principal_theme_id` is already set, which requires the motif bank to exist
+at that moment. `/w-plan` documents motifs (step 4) before the form (step 5), but
+in practice the form is built first and nothing revisits it — a silent ordering
+dependency with no error. Placement is now idempotent and runs from both
+`build_form_graph` and `resolve_motifs`, so either order works.
+
+Separately, my own `_motif_brief` read `mt.motif_id` / `mt.transform`; a
+`MotifTransform` is `(operation, params)` with the id in `params["motif_id"]`, so
+even a phrase *with* a placement showed no motif. Both fixed; the brief now
+carries the motif at 64% of phrases (was 0%).
+
+**Nothing ever closed a ledger entry.** Both ledger implementations have a
+`satisfy()` method and **no code anywhere called either one**. Expectations were
+recorded at plan time and never resolved, so every debt stayed open for the whole
+piece and the brief's ledger section only ever grew. A composer told to resolve a
+cadence it discharged four phrases ago learns to skip the section. A section's
+cadence debt is now settled by the last phrase of that section, and a theme-return
+promise by the first committed phrase of a returning section.
+
+The same section also showed *every* open entry, so a phrase in the exposition
+was handed the recapitulation's and the coda's debts — eight obligations, most of
+them not its business. Now scoped to the phrase, with a count of the rest.
+
+**A plan preflight, because none of this is type-enforced.** Every part of a plan
+is optional, so a piece can reach the phrase composers with an empty narrative, no
+motifs and no reference study, and the briefs simply omit those sections — the
+agent cannot tell "the planner skipped this" from "this composer has none".
+`plan_readiness(piece_id)` names what is missing, `/w-plan`'s self-critique runs
+it, and `wolfgang-compose` now refuses to compose against an incomplete plan
+(override with `args.allow_incomplete_plan`).
+
+Run against `mozart-andante-fmaj-20260825` — the piece whose output prompted this
+audit — it reports **no narrative, no motifs, and no reference study**. That is
+the planning-level explanation for "boring", and it would have been visible on
+the first run.

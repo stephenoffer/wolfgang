@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, fields
+from dataclasses import fields as dataclass_fields
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -506,10 +507,19 @@ class PieceGraph:
                 if realized_data and isinstance(realized_data, dict):
                     ps.realized = _reconstruct_layer_ir(realized_data)
                 ps.agent_authored = bool(pdata.get("agent_authored", False))
-                # Per-phrase context trace (briefed exemplars, composed_blind
-                # flag) — a plain dict; preserve it across save/load so the
-                # anti-skip check at commit can read what the brief surfaced.
-                ps.context_trace = pdata.get("context_trace")
+                # Every REMAINING field, driven off the dataclass rather than
+                # hand-listed. This loader named five of PhraseState's thirteen
+                # fields, so `craft_check` (the craft checklist) and `review`
+                # (the fresh-ears critic's own verdict) were written on save and
+                # silently dropped on load — the reviewer's judgement did not
+                # survive to the revision pass that was supposed to act on it.
+                # `slot`, `sketch` and `realized` need real reconstruction and
+                # are handled above; the rest are plain JSON.
+                _handled = {"slot", "sketch", "realized", "agent_authored", "status"}
+                for _f in dataclass_fields(PhraseState):
+                    if _f.name in _handled or _f.name not in pdata:
+                        continue
+                    setattr(ps, _f.name, pdata[_f.name])
                 self.phrases[pid] = ps
 
         # Motif bank

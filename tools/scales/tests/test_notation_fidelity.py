@@ -1008,3 +1008,28 @@ def test_dominant_function_distinguishes_the_degrees_that_matter():
         # vi is not v; VII (uppercase) is the subtonic, not the leading-tone
         # chord; bVII less so.
         assert not is_dom(symbol), f"{symbol} does not resolve as a dominant"
+
+
+def test_phrase_state_keeps_every_field_across_a_save_load(tmp_path):
+    """The PhraseState loader named five of thirteen fields, so `craft_check`
+    (the craft checklist) and `review` (the fresh-ears critic's own verdict)
+    were written on save and dropped on load — the reviewer's judgement did not
+    survive to the revision pass that was supposed to act on it."""
+    from scales.piece_graph import PieceGraph
+
+    graph = _piano_graph([{"rh": "C5w", "lh": "C3w"}])
+    ps = graph.phrases["p1"]
+    ps.craft_check = {"melodic_claim_clear": True, "has_breath_point": False}
+    ps.review = {"verdict": "revise", "observations": ["bar 1 is bare"]}
+    ps.candidates = ["cand-1"]
+    ps.agent_authored = True
+
+    path = tmp_path / "piece_graph.json"
+    graph.save(str(path))
+    back = PieceGraph.load(str(path)).phrases["p1"]
+
+    assert back.craft_check == ps.craft_check, "the craft checklist was dropped"
+    assert back.review == ps.review, "the critic's verdict was dropped"
+    assert back.candidates == ["cand-1"]
+    assert back.agent_authored is True
+    assert back.realized is not None and back.slot is not None

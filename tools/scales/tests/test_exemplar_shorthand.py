@@ -147,3 +147,51 @@ if __name__ == "__main__":
         fn()
         print(f"ok {name}")
     print(f"\n{len(fns)} tests passed")
+
+
+# ─── Multi-voice bars must be length-checked too ─────────────────────────────
+
+
+def test_a_two_voice_bar_is_measured_by_its_longest_voice():
+    """`//` carries independent voices; each fills the bar on its own.
+
+    `_shorthand_beats` had no case for `//` at all, so the token failed the note
+    regex and the function returned `None` — which both callers read as
+    "unparseable, don't judge it". Every multi-voice exemplar therefore bypassed
+    the malformed-bar filter, and that is most exemplars for exactly the
+    composers where it matters most: a Bach sample averages four voices a bar.
+    """
+    from scales.composition_brief import _shorthand_beats
+
+    assert _shorthand_beats("C5q D5q E5q F5q") == 4.0
+    assert _shorthand_beats("C5q D5q E5q F5q // G4q A4q B4q C5q") == 4.0
+    # the longest voice defines the bar, not the sum
+    assert _shorthand_beats("C5q D5q E5q F5q // G4h") == 4.0
+
+
+def test_an_overfull_voice_is_caught_inside_a_multi_voice_bar():
+    from scales.composition_brief import _shorthand_overflows_bar
+
+    good = "C5q D5q E5q F5q // G4q A4q B4q C5q"
+    bad = "C5q D5q E5q F5q // G4q A4q B4q C5q D5q"
+    assert not _shorthand_overflows_bar(good, 4.0)
+    assert _shorthand_overflows_bar(bad, 4.0), (
+        "a voice that runs past the barline must be caught even when it is the "
+        "second voice of a `//` pair"
+    )
+
+
+def test_grace_notes_still_take_no_metrical_time():
+    from scales.composition_brief import _shorthand_beats
+
+    assert _shorthand_beats("rest_q G4s:grace rest_dh") == 4.0
+    assert _shorthand_beats("rest_q G4s:grace rest_dh // C4w") == 4.0
+
+
+def test_an_unparseable_bar_is_still_never_judged():
+    """The `None` path must survive — a bar we cannot read is not a bar we
+    know to be wrong."""
+    from scales.composition_brief import _shorthand_beats, _shorthand_overflows_bar
+
+    assert _shorthand_beats("!!! not shorthand !!!") is None
+    assert not _shorthand_overflows_bar("!!! not shorthand !!!", 4.0)

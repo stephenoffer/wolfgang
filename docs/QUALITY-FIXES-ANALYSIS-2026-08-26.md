@@ -75,6 +75,51 @@ excludes the real median, with a named check for the texture-change regression.
 
 ---
 
+## 1b. The comparator ignored the spread it was given
+
+Fixing §1's numbers exposed a deeper fault, and it was mine to find only because
+I checked my own work the same way: after rewriting every target from
+measurement, **19 of 20 real movements still failed at least one metric.**
+
+Two causes, one behind the other.
+
+The bands were too narrow for genuinely wide distributions. `triplet_pct` runs
+0–74 in the repertoire, `chromatic_pct` 10.7–85.4. A correct centre with a
+plausible-looking spread still rejects most real music.
+
+But widening them changed nothing, because **`style_comparator` never consulted
+the spread.** `target_stdev` was read from the target, stored in the report, and
+printed by the CLI — and every verdict came from `|composed − mean| / mean`
+against one flat 35% threshold shared by every metric. So a real movement with
+no triplets diverges 100% from a mean of 16 and fails, while a metric that
+naturally varies by a few percent is waved through at 34% off. No width of band
+could help, because the width was never read.
+
+Verdicts now come from a z-score when a target carries a spread, falling back to
+relative divergence when it does not. Result on the same 20 real movements:
+**19 of 20 failing → 1 of 20.** A deliberately mechanical score — no rests, one
+duration, no dynamics, flat density, 98% stepwise — still fails.
+
+**The lesson I had to apply to myself.** My first calibration test asserted that
+the real *median* fell inside each target's band. That is much too weak, and it
+passed while the gate was rejecting the entire repertoire. The test that finds
+this is the one that scores whole real movements end to end, which is now what
+`test_corpus_style_targets.py` does — along with a check that the gate still
+rejects mechanical music, so "loosen until real music passes" cannot quietly
+become "disable".
+
+### What the fixed gate says about the piece
+
+All 13 metrics PASS. That is not the gate failing to notice something: it is the
+honest finding that this piece's problems are **not aggregate statistics**. Its
+theme never returns, its page carries no articulation, four of its cadences do
+not match the plan, and its texture never varies — none of which any aggregate
+metric can see. It confirms from a third direction what this project already
+recorded twice: aggregate density can match while the idiom does not, and metric
+whack-a-mole is a ceiling rather than a path.
+
+---
+
 ## 2. The musicality scores penalized real music
 
 `musicality.py` returns 0–1 scores that feed `self_evaluate`, which the critic
