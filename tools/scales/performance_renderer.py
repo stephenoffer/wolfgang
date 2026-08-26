@@ -171,8 +171,11 @@ def build_performance_ir(
     is_cadential = cadence_target not in (None, "", "none")
     n_bars = last_bar - first_bar + 1
     curves = getattr(slot, "curves", None) if slot else None
-    tension = (list(getattr(curves, "tension", []) or
-                    getattr(curves, "energy", []) or []) if curves else [])
+    tension = (
+        list(getattr(curves, "tension", []) or getattr(curves, "energy", []) or [])
+        if curves
+        else []
+    )
     if narrative_section is not None and getattr(narrative_section, "tension_curve", None):
         tension = list(narrative_section.tension_curve)
     depth = profile.tempo_arc_depth
@@ -239,9 +242,7 @@ def build_performance_ir(
                 shaped = shape(frac, profile.rubato_shape)
                 arc[i] *= 1.0 + (end_factor - 1.0) * shaped
     if arc and (is_cadential or any(abs(f - 1.0) > 0.005 for f in arc)):
-        perf.rubato_windows.append(
-            RubatoWindow(bar_start=first_bar, bar_end=last_bar, curve=arc)
-        )
+        perf.rubato_windows.append(RubatoWindow(bar_start=first_bar, bar_end=last_bar, curve=arc))
 
     # ── Pedal: follow the harmonic rhythm, releasing just before each chord
     #    change (pedal_lead) to clear blur; fall back to per-bar with no plan.
@@ -331,9 +332,7 @@ def build_performance_ir(
         if key in seen_offsets:
             continue
         seen_offsets.add(key)
-        perf.microtiming.append(
-            TimingOffset(bar=e.bar, beat=e.beat, offset_ms=shift * ms_per_beat)
-        )
+        perf.microtiming.append(TimingOffset(bar=e.bar, beat=e.beat, offset_ms=shift * ms_per_beat))
 
     return perf
 
@@ -500,9 +499,7 @@ def merge_arch_under_dynamics(
         return len(arch)
     added = 0
     for a in arch:
-        near = any(
-            abs((a.bar - b) * 4 + (a.beat - bt)) <= written_beats for (b, bt) in written
-        )
+        near = any(abs((a.bar - b) * 4 + (a.beat - bt)) <= written_beats for (b, bt) in written)
         if near:
             continue
         perf.dynamic_curve.append(a)
@@ -587,14 +584,14 @@ def agogic_stretch(event, meter: tuple[int, int], profile: StylePerfProfile) -> 
 # nothing.
 
 _RUBATO_CONTEXT_DEPTH = {
-    "cadence": 0.9,       # broaden into a close
+    "cadence": 0.9,  # broaden into a close
     "cadential": 0.9,
     "phrase_end": 0.93,
-    "climax": 1.05,       # push through a peak
+    "climax": 1.05,  # push through a peak
     "peak": 1.05,
     "apex": 1.05,
     "transition": 0.97,
-    "recitative": 0.85,   # speak, do not march
+    "recitative": 0.85,  # speak, do not march
     "none": 1.0,
     "strict": 1.0,
 }
@@ -634,9 +631,11 @@ def _intent_field(intent, name):
 def pedal_style_from_intent(intent) -> str | None:
     """The pedal policy the plan asked for, or None to use the period default."""
     for rule in _intent_field(intent, "pedal_rules"):
-        value = rule.get("style") or rule.get("rule") or rule.get("policy") if isinstance(
-            rule, dict
-        ) else rule
+        value = (
+            rule.get("style") or rule.get("rule") or rule.get("policy")
+            if isinstance(rule, dict)
+            else rule
+        )
         key = str(value or "").strip().lower()
         if key in _PEDAL_RULE_ALIASES:
             return _PEDAL_RULE_ALIASES[key]
@@ -653,9 +652,7 @@ def apply_voicing_priorities(perf: PerformanceIR, intent, first_bar: int, last_b
     priorities = [str(v).strip().lower() for v in _intent_field(intent, "voicing_priorities")]
     if not priorities:
         return 0
-    perf.voicing_emphasis = [
-        v for v in perf.voicing_emphasis if v.voice not in set(priorities)
-    ]
+    perf.voicing_emphasis = [v for v in perf.voicing_emphasis if v.voice not in set(priorities)]
     added = 0
     # The first-named voice is the one brought out; later ones get less.
     for rank, voice in enumerate(priorities[:3]):
@@ -743,12 +740,25 @@ def tempo_factor_at(perf: PerformanceIR, bar: int, beat: float, beats_per_bar: f
     return 1.0
 
 
-def microtiming_at(perf: PerformanceIR, bar: int, beat: float) -> float:
-    """Timing offset in ms for an onset (0 when none applies)."""
+def microtiming_at(perf: PerformanceIR, bar: int, beat: float, voice: str | None = None) -> float:
+    """Timing offset in ms for an onset (0 when none applies).
+
+    An offset carrying a ``voice`` applies only to that line; one without
+    applies to every voice at that instant (a breath, an agogic stretch). A
+    per-voice offset wins, which is what lets the melody be struck ahead of the
+    accompaniment on the same beat — impossible while this was keyed by
+    (bar, beat) alone.
+    """
+    general = 0.0
     for m in perf.microtiming:
-        if m.bar == bar and abs(m.beat - beat) < 0.01:
+        if m.bar != bar or abs(m.beat - beat) >= 0.01:
+            continue
+        m_voice = getattr(m, "voice", None)
+        if m_voice is None:
+            general = m.offset_ms
+        elif voice is not None and m_voice == voice:
             return m.offset_ms
-    return 0.0
+    return general
 
 
 def pedal_bars(perf: PerformanceIR) -> list[int]:

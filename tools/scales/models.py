@@ -696,6 +696,16 @@ class TimingOffset:
     bar: int = 1
     beat: float = 1.0
     offset_ms: float = 0.0
+    # Which line this offset applies to. Keyed by (bar, beat) alone, this model
+    # could not express "the melody is struck 12ms ahead of the bass on this
+    # beat" — which is what melodic lead IS, and the most documented cue in
+    # human performance. Two offsets at one instant collided on the same key and
+    # whichever was recorded first won, so melody and bass moved together:
+    # silently the opposite of the intent.
+    #
+    # None means "every voice at this instant", which is what a breath or an
+    # agogic stretch means and keeps every existing offset working unchanged.
+    voice: Optional[str] = None
 
 
 @dataclass

@@ -219,3 +219,53 @@ if __name__ == "__main__":
         fn()
         print(f"ok {name}")
     print(f"\n{len(fns)} tests passed")
+
+
+# ── Per-voice microtiming ────────────────────────────────────────────────────
+# TimingOffset was keyed by (bar, beat) alone, so it could not express "the
+# melody is struck ahead of the bass on this beat" — the most documented cue in
+# human performance. Two offsets at one instant collided on the same key and
+# whichever was recorded first won, so melody and bass moved TOGETHER: silently
+# the opposite of the intent. These pin the semantics that fixed it.
+
+
+def test_per_voice_offsets_do_not_collide_at_one_instant():
+    from scales.models import PerformanceIR, TimingOffset
+    from scales.performance_renderer import microtiming_at
+
+    perf = PerformanceIR(phrase_id="x")
+    perf.microtiming = [
+        TimingOffset(bar=1, beat=1.0, offset_ms=-12.0, voice="melody"),
+        TimingOffset(bar=1, beat=1.0, offset_ms=4.0, voice="accompaniment"),
+    ]
+    # Same bar, same beat, two different lines: both must survive.
+    assert microtiming_at(perf, 1, 1.0, voice="melody") == -12.0
+    assert microtiming_at(perf, 1, 1.0, voice="accompaniment") == 4.0
+
+
+def test_voiceless_offset_still_applies_to_every_voice():
+    """A breath or an agogic stretch belongs to the instant, not to one line.
+
+    Every offset written before the ``voice`` field existed is voiceless, so
+    this is also the backwards-compatibility guarantee.
+    """
+    from scales.models import PerformanceIR, TimingOffset
+    from scales.performance_renderer import microtiming_at
+
+    perf = PerformanceIR(phrase_id="x")
+    perf.microtiming = [TimingOffset(bar=2, beat=1.0, offset_ms=9.0)]
+    for voice in ("melody", "accompaniment", None):
+        assert microtiming_at(perf, 2, 1.0, voice=voice) == 9.0
+
+
+def test_per_voice_offset_wins_over_the_whole_instant():
+    from scales.models import PerformanceIR, TimingOffset
+    from scales.performance_renderer import microtiming_at
+
+    perf = PerformanceIR(phrase_id="x")
+    perf.microtiming = [
+        TimingOffset(bar=3, beat=2.0, offset_ms=6.0),
+        TimingOffset(bar=3, beat=2.0, offset_ms=-15.0, voice="melody"),
+    ]
+    assert microtiming_at(perf, 3, 2.0, voice="melody") == -15.0
+    assert microtiming_at(perf, 3, 2.0, voice="accompaniment") == 6.0

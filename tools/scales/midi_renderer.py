@@ -344,7 +344,19 @@ def render_midi(
             # ── Timing humanization ──
             if perf is not None:
                 # agogic lean stored on the PerformanceIR (slur entries, breaths)
-                lean_ms = microtiming_at(perf, event.bar, event.beat)
+                # Voice-aware: a per-voice offset (melodic lead) wins over a
+                # whole-instant one (a breath, an agogic stretch), which still
+                # applies to everything at that moment.
+                lean_ms = microtiming_at(
+                    perf,
+                    event.bar,
+                    event.beat,
+                    voice=(
+                        "melody"
+                        if (event.staff == "treble" and event.voice == 1)
+                        else "accompaniment"
+                    ),
+                )
                 if lean_ms:
                     offset += lean_ms / ms_per_beat
                 frac_beat = event.beat - int(event.beat)
