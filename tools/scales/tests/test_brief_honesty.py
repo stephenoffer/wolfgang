@@ -548,3 +548,36 @@ def test_old_format_records_are_not_shown_as_exemplars():
     for composer in ("bach", "mozart", "palestrina"):
         slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
         assert _retrieve_exemplars(composer, slot, 3, [])
+
+
+def test_no_exemplar_shows_an_empty_voice():
+    """`//` means "these two voices sound together".
+
+    When the corpus bar had an empty main voice and a populated inner one, the
+    renderer still joined them, so a hand reached the brief reading
+    " // B3q rest_e Bb3s A3s" — a silent upper voice over an inner line, which
+    is not what the bar does and not something to imitate. 6.2% of multi-voice
+    exemplar hands read that way. One voice sounding is written as one voice.
+    """
+    import glob
+    import os
+
+    from scales.composition_brief import _retrieve_exemplars
+    from scales.models import PhraseSlot
+
+    composers = [
+        os.path.basename(p.rstrip("/")) for p in sorted(glob.glob("tools/reference_index/*/"))
+    ]
+    assert composers, "no corpus on disk"
+    checked = 0
+    for composer in composers:
+        for meter in ((4, 4), (3, 4)):
+            slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=meter)
+            for exemplar in _retrieve_exemplars(composer, slot, 6, []):
+                for shorthand in (exemplar.rh, exemplar.lh):
+                    if "//" not in shorthand:
+                        continue
+                    checked += 1
+                    voices = [v.strip() for v in shorthand.split("//")]
+                    assert all(voices), f"{composer}: empty voice in {shorthand!r}"
+    assert checked, "no multi-voice exemplars were examined"

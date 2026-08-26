@@ -2072,9 +2072,17 @@ def _adapted_to_shorthand(adapted: AdaptedBar) -> Tuple[str, str]:
     def _with_inner(main_events, inner_events) -> str:
         # Real corpus polyphony — show the inner voice so the agent imitates it
         # rather than collapsing four parts into two.
+        #
+        # But `//` means "these two voices sound together", and when the MAIN
+        # voice is empty this emitted a hand beginning " // B3q rest_e ..." —
+        # a silent upper voice over an inner line, which is not what the bar
+        # does and not something to imitate. 6.2% of multi-voice exemplar hands
+        # read that way. One voice sounding is written as one voice.
         main = " ".join(_tokens(main_events))
         inner = " ".join(_tokens(inner_events or []))
-        return f"{main} // {inner}" if inner else main
+        if main and inner:
+            return f"{main} // {inner}"
+        return main or inner
 
     rh = _with_inner(adapted.rh_events, getattr(adapted, "rh_inner_events", []))
     lh = _with_inner(adapted.lh_events, getattr(adapted, "lh_inner_events", []))

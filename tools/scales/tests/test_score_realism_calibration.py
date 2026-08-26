@@ -238,12 +238,30 @@ def test_the_documented_corpus_size_matches_the_harness():
     # reference quotes 22 *real Mozart* movements from a separate texture study
     # — so the guard is scoped to the claims this harness is the source for.
     pattern = re.compile(r"(\d+)[\s-]+canonical\b[^.\n]{0,60}?movements")
+    # A claim MAY cite a corpus other than this harness's — a wider re-measure
+    # against several repertoires is exactly the right way to falsify a bound
+    # that a Classical-only corpus made look safe. But then it has to SHOW ITS
+    # WORK: an itemised breakdown, immediately below, whose denominators sum to
+    # the number claimed. That keeps the guard's whole purpose (no asserting a
+    # measurement nobody made) while letting a real wider measurement through,
+    # instead of forcing it to be reworded until the regex stops noticing.
+    breakdown = re.compile(r"/(\d+)\b")
     for src in sources:
         if not src.exists():
             continue
-        for claimed in pattern.findall(src.read_text()):
-            if int(claimed) != n:
-                wrong.append(f"{src.name} claims {claimed} movements; the harness measures {n}")
+        text = src.read_text()
+        for match in pattern.finditer(text):
+            claimed = int(match.group(1))
+            if claimed == n:
+                continue
+            following = text[match.end() : match.end() + 600]
+            itemised = [int(d) for d in breakdown.findall(following)]
+            if itemised and sum(itemised) == claimed:
+                continue  # cites its own corpus and adds up
+            wrong.append(
+                f"{src.name} claims {claimed} movements; the harness measures {n} "
+                f"(and no itemised breakdown below it sums to {claimed})"
+            )
     assert not wrong, "stale corpus-size claim(s):\n  " + "\n  ".join(wrong)
 
 
