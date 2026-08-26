@@ -4363,8 +4363,14 @@ def reduce_to_piano(
     resolved_key = key or _source_key(src) or "C"
     resolved_meter = tuple(meter) if meter else (_source_meter(src) or (4, 4))
 
+    # The reducer takes the meter now, so the LayerIR is built in the source's
+    # own meter rather than assembled at 4/4 and corrected afterwards.
     layer = SABRE().reduce_to_piano(
-        events, instruments=instruments, mode=mode, key=resolved_key
+        events,
+        instruments=instruments,
+        mode=mode,
+        key=resolved_key,
+        meter=resolved_meter,
     )
     layer.key = resolved_key
     layer.meter = resolved_meter
