@@ -146,7 +146,26 @@ def signature_from_layer(layer, hand: str = "rh") -> Dict[str, Dict[str, float]]
 
 
 def resemblance(a: Dict[str, Dict[str, float]], b: Dict[str, Dict[str, float]]) -> float:
-    """Combined rhythm+interval resemblance of two signatures, [0,1]."""
+    """Combined rhythm+interval resemblance of two signatures, [0,1].
+
+    MEASURED BEHAVIOUR, both directions — the score is a lower bound on "ignored
+    the corpus", not a detector of it:
+
+    * Specificity: 3% of real Mozart bars score below ``BLIND_FLOOR`` against
+      eight other real Mozart bars (784 bars sampled). So a flag is meaningful.
+    * Sensitivity: LIMITED, and structurally so. The interval histogram returns
+      1.000 for any stepwise surface against any stepwise exemplar, which is most
+      tonal music — so a line with completely unrelated rhythm can still clear the
+      floor on interval similarity alone (an eight-note run of 32nds scores 0.643
+      against exemplars it shares nothing else with). Rhythm does nearly all the
+      discriminating.
+
+    Combining with ``min`` instead of the mean fixes that false negative and
+    costs far too much: it flags **19%** of real Mozart. The permissive operating
+    point is deliberate, because this check is advisory and the composer has
+    creative liberty. A passing score is NOT evidence the surface used the
+    corpus.
+    """
     r = _hist_similarity(a.get("rhythm", {}), b.get("rhythm", {}))
     i = _hist_similarity(a.get("intervals", {}), b.get("intervals", {}))
     return round(0.5 * r + 0.5 * i, 3)

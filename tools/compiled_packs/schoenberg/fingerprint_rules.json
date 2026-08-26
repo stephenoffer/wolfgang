@@ -1,40 +1,4 @@
 {
-  "required_count": 3,
-  "items": [
-    {
-      "id": "post_wagnerian_chromaticism_at_the_breaking_point",
-      "name": "Post-Wagnerian chromaticism at the breaking point",
-      "description": "Schoenberg takes Wagner's chromatic language and pushes it further: longer stretches of harmonic ambiguity, more complex chromatic voice-leading, more deferred resolution. The tonality is still presen",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "extreme_emotional_intensity_expressionist_temperature",
-      "name": "Extreme emotional intensity \u2014 Expressionist temperature",
-      "description": "The late Romantic Schoenberg is emotionally overwrought by intention: enormous dynamic swings, extreme registers, intense dissonances. The emotion of the Verk\u00e4rte Nacht string sextet is real and uniro",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "brahmsian_thematic_development",
-      "name": "Brahmsian thematic development",
-      "description": "Despite the Wagnerian harmony, Schoenberg develops his themes in the Brahms manner: motivic cells transformed, fragmented, recombined. This is a specific hybrid.",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "large_late_romantic_orchestra",
-      "name": "Large late-Romantic orchestra",
-      "description": "Enormous orchestral forces (Gurrelieder requires 5 soloists, 3 male choruses, 1 mixed chorus, speaker, and large orchestra).",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "still_has_a_tonal_center",
-      "name": "Still has a tonal center",
-      "description": "Despite the chromatic intensity, these works always have a key. The tonal center may be distant or delayed, but it exists.",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    }
-  ]
+  "required_count": 0,
+  "items": []
 }

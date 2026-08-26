@@ -1,0 +1,54 @@
+{
+ "forms": {
+  "sonata": {
+   "sections": [
+    {
+     "role": "2",
+     "proportion_range": [
+      0.05,
+      0.3
+     ]
+    },
+    {
+     "role": "3",
+     "proportion_range": [
+      0.0,
+      0.35
+     ]
+    },
+    {
+     "role": "2",
+     "proportion_range": [
+      0.0,
+      0.25
+     ]
+    },
+    {
+     "role": "1",
+     "proportion_range": [
+      0.0,
+      0.15
+     ]
+    },
+    {
+     "role": "5",
+     "proportion_range": [
+      0.0,
+      0.7
+     ]
+    }
+   ],
+   "key_scheme": {
+    "exposition_keys": [
+     "I",
+     "V"
+    ],
+    "recap_rule": "tonic"
+   }
+  },
+  "ternary": {
+   "sections": [],
+   "key_scheme": {}
+  }
+ }
+}

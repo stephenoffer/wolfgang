@@ -6,35 +6,40 @@
       "name": "Nostalgic \"nobilmente\" \u2014 English nobility tinged with regret",
       "description": "Elgar's signature: a broad, stately melody in the strings, forte, with a quality that is simultaneously proud and melancholy \u2014 the sound of something beautiful that is passing or has passed. The melod",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "sequence_with_emotional_momentum",
       "name": "Sequence with emotional momentum",
       "description": "Like Tchaikovsky but more English: melodic sequences that build intensity through repetition at higher pitch levels. But Elgar's sequences carry a specific weight \u2014 each step feels like a gathering of",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "enigmatic_inner_voice_counterpoint",
       "name": "Enigmatic inner-voice counterpoint",
       "description": "Elgar's textures have hidden inner voices that play melodies no one is supposed to hear directly: a cello line that contradicts the violins' mood, a clarinet figure that comments on the main theme. Th",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "modal_harmony_and_english_pastoral_color",
       "name": "Modal harmony and English pastoral color",
       "description": "Elgar uses modal inflections without being a folk-music composer: the flattened 7th (Mixolydian), the raised 4th, chains of 3rds that suggest ancient English scales. This gives his tonal language a sp",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "thematic_fingerprint_moments_the_tune_that_returns",
       "name": "Thematic \"fingerprint\" moments \u2014 the tune that returns",
       "description": "Elgar plants a memorable melodic gesture early in a work and brings it back transformed at the emotional climax. These returns feel inevitable, like a promised return. The Enigma Variations, the Cello",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

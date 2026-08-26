@@ -1,0 +1,518 @@
+[
+ {
+  "id": "melodic_voice_fortspinnung",
+  "category": "composer_melodic_voice",
+  "description": "Fortspinnung: Short head-motif spun into long continuous lines via sequence and development",
+  "parameters": {
+   "feature": "Fortspinnung",
+   "note": "Constant"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_motivic_saturation",
+  "category": "composer_melodic_voice",
+  "description": "Motivic saturation: A 2\u20134 note cell generates melody, bass, inner voices, countersubject",
+  "parameters": {
+   "feature": "Motivic saturation",
+   "note": "Constant"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_hidden_polyphony",
+  "category": "composer_melodic_voice",
+  "description": "Hidden polyphony: Single-line melodies imply 2\u20133 independent voices (compound melody)",
+  "parameters": {
+   "feature": "Hidden polyphony",
+   "note": "Very high"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_instrumental_character",
+  "category": "composer_melodic_voice",
+  "description": "Instrumental character: Even vocal lines embrace wide leaps, fast runs, full-range writing",
+  "parameters": {
+   "feature": "Instrumental character",
+   "note": "Very high"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_ornamental_integration",
+  "category": "composer_melodic_voice",
+  "description": "Ornamental integration: Turns, mordents, trills are structural, not decorative afterthoughts",
+  "parameters": {
+   "feature": "Ornamental integration",
+   "note": "Very high"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_chromatic_inflection",
+  "category": "composer_melodic_voice",
+  "description": "Chromatic inflection: Chromatic neighbor tones, passing tones woven into diatonic lines",
+  "parameters": {
+   "feature": "Chromatic inflection",
+   "note": "High"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_sequence_as_engine",
+  "category": "composer_melodic_voice",
+  "description": "Sequence as engine: 2\u20133 bar melodic units repeated at new pitch levels drive forward motion",
+  "parameters": {
+   "feature": "Sequence as engine",
+   "note": "Very high"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_wide_range",
+  "category": "composer_melodic_voice",
+  "description": "Wide range: Melodies frequently span 2+ octaves within a single phrase",
+  "parameters": {
+   "feature": "Wide range",
+   "note": "High"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "bach/melodic-style.md"
+ },
+ {
+  "id": "phrase_structure_cell",
+  "category": "phrase_structure",
+  "description": "Cell: Smallest recognizable unit",
+  "parameters": {
+   "unit": "Cell",
+   "typical_length": "2-3 notes",
+   "function": "Smallest recognizable unit"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_motif",
+  "category": "phrase_structure",
+  "description": "Motif: Characteristic rhythm + interval pattern",
+  "parameters": {
+   "unit": "Motif",
+   "typical_length": "1-2 bars",
+   "function": "Characteristic rhythm + interval pattern"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_phrase",
+  "category": "phrase_structure",
+  "description": "Phrase: Complete musical thought, ends with cadence",
+  "parameters": {
+   "unit": "Phrase",
+   "typical_length": "4 bars",
+   "function": "Complete musical thought, ends with cadence"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_period",
+  "category": "phrase_structure",
+  "description": "Period: Two complementary phrases",
+  "parameters": {
+   "unit": "Period",
+   "typical_length": "8 bars (4+4)",
+   "function": "Two complementary phrases"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_double period",
+  "category": "phrase_structure",
+  "description": "Double period: Extended period structure",
+  "parameters": {
+   "unit": "Double period",
+   "typical_length": "16 bars (4+4+4+4)",
+   "function": "Extended period structure"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_section",
+  "category": "phrase_structure",
+  "description": "Section: Structural unit (exposition, development, etc.)",
+  "parameters": {
+   "unit": "Section",
+   "typical_length": "Multiple periods",
+   "function": "Structural unit (exposition, development, etc.)"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_arch_(rise-fall)",
+  "category": "contour",
+  "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+  "parameters": {
+   "contour": "Arch (rise-fall)",
+   "shape": "\u2227",
+   "association": "Completion, singing quality"
+  },
+  "conditions": {
+   "best_for": "Lyrical themes"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_ascending",
+  "category": "contour",
+  "description": "Ascending (/): Aspiration, tension, hope",
+  "parameters": {
+   "contour": "Ascending",
+   "shape": "/",
+   "association": "Aspiration, tension, hope"
+  },
+  "conditions": {
+   "best_for": "Building passages"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_descending",
+  "category": "contour",
+  "description": "Descending (\\): Resolution, grief, relaxation",
+  "parameters": {
+   "contour": "Descending",
+   "shape": "\\",
+   "association": "Resolution, grief, relaxation"
+  },
+  "conditions": {
+   "best_for": "Closing phrases"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_wave",
+  "category": "contour",
+  "description": "Wave (\u223c): Lyrical, flowing",
+  "parameters": {
+   "contour": "Wave",
+   "shape": "\u223c",
+   "association": "Lyrical, flowing"
+  },
+  "conditions": {
+   "best_for": "Sustained melodies"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_static/plateau",
+  "category": "contour",
+  "description": "Static/plateau (\u2014): Contemplation, suspense",
+  "parameters": {
+   "contour": "Static/plateau",
+   "shape": "\u2014",
+   "association": "Contemplation, suspense"
+  },
+  "conditions": {
+   "best_for": "Recitative, tension"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_inverted_arch",
+  "category": "contour",
+  "description": "Inverted arch (\u2228): Settling then rising",
+  "parameters": {
+   "contour": "Inverted arch",
+   "shape": "\u2228",
+   "association": "Settling then rising"
+  },
+  "conditions": {
+   "best_for": "Surprise, rebound"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_phrase",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+  "parameters": {
+   "scale": "Within a phrase",
+   "placement": "Near the end (~bar 3 of 4)"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_melody",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a melody level: ~60-75% through",
+  "parameters": {
+   "scale": "Within a melody",
+   "placement": "~60-75% through"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_section",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a section level: After development/buildup",
+  "parameters": {
+   "scale": "Within a section",
+   "placement": "After development/buildup"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_multiple_levels",
+  "category": "peak_timing",
+  "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+  "parameters": {
+   "scale": "Multiple levels",
+   "placement": "Local (phrase), regional (period), global (section)"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "melodic_voice_vocal_orientation",
+  "category": "composer_melodic_voice",
+  "description": "Vocal orientation: Every melody sings naturally, even in instrumental works",
+  "parameters": {
+   "feature": "Vocal orientation",
+   "note": "Write it as if a voice will perform it \u2014 test by humming"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_immediate_memorability",
+  "category": "composer_melodic_voice",
+  "description": "Immediate memorability: Theme states itself completely in 4 bars",
+  "parameters": {
+   "feature": "Immediate memorability",
+   "note": "If a listener cannot recall the theme after one hearing, it is not Handelian"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_broad_arching_phrases",
+  "category": "composer_melodic_voice",
+  "description": "Broad arching phrases: Long lines (4-8 bars) with clear peak and cadence",
+  "parameters": {
+   "feature": "Broad arching phrases",
+   "note": "The phrase has a shape: rise, crest, descend, land"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_diatonic_emphasis",
+  "category": "composer_melodic_voice",
+  "description": "Diatonic emphasis: Mostly stepwise with strategic leaps",
+  "parameters": {
+   "feature": "Diatonic emphasis",
+   "note": "The leaps are events, not texture; steps are the connective tissue"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_triadic_motion",
+  "category": "composer_melodic_voice",
+  "description": "Triadic motion: Frequent chord-outlining (arpeggiated) figures",
+  "parameters": {
+   "feature": "Triadic motion",
+   "note": "The melody implies its own harmony \u2014 no ambiguity"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_syllabic_clarity",
+  "category": "composer_melodic_voice",
+  "description": "Syllabic clarity: Designed around text rhythm, even in instrumental works",
+  "parameters": {
+   "feature": "Syllabic clarity",
+   "note": "One note per syllable for declamation; melisma reserved for key words"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_repeated_notes",
+  "category": "composer_melodic_voice",
+  "description": "Repeated notes: Declamatory effect for emphasis",
+  "parameters": {
+   "feature": "Repeated notes",
+   "note": "Repetition is rhetoric: \"Hallelujah, Hallelujah, Hallelujah\""
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_sequence_as_extension",
+  "category": "composer_melodic_voice",
+  "description": "Sequence as extension: Sequences lengthen phrases without losing identity",
+  "parameters": {
+   "feature": "Sequence as extension",
+   "note": "The melody moves forward by repeating its shape at new pitch levels"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_ornamental_da_capo",
+  "category": "composer_melodic_voice",
+  "description": "Ornamental da capo: A section return expected to be elaborated",
+  "parameters": {
+   "feature": "Ornamental da capo",
+   "note": "The bones are the same; the flesh is richer"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_text_painting",
+  "category": "composer_melodic_voice",
+  "description": "Text painting: Melodic shape mirrors word meaning",
+  "parameters": {
+   "feature": "Text painting",
+   "note": "\"Rise\" ascends, \"fall\" descends, \"run\" melismatizes \u2014 the melody IS the text"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "handel/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_sequential_continuation",
+  "category": "composer_melodic_voice",
+  "description": "Sequential continuation: A one- or two-bar figure restated a step lower, two or three times",
+  "parameters": {
+   "feature": "Sequential continuation",
+   "note": "How a phrase travels from its opening to its cadence; the engine of the style"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_suspension_driven_line",
+  "category": "composer_melodic_voice",
+  "description": "Suspension-driven line: The upper voice hangs over the bar and resolves down by step, repeatedly",
+  "parameters": {
+   "feature": "Suspension-driven line",
+   "note": "Dissonance becomes the melody's forward motion rather than an incident in it"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_paired_thirds_and_sixths",
+  "category": "composer_melodic_voice",
+  "description": "Paired thirds and sixths: The two violins run in parallel for long stretches, then cross",
+  "parameters": {
+   "feature": "Paired thirds and sixths",
+   "note": "A single sweetened line that periodically separates into two"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_conjunct_with_cadential_leaps",
+  "category": "composer_melodic_voice",
+  "description": "Conjunct with cadential leaps: Mostly stepwise; leaps concentrated at phrase openings and cadential approaches",
+  "parameters": {
+   "feature": "Conjunct with cadential leaps",
+   "note": "Keeps the sequence smooth and marks the joints"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_modest_compass",
+  "category": "composer_melodic_voice",
+  "description": "Modest compass: Rarely above the third position; no extended range display",
+  "parameters": {
+   "feature": "Modest compass",
+   "note": "The interest is the interaction of the parts, not the reach of one"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_even_rhythmic_surface",
+  "category": "composer_melodic_voice",
+  "description": "Even rhythmic surface: Steady quavers or crotchets, changing value at cadences",
+  "parameters": {
+   "feature": "Even rhythmic surface",
+   "note": "The harmonic rhythm carries the drama; the surface stays level"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_written_out_ornament_at_cadences",
+  "category": "composer_melodic_voice",
+  "description": "Written-out ornament at cadences: Trills and appoggiaturas notated into the cadential formula",
+  "parameters": {
+   "feature": "Written-out ornament at cadences",
+   "note": "The cadence is the ornamental moment, not the phrase interior"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "corelli/melodic-style.md"
+ }
+]

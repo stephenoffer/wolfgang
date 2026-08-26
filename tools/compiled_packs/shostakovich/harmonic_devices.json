@@ -1,0 +1,378 @@
+[
+  {
+    "id": "dsch_motif_as_harmonic_cell",
+    "name": "DSCH motif as harmonic cell",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Personal signature woven into harmonic fabric"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "modal_tonal_ambiguity",
+    "name": "Modal/tonal ambiguity",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Emotional uncertainty; nothing is purely bright or dark"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "grotesque_dissonance",
+    "name": "Grotesque dissonance",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Irony; the cheerfulness is a mask"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "passacaglia_bass",
+    "name": "Passacaglia bass",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Obsessive; the harmonic ground will not release"
+    ],
+    "frequency_weight": 0.08,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "jewish_influenced_modes",
+    "name": "Jewish-influenced modes",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Klezmer-adjacent lament; Songs from Jewish Poetry"
+    ],
+    "frequency_weight": 0.01,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "unresolved_dominants",
+    "name": "Unresolved dominants",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Perpetual tension; no release; no comfort"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "parallel_major_minor",
+    "name": "Parallel major/minor",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Emotional whiplash; forced reinterpretation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "ironic_march",
+    "name": "Ironic march",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Mechanical ostinato bass"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "passacaglia",
+    "name": "Passacaglia",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Increasing upper-voice chromaticism"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "slow_movement",
+    "name": "Slow movement",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Solo instrument over sustained chords"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "scherzo",
+    "name": "Scherzo",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Rapid chromatic shifts"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "jewish_inflected",
+    "name": "Jewish-inflected",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Modal cadence on lowered 2nd"
+    ],
+    "frequency_weight": 0.02,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "climax",
+    "name": "Climax",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Whole-orchestra unison or cluster"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "bitonality",
+    "name": "Bitonality",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Milhaud",
+      "Stravinsky Petrushka chord"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "polytonality",
+    "name": "Polytonality",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Ives",
+      "Milhaud"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "petrushka_chord",
+    "name": "Petrushka chord",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Iconic bitonal sonority"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "polytonal_cadence",
+    "name": "Polytonal cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Independence of strata"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "bitonal_melody",
+    "name": "Bitonal melody",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Tension without atonality"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "diatonic_dissonance",
+    "name": "Diatonic dissonance",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Stravinsky Pulcinella"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "wrong_note_style",
+    "name": "Wrong-note style",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Prokofiev"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "pandiatonic_clusters",
+    "name": "Pandiatonic clusters",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Copland",
+      "Stravinsky"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "modal_cadence",
+    "name": "Modal cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Mixolydian bVII-I"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "ostinato_harmony",
+    "name": "Ostinato harmony",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Stravinsky"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "superimposed_triads",
+    "name": "Superimposed triads",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Ravel",
+      "Stravinsky"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "lyrical_theme",
+    "name": "Lyrical theme",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Low-Medium"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "development",
+    "name": "Development",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "High"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "climax",
+    "name": "Climax",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Very High"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "resolution",
+    "name": "Resolution",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Medium-Low"
+    ],
+    "frequency_weight": 0.05,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "ostinato_passage",
+    "name": "Ostinato passage",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Medium"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "recapitulation",
+    "name": "Recapitulation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Medium"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "coda",
+    "name": "Coda",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Variable"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "shostakovich/harmonic-language.md"
+  }
+]

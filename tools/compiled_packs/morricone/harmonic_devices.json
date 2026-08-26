@@ -1,0 +1,389 @@
+[
+  {
+    "id": "tone_clusters",
+    "name": "Tone clusters",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Horror",
+      "psychological tension"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "free_atonality",
+    "name": "Free atonality",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Giallo films",
+      "dream sequences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "prepared_piano",
+    "name": "Prepared piano",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Experimental cues"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "noise_elements",
+    "name": "Noise elements",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Violence",
+      "chaos"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "wagner_tristan_chord",
+    "name": "Wagner: Tristan chord",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Yearning",
+      "desire"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "holst_mars",
+    "name": "Holst: Mars",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "War",
+      "aggression"
+    ],
+    "frequency_weight": 0.05,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "barber_adagio",
+    "name": "Barber: Adagio",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Grief",
+      "tragedy"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "debussy_whole_tone",
+    "name": "Debussy: whole-tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dream",
+      "underwater"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "orff_carmina_burana",
+    "name": "Orff: Carmina Burana",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Epic choir moments"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "stravinsky_rite",
+    "name": "Stravinsky: Rite",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Primal",
+      "violent"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "rachmaninoff_piano_concerto_2",
+    "name": "Rachmaninoff: Piano Concerto 2",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Romance",
+      "passion"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "prokofiev_battle_on_ice",
+    "name": "Prokofiev: Battle on Ice",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Battle",
+      "pursuit"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "joyful",
+    "name": "Joyful",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "I",
+      "IV",
+      "V",
+      "#IVdim"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "sad",
+    "name": "Sad",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "i",
+      "iv",
+      "bVI",
+      "v"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "tense",
+    "name": "Tense",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "dim",
+      "aug",
+      "clusters"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "epic",
+    "name": "Epic",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "bVI",
+      "bVII",
+      "I",
+      "V"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "mysterious",
+    "name": "Mysterious",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "aug",
+      "sus",
+      "bII"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "romantic",
+    "name": "Romantic",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "I",
+      "iii",
+      "IV",
+      "iv"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "heroic",
+    "name": "Heroic",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "I",
+      "IV",
+      "V",
+      "vi"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "evil",
+    "name": "Evil",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "i",
+      "bII",
+      "#iv dim",
+      "V"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "ethereal",
+    "name": "Ethereal",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Imaj7",
+      "IImaj7",
+      "sus"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "urgent",
+    "name": "Urgent",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "i",
+      "bVII",
+      "iv",
+      "V"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "direct_abrupt",
+    "name": "Direct/abrupt",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Hard cut between scenes"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "pivot_chord",
+    "name": "Pivot chord",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Smooth scene transition"
+    ],
+    "frequency_weight": 0.01,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_mediant",
+    "name": "Chromatic mediant",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Shift in mood",
+      "same scene"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic",
+    "name": "Enharmonic",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Surprise recontextualization"
+    ],
+    "frequency_weight": 0.01,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "pedal_tone",
+    "name": "Pedal tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Gradual scene transition"
+    ],
+    "frequency_weight": 0.02,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "fade_to_silence",
+    "name": "Fade to silence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Scene to black",
+      "then new key"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "cross_fade",
+    "name": "Cross-fade",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dissolve between scenes"
+    ],
+    "frequency_weight": 0.02,
+    "emotional_color": "",
+    "source_file": "morricone/harmonic-language.md"
+  }
+]

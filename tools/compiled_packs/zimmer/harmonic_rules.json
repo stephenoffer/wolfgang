@@ -3,11 +3,31 @@
     {
       "type": "PAC",
       "frequency_weight": 0.5
+    },
+    {
+      "type": "IAC",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "plagal",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "deceptive",
+      "frequency_weight": 0.5
     }
   ],
   "chromatic_techniques": [
     {
       "name": "chromatic",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "modal mixture",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "borrowed chord",
       "frequency_weight": 0.3
     }
   ]

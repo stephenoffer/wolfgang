@@ -1,0 +1,471 @@
+[
+ {
+  "id": "chromatic_mediants_c_to_ab_c_to_e",
+  "name": "Chromatic mediants (C to Ab, C to E)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "A door opens to another world \u2014 wonder",
+   "magic",
+   "or shadow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "augmented_6th_chords",
+  "name": "Augmented 6th chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The harmony leans harder into the dominant \u2014 the ache deepens"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "neapolitan_chord_bii",
+  "name": "Neapolitan chord (bII)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The bass drops to an alien note \u2014 solemnity",
+   "inevitability"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "extended_dominant_chains",
+  "name": "Extended dominant chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Each resolution becomes a new question \u2014 the heart cannot rest"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_cadences_to_bvi",
+  "name": "Deceptive cadences to bVI",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The expected home is replaced by something vast and unexpected"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_modulation",
+  "name": "Enharmonic modulation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The same sound acquires new meaning \u2014 the world shifts underfoot"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "omnibus_progression",
+  "name": "Omnibus progression",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Contrary chromatic motion creates the feeling of forces converging"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "chopin/harmonic-language.md"
+ },
+ {
+  "id": "sequential_chromatic_drift",
+  "name": "Sequential chromatic drift",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "8\u201316 bars"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "tonic_avoidance",
+  "name": "Tonic avoidance",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Entire development sections"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_slippage",
+  "name": "Enharmonic slippage",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "2\u20134 bars"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_bass_descent",
+  "name": "Chromatic bass descent",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "4\u20138 bars"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_mediants_c_to_ab_c_to_e",
+  "name": "Chromatic mediants (C to Ab, C to E)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "A door opens to another world \u2014 wonder",
+   "magic",
+   "or shadow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "augmented_6th_chords",
+  "name": "Augmented 6th chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The harmony leans harder into the dominant \u2014 the ache deepens"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "neapolitan_chord_bii",
+  "name": "Neapolitan chord (bII)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The bass drops to an alien note \u2014 solemnity",
+   "inevitability"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "extended_dominant_chains",
+  "name": "Extended dominant chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Each resolution becomes a new question \u2014 the heart cannot rest"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_cadences_to_bvi",
+  "name": "Deceptive cadences to bVI",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The expected home is replaced by something vast and unexpected"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_modulation",
+  "name": "Enharmonic modulation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The same sound acquires new meaning \u2014 the world shifts underfoot"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "omnibus_progression",
+  "name": "Omnibus progression",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Contrary chromatic motion creates the feeling of forces converging"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "schubert/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_mediants_c_to_ab_c_to_e",
+  "name": "Chromatic mediants (C to Ab, C to E)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "A door opens to another world \u2014 wonder",
+   "magic",
+   "or shadow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "augmented_6th_chords",
+  "name": "Augmented 6th chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The harmony leans harder into the dominant \u2014 the ache deepens"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "neapolitan_chord_bii",
+  "name": "Neapolitan chord (bII)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The bass drops to an alien note \u2014 solemnity",
+   "inevitability"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "extended_dominant_chains",
+  "name": "Extended dominant chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Each resolution becomes a new question \u2014 the heart cannot rest"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_cadences_to_bvi",
+  "name": "Deceptive cadences to bVI",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The expected home is replaced by something vast and unexpected"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_modulation",
+  "name": "Enharmonic modulation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The same sound acquires new meaning \u2014 the world shifts underfoot"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "omnibus_progression",
+  "name": "Omnibus progression",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Contrary chromatic motion creates the feeling of forces converging"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "weber/harmonic-language.md"
+ },
+ {
+  "id": "unresolved_augmented_triads",
+  "name": "Unresolved augmented triads",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Nuages gris (1881)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "bare_parallel_fifths",
+  "name": "Bare parallel fifths",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Via Crucis (1879)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "tritone_oscillation",
+  "name": "Tritone oscillation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Unstern! (1881)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "whole_tone_melody_over_silence",
+  "name": "Whole-tone melody over silence",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Bagatelle sans tonalite (1885)"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "chords_built_on_fourths",
+  "name": "Chords built on fourths",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Late pieces anticipate Scriabin",
+   "Bartok"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "no_cadence_at_end",
+  "name": "No cadence at end",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Multiple late works \u2014 the void"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "chromatic_mediants_c_to_ab_c_to_e",
+  "name": "Chromatic mediants (C to Ab, C to E)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "A door opens to another world \u2014 wonder",
+   "magic",
+   "or shadow"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "augmented_6th_chords",
+  "name": "Augmented 6th chords",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The harmony leans harder into the dominant \u2014 the ache deepens"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "neapolitan_chord_bii",
+  "name": "Neapolitan chord (bII)",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The bass drops to an alien note \u2014 solemnity",
+   "inevitability"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "extended_dominant_chains",
+  "name": "Extended dominant chains",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Each resolution becomes a new question \u2014 the heart cannot rest"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "deceptive_cadences_to_bvi",
+  "name": "Deceptive cadences to bVI",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The expected home is replaced by something vast and unexpected"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "enharmonic_modulation",
+  "name": "Enharmonic modulation",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "The same sound acquires new meaning \u2014 the world shifts underfoot"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ },
+ {
+  "id": "omnibus_progression",
+  "name": "Omnibus progression",
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "contexts": [
+   "Contrary chromatic motion creates the feeling of forces converging"
+  ],
+  "frequency_weight": 0.3,
+  "emotional_color": "",
+  "source_file": "liszt/harmonic-language.md"
+ }
+]

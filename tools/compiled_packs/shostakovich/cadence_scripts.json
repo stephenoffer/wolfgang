@@ -1,0 +1,67 @@
+[
+  {
+    "id": "cad_unresolved_dominant",
+    "type": "Unresolved dominant",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V sustained \u2014 no I follows",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "cad_forced_major",
+    "type": "Forced major",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Minor movement ending in \"triumphant\" major",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "cad_plagal_in_minor",
+    "type": "Plagal in minor",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "iv - i",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "cad_passacaglia_completion",
+    "type": "Passacaglia completion",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Bass pattern completes; upper voices dissolve",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "cad_pianissimo_unison",
+    "type": "Pianissimo unison",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "All instruments converge on single pitch, ppp",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "shostakovich/harmonic-language.md"
+  }
+]

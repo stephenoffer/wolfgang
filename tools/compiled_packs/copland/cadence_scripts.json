@@ -1,0 +1,67 @@
+[
+  {
+    "id": "cad_plagal_iv_i",
+    "type": "Plagal (IV-I)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "F major \u2192 C major",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "copland/harmonic-language.md"
+  },
+  {
+    "id": "cad_mixolydian_bvii_i",
+    "type": "Mixolydian (bVII-I)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Bb major \u2192 C major",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "copland/harmonic-language.md"
+  },
+  {
+    "id": "cad_aeolian_bvi_i",
+    "type": "Aeolian (bVI-I)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Ab major \u2192 C major",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "copland/harmonic-language.md"
+  },
+  {
+    "id": "cad_open_5th_arrival",
+    "type": "Open 5th arrival",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Motion \u2192 bare C-G",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "copland/harmonic-language.md"
+  },
+  {
+    "id": "cad_pentatonic_dissolution",
+    "type": "Pentatonic dissolution",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Chord \u2192 pentatonic cluster",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "copland/harmonic-language.md"
+  }
+]

@@ -4007,23 +4007,40 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
     with open(parts_path) as f:
         data = json.load(f)
 
+    # Read EVERY field the writer stored, driven off EventIR rather than a
+    # hand-listed seven. Naming the fields here is how the orchestral path lost
+    # `ornament`: an appoggiatura arrived as a plain eighth note, took real time,
+    # collided with the note it decorates and left the bar summing to 3.5 beats
+    # of a 3/4. A field the writer starts emitting is now picked up for free.
+    known = {f.name for f in _dataclass_fields(EventIR)}
     events: List[EventIR] = []
     for inst, inst_events in data.get("parts", {}).items():
         for ev in inst_events:
-            events.append(
-                EventIR(
-                    staff=inst,
-                    bar=ev["bar"],
-                    beat=ev["beat"],
-                    pitch=ev["pitch"],
-                    duration=ev["duration"],
-                    dynamic=ev.get("dynamic"),
-                    articulation=ev.get("articulation"),
-                    slur=ev.get("slur"),
-                )
-            )
+            if not isinstance(ev, dict) or "pitch" not in ev:
+                continue
+            fields_present = {k: v for k, v in ev.items() if k in known}
+            fields_present["staff"] = inst
+            events.append(EventIR(**fields_present))
     if not events:
         return {"error": "Orchestration has no events"}
+
+    # Repair defensively, per instrument. The planner is a separate generator
+    # and the same physical rules apply to it: one instrument cannot play two
+    # notes at once, and a bar cannot hold more beats than its meter. Reported,
+    # never absorbed — a repair here means the planner produced something
+    # unplayable and that is worth seeing.
+    orch_repairs: Dict[str, Dict[str, int]] = {}
+    _orch_meter = tuple(data.get("meter") or (4, 4))
+    for inst in sorted({e.staff for e in events}):
+        part_events = [e for e in events if e.staff == inst]
+        holder = LayerIR(phrase_id=inst, key=data.get("key", "C"), meter=_orch_meter)
+        holder.principal_line = part_events
+        fixed = _repair_engine_surface(holder, _orch_meter)
+        if fixed:
+            orch_repairs[inst] = fixed
+        events = [e for e in events if e.staff != inst] + list(holder.principal_line)
+    if orch_repairs:
+        _LOG.warning("orchestration repairs in %s: %s", section_id, orch_repairs)
 
     # Re-base bars so the score starts at bar 1
     shift = min(e.bar for e in events) - 1
@@ -4034,7 +4051,16 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
 
     meter = tuple(data.get("meter", [4, 4]))
     score = music21.stream.Score()
-    score = _build_ensemble_score(score, events, data.get("key", "C"), meter, 120)
+    # The full ensemble, so an instrument that is tacet in this section still
+    # gets its staff and its rests.
+    score = _build_ensemble_score(
+        score,
+        events,
+        data.get("key", "C"),
+        meter,
+        120,
+        ensemble=[str(x) for x in (data.get("ensemble") or [])],
+    )
     out_path = workspace / "output" / f"{piece_id}_{section_id}_orch.musicxml"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     score.write("musicxml", fp=str(out_path))

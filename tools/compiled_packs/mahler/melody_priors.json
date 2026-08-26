@@ -1,0 +1,290 @@
+[
+  {
+    "id": "melodic_voice_song_derived_melody",
+    "category": "composer_melodic_voice",
+    "description": "Song-derived melody: Themes originate as vocal lines (Wunderhorn, R\u00fcckert); they retain text-driven rhythm and natural speech phrasing even in purely orchestral works",
+    "parameters": {
+      "feature": "Song-derived melody",
+      "note": "Symphonies 1\u20134 directly quote his songs; 5\u20139 internalize the vocal principle"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mahler/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_military_signals",
+    "category": "composer_melodic_voice",
+    "description": "Military signals: Trumpet/horn calls: 4th and 5th intervals, dotted rhythms, fanfare patterns \u2014 always from \"elsewhere\" (off-stage, distant)",
+    "parameters": {
+      "feature": "Military signals",
+      "note": "Symphony 1 mvt 1 opening, Symphony 3 mvt 1, Symphony 5 Trauermarsch"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mahler/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_folk_tune_simplicity",
+    "category": "composer_melodic_voice",
+    "description": "Folk tune simplicity: Pentatonic or diatonic melodies, narrow range (5th\u2013octave), stepwise motion, strophic repetition",
+    "parameters": {
+      "feature": "Folk tune simplicity",
+      "note": "Wunderhorn symphonies; L\u00e4ndler themes in scherzos"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mahler/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_octave_leaps_at_emotional_peaks",
+    "category": "composer_melodic_voice",
+    "description": "Octave leaps at emotional peaks: The melody leaps an octave (or 9th, 10th) at the moment of maximum emotional intensity",
+    "parameters": {
+      "feature": "Octave leaps at emotional peaks",
+      "note": "Symphony 2 \"Urlicht,\" Symphony 5 Adagietto, Das Lied"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mahler/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_ironic_distortion",
+    "category": "composer_melodic_voice",
+    "description": "Ironic distortion: A \"correct\" melody is played in the wrong key, wrong register, wrong tempo, or wrong instrument \u2014 the distortion IS the meaning",
+    "parameters": {
+      "feature": "Ironic distortion",
+      "note": "Symphony 1 \"Fr\u00e8re Jacques\" in minor, scherzo grotesqueries"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mahler/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_endless_melody_mahler_version",
+    "category": "composer_melodic_voice",
+    "description": "Endless melody (Mahler version): Unlike Wagner's chromatic endless melody, Mahler's phrases extend by adding new material at cadence points \u2014 the melody refuses to end",
+    "parameters": {
+      "feature": "Endless melody (Mahler version)",
+      "note": "Slow movements, postludes"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mahler/melodic-style.md"
+  },
+  {
+    "id": "phrase_structure_cell",
+    "category": "phrase_structure",
+    "description": "Cell: Smallest recognizable unit",
+    "parameters": {
+      "unit": "Cell",
+      "typical_length": "2-3 notes",
+      "function": "Smallest recognizable unit"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_motif",
+    "category": "phrase_structure",
+    "description": "Motif: Characteristic rhythm + interval pattern",
+    "parameters": {
+      "unit": "Motif",
+      "typical_length": "1-2 bars",
+      "function": "Characteristic rhythm + interval pattern"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_phrase",
+    "category": "phrase_structure",
+    "description": "Phrase: Complete musical thought, ends with cadence",
+    "parameters": {
+      "unit": "Phrase",
+      "typical_length": "4 bars",
+      "function": "Complete musical thought, ends with cadence"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_period",
+    "category": "phrase_structure",
+    "description": "Period: Two complementary phrases",
+    "parameters": {
+      "unit": "Period",
+      "typical_length": "8 bars (4+4)",
+      "function": "Two complementary phrases"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_double period",
+    "category": "phrase_structure",
+    "description": "Double period: Extended period structure",
+    "parameters": {
+      "unit": "Double period",
+      "typical_length": "16 bars (4+4+4+4)",
+      "function": "Extended period structure"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_section",
+    "category": "phrase_structure",
+    "description": "Section: Structural unit (exposition, development, etc.)",
+    "parameters": {
+      "unit": "Section",
+      "typical_length": "Multiple periods",
+      "function": "Structural unit (exposition, development, etc.)"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_arch_(rise-fall)",
+    "category": "contour",
+    "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+    "parameters": {
+      "contour": "Arch (rise-fall)",
+      "shape": "\u2227",
+      "association": "Completion, singing quality"
+    },
+    "conditions": {
+      "best_for": "Lyrical themes"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_ascending",
+    "category": "contour",
+    "description": "Ascending (/): Aspiration, tension, hope",
+    "parameters": {
+      "contour": "Ascending",
+      "shape": "/",
+      "association": "Aspiration, tension, hope"
+    },
+    "conditions": {
+      "best_for": "Building passages"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_descending",
+    "category": "contour",
+    "description": "Descending (\\): Resolution, grief, relaxation",
+    "parameters": {
+      "contour": "Descending",
+      "shape": "\\",
+      "association": "Resolution, grief, relaxation"
+    },
+    "conditions": {
+      "best_for": "Closing phrases"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_wave",
+    "category": "contour",
+    "description": "Wave (\u223c): Lyrical, flowing",
+    "parameters": {
+      "contour": "Wave",
+      "shape": "\u223c",
+      "association": "Lyrical, flowing"
+    },
+    "conditions": {
+      "best_for": "Sustained melodies"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_static/plateau",
+    "category": "contour",
+    "description": "Static/plateau (\u2014): Contemplation, suspense",
+    "parameters": {
+      "contour": "Static/plateau",
+      "shape": "\u2014",
+      "association": "Contemplation, suspense"
+    },
+    "conditions": {
+      "best_for": "Recitative, tension"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_inverted_arch",
+    "category": "contour",
+    "description": "Inverted arch (\u2228): Settling then rising",
+    "parameters": {
+      "contour": "Inverted arch",
+      "shape": "\u2228",
+      "association": "Settling then rising"
+    },
+    "conditions": {
+      "best_for": "Surprise, rebound"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_within_a_phrase",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+    "parameters": {
+      "scale": "Within a phrase",
+      "placement": "Near the end (~bar 3 of 4)"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_within_a_melody",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a melody level: ~60-75% through",
+    "parameters": {
+      "scale": "Within a melody",
+      "placement": "~60-75% through"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_within_a_section",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a section level: After development/buildup",
+    "parameters": {
+      "scale": "Within a section",
+      "placement": "After development/buildup"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_multiple_levels",
+    "category": "peak_timing",
+    "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+    "parameters": {
+      "scale": "Multiple levels",
+      "placement": "Local (phrase), regional (period), global (section)"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  }
+]

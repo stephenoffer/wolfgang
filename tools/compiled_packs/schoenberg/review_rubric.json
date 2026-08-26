@@ -1,79 +1,49 @@
 {
   "checks": [
     {
-      "id": "fp_post_wagnerian_chromaticism_at_the_breaking_point",
-      "category": "fingerprint",
-      "description": "Post-Wagnerian chromaticism at the breaking point",
-      "severity": "soft"
-    },
-    {
-      "id": "fp_extreme_emotional_intensity_expressionist_temperature",
-      "category": "fingerprint",
-      "description": "Extreme emotional intensity \u2014 Expressionist temperature",
-      "severity": "soft"
-    },
-    {
-      "id": "fp_brahmsian_thematic_development",
-      "category": "fingerprint",
-      "description": "Brahmsian thematic development",
-      "severity": "soft"
-    },
-    {
-      "id": "fp_large_late_romantic_orchestra",
-      "category": "fingerprint",
-      "description": "Large late-Romantic orchestra",
-      "severity": "soft"
-    },
-    {
-      "id": "fp_still_has_a_tonal_center",
-      "category": "fingerprint",
-      "description": "Still has a tonal center",
-      "severity": "soft"
-    },
-    {
-      "id": "anti_5",
+      "id": "anti_0",
       "category": "anti_pattern",
       "description": "**Late Romantic:**",
       "severity": "soft"
     },
     {
-      "id": "anti_6",
+      "id": "anti_1",
       "category": "anti_pattern",
       "description": "**Writing free atonality when Late Romantic is specified.** Late Romantic Schoenberg is tonal, even ",
       "severity": "soft"
     },
     {
-      "id": "anti_7",
+      "id": "anti_2",
       "category": "anti_pattern",
       "description": "**Atonal:**",
       "severity": "soft"
     },
     {
-      "id": "anti_8",
+      "id": "anti_3",
       "category": "anti_pattern",
       "description": "**Functional harmony.** Any V\u2192I resolution, any leading-tone resolution, any predictable harmonic mo",
       "severity": "soft"
     },
     {
-      "id": "anti_9",
+      "id": "anti_4",
       "category": "anti_pattern",
       "description": "**Long-form traditional structures.** Atonal Schoenberg uses short, compressed forms.",
       "severity": "soft"
     },
     {
-      "id": "anti_10",
+      "id": "anti_5",
       "category": "anti_pattern",
       "description": "**Twelve-Tone:**",
       "severity": "soft"
     },
     {
-      "id": "anti_11",
+      "id": "anti_6",
       "category": "anti_pattern",
       "description": "**Repeating a pitch before completing the row.** The rule is absolute in the strict twelve-tone syst",
       "severity": "soft"
     },
     {
-      "id": "anti_12",
+      "id": "anti_7",
       "category": "anti_pattern",
       "description": "**Using the row as just a melody.** The row must generate all material: melody, harmony, bass, accom",
       "severity": "soft"

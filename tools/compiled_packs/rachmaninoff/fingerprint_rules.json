@@ -6,21 +6,24 @@
       "name": "Long arching melodic line",
       "description": "The primary melody spans 8\u201316 bars in a single long breath before reaching a breathing point. It rises toward a peak on the 6th or 7th scale degree (the most expressive interval in minor), then descen",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "wide_range_piano_texture",
       "name": "Wide-range piano texture",
       "description": "The piano spans its entire range simultaneously: LH can reach as low as A1, while RH melody sits at C5\u2013G6. Inner voices fill the middle register. A Rachmaninoff piano chord often spans more than two o",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "subdominant_approach_to_climax",
       "name": "Subdominant approach to climax",
       "description": "The emotional peak is often approached through the subdominant (IV) rather than the dominant (V). Specifically: bVI \u2192 IV \u2192 I (the flat-sixth to subdominant to tonic), creating a \"dark triumph\" quality",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "bell_like_resonance_tonic_pedal_under_chromatic_harmony",
@@ -29,14 +32,16 @@
       "texture_affinities": [
         "pedal_point"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "sequence_in_long_ascending_sweeps",
       "name": "Sequence in long ascending sweeps",
       "description": "Ascending sequences that build for 8\u201316 bars toward a climax. Each sequence repetition is louder, higher, and more harmonically intense. The sweep IS the climax architecture \u2014 not a single moment but ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

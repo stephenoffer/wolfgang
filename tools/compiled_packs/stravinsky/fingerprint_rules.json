@@ -1,40 +1,4 @@
 {
-  "required_count": 3,
-  "items": [
-    {
-      "id": "block_juxtaposition",
-      "name": "Block juxtaposition",
-      "description": "Distinct musical blocks (each with its own tempo, texture, key, rhythm) are placed side-by-side without transition. The cut is abrupt, cinematic. The friction between juxtaposed blocks IS the formal s",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "ostinato_as_hypnosis",
-      "name": "Ostinato as hypnosis",
-      "description": "A short pattern (2\u20134 notes, simple rhythm) repeated obsessively for 8\u201332 bars while harmony gradually shifts underneath it, or a new layer is added above. The repetition doesn't bore \u2014 it hypnotizes t",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "polytonality_polytonal_harmony",
-      "name": "Polytonality / polytonal harmony",
-      "description": "Two or more key areas sounding simultaneously. The Petrushka chord (C major + F# major simultaneously) is the paradigm. The two keys don't fight each other \u2014 they create a new, specific color neither ",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "asymmetric_constantly_changing_meter",
-      "name": "Asymmetric, constantly changing meter",
-      "description": "Time signatures change every bar (5/8, 7/8, 3/8, 11/16). The \"Rite of Spring\" principle: the downbeat falls where the music needs it, not where the meter places it. The rhythm is primary; the meter fo",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    },
-    {
-      "id": "pagan_folk_rawness_unresolved_dissonance",
-      "name": "Pagan/folk rawness \u2014 unresolved dissonance",
-      "description": "Cluster chords, added dissonances (major 7ths, minor 9ths) left unresolved. The sound is deliberately rough, primitive, energetic. Smooth voice-leading is avoided. The \"wrong\" notes are intentionally ",
-      "texture_affinities": [],
-      "frequency": "per_section"
-    }
-  ]
+  "required_count": 0,
+  "items": []
 }

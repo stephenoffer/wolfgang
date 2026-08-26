@@ -1,0 +1,380 @@
+[
+  {
+    "id": "wrong_note_harmony",
+    "name": "Wrong-note harmony",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Harmonic \"bite\" \u2014 surprise without destruction of tonality"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "displaced_tonality",
+    "name": "Displaced tonality",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Both layers sound \"correct\" alone; together they create friction"
+    ],
+    "frequency_weight": 0.02,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "motoric_bass",
+    "name": "Motoric bass",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Drives momentum; the bass is a machine",
+      "not an expression"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "lyrical_diatonic",
+    "name": "Lyrical diatonic",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Genuine tenderness \u2014 the real Prokofiev beneath the irony"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_side_slipping",
+    "name": "Chromatic side-slipping",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "A passing shadow; harmonic color without modulation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "mediant_shifts",
+    "name": "Mediant shifts",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Unexpected tonal color; avoids dominant-tonic predictability"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "dominant_avoidance",
+    "name": "Dominant avoidance",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The cadence arrives",
+      "but not where expected"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "opening_theme",
+    "name": "Opening theme",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Mediant shifts"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "development",
+    "name": "Development",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Motoric bass"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "lyrical_second_theme",
+    "name": "Lyrical second theme",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Plagal color"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "scherzo_grotesque",
+    "name": "Scherzo/grotesque",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Tritone bass"
+    ],
+    "frequency_weight": 0.02,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "march",
+    "name": "March",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Parallel motion"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "coda",
+    "name": "Coda",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sudden tonic"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "bitonality",
+    "name": "Bitonality",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Milhaud",
+      "Stravinsky Petrushka chord"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "polytonality",
+    "name": "Polytonality",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Ives",
+      "Milhaud"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "petrushka_chord",
+    "name": "Petrushka chord",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Iconic bitonal sonority"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "polytonal_cadence",
+    "name": "Polytonal cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Independence of strata"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "bitonal_melody",
+    "name": "Bitonal melody",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Tension without atonality"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "diatonic_dissonance",
+    "name": "Diatonic dissonance",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Stravinsky Pulcinella"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "wrong_note_style",
+    "name": "Wrong-note style",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Prokofiev"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "pandiatonic_clusters",
+    "name": "Pandiatonic clusters",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Copland",
+      "Stravinsky"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "modal_cadence",
+    "name": "Modal cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Mixolydian bVII-I"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "ostinato_harmony",
+    "name": "Ostinato harmony",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Stravinsky"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "superimposed_triads",
+    "name": "Superimposed triads",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Ravel",
+      "Stravinsky"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "lyrical_theme",
+    "name": "Lyrical theme",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Low-Medium"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "development",
+    "name": "Development",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "High"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "climax",
+    "name": "Climax",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Very High"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "resolution",
+    "name": "Resolution",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Medium-Low"
+    ],
+    "frequency_weight": 0.05,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "ostinato_passage",
+    "name": "Ostinato passage",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Medium"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "recapitulation",
+    "name": "Recapitulation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Medium"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "coda",
+    "name": "Coda",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Variable"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "prokofiev/harmonic-language.md"
+  }
+]

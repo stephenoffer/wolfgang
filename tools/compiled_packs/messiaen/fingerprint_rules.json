@@ -6,35 +6,40 @@
       "name": "Modes of limited transposition",
       "description": "Messiaen's self-invented scales that cannot be transposed more than 2\u20135 times before repeating. Most important: Mode 2 (octatonic: whole-half alternating), Mode 3 (three transpositions), Mode 6. These",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "bird_song_transcription_and_imitation",
       "name": "Bird song transcription and imitation",
       "description": "Messiaen transcribed hundreds of bird songs and used them as melodic material throughout his works. The Catalogue d'oiseaux is 13 piano pieces, each depicting a specific bird in its specific landscape",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "color_chord_organ",
       "name": "Color-chord organ",
       "description": "Messiaen was a synesthete: he experienced specific harmonies as specific colors. His \"color chords\" are stacked harmonies designed to produce specific color experiences. These chords often include add",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "rhythm_the_non_retrogradable_rhythms_and_greek_hindu_influence",
       "name": "Rhythm \u2014 the non-retrogradable rhythms and Greek/Hindu influence",
       "description": "Messiaen studied Greek and Hindu rhythmic modes. His rhythmic language includes: non-retrogradable rhythms (palindrome rhythms that read the same forwards and backwards), added values (a rhythm with o",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "catholic_mysticism_and_transcendence",
       "name": "Catholic mysticism and transcendence",
       "description": "Messiaen was a devout Catholic and his music is explicitly theological: the Quartet for the End of Time (from the Book of Revelation), the Turangal\u00eela-Symphonie (love and divine joy), the M\u00e9ditations ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

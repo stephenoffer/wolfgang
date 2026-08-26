@@ -1,0 +1,96 @@
+[
+  {
+    "id": "cad_deceptive_resolution",
+    "type": "Deceptive resolution",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V -> not-I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_evaded_cadence",
+    "type": "Evaded cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V -> I becomes V -> I6 or IV6",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_interrupted_cadence",
+    "type": "Interrupted cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "New phrase interrupts before resolution",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_elided_cadence",
+    "type": "Elided cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Arrival = new departure",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_plagal_substitution",
+    "type": "Plagal substitution",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "IV replaces V for cadence",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_modal_cadence",
+    "type": "Modal cadence",
+    "approach_chords": [
+      "bVII",
+      "i"
+    ],
+    "soprano_line": [],
+    "bass_motion": "7-1",
+    "usage": "Archaic, open",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_dissolution",
+    "type": "Dissolution",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Harmony dissolves rather than resolves",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  }
+]

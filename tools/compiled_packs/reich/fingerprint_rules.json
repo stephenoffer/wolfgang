@@ -6,35 +6,40 @@
       "name": "Phasing \u2014 the same pattern in two voices, slightly out of sync",
       "description": "Reich's defining technique: two instruments play the identical rhythmic pattern, but one gradually speeds up (or starts later), moving through all possible phase relationships with the other. Piano Ph",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "gradual_process_the_process_is_the_music",
       "name": "Gradual process \u2014 the process is the music",
       "description": "Reich: \"I am interested in perceptible processes. I want to be able to hear the process happening throughout the sounding music.\" The process (phasing, addition, subtraction) is not hidden \u2014 it IS wha",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "pulsing_pattern_texture_the_constant_eighth_note_stream",
       "name": "Pulsing pattern texture \u2014 the constant eighth-note stream",
       "description": "Reich's ensembles produce a constant, steady stream of eighth notes (or 16th notes), with the melody embedded in which notes are emphasized by the players. The \"tune\" emerges from selective accenting ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "diatonic_tonality_simple_harmony_complex_rhythm",
       "name": "Diatonic tonality \u2014 simple harmony, complex rhythm",
       "description": "Unlike Glass (modal cycling), Reich is often purely diatonic: C major, no chromaticism. The harmonic language is simple, even simple-minded. The rhythmic complexity is where all the interest lives. Th",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "rhythmic_canons_and_interlocking_parts",
       "name": "Rhythmic canons and interlocking parts",
       "description": "Reich writes for multiple performers playing complementary rhythmic patterns that interlock: one player has the \"off-beat\" version of the pattern another player has on the \"on-beat.\" Together, they fi",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

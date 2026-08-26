@@ -15,6 +15,10 @@
   ],
   "chromatic_techniques": [
     {
+      "name": "Neapolitan",
+      "frequency_weight": 0.3
+    },
+    {
       "name": "chromatic",
       "frequency_weight": 0.3
     }

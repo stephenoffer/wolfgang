@@ -6,28 +6,32 @@
       "name": "Inner-voice melody \u2014 the hidden tune",
       "description": "Schumann's most distinctive habit: the main melody is not in the top voice but hidden inside the texture \u2014 in the tenor register, an inner piano voice, or doubled in a mid-range instrument. The sopran",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "rhythmic_displacement_and_syncopation",
       "name": "Rhythmic displacement and syncopation",
       "description": "Schumann systematically shifts melodic accents away from the downbeat: long notes arrive on weak beats, phrases begin mid-bar, hemiola creates cross-rhythm against the notated meter. The effect is of ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "sudden_tonal_leaps_the_schumannesque_shift",
       "name": "Sudden tonal leaps \u2014 the Schumannesque shift",
       "description": "Abrupt moves to distantly related keys without preparation: from E major to C major, or C minor to A major. Not modulation \u2014 just arrival. The new key is stated as a fact. The effect is like a sudden ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "literary_poetic_program_florestan_and_eusebius",
       "name": "Literary/poetic program \u2014 Florestan and Eusebius",
       "description": "Every piece has a hidden narrative or character: the extrovert Florestan (fast, loud, bold) or introvert Eusebius (slow, soft, inward). Sometimes both appear in the same piece, alternating. The music ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "piano_texture_as_interior_monologue",
@@ -36,7 +40,8 @@
       "texture_affinities": [
         "pedal_point"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

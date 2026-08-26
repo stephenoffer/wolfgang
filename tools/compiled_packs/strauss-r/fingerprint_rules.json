@@ -6,35 +6,40 @@
       "name": "Tone poem narrative \u2014 music as biography or story",
       "description": "Strauss doesn't write abstract music. Every major orchestral work has a specific extra-musical program: a character (Don Quixote, Till Eulenspiegel), a philosophical concept (Also sprach Zarathustra),",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "post_wagnerian_orchestral_mastery_100_players_as_a_single_instrument",
       "name": "Post-Wagnerian orchestral mastery \u2014 100+ players as a single instrument",
       "description": "Strauss inherited Wagner's orchestra and expanded it further: quadruple woodwinds, 8 horns, 5 trumpets, strings divided into 16 parts. The orchestral texture can whisper (solo violin harmonics alone) ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "chromatic_lushness_the_straussian_harmonic_swell",
       "name": "Chromatic lushness \u2014 the Straussian harmonic swell",
       "description": "Strauss takes Wagnerian chromaticism and adds Brahmsian richness: thick inner voices, added 9ths and 11ths in chords, chromatic voice-leading in all parts. The result is a specific \"lush\" sound \u2014 harm",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "ironic_self_quotation_and_musical_joke",
       "name": "Ironic self-quotation and musical joke",
       "description": "Strauss quotes himself, quotes other composers, and quotes common-practice formulas with deliberate incongruity. Till Eulenspiegel's pranks are actual musical pranks: the pompous theme that suddenly f",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "late_style_autumnal_lyricism_der_rosenkavalier_four_last_songs",
       "name": "Late style \u2014 autumnal lyricism (Der Rosenkavalier, Four Last Songs)",
       "description": "In his mature and late works, Strauss abandons programmatic complexity for pure lyrical beauty: long, arching, harmonically rich vocal or string melody, supported by warm orchestral texture. The chrom",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

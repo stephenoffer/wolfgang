@@ -1,0 +1,302 @@
+[
+  {
+    "id": "melodic_voice_pentatonic_construction",
+    "category": "composer_melodic_voice",
+    "description": "Pentatonic construction: Melodies built from 5-note scales (no semitones): C-D-E-G-A",
+    "parameters": {
+      "feature": "Pentatonic construction",
+      "note": "New World Symphony, American Quartet, Cello Concerto"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_folk_song_contour",
+    "category": "composer_melodic_voice",
+    "description": "Folk-song contour: Arch shape: rise in first half, fall in second; question-answer phrasing",
+    "parameters": {
+      "feature": "Folk-song contour",
+      "note": "Everywhere \u2014 the default Dvorak melody shape"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_singable_range",
+    "category": "composer_melodic_voice",
+    "description": "Singable range: Most themes stay within an octave; comfortable vocal range",
+    "parameters": {
+      "feature": "Singable range",
+      "note": "All periods; even instrumental themes are \"singable\""
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_immediate_memorability",
+    "category": "composer_melodic_voice",
+    "description": "Immediate memorability: The melody works on first hearing; no preparation needed",
+    "parameters": {
+      "feature": "Immediate memorability",
+      "note": "The defining Dvorak quality"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_dance_character",
+    "category": "composer_melodic_voice",
+    "description": "Dance character: Melodies carry rhythmic identity of specific dances (furiant, dumka, polka)",
+    "parameters": {
+      "feature": "Dance character",
+      "note": "Slavonic Dances, scherzo movements, finales"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_repetition_with_variation",
+    "category": "composer_melodic_voice",
+    "description": "Repetition with variation: A phrase stated, then repeated with slight melodic or rhythmic change",
+    "parameters": {
+      "feature": "Repetition with variation",
+      "note": "Folk song practice absorbed into symphonic writing"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_major_minor_modal_shift",
+    "category": "composer_melodic_voice",
+    "description": "Major/minor modal shift: Same melody in major, then minor (or vice versa) \u2014 the dumka principle",
+    "parameters": {
+      "feature": "Major/minor modal shift",
+      "note": "Across all periods; emotional duality"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "dvorak/melodic-style.md"
+  },
+  {
+    "id": "phrase_structure_cell",
+    "category": "phrase_structure",
+    "description": "Cell: Smallest recognizable unit",
+    "parameters": {
+      "unit": "Cell",
+      "typical_length": "2-3 notes",
+      "function": "Smallest recognizable unit"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_motif",
+    "category": "phrase_structure",
+    "description": "Motif: Characteristic rhythm + interval pattern",
+    "parameters": {
+      "unit": "Motif",
+      "typical_length": "1-2 bars",
+      "function": "Characteristic rhythm + interval pattern"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_phrase",
+    "category": "phrase_structure",
+    "description": "Phrase: Complete musical thought, ends with cadence",
+    "parameters": {
+      "unit": "Phrase",
+      "typical_length": "4 bars",
+      "function": "Complete musical thought, ends with cadence"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_period",
+    "category": "phrase_structure",
+    "description": "Period: Two complementary phrases",
+    "parameters": {
+      "unit": "Period",
+      "typical_length": "8 bars (4+4)",
+      "function": "Two complementary phrases"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_double period",
+    "category": "phrase_structure",
+    "description": "Double period: Extended period structure",
+    "parameters": {
+      "unit": "Double period",
+      "typical_length": "16 bars (4+4+4+4)",
+      "function": "Extended period structure"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "phrase_structure_section",
+    "category": "phrase_structure",
+    "description": "Section: Structural unit (exposition, development, etc.)",
+    "parameters": {
+      "unit": "Section",
+      "typical_length": "Multiple periods",
+      "function": "Structural unit (exposition, development, etc.)"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_arch_(rise-fall)",
+    "category": "contour",
+    "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+    "parameters": {
+      "contour": "Arch (rise-fall)",
+      "shape": "\u2227",
+      "association": "Completion, singing quality"
+    },
+    "conditions": {
+      "best_for": "Lyrical themes"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_ascending",
+    "category": "contour",
+    "description": "Ascending (/): Aspiration, tension, hope",
+    "parameters": {
+      "contour": "Ascending",
+      "shape": "/",
+      "association": "Aspiration, tension, hope"
+    },
+    "conditions": {
+      "best_for": "Building passages"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_descending",
+    "category": "contour",
+    "description": "Descending (\\): Resolution, grief, relaxation",
+    "parameters": {
+      "contour": "Descending",
+      "shape": "\\",
+      "association": "Resolution, grief, relaxation"
+    },
+    "conditions": {
+      "best_for": "Closing phrases"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_wave",
+    "category": "contour",
+    "description": "Wave (\u223c): Lyrical, flowing",
+    "parameters": {
+      "contour": "Wave",
+      "shape": "\u223c",
+      "association": "Lyrical, flowing"
+    },
+    "conditions": {
+      "best_for": "Sustained melodies"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_static/plateau",
+    "category": "contour",
+    "description": "Static/plateau (\u2014): Contemplation, suspense",
+    "parameters": {
+      "contour": "Static/plateau",
+      "shape": "\u2014",
+      "association": "Contemplation, suspense"
+    },
+    "conditions": {
+      "best_for": "Recitative, tension"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "contour_inverted_arch",
+    "category": "contour",
+    "description": "Inverted arch (\u2228): Settling then rising",
+    "parameters": {
+      "contour": "Inverted arch",
+      "shape": "\u2228",
+      "association": "Settling then rising"
+    },
+    "conditions": {
+      "best_for": "Surprise, rebound"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_within_a_phrase",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+    "parameters": {
+      "scale": "Within a phrase",
+      "placement": "Near the end (~bar 3 of 4)"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_within_a_melody",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a melody level: ~60-75% through",
+    "parameters": {
+      "scale": "Within a melody",
+      "placement": "~60-75% through"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_within_a_section",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a section level: After development/buildup",
+    "parameters": {
+      "scale": "Within a section",
+      "placement": "After development/buildup"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  },
+  {
+    "id": "peak_timing_multiple_levels",
+    "category": "peak_timing",
+    "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+    "parameters": {
+      "scale": "Multiple levels",
+      "placement": "Local (phrase), regional (period), global (section)"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  }
+]

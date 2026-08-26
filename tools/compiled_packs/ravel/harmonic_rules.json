@@ -13,5 +13,18 @@
       "frequency_weight": 0.5
     }
   ],
-  "chromatic_techniques": []
+  "chromatic_techniques": [
+    {
+      "name": "Neapolitan",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "chromatic",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "modal mixture",
+      "frequency_weight": 0.3
+    }
+  ]
 }

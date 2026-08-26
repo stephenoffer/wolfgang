@@ -6,35 +6,40 @@
       "name": "Leitmotif system \u2014 Wagnerian in cinema",
       "description": "Williams uses the Wagnerian Leitmotif system with more discipline and transparency than almost any post-Wagner composer. Each character, object, concept, or relationship in the film has a specific mus",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "post_romantic_orchestral_mastery_holst_korngold_strauss",
       "name": "Post-Romantic orchestral mastery \u2014 Holst, Korngold, Strauss",
       "description": "Williams's orchestral language is deliberately Late Romantic: Holst's planetary scale, Korngold's Hollywood grandeur, Strauss's tone-poem specificity. He writes for the full symphony orchestra with co",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "march_and_fanfare_idiom_for_heroism",
       "name": "March and fanfare idiom for heroism",
       "description": "The Williams heroic sound: brass fanfare (trumpets, horns in unison or harmony), dotted-note rhythms, major key, fff. Star Wars main theme, Indiana Jones, Imperial March \u2014 all are built on this archet",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "lyrical_soloistic_heart_themes",
       "name": "Lyrical soloistic \"heart\" themes",
       "description": "Contrasting with the heroic fanfares: intimate, singable melodic themes for the emotional center of the story (the love theme from Schindler's List, the boy's theme in E.T., Hedwig's Theme). These the",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "specific_harmonic_fingerprints_the_williams_sound",
       "name": "Specific harmonic fingerprints \u2014 the Williams sound",
       "description": "Several characteristic harmonic moves: (1) the bVI\u2192I \"magical\" cadence (Db major \u2192 C major); (2) modal mixture with lowered 3rd or 7th for ominous effect; (3) Lydian raised 4th for wonder and discover",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

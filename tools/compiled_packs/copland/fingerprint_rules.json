@@ -8,21 +8,24 @@
       "texture_affinities": [
         "silence"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "pandiatonicism_all_notes_of_the_key_simultaneously",
       "name": "Pandiatonicism \u2014 all notes of the key simultaneously",
       "description": "Copland uses all seven notes of a diatonic scale simultaneously or in rapid succession, without any one note functioning as a tension/resolution agent. The result is a bright, major-sounding, \"all-whi",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "american_folk_and_hymn_melody",
       "name": "American folk and hymn melody",
       "description": "From Appalachian Spring and Billy the Kid: the folk melody (Simple Gifts, Western cowboy tunes, hoedown tunes) is used as direct thematic material or as the model for Copland's own composed folk-like ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "sudden_silence_and_wide_dynamic_range",
@@ -31,14 +34,16 @@
       "texture_affinities": [
         "silence"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "jazz_influenced_rhythm_the_hoedown_energy",
       "name": "Jazz-influenced rhythm \u2014 the \"hoedown\" energy",
       "description": "In fast movements (Rodeo Hoedown, El Sal\u00f3n M\u00e9xico), Copland uses jazz-influenced syncopation: off-beat accents, irregular groupings (3+3+2 in a 4/4 bar), and dance rhythm. This is not jazz harmony \u2014 i",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

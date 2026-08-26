@@ -1,0 +1,135 @@
+[
+  {
+    "id": "direct_quotation",
+    "name": "Direct quotation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Theme statement",
+      "variation set"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "stylistic_imitation",
+    "name": "Stylistic imitation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Primary themes"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "modal_harmonization",
+    "name": "Modal harmonization",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sustaining folk flavor"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "heterophonic_layering",
+    "name": "Heterophonic layering",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Russian choral style"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "call_and_response",
+    "name": "Call-and-response",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dance movements"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "drone_accompaniment",
+    "name": "Drone accompaniment",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Bagpipe/hurdy-gurdy imitation"
+    ],
+    "frequency_weight": 0.05,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "modal_shift",
+    "name": "Modal shift",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Major theme returns in minor"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "mediant_shift",
+    "name": "Mediant shift",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dramatic color change"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "folk_sequence",
+    "name": "Folk-sequence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Building energy in dance"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "pivot_on_drone",
+    "name": "Pivot on drone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Slow movements"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  },
+  {
+    "id": "abrupt_juxtaposition",
+    "name": "Abrupt juxtaposition",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Mussorgsky block form"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "rimsky-korsakov/harmonic-language.md"
+  }
+]

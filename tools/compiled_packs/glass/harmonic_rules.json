@@ -1,5 +1,10 @@
 {
-  "cadence_vocabulary": [],
+  "cadence_vocabulary": [
+    {
+      "type": "PAC",
+      "frequency_weight": 0.5
+    }
+  ],
   "chromatic_techniques": [
     {
       "name": "chromatic",

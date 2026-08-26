@@ -1391,3 +1391,95 @@ def test_a_missing_or_unparseable_tempo_is_not_an_error():
 
     assert validate_tempo(None) == []
     assert validate_tempo("presto") == []
+
+
+# ── Orchestration, which had never been assembled and audited ──────────────
+
+
+def _orchestrated(tmp_path, monkeypatch):
+    """Orchestrate a real piano section and assemble it."""
+    import shutil
+
+    from scales import scales as scales_mod
+    from scales.piece_graph import PieceGraph
+
+    src = Path("workspace/mozart-andante-fmaj-v2-20260826")
+    if not (src / "piece_graph.json").exists():
+        pytest.skip("reference piece not present")
+    dst = tmp_path / src.name
+    shutil.copytree(src, dst)
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    scales_mod.orchestrate_section(src.name, "m1_a")
+    result = scales_mod.assemble_orchestration(src.name, "m1_a")
+    assert result.get("ok"), result
+    return result["path"], PieceGraph.load(str(dst / "piece_graph.json"))
+
+
+def test_every_ensemble_part_appears_even_when_it_is_tacet(tmp_path, monkeypatch):
+    """A score for a named ensemble whose silent instruments are simply absent
+    is not a score for that ensemble — the player counting rests has nothing to
+    count. Four of ten parts had zero events and vanished from the file."""
+    import music21
+
+    path, _ = _orchestrated(tmp_path, monkeypatch)
+    score = music21.converter.parse(path)
+    names = [str(p.partName).lower().replace(" ", "_") for p in score.parts]
+    for expected in ("flute", "oboe", "clarinet", "bassoon", "horn",
+                     "violin_1", "violin_2", "viola", "cello", "contrabass"):
+        assert expected in names, f"{expected} is missing from the score: {names}"
+
+
+def test_orchestral_parts_are_in_score_order(tmp_path, monkeypatch):
+    import music21
+
+    path, _ = _orchestrated(tmp_path, monkeypatch)
+    names = [str(p.partName).lower().replace(" ", "_") for p in music21.converter.parse(path).parts]
+    assert names.index("flute") < names.index("bassoon") < names.index("violin_1")
+    assert names.index("violin_1") < names.index("viola") < names.index("contrabass")
+
+
+def test_each_orchestral_part_sounds_like_its_own_instrument(tmp_path, monkeypatch):
+    """Every part exported with the piano's MIDI program, so an orchestrated
+    piece played back as a room full of pianos."""
+    import music21
+
+    path, _ = _orchestrated(tmp_path, monkeypatch)
+    score = music21.converter.parse(path)
+    by_name = {
+        str(p.partName).lower().replace(" ", "_"): type(p.getInstrument()).__name__
+        for p in score.parts
+    }
+    assert by_name["flute"] == "Flute"
+    assert by_name["cello"] == "Violoncello"
+    assert by_name["violin_1"] == "Violin", "a numbered part must resolve to its instrument"
+    assert len(set(by_name.values())) >= 6, f"too many parts share an instrument: {by_name}"
+
+
+def test_the_tempo_mark_is_printed_once_not_once_per_player(tmp_path, monkeypatch):
+    import collections
+
+    import music21
+
+    path, _ = _orchestrated(tmp_path, monkeypatch)
+    score = music21.converter.parse(path)
+    texts = collections.Counter(
+        str(e.content) for e in score.recurse().getElementsByClass("TextExpression")
+    )
+    for word, count in texts.items():
+        if word in ("Allegro", "Andante", "Andantino", "Adagio", "Presto", "Moderato"):
+            assert count == 1, f"'{word}' printed {count} times — once per part"
+
+
+def test_orchestral_bars_hold_their_meter(tmp_path, monkeypatch):
+    """The orchestration JSON dropped `ornament`, so an appoggiatura arrived as
+    a plain eighth, took real time, collided with the note it decorates and left
+    the bar summing to 3.5 beats of a 3/4."""
+    import music21
+
+    path, _ = _orchestrated(tmp_path, monkeypatch)
+    score = music21.converter.parse(path)
+    for part in score.parts:
+        for m in part.getElementsByClass("Measure"):
+            total = sum(float(n.quarterLength) for n in m.flatten().notesAndRests)
+            if total > 0:
+                assert abs(total - 3.0) < 0.01, f"{part.partName} m{m.number} holds {total}"

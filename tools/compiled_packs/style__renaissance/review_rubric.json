@@ -1,0 +1,64 @@
+{
+ "checks": [
+  {
+   "id": "fp_the_line_recovers_from_every_leap",
+   "category": "fingerprint",
+   "description": "The line recovers from every leap",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_dissonance_only_ever_passes_suspends_or_neighbours",
+   "category": "fingerprint",
+   "description": "Dissonance only ever passes, suspends or neighbours",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_arch_shaped_phrases_with_a_single_high_note",
+   "category": "fingerprint",
+   "description": "Arch-shaped phrases with a single high note",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_points_of_imitation_with_staggered_exposed_entries",
+   "category": "fingerprint",
+   "description": "Points of imitation with staggered, exposed entries",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_rhythmic_independence_over_a_steady_tactus",
+   "category": "fingerprint",
+   "description": "Rhythmic independence over a steady tactus",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_the_words_choose_the_notes",
+   "category": "fingerprint",
+   "description": "The words choose the notes",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_unprepared_dissonance_for_expressive_effect",
+   "category": "fingerprint",
+   "description": "Unprepared dissonance for expressive effect",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_declamatory_speech_shaped_rhythm",
+   "category": "fingerprint",
+   "description": "Declamatory, speech-shaped rhythm",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_abrupt_textural_contrast_between_phrases",
+   "category": "fingerprint",
+   "description": "Abrupt textural contrast between phrases",
+   "severity": "soft"
+  },
+  {
+   "id": "fp_chromatic_inflection_at_the_moment_of_feeling",
+   "category": "fingerprint",
+   "description": "Chromatic inflection at the moment of feeling",
+   "severity": "soft"
+  }
+ ]
+}

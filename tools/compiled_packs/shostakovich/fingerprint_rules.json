@@ -6,7 +6,8 @@
       "name": "Ironic major-key grotesquerie",
       "description": "Bright major passages (march tempo, staccato, high piccolo or xylophone, ff) that mean the OPPOSITE of what they seem to sound. The cheerfulness is forced, the brightness is threatening. This is Shost",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "obsessive_ostinato_under_chromatic_distress",
@@ -15,28 +16,32 @@
       "texture_affinities": [
         "pedal_point"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "parody_of_familiar_styles",
       "name": "Parody of familiar styles",
       "description": "Musical quotation or imitation of a recognizable style (Baroque passacaglia, waltz, march, hymn) that is subtly or grotesquely distorted. The style is recognizable but something is \"wrong\" \u2014 the inter",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "extremely_high_or_extremely_low_instruments_at_climaxes",
       "name": "Extremely high or extremely low instruments at climaxes",
       "description": "At emotional peaks, the piccolo screams in its highest register, or the contrabasses play in their lowest. The extreme register creates physical discomfort in the listener \u2014 the beauty of the moment i",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "dsch_motif_or_initials_based_cells",
       "name": "DSCH motif or initials-based cells",
       "description": "D-Es-C-H (D-Eb-C-B in German notation) \u2014 Shostakovich's musical signature. He uses it as the basis for many themes. Even without the exact pitches, his melodic cells often have a specific half-step + ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

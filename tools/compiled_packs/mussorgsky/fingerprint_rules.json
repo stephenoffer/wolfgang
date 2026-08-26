@@ -6,28 +6,32 @@
       "name": "Raw, unpolished harmonic language \u2014 intentional \"wrong\" notes",
       "description": "Mussorgsky deliberately avoided the smooth voice-leading rules of European academic harmony. His chord connections can be abrupt, his parallel fifths deliberate, his unresolved dissonances intentional",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "speech_melody_vocal_rhythm_following_natural_russian_speech",
       "name": "Speech-melody \u2014 vocal rhythm following natural Russian speech",
       "description": "Mussorgsky's vocal writing in Boris Godunov and Songs follows the natural rhythm and inflection of spoken Russian, not the conventions of Italian opera. Long notes on important syllables, short notes ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "whole_tone_and_octatonic_fragments",
       "name": "Whole-tone and octatonic fragments",
       "description": "Before Debussy made whole-tone harmony fashionable, Mussorgsky used whole-tone fragments and octatonic scales as coloristic devices for the supernatural, demonic, or mysterious. The Night on Bald Moun",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "modal_russian_church_idiom_bells_and_liturgy",
       "name": "Modal Russian church idiom \u2014 bells and liturgy",
       "description": "The Orthodox Christian liturgical tradition is embedded in Mussorgsky's writing: open 5th drone basses, parallel 5th chord movements, slow-moving choral harmonies with no leading tone. The \"Boris\" cor",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "programmatic_specificity_portraits_and_places",
@@ -36,7 +40,8 @@
       "texture_affinities": [
         "walking_bass"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

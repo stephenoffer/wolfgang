@@ -6,35 +6,40 @@
       "name": "Scherzo lightness \u2014 the fleet, elfin texture",
       "description": "Mendelssohn invented a specific sound: fast (Presto or Vivace), pp or ppp, staccato, very high register, strings playing sul ponticello or without vibrato, like fireflies or fairy wings. This texture ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "singing_tone_bel_canto_melody_in_instruments",
       "name": "Singing tone \u2014 bel canto melody in instruments",
       "description": "Mendelssohn's slow melodies are modeled on Italian bel canto: long, arching phrases, beautifully shaped, without extremes of dissonance or angst. The melody is always lovely. This is not a limitation ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "formal_clarity_with_romantic_content",
       "name": "Formal clarity with Romantic content",
       "description": "Mendelssohn inhabits Classical forms (sonata, rondo, variation) with complete conviction, without irony. His development sections actually develop. His recapitulations feel like returns. The form is n",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "venetian_barcarolle_lilt",
       "name": "Venetian barcarolle lilt",
       "description": "In 6/8 or 12/8, a gentle rocking accompaniment (bass-chord-chord in the left hand, or pizzicato lower strings with sustained upper strings) suggesting water motion. The \"Songs Without Words\" barcaroll",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "bright_unclouded_orchestration_the_protestant_clarity",
       "name": "Bright, unclouded orchestration \u2014 the Protestant clarity",
       "description": "Mendelssohn's orchestration is transparent: each instrument section audible, no muddy doublings, brass used for weight not color, strings predominant. Even his fortissimos are clear, not thick. This i",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

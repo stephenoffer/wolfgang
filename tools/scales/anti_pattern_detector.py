@@ -44,13 +44,31 @@ def _voice_midi(pitch, prefer: str = "top") -> Optional[int]:
 def detect_flat_dynamics(layer: LayerIR, params: Optional[Dict] = None) -> Tuple[bool, str, str]:
     """All dynamics identical across bars → flat, lifeless music."""
     max_same_ratio = (params or {}).get("max_same_ratio", 0.8)
+    min_bars = (params or {}).get("min_bars", 4)
     dynamics = []
     for evt in layer.principal_line:
         if evt.dynamic:
             dynamics.append(evt.dynamic)
 
+    # NO dynamic at all is the extreme case of flat dynamics, and it returned
+    # "insufficient data" — so the detector was silent on precisely the thing it
+    # names. Across all 13,742 notes this project has ever committed, 91.3% carry
+    # no dynamic; real movements carry about 0.77 dynamic marks per bar.
+    if not dynamics:
+        if layer.bar_count >= min_bars:
+            return (
+                True,
+                "warning",
+                f"no dynamic marked anywhere in {layer.bar_count} bars — the phrase "
+                f"has no shape a player could follow",
+            )
+        return False, "warning", "too short to judge dynamic shape"
     if len(dynamics) < 2:
-        return False, "warning", "Insufficient dynamics data"
+        return (
+            True,
+            "warning",
+            f"one dynamic ('{dynamics[0]}') for the whole phrase — nothing leans or withdraws",
+        )
 
     from collections import Counter
 
@@ -156,29 +174,40 @@ def detect_missing_silence(layer: LayerIR, params: Optional[Dict] = None) -> Tup
 def detect_ornament_wallpaper(
     layer: LayerIR, params: Optional[Dict] = None
 ) -> Tuple[bool, str, str]:
-    """Ornaments at perfectly regular intervals → mechanical."""
-    events = layer.ornamental_surface
+    """Ornaments at perfectly regular intervals -> decoration on a schedule.
+
+    Reads the ornament off whatever note carries it. This looked only at
+    ``layer.ornamental_surface``, a layer the shorthand path never populates —
+    an ornament written as ``C5q:tr`` is a field on the note in
+    ``principal_line`` — so the detector was searching an empty drawer and could
+    not fire on any agent-composed phrase.
+    """
+    events = []
+    for name in ("principal_line", "ornamental_surface", "counter_reply", "response_layer"):
+        for evt in getattr(layer, name, None) or []:
+            if getattr(evt, "ornament", None):
+                events.append(evt)
     if len(events) < 3:
         return False, "warning", ""
 
-    # Check spacing variance
-    positions = [(evt.bar, evt.beat) for evt in events]
-    if len(positions) < 3:
-        return False, "warning", ""
-
-    # Compute beat positions as absolute values
-    abs_positions = [p[0] * 10 + p[1] for p in positions]
-    gaps = [abs_positions[i + 1] - abs_positions[i] for i in range(len(abs_positions) - 1)]
-
+    # Absolute beat positions. The old encoding was `bar * 10 + beat`, which makes
+    # the gap across a barline incomparable with a gap inside one.
+    beats_per_bar = float(layer.meter[0]) * 4.0 / float(layer.meter[1]) if layer.meter else 4.0
+    positions = sorted((e.bar - 1) * beats_per_bar + (float(e.beat) - 1.0) for e in events)
+    gaps = [b - a for a, b in zip(positions, positions[1:])]
     if not gaps:
         return False, "warning", ""
 
     avg = sum(gaps) / len(gaps)
     variance = sum((g - avg) ** 2 for g in gaps) / len(gaps)
     threshold = (params or {}).get("min_variance", 0.5)
-
     if variance < threshold:
-        return True, "warning", f"Ornament spacing variance={variance:.2f} (too regular)"
+        return (
+            True,
+            "warning",
+            f"{len(events)} ornaments spaced every {avg:g} beats (variance {variance:.2f}) "
+            f"— decoration on a schedule, not where the music leans",
+        )
     return False, "warning", ""
 
 

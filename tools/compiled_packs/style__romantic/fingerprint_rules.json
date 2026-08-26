@@ -1,0 +1,169 @@
+{
+ "required_count": 3,
+ "items": [
+  {
+   "id": "nocturne_bass",
+   "name": "Nocturne bass",
+   "description": "LH broken octave spanning 9th\u201312th. Low root on beat 1, chord tones spread above. NOT Alberti. Write every LH note explicitly.",
+   "texture_affinities": [
+    "alberti"
+   ],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "grace_note_entry",
+   "name": "Grace-note entry",
+   "description": "Phrases begin with a grace note leaning into the first structural pitch. The melody breathes before it sings. Combined with rubato, the arrival is never mechanical.",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "chromatic_inner_voice",
+   "name": "Chromatic inner voice",
+   "description": "While soprano moves diatonically, a middle voice descends chromatically (often C\u2013B\u2013Bb\u2013A) creating warmth and ache beneath the melody.",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "enharmonic_modulation",
+   "name": "Enharmonic modulation",
+   "description": "Distant key arrived at through a diminished seventh or German augmented sixth respelled. The listener finds themselves somewhere new without a clear \"moment of departure.\"",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "ornamental_passagework_as_melody",
+   "name": "Ornamental passagework as melody",
+   "description": "Chromatic runs, cascading sixteenth passages from a peak note are not decoration \u2014 they ARE the melody continuing. Do not write them as ornament shorthand; write out every note.",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "parallel_major_minor_shift_the_schubertian_flip",
+   "name": "Parallel major-minor shift (the Schubertian flip)",
+   "description": "Schubert moves between tonic major and tonic minor as a primary expressive device: C major \u2192 C minor \u2192 C major, without modulation. The shift carries immediate emotional weight: major is daylight, min",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "third_relation_harmony_mediant_motion",
+   "name": "Third-relation harmony (mediant motion)",
+   "description": "Harmonic moves by major or minor third instead of fifth: C major \u2192 E major, or C major \u2192 Ab major, or C major \u2192 A major. These are not modulations \u2014 they are color shifts. The key a third away is not ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "celestial_prolongation_the_moment_that_stops_time",
+   "name": "Celestial prolongation \u2014 the moment that stops time",
+   "description": "Schubert's slow movements contain passages where the music seems to stop being in time: a single chord sustained for many bars, pp or ppp, high strings tremolo or no accompaniment at all, melody suspe",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "song_melody_in_instrumental_writing",
+   "name": "Song melody in instrumental writing",
+   "description": "Every Schubert melody sings. It's not abstract \u2014 it has breath, phrase shape, the cadence of a spoken sentence. The melody could be set to words. The piano or strings sing the melody; the accompanimen",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "wandering_harmonic_language_never_quite_settling",
+   "name": "Wandering harmonic language \u2014 never quite settling",
+   "description": "Schubert's harmonic language creates restlessness: even in the tonic, a chromatic inflection or unexpected chord color suggests that rest is not final. His music wanders, and the listener never quite ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "operatic_melody_in_instrumental_clothing",
+   "name": "Operatic melody in instrumental clothing",
+   "description": "Themes are singers' lines: an arching phrase with a clear breath point, an appoggiatura leaning into the strong beat, and a cadential turn. Even a piano theme is written as though someone has to breat",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "the_diminished_seventh_as_a_dramatic_hinge",
+   "name": "The diminished seventh as a dramatic hinge",
+   "description": "Weber reaches for a fully-diminished seventh at moments of alarm or transition, often approached by a sudden dynamic drop and resolved into a remote key. It is the sound of the supernatural in *Der Fr",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "brilliant_wide_spanning_keyboard_figuration",
+   "name": "Brilliant, wide-spanning keyboard figuration",
+   "description": "Broken chords spanning a tenth or more, rapid scale flourishes, and leaps that assume a large hand. Weber's own reach was exceptional and the writing shows it; the texture is more spread out than Beet",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "abrupt_dynamic_and_registral_contrast",
+   "name": "Abrupt dynamic and registral contrast",
+   "description": "A phrase stated forte in the bass answered piano two octaves up, or a sudden subito piano at a structural arrival. The contrasts are theatrical and placed at joins, not smoothed over.",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "horn_call_and_folk_dance_topics",
+   "name": "Horn-call and folk-dance topics",
+   "description": "Open fifths and thirds in a horn-fifth pattern for the outdoors, and lilting compound-metre or waltz rhythms for the vernacular. These are quotations of a sound-world, and they arrive marked.",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "thematic_transformation_one_idea_many_faces",
+   "name": "Thematic transformation \u2014 one idea, many faces",
+   "description": "Liszt's signature formal invention: a single theme appears in completely different forms across a work \u2014 as a march, a lyrical song, a virtuosic display, a funeral chorale. The transformations change ",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "virtuosic_transcendence_the_piano_as_orchestra",
+   "name": "Virtuosic transcendence \u2014 the piano as orchestra",
+   "description": "Liszt treats the piano as if it contained an entire orchestra: thundering octaves in the bass, soaring melody in the soprano, rapid passagework in inner voices, all simultaneously. The textures are ph",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "chromatic_saturation_and_enharmonic_pivot",
+   "name": "Chromatic saturation and enharmonic pivot",
+   "description": "Liszt uses chromatic harmony more intensively than any composer before Wagner: chains of augmented chords, whole-tone fragments, chromatic inner-voice motion that makes the key ambiguous for bars at a",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "rhetorical_silence_and_dramatic_tempo_changes",
+   "name": "Rhetorical silence and dramatic tempo changes",
+   "description": "Liszt uses pause (complete silence) and sudden tempo change (from Presto to Adagio in one bar) as theatrical gestures. The music doesn't transition \u2014 it stops and restarts. These theatrical caesuras a",
+   "texture_affinities": [
+    "silence"
+   ],
+   "frequency": "per_section",
+   "period": ""
+  },
+  {
+   "id": "hungarian_color_verbunkos_style",
+   "name": "Hungarian color (verbunkos style)",
+   "description": "The verbunkos dance: dotted rhythms (long-short-short), augmented second intervals (characteristic \"Gypsy\" scale: A-B-C-D-Eb-F#-G-A), rapid triplet ornaments before main beats, and sudden dynamic cont",
+   "texture_affinities": [],
+   "frequency": "per_section",
+   "period": ""
+  }
+ ]
+}

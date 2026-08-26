@@ -1,0 +1,199 @@
+[
+ {
+  "id": "mod_pivot_chord",
+  "type": "pivot_chord",
+  "from_key_class": "any",
+  "to_key_relationship": "",
+  "mechanism": "Shared chord reinterpreted in new key",
+  "smoothness": "very_smooth",
+  "best_for": [
+   "Classical transitions",
+   "expositions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "",
+  "pivot_chord_in_new": "",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_direct_phrase",
+  "type": "direct_phrase",
+  "from_key_class": "any",
+  "to_key_relationship": "",
+  "mechanism": "New key starts at phrase boundary, no preparation",
+  "smoothness": "dramatic",
+  "best_for": [
+   "Romantic surprises",
+   "section boundaries"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "",
+  "pivot_chord_in_new": "",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_chromatic",
+  "type": "chromatic",
+  "from_key_class": "any",
+  "to_key_relationship": "",
+  "mechanism": "Chromatic voice-leading slides into new key",
+  "smoothness": "expressive",
+  "best_for": [
+   "Romantic intensification"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "",
+  "pivot_chord_in_new": "",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_enharmonic",
+  "type": "enharmonic",
+  "from_key_class": "any",
+  "to_key_relationship": "",
+  "mechanism": "Reinterpret a chord (Ger+6 = V7, dim7 respelling)",
+  "smoothness": "distant_keys",
+  "best_for": [
+   "Late Romantic",
+   "distant modulation"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "",
+  "pivot_chord_in_new": "",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_common_tone",
+  "type": "common_tone",
+  "from_key_class": "any",
+  "to_key_relationship": "",
+  "mechanism": "Single note held while harmony shifts around it",
+  "smoothness": "mystical",
+  "best_for": [
+   "Impressionist",
+   "magical moments"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "",
+  "pivot_chord_in_new": "",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_sequential",
+  "type": "sequential",
+  "from_key_class": "any",
+  "to_key_relationship": "",
+  "mechanism": "Sequence naturally carries harmony to new key",
+  "smoothness": "natural",
+  "best_for": [
+   "Development sections",
+   "transitions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "",
+  "pivot_chord_in_new": "",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_pivot_to_g_major",
+  "type": "pivot_chord",
+  "from_key_class": "major",
+  "to_key_relationship": "g major",
+  "mechanism": "Pivot: I = IV",
+  "smoothness": "very_smooth",
+  "best_for": [
+   "transitions",
+   "expositions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "C major",
+  "pivot_chord_in_new": "IV of G",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_pivot_to_a_minor",
+  "type": "pivot_chord",
+  "from_key_class": "major",
+  "to_key_relationship": "a minor",
+  "mechanism": "Pivot: I = III",
+  "smoothness": "very_smooth",
+  "best_for": [
+   "transitions",
+   "expositions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "C major",
+  "pivot_chord_in_new": "III of Am",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_pivot_to_f_major",
+  "type": "pivot_chord",
+  "from_key_class": "major",
+  "to_key_relationship": "f major",
+  "mechanism": "Pivot: V = I",
+  "smoothness": "very_smooth",
+  "best_for": [
+   "transitions",
+   "expositions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "G major",
+  "pivot_chord_in_new": "I \u2192 reinterpret as V of F... or I=V of F",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_pivot_to_d_minor",
+  "type": "pivot_chord",
+  "from_key_class": "major",
+  "to_key_relationship": "d minor",
+  "mechanism": "Pivot: ii = i",
+  "smoothness": "very_smooth",
+  "best_for": [
+   "transitions",
+   "expositions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "D minor",
+  "pivot_chord_in_new": "Same chord",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ },
+ {
+  "id": "mod_pivot_to_e_minor",
+  "type": "pivot_chord",
+  "from_key_class": "major",
+  "to_key_relationship": "e minor",
+  "mechanism": "Pivot: vi = iv",
+  "smoothness": "very_smooth",
+  "best_for": [
+   "transitions",
+   "expositions"
+  ],
+  "chord_sequence": [],
+  "voice_leading_hints": [],
+  "pivot_chord_in_old": "Am",
+  "pivot_chord_in_new": "iv of Em... or iii = vi",
+  "grounding": "hard_corroborated",
+  "source_file": "modulation-techniques.md"
+ }
+]

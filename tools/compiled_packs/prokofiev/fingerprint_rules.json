@@ -6,35 +6,40 @@
       "name": "Tonal but \"wrong\" \u2014 the Prokofiev harmonic stab",
       "description": "Prokofiev writes in keys, with melodies, with cadences \u2014 but constantly deploys harmonies that are deliberately, slightly \"wrong\": a D major chord where C major is expected, a C# in a G major context.",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "motoric_percussive_drive_the_scythian_energy",
       "name": "Motoric, percussive drive \u2014 the Scythian energy",
       "description": "Prokofiev's fast movements have a mechanical, relentless energy: even eighth notes, strong downbeats, minimal rubato, rhythmic precision as a value. The Scythian Suite and the Second Piano Concerto fi",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "lyrical_melodic_gift_the_unexpected_tenderness",
       "name": "Lyrical melodic gift \u2014 the unexpected tenderness",
       "description": "Beneath the percussive exterior, Prokofiev writes extraordinarily beautiful, simple, long melodies: the love theme from Romeo and Juliet, the second theme of the Classical Symphony, the slow movement ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "grotesque_and_sardonic_character",
       "name": "Grotesque and sardonic character",
       "description": "A specific Prokofiev tone: not quite Shostakovich's political darkness, but a leering, slightly manic quality \u2014 music that grins too wide. The March from Love for Three Oranges, Visions Fugitives No. ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "neo_classical_formal_clarity",
       "name": "Neo-Classical formal clarity",
       "description": "Like Stravinsky but more melodic: Prokofiev uses Classical forms (sonata, rondo, variation) with tonal clarity, clear themes, and functional structure. The Classical Symphony (Symphony No. 1) is the p",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

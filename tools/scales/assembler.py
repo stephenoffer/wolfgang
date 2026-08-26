@@ -565,15 +565,86 @@ _LAYER_INSTRUMENTS = {
 }
 
 
+# Real instrument names, as an orchestration plan writes them. The layer map
+# above covers the abstract roles the piano-core path produces; a planned
+# orchestration names actual instruments, and without these every part of a
+# ten-instrument score exported with the piano's MIDI program — so an
+# orchestrated piece played back as a room full of pianos even after each part
+# was given an Instrument object.
+_NAMED_INSTRUMENTS = {
+    "piccolo": "Piccolo",
+    "flute": "Flute",
+    "alto_flute": "Flute",
+    "oboe": "Oboe",
+    "english_horn": "EnglishHorn",
+    "clarinet": "Clarinet",
+    "bass_clarinet": "BassClarinet",
+    "bassoon": "Bassoon",
+    "contrabassoon": "Contrabassoon",
+    "horn": "Horn",
+    "trumpet": "Trumpet",
+    "trombone": "Trombone",
+    "bass_trombone": "BassTrombone",
+    "tuba": "Tuba",
+    "timpani": "Timpani",
+    "percussion": "Percussion",
+    "harp": "Harp",
+    "violin": "Violin",
+    "violin_1": "Violin",
+    "violin_2": "Violin",
+    "viola": "Viola",
+    "cello": "Violoncello",
+    "violoncello": "Violoncello",
+    "contrabass": "Contrabass",
+    "double_bass": "Contrabass",
+    "soprano": "Soprano",
+    "alto": "Alto",
+    "tenor": "Tenor",
+    "baritone": "Baritone",
+    "organ": "Organ",
+    "harpsichord": "Harpsichord",
+    "fortepiano": "Piano",
+    "piano": "Piano",
+}
+
+
 def _instrument_for(staff_name: str):
-    """A music21 Instrument for a layer/staff name (Piano as the fallback)."""
+    """A music21 Instrument for a part name — a real instrument first, then the
+    abstract layer role, then the piano."""
     import music21
 
-    cls_name = _LAYER_INSTRUMENTS.get(staff_name, "Piano")
+    key = str(staff_name or "").strip().lower().replace(" ", "_").replace("-", "_")
+    cls_name = _NAMED_INSTRUMENTS.get(key) or _LAYER_INSTRUMENTS.get(key)
+    if cls_name is None:
+        # "violin_1" style suffixes, and anything the plan spelled loosely.
+        stem = key.rsplit("_", 1)[0]
+        cls_name = _NAMED_INSTRUMENTS.get(stem) or _LAYER_INSTRUMENTS.get(stem) or "Piano"
     try:
         return getattr(music21.instrument, cls_name)()
     except Exception:
         return music21.instrument.Piano()
+
+
+# Conventional score order, top to bottom. A score whose parts come out in
+# whatever order a dict happened to iterate is not readable as a score.
+_SCORE_ORDER = (
+    "melody", "foreground", "piccolo", "flute", "oboe", "clarinet", "bassoon",
+    "horn", "trumpet", "trombone", "tuba", "timpani", "percussion", "harp",
+    "counter", "counter_reply", "harmony", "response", "motor", "color",
+    "punctuation", "ornament", "violin_1", "violin_2", "violin", "viola",
+    "cello", "violoncello", "contrabass", "bass", "treble",
+)
+
+
+def _score_order(staff_events: Dict[str, List], ensemble=None) -> List[str]:
+    """Part names in score order: the ensemble's own order if given, else the
+    conventional one, with anything unrecognised kept at the end."""
+    names = list(staff_events)
+    if ensemble:
+        preferred = [str(n) for n in ensemble if str(n) in staff_events]
+        return preferred + [n for n in names if n not in preferred]
+    rank = {n: i for i, n in enumerate(_SCORE_ORDER)}
+    return sorted(names, key=lambda n: (rank.get(n, len(_SCORE_ORDER)), n))
 
 
 def _build_ensemble_score(
@@ -583,6 +654,7 @@ def _build_ensemble_score(
     meter: Tuple[int, int],
     tempo_bpm: int,
     bar_meta: Optional[Dict[int, Dict]] = None,
+    ensemble: Optional[List[str]] = None,
 ):
     """Build an ensemble score with multiple parts.
 
@@ -603,14 +675,25 @@ def _build_ensemble_score(
     for event in events:
         staff_events.setdefault(event.staff, []).append(event)
 
-    for staff_name, staff_evts in staff_events.items():
+    # Every requested part, in score order, INCLUDING the ones that never play
+    # in this section. A score for a named ensemble whose silent instruments are
+    # simply absent is not a score for that ensemble — the player counting rests
+    # has nothing to count, and a section where the flute is tacet reads as a
+    # section scored without a flute.
+    for name in (ensemble or ()):
+        staff_events.setdefault(str(name), [])
+    ordered = _score_order(staff_events, ensemble)
+
+    for idx, staff_name in enumerate(ordered):
+        staff_evts = staff_events[staff_name]
+        is_top_part = idx == 0
         part = music21.stream.Part()
         part.partName = staff_name.replace("_", " ").title()
         part.id = staff_name
         note_map: Dict[int, Any] = {}
         part.insert(0, _instrument_for(staff_name))
 
-        max_bar = max((e.bar for e in staff_evts), default=1)
+        max_bar = max((e.bar for e in events), default=1)
         bars: Dict[int, List[EventIR]] = {}
         for event in staff_evts:
             bars.setdefault(event.bar, []).append(event)
@@ -637,13 +720,17 @@ def _build_ensemble_score(
                 measure.insert(0, music21.meter.TimeSignature(f"{bar_meter[0]}/{bar_meter[1]}"))
                 current_meter = bar_meter
             if new_tempo != current_tempo:
-                measure.insert(
-                    0,
-                    music21.tempo.MetronomeMark(
-                        number=new_tempo,
-                        text=tempo_word(new_tempo) if current_tempo is None else None,
-                    ),
-                )
+                # A tempo mark goes above the SCORE, not above every player's
+                # part. Printing it on all of them gave a seven-part score seven
+                # "Allegro"s stacked down the page.
+                if is_top_part:
+                    measure.insert(
+                        0,
+                        music21.tempo.MetronomeMark(
+                            number=new_tempo,
+                            text=tempo_word(new_tempo) if current_tempo is None else None,
+                        ),
+                    )
                 current_tempo = new_tempo
 
             evts = bars.get(bar_num, [])

@@ -6,35 +6,40 @@
       "name": "Orchestral color as the primary compositional parameter",
       "description": "Rimsky-Korsakov thought in colors: each instrument is a specific color, and composition means arranging colors. His Principles of Orchestration remains the definitive manual of Late Romantic orchestra",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "the_rimsky_korsakov_scale_octatonic_as_exotic_color",
       "name": "The Rimsky-Korsakov scale (octatonic) as exotic color",
       "description": "Rimsky-Korsakov regularly used the octatonic scale (alternating whole-step and half-step: C-D-Eb-F-Gb-Ab-A-B-C) for fantasy and supernatural passages. Scheherazade's demonic characters, the magic sect",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "arabian_nights_exotic_color_modal_scales_and_augmented_2nds",
       "name": "Arabian Nights exotic color \u2014 modal scales and augmented 2nds",
       "description": "Scheherazade, the Spanish Capriccio, Antar \u2014 Rimsky's exotic subjects call for specific scale types: harmonic minor (with its augmented 2nd between the 6th and 7th degrees), Phrygian mode, Arabic doub",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "brilliant_solo_woodwind_writing_the_storyteller_s_voice",
       "name": "Brilliant solo woodwind writing \u2014 the storyteller's voice",
       "description": "Rimsky's orchestral solos are legendary: the bassoon in the opening of Scheherazade, the clarinet in the Spanish Capriccio, the flute in Sadko. Each solo is individually crafted for the specific timbr",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "narrative_orchestration_music_as_visual_image",
       "name": "Narrative orchestration \u2014 music as visual image",
       "description": "Rimsky's program music is specifically visual: the sea (Scheherazade), the sunrise, the flight of the bumblebee. The orchestration creates these images through specific technical means: string tremolo",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

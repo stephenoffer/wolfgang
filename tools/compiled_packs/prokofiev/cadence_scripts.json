@@ -1,0 +1,67 @@
+[
+  {
+    "id": "cad_wrong_note_authentic",
+    "type": "Wrong-note authentic",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V7 - bII (instead of I)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "cad_sudden_tonic",
+    "type": "Sudden tonic",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Chromatic passage - I (no V)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "cad_mediant_cadence",
+    "type": "Mediant cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I - bVI - I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "cad_motoric_close",
+    "type": "Motoric close",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Repeated tonic chord, ff, staccato",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "cad_lyrical_plagal",
+    "type": "Lyrical plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "IV - I, pp, legato",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "prokofiev/harmonic-language.md"
+  }
+]

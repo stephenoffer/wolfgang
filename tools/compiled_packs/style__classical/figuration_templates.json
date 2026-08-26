@@ -1,265 +1,355 @@
 [
-  {
-    "id": "fig_1_alberti",
-    "name": "Alberti bass",
-    "pattern_keyword": "alberti",
-    "period_style": [
-      "Classical (Mozart",
-      "Haydn)"
-    ],
-    "tempo_range": [
-      100,
-      140
-    ],
-    "character": "Graceful, flowing, elegant",
-    "when_to_use": [
-      "Grace and elegance",
-      "Simple support (stay out of melody's way)"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_2_broken_chord_asc",
-    "name": "Ascending arpeggio",
-    "pattern_keyword": "broken_chord_asc",
-    "period_style": [
-      "All periods; Romantic esp."
-    ],
-    "tempo_range": null,
-    "character": "Rising energy, openness, aspiration",
-    "when_to_use": [
-      "Building energy"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_3_broken_chord_desc",
-    "name": "Descending arpeggio",
-    "pattern_keyword": "broken_chord_desc",
-    "period_style": [
-      "All periods; Romantic esp."
-    ],
-    "tempo_range": null,
-    "character": "Falling, sighing, resolution, descent",
-    "when_to_use": [
-      "Winding down"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_4_murky_bass",
-    "name": "Murky bass (octave alternation)",
-    "pattern_keyword": "murky_bass",
-    "period_style": [
-      "Early Classical",
-      "Galant"
-    ],
-    "tempo_range": [
-      80,
-      120
-    ],
-    "character": "Solid, grounded, simple support",
-    "when_to_use": [
-      "Rhythmic drive",
-      "Simple support (stay out of melody's way)"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_5_waltz_bass",
-    "name": "Waltz bass (3/4, L:1/8)",
-    "pattern_keyword": "waltz_bass",
-    "period_style": [
-      "Romantic (Chopin",
-      "Strauss)"
-    ],
-    "tempo_range": [
-      120,
-      180
-    ],
-    "character": "Dance-like, lilting, elegant",
-    "when_to_use": [
-      "Grace and elegance",
-      "Lyrical expansion",
-      "Simple support (stay out of melody's way)"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_6_wide_span_arpeggio",
-    "name": "Rachmaninoff wide-span",
-    "pattern_keyword": "wide_span_arpeggio",
-    "period_style": [
-      "Late Romantic"
-    ],
-    "tempo_range": [
-      60,
-      100
-    ],
-    "character": "Expansive, passionate, sweeping",
-    "when_to_use": [
-      "Lyrical expansion",
-      "Virtuosic display",
-      "Climactic density"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_7_turn_based",
-    "name": "Turn-based",
-    "pattern_keyword": "turn_based",
-    "period_style": [
-      "Classical",
-      "Baroque"
-    ],
-    "tempo_range": [
-      100,
-      140
-    ],
-    "character": "Ornamental, playful, decorative",
-    "when_to_use": [
-      "Grace and elegance"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_8_scalar_asc",
-    "name": "Scalar fill ascending",
-    "pattern_keyword": "scalar_asc",
-    "period_style": [
-      "All periods"
-    ],
-    "tempo_range": [
-      100,
-      160
-    ],
-    "character": "Building, forward motion, urgency",
-    "when_to_use": [
-      "Building energy",
-      "Virtuosic display"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_9_scalar_desc",
-    "name": "Scalar fill descending",
-    "pattern_keyword": "scalar_desc",
-    "period_style": [
-      "All periods"
-    ],
-    "tempo_range": [
-      100,
-      160
-    ],
-    "character": "Releasing, calming, closing",
-    "when_to_use": [
-      "Winding down",
-      "Virtuosic display"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_10_tremolo",
-    "name": "Tremolo",
-    "pattern_keyword": "tremolo",
-    "period_style": [
-      "Romantic",
-      "orchestral"
-    ],
-    "tempo_range": null,
-    "character": "Tension, suspense, sustained energy",
-    "when_to_use": [
-      "Building energy",
-      "Rhythmic drive",
-      "Climactic density"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "hard_corroborated",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_11_broken_octave",
-    "name": "Broken octave with fill",
-    "pattern_keyword": "broken_octave",
-    "period_style": [
-      "Classical",
-      "early Romantic"
-    ],
-    "tempo_range": [
-      100,
-      140
-    ],
-    "character": "Busy, perpetual motion, industrious",
-    "when_to_use": [
-      "Rhythmic drive",
-      "Virtuosic display"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  },
-  {
-    "id": "fig_12_chordal_passing",
-    "name": "Chordal with passing tones",
-    "pattern_keyword": "chordal_passing",
-    "period_style": [
-      "Romantic",
-      "choral style"
-    ],
-    "tempo_range": [
-      60,
-      110
-    ],
-    "character": "Hymn-like, rich, warm, broadening",
-    "when_to_use": [
-      "Winding down",
-      "Lyrical expansion",
-      "Climactic density"
-    ],
-    "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
-    "source_file": "figuration-patterns.md"
-  }
+ {
+  "id": "lh_idiom_alberti_proper",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Alberti (proper)",
+  "description": "low-high-mid-high, the bass note RE-ARTICULATED, not a held drone: `A2e E3e C3e E3e A2e E3e C3e E3e`. Light, transparent. Best for lyrical themes. Don't run it for more than ~4 bars unbroken.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_oom_pah_the_classical_default_lighter_than_alberti",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Oom-pah (the Classical default, lighter than Alberti)",
+  "description": "bass on beats 1 & 3, chord on 2 & 4: `D2q [D3,F3,A3]q A2q [D3,F3,A3]q`. The single most idiomatic Classical accompaniment. Bass LEAPS between root and fifth; the off-beat chord is mid-register.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_oom_pah_pah_waltz_feel_in_4",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Oom-pah-pah / waltz-feel in 4",
+  "description": "bass then two chords: `D2e [F3,A3]e [F3,A3]e ...`",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_broken_murky_octaves_sturm_und_drang_motor",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Broken / murky octaves (Sturm und Drang motor)",
+  "description": "the D-minor storm engine, alternating octave tremolo: `D2s D3s D2s D3s ...` or `D2e D3e D2e D3e D2e D3e D2e D3e`. Use for dramatic, driving passages \u2014 this is what K.466 uses, NOT static-pedal Alberti.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_repeated_chords_pulsing",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Repeated chords (pulsing)",
+  "description": "`[D3,F3,A3]e` \u00d78, or quarter pulses. Gives weight without melodic figuration. Good under a busy RH.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_walking_scalar_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Walking / scalar bass",
+  "description": "quarter or eighth notes stepping through the harmony: `D2q E2q F2q G2q` \u2014 drives transitions and sequences.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sustained_held",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sustained / held",
+  "description": "LH holds a chord or octave for the whole bar while the RH carries everything: `[D2,D3]w` or `[D3,A3,D4]w`. ESSENTIAL for breathing \u2014 use it where the RH is active or at a phrase peak.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_unison_octave_doubling_with_rh",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Unison / octave doubling with RH",
+  "description": "both hands strike the same line for a bare, dramatic tutti stroke (theme statements, climaxes): LH mirrors the RH an octave or two below.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_lh_rest_drop_out",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "LH rest / drop-out",
+  "description": "the LH is SILENT for a beat or a bar (rest), letting the RH ring or breathe. Mozart uses silence constantly. A `rest` in the LH is not a bug.",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_two_voice_contrapuntal_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Two-voice / contrapuntal bass",
+  "description": "a real melodic line in the LH answering the RH (varied recaps, developments).",
+  "source_file": "mozart/mozart-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "fig_1_alberti",
+  "name": "Alberti bass",
+  "pattern_keyword": "alberti",
+  "period_style": [
+   "Classical (Mozart",
+   "Haydn)"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Graceful, flowing, elegant",
+  "when_to_use": [
+   "Grace and elegance",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_2_broken_chord_asc",
+  "name": "Ascending arpeggio",
+  "pattern_keyword": "broken_chord_asc",
+  "period_style": [
+   "All periods; Romantic esp."
+  ],
+  "tempo_range": null,
+  "character": "Rising energy, openness, aspiration",
+  "when_to_use": [
+   "Building energy"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_3_broken_chord_desc",
+  "name": "Descending arpeggio",
+  "pattern_keyword": "broken_chord_desc",
+  "period_style": [
+   "All periods; Romantic esp."
+  ],
+  "tempo_range": null,
+  "character": "Falling, sighing, resolution, descent",
+  "when_to_use": [
+   "Winding down"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_4_murky_bass",
+  "name": "Murky bass (octave alternation)",
+  "pattern_keyword": "murky_bass",
+  "period_style": [
+   "Early Classical",
+   "Galant"
+  ],
+  "tempo_range": [
+   80,
+   120
+  ],
+  "character": "Solid, grounded, simple support",
+  "when_to_use": [
+   "Rhythmic drive",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_5_waltz_bass",
+  "name": "Waltz bass (3/4, L:1/8)",
+  "pattern_keyword": "waltz_bass",
+  "period_style": [
+   "Romantic (Chopin",
+   "Strauss)"
+  ],
+  "tempo_range": [
+   120,
+   180
+  ],
+  "character": "Dance-like, lilting, elegant",
+  "when_to_use": [
+   "Grace and elegance",
+   "Lyrical expansion",
+   "Simple support (stay out of melody's way)"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_6_wide_span_arpeggio",
+  "name": "Rachmaninoff wide-span",
+  "pattern_keyword": "wide_span_arpeggio",
+  "period_style": [
+   "Late Romantic"
+  ],
+  "tempo_range": [
+   60,
+   100
+  ],
+  "character": "Expansive, passionate, sweeping",
+  "when_to_use": [
+   "Lyrical expansion",
+   "Virtuosic display",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_7_turn_based",
+  "name": "Turn-based",
+  "pattern_keyword": "turn_based",
+  "period_style": [
+   "Classical",
+   "Baroque"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Ornamental, playful, decorative",
+  "when_to_use": [
+   "Grace and elegance"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_8_scalar_asc",
+  "name": "Scalar fill ascending",
+  "pattern_keyword": "scalar_asc",
+  "period_style": [
+   "All periods"
+  ],
+  "tempo_range": [
+   100,
+   160
+  ],
+  "character": "Building, forward motion, urgency",
+  "when_to_use": [
+   "Building energy",
+   "Virtuosic display"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_9_scalar_desc",
+  "name": "Scalar fill descending",
+  "pattern_keyword": "scalar_desc",
+  "period_style": [
+   "All periods"
+  ],
+  "tempo_range": [
+   100,
+   160
+  ],
+  "character": "Releasing, calming, closing",
+  "when_to_use": [
+   "Winding down",
+   "Virtuosic display"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_10_tremolo",
+  "name": "Tremolo",
+  "pattern_keyword": "tremolo",
+  "period_style": [
+   "Romantic",
+   "orchestral"
+  ],
+  "tempo_range": null,
+  "character": "Tension, suspense, sustained energy",
+  "when_to_use": [
+   "Building energy",
+   "Rhythmic drive",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "hard_corroborated",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_11_broken_octave",
+  "name": "Broken octave with fill",
+  "pattern_keyword": "broken_octave",
+  "period_style": [
+   "Classical",
+   "early Romantic"
+  ],
+  "tempo_range": [
+   100,
+   140
+  ],
+  "character": "Busy, perpetual motion, industrious",
+  "when_to_use": [
+   "Rhythmic drive",
+   "Virtuosic display"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "fig_12_chordal_passing",
+  "name": "Chordal with passing tones",
+  "pattern_keyword": "chordal_passing",
+  "period_style": [
+   "Romantic",
+   "choral style"
+  ],
+  "tempo_range": [
+   60,
+   110
+  ],
+  "character": "Hymn-like, rich, warm, broadening",
+  "when_to_use": [
+   "Winding down",
+   "Lyrical expansion",
+   "Climactic density"
+  ],
+  "variation_operators": [],
+  "density_suggestion": null,
+  "register_suggestion": "",
+  "grounding": "interpretive",
+  "source_file": "figuration-patterns.md"
+ }
 ]

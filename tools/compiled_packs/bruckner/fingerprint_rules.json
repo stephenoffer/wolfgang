@@ -6,7 +6,8 @@
       "name": "The Bruckner rhythm",
       "description": "A specific syncopated figure that appears constantly: quarter note + triplet-half note (\u2669 \u2669. = 2+3 against a 2/4 measure) or, in 4/4, a pattern of 2+3+2 eighth notes against the meter. It is not a rhy",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "blocks_of_sound_tutti_vs_silence",
@@ -15,28 +16,32 @@
       "texture_affinities": [
         "silence"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "chorale_like_brass_writing_the_bruckner_brass",
       "name": "Chorale-like brass writing \u2014 the Bruckner brass",
       "description": "The brass section functions as a cathedral organ: sustained, rich, slow-moving harmonies in the horns and trombones, with the trumpets providing rhythmic punctuation above. The brass texture is always",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "very_slow_harmonic_rhythm_in_long_passages",
       "name": "Very slow harmonic rhythm in long passages",
       "description": "Bruckner sustains single harmonies for 8\u201316 bars without change, particularly in slow movements. The sustained chord is not static \u2014 it is breathing, accumulating weight. The harmonic change, when it ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "massive_symphonic_architecture_cathedral_scale",
       "name": "Massive symphonic architecture \u2014 cathedral scale",
       "description": "Bruckner's movements are very long (20\u201335 minutes). This is not prolixity \u2014 it is scale. A Bruckner first movement has a proportional architecture (exposition \u2192 development \u2192 recapitulation) where eac",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

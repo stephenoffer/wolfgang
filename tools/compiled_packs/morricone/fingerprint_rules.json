@@ -8,14 +8,16 @@
       "texture_affinities": [
         "singing_melody"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "simple_singable_primary_melody_over_complex_texture",
       "name": "Simple, singable primary melody over complex texture",
       "description": "The primary melody is always simple enough to hum \u2014 even when the orchestral background is harmonically complex or rhythmically unusual. The melody anchors everything. The harmonic richness, the unusu",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "spaghetti_western_sonic_world_open_spaces_and_silence",
@@ -25,21 +27,24 @@
         "broken_chord_wave",
         "silence"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "modal_folk_melodic_language_not_classical_not_pop",
       "name": "Modal/folk melodic language \u2014 not Classical, not pop",
       "description": "Morricone's melodies often draw on Italian folk music, Spanish/Latin American inflections, or modal scales (Dorian, Phrygian) that give them a timeless, ancient quality. They don't sound like Hollywoo",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "countermelody_architecture_multiple_layers_singing_simultaneously",
       "name": "Countermelody architecture \u2014 multiple layers singing simultaneously",
       "description": "Morricone builds textures where 2\u20133 simultaneous melodic layers are all singable and all independent. In The Good, the Bad and the Ugly main theme: the main melody, a countermelody in the bass registe",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

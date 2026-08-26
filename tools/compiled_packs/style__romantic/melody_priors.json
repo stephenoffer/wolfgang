@@ -1,0 +1,566 @@
+[
+ {
+  "id": "melodic_voice_bel_canto_phrasing",
+  "category": "composer_melodic_voice",
+  "description": "Bel canto phrasing: Long arched lines (8-16 bars) with breath points",
+  "parameters": {
+   "feature": "Bel canto phrasing",
+   "note": "Constant \u2014 the defining trait"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_grace_note_entry",
+  "category": "composer_melodic_voice",
+  "description": "Grace-note entry: Phrases begin with an appoggiatura leaning into the first note",
+  "parameters": {
+   "feature": "Grace-note entry",
+   "note": "Very high \u2014 Fingerprint #2"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_ornament_as_melody",
+  "category": "composer_melodic_voice",
+  "description": "Ornament as melody: Chromatic runs, turns, trills are not decoration \u2014 they continue the melodic line",
+  "parameters": {
+   "feature": "Ornament as melody",
+   "note": "Constant \u2014 Fingerprint #5"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_rubato_flexibility",
+  "category": "composer_melodic_voice",
+  "description": "Rubato flexibility: The melody stretches and compresses against a steady LH pulse",
+  "parameters": {
+   "feature": "Rubato flexibility",
+   "note": "Assumed in all lyrical passages"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_peak_cascade",
+  "category": "composer_melodic_voice",
+  "description": "Peak + cascade: Melody rises to a high point, then descends in a chromatic or scalar run",
+  "parameters": {
+   "feature": "Peak + cascade",
+   "note": "Very high in nocturnes, ballades"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_stepwise_motion_with_leaps_at_peaks",
+  "category": "composer_melodic_voice",
+  "description": "Stepwise motion with leaps at peaks: Most motion is by step; leaps reserved for expressive peaks (6ths, octaves)",
+  "parameters": {
+   "feature": "Stepwise motion with leaps at peaks",
+   "note": "Standard melodic contour"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_chromatic_passing_tones",
+  "category": "composer_melodic_voice",
+  "description": "Chromatic passing tones: Non-chord tones woven into stepwise lines create constant gentle dissonance",
+  "parameters": {
+   "feature": "Chromatic passing tones",
+   "note": "Pervasive"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_two_voice_soprano_dialogue",
+  "category": "composer_melodic_voice",
+  "description": "Two-voice soprano dialogue: RH contains two melodic voices that converse",
+  "parameters": {
+   "feature": "Two-voice soprano dialogue",
+   "note": "Nocturnes, ballades"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "chopin/melodic-style.md"
+ },
+ {
+  "id": "phrase_structure_cell",
+  "category": "phrase_structure",
+  "description": "Cell: Smallest recognizable unit",
+  "parameters": {
+   "unit": "Cell",
+   "typical_length": "2-3 notes",
+   "function": "Smallest recognizable unit"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_motif",
+  "category": "phrase_structure",
+  "description": "Motif: Characteristic rhythm + interval pattern",
+  "parameters": {
+   "unit": "Motif",
+   "typical_length": "1-2 bars",
+   "function": "Characteristic rhythm + interval pattern"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_phrase",
+  "category": "phrase_structure",
+  "description": "Phrase: Complete musical thought, ends with cadence",
+  "parameters": {
+   "unit": "Phrase",
+   "typical_length": "4 bars",
+   "function": "Complete musical thought, ends with cadence"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_period",
+  "category": "phrase_structure",
+  "description": "Period: Two complementary phrases",
+  "parameters": {
+   "unit": "Period",
+   "typical_length": "8 bars (4+4)",
+   "function": "Two complementary phrases"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_double period",
+  "category": "phrase_structure",
+  "description": "Double period: Extended period structure",
+  "parameters": {
+   "unit": "Double period",
+   "typical_length": "16 bars (4+4+4+4)",
+   "function": "Extended period structure"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "phrase_structure_section",
+  "category": "phrase_structure",
+  "description": "Section: Structural unit (exposition, development, etc.)",
+  "parameters": {
+   "unit": "Section",
+   "typical_length": "Multiple periods",
+   "function": "Structural unit (exposition, development, etc.)"
+  },
+  "conditions": {},
+  "grounding": "hard_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_arch_(rise-fall)",
+  "category": "contour",
+  "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+  "parameters": {
+   "contour": "Arch (rise-fall)",
+   "shape": "\u2227",
+   "association": "Completion, singing quality"
+  },
+  "conditions": {
+   "best_for": "Lyrical themes"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_ascending",
+  "category": "contour",
+  "description": "Ascending (/): Aspiration, tension, hope",
+  "parameters": {
+   "contour": "Ascending",
+   "shape": "/",
+   "association": "Aspiration, tension, hope"
+  },
+  "conditions": {
+   "best_for": "Building passages"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_descending",
+  "category": "contour",
+  "description": "Descending (\\): Resolution, grief, relaxation",
+  "parameters": {
+   "contour": "Descending",
+   "shape": "\\",
+   "association": "Resolution, grief, relaxation"
+  },
+  "conditions": {
+   "best_for": "Closing phrases"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_wave",
+  "category": "contour",
+  "description": "Wave (\u223c): Lyrical, flowing",
+  "parameters": {
+   "contour": "Wave",
+   "shape": "\u223c",
+   "association": "Lyrical, flowing"
+  },
+  "conditions": {
+   "best_for": "Sustained melodies"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_static/plateau",
+  "category": "contour",
+  "description": "Static/plateau (\u2014): Contemplation, suspense",
+  "parameters": {
+   "contour": "Static/plateau",
+   "shape": "\u2014",
+   "association": "Contemplation, suspense"
+  },
+  "conditions": {
+   "best_for": "Recitative, tension"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "contour_inverted_arch",
+  "category": "contour",
+  "description": "Inverted arch (\u2228): Settling then rising",
+  "parameters": {
+   "contour": "Inverted arch",
+   "shape": "\u2228",
+   "association": "Settling then rising"
+  },
+  "conditions": {
+   "best_for": "Surprise, rebound"
+  },
+  "grounding": "interpretive",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_phrase",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+  "parameters": {
+   "scale": "Within a phrase",
+   "placement": "Near the end (~bar 3 of 4)"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_melody",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a melody level: ~60-75% through",
+  "parameters": {
+   "scale": "Within a melody",
+   "placement": "~60-75% through"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_within_a_section",
+  "category": "peak_timing",
+  "description": "Climax placement at Within a section level: After development/buildup",
+  "parameters": {
+   "scale": "Within a section",
+   "placement": "After development/buildup"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "peak_timing_multiple_levels",
+  "category": "peak_timing",
+  "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+  "parameters": {
+   "scale": "Multiple levels",
+   "placement": "Local (phrase), regional (period), global (section)"
+  },
+  "conditions": {},
+  "grounding": "soft_corroborated",
+  "source_file": "melodic-construction.md"
+ },
+ {
+  "id": "melodic_voice_vocal_contour",
+  "category": "composer_melodic_voice",
+  "description": "Vocal contour: Melodies move within a singer's natural range (usually an octave); stepwise motion dominates, leaps are expressive events",
+  "parameters": {
+   "feature": "Vocal contour",
+   "note": "All genres \u2014 the song origin is inescapable"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_phrase_extension",
+  "category": "composer_melodic_voice",
+  "description": "Phrase extension: Phrases do not end at bar 4 or 8 as expected; they find one more inflection, one more bar",
+  "parameters": {
+   "feature": "Phrase extension",
+   "note": "Sonata themes, song melodies, slow movements"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_melodic_abundance",
+  "category": "composer_melodic_voice",
+  "description": "Melodic abundance: Schubert generates themes prolifically \u2014 a sonata exposition may contain 3\u20134 distinct melodies where Beethoven would develop one",
+  "parameters": {
+   "feature": "Melodic abundance",
+   "note": "Expositions, song cycles, chamber works"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_syllabic_natural_rhythm",
+  "category": "composer_melodic_voice",
+  "description": "Syllabic natural rhythm: Melody rhythm follows speech patterns: short-short-long, anacrusis-to-downbeat, breathing pauses",
+  "parameters": {
+   "feature": "Syllabic natural rhythm",
+   "note": "Songs and instrumental works alike"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_the_descending_phrase",
+  "category": "composer_melodic_voice",
+  "description": "The descending phrase: Many Schubert melodies arch upward and then descend stepwise to rest \u2014 the shape of a sigh or an exhaled sentence",
+  "parameters": {
+   "feature": "The descending phrase",
+   "note": "Slow movements, Lieder, second themes"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_repetition_with_color_change",
+  "category": "composer_melodic_voice",
+  "description": "Repetition with color change: The same melody repeated in a different key, mode, or register \u2014 not varied, but recolored",
+  "parameters": {
+   "feature": "Repetition with color change",
+   "note": "Major-minor flip; third-relation restatements"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "schubert/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_singer_s_arch_with_a_breath_point",
+  "category": "composer_melodic_voice",
+  "description": "Singer's arch with a breath point: A rising phrase, a clear peak, a falling answer, and an audible place to breathe in the middle",
+  "parameters": {
+   "feature": "Singer's arch with a breath point",
+   "note": "Gives an instrumental line the shape an audience already knows from the stage"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_appoggiatura_on_the_strong_beat",
+  "category": "composer_melodic_voice",
+  "description": "Appoggiatura on the strong beat: The line leans onto a dissonance above the chord tone and resolves down",
+  "parameters": {
+   "feature": "Appoggiatura on the strong beat",
+   "note": "The characteristic sigh of the idiom; used at the emotional word of an imagined text"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_cadential_turn",
+  "category": "composer_melodic_voice",
+  "description": "Cadential turn: A four-note turn decorating the penultimate note of a phrase",
+  "parameters": {
+   "feature": "Cadential turn",
+   "note": "Closes the phrase with a vocal flourish rather than a plain step"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_horn_fifth_topic",
+  "category": "composer_melodic_voice",
+  "description": "Horn-fifth topic: Open fifths and thirds moving in parallel, in the horn's rhythm",
+  "parameters": {
+   "feature": "Horn-fifth topic",
+   "note": "Instantly evokes the forest, the hunt, the outdoors"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_wide_spanning_arpeggiation",
+  "category": "composer_melodic_voice",
+  "description": "Wide-spanning arpeggiation: Broken chords covering a tenth or more, assuming a large hand",
+  "parameters": {
+   "feature": "Wide-spanning arpeggiation",
+   "note": "Fills the harmonic space without thickening the texture"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_sudden_register_displacement",
+  "category": "composer_melodic_voice",
+  "description": "Sudden register displacement: The phrase is answered two octaves away",
+  "parameters": {
+   "feature": "Sudden register displacement",
+   "note": "Theatrical contrast placed at a join, not smoothed over"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_dance_lilt",
+  "category": "composer_melodic_voice",
+  "description": "Dance lilt: Compound-metre or waltz rhythms with a light second beat",
+  "parameters": {
+   "feature": "Dance lilt",
+   "note": "The vernacular voice against the operatic one"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "weber/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_thematic_transformation_seed",
+  "category": "composer_melodic_voice",
+  "description": "Thematic transformation seed: Melody designed with clear interval skeleton that survives rhythmic/dynamic change",
+  "parameters": {
+   "feature": "Thematic transformation seed",
+   "note": "Every symphonic poem; B minor Sonata"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_declamatory_octaves",
+  "category": "composer_melodic_voice",
+  "description": "Declamatory octaves: Melody in unison octaves, both hands, ff \u2014 the piano announces",
+  "parameters": {
+   "feature": "Declamatory octaves",
+   "note": "Opening themes; heroic transformations"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_hungarian_augmented_2nds",
+  "category": "composer_melodic_voice",
+  "description": "Hungarian augmented 2nds: Scale step with augmented interval (Eb-F# in A Gypsy minor)",
+  "parameters": {
+   "feature": "Hungarian augmented 2nds",
+   "note": "Hungarian Rhapsodies; secondary color everywhere"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_virtuosic_figuration_as_melody",
+  "category": "composer_melodic_voice",
+  "description": "Virtuosic figuration AS melody: Rapid arpeggios, scales, tremolos that carry the melodic line within them",
+  "parameters": {
+   "feature": "Virtuosic figuration AS melody",
+   "note": "Transcendental Etudes; Mephisto Waltz"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_wide_leaps",
+  "category": "composer_melodic_voice",
+  "description": "Wide leaps: Octave+ jumps within melody; dramatic, not vocal",
+  "parameters": {
+   "feature": "Wide leaps",
+   "note": "Separates Liszt from Chopin's stepwise bel canto"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_sequential_repetition",
+  "category": "composer_melodic_voice",
+  "description": "Sequential repetition: Melody stated, then repeated a step higher/lower with intensification",
+  "parameters": {
+   "feature": "Sequential repetition",
+   "note": "Building passages; pre-climax sequences"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_recitative_like_freedom",
+  "category": "composer_melodic_voice",
+  "description": "Recitative-like freedom: Rubato melody over sustained harmony; speech rhythm, not dance",
+  "parameters": {
+   "feature": "Recitative-like freedom",
+   "note": "Slow introductions; lassan passages"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ },
+ {
+  "id": "melodic_voice_motto_themes",
+  "category": "composer_melodic_voice",
+  "description": "Motto themes: Short (3-5 note) motifs that can expand into full themes",
+  "parameters": {
+   "feature": "Motto themes",
+   "note": "Faust Symphony: 4 augmented triads = Faust's questioning"
+  },
+  "conditions": {},
+  "grounding": "profile",
+  "source_file": "liszt/melodic-style.md"
+ }
+]

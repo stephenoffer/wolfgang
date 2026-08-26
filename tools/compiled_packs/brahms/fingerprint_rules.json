@@ -6,28 +6,32 @@
       "name": "Hemiola at cadences",
       "description": "3-against-2 rhythmic displacement before structural arrivals. In 3/4 time, the last two bars before a cadence feel like 6/4 (two groups of three becoming three groups of two). The bar line is subverte",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "low_register_density_thick_inner_voices",
       "name": "Low register density \u2014 thick inner voices",
       "description": "Brahms's texture is bottom-heavy. The LH in piano writing, or the low strings and violas in orchestral writing, carry complex inner voice parts. Where Mozart is transparent and high, Brahms is thick a",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "subdominant_gravity_plagal_coloring",
       "name": "Subdominant gravity \u2014 plagal coloring",
       "description": "IV\u2013I (plagal cadence), bVII\u2013I, bVI\u2013I \u2014 subdominant-family chords resolving to the tonic. Brahms leans toward the flat side of the key. Where Beethoven uses dominant function for drama, Brahms uses sub",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "motivic_saturation_theme_permeates_accompaniment",
       "name": "Motivic saturation \u2014 theme permeates accompaniment",
       "description": "The main theme's interval, rhythm, or contour appears in the accompaniment, the bass line, the inner voices. Every strand of the texture is derived from the same material. The accompaniment is not jus",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "harmonic_ambiguity_at_phrase_openings",
@@ -36,7 +40,8 @@
       "texture_affinities": [
         "pedal_point"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

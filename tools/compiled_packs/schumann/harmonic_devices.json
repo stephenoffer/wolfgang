@@ -1,0 +1,89 @@
+[
+  {
+    "id": "chromatic_mediants_c_to_ab_c_to_e",
+    "name": "Chromatic mediants (C to Ab, C to E)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "A door opens to another world \u2014 wonder",
+      "magic",
+      "or shadow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  },
+  {
+    "id": "augmented_6th_chords",
+    "name": "Augmented 6th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The harmony leans harder into the dominant \u2014 the ache deepens"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan_chord_bii",
+    "name": "Neapolitan chord (bII)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The bass drops to an alien note \u2014 solemnity",
+      "inevitability"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  },
+  {
+    "id": "extended_dominant_chains",
+    "name": "Extended dominant chains",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Each resolution becomes a new question \u2014 the heart cannot rest"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  },
+  {
+    "id": "deceptive_cadences_to_bvi",
+    "name": "Deceptive cadences to bVI",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The expected home is replaced by something vast and unexpected"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_modulation",
+    "name": "Enharmonic modulation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The same sound acquires new meaning \u2014 the world shifts underfoot"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  },
+  {
+    "id": "omnibus_progression",
+    "name": "Omnibus progression",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Contrary chromatic motion creates the feeling of forces converging"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schumann/harmonic-language.md"
+  }
+]

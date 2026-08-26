@@ -1,0 +1,107 @@
+[
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "anticipatory",
+    "placement": "before_climax_or_return",
+    "duration_beats_min": 1.0,
+    "duration_beats_max": 4.0,
+    "effect": "Amplifies impact of what follows",
+    "technique": "Grand pause (G.P.) after dominant chord"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "aftermath",
+    "placement": "after_climax",
+    "duration_beats_min": 2.0,
+    "duration_beats_max": 8.0,
+    "effect": "Lets emotion land; audience absorbs",
+    "technique": "Fermata on rest after fff resolution"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "contemplative",
+    "placement": "between_sections",
+    "duration_beats_min": 1.0,
+    "duration_beats_max": 2.0,
+    "effect": "Breath, reset, transition",
+    "technique": "Double barline rest; new section begins pp"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "disruptive",
+    "placement": "mid-phrase,_unexpected",
+    "duration_beats_min": 1.0,
+    "duration_beats_max": 2.0,
+    "effect": "Shock, confusion, dread",
+    "technique": "Sudden rest mid-melody, no preparation"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "structural",
+    "placement": "between_movements/large_sections",
+    "duration_beats_min": 3.0,
+    "duration_beats_max": 10.0,
+    "effect": "Formal boundary; palate cleanser",
+    "technique": "attacca vs. full pause \u2014 choose deliberately"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "grief",
+    "placement": "after_death/loss_scene",
+    "duration_beats_min": 2.0,
+    "duration_beats_max": 4.0,
+    "effect": "Emptiness; absence = presence of loss",
+    "technique": "Sustained pedal fading to nothing"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "type": "gathering",
+    "placement": "before_final_statement",
+    "duration_beats_min": 1.0,
+    "duration_beats_max": 4.0,
+    "effect": "Inhale before exhale; preparation",
+    "technique": "G.P. after dominant, before tonic tutti"
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Sudden release",
+    "duration_beats_min": 1.0,
+    "duration_beats_max": 2.0
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Gradual unwind",
+    "duration_beats_min": 8.0,
+    "duration_beats_max": 16.0
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Exhale cadence",
+    "duration_beats_min": 2.0,
+    "duration_beats_max": 4.0
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Dissolution",
+    "duration_beats_min": 4.0,
+    "duration_beats_max": 8.0
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Catharsis",
+    "duration_beats_min": 8.0,
+    "duration_beats_max": 16.0
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Suspension",
+    "duration_beats_min": 4.0,
+    "duration_beats_max": 8.0
+  },
+  {
+    "source_file": "dramatic-pacing-silence.md",
+    "technique": "Echo release",
+    "duration_beats_min": 2.0,
+    "duration_beats_max": 4.0
+  }
+]

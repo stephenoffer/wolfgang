@@ -6,35 +6,40 @@
       "name": "Chamber-within-orchestra",
       "description": "After a massive tutti climax, the texture suddenly collapses to 2\u20133 solo instruments (often solo violin, or solo oboe + pizzicato cello). This contrast \u2014 overwhelming grandeur immediately followed by ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "folk_song_march_dance_material_in_unexpected_contexts",
       "name": "Folk song / march / dance material in unexpected contexts",
       "description": "A L\u00e4ndler (Austrian dance), a military march, or a folk song appears within a symphony movement where it creates dramatic irony. The \"low\" genre material (dance, march) in a \"high\" genre context (symp",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "tonal_dissolution_key_wandering_without_arrival",
       "name": "Tonal dissolution \u2014 key wandering without arrival",
       "description": "Mahler's harmonies wander through keys for long passages without establishing any key firmly. He may spend 32 bars passing through F, Ab, B, D (augmented-fifth cycle) without ever landing. The tonal c",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "postlude_as_the_real_climax",
       "name": "Postlude as the real climax",
       "description": "The \"ending\" of a Mahler movement often comes long after the musical climax. A 20\u201340 bar postlude after the main material has concluded \u2014 adding a final echo, a final dissolution, a last transformatio",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "song_like_melody_in_orchestral_context",
       "name": "Song-like melody in orchestral context",
       "description": "Mahler's melodies derive from his own songs (Das Lied von der Erde, Des Knaben Wunderhorn). They have a vocal, text-derived character even when played by instruments: shaped by natural speech rhythm, ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }
