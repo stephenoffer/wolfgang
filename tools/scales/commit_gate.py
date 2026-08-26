@@ -107,11 +107,18 @@ class GateResult:
 # ─── Individual checks ───────────────────────────────────────────────────────
 
 
-def _dominant_textures(slot) -> Tuple[str, str]:
-    """Most common (rh, lh) texture pair in the slot plan."""
+def _dominant_textures(slot, composer: str = "") -> Tuple[str, str]:
+    """Most common (rh, lh) texture pair in the slot plan.
+
+    ``composer`` matters even though it looks optional: when the slot has no
+    texture plan this falls through to inference, and inference reads the
+    composer's OWN corpus modes. Without it every phrase is judged against the
+    all-composer mode — Mozart's alberti bass read as bass_melody, and the
+    per-texture density floors then come from the wrong idiom entirely.
+    """
     from collections import Counter
 
-    textures = _slot_textures(slot)
+    textures = _slot_textures(slot, composer)
     if not textures:
         return "singing_melody", "alberti"
     rh = Counter(t[0] for t in textures).most_common(1)[0][0]
@@ -153,7 +160,7 @@ def _per_bar_event_counts(layer: LayerIR, hand: str) -> Dict[int, int]:
 
 
 def _bar_texture_floors(
-    slot, density_stats: Dict, hand: str
+    slot, density_stats: Dict, hand: str, composer: str = ""
 ) -> Dict[int, Tuple[float, float, str]]:
     """Per-bar (floor, median, texture) from each bar's OWN planned texture.
 
@@ -164,7 +171,7 @@ def _bar_texture_floors(
     plan = getattr(slot, "texture_plan", None) or []
     bar_start = getattr(slot, "bar_start", 1)
     out: Dict[int, Tuple[float, float, str]] = {}
-    rh_def, lh_def = _dominant_textures(slot)
+    rh_def, lh_def = _dominant_textures(slot, composer)
     default_tex = rh_def if hand == "rh" else lh_def
     n = getattr(slot, "bar_count", len(plan)) or len(plan)
     for i in range(max(n, len(plan))):
@@ -194,7 +201,7 @@ _SKELETAL_BAR_FRACTION = 0.6
 
 
 def _check_density(
-    layer: LayerIR, slot, density_stats: Dict, hand: str
+    layer: LayerIR, slot, density_stats: Dict, hand: str, composer: str = ""
 ) -> Optional[GateDiagnostic]:
     """Block when a MAJORITY of bars are skeletal vs their own texture's corpus
     floor (half the median). Per-bar + per-texture so real phrases that mix
@@ -204,7 +211,7 @@ def _check_density(
     counts = _per_bar_event_counts(layer, hand)
     if not counts:
         return None
-    floors = _bar_texture_floors(slot, density_stats, hand)
+    floors = _bar_texture_floors(slot, density_stats, hand, composer)
     skeletal: List[int] = []
     worst_median = 0.0
     worst_tex = ""
@@ -334,7 +341,7 @@ def _check_density_variance(layer: LayerIR, slot, composer: str) -> Optional[Gat
     # a density curve, not evidence about the idiom, and an unknown texture is
     # not a constant one.
     if getattr(slot, "texture_plan", None):
-        rh_tex, lh_tex = _dominant_textures(slot)
+        rh_tex, lh_tex = _dominant_textures(slot, composer)
         if rh_tex in _SUSTAINED_RH_TEXTURES or lh_tex in _SUSTAINED_LH_TEXTURES:
             return None
     return GateDiagnostic(
@@ -421,7 +428,7 @@ def _check_figuration_flat(layer: LayerIR, slot, composer: str) -> Optional[Gate
     exempt — they legitimately repeat under prolonged harmony. Below threshold
     this is left to the warn-level same_accompaniment detector.
     """
-    _, lh_tex = _dominant_textures(slot)
+    _, lh_tex = _dominant_textures(slot, composer)
     if lh_tex in _STATIC_LH_TEXTURES:
         return None  # repetition is the idiom for these textures
 
@@ -551,7 +558,7 @@ def _check_expression_zero(layer: LayerIR, slot, composer: str) -> Optional[Gate
     if has_expression:
         return None
 
-    rh_tex, _ = _dominant_textures(slot)
+    rh_tex, _ = _dominant_textures(slot, composer)
     templates = _texture_templates(composer).get("rh_templates", {})
     # Corpus-measured first; the hand-authored templates are only a fallback and
     # have no builder (see composition_brief.ornament_stats).
@@ -562,15 +569,38 @@ def _check_expression_zero(layer: LayerIR, slot, composer: str) -> Optional[Gate
         (templates.get(rh_tex) or {}).get("avg_ornament_density") or {}
     )
     total_orn = sum(v for v in orn.values() if isinstance(v, (int, float)))
-    if total_orn < 0.1:
+    # Compare an EXPECTED COUNT for this phrase, not a per-bar rate against a
+    # fixed number. `total_orn` is ornaments per bar: at Chopin's measured 0.07
+    # in zigzag figuration, a 4-bar phrase is expected to carry 0.28 of an
+    # ornament, and warning that it has none says nothing. The old fixed 0.1/bar
+    # floor sat ABOVE the measured rate for every composer but Mozart, so for 26
+    # of 27 armed composers this check could not fire at any phrase length —
+    # while a long phrase in a genuinely ornamented idiom went unremarked.
+    #
+    # One expected ornament is the smallest claim worth making: below it, "you
+    # wrote none" is not evidence of anything.
+    #
+    # Where this now fires, by the composer's own dense-texture rate: Mozart at
+    # 3 bars, Haydn 11, Chopin 15, Beethoven 22, Bach effectively never (0.004 —
+    # his corpus is chorales, which do not ornament). For the other 19 armed
+    # composers it still cannot fire at any length, and that is a CORPUS limit
+    # rather than a threshold one: their scores were acquired as MIDI, which
+    # carries no ornament marks at all, so the measured rate is a structural
+    # zero and not a finding. Silence here means "no evidence", never "this
+    # idiom does not ornament" — do not read it as the latter, and do not raise
+    # the rate to make the check fire on composers whose corpus cannot support it.
+    bars = getattr(layer, "bar_count", 0) or getattr(slot, "bar_count", 0) or 1
+    expected = total_orn * bars
+    if expected < 1.0:
         return None
     return GateDiagnostic(
         check="expression_zero",
         severity="warn",
         detail=(
             f"No ornaments, slurs, or hairpins anywhere in "
-            f"{layer.bar_count} bars; corpus '{rh_tex}' carries "
-            f"~{total_orn:.2f} ornaments/bar plus phrasing slurs"
+            f"{bars} bars; corpus '{rh_tex}' carries ~{total_orn:.2f} "
+            f"ornaments/bar, so ~{expected:.1f} would be expected here, "
+            f"plus phrasing slurs"
         ),
         suggestion=(
             "Expression is part of the notes, not decoration: "
@@ -749,7 +779,7 @@ def run_commit_gate(
 
     # Density floors (the skeletal-writing guard)
     for hand in ("rh", "lh"):
-        d = _check_density(layer, slot, density_stats, hand)
+        d = _check_density(layer, slot, density_stats, hand, composer)
         if d:
             diagnostics.append(d)
 

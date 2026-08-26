@@ -52,9 +52,7 @@ def test_coverage_is_rendered_where_the_composer_will_read_it():
     exemplars = src.find("EXEMPLARS")
     assert coverage > header
     if exemplars != -1:
-        assert coverage < exemplars, (
-            "coverage must be stated before the exemplars it qualifies"
-        )
+        assert coverage < exemplars, "coverage must be stated before the exemplars it qualifies"
 
 
 def test_an_unknown_composer_does_not_crash_the_coverage_note():
@@ -83,9 +81,7 @@ def test_synthetic_transition_data_is_declared_in_the_brief():
     assert "synthetic" in src.lower()
     assert "provenance" in src
     rendered = inspect.getsource(composition_brief.render_text)
-    assert "provenance" in rendered, (
-        "the synthetic-data warning is computed but never printed"
-    )
+    assert "provenance" in rendered, "the synthetic-data warning is computed but never printed"
 
 
 # ─── Cadence doctrine must reach every armed composer ────────────────────────
@@ -134,19 +130,23 @@ def test_every_armed_composer_has_cadence_doctrine_for_the_common_cadences():
     for composer in armed:
         for cad in ("HC", "PAC"):
             slot = PhraseSlot(
-                phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                key="C major", meter=(4, 4), cadence_target=cad,
+                phrase_id="p",
+                section_id="s",
+                bar_start=1,
+                bar_count=4,
+                key="C major",
+                meter=(4, 4),
+                cadence_target=cad,
             )
             if not _doctrine_slices(composer, slot, "opening").get("cadence_script"):
                 missing.append(f"{composer}/{cad}")
     assert not missing, (
-        "armed composer(s) with no cadence doctrine for a common cadence: "
-        f"{missing}"
+        f"armed composer(s) with no cadence doctrine for a common cadence: {missing}"
     )
 
 
 def test_every_armed_composer_has_real_fingerprints():
-    """"COMPOSER FINGERPRINTS — the defining traits of this composer's voice"
+    """ "COMPOSER FINGERPRINTS — the defining traits of this composer's voice"
     is the brief section the phrase-composer is told to make the phrase
     *exhibit*. Four armed composers — Corelli, Monteverdi, Palestrina and Weber
     — had no written profile at all, so the brief printed "no composer
@@ -207,9 +207,7 @@ def test_melody_doctrine_is_composer_specific():
         own = [p for p in priors if p.get("category") == "composer_melodic_voice"]
         if len(own) < 3:
             generic.append(f"{composer}: {len(own)} composer-specific priors")
-    assert not generic, (
-        "armed composer(s) whose melody doctrine is generic boilerplate: " f"{generic}"
-    )
+    assert not generic, f"armed composer(s) whose melody doctrine is generic boilerplate: {generic}"
 
 
 def test_two_composers_do_not_get_identical_melody_doctrine():
@@ -231,8 +229,13 @@ def test_the_composers_own_voice_leads_the_melody_slice():
     from scales.models import PhraseSlot
 
     slot = PhraseSlot(
-        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-        key="F major", meter=(4, 4), cadence_target="HC",
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="F major",
+        meter=(4, 4),
+        cadence_target="HC",
     )
     priors = _doctrine_slices("bach", slot, "opening").get("melody_priors") or []
     if not priors:
@@ -254,8 +257,13 @@ def test_ornament_doctrine_is_composer_specific_where_the_profile_provides_it():
     from scales.models import PhraseSlot
 
     slot = PhraseSlot(
-        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-        key="F major", meter=(4, 4), cadence_target="PAC",
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="F major",
+        meter=(4, 4),
+        cadence_target="PAC",
     )
     seen = {}
     for composer in ("mozart", "bach", "chopin"):
@@ -283,8 +291,13 @@ def test_the_composers_own_lh_catalogue_reaches_the_brief():
     from scales.models import BarTexturePlan, PhraseSlot
 
     slot = PhraseSlot(
-        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-        key="D minor", meter=(4, 4), cadence_target="HC",
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="D minor",
+        meter=(4, 4),
+        cadence_target="HC",
     )
     slot.texture_plan = [BarTexturePlan(lh_texture="alberti")]
     figs = _doctrine_slices("mozart", slot, "opening").get("figuration") or []
@@ -303,11 +316,61 @@ def test_a_composer_without_an_lh_catalogue_still_gets_generic_figuration():
     from scales.models import BarTexturePlan, PhraseSlot
 
     slot = PhraseSlot(
-        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-        key="D minor", meter=(4, 4), cadence_target="HC",
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="D minor",
+        meter=(4, 4),
+        cadence_target="HC",
     )
     slot.texture_plan = [BarTexturePlan(lh_texture="alberti")]
     figs = _doctrine_slices("bach", slot, "opening").get("figuration") or []
     if not figs:
         pytest.skip("bach pack not present")
     assert figs, "generic figuration doctrine disappeared"
+
+
+# ── Inferred textures must be corpus-real, and the composer's own ────────────
+
+
+def test_inferred_textures_are_labels_the_corpus_actually_produces():
+    """`passage_work` came from an older label vocabulary the corpus no longer
+    produces, so every lookup keyed by it missed: exemplar retrieval, density
+    targets, ornament stats. The same dead label is documented on the cache
+    side in `_density_cache_is_current`.
+    """
+    from scales.composition_brief import _iter_corpus_bars, _texture_modes
+
+    real_rh, real_lh = set(), set()
+    for bar in _iter_corpus_bars("mozart"):
+        if bar.get("rh_texture"):
+            real_rh.add(bar["rh_texture"])
+        if bar.get("lh_texture"):
+            real_lh.add(bar["lh_texture"])
+    assert "passage_work" not in real_rh, "corpus vocabulary changed; update the inference"
+    for rh, lh in _texture_modes("mozart"):
+        assert rh in real_rh, f"{rh} is not a texture the corpus produces"
+        assert lh in real_lh, f"{lh} is not a texture the corpus produces"
+
+
+def test_inference_gives_each_composer_their_own_idiom():
+    """`alberti` for every composer above the low density band was Mozart's
+    habit written into a function every composer goes through. It is not the
+    modal LH texture at any density band across the armed corpus.
+    """
+    from scales.composition_brief import _texture_modes
+
+    dense_lh = {c: _texture_modes(c)[2][1] for c in ("mozart", "chopin", "bach", "monteverdi")}
+    assert dense_lh["mozart"] == "alberti"  # his really is
+    assert len(set(dense_lh.values())) >= 3, dense_lh
+
+
+def test_an_unknown_composer_infers_from_the_whole_corpus():
+    """No corpus to measure must not mean no textures — and must not mean
+    Mozart's."""
+    from scales.composition_brief import _texture_modes
+
+    modes = _texture_modes("no-such-composer")
+    assert len(modes) == 3
+    assert all(rh and lh for rh, lh in modes)

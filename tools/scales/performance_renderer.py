@@ -311,28 +311,46 @@ def build_performance_ir(
     # notated length. This reaches the render through `microtiming`, which the
     # MIDI stage already reads.
     #
-    # MELODIC LEAD IS DELIBERATELY NOT APPLIED HERE, and the reason is worth
-    # recording: `TimingOffset` is keyed by (bar, beat) alone, so it cannot
-    # express "the melody is struck 12ms ahead of the bass on the same beat" —
-    # which is exactly what melodic lead is. Writing it through this channel
-    # made the melody and the bass collide on one key and take whichever was
-    # recorded first, so both moved together and the effect was silently the
-    # opposite of the intent. `melodic_lead_beats` remains available for a
-    # caller with a per-voice timing channel; the MIDI stage's own
-    # `profile.hand_offset_ms` is the existing, working approximation.
+    # MELODIC LEAD: pianists strike the melody a few milliseconds before the
+    # notes beneath it — the most documented cue that a human rather than a
+    # sequencer is playing. It could not be expressed while `TimingOffset` was
+    # keyed by (bar, beat) alone: melody and bass collided on one key and moved
+    # together, silently the opposite of the intent. It is written against the
+    # melody's own voice now that the field exists.
+    #
+    # The lead REPLACES the profile's flat `hand_offset_ms` rather than stacking
+    # with it — both express hand separation, and applying both would double it.
     ms_per_beat = 60000.0 / max(1.0, float(getattr(slot, "tempo_bpm", 0) or 90))
-    seen_offsets = {(m.bar, round(m.beat, 3)) for m in perf.microtiming}
+    melodic = {id(e) for e in layer.principal_line}
+    peak = max((_top_midi_of(e) or 0) for e in layer.principal_line) if layer.principal_line else 0
+    seen = {(m.bar, round(m.beat, 3), getattr(m, "voice", None)) for m in perf.microtiming}
     for e in layer.principal_line + layer.bass_foundation:
         if e.pitch == "rest":
             continue
-        shift = agogic_stretch(e, meter, profile)
+        is_melody = id(e) in melodic
+        # The RENDERER'S vocabulary, not the layer's. `midi_renderer` keys each
+        # note as "melody" or "accompaniment"; writing "principal_line" here
+        # would never match, so every lead would reach the render and be
+        # silently dropped. Two names for one thing is this codebase's most
+        # repeated integration bug and it fails without any error.
+        voice = "melody" if is_melody else "accompaniment"
+        top = _top_midi_of(e)
+        shift = agogic_stretch(e, meter, profile) + melodic_lead_beats(
+            e,
+            profile,
+            ms_per_beat,
+            is_peak=(top is not None and top >= peak - 2),
+            is_melody=is_melody,
+        )
         if abs(shift) < 1e-4:
             continue
-        key = (e.bar, round(e.beat, 3))
-        if key in seen_offsets:
+        key = (e.bar, round(e.beat, 3), voice)
+        if key in seen:
             continue
-        seen_offsets.add(key)
-        perf.microtiming.append(TimingOffset(bar=e.bar, beat=e.beat, offset_ms=shift * ms_per_beat))
+        seen.add(key)
+        perf.microtiming.append(
+            TimingOffset(bar=e.bar, beat=e.beat, offset_ms=shift * ms_per_beat, voice=voice)
+        )
 
     return perf
 
@@ -743,13 +761,23 @@ def tempo_factor_at(perf: PerformanceIR, bar: int, beat: float, beats_per_bar: f
 def microtiming_at(perf: PerformanceIR, bar: int, beat: float, voice: str | None = None) -> float:
     """Timing offset in ms for an onset (0 when none applies).
 
-    An offset carrying a ``voice`` applies only to that line; one without
-    applies to every voice at that instant (a breath, an agogic stretch). A
-    per-voice offset wins, which is what lets the melody be struck ahead of the
-    accompaniment on the same beat — impossible while this was keyed by
-    (bar, beat) alone.
+    ``voice`` is asymmetric between the STORED offset and the QUERY, and both
+    readings are the natural one:
+
+    - Stored without a voice: applies to every line at that instant. That is
+      what a breath or an agogic stretch means, and it is what every offset
+      written before the field existed is.
+    - Queried without a voice: "what is the timing here, whichever line" — so a
+      caller that does not model voices still sees a voiced offset rather than
+      zero. This is also exactly what this function did before it knew about
+      voices, which keeps every existing caller honest.
+
+    A per-voice offset wins over a whole-instant one for a voiced query, which
+    is what lets the melody be struck ahead of the accompaniment on the same
+    beat — impossible while this was keyed by (bar, beat) alone.
     """
-    general = 0.0
+    general: float | None = None
+    any_voiced: float | None = None
     for m in perf.microtiming:
         if m.bar != bar or abs(m.beat - beat) >= 0.01:
             continue
@@ -758,7 +786,15 @@ def microtiming_at(perf: PerformanceIR, bar: int, beat: float, voice: str | None
             general = m.offset_ms
         elif voice is not None and m_voice == voice:
             return m.offset_ms
-    return general
+        elif any_voiced is None:
+            any_voiced = m.offset_ms
+    if general is not None:
+        return general
+    # A don't-care query falls through to a voiced offset; a query that named a
+    # voice and did not match one must NOT pick up another line's timing.
+    if voice is None and any_voiced is not None:
+        return any_voiced
+    return 0.0
 
 
 def pedal_bars(perf: PerformanceIR) -> list[int]:

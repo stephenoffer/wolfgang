@@ -269,3 +269,27 @@ def test_per_voice_offset_wins_over_the_whole_instant():
     ]
     assert microtiming_at(perf, 3, 2.0, voice="melody") == -15.0
     assert microtiming_at(perf, 3, 2.0, voice="accompaniment") == 6.0
+
+
+def test_a_voiceless_query_still_sees_a_voiced_offset():
+    """ "What is the timing here" must not answer zero because every offset at
+    that instant happens to name a line.
+
+    This is the pre-voice behaviour — the function returned the first offset at
+    (bar, beat) regardless — so callers that don't model voices stay honest.
+    """
+    from scales.models import PerformanceIR, TimingOffset
+    from scales.performance_renderer import microtiming_at
+
+    perf = PerformanceIR(phrase_id="x")
+    perf.microtiming = [TimingOffset(bar=3, beat=1.0, offset_ms=23.3, voice="melody")]
+    assert microtiming_at(perf, 3, 1.0) == 23.3
+
+
+def test_a_named_voice_does_not_pick_up_another_lines_timing():
+    from scales.models import PerformanceIR, TimingOffset
+    from scales.performance_renderer import microtiming_at
+
+    perf = PerformanceIR(phrase_id="x")
+    perf.microtiming = [TimingOffset(bar=3, beat=1.0, offset_ms=23.3, voice="melody")]
+    assert microtiming_at(perf, 3, 1.0, voice="accompaniment") == 0.0

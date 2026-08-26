@@ -585,7 +585,6 @@ def texture_density_stats(composer: str, refresh: bool = False) -> Dict[str, Any
     return stats
 
 
-
 _FINGERPRINT_SCHEMA = 1
 # A dotted value is 1.5x a plain one. Written out rather than computed so the
 # 32nd-note case (0.1875) is visible and cannot be lost to float comparison.
@@ -680,10 +679,19 @@ def rhythmic_fingerprint(composer: str, refresh: bool = False) -> Dict[str, Any]
 
 
 _QL_NAME = {
-    4.0: "whole", 3.0: "dotted half", 2.0: "half", 1.5: "dotted quarter",
-    1.0: "quarter", 0.75: "dotted eighth", 0.5: "eighth", 0.375: "dotted 16th",
-    0.3333: "triplet eighth", 0.25: "16th", 0.1667: "triplet 16th",
-    0.125: "32nd", 0.0625: "64th",
+    4.0: "whole",
+    3.0: "dotted half",
+    2.0: "half",
+    1.5: "dotted quarter",
+    1.0: "quarter",
+    0.75: "dotted eighth",
+    0.5: "eighth",
+    0.375: "dotted 16th",
+    0.3333: "triplet eighth",
+    0.25: "16th",
+    0.1667: "triplet 16th",
+    0.125: "32nd",
+    0.0625: "64th",
 }
 
 
@@ -710,7 +718,11 @@ def render_rhythmic_fingerprint(composer: str) -> List[str]:
         head = [
             f"RHYTHMIC FINGERPRINT ({composer}) — measured over {fp['bars']} bars from "
             f"{sources} source movement(s)"
-            + (f", {scope['dominant_share']:.0%} of them {scope['dominant']}" if scope.get("narrow") else "")
+            + (
+                f", {scope['dominant_share']:.0%} of them {scope['dominant']}"
+                if scope.get("narrow")
+                else ""
+            )
             + ". THIS IS THE SAMPLE, NOT THE COMPOSER: a corpus this narrow "
             "under-reports whatever those particular pieces do not happen to do. "
             "Where it disagrees with what you know of him, trust what you know.",
@@ -890,6 +902,7 @@ def render_corpus_fidelity(composer: str) -> List[str]:
         f"low number there is evidence about the source, not about his hand. "
         f"Write the filigree the music wants.",
     ]
+
 
 _ORNAMENT_SCHEMA = 1
 
@@ -1269,7 +1282,7 @@ def _transition_patterns(composer: str, slot, from_texture: Optional[str]) -> Di
             if follow:
                 out["after_previous"] = {"from": from_texture, "follow": follow}
         # primary LH texture of this phrase
-        lh = [t[1] for t in _slot_textures(slot)]
+        lh = [t[1] for t in _slot_textures(slot, composer)]
         primary = max(set(lh), key=lh.count) if lh else None
         if primary:
             follow = _top_follow(primary)
@@ -1306,7 +1319,7 @@ def _lh_vocabulary(composer: str, slot, key: str, max_patterns: int = 2) -> List
     try:
         pr = _pattern_retriever()
         lh_textures = []
-        for _, lh in _slot_textures(slot):
+        for _, lh in _slot_textures(slot, composer):
             if lh not in lh_textures and lh not in ("silence", "unclassified"):
                 lh_textures.append(lh)
         out: List[Dict[str, Any]] = []
@@ -1509,16 +1522,18 @@ def _corpus_gestures(composer: str, slot, n: int = 4) -> List[Dict[str, Any]]:
             durs = list(getattr(h, "dur_profile", None) or [])
             if not durs:
                 continue
-            out.append({
-                "does": str(getattr(h, "function", "") or "").replace("_", " "),
-                "rhythm": " ".join(durs),
-                "contour": getattr(h, "contour", "") or "",
-                "enters": getattr(h, "entry_state", "") or "",
-                "leaves": getattr(h, "exit_state", "") or "",
-                "lh_texture": getattr(h, "lh_texture", "") or "",
-                "source": getattr(h, "source", "") or "",
-                "span_beats": getattr(h, "span_beats", None),
-            })
+            out.append(
+                {
+                    "does": str(getattr(h, "function", "") or "").replace("_", " "),
+                    "rhythm": " ".join(durs),
+                    "contour": getattr(h, "contour", "") or "",
+                    "enters": getattr(h, "entry_state", "") or "",
+                    "leaves": getattr(h, "exit_state", "") or "",
+                    "lh_texture": getattr(h, "lh_texture", "") or "",
+                    "source": getattr(h, "source", "") or "",
+                    "span_beats": getattr(h, "span_beats", None),
+                }
+            )
     return out[:n]
 
 
@@ -1566,11 +1581,13 @@ def _gestures(composer: str, slot, n: int = 5) -> List[Dict[str, Any]]:
             if tokens:
                 hands[hand] = " ".join(tokens)
         if hands:
-            out.append({
-                "name": re.sub(r"^\d+\.\s*", "", str(g.get("name", "") or "")).strip(),
-                "situation": g.get("situation") or "",
-                **hands,
-            })
+            out.append(
+                {
+                    "name": re.sub(r"^\d+\.\s*", "", str(g.get("name", "") or "")).strip(),
+                    "situation": g.get("situation") or "",
+                    **hands,
+                }
+            )
     return out
 
 
@@ -1772,8 +1789,14 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     structural = [d for d in devices if "melod" not in str(d.get("section", "")).lower()]
 
     structural_lean = function in (
-        "transition", "retransition", "sequence", "fragmentation", "liquidation",
-        "cadential", "closing", "coda",
+        "transition",
+        "retransition",
+        "sequence",
+        "fragmentation",
+        "liquidation",
+        "cadential",
+        "closing",
+        "coda",
     ) or cadence in ("pac", "iac")
     # Rotate the starting point by the phrase's own bar so consecutive phrases
     # are not handed the identical three devices — the catalogue is 15 entries
@@ -1793,9 +1816,7 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     )
     for d in (picked or devices)[:3]:
         section = str(d.get("section", "") or "device").split("/")[0].strip()
-        fig_lines.append(
-            f"{section} — {d.get('name', '')}: {str(d.get('description', ''))[:200]}"
-        )
+        fig_lines.append(f"{section} — {d.get('name', '')}: {str(d.get('description', ''))[:200]}")
 
     # The general figuration library, matched to this phrase's planned textures.
     general = []
@@ -1881,30 +1902,122 @@ def _anti_pattern_tells(composer: str, max_tells: int = 4) -> List[str]:
 # ─── Slot → corpus queries ───────────────────────────────────────────────────
 
 
-def _infer_textures(slot) -> List[Tuple[str, str]]:
-    """Infer per-bar (rh, lh) textures when texture_plan is empty."""
-    curves = getattr(slot, "curves", None)
-    density = list(getattr(curves, "density", []) or [])
-    out = []
-    for i in range(slot.bar_count):
-        d = density[i] if i < len(density) else 0.5
-        if d >= 0.65:
-            out.append(("passage_work", "alberti"))
-        elif d >= 0.35:
-            out.append(("singing_melody", "alberti"))
-        else:
-            out.append(("singing_melody", "block_chord_sparse"))
+# Density thresholds on the slot's 0-1 density curve, and the raw per-bar event
+# counts they correspond to. The corpus's melody_density percentiles are
+# 35th=4, 65th=7, so the curve's 0.35/0.65 breaks land on 4 and 7 events.
+_INFER_LO_MID = 0.35
+_INFER_MID_HI = 0.65
+_INFER_BAND_EDGES = (4, 7)  # raw melody_density: <4 lo, 4-6 mid, >=7 hi
+
+_TEXTURE_MODE_CACHE: Dict[str, List[Tuple[str, str]]] = {}
+
+# Last-resort pair when there is no corpus to measure at all. Corpus-real
+# labels only — see the vocabulary note in `_infer_textures`.
+_INFER_FALLBACK = [
+    ("held_note", "block_chord_sparse"),
+    ("singing_melody", "bass_melody"),
+    ("zigzag_figuration", "bass_melody"),
+]
+
+
+def _texture_modes(composer: str) -> List[Tuple[str, str]]:
+    """The modal (rh, lh) texture pair per density band, measured from the
+    composer's own corpus. Returns [lo, mid, hi].
+
+    Derived rather than tabulated so it follows a corpus rebuild instead of
+    going stale, and so no one has to hand-maintain a texture table.
+    """
+    key = composer or "_global"
+    if key in _TEXTURE_MODE_CACHE:
+        return _TEXTURE_MODE_CACHE[key]
+    from collections import Counter
+
+    rh: List[Counter] = [Counter(), Counter(), Counter()]
+    lh: List[Counter] = [Counter(), Counter(), Counter()]
+    seen = 0
+    try:
+        for bar in _iter_corpus_bars(composer):
+            d = bar.get("melody_density", 0) or 0
+            band = 2 if d >= _INFER_BAND_EDGES[1] else 1 if d >= _INFER_BAND_EDGES[0] else 0
+            if bar.get("rh_texture"):
+                rh[band][bar["rh_texture"]] += 1
+            if bar.get("lh_texture"):
+                lh[band][bar["lh_texture"]] += 1
+            seen += 1
+    except Exception:  # a missing or unreadable corpus is not a composing error
+        seen = 0
+
+    out: List[Tuple[str, str]] = []
+    for band in range(3):
+        # Too few bars in a band is not evidence; fall back rather than infer
+        # a composer's idiom from a handful of measures.
+        r = (
+            rh[band].most_common(1)[0][0]
+            if sum(rh[band].values()) >= 40
+            else _INFER_FALLBACK[band][0]
+        )
+        left = (
+            lh[band].most_common(1)[0][0]
+            if sum(lh[band].values()) >= 40
+            else _INFER_FALLBACK[band][1]
+        )
+        out.append((r, left))
+    if seen < 200:
+        out = list(_INFER_FALLBACK)
+    _TEXTURE_MODE_CACHE[key] = out
     return out
 
 
-def _slot_textures(slot) -> List[Tuple[str, str]]:
+def _infer_textures(slot, composer: str = "") -> List[Tuple[str, str]]:
+    """Infer per-bar (rh, lh) textures when texture_plan is empty.
+
+    This used to return three hard-coded pairs, and both halves were wrong.
+
+    The RH pair for a dense bar was ``passage_work`` — a label from an older
+    vocabulary that **the corpus does not produce at all** (see
+    `_density_cache_is_current`, which documents the same dead label on the
+    cache side). Every lookup keyed by it therefore missed: exemplar retrieval,
+    per-texture density targets, and ornament stats. `_check_expression_zero`
+    reads ornament density for the inferred RH texture and stays silent when it
+    finds none, so for every dense phrase without a texture plan it could not
+    fire — measured at 0.000 ornament density for `passage_work` across all 48
+    packs.
+
+    The LH pair was ``alberti`` for anything above the low band. Measured over
+    all armed composers, alberti is not the modal LH texture at ANY density
+    band — it is Mozart's habit (and Haydn's, and Beethoven's mid band) written
+    into a function that every composer goes through. Bach's dense LH is
+    broken_chord_wave, Chopin's block_chord_sparse, Monteverdi's walking_bass.
+
+    So the modes are now measured per composer from the corpus itself.
+    """
+    curves = getattr(slot, "curves", None)
+    density = list(getattr(curves, "density", []) or [])
+    modes = _texture_modes(composer)
+    out = []
+    for i in range(slot.bar_count):
+        d = density[i] if i < len(density) else 0.5
+        band = 2 if d >= _INFER_MID_HI else 1 if d >= _INFER_LO_MID else 0
+        out.append(modes[band])
+    return out
+
+
+def _slot_textures(slot, composer: str = "") -> List[Tuple[str, str]]:
+    """Per-bar (rh, lh) textures — DECLARED where the slot has a plan, INFERRED
+    otherwise.
+
+    Callers that use the result to SUPPRESS a check must not use this: an
+    inferred texture is a guess derived from a density curve, not evidence
+    about the idiom, and suppressing on a guess switches the check off for
+    every phrase that has no plan. Read `slot.texture_plan` directly there.
+    """
     plan = getattr(slot, "texture_plan", None) or []
     if plan:
         return [
-            (getattr(b, "rh_texture", "singing_melody"), getattr(b, "lh_texture", "alberti"))
+            (getattr(b, "rh_texture", "singing_melody"), getattr(b, "lh_texture", "bass_melody"))
             for b in plan
         ]
-    return _infer_textures(slot)
+    return _infer_textures(slot, composer)
 
 
 def _positions_for(slot, n_bars: int) -> List[str]:
@@ -2066,7 +2179,7 @@ def _retrieve_exemplars(
     key_mode = "minor" if is_minor_key(key) else "major"
     meter = tuple(getattr(slot, "meter", (4, 4)))
 
-    textures = _slot_textures(slot)
+    textures = _slot_textures(slot, composer)
     positions = _positions_for(slot, len(textures))
 
     # One query per distinct (texture pair, position) in the phrase
@@ -2307,7 +2420,7 @@ def _build_target_stats(composer: str, slot, warnings: List[str]) -> Dict[str, A
     rh_templates = templates.get("rh_templates", {})
     self_cont = _self_continuation(composer)
 
-    textures = _slot_textures(slot)
+    textures = _slot_textures(slot, composer)
     rh_set = sorted({t[0] for t in textures})
     lh_set = sorted({t[1] for t in textures})
 
@@ -3819,6 +3932,7 @@ def render_text(brief: CompositionBrief) -> str:
 
         habits = t.get("transition_habits") or {}
         if habits:
+
             def _describe(value, high, low):
                 return high if value >= 0.7 else (low if value <= 0.4 else "either way")
 
