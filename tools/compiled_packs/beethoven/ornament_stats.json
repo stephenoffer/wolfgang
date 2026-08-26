@@ -36,20 +36,20 @@
    "n": 5326
   },
   "zigzag_figuration": {
-   "grace": 0.0142,
-   "trill": 0.0036,
+   "grace": 0.0262,
+   "trill": 0.0109,
    "mordent": 0.0,
-   "turn": 0.0065,
-   "dotted": 0.1252,
-   "n": 3090
+   "turn": 0.009,
+   "dotted": 0.182,
+   "n": 3775
   },
   "scalar_run": {
-   "grace": 0.1272,
-   "trill": 0.0353,
-   "mordent": 0.0022,
-   "turn": 0.0156,
-   "dotted": 0.2135,
-   "n": 2689
+   "grace": 0.1432,
+   "trill": 0.0324,
+   "mordent": 0.003,
+   "turn": 0.0145,
+   "dotted": 0.1367,
+   "n": 2004
   }
  }
 }

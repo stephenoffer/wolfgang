@@ -746,3 +746,33 @@ def test_pc_weights_rejects_pitch_classes_where_midi_is_required():
     weights, bass = pc_weights([(0.0, 1.0, [41, 57, 60])], 0.0, 1.0)
     assert bass == 5, "F (MIDI 41) is the lowest sounding pitch"
     assert len(weights) == 12
+
+
+def test_brief_reports_how_earlier_phrases_already_closed():
+    """Each phrase is composed in an isolated context with no idea how the
+    others ended, so the same locally-reasonable close got chosen every time —
+    seven of nine phrase endings shared one cadential rhythm."""
+    from scales.composition_brief import _cadences_already_used
+
+    graph = _piano_graph(
+        [{"rh": "C5q D5q E5q F5q", "lh": "C3w"}] * 3 + [{"rh": "C5h rest_h", "lh": "C3h rest_h"}],
+        n_phrases=4,
+    )
+    last = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)[-1]
+    hist = _cadences_already_used(graph, last)
+
+    assert hist["closes_so_far"], "the brief must see the earlier closes"
+    assert len(hist["closes_so_far"]) == 3, "only phrases that come BEFORE this one"
+    assert hist["most_repeated"] == 3, "three identical closes must be reported as three"
+    assert hist["warn"] is True
+    for close in hist["closes_so_far"]:
+        assert close["ends_with_rest"] is True
+        assert close["bar"] < graph.phrases[last].slot.bar_start
+
+
+def test_cadence_history_excludes_phrases_that_come_after():
+    from scales.composition_brief import _cadences_already_used
+
+    graph = _piano_graph([{"rh": "C5w", "lh": "C3w"}], n_phrases=3)
+    first = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)[0]
+    assert _cadences_already_used(graph, first) == {}, "the opening phrase has no history"

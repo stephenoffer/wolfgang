@@ -117,7 +117,52 @@ def capture_theme_surface(graph, phrase_id: str, n_bars: int = 4):
                            duration=e.duration, role=e.role, source_layer="principal_line")
             )
     graph.principal_theme_surface = theme
+    # ``principal_theme_id`` names a MOTIF in ``motif_bank`` — that is what
+    # ``elect_principal_theme`` puts there and what the brief looks up. Writing
+    # a phrase id into the same field made one field carry two incompatible
+    # kinds of name, which is this repo's most reliable bug generator:
+    #
+    #   * after election it held "motif_A"        → the brief's
+    #     "is this phrase the theme's own phrase" test compared a motif id to a
+    #     phrase id and was **permanently False**;
+    #   * after a capture it held "m1_a_p1__theme" → the brief's motif lookup
+    #     found nothing in the bank and **silently fell back to motifs[0]**,
+    #     showing the agent a motif that was never elected.
+    #
+    # So the capture records the SOURCE PHRASE separately, and only fills the
+    # motif id if nothing has elected one — never overwriting an election.
+    graph.principal_theme_phrase_id = phrase_id
+    if not getattr(graph, "principal_theme_id", ""):
+        graph.principal_theme_id = elect_principal_theme(getattr(graph, "motif_bank", {}) or {}) or ""
     return theme
+
+
+def principal_theme_phrase(graph) -> str:
+    """The phrase the principal theme was captured FROM, or "".
+
+    Resolves whichever convention a graph happens to carry, including graphs
+    saved while ``principal_theme_id`` held a phrase id with a ``__theme``
+    suffix. Callers asking "does this phrase carry the theme?" should compare
+    against this, never against ``principal_theme_id``.
+    """
+    explicit = getattr(graph, "principal_theme_phrase_id", "") or ""
+    if explicit:
+        return explicit
+    surface = getattr(graph, "principal_theme_surface", None)
+    pid = getattr(surface, "phrase_id", "") if surface is not None else ""
+    if pid.endswith("__theme"):
+        return pid[: -len("__theme")]
+    if pid:
+        return pid
+    legacy = getattr(graph, "principal_theme_id", "") or ""
+    if legacy.endswith("__theme"):
+        return legacy[: -len("__theme")]
+    return ""
+
+
+def phrase_carries_theme(graph, phrase_id: str) -> bool:
+    """Whether ``phrase_id`` is the phrase the principal theme was taken from."""
+    return bool(phrase_id) and principal_theme_phrase(graph) == phrase_id
 
 
 def _theme_span_beats(theme) -> float:

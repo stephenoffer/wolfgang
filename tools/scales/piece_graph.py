@@ -293,7 +293,11 @@ class PieceGraph:
         self.narrative: NarrativeArc = NarrativeArc()
         self.form: FormGraph = FormGraph()
         self.motif_bank: Dict[str, MotifObject] = {}
-        self.principal_theme_id: str = ""  # elected recurring theme (theme_planner)
+        self.principal_theme_id: str = ""  # elected recurring MOTIF (theme_planner)
+        # The PHRASE the theme surface was captured from. Kept separate because
+        # `principal_theme_id` names a motif: one field holding both meanings is
+        # what made two brief checks permanently false.
+        self.principal_theme_phrase_id: str = ""
         self.principal_theme_surface: Optional[LayerIR] = None  # the COMPOSED theme, to develop
         self.phrases: Dict[str, PhraseState] = {}
 
@@ -336,6 +340,7 @@ class PieceGraph:
             "form": _deep_serialize(self.form),
             "motif_bank": {k: _deep_serialize(v) for k, v in self.motif_bank.items()},
             "principal_theme_id": self.principal_theme_id,
+            "principal_theme_phrase_id": self.principal_theme_phrase_id,
             "principal_theme_surface": (
                 _deep_serialize(self.principal_theme_surface)
                 if self.principal_theme_surface
@@ -536,6 +541,7 @@ class PieceGraph:
                     appearances=mdata.get("appearances", []) or [],
                 )
         self.principal_theme_id = data.get("principal_theme_id", "")
+        self.principal_theme_phrase_id = data.get("principal_theme_phrase_id", "")
         pts = data.get("principal_theme_surface")
         self.principal_theme_surface = _reconstruct_layer_ir(pts) if isinstance(pts, dict) else None
 

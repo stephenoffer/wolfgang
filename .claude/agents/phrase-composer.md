@@ -99,6 +99,26 @@ Then, before writing a note, conceive the section as a whole:
 
 Per-phrase gate rules below still apply to each commit.
 
+## What TRANSITION IN tells you that nothing else can
+
+You are composing in an isolated context. You cannot see the other phrases, so
+the brief brings you the three facts about them that decide whether this phrase
+sounds like part of a piece or like a fragment that happens to follow one:
+
+- **CADENCES ALREADY USED** — how every earlier phrase closed, and a warning
+  when a closing rhythm has been reused. The last piece this system produced
+  closed **seven of its nine phrases with the identical gesture**, because each
+  phrase-composer chose the same locally-reasonable ending in ignorance of the
+  others. If you see that warning, close differently: land on a weak beat, tie
+  over the barline into the next phrase, elide, decorate the arrival with an
+  appoggiatura or a turn, or cut the phrase a bar short. Craft §4b lists nine.
+- **texture coming in** — how long the current accompaniment idiom has already
+  run. Six bars is the point at which a listener stops hearing it.
+- **where the melody has been sitting** — the register of the preceding
+  phrases, so you can move if this phrase should feel like somewhere else.
+
+Acting on these is the difference between nine validated phrases and a piece.
+
 ## Composing rules
 
 - **Invent freely or adapt — your choice per moment.** You may compose a bar

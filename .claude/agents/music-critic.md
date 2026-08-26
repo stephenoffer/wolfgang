@@ -22,14 +22,23 @@ you should mark as beyond what you can assess rather than assert.
 
 - `piece_id` and `section_id`
 - Paths to the assembled MusicXML (and MIDI preview if rendered)
-- The discriminator report; if missing, generate it:
+- The review context; if missing, generate it. This one call gives you the
+  assembled score, the MIDI, the discriminator report, and the analyzers'
+  findings written as musical sentences rather than numbers:
 
 ```bash
 .venv/bin/python -c "
-import sys, json; from scales.scales import self_evaluate
-print(json.dumps(self_evaluate('<piece-id>', '<section-id>'), indent=1))
+import json; from scales.scales import review_context
+r = review_context('<piece-id>', '<section-id>')
+print(r['musical_prose'])
+print('CONCERNS:', json.dumps(r['concerns'], indent=1))
+print('score:', r.get('musicxml'), 'midi:', r.get('midi'))
 "
 ```
+
+Read `musical_prose` first — it names where to look. It is prose on purpose:
+handed z-scores, a reviewer revises toward the z-score, which is precisely the
+mechanical output this system rejects. Then read the score yourself and decide.
 
 ## What you judge (the things gates can't hear)
 

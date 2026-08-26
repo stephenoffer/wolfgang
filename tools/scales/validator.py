@@ -267,6 +267,51 @@ def validate_meter(
                 )
             )
 
+        issues.extend(_overlap_issues(bar_num, bar_events))
+
+    return issues
+
+
+def _overlap_issues(bar_num: int, bar_events: List[LayerEvent]) -> List[ValidationIssue]:
+    """Notes in ONE voice that sound while the previous one is still sounding.
+
+    A single voice cannot play two notes at once, and the bar-sum check cannot
+    see this: two half notes at beats 1 and 1.5 sum to 4 in a 4/4 bar and pass,
+    while overlapping by a beat and a half. MusicXML has no way to write it, so
+    the exporter serializes it without a backup and the bar spills past the
+    barline — the defect this project has shipped more than once. CLAUDE.md has
+    listed same-voice overlap as an enforced physical constraint for some time;
+    it was not enforced anywhere.
+    """
+    issues: List[ValidationIssue] = []
+    ordered = sorted(
+        (e for e in bar_events if not is_grace(e.ornament)),
+        key=lambda e: (Fraction(str(e.beat)).limit_denominator(96), str(e.pitch)),
+    )
+    prev_end = None
+    prev = None
+    for e in ordered:
+        start = Fraction(str(e.beat)).limit_denominator(96)
+        end = start + dur_to_beats(e.duration)
+        if prev_end is not None and start < prev_end - Fraction(1, 1000):
+            issues.append(
+                ValidationIssue(
+                    severity="error",
+                    category="meter",
+                    bar=bar_num,
+                    beat=float(start),
+                    message=(
+                        f"Bar {bar_num}: {e.pitch}{e.duration} starts at beat "
+                        f"{float(start):g} while {prev.pitch}{prev.duration} is still "
+                        f"sounding (ends at beat {float(prev_end):g}) — one voice "
+                        f"cannot play both. Use '//' to write a second voice, or "
+                        f"shorten the first note."
+                    ),
+                )
+            )
+            break  # one report per bar is enough to act on
+        if prev_end is None or end > prev_end:
+            prev_end, prev = end, e
     return issues
 
 

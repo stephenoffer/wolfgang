@@ -1,6 +1,6 @@
 {
  "composer": "corelli",
- "schema": 2,
+ "schema": 4,
  "total_bars": 19,
  "rh": {
   "singing_melody": {
@@ -8,7 +8,16 @@
    "p25": 4,
    "p75": 5,
    "mean": 4.13,
-   "n": 15
+   "n": 15,
+   "by_meter": {
+    "4": {
+     "median": 4,
+     "p25": 4,
+     "p75": 5,
+     "mean": 4.13,
+     "n": 15
+    }
+   }
   }
  },
  "lh": {

@@ -255,3 +255,33 @@ re-extractable sources and keep their older, thinner records (no `roman`);
   omitting the section.
 - Pedal marks come out unbalanced (two `Ped.` to one release) in the performance
   layer.
+
+---
+
+## Round 2 — found by measuring, after the corpus was rebuilt
+
+- **Density targets ignored the meter.** `texture_density_stats` pooled every
+  meter into one events-per-bar median. Mozart's Alberti bass runs a median of
+  **8 events in a 4-beat bar and 6 in a 3-beat bar**; every 3/4 phrase was told 8,
+  and the density gate then measured it against the same wrong figure. Scaling a
+  per-BEAT median by the beat count is not good enough either — the distribution
+  is multimodal (two notes a beat and six notes a beat are both Alberti), so the
+  per-beat median lands between the modes and scales to a figure no real bar has.
+  Now bucketed by meter, with the pooled figure as the fallback.
+- **Same-voice overlap was never enforced**, despite CLAUDE.md listing it as a
+  hard physical constraint. Two half notes at beats 1 and 1.5 sum to 4 in a 4/4
+  bar and passed the bar-sum check while overlapping by a beat and a half —
+  unwritable in MusicXML, and the exporter spills it past the barline. Now an
+  error, falsified against pedal-under-figuration, `//` two-voice writing,
+  Alberti, chords, ties across the barline, triplets and grace notes (fires on
+  none of them).
+- **Six anti-pattern detectors skipped every chord.** `not isinstance(evt.pitch,
+  list)` meant a chordally-written phrase was invisible to the register,
+  silence, restatement, root-position, scalar-fill and safe-harmony checks — and
+  `detect_root_position_bias`, which is *about* chords, skipped them. On a
+  four-bar chordal test phrase locked in one register on one bass note, all
+  three of the checks that should scream returned "insufficient data".
+- **`_lh_bar_patterns` read `pitches[0]`** as the bass of a left-hand chord —
+  whichever pitch happened to be written first, not the lowest.
+- **`ornamental_surface` and `counter_reply` shared treble voice 2**, putting two
+  independent lines in one music21 Voice at overlapping offsets.

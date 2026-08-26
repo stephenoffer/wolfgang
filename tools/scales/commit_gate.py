@@ -309,11 +309,18 @@ def _lh_bar_patterns(layer: LayerIR) -> Dict[int, Tuple[int, ...]]:
     for evt in sorted(layer.response_layer + layer.bass_foundation, key=lambda e: (e.bar, e.beat)):
         if evt.pitch == "rest":
             continue
+        # The BASS of a chord, not whichever pitch happens to be written first.
+        # A left-hand chord's shape is what its lowest voice does.
         pitches = evt.pitch if isinstance(evt.pitch, list) else [evt.pitch]
-        try:
-            midi = pitch_to_midi(pitches[0])
-        except (ValueError, KeyError, TypeError):
-            continue
+        midis = []
+        for pch in pitches:
+            try:
+                m = pitch_to_midi(pch)
+            except (ValueError, KeyError, TypeError):
+                m = None
+            if m is not None:
+                midis.append(m)
+        midi = min(midis) if midis else None
         if midi is not None:
             bars.setdefault(evt.bar, []).append(midi)
     return {

@@ -13,6 +13,34 @@ from .models import AntiPatternRule, LayerEvent, LayerIR, PhraseState
 from .pitch import pitch_to_midi
 
 
+def _voice_midi(pitch, prefer: str = "top") -> Optional[int]:
+    """One MIDI number for an event's pitch, chords included.
+
+    Six detectors here skipped every chord outright (`not isinstance(pitch,
+    list)`), so a phrase written chordally was invisible to all of them — the
+    register check saw no melody, the silence check saw no notes, and
+    `detect_root_position_bias`, which is ABOUT chords, skipped them. Take the
+    voice that carries the line: the top of a right-hand chord, the bottom of a
+    bass one.
+    """
+    if pitch is None or pitch == "rest":
+        return None
+    names = pitch if isinstance(pitch, (list, tuple)) else [pitch]
+    midis = []
+    for n in names:
+        if n == "rest":
+            continue
+        try:
+            m = pitch_to_midi(n)
+        except (ValueError, KeyError, TypeError):
+            m = None
+        if m is not None:
+            midis.append(m)
+    if not midis:
+        return None
+    return max(midis) if prefer == "top" else min(midis)
+
+
 def detect_flat_dynamics(layer: LayerIR, params: Optional[Dict] = None) -> Tuple[bool, str, str]:
     """All dynamics identical across bars → flat, lifeless music."""
     max_same_ratio = (params or {}).get("max_same_ratio", 0.8)
@@ -46,13 +74,9 @@ def detect_same_accompaniment(
     # Group events by bar, check if interval patterns repeat
     bars: Dict[int, List[int]] = {}
     for evt in events:
-        if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-            try:
-                midi = pitch_to_midi(evt.pitch)
-                if midi is not None:
-                    bars.setdefault(evt.bar, []).append(midi)
-            except (ValueError, KeyError, TypeError):
-                pass
+        midi = _voice_midi(evt.pitch, "bottom")
+        if midi is not None:
+            bars.setdefault(evt.bar, []).append(midi)
 
     if len(bars) < 3:
         return False, "warning", ""
@@ -92,13 +116,9 @@ def detect_register_monotony(
     min_range = (params or {}).get("min_range_semitones", 7)
     midis = []
     for evt in layer.principal_line:
-        if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-            try:
-                m = pitch_to_midi(evt.pitch)
-                if m is not None:
-                    midis.append(m)
-            except (ValueError, KeyError, TypeError):
-                pass
+        m = _voice_midi(evt.pitch, "top")
+        if m is not None:
+            midis.append(m)
 
     if len(midis) < 4:
         return False, "warning", "Insufficient melody data"
@@ -172,13 +192,9 @@ def detect_identical_restatement(
     def contour(events: List[LayerEvent]) -> List[int]:
         midis = []
         for evt in events:
-            if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-                try:
-                    m = pitch_to_midi(evt.pitch)
-                    if m is not None:
-                        midis.append(m)
-                except (ValueError, KeyError, TypeError):
-                    pass
+            m = _voice_midi(evt.pitch, "top")
+            if m is not None:
+                midis.append(m)
         if len(midis) < 2:
             return []
         return [
@@ -237,13 +253,9 @@ def detect_root_position_bias(
     # Check if bass pitches repeat the same pitch class too often
     pitch_classes = []
     for evt in bass_events:
-        if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-            try:
-                midi = pitch_to_midi(evt.pitch)
-                if midi is not None:
-                    pitch_classes.append(midi % 12)
-            except (ValueError, KeyError, TypeError):
-                pass
+        midi = _voice_midi(evt.pitch, "bottom")
+        if midi is not None:
+            pitch_classes.append(midi % 12)
 
     if len(pitch_classes) < 4:
         return False, "warning", ""
@@ -269,13 +281,9 @@ def detect_scalar_fill(layer: LayerIR, params: Optional[Dict] = None) -> Tuple[b
     min_run = (params or {}).get("min_run_length", 8)
     midis = []
     for evt in layer.principal_line:
-        if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-            try:
-                m = pitch_to_midi(evt.pitch)
-                if m is not None:
-                    midis.append(m)
-            except (ValueError, KeyError, TypeError):
-                pass
+        m = _voice_midi(evt.pitch, "top")
+        if m is not None:
+            midis.append(m)
 
     if len(midis) < min_run:
         return False, "warning", ""
@@ -326,13 +334,9 @@ def detect_safe_harmony(layer: LayerIR, params: Optional[Dict] = None) -> Tuple[
 
     pitch_classes: set = set()
     for evt in bass_events:
-        if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-            try:
-                midi = pitch_to_midi(evt.pitch)
-                if midi is not None:
-                    pitch_classes.add(midi % 12)
-            except (ValueError, KeyError, TypeError):
-                pass
+        midi = _voice_midi(evt.pitch, "bottom")
+        if midi is not None:
+            pitch_classes.add(midi % 12)
 
     if len(pitch_classes) < min_pitch_classes:
         return (

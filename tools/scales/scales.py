@@ -1317,9 +1317,7 @@ def _make_slot(
         seed=bar_start,
     )
 
-    texture_plan = _default_texture_plan(
-        style, function, cadence, bar_count, meter, seed=bar_start
-    )
+    texture_plan = _default_texture_plan(style, function, cadence, bar_count, meter, seed=bar_start)
 
     # Energy curve
     energy = _default_energy_curve(function, bar_count)
@@ -2061,9 +2059,21 @@ def _gated_commit(
 
 
 def _capture_theme_if_first_statement(graph, phrase_id: str) -> None:
-    """Store the principal theme the first time an ESTABLISH phrase is committed."""
-    if getattr(graph, "principal_theme_surface", None):
-        return
+    """Store (or refresh) the principal theme when its own phrase is committed.
+
+    Two bugs lived in the "capture once" guard this replaces.
+
+    It returned early whenever a theme surface already existed, so **recomposing
+    the theme's own phrase left the old theme on the graph forever**. Every
+    later brief then developed material that was no longer in the piece, and the
+    theme-recurrence check reported the theme appearing in *zero* places —
+    correctly, because the stored theme really had stopped matching anything.
+
+    And it set the surface without setting `principal_theme_id`, so a piece
+    could carry a populated theme whose id was the empty string; anything keyed
+    on the id was silently working with no theme at all. A graph in that state
+    is repaired here rather than left broken.
+    """
     state = graph.phrases.get(phrase_id)
     slot = getattr(state, "slot", None) if state else None
     if slot is None:
@@ -2071,7 +2081,18 @@ def _capture_theme_if_first_statement(graph, phrase_id: str) -> None:
     role = getattr(slot, "dramatic_role", "")
     # The opening statement, or (for a piece planned without a dramatic role) the
     # phrase that starts at bar 1.
-    if role not in ("establish",) and slot.bar_start != 1:
+    is_theme_phrase = role == "establish" or slot.bar_start == 1
+    have = getattr(graph, "principal_theme_surface", None)
+    if have and not is_theme_phrase:
+        return  # nothing to do: this is not the phrase the theme comes from
+    from .theme_planner import principal_theme_phrase
+
+    source = principal_theme_phrase(graph)
+    if have and source and source != phrase_id:
+        return  # the theme came from a different phrase; that capture stands
+    # Either there is no theme yet, or this IS the phrase it came from and has
+    # just been recomposed — re-capture so the stored theme is never stale.
+    if not is_theme_phrase:
         return
     try:
         from .theme_planner import capture_theme_surface
@@ -2696,7 +2717,7 @@ def self_evaluate(
             for ps in graph.phrases.values()
             if ps.realized and (not section_id or (ps.slot and ps.slot.section_id == section_id))
         ]
-        in_scope.sort(key=lambda ps: (ps.slot.bar_start if ps.slot else 0))
+        in_scope.sort(key=lambda ps: ps.slot.bar_start if ps.slot else 0)
         merged = None
         if in_scope:
             from .direct_compose import merge_phrases
@@ -2760,6 +2781,59 @@ def self_evaluate(
     # buried melody) constitute a HARD failure the pipeline must act on.
     report["section_gate"] = _section_gate(report)
     return report
+
+
+def review_context(
+    piece_id: str, section_id: Optional[str] = None, composer: Optional[str] = None
+) -> Dict[str, Any]:
+    """Everything the fresh-ears critic needs, in one call.
+
+    The critic was assembling its own context out of `self_evaluate` plus a hand
+    written music21 snippet, which meant each reviewer saw a slightly different
+    slice and the prose analyzers (theme recurrence, part-writing, the engraved
+    page) reached it only if the reviewer happened to know they existed.
+
+    Returns the assembled paths, the discriminator report, and `musical_prose` —
+    the same findings phrased as musical sentences rather than metrics. That
+    phrasing is deliberate: a critic handed z-scores revises toward the z-score,
+    which is the "metric whack-a-mole" this system explicitly rejects.
+
+    Deliberately does NOT include the composer's rationale, sketch or brief.
+    Fresh ears means the reviewer cannot rationalise what it is hearing.
+    """
+    report = self_evaluate(piece_id, section_id, composer)
+    if "error" in report:
+        return report
+    workspace = _WORKSPACE / piece_id
+    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    scope = f"section-{section_id}" if section_id else "full"
+
+    out: Dict[str, Any] = {
+        "piece_id": piece_id,
+        "section_id": section_id,
+        "scope": scope,
+        "evaluation": report,
+    }
+    try:
+        from .musical_report import build_report, concerns_only, render_text
+
+        mr = build_report(graph, style=report.get("composer_reference"), scope=scope)
+        out["musical_prose"] = render_text(mr)
+        out["concerns"] = concerns_only(mr)
+    except Exception as exc:  # a prose failure must not cost the critic its data
+        out["musical_prose"] = ""
+        out["concerns"] = []
+        out["prose_error"] = f"{type(exc).__name__}: {exc}"
+
+    try:
+        from .assembler import assemble
+        from .midi_renderer import render_midi
+
+        out["musicxml"] = assemble(graph, scope=scope, output_dir=str(workspace / "cache"))
+        out["midi"] = render_midi(graph, scope=scope, output_dir=str(workspace / "cache"))
+    except Exception as exc:
+        out["render_error"] = f"{type(exc).__name__}: {exc}"
+    return out
 
 
 def _section_gate(report: Dict[str, Any]) -> Dict[str, Any]:

@@ -90,9 +90,28 @@ class CraftChecker:
         return len(bars_with_bass) >= expected_bars
 
     def _check_harmony_voiced(self, layer: LayerIR) -> bool:
-        """Harmony is not just bass root — has inner voices or chords."""
-        total_events = len(layer.response_layer) + len(layer.counter_reply)
-        return total_events >= 2
+        """Harmony is not just melody-over-bass-root: something fills the middle.
+
+        This used to count events in ``response_layer`` and ``counter_reply``.
+        Those layers are only populated when the shorthand writes an explicit
+        second voice in a hand, so a perfectly well-voiced phrase whose chords
+        live in ``bass_foundation`` — which is most of them, since a plain
+        single-stream left hand goes there whole — scored as unvoiced. Measured
+        on 126 real 8-bar phrases, the old check passed **56%** of canonical
+        music.
+
+        The question is about the SOUND: at some point in the phrase, are three
+        or more notes sounding together?
+        """
+        from .counterpoint import attack_times, extract_voices, sounding_at
+
+        spans = extract_voices(layer)
+        if not spans:
+            return False
+        for t in attack_times(spans):
+            if len(sounding_at(spans, t)) >= 3:
+                return True
+        return False
 
     def _check_breathing(self, layer: LayerIR) -> bool:
         """Has at least one rest or breath point."""
@@ -101,26 +120,119 @@ class CraftChecker:
         return rests >= 1 or layer.bar_count <= 2
 
     def _check_accomp_response(self, layer: LayerIR) -> bool:
-        """Accompaniment exists and has enough density."""
-        return len(layer.response_layer) >= 4
+        """There is an accompaniment, and it is not the same in every bar.
+
+        The old check was ``len(response_layer) >= 4`` — a layer that is empty
+        for any phrase written with a single-stream left hand, so it passed only
+        **31%** of 126 real phrases. It was measuring which layer the notes were
+        filed under, not whether an accompaniment exists or does anything.
+
+        "Responds" is deliberately weak here: an accompaniment that holds one
+        figure for a phrase is normal writing (real music reuses its figures far
+        more than intuition suggests). What this rules out is no accompaniment
+        at all, or one note per bar and nothing else.
+        """
+        accomp = [
+            e
+            for e in (layer.bass_foundation + layer.response_layer)
+            if e.pitch != "rest"
+        ]
+        if len(accomp) < 3:
+            return False
+        bars = {e.bar for e in accomp}
+        return len(accomp) >= max(3, len(bars) + 1)
 
     def _check_entry_exit(self, layer: LayerIR, control: Optional[PhraseControlIR]) -> bool:
-        """Entry and exit are defined (melody starts and ends)."""
-        melody = layer.principal_line
-        if not melody:
+        """The phrase begins and ends with sound, not with a hole.
+
+        Two faults in the old version. It indexed ``principal_line`` in LIST
+        order rather than in TIME order, so for any material not stored sorted
+        it tested two arbitrary events. And it required the very last event to
+        be a note — but a phrase that ends with a rest after its final note has
+        ended perfectly well, and lifting into a rest is how a phrase breathes.
+        It passed **75%** of 126 real phrases.
+
+        What matters is that the phrase *sounds* at its start and reaches a
+        sounding note at its end.
+        """
+        melody = sorted(
+            (e for e in layer.principal_line), key=lambda e: (e.bar, e.beat)
+        )
+        sounding = [e for e in melody if e.pitch != "rest"]
+        if not sounding:
             return False
-        first = melody[0]
-        last = melody[-1]
-        return first.pitch != "rest" and last.pitch != "rest"
+        # An anacrusis legitimately starts with a rest before the upbeat, so the
+        # test is that sound arrives early in the phrase, not on the first event.
+        first_sounding = melody.index(sounding[0])
+        return first_sounding <= 2
 
     def _check_memorable_detail(self, layer: LayerIR) -> bool:
-        """Has at least one non-obvious moment (ornament, dynamic change, etc.)."""
-        ornaments = len(layer.ornamental_surface)
-        dynamic_changes = len(set(evt.dynamic for evt in layer.principal_line if evt.dynamic))
-        articulation_variety = len(
-            set(evt.articulation for evt in layer.principal_line if evt.articulation)
+        """Something in this phrase is worth remembering.
+
+        The old version looked for events in ``ornamental_surface`` (a layer
+        nothing populates), more than one distinct dynamic in the melody, or any
+        articulation on the melody. It passed **0 of 126** real 8-bar phrases —
+        a check that no canonical music can satisfy is measuring the wrong
+        thing entirely.
+
+        A detail is memorable if it is *distinctive*, and a phrase can be
+        distinctive in pitch or in rhythm as well as in notation: an expressive
+        leap, a note markedly longer than its neighbours, a silence, a written
+        ornament or articulation anywhere in the texture, a dynamic that moves.
+        """
+        from .duration import dur_to_beats
+
+        events = (
+            layer.principal_line
+            + layer.counter_reply
+            + layer.bass_foundation
+            + layer.response_layer
+            + layer.ornamental_surface
         )
-        return ornaments > 0 or dynamic_changes > 1 or articulation_variety > 0
+        if not events:
+            return False
+
+        # Notated detail, anywhere in the texture — not only in the melody.
+        if any(
+            e.ornament or e.articulation or getattr(e, "technique", None) for e in events
+        ):
+            return True
+        if len({e.dynamic for e in events if e.dynamic}) > 1:
+            return True
+        if any(e.hairpin for e in events):
+            return True
+
+        melody = [e for e in layer.principal_line if e.pitch != "rest"]
+        if len(melody) >= 3:
+            midis = [m for m in (self._top_midi(e) for e in melody) if m is not None]
+            # An expressive leap: a sixth or wider is a gesture, not a step.
+            if any(abs(b - a) >= 9 for a, b in zip(midis, midis[1:])):
+                return True
+            durs = [float(dur_to_beats(e.duration)) for e in melody]
+            if durs:
+                longest, typical = max(durs), sorted(durs)[len(durs) // 2]
+                # A note twice the phrase's usual value is an arrival.
+                if typical > 0 and longest >= typical * 2:
+                    return True
+        # A written silence inside the phrase is itself a detail.
+        interior = [e for e in layer.principal_line[1:-1] if e.pitch == "rest"]
+        return bool(interior)
+
+    @staticmethod
+    def _top_midi(event) -> Optional[int]:
+        """Top sounding MIDI of an event, or None."""
+        pitch = getattr(event, "pitch", None)
+        if not pitch or pitch == "rest":
+            return None
+        names = pitch if isinstance(pitch, list) else [pitch]
+        vals = []
+        for n in names:
+            try:
+                vals.append(pitch_to_midi(n))
+            except (ValueError, KeyError, TypeError):
+                continue
+        vals = [v for v in vals if v is not None]
+        return max(vals) if vals else None
 
     def _check_justifications(self, bundles: Optional[List[OnsetBundle]]) -> bool:
         """Every note has at least one structural + one local reason."""

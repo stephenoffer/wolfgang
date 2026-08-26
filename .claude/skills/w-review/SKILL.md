@@ -29,7 +29,42 @@ last resort only when the subagent is genuinely unavailable; if you must,
 read that file, apply its criteria, and **say in your report that review
 was done inline (not fresh-ears)** so the loss of independence is visible.
 
-## Step 1: Discriminator report (evidence, not verdict)
+## Step 1: Review context (evidence, not verdict)
+
+One call gives the critic everything — the assembled score and MIDI, the
+discriminator report, and the same findings phrased as musical sentences:
+
+```bash
+.venv/bin/python -c "
+import json; from scales.scales import review_context
+r = review_context('<piece-id>', '<section-id>')
+print(r['musical_prose'])          # what to read first
+print(json.dumps(r['evaluation'], indent=1))
+"
+```
+
+`musical_prose` is deliberately prose, not metrics. A critic handed z-scores
+revises toward the z-score, which is the metric whack-a-mole this system
+rejects. It answers the questions that decide whether a piece is any good:
+
+- **Does the theme come back?** A theme stated once and never returned is an
+  opening, not a theme.
+- **Do the cadences differ, and is each one the cadence that was planned?**
+  Nothing checked a realized cadence against its plan until recently — the
+  previous piece closed seven of its nine phrases identically, and two of its
+  structural cadences had no dominant at all.
+- **Does the texture's weight move?** Not "is it thick enough" — the last piece
+  measured normal density and a simultaneity CV *below* anything real Mozart
+  does, meaning it never thickened at a climax or thinned into a cadence.
+- **Does the page read as engraved music?** Articulation, ties, slurs,
+  hairpins per bar against the real-corpus range.
+- **Is the part-writing clean?** Parallels, hidden octaves, spacing, hand span.
+
+Take `r['concerns']` as the short list of what the analyzers actually flagged.
+Then read the score yourself — the prose tells you where to look, it does not
+tell you whether the music is good.
+
+The raw report is still there if you want the numbers:
 
 ```bash
 .venv/bin/python -c "

@@ -1,6 +1,6 @@
 {
  "composer": "chopin",
- "schema": 2,
+ "schema": 4,
  "total_bars": 4853,
  "rh": {
   "chordal": {
@@ -8,86 +8,226 @@
    "p25": 3,
    "p75": 4,
    "mean": 3.78,
-   "n": 1219
+   "n": 1219,
+   "by_meter": {
+    "3": {
+     "median": 4,
+     "p25": 3,
+     "p75": 4,
+     "mean": 3.78,
+     "n": 1219
+    }
+   }
   },
   "singing_melody": {
-   "median": 5,
+   "median": 5.0,
    "p25": 4,
    "p75": 6,
    "mean": 4.61,
-   "n": 2535
+   "n": 2534,
+   "by_meter": {
+    "3": {
+     "median": 5.0,
+     "p25": 4,
+     "p75": 6,
+     "mean": 4.61,
+     "n": 2534
+    }
+   }
   },
   "zigzag_figuration": {
-   "median": 7.0,
+   "median": 8.0,
    "p25": 7,
-   "p75": 8,
-   "mean": 7.74,
-   "n": 248
+   "p75": 9,
+   "mean": 7.89,
+   "n": 706,
+   "by_meter": {
+    "3": {
+     "median": 8.0,
+     "p25": 7,
+     "p75": 9,
+     "mean": 7.89,
+     "n": 706
+    }
+   }
   },
   "held_note": {
    "median": 1,
    "p25": 1,
    "p75": 1,
    "mean": 1.0,
-   "n": 147
+   "n": 147,
+   "by_meter": {
+    "3": {
+     "median": 1,
+     "p25": 1,
+     "p75": 1,
+     "mean": 1.0,
+     "n": 147
+    }
+   }
   },
   "scalar_run": {
    "median": 7,
    "p25": 7,
-   "p75": 9,
-   "mean": 7.89,
-   "n": 621
+   "p75": 8,
+   "mean": 7.56,
+   "n": 163,
+   "by_meter": {
+    "3": {
+     "median": 7,
+     "p25": 7,
+     "p75": 8,
+     "mean": 7.56,
+     "n": 163
+    }
+   }
   }
  },
  "lh": {
   "walking_bass": {
    "median": 4.0,
-   "p25": 4,
+   "p25": 3,
    "p75": 5,
-   "mean": 4.49,
-   "n": 576
+   "mean": 4.32,
+   "n": 422,
+   "by_meter": {
+    "3": {
+     "median": 4.0,
+     "p25": 3,
+     "p75": 5,
+     "mean": 4.32,
+     "n": 422
+    }
+   }
   },
   "bass_melody": {
-   "median": 3,
+   "median": 4,
    "p25": 3,
    "p75": 4,
-   "mean": 3.41,
-   "n": 537
+   "mean": 3.45,
+   "n": 593,
+   "by_meter": {
+    "3": {
+     "median": 4,
+     "p25": 3,
+     "p75": 4,
+     "mean": 3.45,
+     "n": 593
+    }
+   }
   },
   "broken_chord_wave": {
-   "median": 6,
+   "median": 5.0,
    "p25": 5,
    "p75": 6,
-   "mean": 7.1,
-   "n": 157
+   "mean": 5.8,
+   "n": 148,
+   "by_meter": {
+    "3": {
+     "median": 5.0,
+     "p25": 5,
+     "p75": 6,
+     "mean": 5.8,
+     "n": 148
+    }
+   }
   },
   "block_chord_sparse": {
    "median": 3,
    "p25": 2,
    "p75": 3,
    "mean": 2.69,
-   "n": 2841
+   "n": 2841,
+   "by_meter": {
+    "3": {
+     "median": 3,
+     "p25": 2,
+     "p75": 3,
+     "mean": 2.69,
+     "n": 2841
+    }
+   }
+  },
+  "broken_chord_desc": {
+   "median": 5,
+   "p25": 5,
+   "p75": 5,
+   "mean": 5.07,
+   "n": 15,
+   "by_meter": {
+    "3": {
+     "median": 5,
+     "p25": 5,
+     "p75": 5,
+     "mean": 5.07,
+     "n": 15
+    }
+   }
   },
   "block_chord_offbeat": {
    "median": 4.0,
    "p25": 4,
    "p75": 4,
-   "mean": 4.56,
-   "n": 276
+   "mean": 4.16,
+   "n": 276,
+   "by_meter": {
+    "3": {
+     "median": 4.0,
+     "p25": 4,
+     "p75": 4,
+     "mean": 4.16,
+     "n": 276
+    }
+   }
   },
   "alberti": {
    "median": 5,
    "p25": 5,
    "p75": 6,
-   "mean": 5.4,
-   "n": 83
+   "mean": 5.55,
+   "n": 159,
+   "by_meter": {
+    "3": {
+     "median": 5,
+     "p25": 5,
+     "p75": 6,
+     "mean": 5.55,
+     "n": 159
+    }
+   }
   },
   "pedal_point": {
    "median": 1.0,
    "p25": 1,
    "p75": 1,
    "mean": 1.0,
-   "n": 70
+   "n": 70,
+   "by_meter": {
+    "3": {
+     "median": 1.0,
+     "p25": 1,
+     "p75": 1,
+     "mean": 1.0,
+     "n": 70
+    }
+   }
+  },
+  "broken_chord_asc": {
+   "median": 6.0,
+   "p25": 5,
+   "p75": 6,
+   "mean": 5.71,
+   "n": 14,
+   "by_meter": {
+    "3": {
+     "median": 6.0,
+     "p25": 5,
+     "p75": 6,
+     "mean": 5.71,
+     "n": 14
+    }
+   }
   }
  }
 }

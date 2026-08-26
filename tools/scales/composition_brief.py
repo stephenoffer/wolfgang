@@ -419,7 +419,7 @@ def _adapter(composer: str) -> CorpusAdapter:
 
 # Bump when the meaning of a density record changes (e.g. the texture label
 # vocabulary), so every cached file is recomputed rather than served stale.
-_DENSITY_SCHEMA = 2
+_DENSITY_SCHEMA = 4
 
 
 def _density_cache_is_current(composer: str, stats: Dict[str, Any]) -> bool:
@@ -463,8 +463,10 @@ def texture_density_stats(composer: str, refresh: bool = False) -> Dict[str, Any
         except (json.JSONDecodeError, OSError):
             pass
 
-    rh_vals: Dict[str, List[int]] = {}
-    lh_vals: Dict[str, List[int]] = {}
+    rh_vals: Dict[str, List[float]] = {}
+    lh_vals: Dict[str, List[float]] = {}
+    rh_per_beat: Dict[str, List[float]] = {}
+    lh_per_beat: Dict[str, List[float]] = {}
     total = 0
     for bar in _iter_corpus_bars(composer):
         total += 1
@@ -472,28 +474,58 @@ def texture_density_stats(composer: str, refresh: bool = False) -> Dict[str, Any
         ad = bar.get("accomp_density", 0)
         rt = bar.get("rh_texture", "unclassified")
         lt = bar.get("lh_texture", "unclassified")
+        # Bucketed BY METER as well as pooled. Pooling every meter into one
+        # events-per-bar figure meant a 3/4 phrase was handed the median of a set
+        # dominated by other meters, and the density gate then checked the phrase
+        # against that same wrong number. Mozart's Alberti bass runs a median of
+        # 8 events in a 2- or 4-beat bar and 6 in a 3-beat bar; the pooled figure
+        # says 8 for all of them.
+        #
+        # Scaling a per-BEAT median by the beat count is not good enough either —
+        # the distribution is multimodal (two notes a beat and six notes a beat
+        # are both Alberti), so the per-beat median lands between the modes and
+        # scales to a figure no real bar has.
+        beats = _beat_count(bar.get("time_sig") or [4, 4])
         if md > 0:
             rh_vals.setdefault(rt, []).append(md)
+            rh_per_beat.setdefault((rt, beats), []).append(md)
         if ad > 0:
             lh_vals.setdefault(lt, []).append(ad)
+            lh_per_beat.setdefault((lt, beats), []).append(ad)
 
-    def _summary(vals: List[int]) -> Dict[str, float]:
+    def _summary(vals: List[float], places: int = 1) -> Dict[str, float]:
         vals = sorted(vals)
         n = len(vals)
         return {
-            "median": round(statistics.median(vals), 1),
-            "p25": round(vals[n // 4], 1),
-            "p75": round(vals[(3 * n) // 4], 1),
+            "median": round(statistics.median(vals), places),
+            "p25": round(vals[n // 4], places),
+            "p75": round(vals[(3 * n) // 4], places),
             "mean": round(statistics.fmean(vals), 2),
             "n": n,
         }
+
+    def _merge(per_bar, by_meter):
+        out = {}
+        for t, v in per_bar.items():
+            if len(v) < 5:
+                continue
+            entry = _summary(v)
+            buckets = {
+                str(beats): _summary(vals)
+                for (tex, beats), vals in by_meter.items()
+                if tex == t and len(vals) >= 12
+            }
+            if buckets:
+                entry["by_meter"] = buckets
+            out[t] = entry
+        return out
 
     stats = {
         "composer": composer,
         "schema": _DENSITY_SCHEMA,
         "total_bars": total,
-        "rh": {t: _summary(v) for t, v in rh_vals.items() if len(v) >= 5},
-        "lh": {t: _summary(v) for t, v in lh_vals.items() if len(v) >= 5},
+        "rh": _merge(rh_vals, rh_per_beat),
+        "lh": _merge(lh_vals, lh_per_beat),
     }
 
     try:
@@ -1034,11 +1066,12 @@ def _is_structural_phrase(graph, slot) -> bool:
     sec_id = (getattr(slot, "section_id", "") or "").lower()
     if any(k in sec_id for k in ("recap", "return", "reprise", "coda", "climax", "finale")):
         return True
-    # The elected principal theme's own phrase.
-    if (
-        getattr(graph, "principal_theme_id", "")
-        and getattr(slot, "phrase_id", "") == graph.principal_theme_id
-    ):
+    # The principal theme's own phrase. `principal_theme_id` names a MOTIF in
+    # the motif bank, not a phrase, so comparing a phrase id against it was a
+    # test that could never pass — this arm never fired for any piece.
+    from .theme_planner import phrase_carries_theme
+
+    if phrase_carries_theme(graph, getattr(slot, "phrase_id", "") or ""):
         return True
     # A phrase the narrative marks as a climax.
     nar = getattr(graph, "narrative", None)
@@ -1455,6 +1488,19 @@ def _discriminator_targets(composer: str, slot=None) -> Dict[str, str]:
     return out or dict(_DISCRIMINATOR_FALLBACK)
 
 
+def _scale_density(entry: Dict[str, Any], beats: int) -> Dict[str, Any]:
+    """Corpus density for THIS phrase's meter, falling back to the pooled figure.
+
+    Densities are pooled over every meter the composer wrote in, so the raw
+    events-per-bar median for a texture is dominated by whichever meter he used
+    most: Mozart's Alberti bass runs a median of 8 events in a 4-beat bar and 6
+    in a 3-beat bar, and the pooled figure told every 3/4 phrase 8. The density
+    gate then measured the phrase against that same wrong number.
+    """
+    bucket = (entry.get("by_meter") or {}).get(str(beats))
+    return bucket or entry
+
+
 def _build_target_stats(composer: str, slot, warnings: List[str]) -> Dict[str, Any]:
     density = texture_density_stats(composer)
     ornaments = ornament_stats(composer)
@@ -1473,13 +1519,14 @@ def _build_target_stats(composer: str, slot, warnings: List[str]) -> Dict[str, A
         "discriminators": _discriminator_targets(composer, slot),
     }
 
+    beats_here = _beat_count(getattr(slot, "meter", (4, 4)) or (4, 4))
     expected_rh_total = 0.0
     for t in rh_set:
         entry: Dict[str, Any] = {}
         d = density.get("rh", {}).get(t)
         if d:
-            entry["events_per_bar"] = d
-            expected_rh_total += d["median"]
+            entry["events_per_bar"] = _scale_density(d, beats_here)
+            expected_rh_total += entry["events_per_bar"]["median"]
         tmpl = rh_templates.get(t, {})
         # Measured from the corpus, not from the builderless hand-authored file
         # in tools/texture_templates/ (see ornament_stats).
@@ -1503,7 +1550,7 @@ def _build_target_stats(composer: str, slot, warnings: List[str]) -> Dict[str, A
     for t in lh_set:
         d = density.get("lh", {}).get(t)
         if d:
-            stats["lh_textures"][t] = {"events_per_bar": d}
+            stats["lh_textures"][t] = {"events_per_bar": _scale_density(d, beats_here)}
         else:
             warnings.append(f"no corpus stats for lh texture '{t}'")
 
@@ -1802,6 +1849,70 @@ def _cadences_already_used(graph, phrase_id: str) -> Dict[str, Any]:
     }
 
 
+def _texture_and_register_run(graph, phrase_id: str) -> Dict[str, Any]:
+    """How long the current texture and register have already been going.
+
+    A phrase composed in an isolated context has no idea that the eight bars
+    before it were all melody-and-accompaniment in the same octave — so it
+    writes a ninth, and the piece sits in one place. The analyzers can see this
+    afterwards; only the brief can prevent it.
+    """
+    state = graph.phrases.get(phrase_id)
+    if state is None or state.slot is None:
+        return {}
+    here = state.slot.bar_start or 0
+    prior = [
+        ps
+        for ps in graph.phrases.values()
+        if ps.realized and ps.slot and (ps.slot.bar_start or 0) < here
+    ]
+    if not prior:
+        return {}
+    prior.sort(key=lambda ps: ps.slot.bar_start or 0)
+    try:
+        from .direct_compose import merge_phrases
+        from .voicing import texture_runs
+    except ImportError:
+        return {}
+    try:
+        merged = merge_phrases(
+            [ps.realized for ps in prior],
+            key=(prior[0].slot.key if prior[0].slot else "C"),
+            meter=(tuple(prior[0].slot.meter) if prior[0].slot else (4, 4)),
+            piece_id=graph.piece_id,
+        )
+        runs = texture_runs(merged)
+    except Exception:
+        return {}
+    out: Dict[str, Any] = {}
+    if runs:
+        label, b0, b1 = runs[-1]
+        out["current_texture"] = label
+        out["texture_unchanged_for"] = (b1 - b0) + 1
+        out["texture_since_bar"] = b0
+    # Where the melody has been sitting, so this phrase can move if it should.
+    tops = [
+        e.pitch
+        for ps in prior[-2:]
+        for e in (ps.realized.principal_line or [])
+        if isinstance(e.pitch, str) and e.pitch != "rest"
+    ]
+    if tops:
+        from .pitch import pitch_to_midi
+
+        vals = []
+        for pname in tops:
+            try:
+                vals.append(pitch_to_midi(pname))
+            except (ValueError, KeyError, TypeError):
+                continue
+        if vals:
+            out["recent_melody_low"] = min(vals)
+            out["recent_melody_high"] = max(vals)
+            out["recent_melody_span"] = max(vals) - min(vals)
+    return out
+
+
 def _transition_context(graph, phrase_id: str) -> Dict[str, Any]:
     """Continuity info from the previous phrase, read from disk state."""
     out: Dict[str, Any] = {}
@@ -1811,6 +1922,9 @@ def _transition_context(graph, phrase_id: str) -> Dict[str, Any]:
     cadences = _cadences_already_used(graph, phrase_id)
     if cadences:
         out["cadence_history"] = cadences
+    run = _texture_and_register_run(graph, phrase_id)
+    if run:
+        out["texture_run"] = run
 
     section_id = state.slot.section_id
     order = graph.get_section_phrases(section_id)
@@ -2653,6 +2767,28 @@ def render_text(brief: CompositionBrief) -> str:
         # composed blind to the others' endings, and the same locally-reasonable
         # close gets chosen every time — which is exactly what happened: seven of
         # nine phrase endings shared one cadential rhythm.
+        tr = t.get("texture_run") or {}
+        if tr.get("texture_unchanged_for", 0) >= 6:
+            lines.append(
+                f"  ⚠ the last {tr['texture_unchanged_for']} bars (from bar "
+                f"{tr['texture_since_bar']}) have all been "
+                f"'{tr.get('current_texture')}' — long enough for a listener to stop "
+                f"hearing it. Change what the left hand DOES here, or thin to a single "
+                f"line, or drop out for a bar."
+            )
+        elif tr.get("current_texture"):
+            lines.append(
+                f"  texture coming in: '{tr['current_texture']}' for "
+                f"{tr.get('texture_unchanged_for', 1)} bar(s)"
+            )
+        if tr.get("recent_melody_span") is not None:
+            lines.append(
+                f"  the melody has been sitting between MIDI {tr['recent_melody_low']} and "
+                f"{tr['recent_melody_high']} (span {tr['recent_melody_span']} semitones) — "
+                f"register is a structural device, so move it if this phrase should feel "
+                f"like a different place."
+            )
+
         ch = t.get("cadence_history") or {}
         # NOT `for s in ...`: `s` is the slot summary for the whole of this
         # function, and rebinding it here silently replaced the phrase's key,
@@ -2774,8 +2910,11 @@ def render_text(brief: CompositionBrief) -> str:
                 # Chords as music, not as a Python list repr.
                 parts.append(
                     "approach "
-                    + (" - ".join(str(a) for a in approach)
-                       if isinstance(approach, (list, tuple)) else str(approach))
+                    + (
+                        " - ".join(str(a) for a in approach)
+                        if isinstance(approach, (list, tuple))
+                        else str(approach)
+                    )
                 )
             if cs.get("bass"):
                 parts.append(f"bass degrees {cs['bass']}")

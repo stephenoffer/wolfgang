@@ -1,6 +1,6 @@
 {
  "composer": "handel",
- "schema": 2,
+ "schema": 4,
  "total_bars": 54,
  "rh": {
   "singing_melody": {
@@ -8,7 +8,16 @@
    "p25": 3,
    "p75": 5,
    "mean": 4.13,
-   "n": 31
+   "n": 31,
+   "by_meter": {
+    "4": {
+     "median": 4,
+     "p25": 3,
+     "p75": 5,
+     "mean": 4.13,
+     "n": 31
+    }
+   }
   },
   "held_note": {
    "median": 2,
@@ -24,14 +33,32 @@
    "p25": 1,
    "p75": 2,
    "mean": 1.5,
-   "n": 28
+   "n": 28,
+   "by_meter": {
+    "4": {
+     "median": 1.5,
+     "p25": 1,
+     "p75": 2,
+     "mean": 1.5,
+     "n": 28
+    }
+   }
   },
   "bass_melody": {
    "median": 3,
    "p25": 3,
    "p75": 3,
    "mean": 3.05,
-   "n": 19
+   "n": 19,
+   "by_meter": {
+    "4": {
+     "median": 3,
+     "p25": 3,
+     "p75": 3,
+     "mean": 3.05,
+     "n": 19
+    }
+   }
   },
   "broken_chord_wave": {
    "median": 8,

@@ -242,3 +242,74 @@ on a score that had every one of them.
 Confirming the improvement in composed output needs a fresh agent run; the
 before/after table in §1 is on identical notes and isolates the pipeline's
 contribution only.
+
+---
+
+## 8. Style references were silently given Classical data
+
+`PhraseBank` and `TransitionBank` each carried a byte-identical
+`_load_transition_matrix`, and both fell back to
+`pattern_library/transitions/by_genre/**classical**.json` for every composer —
+while genre matrices for baroque, romantic, late-romantic, impressionist,
+modern, minimalist, nationalistic and film-score sat unread beside them. So a
+Bach piece with no composer matrix, and every `style__<name>` reference, was
+handed Classical texture-transition odds. In the one place whose entire job is
+style fidelity.
+
+Both now delegate to a single `style_registry.load_transition_matrix`, which
+resolves the composer's real genre. Verified: `style__romantic` loads the
+romantic matrix (4,639 transitions), `style__baroque` the baroque one (5,250);
+both previously loaded classical (13,317).
+
+**Liszt was missing from `_STYLE_MEMBERS` entirely** while being one of only
+twelve *armed* composers — so "compose in a romantic style" drew on Chopin,
+Schubert and Weber and quietly ignored the whole Liszt corpus. Eleven other
+composers with compiled packs were likewise unclassified. All added, and a test
+now fails if any compiled pack has no style.
+
+## 9. Guards for the failure mode that caused all of this
+
+The most expensive defect in this pass was not a wrong line of code. It was two
+finished, well-tested, thoroughly documented modules that nothing called — and
+a green test suite that said nothing, because every unit test built its objects
+in memory.
+
+`test_no_dead_modules.py` closes that: if `CLAUDE.md` lists a module, either
+something imports it (Python, or a `.claude` skill/agent/workflow), or its entry
+says plainly that nothing does. `performance_bank.py` and `transition_bank.py`
+are called by nothing and now say so; `performance_renderer.py`'s docstring
+claimed a `PerformanceBank` dependency it does not have, which is corrected.
+`test_score_realism_calibration.py` additionally fails if any single detector is
+defined but never run by `realism_report` — the same failure at one-detector
+granularity, quieter and just as real.
+
+## 10. Smaller fixes
+
+- The panel judge picked a winner from an **unengraved** preview — no
+  articulation, no phrasing, no pedal — and only the winner was engraved on
+  promotion. Candidates are now engraved too, so the judge compares what ships.
+- `self_evaluate`'s hint for `texture_change_pct` told the critic that real
+  music "changes texture between ~40-70% of consecutive bars" — the very band
+  the comment three lines above records as having rejected 20 of 24 real
+  movements. Corrected to the calibrated 4.5-58.5%, and it now reads
+  differently for "too low" and "too high".
+- The craft reference's §6b sat between §4b and §5, covering §6's subject;
+  merged into §6. Tests guard section ordering, uniqueness, and that every `§N`
+  cross-reference in every file resolves to a section that exists.
+
+---
+
+## Verification
+
+451 unit tests and 15 calibration tests pass. The calibration set is the one
+that matters here: it parses the reference corpus and fails if any detector
+fires on canonical music beyond its documented rate, if the commit gate rejects
+real corpus bars, or if a guidance file quotes a corpus size the harness does
+not have.
+
+The before/after in §1 is measured on **identical notes** — the same nine
+committed phrases, re-engraved and re-assembled — so it isolates the pipeline's
+contribution and claims nothing about composition. Whether the composed output
+improves is a question for the next agent run, which now has actionable
+register targets, five measured instructions it did not have, and an audit that
+can see the four defects it used to miss.

@@ -35,6 +35,20 @@ section, not just the exemplars (full list: craft §1):
 - composer-specific **corpus targets**, **AVOID (AI tells)**, ledger items,
   and continuity state (previous tail, next needs).
 
+Three parts of **TRANSITION IN** exist because a phrase composed in an isolated
+context cannot otherwise know them, and each prevents a defect that shipped:
+
+- **CADENCES ALREADY USED IN THIS PIECE** — every earlier phrase's closing
+  rhythm, and a warning when one has been reused. The previous piece closed
+  seven of its nine phrases with the identical gesture, because no phrase could
+  see any other. Close this one differently (craft §4b has nine ways).
+- **texture coming in** — how many bars the current accompaniment idiom has
+  already run. Past about six, a listener has stopped hearing it; change what
+  the left hand *does*, thin to a single line, or drop out for a bar.
+- **where the melody has been sitting** — the register of the last two phrases.
+  Register is a structural device; if this phrase should feel like a different
+  place, move it.
+
 If the brief returns **no exemplars**, the corpus cannot anchor this
 phrase: the commit will be blocked with `brief_insufficient`. Stop and
 report — do not improvise blind. The right fix is to **arm the composer**

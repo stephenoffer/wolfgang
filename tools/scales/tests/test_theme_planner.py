@@ -18,9 +18,12 @@ import pytest
 from scales.models import LayerEvent, LayerIR, MotifObject
 from scales.theme_planner import (
     analyze_theme,
+    capture_theme_surface,
     develop_theme_surface,
     elect_principal_theme,
+    phrase_carries_theme,
     plan_section_opening_placements,
+    principal_theme_phrase,
     theme_recurrence,
 )
 
@@ -242,3 +245,89 @@ def test_every_key_develops_without_error(key):
     t = _theme(["C5", "D5", "E5", "F5"], key=key)
     assert develop_theme_surface(t, "state")
     assert develop_theme_surface(t, "augment")
+
+
+# ─── One field, one meaning ──────────────────────────────────────────────────
+#
+# ``principal_theme_id`` had come to carry two incompatible kinds of name: a
+# MOTIF id after election, and a PHRASE id (with a "__theme" suffix) after a
+# theme capture. The consequence was two silent failures, both permanent:
+# the brief's "is this phrase the theme's own phrase?" test compared a motif id
+# to a phrase id and could never be true, and its motif lookup found nothing in
+# the bank and fell back to whichever motif happened to be first.
+
+
+def _graph_with_theme():
+    from scales.models import MotifObject, PhraseSlot, PhraseState
+    from scales.piece_graph import PieceGraph
+    from scales.theme_planner import elect_principal_theme
+
+    g = PieceGraph()
+    g.motif_bank = {
+        "motif_A": MotifObject(
+            motif_id="motif_A",
+            interval_contour=[2, 2, -1],
+            rhythm_cell=["q", "e", "e"],
+            recognition_anchor="head",
+        )
+    }
+    g.principal_theme_id = elect_principal_theme(g.motif_bank) or ""
+    slot = PhraseSlot(
+        phrase_id="m1_a_p1", section_id="m1_a", bar_start=1, bar_count=1,
+        key="C major", meter=(4, 4),
+    )
+    ir = LayerIR(phrase_id="m1_a_p1", key="C major", meter=(4, 4))
+    for i, p in enumerate(["C5", "D5", "E5", "F5"]):
+        ir.principal_line.append(LayerEvent(bar=1, beat=1 + i, pitch=p, duration="q"))
+    g.phrases["m1_a_p1"] = PhraseState(slot=slot, realized=ir, status="realized")
+    return g
+
+
+def test_capturing_a_theme_does_not_clobber_the_elected_motif_id():
+    g = _graph_with_theme()
+    capture_theme_surface(g, "m1_a_p1")
+    assert g.principal_theme_id == "motif_A"
+    assert g.principal_theme_id in g.motif_bank, "the motif lookup must still resolve"
+
+
+def test_the_themes_source_phrase_is_recoverable():
+    g = _graph_with_theme()
+    capture_theme_surface(g, "m1_a_p1")
+    assert principal_theme_phrase(g) == "m1_a_p1"
+    assert phrase_carries_theme(g, "m1_a_p1") is True
+    assert phrase_carries_theme(g, "m1_b_p1") is False
+
+
+def test_a_graph_saved_under_the_old_convention_still_resolves():
+    from scales.piece_graph import PieceGraph
+
+    legacy = PieceGraph()
+    legacy.principal_theme_id = "m1_a_p1__theme"
+    assert principal_theme_phrase(legacy) == "m1_a_p1"
+
+
+def test_the_source_phrase_survives_a_save_and_load(tmp_path):
+    """The explicit field is not persisted, so resolution falls back to the
+    surface's own phrase_id — which is."""
+    g = _graph_with_theme()
+    capture_theme_surface(g, "m1_a_p1")
+    path = tmp_path / "graph.json"
+    g.save(str(path))
+    from scales.piece_graph import PieceGraph
+
+    assert principal_theme_phrase(PieceGraph.load(str(path))) == "m1_a_p1"
+
+
+def test_election_still_fills_an_empty_id_at_capture_time():
+    """A piece whose theme is captured before any election still gets an id."""
+    g = _graph_with_theme()
+    g.principal_theme_id = ""
+    capture_theme_surface(g, "m1_a_p1")
+    assert g.principal_theme_id == "motif_A"
+
+
+def test_no_theme_anywhere_resolves_to_empty():
+    from scales.piece_graph import PieceGraph
+
+    assert principal_theme_phrase(PieceGraph()) == ""
+    assert phrase_carries_theme(PieceGraph(), "m1_a_p1") is False

@@ -4,12 +4,12 @@
  "total_bars": 7022,
  "textures": {
   "scalar_run": {
-   "grace": 0.1905,
-   "trill": 0.1131,
-   "mordent": 0.0206,
-   "turn": 0.0157,
-   "dotted": 0.2284,
-   "n": 1848
+   "grace": 0.2025,
+   "trill": 0.1175,
+   "mordent": 0.0224,
+   "turn": 0.0112,
+   "dotted": 0.2113,
+   "n": 1694
   },
   "singing_melody": {
    "grace": 0.0586,
@@ -28,12 +28,12 @@
    "n": 1081
   },
   "zigzag_figuration": {
-   "grace": 0.0428,
-   "trill": 0.0334,
-   "mordent": 0.006,
-   "turn": 0.0214,
-   "dotted": 0.1087,
-   "n": 1168
+   "grace": 0.0446,
+   "trill": 0.0393,
+   "mordent": 0.0053,
+   "turn": 0.0265,
+   "dotted": 0.1445,
+   "n": 1322
   },
   "held_note": {
    "grace": 0.0105,

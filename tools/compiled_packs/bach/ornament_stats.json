@@ -12,20 +12,20 @@
    "n": 2828
   },
   "zigzag_figuration": {
-   "grace": 0.0,
-   "trill": 0.0014,
+   "grace": 0.0006,
+   "trill": 0.004,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.2562,
-   "n": 1417
+   "dotted": 0.2051,
+   "n": 3228
   },
   "scalar_run": {
-   "grace": 0.0015,
-   "trill": 0.0056,
+   "grace": 0.0064,
+   "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.1723,
-   "n": 1968
+   "dotted": 0.2548,
+   "n": 157
   },
   "held_note": {
    "grace": 0.0,

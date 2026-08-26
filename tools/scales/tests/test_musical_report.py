@@ -13,8 +13,8 @@ a distribution, and nothing in the report is a verdict.
 import pytest
 
 from scales.models import LayerEvent, LayerIR, PhraseSlot, PhraseState
-from scales.piece_graph import PieceGraph
 from scales.musical_report import build_report, concerns_only, render_text
+from scales.piece_graph import PieceGraph
 
 
 def _ev(bar, beat, pitch, dur="q", **kw):
@@ -23,7 +23,8 @@ def _ev(bar, beat, pitch, dur="q", **kw):
 
 def _graph(phrase_specs, piece_id="test-piece"):
     """phrase_specs: [(phrase_id, bar_start, bars, cadence_target, melody, bass)]"""
-    g = PieceGraph(piece_id=piece_id)
+    g = PieceGraph()
+    g.piece_id = piece_id
     for pid, bar_start, bars, cad, melody, bass in phrase_specs:
         slot = PhraseSlot(
             phrase_id=pid,
@@ -96,9 +97,12 @@ def test_a_cadence_that_disagrees_with_the_plan_is_reported():
 
 
 def test_a_long_unchanging_texture_run_is_reported():
-    tune = ["C5", "D5", "E5", "F5"] * 4
+    # Eight bars is the point at which one unchanging texture is reported: long
+    # enough that a listener stops hearing it, short enough that four bars of a
+    # deliberately steady accompaniment is left alone.
+    tune = ["C5", "D5", "E5", "F5"] * 8
     mel, bass = _plain_phrase(1, tune)
-    rep = build_report(_graph([("m1_a_p1", 1, 4, "PAC", mel, bass)]), style="mozart")
+    rep = build_report(_graph([("m1_a_p1", 1, 8, "PAC", mel, bass)]), style="mozart")
     assert any("hold one texture" in c for c in rep.texture["concerns"])
 
 
@@ -121,7 +125,8 @@ def test_the_report_speaks_in_sentences_not_z_scores():
 
 
 def test_it_renders_without_a_realized_phrase():
-    g = PieceGraph(piece_id="empty")
+    g = PieceGraph()
+    g.piece_id = "empty"
     rep = build_report(g)
     assert rep.phrases == 0
     assert "nothing realized yet" in rep.page["observations"]
@@ -130,7 +135,8 @@ def test_it_renders_without_a_realized_phrase():
 
 def test_dict_shaped_realized_material_is_read_too():
     """Callers hold both shapes; reading only one looks like a clean score."""
-    g = PieceGraph(piece_id="dict-form")
+    g = PieceGraph()
+    g.piece_id = "dict-form"
     slot = PhraseSlot(
         phrase_id="m1_a_p1",
         section_id="m1_a",
@@ -157,9 +163,9 @@ def test_dict_shaped_realized_material_is_read_too():
 
 
 def test_concerns_only_gathers_every_section():
-    tune = ["C5", "D5", "E5", "F5"] * 4
+    tune = ["C5", "D5", "E5", "F5"] * 8
     mel, bass = _plain_phrase(1, tune)
-    rep = build_report(_graph([("m1_a_p1", 1, 4, "PAC", mel, bass)]), style="mozart")
+    rep = build_report(_graph([("m1_a_p1", 1, 8, "PAC", mel, bass)]), style="mozart")
     assert len(concerns_only(rep)) >= 2
 
 

@@ -43,7 +43,9 @@ def norm_roman(fig: Optional[str], mode: str = "major") -> Optional[str]:
     parsed = parse_roman(str(fig).strip(), mode)
     if not parsed:
         return None
-    return spell_roman(int(parsed["degree"]), str(parsed["quality"]), int(parsed["inversion"]), 0, mode)
+    return spell_roman(
+        int(parsed["degree"]), str(parsed["quality"]), int(parsed["inversion"]), 0, mode
+    )
 
 
 def _beat_count(bar) -> int:
