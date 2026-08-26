@@ -144,3 +144,36 @@ def test_orchestration_clamps_every_part_into_its_range():
                 assert lo <= midi <= hi, (
                     f"{instrument} given {one} (midi {midi}), range [{lo},{hi}]"
                 )
+
+
+def test_every_spelling_of_piano_gets_the_playability_check():
+    """The hand-span gate was a whitelist of two spellings, and the graphs on
+    disk carry four: 'piano', 'piano_solo', 'solo piano', 'solo_piano'.
+
+    A piece saved under two of them got NO playability check — not a relaxed
+    one, none — and hand span is a strict physical constraint. Reproduced: an
+    unplayable two-octave stretch in one hand yielded zero findings for
+    `piano_solo` before this.
+    """
+    from scales.validator import validate_layer_ir
+
+    def span_findings(instrumentation):
+        ir = LayerIR(phrase_id="p", instrumentation=instrumentation, meter=(4, 4), bar_count=1)
+        ir.principal_line = [
+            LayerEvent(
+                bar=1,
+                beat=1.0,
+                pitch=["C4", "C6"],  # a two-octave stretch in one hand
+                duration="w",
+                role="structural",
+                source_layer="principal_line",
+            )
+        ]
+        report = validate_layer_ir(ir)
+        return [i for i in getattr(report, "issues", []) if i.category == "playability"]
+
+    for spelling in ("solo_piano", "piano", "piano_solo", "solo piano", "fortepiano", "Solo Piano"):
+        assert span_findings(spelling), f"{spelling!r} got no playability check"
+    # An ensemble has no hands. `piano_trio` contains "piano" and is still one.
+    for spelling in ("ensemble", "string_quartet", "piano_trio", "choir"):
+        assert not span_findings(spelling), f"{spelling!r} was given a hand-span check"

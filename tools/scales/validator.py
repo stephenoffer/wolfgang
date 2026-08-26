@@ -18,7 +18,7 @@ from fractions import Fraction
 from typing import Any, Dict, List, Optional, Tuple
 
 from .duration import bar_duration, dur_to_beats, is_grace
-from .models import EventIR, LayerEvent, LayerIR, PhysicalConstraints
+from .models import EventIR, LayerEvent, LayerIR, PhysicalConstraints, is_keyboard
 from .pitch import pitch_to_midi
 
 # ─── Voice Ranges ────────────────────────────────────────────────────────────
@@ -593,8 +593,18 @@ def validate_layer_ir(
                         layer_name,
                     )
 
-    # Playability (piano only)
-    if layer_ir.instrumentation in ("solo_piano", "piano"):
+    # Playability (keyboard only — an ensemble has no hands to span).
+    #
+    # This was a whitelist of two spellings. The graphs on disk actually carry
+    # 'piano', 'piano_solo', 'solo piano' and 'solo_piano', so a piece saved
+    # under two of those four got NO playability check at all — not a relaxed
+    # one, none — and a hand-span violation is a STRICT physical constraint.
+    # A missed lookup here is silent, and silence reads as a clean score.
+    #
+    # `is_keyboard` resolves an unrecognised spelling to keyboard on purpose:
+    # calling an ensemble a keyboard over-reports a span complaint that a reader
+    # instantly sees is wrong, while calling a keyboard an ensemble goes quiet.
+    if is_keyboard(layer_ir.instrumentation):
         inner = getattr(layer_ir, "inner_voices", None) or {}
         rh_events = (
             layer_ir.principal_line

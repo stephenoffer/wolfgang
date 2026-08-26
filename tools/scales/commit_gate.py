@@ -846,7 +846,7 @@ def run_commit_gate(
     style_program = getattr(graph, "style_program", None)
     anti_patterns = getattr(style_program, "anti_patterns", None)
     try:
-        detector_results = run_all_detectors(layer, anti_patterns, prev_layer)
+        detector_results = run_all_detectors(layer, anti_patterns, prev_layer, composer)
     except Exception:
         detector_results = []
     for det in detector_results:

@@ -601,3 +601,38 @@ def test_a_silent_bar_has_no_density_floor():
     # An idiom with real stats, and an unknown one, both still get a floor.
     assert floor_for("alberti") > 0
     assert floor_for("some_unknown_texture") > 0
+
+
+def test_flat_dynamics_does_not_scold_a_period_that_does_not_notate_dynamics():
+    """`expression_enricher.ENGRAVING_STYLES` sets renaissance
+    `dynamic_every_n_bars=99` — "dynamics are not notated" — and baroque 8, and
+    the engraver obeys it.
+
+    The detector had no period awareness and warned at 4 bars for everyone, so
+    every Palestrina phrase was told forever that its dynamics were flat, about
+    marks the system itself deliberately refuses to add. Two subsystems
+    disagreeing inside one context window is a defect in its own right; they
+    read the same table now.
+    """
+    from scales.anti_pattern_detector import detect_flat_dynamics
+    from scales.models import LayerEvent, LayerIR
+
+    def unmarked(bars):
+        ir = LayerIR(phrase_id="p", bar_count=bars)
+        ir.principal_line = [
+            LayerEvent(bar=b, beat=1.0, pitch="C5", duration="q") for b in range(1, bars + 1)
+        ]
+        return ir
+
+    def warns(composer, bars):
+        return detect_flat_dynamics(unmarked(bars), {"composer": composer})[0]
+
+    # Renaissance notates none at any length.
+    assert not warns("palestrina", 4)
+    assert not warns("palestrina", 16)
+    # Baroque marks about every 8 bars, so a 4-bar phrase proves nothing.
+    assert not warns("bach", 4)
+    assert warns("bach", 8)
+    # Classical and Romantic mark often enough that 4 bars is a real claim.
+    assert warns("mozart", 4)
+    assert warns("chopin", 4)

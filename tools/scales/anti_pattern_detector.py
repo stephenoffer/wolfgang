@@ -41,6 +41,18 @@ def _voice_midi(pitch, prefer: str = "top") -> Optional[int]:
     return max(midis) if prefer == "top" else min(midis)
 
 
+def _dynamic_interval(params: Optional[Dict]) -> int:
+    """How often this period actually marks a dynamic, from the engraver's own
+    table — so the detector and the engraver cannot disagree."""
+    composer = (params or {}).get("composer") or ""
+    try:
+        from .expression_enricher import resolve_style
+
+        return int(getattr(resolve_style(composer), "dynamic_every_n_bars", 4) or 4)
+    except Exception:
+        return 4
+
+
 def detect_flat_dynamics(layer: LayerIR, params: Optional[Dict] = None) -> Tuple[bool, str, str]:
     """All dynamics identical across bars → flat, lifeless music."""
     max_same_ratio = (params or {}).get("max_same_ratio", 0.8)
@@ -55,14 +67,27 @@ def detect_flat_dynamics(layer: LayerIR, params: Optional[Dict] = None) -> Tuple
     # names. Across all 13,742 notes this project has ever committed, 91.3% carry
     # no dynamic; real movements carry about 0.77 dynamic marks per bar.
     if not dynamics:
-        if layer.bar_count >= min_bars:
+        # Periods that do not NOTATE dynamics must not be told their dynamics are
+        # flat. `expression_enricher.ENGRAVING_STYLES` already encodes this —
+        # renaissance sets dynamic_every_n_bars=99 ("dynamics are not notated")
+        # and baroque 8 — and the engraver obeys it, so this detector was warning
+        # on every Palestrina phrase forever about something the system itself
+        # deliberately refuses to add. Two subsystems disagreeing in one context
+        # window is a defect in its own right; they now read the SAME table.
+        expected_every = _dynamic_interval(params)
+        if layer.bar_count < max(min_bars, expected_every):
             return (
-                True,
+                False,
                 "warning",
-                f"no dynamic marked anywhere in {layer.bar_count} bars — the phrase "
-                f"has no shape a player could follow",
+                f"too short to judge dynamic shape (this period marks a dynamic "
+                f"about every {expected_every} bars)",
             )
-        return False, "warning", "too short to judge dynamic shape"
+        return (
+            True,
+            "warning",
+            f"no dynamic marked anywhere in {layer.bar_count} bars — the phrase "
+            f"has no shape a player could follow",
+        )
     if len(dynamics) < 2:
         return (
             True,
@@ -153,13 +178,7 @@ def detect_missing_silence(layer: LayerIR, params: Optional[Dict] = None) -> Tup
     if layer.bar_count < min_bars:
         return False, "warning", ""
 
-    all_events = (
-        layer.principal_line
-        + layer.bass_foundation
-        + layer.response_layer
-        + layer.counter_reply
-        + layer.ornamental_surface
-    )
+    all_events = layer.all_events()
 
     rest_count = sum(1 for evt in all_events if evt.pitch == "rest")
     if rest_count == 0:
@@ -396,6 +415,7 @@ def run_all_detectors(
     layer: LayerIR,
     anti_patterns: Optional[List[AntiPatternRule]] = None,
     prev_layer: Optional[LayerIR] = None,
+    composer: str = "",
 ) -> List[Dict]:
     """Run all applicable detectors on a LayerIR.
 
@@ -414,6 +434,10 @@ def run_all_detectors(
                     rule_id = ap.id
                     break
 
+        # Period-aware detectors resolve the composer's engraving conventions
+        # from this; passing it through `params` keeps every detector signature
+        # unchanged.
+        params = {**params, "composer": composer}
         detected, severity, detail = det_func(layer, params)
         results.append(
             {
