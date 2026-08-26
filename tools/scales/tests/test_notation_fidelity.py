@@ -1154,3 +1154,68 @@ def test_a_single_movement_can_be_assembled_on_its_own(tmp_path, movement):
     )
     bars = list(score.parts[0].getElementsByClass("Measure"))
     assert len(bars) == 4, f"movement-{movement} assembled {len(bars)} bars"
+
+
+def test_continuation_is_recorded_for_the_next_phrase(tmp_path, monkeypatch):
+    """`ContinuationContext` declares thirteen fields and NOTHING in the system
+    ever set one, so every phrase slot carried the default and the brief's
+    continuation block never rendered for any piece."""
+    import shutil
+
+    from scales import scales as scales_mod
+    from scales.piece_graph import PieceGraph
+
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    pid = "continuation-test"
+    scales_mod.init_workspace(pid, description="a piece in C major", mode="compose_from_text")
+    scales_mod.build_form_graph(pid, form="ternary", key="C major")
+
+    graph = PieceGraph.load(str(tmp_path / pid / "piece_graph.json"))
+    order = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)
+    first, second = order[0], order[1]
+    slot = graph.phrases[first].slot
+    graph.phrases[first].slot.cadence_target = "HC"
+    graph.phrases[first].realized = compose_phrase(
+        [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e", "dyn": "mf"}]
+        * slot.bar_count,
+        key="C major", bar_start=slot.bar_start, phrase_id=first, meter=(4, 4),
+    )
+    scales_mod._record_continuation(graph, first)
+
+    cont = graph.phrases[second].slot.continuation
+    assert cont is not None
+    assert cont.last_soprano_pitch == "F5"
+    assert cont.last_soprano_contour == "rising", "the melody arrives rising"
+    assert cont.last_rh_density == 4.0 and cont.last_lh_density == 8.0
+    assert cont.last_key == "C major"
+    assert cont.last_dynamic == "mf"
+    # A half cadence leaves the dominant hanging; the NEXT phrase owes it.
+    assert cont.pending_resolution == "dominant"
+    shutil.rmtree(tmp_path / pid, ignore_errors=True)
+
+
+def test_the_brief_tells_the_composer_a_resolution_is_owed(tmp_path, monkeypatch):
+    import shutil
+
+    from scales import scales as scales_mod
+    from scales.composition_brief import _transition_context
+    from scales.models import ContinuationContext
+    from scales.piece_graph import PieceGraph
+
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    pid = "continuation-brief"
+    scales_mod.init_workspace(pid, description="a piece in C major", mode="compose_from_text")
+    scales_mod.build_form_graph(pid, form="ternary", key="C major")
+    graph = PieceGraph.load(str(tmp_path / pid / "piece_graph.json"))
+    order = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)
+    graph.phrases[order[1]].slot.continuation = ContinuationContext(
+        last_soprano_pitch="G5", last_soprano_contour="arch", pending_resolution="dominant",
+        last_rh_density=5.0, last_lh_density=8.0, last_lh_texture="alberti",
+    )
+    out = _transition_context(graph, order[1])
+    cont = out.get("continuation") or {}
+    # Every field, not the five that used to be exported.
+    assert cont.get("last_soprano_contour") == "arch"
+    assert cont.get("last_lh_texture") == "alberti"
+    assert cont.get("pending_resolution") == "dominant"
+    shutil.rmtree(tmp_path / pid, ignore_errors=True)

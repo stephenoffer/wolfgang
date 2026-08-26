@@ -20,6 +20,7 @@ from .duration import (
     bar_duration,
     beats_to_dur,
     dur_to_beats,
+    largest_dur_at_most,
 )
 from .models import EventIR
 from .music_io import layer_ir_to_event_ir
@@ -1062,8 +1063,12 @@ def _add_event_to_measure(
     if dur_beats > remaining:
         if remaining < _MIN_NOTATABLE:
             return  # no room left in the bar — the meter check flags the cause
-        dur_beats = remaining
-    dur_beats = _notatable(dur_beats)
+        # The LONGEST value that fits, not the nearest: `_notatable` rounds to
+        # whichever is closest, which for a remainder of 1.4375 is a dotted
+        # quarter at 1.5 — back past the barline the clamp just pulled it inside.
+        dur_beats = dur_to_beats(largest_dur_at_most(remaining))
+    else:
+        dur_beats = _notatable(dur_beats)
 
     if event.pitch == "rest":
         n = music21.note.Rest()

@@ -2161,6 +2161,9 @@ def _gated_commit(
     #    a phrase may fail one deliberately.
     craft = _craft_check_phrase(graph, phrase_id, layer)
 
+    # 5. Hand the next phrase what it needs to continue from this one.
+    _record_continuation(graph, phrase_id)
+
     # Capture the piece's principal theme from the first phrase whose dramatic
     # role is to state it. The theme machinery was entirely inert on the default
     # path: `motif_bank` is empty at plan time so no theme was ever elected, and
@@ -2236,6 +2239,97 @@ def _settle_expectations(graph, phrase_id: str) -> None:
             settled |= bool(ledger.satisfy(exp.id, phrase_id))
     if settled:
         persist_ledger(graph, ledger)
+
+
+def _record_continuation(graph, phrase_id: str) -> None:
+    """Hand the NEXT phrase what it needs to continue from this one.
+
+    `ContinuationContext` declares thirteen fields and **nothing anywhere in the
+    system ever set one**. Every phrase slot carried the default, so every field
+    was None, and the brief's continuation block never rendered for any piece.
+    Cross-phrase continuity ran on two values computed ad-hoc from the previous
+    phrase's tail — which is why a phrase could not know the register the melody
+    had been sitting in, how dense the texture had been, what the accompaniment
+    was doing, or which motifs had already been stated.
+
+    Written onto the FOLLOWING phrase's slot, at commit, from the phrase that
+    was just committed.
+    """
+    from .models import ContinuationContext
+
+    state = graph.phrases.get(phrase_id)
+    slot = getattr(state, "slot", None) if state else None
+    layer = getattr(state, "realized", None) if state else None
+    if slot is None or layer is None:
+        return
+
+    here = slot.bar_start or 0
+    following = [
+        (ps.slot.bar_start, pid, ps)
+        for pid, ps in graph.phrases.items()
+        if ps.slot and (ps.slot.bar_start or 0) > here
+    ]
+    if not following:
+        return
+    _, _next_id, nxt = min(following, key=lambda t: t[0])
+
+    melody = [e for e in (layer.principal_line or []) if e.pitch != "rest"]
+    bass = [e for e in (layer.bass_foundation or []) if e.pitch != "rest"]
+    last_bar = max((e.bar for e in (layer.principal_line or [])), default=here)
+
+    contour = None
+    if len(melody) >= 3:
+        from .pitch import pitch_to_midi
+
+        tail = []
+        for e in melody[-4:]:
+            try:
+                tail.append(pitch_to_midi(e.pitch if isinstance(e.pitch, str) else e.pitch[-1]))
+            except (ValueError, KeyError, TypeError):
+                pass
+        if len(tail) >= 3:
+            rise = tail[-1] - tail[0]
+            peaked = max(tail) > max(tail[0], tail[-1])
+            if peaked:
+                contour = "arch"
+            elif rise > 1:
+                contour = "rising"
+            elif rise < -1:
+                contour = "falling"
+            else:
+                contour = "static"
+
+    def _density(events) -> Optional[float]:
+        in_bar = [e for e in events if e.bar == last_bar and e.pitch != "rest"]
+        return float(len(in_bar)) if in_bar else None
+
+    textures = list(getattr(slot, "texture_plan", None) or [])
+    cadence = str(getattr(slot, "cadence_target", "") or "")
+    transforms = list(getattr(slot, "motif_transforms", None) or [])
+
+    nxt.slot.continuation = ContinuationContext(
+        last_soprano_pitch=(melody[-1].pitch if melody else None),
+        last_bass_pitch=(bass[-1].pitch if bass else None),
+        last_soprano_contour=contour,
+        last_chord=(list(getattr(slot, "harmony_plan", None) or []) or [None])[-1],
+        last_key=slot.key,
+        # A half cadence leaves the dominant hanging: that IS the pending
+        # resolution, and the next phrase is the one that owes it.
+        pending_resolution=("dominant" if cadence in ("HC", "half") else None),
+        last_rh_density=_density(layer.principal_line or []),
+        last_lh_density=_density((layer.bass_foundation or []) + (layer.response_layer or [])),
+        last_rh_texture=(getattr(textures[-1], "rh_texture", None) if textures else None),
+        last_lh_texture=(getattr(textures[-1], "lh_texture", None) if textures else None),
+        last_dynamic=next(
+            (e.dynamic for e in reversed(layer.principal_line or []) if e.dynamic), None
+        ),
+        motifs_stated=[
+            str(getattr(t, "motif_id", t)) for t in transforms if getattr(t, "op", "") == "state"
+        ],
+        motifs_developed=[
+            str(getattr(t, "motif_id", t)) for t in transforms if getattr(t, "op", "") != "state"
+        ],
+    )
 
 
 def _craft_check_phrase(graph, phrase_id: str, layer: LayerIR) -> Optional[Dict[str, Any]]:
@@ -2384,9 +2478,12 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
                 counts["overlaps_trimmed"] += 1
                 continue
             if length > room:
-                from .duration import beats_to_dur
+                from .duration import largest_dur_at_most
 
-                e.duration = beats_to_dur(room)
+                # NOT beats_to_dur: the nearest notatable value to the room left
+                # can be LONGER than the room (1.4375 -> a dotted quarter at
+                # 1.5), so the clamp rounded straight back past the barline.
+                e.duration = largest_dur_at_most(room)
                 counts["overlaps_trimmed" if nxt is not None else "overflow_dropped"] += 1
             keep.append(e)
         events[:] = keep

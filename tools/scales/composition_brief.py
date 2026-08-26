@@ -17,6 +17,7 @@ import json
 import logging
 import statistics
 from dataclasses import dataclass, field
+from dataclasses import fields as _dc_fields
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -1026,12 +1027,27 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     position = "cadence" if cad else ("entry" if role == "opening" else "middle")
     intents = _load_pack(composer, "ornament_intents") or []
     chosen = []
+    # THIS composer's own ornament habits lead. `ornament_intents.json` was
+    # identical for all twelve armed composers, so every brief recommended the
+    # same ornament in the same place whether it was writing Bach or Chopin —
+    # while the table saying what each composer actually does sat uncompiled in
+    # their profile. Ornament choice is one of the most composer-specific things
+    # in the idiom.
+    for it in intents if isinstance(intents, list) else []:
+        if it.get("category") != "composer_ornament_usage":
+            continue
+        name = (it.get("ornament") or "").strip()
+        usage = (it.get("usage") or "").strip()
+        intent = (it.get("intent") or "").strip()
+        if name and usage:
+            chosen.append(f"{name} — {usage}" + (f" ({intent})" if intent else ""))
+    composer_specific = len(chosen)
     for it in intents if isinstance(intents, list) else []:
         ctx = (it.get("context", "") or "").lower()
         if position in ctx or (role == "opening" and "entry" in ctx):
             chosen.append(f"{it.get('what_moment_needs', '')} → {it.get('common_choice', '')}")
     if chosen:
-        out["ornament_intent"] = chosen[:2]
+        out["ornament_intent"] = chosen[: max(3, composer_specific + 1)][:4]
 
     # Breathing / silence guidance (favor cadence/climax-relevant rules)
     breathing = _load_pack(composer, "breathing_rules") or []
@@ -1138,6 +1154,22 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     }
     figs = _load_pack(composer, "figuration_templates") or []
     fig_lines = []
+    # The composer's own left-hand catalogue first, matched to this phrase's
+    # planned textures where it can be and offered as alternatives where it
+    # cannot. `<composer>-lh-vocabulary.md` exists to answer "what else could
+    # the left hand be doing", which is the question behind the single most
+    # mechanical thing this system produces: one accompaniment idiom, every bar,
+    # for a whole piece. It was read by nothing.
+    idioms = [
+        f for f in (figs if isinstance(figs, list) else [])
+        if f.get("category") == "composer_hand_idiom"
+    ]
+    matched = [
+        i for i in idioms
+        if lh_textures and any(t and t.split("_")[0] in i.get("name", "").lower() for t in lh_textures)
+    ]
+    for i in (matched or idioms)[:3]:
+        fig_lines.append(f"LH idiom — {i.get('name', '')}: {i.get('description', '')[:180]}")
     for fdef in figs if isinstance(figs, list) else []:
         kw = (fdef.get("pattern_keyword", "") or "").lower()
         if kw and any(kw in lt for lt in lh_textures):
@@ -1145,7 +1177,7 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
             use = (fdef.get("when_to_use") or [""])[0]
             fig_lines.append(f"{fdef.get('name', kw)} — {char}; {use}")
     if fig_lines:
-        out["figuration"] = fig_lines[:2]
+        out["figuration"] = fig_lines[:5]
 
     # Harmonic temperature — the tonal-motion intent appropriate to this phrase's
     # energy/role (prolongation early, instability mid, resolution at cadence).
@@ -2164,12 +2196,12 @@ def _transition_context(graph, phrase_id: str) -> Dict[str, Any]:
     cont = getattr(state.slot, "continuation", None)
     if cont and getattr(cont, "last_soprano_pitch", None):
         out.setdefault("continuation", {})
+        # Every field, not five of thirteen: the contour the melody arrives on,
+        # how dense the last bar was, what the accompaniment was doing and which
+        # motifs have already been stated are exactly what a phrase composed in
+        # an isolated context cannot otherwise know.
         out["continuation"] = {
-            "last_soprano_pitch": cont.last_soprano_pitch,
-            "last_bass_pitch": cont.last_bass_pitch,
-            "last_chord": cont.last_chord,
-            "last_dynamic": cont.last_dynamic,
-            "pending_resolution": cont.pending_resolution,
+            f.name: getattr(cont, f.name, None) for f in _dc_fields(type(cont))
         }
     return out
 
@@ -3019,6 +3051,34 @@ def render_text(brief: CompositionBrief) -> str:
         # composed blind to the others' endings, and the same locally-reasonable
         # close gets chosen every time — which is exactly what happened: seven of
         # nine phrase endings shared one cadential rhythm.
+        cont = t.get("continuation") or {}
+        if cont:
+            bits = []
+            if cont.get("last_soprano_contour"):
+                bits.append(f"the melody arrives {cont['last_soprano_contour']}")
+            if cont.get("last_rh_density") is not None:
+                bits.append(
+                    f"last bar had {cont['last_rh_density']:g} melody / "
+                    f"{(cont.get('last_lh_density') or 0):g} accompaniment attacks"
+                )
+            if cont.get("last_lh_texture"):
+                bits.append(f"left hand was '{cont['last_lh_texture']}'")
+            if bits:
+                lines.append("  coming out of the last phrase: " + "; ".join(bits))
+            if cont.get("pending_resolution") == "dominant":
+                lines.append(
+                    "  ⚠ the previous phrase ended on the DOMINANT and left it hanging. "
+                    "This phrase owes that resolution — open by answering it, or make the "
+                    "delay deliberate and audible."
+                )
+            if cont.get("motifs_stated"):
+                lines.append(
+                    f"  motifs already STATED: {', '.join(cont['motifs_stated'])} — "
+                    f"develop them here rather than inventing new material"
+                )
+            if cont.get("motifs_developed"):
+                lines.append(f"  motifs already developed: {', '.join(cont['motifs_developed'])}")
+
         tr = t.get("texture_run") or {}
         if tr.get("texture_unchanged_for", 0) >= 6:
             lines.append(

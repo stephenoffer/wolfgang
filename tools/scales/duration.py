@@ -184,6 +184,31 @@ def beats_to_dur(beats: float) -> str:
     return best
 
 
+def largest_dur_at_most(beats) -> str:
+    """The longest notatable value that does NOT exceed ``beats``.
+
+    ``beats_to_dur`` returns the NEAREST code, which can be longer than what was
+    asked for: the nearest value to 1.4375 beats is a dotted quarter at 1.5. So
+    clamping a note to the room left in its bar and then converting produced a
+    note that ran past the barline again — the clamp was a no-op precisely when
+    it mattered. Anything that has to fit inside a span must ask for this
+    instead.
+
+    Falls back to the shortest notatable value when nothing fits, so callers get
+    a value they can engrave rather than an empty string.
+    """
+    target = beats if isinstance(beats, Fraction) else Fraction(beats).limit_denominator(96)
+    fitting = [(v, c) for c, v in DURATION_VALUES.items() if v <= target]
+    if not fitting:
+        return min(DURATION_VALUES, key=lambda c: DURATION_VALUES[c])
+    best = max(v for v, _ in fitting)
+    # Prefer the plain spelling of a value over its tuplet alias.
+    return min(
+        (c for v, c in fitting if v == best),
+        key=lambda c: (is_tuplet_code(c), len(c)),
+    )
+
+
 def bar_duration(time_sig: tuple) -> Fraction:
     """Total beats in a bar given a time signature (num, denom), exact.
 
