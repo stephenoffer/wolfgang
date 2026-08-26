@@ -256,10 +256,51 @@ def _check_density(
 _DENSITY_CV_FLOOR = 0.05
 _DENSITY_CV_MIN_BARS = 4
 
-# Textures whose whole character is constant motion or constant sustain, so a
-# flat density is the idiom rather than a defect.
-_SUSTAINED_RH_TEXTURES = {"held_note", "chordal", "silence"}
-_SUSTAINED_LH_TEXTURES = {"pedal_point", "sustained", "drone", "silence", "block_chord_sparse"}
+# Textures whose whole character is constant emission — either constant SUSTAIN
+# (a drone holds) or constant MOTION (an Alberti bass emits the same number of
+# notes every bar; that is what makes it Alberti). A flat density there is the
+# idiom, not a defect, so warning on it warns on the defining feature of a
+# legitimate way of writing.
+#
+# Named for what it holds, not for "sustained" — half of it is perpetual motion.
+#
+# Measured across all 23 armed composers (108,575 real 4-bar windows), the
+# share of windows that are metronomically flat, by dominant texture:
+#
+#   broken_chord_asc  21.4% | interlocking       19.6% | block_chord_offbeat 17.9%
+#   broken_chord_wave 17.3% | alberti            16.6% | block_chord_sparse  11.9%
+#   RH chordal        17.3% | RH zigzag_figur.   17.3% | RH scalar_run       15.6%
+#   ...
+#   walking_bass       7.9% | bass_melody         4.5% | RH singing_melody    5.3%
+#
+# The perpetual-motion accompaniment idioms cluster at the top and the lines
+# that are free to breathe cluster at the bottom, which is the split this set
+# encodes. **RH scalar_run is deliberately NOT exempt** despite its 15.6%: a run
+# is not constant BY DEFINITION — it can accelerate, break off, be interrupted
+# by rests — and flat scalar writing is a documented failure mode of this
+# project's own output ("étude-scalar melody"). Exempting on the rate alone
+# would have retired the one detector that catches it.
+#
+# This set is what the check is FOR: it now fires only where the texture could
+# ebb and flow and doesn't. Corpus-wide that is 1.5% of real windows (was 4.2%,
+# and 20.8% for Rimsky-Korsakov, the first heavily orchestral composer in the
+# corpus — orchestral textures are far more constant per bar than keyboard ones,
+# which is what made this visible rather than what made it wrong).
+_SUSTAINED_RH_TEXTURES = {"held_note", "chordal", "silence", "zigzag_figuration"}
+_SUSTAINED_LH_TEXTURES = {
+    "pedal_point",
+    "sustained",
+    "drone",
+    "silence",
+    "block_chord_sparse",
+    # constant-motion accompaniment idioms
+    "alberti",
+    "broken_chord_wave",
+    "broken_chord_asc",
+    "broken_chord_desc",
+    "block_chord_offbeat",
+    "interlocking",
+}
 
 
 def _check_density_variance(layer: LayerIR, slot, composer: str) -> Optional[GateDiagnostic]:
@@ -282,9 +323,20 @@ def _check_density_variance(layer: LayerIR, slot, composer: str) -> Optional[Gat
     # of real Palestrina phrases, whose Renaissance polyphony moves in even
     # values across all voices. Warning on the defining feature of a legitimate
     # idiom is noise the critic then has to triage away.
-    rh_tex, lh_tex = _dominant_textures(slot)
-    if rh_tex in _SUSTAINED_RH_TEXTURES or lh_tex in _SUSTAINED_LH_TEXTURES:
-        return None
+    # Exempt only on a texture the slot ACTUALLY DECLARES.
+    #
+    # `_slot_textures` falls back to `_infer_textures`, which reads a density
+    # curve and returns "alberti" for every bar at density >= 0.35 and
+    # "block_chord_sparse" below it — and BOTH are exempt here. So reading the
+    # inferred texture would switch this check off for every phrase that has no
+    # texture plan, which is most of them: the detector would still run, still
+    # compute, and never fire again. An inferred texture is a guess derived from
+    # a density curve, not evidence about the idiom, and an unknown texture is
+    # not a constant one.
+    if getattr(slot, "texture_plan", None):
+        rh_tex, lh_tex = _dominant_textures(slot)
+        if rh_tex in _SUSTAINED_RH_TEXTURES or lh_tex in _SUSTAINED_LH_TEXTURES:
+            return None
     return GateDiagnostic(
         check="density_variance",
         severity="warn",

@@ -440,3 +440,100 @@ if __name__ == "__main__":
         print(f"ok {name}")
         passed += 1
     print(f"\n{passed} tests passed")
+
+
+# ── density_variance: which textures are exempt ──────────────────────────────
+# Two-directional falsification. The exemption set answers "would this reject
+# real music?"; these answer the other question a detector that FINDS has to
+# pass — "would it still find what is definitely there?"
+
+
+def _flatness_layer(counts):
+    """A layer with `counts[i]` simultaneities in bar i+1, both hands."""
+    from scales.models import LayerEvent, LayerIR
+
+    layer = LayerIR(phrase_id="p")
+    for bar_index, count in enumerate(counts):
+        for j in range(count):
+            for pitch, name in (("C5", "principal_line"), ("C3", "bass_foundation")):
+                getattr(layer, name).append(
+                    LayerEvent(
+                        bar=bar_index + 1,
+                        beat=1.0 + j * 0.5,
+                        pitch=pitch,
+                        duration="e",
+                        role="structural",
+                        source_layer=name,
+                    )
+                )
+    return layer
+
+
+def _flatness_slot(rh=None, lh=None):
+    from scales.models import BarTexturePlan, PhraseSlot
+
+    slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4)
+    if rh:
+        slot.texture_plan = [BarTexturePlan(rh_texture=rh, lh_texture=lh) for _ in range(4)]
+    return slot
+
+
+def test_density_variance_still_fires_where_the_texture_could_breathe():
+    """A singing melody over a bass line has every opportunity to ebb and flow.
+
+    Identical event counts bar after bar is the real defect the check exists for.
+    """
+    from scales.commit_gate import _check_density_variance
+
+    flat = _flatness_layer([4, 4, 4, 4])
+    for rh, lh in (("singing_melody", "bass_melody"), ("scalar_run", "walking_bass")):
+        assert _check_density_variance(flat, _flatness_slot(rh, lh), "mozart") is not None
+
+
+def test_density_variance_silent_on_constant_emission_idioms():
+    """An Alberti bass emits the same count every bar — that is what makes it
+    Alberti. Warning there warns on the defining feature of a real idiom."""
+    from scales.commit_gate import _check_density_variance
+
+    flat = _flatness_layer([4, 4, 4, 4])
+    for rh, lh in (
+        ("singing_melody", "alberti"),
+        ("singing_melody", "broken_chord_wave"),
+        ("singing_melody", "block_chord_offbeat"),
+        ("chordal", "pedal_point"),
+    ):
+        assert _check_density_variance(flat, _flatness_slot(rh, lh), "mozart") is None
+
+
+def test_density_variance_never_fires_on_music_that_breathes():
+    from scales.commit_gate import _check_density_variance
+
+    vary = _flatness_layer([2, 5, 3, 6])
+    for slot in (_flatness_slot(), _flatness_slot("singing_melody", "bass_melody")):
+        assert _check_density_variance(vary, slot, "mozart") is None
+
+
+def test_an_undeclared_texture_is_not_an_exempt_one():
+    """The regression this pairs with is the whole point.
+
+    `_slot_textures` falls back to `_infer_textures`, which returns "alberti"
+    for every bar at density >= 0.35 and "block_chord_sparse" below it — and
+    both are exempt. Reading the INFERRED texture here would have switched this
+    check off for every phrase with no texture plan, which is most of them: it
+    would still run, still compute, and never fire again.
+    """
+    from scales.commit_gate import _check_density_variance
+
+    flat = _flatness_layer([4, 4, 4, 4])
+    assert _check_density_variance(flat, _flatness_slot(), "mozart") is not None
+
+
+def test_scalar_run_is_deliberately_not_exempt():
+    """15.6% of real scalar_run windows are flat — high, but a run is not
+    constant BY DEFINITION (it can accelerate, break off, be interrupted), and
+    flat scalar writing is a documented failure mode of this project's own
+    output. Exempting on the rate alone would retire the detector that finds it.
+    """
+    from scales.commit_gate import _SUSTAINED_RH_TEXTURES
+
+    assert "scalar_run" not in _SUSTAINED_RH_TEXTURES
