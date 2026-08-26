@@ -2388,6 +2388,18 @@ def _retrieve_exemplars(
             if bar.get("truncated"):
                 _drop("truncated record")
                 continue
+            # An OLD-FORMAT record, from before the extractor learned to emit
+            # rh_display/time_sig/harmony. What reaches the brief from one of
+            # these is half a bar: Corelli's exemplars came out with an empty
+            # right hand and a "left hand" playing at E5 — his melody, filed as
+            # accompaniment. That does not teach less than a rich record, it
+            # teaches something false (the melody is silent, the accompaniment
+            # sits in the treble). `composer_coverage_tier` already flags these
+            # composers `needs_reacquire`; this stops the brief showing their
+            # bars as though they were usable in the meantime.
+            if "rh_display" not in bar:
+                _drop("old record format — composer needs re-acquiring")
+                continue
             adapted = adapter.transpose_bar(bar, key)
             _rescale_bar_durations(adapted, rescale)
             rh_sh, lh_sh = _adapted_to_shorthand(adapted)

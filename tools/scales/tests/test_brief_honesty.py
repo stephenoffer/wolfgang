@@ -520,3 +520,31 @@ def test_a_metre_dead_end_blames_the_metre_not_the_texture():
     _retrieve_exemplars("bach", slot, 4, warnings)
     assert any("no 6/8 bars" in w for w in warnings), warnings
     assert any("metre, not the texture" in w for w in warnings), warnings
+
+
+def test_old_format_records_are_not_shown_as_exemplars():
+    """Corelli, Weber, Handel and Schubert are still on the pre-rewrite record
+    format — no `rh_display`, no `time_sig`, no harmony.
+
+    What reached the brief from one was HALF a bar: an empty right hand and a
+    "left hand" playing at E5, which is Corelli's melody filed as accompaniment.
+    That teaches something false — the melody is silent and the accompaniment
+    sits in the treble — so it is worse than showing nothing. All four are
+    already flagged `needs_reacquire`.
+    """
+    from scales.composition_brief import _iter_corpus_bars, _retrieve_exemplars
+    from scales.models import PhraseSlot
+
+    for composer in ("corelli", "weber", "handel", "schubert"):
+        first = next(iter(_iter_corpus_bars(composer)), None)
+        if first is None or "rh_display" in first:
+            continue  # re-acquired since
+        warnings: list = []
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+        assert _retrieve_exemplars(composer, slot, 3, warnings) == []
+        assert any("old record format" in w for w in warnings), warnings
+
+    # Composers on the rich format are unaffected.
+    for composer in ("bach", "mozart", "palestrina"):
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+        assert _retrieve_exemplars(composer, slot, 3, [])
