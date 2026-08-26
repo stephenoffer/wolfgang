@@ -1019,17 +1019,23 @@ def test_phrase_state_keeps_every_field_across_a_save_load(tmp_path):
 
     graph = _piano_graph([{"rh": "C5w", "lh": "C3w"}])
     ps = graph.phrases["p1"]
-    ps.craft_check = {"melodic_claim_clear": True, "has_breath_point": False}
-    ps.review = {"verdict": "revise", "observations": ["bar 1 is bare"]}
-    ps.candidates = ["cand-1"]
+    from scales.craft_checker import CraftChecker
+    from scales.models import ReviewResult
+
+    ps.craft_check = CraftChecker().check(ps.realized)
+    ps.review = ReviewResult(passed=False, musical_issues=["bar 1 is bare"])
     ps.agent_authored = True
 
     path = tmp_path / "piece_graph.json"
     graph.save(str(path))
     back = PieceGraph.load(str(path)).phrases["p1"]
 
-    assert back.craft_check == ps.craft_check, "the craft checklist was dropped"
-    assert back.review == ps.review, "the critic's verdict was dropped"
-    assert back.candidates == ["cand-1"]
+    # Both come back TYPED, not as raw dicts: the revision pass reads
+    # `review.passed` and `craft_check.has_breath_point` as attributes.
+    assert back.craft_check is not None, "the craft checklist was dropped"
+    assert back.craft_check.has_breath_point == ps.craft_check.has_breath_point
+    assert back.review is not None, "the critic's verdict was dropped"
+    assert back.review.passed is False
+    assert back.review.musical_issues == ["bar 1 is bare"]
     assert back.agent_authored is True
     assert back.realized is not None and back.slot is not None

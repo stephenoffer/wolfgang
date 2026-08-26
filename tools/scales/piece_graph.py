@@ -24,8 +24,8 @@ from .models import (
     LayerEvent,
     LayerIR,
     MotifObject,
+    MovementContract,
     NarrativeArc,
-    NarrativeSection,
     PhraseSlot,
     PhraseState,
     PieceContract,
@@ -444,14 +444,13 @@ class PieceGraph:
         csl = data.get("cross_scale_ledger")
         self.cross_scale_ledger = csl if isinstance(csl, dict) else None
 
-        # Contract
+        # Contract. Filtering the top-level keys left every NESTED dataclass —
+        # target, source, style, locks, constraints — as a raw dict, so
+        # `contract.target.instrumentation` worked before a save and raised
+        # after a load. Callers had grown "dict or dataclass" branches to cope.
         c = data.get("contract", {})
         self.contract = (
-            PieceContract(
-                **{k: v for k, v in c.items() if k in {f.name for f in fields(PieceContract)}}
-            )
-            if isinstance(c, dict)
-            else PieceContract()
+            _dataclass_from_dict(PieceContract, c) if isinstance(c, dict) else PieceContract()
         )
 
         # NarrativeArc reconstruction — without this, narrative was serialized
@@ -459,33 +458,30 @@ class PieceGraph:
         # (section.character) never survived to compose time. Defensive,
         # field-filtered like the other dataclass loads.
         nar_data = data.get("narrative", {})
-        self.narrative = NarrativeArc()
-        if isinstance(nar_data, dict):
-            self.narrative.primary_climax_section = nar_data.get("primary_climax_section", "")
-            self.narrative.overall_character = nar_data.get("overall_character", "")
-            sec_fields = {f.name for f in fields(NarrativeSection)}
-            for sec in nar_data.get("sections", []):
-                if isinstance(sec, dict):
-                    self.narrative.sections.append(
-                        NarrativeSection(**{k: v for k, v in sec.items() if k in sec_fields})
-                    )
+        self.narrative = (
+            _dataclass_from_dict(NarrativeArc, nar_data)
+            if isinstance(nar_data, dict)
+            else NarrativeArc()
+        )
 
-        # FormGraph reconstruction
-        form_data = data.get("form", {})
+        # FormGraph. `movements` was not loaded AT ALL — a multi-movement work
+        # lost its movement structure on every read — and SectionSpec was
+        # hand-listed at seven fields, so anything added to it was dropped.
+        from .models import SectionSpec
+
+        form_data = data.get("form", {}) or {}
         self.form = FormGraph()
-        for sec_id, sec_data in form_data.get("sections", {}).items():
-            if isinstance(sec_data, dict):
-                from .models import SectionSpec
-
-                self.form.sections[sec_id] = SectionSpec(
-                    id=sec_data.get("id", sec_id),
-                    movement_id=sec_data.get("movement_id", ""),
-                    role=sec_data.get("role", ""),
-                    key=sec_data.get("key", "C"),
-                    bar_start=sec_data.get("bar_start", 1),
-                    bar_end=sec_data.get("bar_end", 8),
-                    phrase_ids=sec_data.get("phrase_ids", []),
-                )
+        if isinstance(form_data, dict):
+            for sec_id, sec_data in (form_data.get("sections") or {}).items():
+                if isinstance(sec_data, dict):
+                    sec_data.setdefault("id", sec_id)
+                    self.form.sections[sec_id] = _dataclass_from_dict(SectionSpec, sec_data)
+            for mv in form_data.get("movements") or []:
+                if isinstance(mv, dict):
+                    self.form.movements.append(_dataclass_from_dict(MovementContract, mv))
+            for fld in ("form_type", "total_bars", "key_scheme"):
+                if fld in form_data and hasattr(self.form, fld):
+                    setattr(self.form, fld, form_data[fld])
 
         # Phrases reconstruction
         phrases_data = data.get("phrases", {})
@@ -515,11 +511,33 @@ class PieceGraph:
                 # survive to the revision pass that was supposed to act on it.
                 # `slot`, `sketch` and `realized` need real reconstruction and
                 # are handled above; the rest are plain JSON.
+                # Fields whose type is a dataclass have to be REBUILT, not
+                # assigned: `ps.review.passed` raises on a raw dict, and the
+                # revision pass reads exactly that.
+                _typed = {
+                    "review": ReviewResult,
+                    "craft_check": None,  # PhraseCraftCheck lives in craft_checker
+                    "candidates": CandidateNode,
+                    "sketch_candidates": SketchIR,
+                }
                 _handled = {"slot", "sketch", "realized", "agent_authored", "status"}
                 for _f in dataclass_fields(PhraseState):
                     if _f.name in _handled or _f.name not in pdata:
                         continue
-                    setattr(ps, _f.name, pdata[_f.name])
+                    raw = pdata[_f.name]
+                    target = _typed.get(_f.name)
+                    if _f.name == "craft_check" and isinstance(raw, dict):
+                        from .craft_checker import PhraseCraftCheck
+
+                        target = PhraseCraftCheck
+                    if target is not None and isinstance(raw, dict):
+                        raw = _dataclass_from_dict(target, raw)
+                    elif target is not None and isinstance(raw, list):
+                        raw = [
+                            _dataclass_from_dict(target, x) if isinstance(x, dict) else x
+                            for x in raw
+                        ]
+                    setattr(ps, _f.name, raw)
                 self.phrases[pid] = ps
 
         # Motif bank
@@ -560,20 +578,15 @@ class PieceGraph:
         # which made composer/style RESOLUTION fall back to the default
         # (every loaded piece looked like Mozart). Restore at least the fields
         # that drive resolution and arming.
+        # Seven of StyleDNA's eighteen fields were read back. The COMPOSER
+        # FINGERPRINTS (the traits that make a voice recognizable), the cadence
+        # vocabulary, the chromatic techniques, the progression graph, the form
+        # templates, the orchestration roles and the phrase-structure rules were
+        # all serialized on save and destroyed on load — so a piece re-opened
+        # after planning had almost none of the compiled style profile left.
         dna_data = data.get("style_dna")
         if isinstance(dna_data, dict):
-            for fld in ("composer_id", "tier", "active_period"):
-                if fld in dna_data and hasattr(self.style_dna, fld):
-                    setattr(self.style_dna, fld, dna_data[fld])
-            for fld in (
-                "lh_distribution",
-                "rh_distribution",
-                "density_targets",
-                "transition_matrix",
-            ):
-                v = dna_data.get(fld)
-                if isinstance(v, dict) and v and hasattr(self.style_dna, fld):
-                    setattr(self.style_dna, fld, v)
+            self.style_dna = _dataclass_from_dict(StyleDNA, dna_data)
 
         # v6: Reconstruct StyleProgram from compiled packs if data indicates
         # one was used (avoids serializing the full program in the graph JSON)

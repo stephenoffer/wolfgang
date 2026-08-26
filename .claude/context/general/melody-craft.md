@@ -77,7 +77,18 @@ Memorable melodies are predominantly **stepwise** (easy to follow, singable) wit
 | Frequent leaps | Dramatic, angular | Can lose singability |
 | All leaps | Virtuosic, fragmented | Loses melodic coherence |
 
-Common-practice melodies are often roughly 70-80% stepwise motion with leaps placed at phrase peaks or emotional turning points. This varies widely by style — Baroque Fortspinnung may be more stepwise, angular Modern themes far less so, and fanfare themes are heavily triadic/disjunct.
+Common-practice melodies are mostly stepwise, with leaps placed at phrase peaks
+or emotional turning points. Measured over 26 canonical Mozart/Beethoven/Chopin
+movements, stepwise motion runs **40% to 79%, median 64.5%** (p10 55%, p90 75%).
+
+The figure previously given here was "roughly 70-80%", which is the *top* of
+that range: aiming at it pushes a melody toward continuous scalar motion, which
+is the `scalar_overuse` defect — the last generated piece ran 39% of its melody
+bars as plain unbroken scale runs against a real median of 2%. A melody at 50%
+stepwise is not leap-heavy; it is Beethoven.
+
+It varies widely by style — Baroque Fortspinnung is more stepwise, angular
+Modern themes far less so, and fanfare themes are heavily triadic.
 
 ### The Zeigarnik Effect
 

@@ -232,9 +232,30 @@ Coda:           2→1→0 voices (dissolving)
 
 ## The Critical Insight: Bar-Level Texture Variation
 
-**Beethoven changes texture 58% of the time between consecutive bars.** Average texture run = 1.4 bars. Most common run length = 1 bar (137 instances in the Appassionata).
+**Corrected against the whole corpus.** This section used to open "Beethoven
+changes texture 58% of the time between consecutive bars", generalised from one
+movement. Measured over Beethoven's **entire 17,757-bar corpus**, the rate is
+**25.5% (sd 0.147)** — less than half that. Across composers:
 
-This is the single biggest difference between human and AI composition. AI holds the same texture for 8-20 bars. Beethoven holds it for 1-2 bars.
+| Composer | texture change, consecutive bars | bars measured |
+|---|---|---|
+| Bach | 62.2% | 6,795 |
+| Mozart | 40.1% | 7,022 |
+| Liszt | 26.8% | 437 |
+| Beethoven | 25.5% | 17,757 |
+| Chopin | 14.4% | 4,853 |
+
+The 58% figure was not just wrong, it was **actively harmful**: it told the
+composer to change texture roughly twice as often as Beethoven does, which
+produces the opposite failure — a different accompaniment idiom in every bar,
+which reads as mechanical from the other direction (see §6 of
+`note-writing-craft.md`, and the calibrated `texture_change_pct` band of
+0.045-0.585 in `scales.py`, which this line contradicted outright).
+
+The real point survives the correction: **AI output holds one texture for 8-20
+bars and real music does not.** But the rate is the composer's own, it varies
+by a factor of four between Bach and Chopin, and it is not a target to hit —
+what matters is that the change is *motivated*.
 
 From Appassionata mvt 1 analysis:
 ```
@@ -299,7 +320,13 @@ Use `tools/texture_templates/beethoven_comprehensive_model.json` for exact numbe
 | (0.5, 0.5, 0.5, 0.5, 1.0) | 2.2% | Four eighths + quarter |
 | (1.0, 0.5, 0.5, 1.0) | 1.7% | Quarter-eighth-eighth-quarter |
 
-**CRITICAL**: Alberti (6 eighths) is only 14% of Beethoven's LH in 3/4. Quarters (17%) are MORE common. Use weighted random selection from this distribution.
+**Alberti is not the default.** In Beethoven's 3/4 movements the six-eighth
+Alberti figure is about 14% of left-hand bars and plain quarters about 17% —
+quarters are the commoner texture, and the reflex to reach for Alberti is one of
+the clearer AI tells. Read the distribution as evidence about *what is
+available*, though, not as a table to sample from: weighted random selection
+across bars is precisely the "texture on a schedule" failure. Pick the figure
+the harmony and the phrase want.
 
 ### Most Common 4-Bar Harmonic Progressions
 | Progression | Count | Musical meaning |

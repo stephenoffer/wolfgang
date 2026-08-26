@@ -118,13 +118,45 @@ def test_thirds_and_sixths_are_detected():
     assert analyze_voicing(ir).thirds_sixths_pct == 1.0
 
 
-def test_a_sustained_stretch_is_seen_even_without_a_shared_onset():
-    """The playability check only compares identical onsets, so this was invisible."""
+def test_a_bass_note_held_under_a_higher_chord_is_not_a_stretch():
+    """A pedal point is held by the PEDAL, not by the fingers.
+
+    An earlier version of this test asserted the opposite, on the reasoning that
+    a note sustained under a later one is the commonest way a stretch appears.
+    Real music settled it: counting everything *sounding* together produced 211
+    "unplayable" stretches across 1,027 bars of Mozart, Beethoven and Chopin,
+    with a median widest span of 28 semitones — an octave and a half, which no
+    hand spans and every pianist plays.
+    """
     ir = LayerIR(meter=(4, 4))
     ir.bass_foundation = [_ev(1, 1.0, "C2", "w"), _ev(1, 3.0, "E3", "h")]
-    rep = analyze_voicing(ir, max_hand_span=14)
-    assert rep.widest_hand_span >= 16
+    rep = analyze_voicing(ir)
+    assert rep.unplayable_spans == []
+
+
+def test_a_simultaneous_attack_beyond_a_hands_reach_is_reported():
+    ir = LayerIR(meter=(4, 4))
+    ir.bass_foundation = [_ev(1, 1.0, ["C2", "A3"], "w")]  # 21 semitones, struck together
+    rep = analyze_voicing(ir)
     assert rep.unplayable_spans
+    assert rep.widest_hand_span == 21
+
+
+def test_a_tenth_struck_together_is_not_reported():
+    """Real writing is full of tenths; the threshold is set above them."""
+    ir = LayerIR(meter=(4, 4))
+    ir.bass_foundation = [_ev(1, 1.0, ["C3", "E4"], "w")]  # a tenth
+    assert analyze_voicing(ir).unplayable_spans == []
+
+
+def test_an_overlapping_strand_of_the_melody_stays_in_the_right_hand():
+    """Stripping only '#' left 'principal_line@1' unmatched, so a melody note
+    held under its own continuation was counted as an accompaniment note."""
+    ir = LayerIR(meter=(4, 4))
+    ir.principal_line = [_ev(1, 1.0, "G5", "w"), _ev(1, 2.0, "C5", "h")]
+    rep = analyze_voicing(ir)
+    assert rep.rh_notes_per_attack > 0
+    assert rep.lh_notes_per_attack == 0, "no left hand was written"
 
 
 # ─── Suggestions ─────────────────────────────────────────────────────────────

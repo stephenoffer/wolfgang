@@ -2726,7 +2726,17 @@ _DISCRIMINATOR_BANDS = {
     # music; it measures the band, and it pushes the critic toward the
     # non-idiomatic. test_discriminator_bands_do_not_reject_real_music keeps
     # them honest.
-    "texture_change_pct": (0.045, 0.585),
+    #
+    # texture_change_pct was widened again once Bach was armed: the calibration
+    # set was Mozart/Beethoven/Chopin only, and Bach's corpus mean is **0.622**,
+    # above the old 0.585 ceiling. Every Bach section would have been reported
+    # "texture change high" — the discriminator telling the critic that Bach's
+    # actual texture behaviour is a defect. Per-composer means now measured over
+    # the whole armed corpus span 0.144 (Chopin) to 0.622 (Bach); the band
+    # covers that range with a margin. A composer with a corpus_profile is
+    # judged against its own mean ± 2σ instead (see _PROFILE_OVERRIDABLE), so
+    # this generic band only applies to unarmed references.
+    "texture_change_pct": (0.045, 0.85),
     # A COUNT of contour reversals per bar, not a fraction (see
     # _PROFILE_OVERRIDABLE below for why that distinction matters). Real
     # movements run 0.9 to 3.6; the old (1.0, 2.0) rejected half of them,

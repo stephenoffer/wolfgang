@@ -70,10 +70,20 @@ _PIANO_ACCOMP = ("bass_foundation", "response_layer")
 # reader can see what "normal" actually is.
 #
 #                       rh/attack   lh/attack   simult   single-RH%  span  shift   CV    3rds
-#   Mozart      median     1.15        1.48       2.28      0.79      51   0.54   0.32   0.06
-#               range   1.06-1.54   1.15-1.62  1.91-2.66  0.50-0.89  41-57 .37-.67 .22-.39
-#   Beethoven   median     1.50        1.58       2.86      0.42      57   0.59   0.39   0.15
-#   Chopin      median     1.68        1.89       3.77      0.22      55   0.47   0.19   0.25
+#   Mozart      median     1.22        1.48       2.33      0.62      51   0.61   0.33   0.07
+#               range   1.14-1.58   1.15-1.62  1.97-2.68  0.39-0.80  41-57 .47-.77 .21-.41
+#   Beethoven   median     1.58        1.62       2.91      0.41      57   0.61   0.40   0.16
+#               range   1.19-2.20   1.09-1.85  2.36-3.82  0.06-0.71  53-58 .36-.72 .32-.50
+#   Chopin      median     1.70        1.89       3.79      0.22      55   0.50   0.19   0.25
+#               range   1.30-2.43   1.06-2.57  3.36-4.06  0.05-0.58  50-67 .27-.75 .17-.30
+#
+# Re-measured after fixing a bug in this module's own hand assignment: the voice
+# namer produces both "principal_line#1" (a chord member) and "principal_line@1"
+# (an overlapping strand), and `_hand_of` stripped only the "#". Every strand of
+# a melody overlapping itself — which is most sustained melodic writing — was
+# therefore counted as a left-hand note. It shifted the right-hand figures down
+# and the left-hand ones up, and put phantom 17-semitone stretches in the left
+# hand of real Chopin.
 #
 # Two things this refuted, and they are worth stating because both were assumed:
 # a generated piece measured at 1.13 RH notes per attack looked "thin" next to
@@ -85,22 +95,22 @@ _PIANO_ACCOMP = ("bass_foundation", "response_layer")
 # thickens or thins. That is the finding the numbers actually support.
 CORPUS_TEXTURE = {
     "classical": {
-        "rh_notes_per_attack": 1.15,
+        "rh_notes_per_attack": 1.22,
         "lh_notes_per_attack": 1.48,
-        "mean_simultaneity": 2.28,
-        "single_line_rh_pct": 0.79,
+        "mean_simultaneity": 2.33,
+        "single_line_rh_pct": 0.62,
         "register_span": 51,
-        "texture_shift_pct": 0.54,
-        "simultaneity_cv": 0.32,
-        "thirds_sixths_pct": 0.06,
+        "texture_shift_pct": 0.61,
+        "simultaneity_cv": 0.33,
+        "thirds_sixths_pct": 0.07,
     },
     "romantic": {
-        "rh_notes_per_attack": 1.68,
+        "rh_notes_per_attack": 1.70,
         "lh_notes_per_attack": 1.89,
-        "mean_simultaneity": 3.77,
+        "mean_simultaneity": 3.79,
         "single_line_rh_pct": 0.22,
         "register_span": 55,
-        "texture_shift_pct": 0.47,
+        "texture_shift_pct": 0.50,
         "simultaneity_cv": 0.19,
         "thirds_sixths_pct": 0.25,
     },
@@ -110,14 +120,14 @@ CORPUS_TEXTURE = {
 # suggestion means "outside the repertoire", not "below average". A rule tuned
 # to the median would fire on half of Mozart.
 _FLOOR = {
-    "rh_notes_per_attack": 1.05,  # real minimum 1.06
-    "lh_notes_per_attack": 1.04,  # real minimum 1.05
-    "single_line_rh_pct": 0.92,  # real maximum 0.89
+    "rh_notes_per_attack": 1.12,  # real minimum 1.14
+    "lh_notes_per_attack": 1.04,  # real minimum 1.06
+    "single_line_rh_pct": 0.84,  # real maximum 0.80
     "register_span": 38,  # real minimum 41
-    "texture_shift_low": 0.22,  # real minimum 0.27
-    "texture_shift_high": 0.80,  # real maximum 0.75
-    "simultaneity_cv": 0.14,  # real minimum 0.16 (Chopin; Mozart never below 0.22)
-    "thirds_sixths_pct": 0.008,  # real minimum 0.01
+    "texture_shift_low": 0.24,  # real minimum 0.27
+    "texture_shift_high": 0.80,  # real maximum 0.77
+    "simultaneity_cv": 0.15,  # real minimum 0.17 (Chopin; Mozart never below 0.21)
+    "thirds_sixths_pct": 0.02,  # real minimum 0.03
     "registers_used": 4,  # real minimum 5
 }
 
@@ -127,7 +137,7 @@ _FLOOR = {
 # simultaneity CV never drops below 0.22, but Chopin's reaches 0.16, so the
 # union floor of 0.14 is blind to a Mozart pastiche whose texture never moves.
 _STYLE_FLOOR = {
-    "classical": {"simultaneity_cv": 0.20, "lh_notes_per_attack": 1.13},
+    "classical": {"simultaneity_cv": 0.19, "lh_notes_per_attack": 1.13},
     "baroque": {"simultaneity_cv": 0.14},
     "romantic": {"rh_notes_per_attack": 1.18, "thirds_sixths_pct": 0.05},
 }
@@ -234,7 +244,18 @@ class VoicingReport:
 
 
 def _hand_of(voice: str) -> str:
-    base = voice.split("#")[0]
+    """Which hand plays this voice.
+
+    Both suffixes have to come off. ``extract_voices`` names a chord's members
+    ``principal_line#0``, ``#1`` … and an overlapping strand of one layer
+    ``principal_line@1``. Stripping only ``#`` left ``principal_line@1``
+    unmatched, so it fell through to the left hand — and every strand of a
+    melody that overlaps itself (a held note under its own continuation, which
+    is most sustained melodic writing) was counted as an accompaniment note. It
+    corrupted the right-hand and left-hand density measurements and put phantom
+    17-semitone stretches in the left hand of real Chopin.
+    """
+    base = voice.split("#")[0].split("@")[0]
     if base in _PIANO_MELODIC or base in ("foreground", "countermelody") or base.startswith(
         "treble"
     ):
@@ -293,23 +314,34 @@ def measure_bars(layer_ir) -> List[BarTexture]:
 
 
 def _hand_spans(layer_ir) -> List[Tuple[int, float, int]]:
-    """Widest simultaneous reach in each hand: (bar, beat, semitones).
+    """Widest reach a hand is actually asked to make: (bar, beat, semitones).
 
-    A stack the hand cannot reach is not music, it is a notation error. The
-    existing playability check only compares notes with an *identical* onset, so
-    a note sustained under a later one — the commonest way a stretch appears —
-    is invisible to it.
+    Only notes **struck together** count. An earlier version counted everything
+    *sounding* together, on the reasoning that a note sustained under a later one
+    is the commonest way a stretch appears — and that was wrong in a way real
+    music settles immediately: a low bass note held under a chord the hand plays
+    higher up is the ordinary pedal-point idiom, released by the fingers and held
+    by the pedal. Measured with that rule, real Mozart, Beethoven and Chopin
+    produced **211 "unplayable" stretches across 1,027 bars**, with a median
+    widest span of 28 semitones — an octave and a half, which no hand spans and
+    every pianist plays.
+
+    A simultaneous attack is a different matter: those notes have to be under the
+    fingers at the same instant, and a tenth is already a stretch.
     """
     spans = extract_voices(layer_ir)
     out: List[Tuple[int, float, int]] = []
     for t in attack_times(spans):
-        state = sounding_at(spans, t)
         for hand in ("rh", "lh"):
-            ms = [s for v, s in state.items() if _hand_of(v) == hand]
-            if len(ms) < 2:
+            struck = [
+                s
+                for s in spans
+                if s.start == t and _hand_of(s.voice) == hand
+            ]
+            if len(struck) < 2:
                 continue
-            lo = min(ms, key=lambda s: s.midi)
-            hi = max(ms, key=lambda s: s.midi)
+            lo = min(struck, key=lambda s: s.midi)
+            hi = max(struck, key=lambda s: s.midi)
             out.append((lo.bar, lo.beat, hi.midi - lo.midi))
     return out
 
@@ -367,8 +399,18 @@ def _texture_shift_pct(bars: Sequence[BarTexture]) -> float:
 # ─── Entry point ─────────────────────────────────────────────────────────────
 
 
+# Reach at which a simultaneous attack is reported. MEASURED over 2,430
+# simultaneous attacks in 16 real movements: the median is 8 semitones, the 95th
+# percentile 12, the 99th 16. A threshold of 14 — a comfortable large hand —
+# still flags 2% of real simultaneities, because a two-staff score cannot say
+# which hand plays a cross-staff note and a rolled chord is notated as a
+# simultaneity. 16 keeps the check meaningful (a hand does not span more than a
+# twelfth) while leaving real writing alone at 0.6%.
+_DEFAULT_MAX_HAND_SPAN = 16
+
+
 def analyze_voicing(
-    layer_ir, max_hand_span: int = 14, style: Optional[str] = None
+    layer_ir, max_hand_span: int = _DEFAULT_MAX_HAND_SPAN, style: Optional[str] = None
 ) -> VoicingReport:
     """Texture, register and voicing over a phrase, a section or a whole piece.
 
@@ -499,9 +541,11 @@ def _suggest(r: VoicingReport, floor: Optional[Dict[str, float]] = None) -> None
     if r.unplayable_spans:
         bar, beat, span = r.unplayable_spans[0]
         r.suggestions.append(
-            f"{len(r.unplayable_spans)} stretches exceed a comfortable hand "
+            f"{len(r.unplayable_spans)} simultaneous attacks exceed a hand's reach "
             f"(widest {span} semitones at bar {bar} beat {beat:g}). Roll them, "
-            f"redistribute between the hands, or drop a note."
+            f"redistribute between the hands, or drop a note — though check the "
+            f"score first: a chord written across the staves, or one meant to be "
+            f"rolled, reads the same way here."
         )
 
 

@@ -113,10 +113,34 @@ def _load_pack(composer: str, name: str) -> Any:
 
 
 def corpus_profile(composer: str) -> Dict[str, Any]:
-    """Per-composer metric distribution profile (corpus_profile.json), cached."""
+    """Per-composer metric distribution profile (corpus_profile.json), cached.
+
+    A profile written by an older build is worse than no profile: `self_evaluate`
+    narrows its discriminator bands to `mean ± 2σ` from these numbers, so stale
+    values silently become the standard a section is judged against.
+
+    Staleness is detected from the metric vocabulary rather than a version
+    field, because there is no version field and adding one would not help the
+    files already on disk. `melody_direction_change_pct` is the marker: it was
+    renamed from `direction_changes_per_bar` precisely because that name was
+    being used for **two different quantities** — a fraction of bars whose
+    direction label changes (~0.55) and a per-bar count of contour reversals
+    (~1-3). A profile still carrying the old name predates the rename, and every
+    other metric in it predates the rename too.
+    """
     if composer in _PROFILE_CACHE:
         return _PROFILE_CACHE[composer]
     data = _load_pack(composer, "corpus_profile") or {}
+    metrics = data.get("metrics") if isinstance(data, dict) else None
+    if isinstance(metrics, dict) and metrics and "melody_direction_change_pct" not in metrics:
+        logger.warning(
+            "corpus_profile for %r predates the metric rename (no "
+            "melody_direction_change_pct); ignoring it rather than judging a "
+            "section against stale numbers. Rebuild with "
+            "`python -m scripts.build_corpus_profiles`.",
+            composer,
+        )
+        data = {}
     _PROFILE_CACHE[composer] = data
     return data
 
