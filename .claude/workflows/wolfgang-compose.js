@@ -97,6 +97,20 @@ const REVISION = {
   },
 }
 
+const READINESS = {
+  type: 'object', additionalProperties: false,
+  required: ['ready'],
+  properties: {
+    ready: { type: 'boolean' },
+    missing: { type: 'array', items: { type: 'string' } },
+    thin: { type: 'array', items: { type: 'string' } },
+    phrases: { type: 'integer' },
+    motifs: { type: 'integer' },
+    narrative_sections: { type: 'integer' },
+    reference_studies: { type: 'integer' },
+  },
+}
+
 const ASSEMBLE = {
   type: 'object', additionalProperties: false,
   required: ['ok'],
@@ -109,6 +123,37 @@ const ASSEMBLE = {
 
 // ── 1. Survey: the deterministic work-list, read from the committed graph ─────
 phase('Survey')
+
+// Preflight the PLAN before spending dozens of composers on it. Every part of a
+// plan is optional at the type level, so a piece can reach the phrase composers
+// with an empty narrative, no motifs and no reference study — and the briefs
+// simply omit those sections, so nothing anywhere says so. Measured over the
+// twelve pieces in workspace/: five had a populated motif bank and not one had
+// an elected principal theme or a single placement; one of twelve had a saved
+// reference study. This runs in code so it cannot be skipped.
+const readiness = await agent(
+  `Run exactly this and return ONLY the JSON it prints (no commentary):\n` +
+  '```\n' +
+  `.venv/bin/python -c "import json; ` +
+  `from scales.scales import plan_readiness; ` +
+  `print(json.dumps(plan_readiness('${piece}')))"\n` +
+  '```',
+  { label: 'plan-readiness', phase: 'Survey', schema: READINESS })
+
+if (readiness && !readiness.ready) {
+  const gaps = (readiness.missing || []).join('; ')
+  if (args && args.allow_incomplete_plan) {
+    log(`WARNING: composing against an incomplete plan — ${gaps}`)
+  } else {
+    throw new Error(
+      `plan is incomplete for '${piece}' — ${gaps}. ` +
+      `Finish /w-plan (save_narrative, resolve_motifs, save_reference_study), or ` +
+      `pass args.allow_incomplete_plan:true to compose anyway and accept that ` +
+      `every brief will be missing those sections.`)
+  }
+}
+for (const t of (readiness && readiness.thin) || []) log(`plan is thin: ${t}`)
+
 const survey = await agent(
   `Run exactly this and return ONLY the JSON it prints (no commentary):\n` +
   '```\n' +

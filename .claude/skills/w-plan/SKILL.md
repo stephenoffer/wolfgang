@@ -179,7 +179,24 @@ Review: key scheme, cadence pacing, texture contrast, motif obligations.
 
 ## Step 6: Self-Critique
 
-Before finishing, verify:
+First, run the machine check — it reads the committed graph and names anything
+missing that changes the notes:
+
+```bash
+.venv/bin/python -c "
+import json; from scales.scales import plan_readiness
+print(json.dumps(plan_readiness('<piece-id>'), indent=1))
+"
+```
+
+`ready: false` means a documented part of the plan is empty and the briefs will
+silently omit it. Measured over the twelve pieces in `workspace/`, five had a
+populated motif bank and **not one** had an elected principal theme or a single
+placement, and only one of twelve carried a saved reference study — both systems
+are load-bearing and both had never run. `wolfgang-compose` now refuses to
+compose against an incomplete plan.
+
+Then verify by eye:
 - [ ] Reference study: 2-4 whole scores read and analyzed AND saved via save_reference_study (required — empty study ⇒ empty briefs)
 - [ ] Narrative arc SAVED via save_narrative; every section has authored `character` prose (no section relying on curve-adjectives)
 - [ ] Motif journey: clear arc across the piece

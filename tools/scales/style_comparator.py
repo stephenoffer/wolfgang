@@ -255,14 +255,46 @@ def compare(composed_metrics: dict, targets: dict, threshold: float = 0.35) -> d
         target_mean = target_info["mean"]
         target_stdev = target_info.get("stdev", 0)
 
-        # Calculate divergence
+        # Divergence as a percentage of the target, kept for the human-readable
+        # report even when it is not what decides the verdict.
         if abs(target_mean) < 0.01:
             divergence = abs(composed_val) * 100 if composed_val != 0 else 0
         else:
             divergence = abs(composed_val - target_mean) / abs(target_mean)
 
-        # Status based on threshold
-        if divergence <= threshold:
+        # ── Verdict ──────────────────────────────────────────────────────────
+        #
+        # By the SPREAD of the target when there is one, not by a flat
+        # percentage. `target_stdev` was read, stored in the report and printed
+        # in the CLI output — and never used to decide anything. Every verdict
+        # came from `|composed - mean| / mean` against one 35% threshold shared
+        # by every metric.
+        #
+        # That cannot work, because these quantities have wildly different
+        # natural spreads. Measured over 20 real movements, `triplet_pct` runs
+        # 0 to 74 around a mean of 16 and `chromatic_pct` 10.7 to 85.4: a real
+        # movement with no triplets diverges 100% from the mean and fails, while
+        # a metric that genuinely varies by only a few percent is waved through
+        # at 34% off. Scored this way, **19 of 20 canonical movements failed at
+        # least one metric**, and widening the stdev could not help because the
+        # stdev was not consulted.
+        #
+        # A z-score answers the question actually being asked — is this unusual
+        # for the style? — and makes the stdev mean something. The relative-
+        # divergence path remains for targets that carry no spread.
+        z = None
+        if target_stdev and target_stdev > 0:
+            z = abs(composed_val - target_mean) / float(target_stdev)
+            if z <= 2.0:
+                status = "PASS"
+                report["passing"] += 1
+            elif z <= 3.0:
+                status = "WARNING"
+                report["warnings"] += 1
+            else:
+                status = "FAIL"
+                report["failing"] += 1
+        elif divergence <= threshold:
             status = "PASS"
             report["passing"] += 1
         elif divergence <= threshold * 2:
@@ -284,6 +316,7 @@ def compare(composed_metrics: dict, targets: dict, threshold: float = 0.35) -> d
             "target_mean": round(target_mean, 2),
             "target_stdev": round(target_stdev, 2),
             "divergence_pct": round(divergence * 100, 1),
+            "sigmas": round(z, 2) if z is not None else None,
             "status": status,
             "fix_instruction": fix if status != "PASS" else None,
         }

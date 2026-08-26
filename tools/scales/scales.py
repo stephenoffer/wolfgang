@@ -2465,6 +2465,88 @@ def run_agent_section_briefs(
     return out
 
 
+def plan_readiness(piece_id: str) -> Dict[str, Any]:
+    """Is this piece's plan actually complete enough to compose against?
+
+    Every part of the plan is optional at the type level, so a piece can reach
+    the phrase composers with an empty narrative, no motifs and no reference
+    study, and nothing anywhere says so — the briefs simply omit those sections
+    and the agent cannot tell "the planner skipped this" from "this composer has
+    none".
+
+    Measured over the twelve pieces in ``workspace/``: five have a populated
+    motif bank and NOT ONE had an elected principal theme or a single placement,
+    and only one of twelve carried a saved reference study. Both systems are
+    documented as load-bearing. This is the check that would have caught either
+    on the first run.
+
+    Returns ``ready`` (nothing missing that changes the notes), plus ``missing``
+    and ``thin`` lists naming what to go back and do.
+    """
+    workspace = _WORKSPACE / piece_id
+    path = workspace / "piece_graph.json"
+    if not path.exists():
+        return {"ready": False, "missing": [f"no workspace for '{piece_id}'"], "thin": []}
+    graph = PieceGraph.load(str(path))
+
+    missing: List[str] = []
+    thin: List[str] = []
+
+    if not graph.phrases:
+        missing.append("form graph — no phrase slots exist (run build_form_graph)")
+
+    dna = getattr(graph, "style_dna", None)
+    composer_id = (getattr(dna, "composer_id", "") or "").strip()
+    if not composer_id or len(composer_id) < 2:
+        missing.append(
+            f"style — composer_id is {composer_id!r} (run compile_style with a real "
+            f"composer or style name; passing a bare string where a list is "
+            f"expected resolves it to a single letter)"
+        )
+    elif getattr(dna, "tier", "") in ("C", "D"):
+        thin.append(f"style tier {dna.tier} for '{composer_id}' — briefs will be generic")
+
+    sections = getattr(getattr(graph, "narrative", None), "sections", None) or []
+    if not sections:
+        missing.append(
+            "narrative — no sections (run save_narrative). Without it every phrase's "
+            "CREATIVE INTENT falls back to its bare function label"
+        )
+    elif not any((getattr(s, "character", "") or "").strip() for s in sections):
+        thin.append("narrative sections have no authored `character` prose")
+
+    if not graph.motif_bank:
+        missing.append(
+            "motifs — the motif bank is empty (run resolve_motifs). A piece is "
+            "memorable because ONE idea recurs transformed; with no motif the "
+            "brief has no material to name"
+        )
+    else:
+        placed = sum(1 for st in graph.phrases.values() if getattr(st.slot, "motif_transforms", None))
+        if not graph.principal_theme_id:
+            missing.append("motifs — no principal theme elected")
+        elif not placed:
+            missing.append("motifs — principal theme is placed in no phrase")
+
+    if not getattr(graph, "reference_studies", None):
+        missing.append(
+            "reference study — none saved (run save_reference_study after reading "
+            "whole scores). Every brief's 'WHAT YOU LEARNED FROM THE SCORES' "
+            "section is empty without it"
+        )
+
+    return {
+        "piece_id": piece_id,
+        "ready": not missing,
+        "missing": missing,
+        "thin": thin,
+        "phrases": len(graph.phrases),
+        "motifs": len(graph.motif_bank or {}),
+        "narrative_sections": len(sections),
+        "reference_studies": len(getattr(graph, "reference_studies", None) or {}),
+    }
+
+
 def get_section_status(piece_id: str, section_id: str) -> Dict[str, Any]:
     """Compact, section-scoped status — use this instead of dumping the graph.
 

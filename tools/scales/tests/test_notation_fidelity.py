@@ -972,3 +972,39 @@ def test_every_armed_style_has_corpus_harmony(style):
     assert all(p and p[0] == "I" and p[-1] == "I" for p in plans)
     # A template would give the same handful of chords every time.
     assert len({tuple(p) for p in plans}) >= 4, f"{style} harmony looks templated: {plans}"
+
+
+def test_authentic_cadences_are_approached_by_a_dominant():
+    """Sampling the corpus's "what precedes a final tonic" table freely returned
+    IV64, making IV64-I — a plagal cadence where a perfect authentic one was
+    planned. A piece whose structural cadences never resolve V-I never sounds
+    finished, and the same defect was found by hand in generated output."""
+    from scales.progression_model import _is_dominant_function, corpus_harmony_plan
+
+    styles = ["mozart", "beethoven", "chopin", "bach", "haydn",
+              "style__classical", "style__baroque", "style__romantic"]
+    checked = 0
+    for style in styles:
+        for seed in range(20):
+            for key in ("C major", "A minor"):
+                plan = corpus_harmony_plan(style, "", "PAC", 4, key, seed=seed)
+                if not plan:
+                    continue
+                checked += 1
+                assert _is_dominant_function(plan[-2]), (
+                    f"{style} approached a PAC with {plan[-2]} in {plan}"
+                )
+    assert checked > 100, "the sample never actually exercised the samplers"
+
+
+def test_dominant_function_distinguishes_the_degrees_that_matter():
+    from scales.progression_model import _is_dominant_function as is_dom
+
+    for symbol in ("V", "V7", "V6", "V65", "V43", "V42", "v", "v6",
+                   "viio", "viio7", "vii", "viiø43", "#viio7", "V7/V"):
+        assert is_dom(symbol), f"{symbol} carries dominant function"
+    for symbol in ("I", "i", "IV", "IV64", "iv", "ii", "ii6", "vi", "vi6", "vi7",
+                   "III", "VI", "VII", "bVII", "bII6"):
+        # vi is not v; VII (uppercase) is the subtonic, not the leading-tone
+        # chord; bVII less so.
+        assert not is_dom(symbol), f"{symbol} does not resolve as a dominant"

@@ -59,6 +59,42 @@ def _weighted(counter: Dict[str, int], rng: random.Random, exclude=()) -> Option
     return items[-1][0]
 
 
+def _is_dominant_function(symbol: str, mode: str = "major") -> bool:
+    """Does this Roman numeral resolve to the tonic as a dominant?
+
+    Only two degrees do: the fifth (V/v, with any figure or inversion) and the
+    LEADING-TONE chord (viio, viiø, and their inversions; ``#viio`` in minor,
+    where the seventh has to be raised to be a leading tone).
+
+    The distinctions matter and are easy to get wrong:
+    - ``vi`` is not ``v`` — a prefix test on "v" accepts the submediant, which
+      makes vi-I, a deceptive resolution backwards, not a cadence.
+    - ``VII`` (uppercase) in minor is the SUBTONIC, a whole tone below the
+      tonic. It has no leading tone and no dominant function; ``bVII`` even
+      less so. Only lowercase ``vii`` is the leading-tone chord.
+    """
+    sym = str(symbol or "").strip()
+    if not sym:
+        return False
+    sym = sym.split("/")[0]  # "V7/V" is still a dominant where it stands
+    if sym.startswith("b"):
+        return False  # a flattened degree is never the leading-tone chord
+    body = sym.lstrip("#")
+    stem = ""
+    for ch in body:
+        if ch in "ivIV":
+            stem += ch
+        else:
+            break
+    if not stem:
+        return False
+    lower = stem.lower()
+    if lower == "v":
+        return True
+    # Leading-tone chord: lowercase only. "VII" is the subtonic.
+    return lower == "vii" and stem.islower()
+
+
 def _backoff(mb: Dict[str, Any], plan: List[str], order: int, rng, exclude=()) -> Optional[str]:
     """Next chord from the longest context the model actually has data for.
 
@@ -108,6 +144,25 @@ def sample_progression(
         pick = _weighted(cad.get(bucket, {}), rng, exclude=(tonic, tonic.upper(), tonic.lower()))
         return pick or default
 
+    def _dominant_approach(default: str) -> str:
+        """The chord before an authentic cadence must have DOMINANT function.
+
+        Sampling the corpus's "what precedes a final tonic" table freely
+        returned things like ``IV64`` — which makes IV64-I, a plagal cadence,
+        not the perfect authentic one the planner asked for. Every phrase
+        planned as a PAC could come out closing without a dominant at all, and
+        a piece whose structural cadences never resolve V-I never sounds
+        finished. Restrict the draw to dominant-function chords and fall back
+        to a plain V7/V rather than to whatever was most frequent.
+        """
+        options = {
+            k: w
+            for k, w in (cad.get("PAC", {}) or {}).items()
+            if _is_dominant_function(k, mode)
+        }
+        pick = _weighted(options, rng)
+        return pick or default
+
     dom = "V7" if mode == "major" else "V"
     sub = "IV" if mode == "major" else "iv"
     sub6 = "IV6" if mode == "major" else "iv6"
@@ -118,7 +173,7 @@ def sample_progression(
     # — which is not a cadence, and is a large part of why phrases stopped rather
     # than closed.
     if cadence in ("PAC", "IAC"):
-        tail = [_approach("PAC", dom), tonic]
+        tail = [_dominant_approach(dom), tonic]
     elif cadence == "HC":
         tail = [_approach("HC", "ii6" if mode == "major" else "iv6"), "V"]
     elif cadence in ("DC", "deceptive"):
