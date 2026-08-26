@@ -321,3 +321,47 @@ def test_every_detector_defined_is_actually_run():
     unwired = sorted(name for name in defined if name not in report_src)
     assert not unwired, f"detector(s) defined but never run by realism_report: {unwired}"
     assert len(defined) >= 15, f"only {len(defined)} detectors found — did the module shrink?"
+
+
+# ─── The blocking family gets its own falsification ──────────────────────────
+
+
+@pytest.mark.calibration
+def test_musical_ear_errors_do_not_fire_on_canonical_music():
+    """`musical_ear` is the only family whose findings BLOCK a section.
+
+    `_section_gate` hard-fails on any `error`-severity ear finding, so a false
+    error here is the most expensive kind of bug in the system: it rejects music
+    that is fine, and the composer has no way to argue.
+
+    One known false positive is tolerated, with its cause: music21's Humdrum
+    importer lays out bar 43 of Mozart's K.281 third movement with offsets
+    running 0 to 16 inside a 2/2 measure. The music is fine; the parse is not.
+    No measurement of the parsed stream can tell "the importer merged some bars"
+    apart from "our exporter overflowed one", so the detector is trustworthy on
+    the MusicXML this system writes and should not be pointed at freshly
+    imported Humdrum without checking.
+    """
+    warnings.filterwarnings("ignore")
+    from scales.musical_ear import ear_report
+
+    files = _reference_scores()
+    if len(files) < 10:
+        pytest.skip(f"reference corpus not available ({len(files)} scores found)")
+
+    offenders: dict = {}
+    for f in files:
+        try:
+            rep = ear_report(str(f), [], graph=None)
+        except Exception:
+            continue
+        errs = [x for x in rep.get("findings", []) if x.get("severity") == "error"]
+        if errs:
+            offenders[f.name] = sorted({x.get("detector") for x in errs})
+
+    known = {"sonata03-3.krn"}  # the K.281/iii Humdrum import artifact above
+    unexpected = {k: v for k, v in offenders.items() if k not in known}
+    print(f"\n{len(files)} canonical movements; ear errors on {sorted(offenders)}")
+    assert not unexpected, "musical_ear raises BLOCKING errors on canonical music: " + ", ".join(
+        f"{k} {v}" for k, v in unexpected.items()
+    )

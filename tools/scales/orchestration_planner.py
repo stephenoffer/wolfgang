@@ -53,9 +53,134 @@ _MELODY_PREFERENCE = ["violin_1", "violin", "flute", "oboe", "clarinet", "trumpe
 _BASS_PREFERENCE = ["cello", "bassoon", "trombone", "tuba", "double_bass", "contrabass"]
 
 
+# ─── Practical range, and what a dynamic costs at the extremes ───────────────
+#
+# `INSTRUMENT_RANGES` gives the notes an instrument *can* produce. Writing to
+# those limits is not orchestration — it is the difference between a part a
+# player can read and one they dread. Every wind instrument's bottom minor third
+# is unwieldy and will not speak quietly; every one's top is effortful and will
+# not speak quietly either. A flute's lowest octave cannot be heard over a full
+# orchestra at any dynamic, and a trumpet's top cannot be played pianissimo at
+# all.
+#
+# The trims below are in semitones off each end of the playable range, and the
+# dynamic rules say which end refuses which dynamic. Where an instrument has no
+# entry the range is used unmodified rather than guessed at — an unknown
+# instrument gets no false confidence.
+
+_PRACTICAL_TRIM: Dict[str, Tuple[int, int]] = {
+    # (semitones off the bottom, semitones off the top)
+    "flute": (2, 4),          # the low octave is weak; the top is shrill and hard
+    "piccolo": (3, 3),
+    "alto_flute": (2, 4),
+    "oboe": (2, 4),           # the lowest notes honk and cannot be played softly
+    "english_horn": (2, 4),
+    "clarinet": (0, 5),       # the chalumeau is fine; the top is effortful
+    "bass_clarinet": (0, 5),
+    "bassoon": (2, 5),
+    "contrabassoon": (2, 5),
+    "horn": (3, 4),           # the pedal register and the high register both
+    "trumpet": (1, 4),
+    "cornet": (1, 4),
+    "piccolo_trumpet": (1, 3),
+    "trombone": (2, 4),
+    "bass_trombone": (2, 4),
+    "tuba": (2, 4),
+    "euphonium": (2, 4),
+    "soprano_sax": (1, 3),
+    "alto_sax": (1, 3),
+    "tenor_sax": (1, 3),
+    "baritone_sax": (1, 3),
+    # Strings are far more forgiving; only the very top of each is awkward.
+    "violin": (0, 7),
+    "viola": (0, 7),
+    "cello": (0, 7),
+    "double_bass": (0, 7),
+    # Voices: the extremes exist but are not sustainable.
+    "soprano": (2, 2),
+    "mezzo_soprano": (2, 2),
+    "alto": (2, 2),
+    "tenor": (2, 2),
+    "baritone": (2, 2),
+    "bass": (2, 2),
+}
+
+# Instruments that cannot play softly at the top of their range, and those that
+# cannot play softly at the bottom. Asking for either produces a part that will
+# simply come out louder than written, which then unbalances everything around
+# it — a quiet orchestration that is not quiet.
+_NO_SOFT_HIGH = {
+    "trumpet", "cornet", "piccolo_trumpet", "horn", "trombone", "bass_trombone",
+    "tuba", "euphonium", "oboe", "piccolo",
+}
+_NO_SOFT_LOW = {
+    "flute", "alto_flute", "oboe", "english_horn", "bassoon", "contrabassoon",
+    "soprano_sax", "alto_sax", "tenor_sax", "baritone_sax",
+}
+_SOFT_DYNAMICS = {"ppp", "pp", "p", "pppp"}
+_LOUD_DYNAMICS = {"f", "ff", "fff", "ffff"}
+
+
+def _canonical(instrument: str) -> str:
+    return _RANGE_ALIASES.get(instrument.lower(), instrument.lower())
+
+
 def _range_of(instrument: str) -> Tuple[int, int]:
-    key = _RANGE_ALIASES.get(instrument.lower(), instrument.lower())
-    return INSTRUMENT_RANGES.get(key, (21, 108))
+    """The full playable range — every note the instrument can produce."""
+    return INSTRUMENT_RANGES.get(_canonical(instrument), (21, 108))
+
+
+def practical_range(instrument: str, dynamic: Optional[str] = None) -> Tuple[int, int]:
+    """The range this instrument sounds GOOD in, optionally at a given dynamic.
+
+    Writing at the edge of the playable range is what makes an orchestration read
+    as generated: the notes are legal and the part is miserable. At a soft
+    dynamic the usable range narrows further, because several instruments
+    physically cannot play quietly at one end or the other.
+    """
+    key = _canonical(instrument)
+    lo, hi = INSTRUMENT_RANGES.get(key, (21, 108))
+    trim_lo, trim_hi = _PRACTICAL_TRIM.get(key, (0, 0))
+    lo, hi = lo + trim_lo, hi - trim_hi
+    if dynamic and dynamic.lower() in _SOFT_DYNAMICS:
+        # Another fourth off whichever end refuses to speak quietly.
+        if key in _NO_SOFT_HIGH:
+            hi -= 5
+        if key in _NO_SOFT_LOW:
+            lo += 5
+    if lo >= hi:  # a trim that would invert the range is not a range
+        return INSTRUMENT_RANGES.get(key, (21, 108))
+    return lo, hi
+
+
+def range_warnings(instrument: str, midis, dynamic: Optional[str] = None):
+    """Notes outside what this instrument does well, as readable lines.
+
+    Advisory. Writing at an extreme is a legitimate effect — a shrieking piccolo
+    at a climax is a choice — so this reports rather than clamps.
+    """
+    key = _canonical(instrument)
+    full_lo, full_hi = _range_of(instrument)
+    lo, hi = practical_range(instrument, dynamic)
+    out = []
+    for m in sorted({int(x) for x in midis}):
+        if m < full_lo or m > full_hi:
+            out.append(f"{instrument}: MIDI {m} is outside the instrument's range entirely")
+        elif m < lo:
+            reason = (
+                "will not speak at this dynamic"
+                if dynamic and key in _NO_SOFT_LOW and dynamic.lower() in _SOFT_DYNAMICS
+                else "in the weak bottom of the range"
+            )
+            out.append(f"{instrument}: MIDI {m} {reason}")
+        elif m > hi:
+            reason = (
+                "cannot be played softly"
+                if dynamic and key in _NO_SOFT_HIGH and dynamic.lower() in _SOFT_DYNAMICS
+                else "in the effortful top of the range"
+            )
+            out.append(f"{instrument}: MIDI {m} {reason}")
+    return out
 
 
 def _clamp_octave(midi: int, lo: int, hi: int) -> int:
@@ -200,8 +325,14 @@ def plan_orchestration(
     contrabass = lower_ens.get("contrabass") or lower_ens.get("double_bass")
 
     # ── Melody → lead, with doublings ──
+    #
+    # Parts are fitted to the PRACTICAL range, not the physical one. Clamping an
+    # octave transfer to the outer limit of what an instrument can produce lands
+    # notes in the weak bottom or the effortful top — legal, and miserable to
+    # play. The trims are small (a tone or two at each end for winds, a fifth off
+    # the top for strings) so nothing useful is lost.
     if lead:
-        lo, hi = _range_of(lead)
+        lo, hi = practical_range(lead)
         for e in layer.principal_line:
             if e.pitch == "rest":
                 continue
@@ -229,7 +360,7 @@ def plan_orchestration(
 
     # ── Bass → cello-class, contrabass 8vb at mf+ ──
     if bass:
-        lo, hi = _range_of(bass)
+        lo, hi = practical_range(bass)
         for e in layer.bass_foundation:
             if e.pitch == "rest":
                 continue
@@ -261,7 +392,7 @@ def plan_orchestration(
         target = inner_high if (m >= 60 or not inner_low) else inner_low
         if not target:
             continue
-        lo, hi = _range_of(target)
+        lo, hi = practical_range(target)
         p = _transpose_event_pitch(e.pitch, 0, lo, hi, key)
         if p:
             parts[target].append(_event_dict(e, p))
@@ -288,7 +419,7 @@ def plan_orchestration(
             if not chord:
                 continue
             if loudness.get(bar, 4) >= 5 and horn and horn in pads:
-                lo, hi = _range_of(horn)
+                lo, hi = practical_range(horn)
                 p = midi_to_pitch(_clamp_octave(chord[len(chord) // 2], lo, hi), key)
                 parts[horn].append(
                     {
@@ -305,7 +436,7 @@ def plan_orchestration(
                 for inst, idx in ((clarinet, -1), (bassoon, 0)):
                     if not inst:
                         continue
-                    lo, hi = _range_of(inst)
+                    lo, hi = practical_range(inst)
                     p = midi_to_pitch(_clamp_octave(chord[idx], lo, hi), key)
                     parts[inst].append(
                         {
@@ -322,7 +453,7 @@ def plan_orchestration(
     # ── Counter-melody → oboe (or viola) ──
     counter_inst = oboe or viola
     if counter_inst:
-        lo, hi = _range_of(counter_inst)
+        lo, hi = practical_range(counter_inst)
         for e in layer.counter_reply:
             if e.pitch == "rest":
                 continue
@@ -333,7 +464,7 @@ def plan_orchestration(
     # ── Ornamental surface → flute when free, else stays with lead ──
     orn_inst = flute or lead
     if orn_inst:
-        lo, hi = _range_of(orn_inst)
+        lo, hi = practical_range(orn_inst)
         for e in layer.ornamental_surface:
             if e.pitch == "rest":
                 continue

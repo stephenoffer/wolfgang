@@ -1039,3 +1039,118 @@ def test_phrase_state_keeps_every_field_across_a_save_load(tmp_path):
     assert back.review.musical_issues == ["bar 1 is bare"]
     assert back.agent_authored is True
     assert back.realized is not None and back.slot is not None
+
+
+# ── Multi-movement works ────────────────────────────────────────────────────
+
+
+def _sonata_graph():
+    from scales.models import (
+        MovementContract,
+        PhraseSlot,
+        PhraseState,
+        PieceContract,
+        SectionSpec,
+        TargetSpec,
+    )
+    from scales.piece_graph import PieceGraph
+
+    graph = PieceGraph()
+    graph.piece_id = "sonata-test"
+    graph.contract = PieceContract(
+        piece_id="sonata-test", description="A sonata in three movements",
+        target=TargetSpec(instrumentation="solo_piano", movements=3),
+    )
+    plan = [
+        ("m1", "C major", (4, 4), 120, 1, "Allegro"),
+        ("m2", "F major", (3, 4), 60, 5, ""),
+        ("m3", "C major", (6, 8), 160, 9, "Presto"),
+    ]
+    rh = {(4, 4): "C5q D5q E5q F5q", (3, 4): "C5q D5q E5q", (6, 8): "C5e D5e E5e F5e G5e A5e"}
+    lh = {(4, 4): "C3w", (3, 4): "C3h.", (6, 8): "C3h."}
+    for mid, key, meter, tempo, start, marking in plan:
+        graph.form.movements.append(
+            MovementContract(id=mid, key=key, tempo_bpm=tempo, meter=meter,
+                             tempo_marking=marking, sections=[f"{mid}_a"])
+        )
+        graph.form.sections[f"{mid}_a"] = SectionSpec(
+            id=f"{mid}_a", movement_id=mid, key=key, bar_start=start, bar_end=start + 3
+        )
+        for i in range(4):
+            pid = f"{mid}_a_p{i + 1}"
+            graph.phrases[pid] = PhraseState(
+                slot=PhraseSlot(phrase_id=pid, section_id=f"{mid}_a", bar_start=start + i,
+                                bar_count=1, key=key, meter=meter, tempo_bpm=tempo),
+                realized=compose_phrase([{"rh": rh[meter], "lh": lh[meter]}], key=key,
+                                        bar_start=start + i, phrase_id=pid, meter=meter),
+            )
+    return graph
+
+
+def test_each_movement_keeps_its_own_meter_key_and_tempo(tmp_path):
+    import music21
+
+    from scales.assembler import assemble
+
+    score = music21.converter.parse(assemble(_sonata_graph(), output_dir=str(tmp_path)))
+    expected = {**{i: 4.0 for i in range(1, 5)}, **{i: 3.0 for i in range(5, 13)}}
+    for part in score.parts:
+        for m in part.getElementsByClass("Measure"):
+            total = sum(float(n.quarterLength) for n in m.flatten().notesAndRests)
+            assert abs(total - expected[m.number]) < 0.01, f"m{m.number} holds {total} beats"
+    changes = [
+        (m.number, m.timeSignature.ratioString)
+        for m in score.parts[0].getElementsByClass("Measure")
+        if m.timeSignature
+    ]
+    assert changes == [(1, "4/4"), (5, "3/4"), (9, "6/8")]
+
+
+def test_movements_are_separated_on_the_page(tmp_path):
+    """A three-movement sonata engraved as one unbroken run of bars is not a
+    sonata. Each movement takes a final barline, a heading and a new page."""
+    import music21
+
+    from scales.assembler import assemble
+
+    path = assemble(_sonata_graph(), output_dir=str(tmp_path))
+    xml = Path(path).read_text()
+    score = music21.converter.parse(path)
+
+    headings = [
+        str(e.content)
+        for e in score.recurse().getElementsByClass("TextExpression")
+        if str(e.content)[:1].isupper() and "." in str(e.content)
+    ]
+    assert headings[:3] == ["I. Allegro", "II. Andante", "III. Presto"], headings
+    # "II. Andante" is derived from the metronome value where no marking was given.
+    assert 'new-page="yes"' in xml
+    barlines = {
+        m.number: m.rightBarline.type
+        for m in score.parts[0].getElementsByClass("Measure")
+        if m.rightBarline
+    }
+    assert barlines == {4: "final", 8: "final", 12: "final"}
+
+
+def test_the_tempo_word_is_not_printed_twice(tmp_path):
+    import music21
+
+    from scales.assembler import assemble
+
+    score = music21.converter.parse(assemble(_sonata_graph(), output_dir=str(tmp_path)))
+    texts = [str(e.content) for e in score.recurse().getElementsByClass("TextExpression")]
+    assert texts.count("Allegro") == 0, f"the heading already says it: {texts}"
+
+
+@pytest.mark.parametrize("movement", ["m1", "m2", "m3"])
+def test_a_single_movement_can_be_assembled_on_its_own(tmp_path, movement):
+    import music21
+
+    from scales.assembler import assemble
+
+    score = music21.converter.parse(
+        assemble(_sonata_graph(), scope=f"movement-{movement}", output_dir=str(tmp_path))
+    )
+    bars = list(score.parts[0].getElementsByClass("Measure"))
+    assert len(bars) == 4, f"movement-{movement} assembled {len(bars)} bars"

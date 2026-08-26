@@ -152,7 +152,37 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
     overlap serialized without a backup, a sequentially-parsed pedal figure
     overflowing, an exemplar copied a beat long). Every one of those shipped
     silently because nothing ever read the assembled file back and checked it.
+
+    The length is measured as the largest `offset + duration` reached — how far
+    into the bar the last sounding thing extends. That is written out explicitly
+    rather than taken from `measure.duration.quarterLength`, which happens to be
+    the same number (`Stream.duration` is `highestTime`) but only for as long as
+    that stays true of a `Measure`; the property this detector needs is "does
+    anything still sound past the barline", and overlapping voices must not be
+    double-counted.
+
+    **A known false positive, recorded honestly.** Run over the reference
+    corpus, this fires an `error` on bar 43 of Mozart's K.281 third movement:
+    music21's Humdrum importer lays that bar out with offsets running 0 to 16
+    inside a 2/2 measure. The music is fine; the *parse* is not, and no
+    measurement of the parsed stream can tell the difference between "the
+    importer merged some bars" and "our exporter overflowed one". Since this is
+    the only detector family whose findings block a section, that limit is worth
+    stating: it is trustworthy on the MusicXML this system writes (where it
+    catches the 7.5-beats-in-4/4 shape several notation bugs have produced), and
+    it should not be pointed at freshly-imported Humdrum without checking.
+    `test_score_realism_calibration` tolerates exactly this one file.
     """
+
+    def _sounding_extent(measure) -> float:
+        """How far into the bar the last sounding thing reaches."""
+        end = 0.0
+        for el in measure.recurse().notesAndRests:
+            try:
+                end = max(end, float(el.offset) + float(el.duration.quarterLength))
+            except (TypeError, ValueError):
+                continue
+        return end
     out: List[Dict[str, Any]] = []
     for part in score.parts:
         for m in part.getElementsByClass("Measure"):
@@ -160,7 +190,9 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
             if ts is None:
                 continue
             expected = float(ts.barDuration.quarterLength)
-            actual = float(m.duration.quarterLength)
+            actual = _sounding_extent(m)
+            if actual <= 0:
+                continue  # an empty measure says nothing about the meter
             # The first bar may legitimately be a pickup (a partial measure).
             if m.number in (0, 1) and actual < expected:
                 continue

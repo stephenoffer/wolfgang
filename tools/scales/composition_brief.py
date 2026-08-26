@@ -571,6 +571,30 @@ def texture_density_stats(composer: str, refresh: bool = False) -> Dict[str, Any
 _ORNAMENT_SCHEMA = 1
 
 
+_ANACRUSIS_CACHE: Dict[str, float] = {}
+
+
+def anacrusis_rate(composer: str) -> float:
+    """Fraction of this composer's movements that open with a pickup bar.
+
+    Measured, because the alternative is a generic exhortation that nothing acts
+    on: the brief has told composers "not every phrase starts on a downbeat" for
+    a long time, and not one of the twelve pieces in ``workspace/`` opens off the
+    beat. The corpus figure is 46% for Mozart, 57% for Beethoven, 58% for Chopin
+    and 69% for Bach.
+    """
+    key = (composer or "").lower()
+    if key in _ANACRUSIS_CACHE:
+        return _ANACRUSIS_CACHE[key]
+    sources: Dict[str, bool] = {}
+    for b in _iter_corpus_bars(composer):
+        src = b.get("source") or "?"
+        sources[src] = sources.get(src, False) or (b.get("bar_num") == 0)
+    rate = (sum(1 for v in sources.values() if v) / len(sources)) if sources else 0.0
+    _ANACRUSIS_CACHE[key] = round(rate, 3)
+    return _ANACRUSIS_CACHE[key]
+
+
 def ornament_stats(composer: str, refresh: bool = False) -> Dict[str, Any]:
     """Per-texture ornament rates measured from the CORPUS.
 
@@ -2538,6 +2562,17 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
     if strategy:
         detail = (getattr(slot, "return_strategy_detail", "") or "").strip()
         out.append(f"THE RETURN MUST DIFFER BY: {strategy}" + (f" — {detail}" if detail else ""))
+    entry = (getattr(slot, "metric_entry", "") or "").strip().lower()
+    if entry == "anacrusis":
+        out.append(
+            "METRIC ENTRY: this phrase begins with an UPBEAT, not on the downbeat. "
+            "Mark the first bar dict 'pickup': True and write only the upbeat in it "
+            "— it right-aligns to the barline and engraves as a real partial "
+            "measure. The pickup OCCUPIES that bar, so `bars` still has exactly "
+            "bar_count dicts."
+        )
+    elif entry == "downbeat":
+        out.append("METRIC ENTRY: this phrase begins on the downbeat.")
     motion = (getattr(slot, "key_motion", "") or "").strip()
     if motion:
         pivot = (getattr(slot, "pivot_hint", "") or "").strip()
@@ -2753,9 +2788,8 @@ _MINDSET = (
     "\n"
     "CRAFT THE HUMAN ELEMENTS (the difference between notes and music — use the "
     "shorthand fully; copy the IDIOMS, not the pitches, from the exemplars):\n"
-    "  • METRIC ENTRY: not every phrase starts on a downbeat. Mark the first bar "
-    "dict 'pickup': True and write only the upbeat in it — it right-aligns to the "
-    "barline and engraves as a real partial measure.\n"
+    "  • METRIC ENTRY: not every phrase starts on a downbeat — the plan says "
+    "which this one is, under WHY THIS PHRASE EXISTS, with the mechanics.\n"
     "  • INNER VOICES: write genuine two-voice-per-hand polyphony with '//' — a "
     'sustained melody over a moving inner line, e.g. rh="Ab5h. Gb5q // Db5e Eb5e '
     "F5e Gb5e\". The '//' separates simultaneous voices in ONE hand. Use it; do "

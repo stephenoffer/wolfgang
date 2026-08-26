@@ -149,6 +149,16 @@ def _section_stem(section_id: str) -> str:
     return _STEM_ALIASES.get(stem, stem)
 
 
+def role_for(section_id: str, index: int) -> str:
+    """The dramatic role of the ``index``-th phrase of a section.
+
+    Exposed so the planner can resolve a role BEFORE building the slot, which is
+    what lets harmony sampling depend on what the phrase is for.
+    """
+    arc = _SECTION_ARC.get(_section_stem(section_id)) or [ESTABLISH, EXTEND, CONFIRM]
+    return arc[min(max(0, index), len(arc) - 1)]
+
+
 def assign_dramatic_roles(slots) -> None:
     """Give every slot a dramatic role from its position in its section."""
     by_section: Dict[str, List] = {}

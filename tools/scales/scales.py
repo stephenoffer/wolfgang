@@ -472,6 +472,13 @@ def build_form_graph(
     persist_ledger(graph, _cross_ledger)
 
     graph.phase = PipelinePhase.PLANNING.value
+    # Decide the piece's METRIC ENTRY at the composer's own rate. A piece that
+    # always begins squarely on beat 1 of bar 1 sounds squared-off, and none of
+    # the twelve pieces in workspace/ has ever begun any other way — while 46% of
+    # Mozart's movements and 69% of Bach's open with a pickup. The shorthand and
+    # the engraver have both supported an anacrusis all along; nothing asked.
+    _plan_metric_entry(graph)
+
     # Elect ONE principal theme and state it at every section opening
     # (transformed at the recap) — a memorable, recurring through-line instead of
     # locally-optimized, independent phrases. Runs AFTER the slots exist, and is
@@ -563,6 +570,37 @@ def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, An
         "principal_theme_id": graph.principal_theme_id,
         "sections_given_a_theme_statement": placed,
     }
+
+
+def _plan_metric_entry(graph) -> None:
+    """Mark the opening phrase as an anacrusis when this composer usually does.
+
+    Deterministic, not random: the decision is seeded by the piece id, so the
+    same piece always plans the same way and a rebuild does not silently change
+    the music.
+    """
+    # Read the slots OFF THE GRAPH, not from a caller's list. The graph holds its
+    # own PhraseState objects, so mutating a local list of slots changes nothing
+    # that gets saved — which is how this field was set correctly in memory and
+    # came back empty on the very next load.
+    slots = [st.slot for st in graph.phrases.values() if getattr(st, "slot", None)]
+    if not slots:
+        return
+    from .composition_brief import anacrusis_rate, resolve_composer
+
+    warnings: List[str] = []
+    composer = resolve_composer(graph, None, warnings)
+    try:
+        rate = anacrusis_rate(composer)
+    except Exception:
+        return
+    if rate <= 0:
+        return
+    opening = min(slots, key=lambda s: s.bar_start)
+    if opening.metric_entry:
+        return  # already decided (a replan, or the planner said so explicitly)
+    seed = sum(ord(c) for c in (graph.piece_id or "")) % 1000 / 1000.0
+    opening.metric_entry = "anacrusis" if seed < rate else "downbeat"
 
 
 def _place_principal_theme(graph) -> int:
@@ -1249,9 +1287,15 @@ def _build_from_spec(spec, key, tempo, meter, style) -> List[PhraseSlot]:
     phrases: List[PhraseSlot] = []
     bar = 1
     counters: Dict[str, int] = {}
+    from .dramatic_plan import role_for
+
     for section_id, bars, fn, cad, key_role in spec:
         counters[section_id] = counters.get(section_id, 0) + 1
         slot_key = _key_for_role(key, key_role)
+        # Resolve the dramatic role BEFORE the harmony is sampled: an opening
+        # statement and a crisis should not be handed the same palette, and the
+        # sampler cannot know which it is unless it is told.
+        drole = role_for(section_id, counters[section_id] - 1)
         phrases.append(
             _make_slot(
                 f"{section_id}_p{counters[section_id]}",
@@ -1264,6 +1308,7 @@ def _build_from_spec(spec, key, tempo, meter, style) -> List[PhraseSlot]:
                 meter,
                 tempo,
                 style,
+                dramatic_role=drole,
             )
         )
         bar += bars
@@ -1332,6 +1377,7 @@ def _make_slot(
     meter: Tuple[int, int],
     tempo: int,
     style: StyleDNA,
+    dramatic_role: str = "",
 ) -> PhraseSlot:
     """Create a PhraseSlot with SUGGESTED harmony and texture plans.
 
@@ -1360,6 +1406,7 @@ def _make_slot(
         bar_count,
         key,
         seed=bar_start,
+        role=dramatic_role,
     ) or _default_harmony_plan(function, cadence, bar_count, minor=is_minor_key(key))
 
     # Where the harmony moves INSIDE each bar, from the composer's own within-bar
@@ -1380,6 +1427,7 @@ def _make_slot(
     energy = _default_energy_curve(function, bar_count)
 
     return PhraseSlot(
+        dramatic_role=dramatic_role,
         phrase_id=phrase_id,
         section_id=section_id,
         bar_start=bar_start,

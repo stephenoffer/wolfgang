@@ -444,6 +444,12 @@ class PhraseSlot:
     # Free-text character note from the form spec (e.g. "variation 2 — minore").
     # Surfaced in the brief so a variation set actually varies in character.
     notes: str = ""
+    # "" | "downbeat" | "anacrusis" — whether this phrase enters on the downbeat
+    # or with an upbeat. Measured over the corpus, 46% of Mozart's movements and
+    # 57% of Beethoven's open with a pickup bar; NONE of the twelve pieces in
+    # workspace/ ever has. The shorthand and the engraver have supported an
+    # anacrusis for some time — nothing ever asked for one.
+    metric_entry: str = ""
 
 
 # ─── SketchIR (what Claude writes) ──────────────────────────────────────────

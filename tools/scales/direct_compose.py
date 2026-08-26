@@ -581,13 +581,21 @@ def _emit_voice(
 def _pickup_start_beat(bar_data, meter) -> Fraction:
     """Beat on which a pickup bar's content begins, right-aligned to the barline.
 
-    A three-beat 4/4 pickup starts on beat 2. The longest voice in the bar sets
-    the alignment so all voices of the anacrusis line up.
+    A three-beat 4/4 pickup starts on beat 2. The longest SOUNDING voice sets the
+    alignment so all voices of the anacrusis line up.
+
+    A voice that is nothing but rests does not count. The other hand is normally
+    silent under an upbeat, and writing that silence as ``rest_q`` — the obvious
+    thing to write — made a lone eighth-note upbeat in 3/4 align as if it were a
+    whole beat long, so it landed on beat 3 with an eighth of silence in front of
+    it instead of on the second half of the beat.
     """
     capacity = Fraction(int(meter[0]) * 4, int(meter[1]))
     longest = Fraction(0)
     for hand in ("rh", "lh"):
         for voice in _split_voices(bar_data.get(hand, [])):
+            if not any(ev.get("pitch") not in (None, "rest") for ev in voice):
+                continue  # silence under the upbeat, not content
             total = sum(
                 DURATION_VALUES.get(ev["dur"], Fraction(1))
                 for ev in voice

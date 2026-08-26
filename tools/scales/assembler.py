@@ -239,6 +239,7 @@ def _apply_structural_barlines(score, piece_graph, scope: str) -> None:
     for ends in by_section.values():
         section_ends.add(max(ends))
 
+    shift = 0
     if scope != "full" and section_ends:
         shift = (
             min(
@@ -250,17 +251,104 @@ def _apply_structural_barlines(score, piece_graph, scope: str) -> None:
         )
         if shift > 0:
             section_ends = {b - shift for b in section_ends}
+        else:
+            shift = 0
+
+    # Where each movement ENDS and where the next one begins. A movement close
+    # takes a final barline, not a double bar, and the next movement starts on
+    # a new page under its own heading — a three-movement sonata engraved as one
+    # unbroken run of bars is not a sonata, it is a spreadsheet.
+    movement_ends, movement_starts = _movement_bounds(piece_graph, scope, shift)
 
     last_bar = max(section_ends) if section_ends else None
     for part in score.parts:
         for measure in part.getElementsByClass("Measure"):
-            if measure.number not in section_ends:
+            if measure.number in movement_ends or measure.number == last_bar:
+                style = "final"
+            elif measure.number in section_ends:
+                style = "double"
+            else:
                 continue
-            style = "final" if measure.number == last_bar else "double"
             try:
                 measure.rightBarline = music21.bar.Barline(type=style)
             except Exception:
                 continue
+
+    if len(movement_starts) > 1:
+        _apply_movement_headings(score, piece_graph, movement_starts)
+
+
+def _movement_bounds(piece_graph, scope: str, shift: int):
+    """(bars where a movement ends, {bar: movement_id} where one begins)."""
+    spans: Dict[str, List[int]] = {}
+    for ps in piece_graph.phrases.values():
+        slot = getattr(ps, "slot", None)
+        if slot is None or not ps.realized or not _in_scope(ps, scope):
+            continue
+        section = slot.section_id or ""
+        # The `m<N>_` section-id convention is what identifies a movement; see
+        # CLAUDE.md's Section IDs note.
+        mv = section.split("_", 1)[0] if "_" in section else ""
+        if not mv:
+            continue
+        start = (slot.bar_start or 1) - shift
+        end = start + (slot.bar_count or 1) - 1
+        span = spans.setdefault(mv, [start, end])
+        span[0], span[1] = min(span[0], start), max(span[1], end)
+    ends = {v[1] for v in spans.values()}
+    starts = {v[0]: k for k, v in spans.items()}
+    return ends, starts
+
+
+# Roman numerals for movement headings, the way a score prints them.
+_ROMAN = ("I", "II", "III", "IV", "V", "VI", "VII", "VIII")
+
+
+def _apply_movement_headings(score, piece_graph, movement_starts: Dict[int, str]) -> None:
+    """A page break and a heading ("II. Andante") at each movement's first bar."""
+    import music21
+
+    by_id = {getattr(m, "id", ""): m for m in (getattr(piece_graph.form, "movements", None) or [])}
+    ordered = sorted(movement_starts)
+    try:
+        top = score.parts[0]
+    except (AttributeError, IndexError):
+        return
+    for n, bar in enumerate(ordered):
+        mv_id = movement_starts[bar]
+        contract = by_id.get(mv_id)
+        numeral = _ROMAN[n] if n < len(_ROMAN) else str(n + 1)
+        marking = (getattr(contract, "tempo_marking", "") or "").strip()
+        if not marking:
+            marking = tempo_word(getattr(contract, "tempo_bpm", 0) or 120)
+        measure = next(
+            (m for m in top.getElementsByClass("Measure") if m.number == bar), None
+        )
+        if measure is None:
+            continue
+        try:
+            heading = music21.expressions.TextExpression(f"{numeral}. {marking}")
+            heading.style.fontWeight = "bold"
+            heading.style.fontSize = 14
+            measure.insert(0, heading)
+            # The heading now carries the tempo WORD, so the metronome mark
+            # beside it should print only the number — otherwise the first
+            # movement reads "I. Allegro   Allegro ♩=120".
+            for mm_mark in measure.getElementsByClass("MetronomeMark"):
+                if (mm_mark.text or "").strip().lower() == marking.strip().lower():
+                    mm_mark.text = None
+        except Exception:
+            pass
+        if n == 0:
+            continue  # the first movement does not need a break before it
+        for part in score.parts:
+            m = next((x for x in part.getElementsByClass("Measure") if x.number == bar), None)
+            if m is None:
+                continue
+            try:
+                m.insert(0, music21.layout.PageLayout(isNew=True))
+            except Exception:
+                pass
 
 
 def _in_scope(phrase_state, scope: str) -> bool:

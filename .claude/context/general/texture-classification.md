@@ -111,6 +111,81 @@ V:Vc name="Cello" clef=bass
 [V:Vc] !f! G,8 |
 ```
 
+## Varying Texture at the Keyboard
+
+Everything above is written for an ensemble, where texture changes by adding and
+removing players. At a keyboard there are no players to remove, and the guidance
+does not transfer — which is why generated piano writing tends to hold one
+texture for a whole section without anyone noticing.
+
+**The measurement that exposes it.** Count how many notes are **sounding at
+once** at each attack, then take the coefficient of variation across the piece.
+Measured over 22 real movements: **Mozart 0.21–0.41, Beethoven 0.32–0.50,
+Chopin 0.17–0.30.**
+
+> This is **simultaneity CV** — how much the *thickness* varies. Do not confuse
+> it with the **density CV** in `human-sounding-music.md` (Mozart 0.21–0.47),
+> which counts *events per bar* — how much the *activity* varies. The two
+> numbers look alike and measure different things: a bar of running sixteenths
+> in one voice is dense but thin, and a held four-note chord is thick but not
+> dense. Three quantities in this codebase have already worn confusingly similar
+> names and two of them disagreed by 3–4× inside a single context window.
+Generated pieces come in at 0.19 and below — outside the range of any of them.
+Not too thin, and not too busy: the number of notes sounding *never changes*.
+It is the single texture measurement on which generated music most reliably
+leaves the repertoire.
+
+Note what this is not saying. The same measurements found the generated right
+hand at 1.13 notes per attack against real Mozart's 1.22 — inside the range —
+and its texture-change rate at 0.62 against Mozart's 0.47–0.77. The average
+thickness was fine. What was missing was the **variance**: the piece never
+thickened at a climax and never thinned into a cadence.
+
+### The devices, in rough order of how much they change
+
+| Device | What it does | Where it belongs |
+|---|---|---|
+| Melody in octaves | Doubles the tune's weight without adding harmony | A theme's forceful return; the top of a crescendo |
+| Melody in thirds or sixths | Adds warmth and body to one line | A lyrical phrase's high point; a repeat of a phrase already heard plain |
+| Added inner voice | Fills the hole between melody and bass | Anywhere the middle sounds empty; a suspension or a held dissonance |
+| Broken-chord accompaniment → block chords | Thickens and steadies | Approaching a cadence; the arrival of a new section |
+| Block chords → broken chords | Loosens and moves | Leaving a cadence; a transition |
+| Bass in octaves | Deepens the floor | A climax; the last statement of a theme |
+| Drop to two bare voices | Sudden intimacy | After a climax; the start of a development |
+| Melody alone, unaccompanied | Maximum exposure | An opening; a moment of suspension before a return |
+| Register transfer up an octave | Same material, new colour | A varied repeat; the second half of a period |
+
+### How real music paces it
+
+Real writing does **not** change accompaniment idiom every bar or every phrase.
+Measured across the same movements, distinct left-hand bar-patterns per bar have
+medians of 0.33 (Mozart), 0.27 (Beethoven) and 0.15 (Chopin) — three quarters of
+Chopin's bars reuse a figure already heard. The figure holds; what changes is
+the **weight**.
+
+So the practical rule is not "vary the texture more often". It is:
+
+- Let an accompaniment figure hold for a phrase or longer. That is what real
+  music does, and churning it is its own machine tell.
+- Change the *thickness* at the points where the music means something — the
+  climax, the cadence, the return, the moment a theme comes back.
+- **Eight bars is the outer limit** for one unchanging texture before a listener
+  stops hearing it as a texture at all. If a stretch that long has to stay, give
+  it a register transfer or a single thinned bar to breathe.
+
+### The cheapest fixes, when a piece measures flat
+
+1. **Thin one bar before each cadence.** Drop the accompaniment to the bare bass
+   note for a bar. It costs nothing and it is what makes a cadence sound like an
+   arrival rather than a bar that happens to end.
+2. **Thicken the climax.** Wherever the melody reaches its highest point, put the
+   tune in octaves or add a third under it for those two or three bars.
+3. **Vary the repeat.** When a phrase returns unchanged, change its texture
+   rather than its notes: plain the first time, in thirds the second.
+
+Each of these moves the measurement, but that is not the reason to do them. They
+are the reason the measurement exists.
+
 ## Accompaniment Texture Patterns
 
 | Pattern | Description | Character | ABC shorthand |

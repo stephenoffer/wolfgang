@@ -118,6 +118,56 @@ def _backoff(mb: Dict[str, Any], plan: List[str], order: int, rng, exclude=()) -
     return _weighted(uni, rng, exclude=exclude)
 
 
+# Romans that colour a phrase rather than establishing one: borrowed, applied,
+# altered or chromatic. A statement should be plainly in its key; a departure or
+# a crisis is where these belong.
+# In a MAJOR key these are borrowed from the parallel minor even though their
+# symbols carry no accidental — a lowercase tonic/subdominant/dominant, or an
+# uppercase mediant/submediant/subtonic. Testing only for "b"/"#" missed all of
+# them, which is how an opening statement in B-flat major came to be planned as
+# `I - iv - viio - V`: `iv` is the minor subdominant and reads as a shadow, not a
+# statement.
+_BORROWED_IN_MAJOR = {"i", "iv", "v", "III", "VI", "VII", "bIII", "bVI", "bVII"}
+_BORROWED_IN_MINOR = {"I", "IV", "V"}  # V is normal in minor; see below
+
+
+def _is_chromatic(roman: str, mode: str = "major") -> bool:
+    r = str(roman or "")
+    if not r:
+        return False
+    if (
+        r[0] in "b#"
+        or "/" in r
+        or any(x in r for x in ("Ger", "Fr", "It", "N", "+", "ø", "%"))
+    ):
+        return True
+    # strip inversion figures before testing the numeral itself
+    base = r.rstrip("0123456789")
+    if mode == "major":
+        return base in _BORROWED_IN_MAJOR
+    # In minor, the raised-leading-tone V and viio are normal practice, so only a
+    # major tonic or subdominant reads as borrowed.
+    return base in {"I", "IV"}
+
+
+# How diatonic each dramatic role wants its harmony to be. The progression model
+# samples from the composer's transitions without regard to what the phrase is
+# FOR, so an opening statement — whose own doctrine in the same brief says "clear
+# periodic phrasing, diatonic harmony" — was handed `I - iv - viio - V`. A
+# statement that opens on borrowed chords does not read as a statement.
+_ROLE_ALLOWS_CHROMATIC = {
+    "establish": False,
+    "confirm": False,
+    "close": False,
+    "return": False,
+    "extend": True,
+    "depart": True,
+    "intensify": True,
+    "crisis": True,
+    "retreat": True,
+}
+
+
 def sample_progression(
     model: Dict[str, Any],
     mode: str,
@@ -125,6 +175,7 @@ def sample_progression(
     cadence: str,
     tonic: str,
     seed: int = 0,
+    allow_chromatic: bool = True,
 ) -> Optional[List[str]]:
     """Sample a roman walk: tonic start, corpus-idiomatic middle, cadence ending.
 
@@ -192,13 +243,31 @@ def sample_progression(
     else:
         tail = [tonic]
 
+    # Everything chromatic in this mode's vocabulary, computed once: a statement
+    # should be plainly in its key, and the sampler has no idea what the phrase is
+    # for unless it is told.
+    chromatic_block: tuple = ()
+    if not allow_chromatic:
+        chromatic_block = tuple(
+            r for r in (mb.get("uni") or {}) if _is_chromatic(r, mode)
+        )
+
     n_mid = max(1, bar_count - len(tail))
     plan: List[str] = [tonic]
     while len(plan) < n_mid:
         # No exclusion of the previous chord: real music prolongs, and forbidding
         # a repeat forces the harmony to change on every bar, which is a machine
         # tell. The only guard is against a chord running more than three bars.
-        exclude = (plan[-1],) if len(plan) >= 3 and len(set(plan[-3:])) == 1 else ()
+        # A stable role should not sit on one chord for three bars either — a
+        # statement that repeats I6 three times is not prolonging, it is stalling.
+        repeat_limit = 2 if not allow_chromatic else 3
+        exclude = (
+            (plan[-1],)
+            if len(plan) >= repeat_limit and len(set(plan[-repeat_limit:])) == 1
+            else ()
+        )
+        if chromatic_block:
+            exclude = tuple(exclude) + chromatic_block
         plan.append(_backoff(mb, plan, order, rng, exclude=exclude) or tonic)
     return (plan[:n_mid] + tail)[:bar_count]
 
@@ -290,6 +359,7 @@ def corpus_harmony_plan(
     bar_count: int,
     key: str,
     seed: int = 0,
+    role: str = "",
 ) -> Optional[List[str]]:
     """Idiomatic progression for a phrase slot, or None if no model (the caller
     then uses the hard-coded template fallback)."""
@@ -299,4 +369,12 @@ def corpus_harmony_plan(
     minor = is_minor_key(key)
     mode = "minor" if minor else "major"
     tonic = "i" if minor else "I"
-    return sample_progression(model, mode, bar_count, cadence, tonic, seed=seed)
+    return sample_progression(
+        model,
+        mode,
+        bar_count,
+        cadence,
+        tonic,
+        seed=seed,
+        allow_chromatic=_ROLE_ALLOWS_CHROMATIC.get(role, True),
+    )

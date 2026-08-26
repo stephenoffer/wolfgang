@@ -34,7 +34,8 @@ Real Mozart uses ALL 20 gesture types. The typical AI composition uses only 2-3.
 ### Tell #1: Flat Density (the texture never thickens or thins)
 Real music breathes — dense passages alternate with sparse ones. A piece at a constant 8 events/bar sounds mechanical.
 - **Fix:** Give the piece a density arc: sparse at boundaries, dense at climaxes, breathing room between intense passages. What matters is that the *texture moves*, not how far.
-- **Measured:** density CV — Mozart 0.38 [0.21–0.47], Beethoven 0.40 [0.23–0.54], Chopin 0.27 [0.21–0.32]. Below about **0.20** is outside the repertoire entirely.
+- **Measured:** density CV (events per bar — how much the *activity* varies) — Mozart 0.38 [0.21–0.47], Beethoven 0.40 [0.23–0.54], Chopin 0.27 [0.21–0.32]. Below about **0.20** is outside the repertoire entirely.
+- Not the same thing as the **simultaneity CV** in `texture-classification.md`, which counts notes sounding *at once* — how much the *thickness* varies. A bar of running sixteenths in one voice is dense but thin; a held four-note chord is thick but not dense. Both matter; they are separate faults with separate fixes.
 - Note the direction of the finding: generated pieces are usually flat *below* this band, not short of some high target. One measured at 0.19 — the texture literally never changed thickness.
 
 ### Tell #2: Repetitive Accompaniment (the same LH figure, unchanged, all piece)
