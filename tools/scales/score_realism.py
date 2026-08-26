@@ -29,7 +29,7 @@ them.
 from __future__ import annotations
 
 from collections import Counter
-from typing import Any, Dict, List, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 # Advisory severities. Nothing in this module ever emits "error" — see the
 # module docstring.
@@ -964,6 +964,55 @@ def phrase_boundaries(graph, scope: str = "full") -> Dict[str, Any]:
     }
 
 
+# Layer/staff names that carry the melody and the accompaniment, in PREFERENCE
+# order — several parts can be melodic at once ("melody" and "foreground" both
+# are), and the principal line has to win over the secondary one. Matching on
+# "first part whose name is in the set" instead picks whichever happens to sort
+# first, which is not a musical criterion.
+_MELODY_NAMES = ("melody", "principal", "soprano", "foreground", "treble", "violin", "flute")
+_ACCOMP_NAMES = ("bass", "harmony", "accompaniment", "response", "motor", "violoncello")
+
+
+def identify_staves(score, bars: List[Dict[str, Any]]) -> Tuple[int, int]:
+    """Which staff index carries the melody, and which the accompaniment.
+
+    A two-staff piano score is (0, 1) and always was. An ORCHESTRAL score is
+    not: music21 hands back its parts in whatever order the exporter wrote
+    them, which for a generated orchestral score is alphabetical — so staff 0
+    was "Bass" and every melody detector in this module was analysing the
+    double basses as the tune.
+
+    Resolved by part name where the name is recognisable, and otherwise by
+    register: the highest mean pitch is the melody, the lowest the bass.
+    """
+    try:
+        names = [str(p.partName or p.id or "").strip().lower() for p in score.parts]
+    except Exception:
+        names = []
+    if len(names) <= 2:
+        return 0, 1 if len(names) > 1 else 0
+
+    def _best(preferences) -> Optional[int]:
+        for key in preferences:  # preference order, not part order
+            for i, n in enumerate(names):
+                if key in n:
+                    return i
+        return None
+
+    melody = _best(_MELODY_NAMES)
+    accomp = _best(_ACCOMP_NAMES)
+    if melody is None or melody == accomp:
+        means = {}
+        for i in range(len(names)):
+            mid = [m for b in bars if b["staff"] == i for m in b["midis"]]
+            if mid:
+                means[i] = sum(mid) / len(mid)
+        if means:
+            melody = max(means, key=means.get)
+            accomp = min(means, key=means.get)
+    return (melody if melody is not None else 0), (accomp if accomp is not None else 1)
+
+
 def realism_report(
     score_path: str,
     graph=None,
@@ -993,6 +1042,10 @@ def realism_report(
 
     bars = _bar_table(score)
     spanners = _count_spanners(score)
+    # Default indices are right for a piano grand staff and wrong for anything
+    # with more parts — resolve them from the score itself.
+    if melody_staff == 0 and accomp_staff == 1:
+        melody_staff, accomp_staff = identify_staves(score, bars)
     bounds = (
         phrase_boundaries(graph, scope)
         if graph is not None

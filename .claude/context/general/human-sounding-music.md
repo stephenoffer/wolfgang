@@ -57,7 +57,11 @@ Real harmony progresses — ii→V→I, deceptive cadences, walking bass, circle
 
 ### Tell #5: No Appoggiaturas or Suspensions
 Real melody leans into chord tones through non-chord tones on strong beats. Clean chord tones on every beat = arpeggiated accompaniment, not melody.
-- **Fix:** Add at least 1 appoggiatura or suspension per 8-bar phrase.
+- **Fix:** Let the melody *lean* — approach a chord tone from a step above or
+  below on the strong beat, or hold a tone over its change of harmony and
+  resolve it down. Not a quota: a phrase with none of these is not broken, but a
+  whole piece with none of them is arpeggiated accompaniment wearing a melody's
+  clothes. The place to put one is wherever the line is reaching for something.
 
 ### Tell #6: Monotonous Melody Direction
 Real melody changes direction 1-2x per bar. A melody that descends for 4 bars without changing direction sounds like a scale exercise.
@@ -67,11 +71,26 @@ Real melody changes direction 1-2x per bar. A melody that descends for 4 bars wi
 
 ### Tell #7: No Texture Evolution
 Real pieces evolve texture across sections. The same texture from start to finish = one long section.
-- **Fix:** Plan a voice-count arc: 2→3→4→6→8→6→4→2→1 across the piece.
+- **Fix:** Let the number of sounding voices change with the drama — thinner
+  where the music withdraws, fuller at the arrival, and down to a single line
+  when that is the point. A specific sequence like 2→3→4→6→8→6→4→2→1 is one
+  plausible shape, not a plan to execute: texture that changes on a schedule is
+  the tell, not the cure (the same mistake as the old "4 distinct roots per 8
+  bars" target in Tell #4 above).
 
 ### Tell #8: Missing Expression (no dynamics, slurs, tempo)
 Real music has pp→ff arcs, slurs over phrases, tempo changes at section boundaries.
-- **Fix:** Minimum 1 dynamic marking per 8 bars, 1 slur per phrase, tempo markings at section boundaries.
+- **Fix:** Write the marks with the notes — slurs over the singing gestures,
+  articulation on what should be detached or leaned on, a hairpin where the
+  phrase grows and subsides.
+- **Measured:** volume events (written dynamics + hairpins) run **0.16 to 2.22
+  per bar, median 0.77** across 26 Mozart/Beethoven/Chopin movements;
+  articulation marks run **0.041 to 2.24 per bar, median 0.57**. The old "minimum
+  1 dynamic per 8 bars" is below what 22 of those 24 movements do, so it is not a
+  floor worth aiming at — and two real movements fall *under* it, so it is not
+  even a floor. What matters is that the page is marked at all: the last score
+  this system produced had **zero** articulation marks and **zero** ties in 41
+  bars, which no engraved score in the corpus comes close to.
 
 ### Tell #9: Wrong Enharmonic Spelling
 G# in Eb minor = wrong. Ab = correct. The key signature determines spelling.

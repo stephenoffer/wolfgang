@@ -83,7 +83,11 @@ Bass single note, then 2-note chord, then 3-note chord. Two harmonic beats per b
 ]
 ```
 
-**NEVER write the LH as single-note arpeggiation only** — that's too thin. Real Chopin's beats 2-3 use 2-3 note chords to create harmonic fullness.
+**Don't let single-note arpeggiation carry the whole piece** — it thins out.
+Chopin's beats 2-3 mostly use 2-3 note chords for harmonic fullness. But
+"never" is too strong: measured over twelve mazurkas, a **median 7% of bars**
+have an all-single-note left hand, and one whole movement runs at 87%. A bare
+LH bar is a texture — the thing to avoid is a whole piece of them.
 
 ### Step 2 — Write the melody (VERIFIED from real Op.9/2 analysis)
 
@@ -393,7 +397,7 @@ A2  → [Gb3,Eb4] → [C4,Eb4,Gb4]   = A°7 (dim, chromatic approach)
 ```
 Four different chord functions in one bar. The bass DESCENDS chromatically: Bb→B→C→... wait, it goes Bb→B(up)→C(up)→A(down). It's a complex motion with chromatic B natural and diminished seventh chord at the end.
 
-**Rule: Every bar should have AT LEAST 2 different bass notes.** Most bars in Op.9/2 have 3-4.
+**Aim for a bass that moves within the bar** — most bars, not every bar. Most bars in Op.9/2 have 3-4 distinct bass notes. Measured over twelve mazurkas, **80% of bars** (median) carry two or more; the sparsest whole movement manages 20%, so a static bass bar is a device Chopin uses, not a mistake. The old wording here was "Every bar should have AT LEAST 2", which real Chopin breaks one bar in five.
 
 ---
 
@@ -503,7 +507,13 @@ Real Chopin melodies are **53% leaps** (intervals > 4 semitones). AI tends to wr
 - Bar 11: G5→A4 (↓m7), then A4→F5 (↑m6)
 - Bar 27: Ab5→C5 (↓m6), then Eb5→G6 (↑16st = compound m10)
 
-**Rule: Every 4-bar phrase should contain at least 2 leaps of P5 or wider.** The cascade bar (bar 4/8 of each phrase) typically contains the widest leap followed by chromatic descent.
+**Give most 4-bar groups a wide leap or two — a fifth or more.** The cascade bar
+(bar 4/8 of each phrase) typically contains the widest leap, followed by
+chromatic descent. Measured over twelve mazurkas, **68% of 4-bar groups**
+(median) carry two or more such leaps, and the least leapy movement manages 42%
+— so a group that stays stepwise is a contrast Chopin writes on purpose, not a
+failure. This was worded "Every 4-bar phrase should contain at least 2", which
+real Chopin breaks about a third of the time.
 
 ---
 

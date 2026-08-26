@@ -176,6 +176,35 @@ is a ceiling rather than a path.
 
 ---
 
+## 4b. The craft checklist failed real music too
+
+The same fault as §1, in code rather than in prose. `CraftChecker` runs a
+phrase-sanctity checklist on every phrase. Over 126 real 8-bar phrases:
+
+| check | passed before | passed after | why it was wrong |
+|---|---|---|---|
+| `has_memorable_detail` | **0 of 126** | 99.2% | looked in `ornamental_surface`, a layer nothing populates |
+| `accompaniment_responds_to_melody` | 31.0% | 100% | `len(response_layer) >= 4` — empty for any single-stream left hand |
+| `harmony_is_voiced` | 55.6% | 97.6% | counted events in `response_layer`/`counter_reply`, so chords in `bass_foundation` were "unvoiced" |
+| `entry_exit_earned` | 75.4% | 100% | indexed the melody in **list** order, not time order, and demanded the last event be a note |
+
+Three of the four were reading *which layer a note was filed under* rather than
+the music — the phantom-bass-line lesson again: a statistic taken off a broken
+layer is not evidence about the notes. They now ask about the sound: is anything
+sounding three-deep at any point, does an accompaniment exist and do more than
+one note per bar, does the phrase begin with sound and reach a sounding note.
+
+`has_memorable_detail` was rewritten around what actually makes a phrase
+distinctive — an expressive leap, a note twice the phrase's usual value, an
+interior silence, a notated ornament or articulation *anywhere* in the texture,
+a dynamic that moves — rather than around one unpopulated layer.
+
+The discrimination survives: a phrase of one repeated note with no accompaniment
+still fails 7 of the 9 checks. `test_corpus_craft_checks.py` pins both halves —
+real music passes, empty music does not.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and
@@ -272,3 +301,4 @@ Run with `pytest -m calibration` (~2 minutes):
 | `test_corpus_cadence.py` | a cadence reader that cannot read real cadences, or that answers PAC for everything |
 | `test_corpus_style_targets.py` | a gate target whose ±2σ band excludes the real median |
 | `test_corpus_musicality_bands.py` | a score band real music sits outside, or a ceiling it cannot reach |
+| `test_corpus_craft_checks.py` | a craft check canonical music fails — and, in the same file, a check so loose it passes a one-note phrase |

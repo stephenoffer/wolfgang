@@ -776,3 +776,104 @@ def test_cadence_history_excludes_phrases_that_come_after():
     graph = _piano_graph([{"rh": "C5w", "lh": "C3w"}], n_phrases=3)
     first = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)[0]
     assert _cadences_already_used(graph, first) == {}, "the opening phrase has no history"
+
+
+# ── The orchestral path, which had quietly diverged from the piano one ──────
+
+
+def _orch_graph():
+    from scales.models import (
+        LayerEvent,
+        LayerIR,
+        PhraseSlot,
+        PhraseState,
+        PieceContract,
+        TargetSpec,
+    )
+    from scales.piece_graph import PieceGraph
+
+    def ev(b, t, p, d, **k):
+        return LayerEvent(bar=b, beat=t, pitch=p, duration=d, **k)
+
+    lir = LayerIR(phrase_id="o1", instrumentation="orchestra", key="C", meter=(4, 4), bar_count=2)
+    lir.principal_line = [ev(1, 1.0, "C6", "h", articulation="tenuto"), ev(1, 3.0, "E6", "h"),
+                          ev(2, 1.0, "G6", "w")]
+    lir.foreground = [ev(1, 1.0, "G5", "w"), ev(2, 1.0, "C6", "w")]
+    lir.harmonic_mass = [ev(1, 1.0, ["C4", "E4", "G4"], "w"), ev(2, 1.0, ["C4", "F4", "A4"], "w")]
+    lir.bass_foundation = [ev(1, 1.0, "C2", "w"), ev(2, 1.0, "C2", "w", dynamic="p")]
+    lir.punctuation = [ev(2, 1.0, "C4", "q", articulation="accent")]
+    g = PieceGraph()
+    g.piece_id = "orch-test"
+    g.contract = PieceContract(
+        piece_id="orch-test", description="An orchestral test",
+        target=TargetSpec(instrumentation="orchestra"),
+    )
+    g.phrases["o1"] = PhraseState(
+        slot=PhraseSlot(phrase_id="o1", section_id="s1", bar_start=1, bar_count=2,
+                        key="C", meter=(4, 4), tempo_bpm=100, cadence_target="PAC"),
+        realized=lir,
+    )
+    return g
+
+
+def test_orchestral_parts_get_real_instruments(tmp_path):
+    """Without an Instrument object every part exports with no MIDI program, so
+    an orchestrated score plays back as a room full of pianos."""
+    import music21
+
+    from scales.assembler import assemble
+
+    score = music21.converter.parse(assemble(_orch_graph(), output_dir=str(tmp_path)))
+    instruments = {type(p.getInstrument()).__name__ for p in score.parts}
+    assert len(instruments) > 1, f"every part got the same instrument: {instruments}"
+    assert "Piano" not in instruments or len(instruments) > 2
+
+
+def test_orchestral_bars_do_not_overflow_the_meter(tmp_path):
+    """The voice-container fix that stopped the piano path spilling past the
+    barline was never applied to the ensemble path."""
+    import music21
+
+    from scales.assembler import assemble
+
+    score = music21.converter.parse(assemble(_orch_graph(), output_dir=str(tmp_path)))
+    for part in score.parts:
+        for m in part.getElementsByClass("Measure"):
+            total = sum(float(n.quarterLength) for n in m.flatten().notesAndRests)
+            assert abs(total - 4.0) < 0.01, f"{part.partName} m{m.number} holds {total} beats"
+
+
+def test_orchestral_notation_reaches_the_page(tmp_path):
+    from scales.assembler import assemble
+
+    xml = Path(assemble(_orch_graph(), output_dir=str(tmp_path))).read_text()
+    assert "<tenuto" in xml and "<accent" in xml
+    assert "<dynamics" in xml
+    assert xml.count("midi-program") >= 2
+
+
+def test_realism_audit_finds_the_melody_in_an_orchestral_score(tmp_path):
+    """music21 hands parts back in the exporter's order, which for a generated
+    orchestral score is alphabetical — so staff 0 was 'Bass' and every melody
+    detector was analysing the double basses as the tune."""
+    import music21
+
+    from scales.assembler import assemble
+    from scales.score_realism import _bar_table, identify_staves
+
+    score = music21.converter.parse(assemble(_orch_graph(), output_dir=str(tmp_path)))
+    names = [str(p.partName or "") for p in score.parts]
+    melody, accomp = identify_staves(score, _bar_table(score))
+    assert "melody" in names[melody].lower(), f"melody resolved to {names[melody]}"
+    assert melody != accomp
+
+
+def test_piano_staves_are_still_treble_then_bass(tmp_path):
+    import music21
+
+    from scales.assembler import assemble
+    from scales.score_realism import _bar_table, identify_staves
+
+    graph = _piano_graph([{"rh": "C5w", "lh": "C3w"}])
+    score = music21.converter.parse(assemble(graph, output_dir=str(tmp_path)))
+    assert identify_staves(score, _bar_table(score)) == (0, 1)

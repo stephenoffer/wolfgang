@@ -117,12 +117,106 @@ def pitch_to_midi(p: Union[str, int, float, list, None]) -> Optional[int]:
     return 0 if midi < 0 else (127 if midi > 127 else midi)
 
 
-def midi_to_pitch(midi_val: int, key: str = "C") -> str:
-    """Convert MIDI number to pitch string with key-aware spelling."""
-    octave = (midi_val // 12) - 1
+_LETTERS = "CDEFGAB"
+_LETTER_PC = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
+_MAJOR_STEPS = (0, 2, 4, 5, 7, 9, 11)
+_MINOR_STEPS = (0, 2, 3, 5, 7, 8, 10)
+# Scale degrees (0-based) that practice RAISES rather than lowers: the fourth and
+# the seventh in major; the sixth and seventh in minor as well. A chromatic pitch
+# a semitone above one of these is that degree sharpened; anything else is the
+# degree above it flattened.
+_RAISED_DEGREES_MAJOR = frozenset({3, 6})
+# Minor raises its third (the Picardy), fourth, sixth and seventh.
+_RAISED_DEGREES_MINOR = frozenset({2, 3, 5, 6})
+
+_SPELLING_CACHE: dict = {}
+
+
+def _accidental(name: str) -> int:
+    return name.count("#") - name.count("b")
+
+
+def _alter(name: str, delta: int) -> Optional[str]:
+    acc = _accidental(name) + delta
+    if abs(acc) > 2:
+        return None
+    letter = name[0]
+    return letter + ("#" * acc if acc > 0 else "b" * -acc)
+
+
+def key_spelling(key: str = "C") -> dict:
+    """pitch class -> the note name that key actually writes.
+
+    A key is not "all sharps" or "all flats". D minor has one flat AND spells its
+    raised fourth G-sharp and its leading tone C-sharp; the old allowlist gave
+    A-flat and D-flat — different notes on the page, and a semitone from what was
+    meant. Diatonic degrees are spelled from the key's own letter sequence, and
+    each chromatic degree is spelled as the alteration real practice makes:
+    sharpening the fourth and seventh (and the sixth in minor), flattening the
+    rest.
+    """
+    norm = _normalize_key(key)
+    if norm in _SPELLING_CACHE:
+        return _SPELLING_CACHE[norm]
+    minor = norm.endswith("m")
+    tonic = norm[:-1] if minor else norm
+    if not tonic or tonic[0].upper() not in _LETTER_PC:
+        tonic = "C"
+    letter0 = tonic[0].upper()
+    tonic_pc = key_to_root_midi(key) % 12
+    steps = _MINOR_STEPS if minor else _MAJOR_STEPS
+
+    out: dict = {}
+    degree_of: dict = {}
+    for i, off in enumerate(steps):
+        letter = _LETTERS[(_LETTERS.index(letter0) + i) % 7]
+        pc = (tonic_pc + off) % 12
+        acc = (pc - _LETTER_PC[letter]) % 12
+        acc = acc - 12 if acc > 6 else acc
+        name = _alter(letter, acc)
+        if name is None:  # a key needing triple accidentals — fall back
+            _SPELLING_CACHE[norm] = _fallback_spelling(key)
+            return _SPELLING_CACHE[norm]
+        out[pc] = name
+        degree_of[pc] = i
+
+    raised = _RAISED_DEGREES_MINOR if minor else _RAISED_DEGREES_MAJOR
+    for pc in range(12):
+        if pc in out:
+            continue
+        below, above = out.get((pc - 1) % 12), out.get((pc + 1) % 12)
+        sharp = _alter(below, +1) if below else None
+        flat = _alter(above, -1) if above else None
+        # Fewest accidentals wins first — otherwise G minor's Picardy third comes
+        # out "Cb" and D-flat major's second comes out "E-double-flat". Only when
+        # both candidates are equally simple does the raised/lowered convention
+        # decide, and then D minor writes G-sharp for its raised fourth and
+        # E-flat for its Neapolitan.
+        candidates = [c for c in (sharp, flat) if c]
+        if not candidates:
+            out[pc] = SEMITONE_TO_NOTE_FLAT[pc]
+            continue
+        best = min(abs(_accidental(c)) for c in candidates)
+        simple = [c for c in candidates if abs(_accidental(c)) == best]
+        if len(simple) == 1:
+            out[pc] = simple[0]
+            continue
+        prefer_sharp = below is not None and degree_of.get((pc - 1) % 12) in raised
+        out[pc] = (sharp if prefer_sharp else flat) or simple[0]
+    _SPELLING_CACHE[norm] = out
+    return out
+
+
+def _fallback_spelling(key: str) -> dict:
     names = SEMITONE_TO_NOTE_SHARP if prefer_sharps(key) else SEMITONE_TO_NOTE_FLAT
-    note = names[midi_val % 12]
-    return f"{note}{octave}"
+    return {pc: names[pc] for pc in range(12)}
+
+
+def midi_to_pitch(midi_val: int, key: str = "C") -> str:
+    """Convert MIDI number to pitch string, spelled the way ``key`` writes it."""
+    midi_val = int(midi_val)
+    octave = (midi_val // 12) - 1
+    return f"{key_spelling(key)[midi_val % 12]}{octave}"
 
 
 def pitch_class(midi_val: int) -> int:

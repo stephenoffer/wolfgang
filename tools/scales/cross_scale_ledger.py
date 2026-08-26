@@ -404,3 +404,142 @@ class CrossScaleLedger:
                 pass
 
         return ledger
+
+
+# ─── Attaching a ledger to a graph ───────────────────────────────────────────
+#
+# The ExpectationLedger is described in CLAUDE.md as one of the system's core
+# design principles — "the system's working memory of unfinished musical
+# business", tracking promises, debts, cooldowns and locks so a piece can carry
+# expectations across time.
+#
+# Measured on 2026-08-26: **no piece in the workspace has ever contained a
+# single ledger entry.** Not one, across twelve pieces spanning five months.
+#
+# The cause was not a failure to record. Planning guards every write with
+# ``if _cross_ledger is not None`` / ``elif _ledger is not None``, and a
+# PieceGraph has ``cross_scale_ledger = None`` and no ``expectation_ledger``
+# attribute at all — so both guards are False for every section and nothing is
+# ever written. The bare ``except Exception: pass`` around that block (audit
+# item C21) is not the problem and never fired: there was simply no ledger to
+# populate. Nothing raised, nothing was recorded, and nothing reported that.
+#
+# ``ensure_ledger`` makes the object exist, so a caller that wants to record an
+# expectation can, without needing to know how the graph was constructed.
+
+
+def ensure_ledger(graph) -> "CrossScaleLedger":
+    """Return a live CrossScaleLedger for this graph, creating one if absent.
+
+    ``PieceGraph.cross_scale_ledger`` is typed as a **dict** — the serialized
+    form — so the live object is kept on a transient attribute and the dict is
+    written back by :func:`persist_ledger`. Attaching the object to the dict
+    field directly would break the save contract, which is exactly the kind of
+    "two things share one field" mistake that has already cost this project four
+    separate bugs.
+
+    A persisted ledger is restored, so promises and debts survive across runs
+    and movement boundaries instead of being silently replaced by an empty one.
+    """
+    live = getattr(graph, "_live_cross_ledger", None)
+    if isinstance(live, CrossScaleLedger):
+        return live
+
+    stored = getattr(graph, "cross_scale_ledger", None)
+    if isinstance(stored, CrossScaleLedger):
+        # A caller attached the object to the dict field. Take it, and put the
+        # field back to the serialized form the graph expects.
+        live = stored
+    elif isinstance(stored, dict) and stored:
+        try:
+            live = CrossScaleLedger.from_dict(stored)
+        except Exception:
+            live = CrossScaleLedger()
+    else:
+        live = CrossScaleLedger()
+
+    try:
+        graph._live_cross_ledger = live
+        graph.cross_scale_ledger = live.to_dict()
+    except Exception:  # pragma: no cover - an immutable graph is still usable
+        pass
+    return live
+
+
+def persist_ledger(graph, ledger: Optional["CrossScaleLedger"] = None) -> Dict[str, Any]:
+    """Write the live ledger back to the graph's serialized field.
+
+    Call before ``graph.save()``. Without this the ledger exists only in memory
+    and every promise recorded during planning is gone by the time composition
+    reads it — which, for a subsystem whose entire purpose is carrying
+    expectations across time, is the same as not having one.
+    """
+    live = ledger or getattr(graph, "_live_cross_ledger", None)
+    if not isinstance(live, CrossScaleLedger):
+        return {}
+    data = live.to_dict()
+    try:
+        graph.cross_scale_ledger = data
+    except Exception:  # pragma: no cover - defensive
+        pass
+    return data
+
+
+def ledger_is_empty(graph) -> bool:
+    """True when the graph carries no recorded expectations at all.
+
+    The check that would have caught this in the first place: a documented
+    subsystem holding zero entries on every piece ever produced is vestigial,
+    whatever the docs say about it.
+    """
+    return _open_expectations(graph) == []
+
+
+def _open_expectations(graph) -> List[Any]:
+    """Open expectations from the live ledger or the serialized field.
+
+    Reading only the live object reported "no ledger" on a graph freshly loaded
+    from disk whose expectations had in fact survived — the same
+    read-one-shape-of-two mistake that makes an empty analysis look like a clean
+    bill of health.
+    """
+    live = getattr(graph, "_live_cross_ledger", None)
+    if isinstance(live, CrossScaleLedger):
+        try:
+            return list(live.get_all_open())
+        except Exception:  # pragma: no cover - defensive
+            return []
+    stored = getattr(graph, "cross_scale_ledger", None)
+    if isinstance(stored, CrossScaleLedger):
+        try:
+            return list(stored.get_all_open())
+        except Exception:  # pragma: no cover - defensive
+            return []
+    if isinstance(stored, dict) and stored:
+        try:
+            return list(CrossScaleLedger.from_dict(stored).get_all_open())
+        except Exception:  # pragma: no cover - defensive
+            return []
+    return []
+
+
+def ledger_summary(graph) -> Dict[str, Any]:
+    """What the ledger is holding, for a review or a status line."""
+    open_exps = _open_expectations(graph)
+    attached = bool(
+        getattr(graph, "_live_cross_ledger", None) is not None
+        or getattr(graph, "cross_scale_ledger", None)
+    )
+    by_scale: Dict[str, int] = {}
+    for e in open_exps:
+        scale = getattr(e, "scale", "?")
+        by_scale[scale] = by_scale.get(scale, 0) + 1
+    out: Dict[str, Any] = {
+        "attached": attached,
+        "open": len(open_exps),
+        "by_scale": by_scale,
+        "objects": [getattr(e, "object_ref", "") for e in open_exps[:12]],
+    }
+    if not attached:
+        out["note"] = "no ledger on this graph"
+    return out

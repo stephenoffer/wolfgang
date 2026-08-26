@@ -285,3 +285,13 @@ re-extractable sources and keep their older, thinner records (no `roman`);
   whichever pitch happened to be written first, not the lowest.
 - **`ornamental_surface` and `counter_reply` shared treble voice 2**, putting two
   independent lines in one music21 Voice at overlapping offsets.
+- **`midi_to_pitch` decided spelling from a 15-key sharp/flat allowlist.** A key
+  is not "all sharps" or "all flats": D minor has one flat AND spells its raised
+  fourth **G-sharp** and its leading tone **C-sharp**. The allowlist gave A-flat
+  and D-flat — different notes on the page, a semitone from what was meant — for
+  every exemplar transposed into D minor, G minor, F major, or any key not in the
+  list. Replaced with a real speller: diatonic degrees from the key's own letter
+  sequence, and each chromatic degree spelled as the alteration practice makes
+  (fewest accidentals wins; ties go to sharpening the fourth and seventh, and the
+  third and sixth in minor, so G minor writes its Picardy third `B` rather than
+  `Cb` and D-flat major writes `D` rather than `E-double-flat`).
