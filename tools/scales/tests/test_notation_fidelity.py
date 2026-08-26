@@ -1712,3 +1712,40 @@ def test_an_unarmed_composer_yields_no_gestures_rather_than_raising():
     slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
                       key="C", meter=(4, 4), tempo_bpm=100, function="presentation")
     assert _corpus_gestures("no-such-composer", slot) == []
+
+
+def test_the_transition_bank_is_called_by_something():
+    """`TransitionBank` scores real phrase-to-phrase joins in the corpus and was
+    called by NOTHING — not the brief, not the engine, not the review. A whole
+    retrieval bank, built from the corpus and wired to no one."""
+    from scales.composition_brief import _transition_habits
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=5, bar_count=4,
+                      key="F major", meter=(3, 4), tempo_bpm=76, function="continuation")
+    habits = _transition_habits("mozart", slot, {"last_lh_texture": "alberti"})
+    assert habits, "the transition bank still reaches nobody"
+    assert habits["samples"] > 0
+    for key in ("register_continuity", "texture_contrast", "dynamic_continuity"):
+        assert 0.0 <= habits[key] <= 1.0, habits
+
+
+def test_transition_habits_survive_an_unarmed_composer():
+    from scales.composition_brief import _transition_habits
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                      key="C", meter=(4, 4), tempo_bpm=100, function="continuation")
+    assert _transition_habits("no-such-composer", slot, {}) == {}
+
+
+def test_every_retrieval_bank_is_reachable_from_the_agent_path():
+    """The banks are built from the corpus at real expense — 440 MB of index —
+    and three of them were reachable only from the engine fallback, which is
+    not the path any piece takes."""
+    import pathlib
+
+    brief = pathlib.Path("tools/scales/composition_brief.py").read_text()
+    for bank in ("PhraseBank", "GestureBank", "CadenceBank", "TransitionBank",
+                 "PatternRetriever"):
+        assert bank in brief, f"{bank} does not reach the composer's brief"

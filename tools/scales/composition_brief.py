@@ -743,7 +743,11 @@ _GENRE_PATTERNS = (
     # concluded his corpus was broad.
     ("four-part chorales", r"bach/bwv\d+|bwv\d+\.\d+|chorale|choral"),
     ("string quartets", r"opus\d+no\d+/movement|quartet"),
-    ("piano sonatas", r"sonat"),
+    # Hoboken group XVI is Haydn's keyboard sonatas; the group number is the
+    # only thing in a Mutopia filename that says so.
+    ("piano sonatas", r"sonat|hob[-_ ]?xvi"),
+    ("oratorio and sacred", r"tantum|ergo|missa|oratori|creation|schopfung|part-i+-aria"),
+    ("songs and anthems", r"deutschlandlied|austria|greis|lied\b"),
     ("mazurkas", r"mazurka"),
     ("nocturnes", r"nocturne"),
     ("etudes", r"etude|\betud"),
@@ -1330,6 +1334,53 @@ _FUNCTION_GESTURES = {
     "return": ("pickup", "answer"),
     "return_varied": ("pickup", "answer"),
 }
+
+
+def _transition_habits(composer: str, slot, incoming: Dict[str, Any]) -> Dict[str, Any]:
+    """How THIS composer typically joins a phrase like this to one like that.
+
+    `TransitionBank` scores real phrase-to-phrase joins in the corpus — register
+    continuity, texture contrast, dynamic continuity, motivic logic — and it was
+    called by **nothing at all**. Not the brief, not the engine, not the review.
+    A whole retrieval bank, built from the corpus and wired to no one.
+
+    The brief already tells a phrase where the previous one left off. This tells
+    it what the composer usually DOES at that joint: keeps the register or
+    jumps, contrasts the texture or continues it, holds the dynamic or drops it.
+    That is the difference between a phrase that follows and a phrase that
+    continues.
+    """
+    try:
+        from .transition_bank import TransitionBank, TransitionQuery
+    except ImportError:
+        return {}
+    try:
+        bank = TransitionBank(composer)
+        hits = bank.retrieve(
+            TransitionQuery(
+                target_function=str(getattr(slot, "function", "") or "") or None,
+                exit_texture_lh=(incoming.get("last_lh_texture") or None),
+                exit_dynamic=(incoming.get("last_dynamic") or None),
+                n=12,
+            )
+        )
+    except Exception:
+        return {}
+    if not hits:
+        return {}
+
+    def _mean(attr: str) -> float:
+        vals = [getattr(h, attr, None) for h in hits]
+        vals = [v for v in vals if isinstance(v, (int, float))]
+        return round(sum(vals) / len(vals), 2) if vals else 0.0
+
+    return {
+        "samples": len(hits),
+        "register_continuity": _mean("register_continuity"),
+        "texture_contrast": _mean("texture_contrast"),
+        "dynamic_continuity": _mean("dynamic_continuity"),
+        "motivic_logic": _mean("motivic_logic"),
+    }
 
 
 def _corpus_gestures(composer: str, slot, n: int = 4) -> List[Dict[str, Any]]:
@@ -2572,6 +2623,11 @@ def _texture_and_register_run(graph, phrase_id: str) -> Dict[str, Any]:
     return out
 
 
+def _resolve_for_transition(graph) -> str:
+    """The composer id for corpus lookups during transition analysis."""
+    return (getattr(getattr(graph, "style_dna", None), "composer_id", "") or "").lower()
+
+
 def _transition_context(graph, phrase_id: str) -> Dict[str, Any]:
     """Continuity info from the previous phrase, read from disk state."""
     out: Dict[str, Any] = {}
@@ -2584,6 +2640,11 @@ def _transition_context(graph, phrase_id: str) -> Dict[str, Any]:
     run = _texture_and_register_run(graph, phrase_id)
     if run:
         out["texture_run"] = run
+    habits = _transition_habits(
+        _resolve_for_transition(graph), state.slot, out.get("continuation") or {}
+    )
+    if habits:
+        out["transition_habits"] = habits
 
     section_id = state.slot.section_id
     order = graph.get_section_phrases(section_id)
@@ -3607,6 +3668,19 @@ def render_text(brief: CompositionBrief) -> str:
                 )
             if cont.get("motifs_developed"):
                 lines.append(f"  motifs already developed: {', '.join(cont['motifs_developed'])}")
+
+        habits = t.get("transition_habits") or {}
+        if habits:
+            def _describe(value, high, low):
+                return high if value >= 0.7 else (low if value <= 0.4 else "either way")
+
+            lines.append(
+                "  how this composer joins a phrase like this ("
+                f"{habits['samples']} real joints): register "
+                f"{_describe(habits['register_continuity'], 'stays put', 'jumps')}, "
+                f"texture {_describe(habits['texture_contrast'], 'contrasts', 'continues')}, "
+                f"dynamic {_describe(habits['dynamic_continuity'], 'holds', 'shifts')}"
+            )
 
         tr = t.get("texture_run") or {}
         if tr.get("texture_unchanged_for", 0) >= 6:
