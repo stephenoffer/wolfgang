@@ -159,7 +159,9 @@ class DonorStrategy:
 
     def _find_by_influence(self, composer: str) -> List[Tuple[str, float]]:
         """Find donors using influence_axes.json."""
-        pack_dir = COMPILED_PACKS / composer
+        from .style_registry import pack_dir_name
+
+        pack_dir = COMPILED_PACKS / pack_dir_name(composer)
         axes_file = pack_dir / "influence_axes.json"
 
         if not axes_file.exists():

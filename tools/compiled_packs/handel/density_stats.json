@@ -1,5 +1,6 @@
 {
  "composer": "handel",
+ "schema": 2,
  "total_bars": 54,
  "rh": {
   "singing_melody": {

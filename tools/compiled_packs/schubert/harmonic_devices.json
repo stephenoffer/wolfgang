@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sequential_chromatic_drift",
+    "name": "Sequential chromatic drift",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "8\u201316 bars"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schubert/harmonic-language.md"
+  },
+  {
+    "id": "tonic_avoidance",
+    "name": "Tonic avoidance",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Entire development sections"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schubert/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_slippage",
+    "name": "Enharmonic slippage",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "2\u20134 bars"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schubert/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_bass_descent",
+    "name": "Chromatic bass descent",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "4\u20138 bars"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "schubert/harmonic-language.md"
+  }
+]

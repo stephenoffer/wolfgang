@@ -9,23 +9,31 @@ argument-hint: "<composer-name or style description>"
 Research unknown composers or styles and build a temporary **text profile**
 (harmonic/melodic/textural prose) for composition.
 
-**Important — this skill does NOT acquire reference scores.** It builds the
-*doctrine/profile* layer from web text; it does not download or index any
-real corpus bars. A profile alone produces a brief with no exemplars, which
-the commit gate now blocks (`brief_insufficient`). To actually **arm** a
-composer with real corpus material (the bars Claude composes from), use the
-acquisition pipeline instead:
+**First, GET THE SCORES — then research.** This skill builds the
+*doctrine/profile* layer from web text; it does NOT download or index any real
+corpus bars. A profile alone produces a brief with no exemplars, which the gate
+blocks (`brief_insufficient`). The bars Claude actually composes from come from
+the **acquisition pipeline**, which is the primary step for any unknown composer:
 
 ```bash
-# music21 local corpus first, allowlisted web fallback (KernScores) second
-python3 -m scripts.acquire_composer <composer>           # run from tools/
-python3 -m scripts.acquire_composer --status <composer>  # just the tier
+# from tools/ — music21 local corpus first, then allowlisted web
+#   (KernScores **kern, then Mutopia MIDI), validated + armed end to end
+.venv/bin/python -m scripts.acquire_composer <composer> --max-files 120
+.venv/bin/python -m scripts.acquire_composer --status <composer>   # tier + richness
 ```
 
 Acquisition writes `reference_index/<composer>/` + `corpus_profile.json` +
-`density_stats.json` and lifts the coverage tier. Run it BEFORE composing
-for any composer that isn't already armed. Use w-research to add the prose
-profile on top of (not instead of) an armed corpus.
+`density_stats.json` and lifts the coverage tier. The `--status` report tells
+you both how MUCH material (`tier`, `bars`) and how GOOD the records are
+(`records_rich`, `harmony_coverage`, `melody_coverage`, `needs_reacquire`) — if
+`needs_reacquire` is true, re-run acquisition to regenerate rich records.
+**Run acquisition BEFORE composing** for any composer that isn't already armed
+and rich. Use w-research to add the prose profile on top of (not instead of) an
+armed corpus.
+
+If acquisition reports `no_scores_found` (a rare, modern, or misspelled
+composer with nothing public-domain), say so honestly and offer the closest
+armed style — never silently substitute another composer.
 
 Read `references/research-template.md` for the profile schema, search
 query templates, source-reliability tiers, and the output checklist.
@@ -43,8 +51,7 @@ query templates, source-reliability tiers, and the output checklist.
 3. **Build** a temporary ComposerPack from them:
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.context_compiler import ContextCompiler
 compiler = ContextCompiler()
 result = compiler.compile('<composer>', '<genre>')

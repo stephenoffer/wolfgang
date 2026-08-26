@@ -49,9 +49,11 @@ def test_compose_phrase_round_trip():
     layer = compose_phrase(bars, key="C", phrase_id="t_p1")
     assert layer.bar_count == 2
     assert len(layer.principal_line) == 7
-    # 8+3 LH events → 1 bass per bar, the rest response
-    assert len(layer.bass_foundation) == 2
-    assert len(layer.response_layer) == 7 + 2
+    # A single-stream LH is ONE voice: all 8+3 events ARE the bass line.
+    # (It used to file note[0] as the bass and the other 9 as "response", which
+    # gave every generated piece a one-note-per-bar drone for a bass.)
+    assert len(layer.bass_foundation) == 11
+    assert layer.response_layer == []
     trills = [e for e in layer.principal_line if e.ornament == "trill"]
     assert len(trills) == 1
     # chord tie auto-resolution
@@ -84,3 +86,36 @@ if __name__ == "__main__":
         fn()
         print(f"ok {fn.__name__}")
     print(f"\n{len(fns)} tests passed")
+
+
+def test_single_stream_lh_is_one_voice_not_a_drone_plus_fill():
+    """The moving bass must land in bass_foundation, not be relabelled as fill."""
+    layer = compose_phrase(
+        [{"rh": "C5w", "lh": "C3e G3e E3e G3e C3e G3e E3e G3e"}], key="C", meter=(4, 4)
+    )
+    assert len(layer.bass_foundation) == 8
+    assert not layer.response_layer
+    assert [e.beat for e in layer.bass_foundation] == [1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5]
+
+
+def test_pedal_under_figuration_still_splits_into_two_voices():
+    """A full-bar bass followed by figuration is genuine two-voice writing."""
+    layer = compose_phrase(
+        [{"rh": "C5w", "lh": "C2w G3e E3e G3e E3e G3e E3e G3e E3e"}], key="C", meter=(4, 4)
+    )
+    assert [e.pitch for e in layer.bass_foundation] == ["C2"]
+    assert len(layer.response_layer) == 8
+    assert layer.response_layer[0].beat == 1.0  # figuration re-anchors under the pedal
+
+
+def test_roles_are_inferred_from_melodic_context():
+    """'Every note carries a role' has to be true — it was a constant before."""
+    layer = compose_phrase([{"rh": "C5q D5e E5e F5q G5q", "lh": "C3w"}], key="C", meter=(4, 4))
+    roles = [e.role for e in layer.principal_line]
+    assert "passing" in roles  # D5 and E5 are stepped through in one direction
+    assert len(set(roles)) > 1
+
+
+def test_leap_then_step_resolution_reads_as_appoggiatura():
+    layer = compose_phrase([{"rh": "C5q A5q G5q E5q", "lh": "C3w"}], key="C", meter=(4, 4))
+    assert layer.principal_line[1].role == "appoggiatura"

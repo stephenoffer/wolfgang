@@ -1,50 +1,72 @@
 {
  "composer": "palestrina",
- "total_bars": 8302,
+ "schema": 2,
+ "total_bars": 60677,
  "rh": {
   "held_note": {
-   "median": 1.0,
-   "p25": 1,
-   "p75": 2,
-   "mean": 1.49,
-   "n": 3312
+   "median": 3.0,
+   "p25": 2,
+   "p75": 4,
+   "mean": 3.0,
+   "n": 16000
   },
   "singing_melody": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 4,
-   "mean": 3.8,
-   "n": 3986
+   "median": 7,
+   "p25": 6,
+   "p75": 9,
+   "mean": 7.51,
+   "n": 43327
   },
   "scalar_run": {
-   "median": 7,
-   "p25": 7,
-   "p75": 7,
-   "mean": 7.22,
-   "n": 107
+   "median": 17,
+   "p25": 17,
+   "p75": 18,
+   "mean": 17.43,
+   "n": 23
+  },
+  "zigzag_figuration": {
+   "median": 17.0,
+   "p25": 17,
+   "p75": 18,
+   "mean": 17.3,
+   "n": 74
   }
  },
  "lh": {
   "pedal_point": {
-   "median": 2,
-   "p25": 1,
-   "p75": 2,
-   "mean": 1.52,
-   "n": 3109
+   "median": 3.0,
+   "p25": 2,
+   "p75": 4,
+   "mean": 2.98,
+   "n": 20770
+  },
+  "walking_bass": {
+   "median": 7,
+   "p25": 6,
+   "p75": 8,
+   "mean": 7.09,
+   "n": 22975
   },
   "bass_melody": {
-   "median": 3.0,
-   "p25": 3,
-   "p75": 4,
-   "mean": 3.42,
-   "n": 3486
+   "median": 7,
+   "p25": 6,
+   "p75": 8,
+   "mean": 7.24,
+   "n": 13029
   },
   "broken_chord_wave": {
-   "median": 5.0,
-   "p25": 5,
-   "p75": 6,
-   "mean": 5.48,
-   "n": 950
+   "median": 13.0,
+   "p25": 12,
+   "p75": 14,
+   "mean": 12.91,
+   "n": 1316
+  },
+  "alberti": {
+   "median": 12.0,
+   "p25": 12,
+   "p75": 13,
+   "mean": 12.38,
+   "n": 454
   }
  }
 }

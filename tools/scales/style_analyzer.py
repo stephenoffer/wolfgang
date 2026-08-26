@@ -3,8 +3,8 @@
 Style Analyzer for Wolfgang v2.
 
 Extracts quantitative style fingerprints from kern/MIDI/MusicXML scores.
-Used by w-research-deep to build style targets from reference scores, and
-by w-refine/w-review to compare composed output against those targets.
+Used by ``review_style_gate`` (and through it /w-review) to compare composed
+output against corpus-derived style targets.
 
 This is a GUARDRAIL tool — it catches gross statistical failures (0% triplets,
 half the expected density, zero dynamics). Subtle musical quality is evaluated
@@ -22,17 +22,34 @@ import os
 import sys
 import warnings
 from collections import Counter
+
+# NOT `warnings.filterwarnings("ignore")` at import time. This module is
+# imported by the review path, and a global filter silenced every warning in the
+# whole process — including music21's warnings about malformed scores, which are
+# exactly the signal this project needs. Warnings are suppressed only around the
+# parse calls that legitimately produce noise (see `_quiet`).
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-
-warnings.filterwarnings("ignore")
 
 try:
     from music21 import chord as m21chord
     from music21 import converter, interval, note
-except ImportError:
-    print("ERROR: music21 is required. Install with: pip install music21", file=sys.stderr)
-    sys.exit(1)
+except ImportError as exc:  # pragma: no cover - environment guard
+    # A library module must RAISE, not kill the interpreter. `sys.exit(1)` here
+    # meant that importing this module anywhere without music21 terminated the
+    # process, with no traceback and no chance for a caller to fall back.
+    raise ImportError(
+        "music21 is required for style analysis. Install with: pip install music21"
+    ) from exc
+
+
+@contextmanager
+def _quiet():
+    """Suppress warnings for one parse, not for the whole process."""
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        yield
 
 
 # ── Metric Extraction ──
@@ -44,7 +61,8 @@ def analyze_score(filepath: str) -> Optional[Dict[str, Any]]:
     Returns a dict with ~25 metrics, or None if parsing fails.
     """
     try:
-        score = converter.parse(filepath)
+        with _quiet():
+            score = converter.parse(filepath)
     except Exception as e:
         print(f"  WARN: Could not parse {filepath}: {e}", file=sys.stderr)
         return None
@@ -268,16 +286,25 @@ def analyze_score(filepath: str) -> Optional[Dict[str, Any]]:
 
     # ── TEXTURE METRICS ──
 
+    # Per-bar density is summed across ALL staves (both hands), matching
+    # corpus_metrics.bar_metrics. A piano's texture ebb-and-flow lives mostly
+    # in the LH accompaniment; counting only parts[0] (the RH melody, which is
+    # naturally uniform at ~3-6 notes/bar) badly undercounts texture change.
+    part_measures = [list(p.getElementsByClass("Measure")) for p in parts]
     bar_densities: List[int] = []
     bar_rhythms: List[tuple] = []
-    for m in measures[:100]:
-        n_in_bar = len(list(m.recurse().getElementsByClass(["Note", "Chord"])))
+    for i in range(min(len(measures), 100)):
+        n_in_bar = 0
+        rhythm_notes = []
+        for pm in part_measures:
+            if i < len(pm):
+                notes = list(pm[i].recurse().getElementsByClass(["Note", "Chord"]))
+                n_in_bar += len(notes)
+                rhythm_notes.extend(notes)
         bar_densities.append(n_in_bar)
-        rhythm_sig = tuple(
-            round(float(n.duration.quarterLength), 2)
-            for n in list(m.recurse().getElementsByClass(["Note", "Chord"]))[:12]
+        bar_rhythms.append(
+            tuple(round(float(n.duration.quarterLength), 2) for n in rhythm_notes[:12])
         )
-        bar_rhythms.append(rhythm_sig)
 
     # Texture change rate (density shifts ≥4)
     texture_shifts = sum(

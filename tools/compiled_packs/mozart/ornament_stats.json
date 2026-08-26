@@ -1,0 +1,55 @@
+{
+ "composer": "mozart",
+ "schema": 1,
+ "total_bars": 7022,
+ "textures": {
+  "scalar_run": {
+   "grace": 0.1905,
+   "trill": 0.1131,
+   "mordent": 0.0206,
+   "turn": 0.0157,
+   "dotted": 0.2284,
+   "n": 1848
+  },
+  "singing_melody": {
+   "grace": 0.0586,
+   "trill": 0.053,
+   "mordent": 0.0109,
+   "turn": 0.0116,
+   "dotted": 0.2687,
+   "n": 2661
+  },
+  "chordal": {
+   "grace": 0.0305,
+   "trill": 0.0037,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1591,
+   "n": 1081
+  },
+  "zigzag_figuration": {
+   "grace": 0.0428,
+   "trill": 0.0334,
+   "mordent": 0.006,
+   "turn": 0.0214,
+   "dotted": 0.1087,
+   "n": 1168
+  },
+  "held_note": {
+   "grace": 0.0105,
+   "trill": 0.0579,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1684,
+   "n": 190
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 74
+  }
+ }
+}

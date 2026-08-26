@@ -1,190 +1,121 @@
 {
  "composer": "style__classical",
- "total_bars": 24812,
+ "schema": 2,
+ "total_bars": 25792,
  "rh": {
-  "zigzag_figuration": {
-   "median": 10.0,
-   "p25": 8,
-   "p75": 12,
-   "mean": 10.91,
-   "n": 2644
-  },
   "scalar_run": {
-   "median": 10,
-   "p25": 8,
+   "median": 9,
+   "p25": 7,
    "p75": 12,
-   "mean": 10.79,
-   "n": 2457
+   "mean": 10.13,
+   "n": 3775
   },
   "singing_melody": {
-   "median": 4.0,
+   "median": 4,
    "p25": 3,
    "p75": 6,
-   "mean": 4.51,
-   "n": 9968
+   "mean": 4.69,
+   "n": 8695
   },
   "chordal": {
-   "median": 3,
+   "median": 3.0,
    "p25": 2,
    "p75": 4,
-   "mean": 3.99,
-   "n": 3545
+   "mean": 3.55,
+   "n": 6422
   },
-  "passage_work": {
-   "median": 10.0,
-   "p25": 8,
+  "zigzag_figuration": {
+   "median": 9.0,
+   "p25": 7,
    "p75": 12,
-   "mean": 10.84,
-   "n": 1812
-  },
-  "unclassified": {
-   "median": 1.0,
-   "p25": 1,
-   "p75": 1,
-   "mean": 1.0,
-   "n": 736
-  },
-  "dialogue_chords": {
-   "median": 3,
-   "p25": 2,
-   "p75": 5,
-   "mean": 4.47,
-   "n": 737
-  },
-  "stammer_repeat": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 6,
-   "mean": 4.47,
-   "n": 210
+   "mean": 10.04,
+   "n": 5718
   },
   "held_note": {
    "median": 1,
    "p25": 1,
    "p75": 1,
-   "mean": 1.11,
-   "n": 1085
-  },
-  "dotted_pairs": {
-   "median": 6.0,
-   "p25": 5,
-   "p75": 8,
-   "mean": 7.29,
-   "n": 724
-  },
-  "ornamental_cascade": {
-   "median": 16,
-   "p25": 15,
-   "p75": 24,
-   "mean": 18.85,
-   "n": 475
+   "mean": 1.24,
+   "n": 731
   }
  },
  "lh": {
-  "bass_melody": {
-   "median": 4,
+  "walking_bass": {
+   "median": 5,
    "p25": 3,
-   "p75": 6,
-   "mean": 4.59,
-   "n": 4015
-  },
-  "unclassified": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 5,
-   "mean": 4.43,
-   "n": 3414
+   "p75": 8,
+   "mean": 5.7,
+   "n": 3665
   },
   "alberti": {
-   "median": 9,
-   "p25": 8,
-   "p75": 12,
-   "mean": 11.24,
-   "n": 3883
+   "median": 8.0,
+   "p25": 6,
+   "p75": 9,
+   "mean": 8.43,
+   "n": 5482
   },
-  "broken_chord_ascending": {
-   "median": 8,
-   "p25": 8,
+  "broken_chord_wave": {
+   "median": 8.0,
+   "p25": 6,
    "p75": 11,
-   "mean": 9.49,
-   "n": 603
+   "mean": 8.96,
+   "n": 2584
   },
   "block_chord_offbeat": {
+   "median": 5,
+   "p25": 4,
+   "p75": 8,
+   "mean": 5.92,
+   "n": 2617
+  },
+  "bass_melody": {
    "median": 3.0,
    "p25": 2,
    "p75": 4,
-   "mean": 6.1,
-   "n": 746
-  },
-  "sparse_punctuation": {
-   "median": 1,
-   "p25": 1,
-   "p75": 1,
-   "mean": 1.22,
-   "n": 1159
-  },
-  "walking_bass": {
-   "median": 4.0,
-   "p25": 4,
-   "p75": 6,
-   "mean": 4.95,
-   "n": 1316
-  },
-  "block_chord_tremolo": {
-   "median": 8.0,
-   "p25": 6,
-   "p75": 8,
-   "mean": 7.66,
-   "n": 336
-  },
-  "broken_chord_descending": {
-   "median": 8,
-   "p25": 8,
-   "p75": 10,
-   "mean": 9.32,
-   "n": 701
-  },
-  "sparse_octaves": {
-   "median": 1,
-   "p25": 1,
-   "p75": 2,
-   "mean": 1.33,
-   "n": 537
+   "mean": 3.1,
+   "n": 2320
   },
   "block_chord_sparse": {
    "median": 2,
    "p25": 1,
    "p75": 2,
-   "mean": 2.43,
-   "n": 3003
+   "mean": 1.92,
+   "n": 5423
   },
   "pedal_point": {
-   "median": 2.0,
+   "median": 1.0,
    "p25": 1,
-   "p75": 2,
-   "mean": 1.72,
-   "n": 2044
+   "p75": 1,
+   "mean": 1.19,
+   "n": 962
   },
-  "oscillation_trill": {
-   "median": 4.0,
+  "broken_chord_asc": {
+   "median": 5,
    "p25": 4,
-   "p75": 6,
-   "mean": 4.91,
-   "n": 490
+   "p75": 7,
+   "mean": 5.99,
+   "n": 325
   },
-  "walking_bass_chromatic": {
+  "broken_chord_desc": {
+   "median": 6,
+   "p25": 4,
+   "p75": 8,
+   "mean": 5.99,
+   "n": 181
+  },
+  "block_chord_tremolo": {
    "median": 4,
-   "p25": 3,
-   "p75": 5,
-   "mean": 4.0,
-   "n": 471
+   "p25": 4,
+   "p75": 8,
+   "mean": 5.91,
+   "n": 127
   },
-  "broken_chord_wave": {
+  "interlocking": {
    "median": 8.0,
-   "p25": 8,
-   "p75": 12,
-   "mean": 9.71,
-   "n": 1202
+   "p25": 6,
+   "p75": 8,
+   "mean": 8.01,
+   "n": 224
   }
  }
 }

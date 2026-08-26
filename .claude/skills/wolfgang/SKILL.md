@@ -41,8 +41,7 @@ Analyze `$ARGUMENTS` to determine:
 ## Step 2: Initialize Workspace
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import init_workspace
 print(init_workspace(piece_id='<piece-id>', mode='<mode>',
     description='<user description>',
@@ -50,24 +49,39 @@ print(init_workspace(piece_id='<piece-id>', mode='<mode>',
 "
 ```
 
-## Step 2.5: Arm the corpus BEFORE composing
+## Step 2.5: Get the scores — arm the corpus BEFORE composing
 
-Wolfgang composes from real corpus bars. A composer that isn't armed yields
-an insufficient brief and the commit gate refuses every phrase
-(`brief_insufficient`) — so arm it up front, not mid-compose. Check each
-target composer's coverage tier and acquire if it's below B:
+Wolfgang composes from real corpus bars. **The single biggest lever on output
+quality is how much real reference material the target composer has** — a
+composer that isn't armed yields an insufficient brief and the gate refuses
+every phrase (`brief_insufficient`). So before planning, get the scores. Check
+each target composer's coverage and acquire when needed:
 
 ```bash
 # run from tools/
-python3 -m scripts.acquire_composer --status <composer>      # {tier: A|B|C|D}
-python3 -m scripts.acquire_composer <composer>               # arm it (local→web)
+.venv/bin/python -m scripts.acquire_composer --status <composer>   # tier + richness
+.venv/bin/python -m scripts.acquire_composer <composer> --max-files 120   # arm it (local→web)
 ```
 
-`acquire_composer` pulls public-domain scores (music21 local corpus first,
-allowlisted KernScores web fallback) and builds the indexes/profile/density
-stats. If acquisition can't find scores (rare/modern composer), tell the
-user honestly: the piece will compose against the closest armed composer
-only if they pass `composer=` explicitly — there is no silent substitution.
+The `--status` report now carries **two** signals — read both:
+- `tier` (A/B/C/D) and `bars` — how MUCH material.
+- `records_rich` / `harmony_coverage` / `melody_coverage` / `needs_reacquire` —
+  how GOOD the records are. A composer can be tier A by bar count yet have thin
+  records (no roman/function/melody_line — common for older or MIDI-acquired
+  corpora). **If `needs_reacquire` is true, re-run `acquire_composer` to
+  regenerate rich records** — the brief's CHORD FRAME and melody guidance
+  depend on them.
+
+Acquire when: tier is below B, **or** `needs_reacquire` is true, **or** the
+composer is unknown. `acquire_composer` pulls public-domain scores — music21's
+local corpus first, then allowlisted web archives (KernScores `**kern`, then
+Mutopia MIDI for the many Romantic/virtuoso composers KernScores lacks) — each
+validated with music21, then builds the indexes/profile/density stats and
+writes rich bar records. Use a generous `--max-files` (100-200) for a major
+composer so retrieval has diverse exemplars. If acquisition genuinely finds no
+scores (`no_scores_found` — rare/modern/misspelled), tell the user honestly:
+the piece composes against the closest armed composer/style only if they pass
+`composer=` explicitly — there is no silent substitution.
 
 **Style targeting (compose in a style, not as one composer).** When the
 request is a style/era rather than a named composer ("a galant classical
@@ -166,8 +180,7 @@ keyboard corpus for briefs. Only after all movements pass review, run the
 orchestration phase:
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import orchestrate_section, assemble_orchestration
 print(orchestrate_section('<piece-id>', '<section-id>'))
 print(assemble_orchestration('<piece-id>', '<section-id>'))
@@ -193,8 +206,7 @@ invent new material.
 Use the compact APIs — do NOT dump the whole graph:
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import get_status, get_section_status
 print(get_status('<piece-id>'))                      # coarse phase view
 print(get_section_status('<piece-id>', '<section-id>'))  # per-phrase detail
@@ -220,5 +232,14 @@ Full Python tool/module map: CLAUDE.md → "Python Package: tools/scales/".
    brief), don't waive past it. There is no `skip_gate`.
 5. **Honor the section gates** — after each section, check the engine path's
    `context_gate` (corpus-utilization floor for engine-realized phrases) and
-   the critic's `section_gate` (egregious discriminator failures). A failed
-   gate means the section is not done — re-compose or arm, don't ship it.
+   the `section_gate`. The latter hard-fails on PHYSICAL defects only, read back
+   off the assembled score (a bar holding more beats than its meter after export,
+   a note outside the instrument's range) — those are real and must be fixed. Its
+   `advisory` entries are hints for the critic, not a checklist. A hard failure
+   means the section is not done; an advisory means listen harder.
+6. **The piece needs ONE idea, not nine good phrases.** The motif designed in
+   `/w-plan` is printed at the top of every phrase brief with the transform that
+   phrase should apply. When you review a section, the first question is whether
+   that idea is audibly present and audibly changed — a run of individually
+   well-made, unrelated phrases is the most common way this system produces
+   music nobody remembers.

@@ -1,71 +1,93 @@
 {
  "composer": "haydn",
+ "schema": 2,
  "total_bars": 1013,
  "rh": {
-  "held_note": {
-   "median": 1.0,
-   "p25": 1,
-   "p75": 2,
-   "mean": 1.47,
-   "n": 256
-  },
   "singing_melody": {
-   "median": 4.0,
+   "median": 4,
    "p25": 3,
-   "p75": 5,
-   "mean": 4.04,
-   "n": 478
+   "p75": 4,
+   "mean": 3.8,
+   "n": 275
+  },
+  "zigzag_figuration": {
+   "median": 9.0,
+   "p25": 7,
+   "p75": 12,
+   "mean": 9.97,
+   "n": 344
   },
   "scalar_run": {
-   "median": 8,
-   "p25": 8,
-   "p75": 9,
-   "mean": 8.57,
-   "n": 173
+   "median": 9,
+   "p25": 6,
+   "p75": 14,
+   "mean": 11.04,
+   "n": 355
   },
-  "passage_work": {
-   "median": 16,
-   "p25": 15,
-   "p75": 16,
-   "mean": 15.62,
-   "n": 37
+  "held_note": {
+   "median": 2,
+   "p25": 1,
+   "p75": 2,
+   "mean": 1.6,
+   "n": 15
+  },
+  "chordal": {
+   "median": 4.0,
+   "p25": 2,
+   "p75": 5,
+   "mean": 3.88,
+   "n": 16
   }
  },
  "lh": {
   "pedal_point": {
    "median": 1,
    "p25": 1,
-   "p75": 2,
-   "mean": 1.47,
-   "n": 401
+   "p75": 1,
+   "mean": 1.18,
+   "n": 97
   },
   "bass_melody": {
-   "median": 3.0,
-   "p25": 3,
-   "p75": 4,
-   "mean": 3.44,
-   "n": 378
-  },
-  "broken_chord_wave": {
-   "median": 6.0,
-   "p25": 6,
-   "p75": 8,
-   "mean": 6.39,
-   "n": 164
+   "median": 2.0,
+   "p25": 2,
+   "p75": 3,
+   "mean": 2.56,
+   "n": 150
   },
   "walking_bass": {
-   "median": 18.0,
-   "p25": 18,
-   "p75": 19,
-   "mean": 18.4,
-   "n": 20
+   "median": 4.0,
+   "p25": 3,
+   "p75": 6,
+   "mean": 5.14,
+   "n": 294
+  },
+  "broken_chord_wave": {
+   "median": 7,
+   "p25": 5,
+   "p75": 10,
+   "mean": 10.19,
+   "n": 295
   },
   "alberti": {
-   "median": 10.0,
-   "p25": 9,
-   "p75": 15,
-   "mean": 11.78,
-   "n": 18
+   "median": 6,
+   "p25": 4,
+   "p75": 7,
+   "mean": 5.61,
+   "n": 79
+  },
+  "block_chord_sparse": {
+   "median": 2,
+   "p25": 2,
+   "p75": 2,
+   "mean": 2.17,
+   "n": 41
+  },
+  "block_chord_offbeat": {
+   "median": 4,
+   "p25": 2,
+   "p75": 4,
+   "mean": 3.47,
+   "n": 19
   }
  }
 }

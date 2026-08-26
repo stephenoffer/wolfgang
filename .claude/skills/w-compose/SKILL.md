@@ -1,6 +1,6 @@
 ---
 name: w-compose
-description: "Compose a phrase end-to-end: read the corpus-armed brief, write SketchIR (structural plan), then compose every note and commit through the blocking quality gate. Engine realization is the fallback for phrases Claude doesn't author."
+description: "Compose a phrase end-to-end: read the corpus-armed brief (and your own whole-score study), write SketchIR (structural plan), then compose every note and commit. The gate blocks only physical violations; corpus-alignment is advisory. Engine realization is the fallback for phrases Claude doesn't author."
 argument-hint: "<piece-id> <phrase-id | section-id>"
 ---
 
@@ -42,10 +42,10 @@ with real scores (`tools/scripts/acquire_composer.py <composer>`) and
 re-fetch the brief; only waive `brief_insufficient` if composing without
 corpus support is a deliberate, stated choice.
 
-The corpus-alignment gate now **blocks** (not just warns) a surface that
-resembles no briefed exemplar (`composed_blind`) — so adapt them in
-earnest. If composing away from the corpus is genuinely intended, recommit
-with `allow=[{'check':'composed_blind','reason': ...}]` (logged).
+Corpus alignment is **advisory**: a surface that resembles no briefed exemplar
+earns a `composed_blind` warning, never a block. You have creative liberty to
+invent away from the corpus — adapt the exemplars or compose fresh, your choice
+per moment. The fresh-ears critic judges whether the result sings.
 
 The brief supplies idiomatic raw material and statistical reality; you
 still own the rhetorical intent, motif placements, harmonic plan, and
@@ -70,8 +70,12 @@ SketchIR content — every anchor has a reason:
 - **Bass anchors** — structural bass moments tied to harmony
 - **Harmonic rhythm** — chord changes (Roman numerals per bar)
 - **Texture intent** — per-bar RH/LH texture types and density targets.
-  Real corpus texture changes every 1-2 bars; an 8-bar phrase with one
-  unchanging texture plan is usually a planning smell, not a style.
+  How often texture should change is the composer's own measured rate,
+  printed in the brief (`texture_change_pct`) — it runs from about 0.14
+  to 0.62 across this corpus, so there is no universal "every 1-2 bars".
+  What matters is that a change is *motivated* (craft §6). An 8-bar
+  phrase with one unchanging texture is a planning smell in most idioms
+  and the whole point in a few; know which one you are writing.
 - **Dynamic shape** — energy curve with hairpins
 - **Motif placements** — where motifs appear and with what transform
 - **Breath points** — planned silences
@@ -80,6 +84,12 @@ SketchIR content — every anchor has a reason:
 
 ## Step 3 — Compose every note
 
+0. **Start from the CREATIVE INTENT and the PRINCIPAL THEME.** What must
+   this passage feel like, and is this a moment where the piece's own
+   theme returns, develops, or fragments? A piece is memorable because
+   one idea keeps coming back changed — not because every phrase is
+   individually well made. If the brief carries a theme and this section
+   calls for it, that theme is your material.
 1. **Study the exemplars and patterns** — what makes each bar
    non-mechanical? Where does texture shift, where do non-chord tones
    land, how does the LH track the harmony, where does it breathe? Cross
@@ -90,11 +100,18 @@ SketchIR content — every anchor has a reason:
    reharmonize / re-contour / splice / vary density / fresh-in-idiom.
    Adapt — never copy verbatim, never ignore.
 3. **Write the bars** in shorthand (grammar: craft §8), with expression
-   as part of the notes: slurs, hairpins, ornaments, dynamics.
-4. **Density honesty:** match the brief's target, not a comfortable
-   minimum. If the brief says ~10 LH events/bar and you wrote 3 quarter
-   notes, you wrote a sketch. Under-filling a bar because shorthand is
-   easier is not a musical decision.
+   as part of the notes: slurs, hairpins, ornaments, dynamics. Voice the
+   beats against the brief's CHORD FRAME — it lists each bar's chord
+   tones (and each beat's, where the harmony moves inside the bar),
+   spelled ready to write. Leaving the frame is a choice you may make;
+   drifting off it by accident is what produces the wrong notes a
+   listener hears first.
+4. **Density honesty:** the brief's per-texture medians are a reality
+   check, not a target (craft §2). Never compose to hit a number — but
+   do notice when you have written a sketch. If the brief says ~10 LH
+   events/bar and you wrote three quarter notes, ask whether that
+   sparseness is a musical decision or just what was easy to type. If
+   it is a decision, keep it.
 5. **Commit** via `commit_agent_phrase_direct_bars` — or
    `commit_agent_phrase_layer_ir` for genuinely multi-voice writing
    (snippets: craft §10) — then carry the committed exit state into the
@@ -103,18 +120,15 @@ SketchIR content — every anchor has a reason:
 ## Step 4 — The gate loop
 
 Commits run, in order: the **brief receipt** check (`brief_not_fetched` /
-`brief_insufficient`), physical validation (strict, never waivable), then a
-quality gate with corpus-derived thresholds. Blocking gate checks:
-`density_low_rh/lh` (skeletal vs corpus median — a hard generic floor
-applies even when the composer has no density stats), `figuration_flat`
-(photocopied accompaniment), `composed_blind` (ignored the exemplars), and
-`meter`. On `quality_gate_blocked`: respond to the diagnostic, don't
-recompose blindly — revise only the flagged bars and recommit. **Max 3
-attempts per phrase.** If the gate is wrong for genuine musical reasons,
-recommit with `allow=[{'check': ..., 'reason': ...}]` — but waivers now
-require a **real reason (≥20 chars)** and **at most one blocking check may
-be waived per commit** (waiving the whole set is rejected). Every waiver is
-logged. Diagnostics table and fix patterns: craft §9.
+`brief_insufficient` — studying references is required), then physical
+validation, then advisory quality checks. **Only physical constraints block**:
+`meter` (bar capacity), range, span. `density_low_rh/lh`, `figuration_flat`,
+and `composed_blind` are **advisory warnings** the fresh-ears critic weighs —
+they never block a commit. On `quality_gate_blocked` (a physical violation):
+fix it for real — revise the flagged bars so each voice sums to the meter and
+pitches are in range, then recommit (**max 3 attempts**). For advisory
+warnings: fix the ones that name something you hear, keep the rest if
+intentional. Diagnostics table and fix patterns: craft §9.
 
 ## Step 5 — Engine fallback
 
@@ -122,8 +136,7 @@ If you can't satisfy the gate and have no honest override, skip the
 commit and let the engine realize that phrase:
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import run_scales_section
 print(run_scales_section(piece_id='<piece-id>', section_id='<section-id>',
                          k_sketches=3, n_realizations=4, beam_width=5))

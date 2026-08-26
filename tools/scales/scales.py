@@ -10,6 +10,7 @@ All functions operate on the PieceGraph as the single source of truth.
 from __future__ import annotations
 
 import json
+from dataclasses import fields
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -46,6 +47,8 @@ from .models import (
     MotifSlot,
     MovementContract,
     MovementSpec,
+    NarrativeArc,
+    NarrativeSection,
     PhraseControlIR,
     PhraseCurves,
     PhraseSlot,
@@ -68,6 +71,35 @@ from .style_resolver import StyleResolver
 from .surface_composer import SurfaceComposer
 
 _WORKSPACE = Path("workspace")
+
+
+def _as_list(value, what: str):
+    """Normalise a tool argument that must be a list, or say why it cannot be.
+
+    Every function in this module is called by an agent writing a Python
+    snippet, so the arguments arrive hand-typed. A bare string is a sequence of
+    **characters**, and Python will iterate it happily: `compile_style(...,
+    composers="mozart")` compiled six one-letter "composers" (a, m, o, r, t, z —
+    the letters of the name), left `tools/compiled_packs/m/` on disk, and then
+    resolved the whole piece's style against "m": tier D, zero fingerprints,
+    zero cadences, zero left-hand textures. The piece still generated. It simply
+    had no style, and nothing anywhere said so.
+
+    So: coerce the two unambiguous single-item cases (a lone string, a lone
+    dict) and refuse anything else loudly, because a silent misread here costs
+    a whole piece.
+    """
+    if value is None:
+        return []
+    if isinstance(value, (str, bytes)):
+        return [value]
+    if isinstance(value, dict):
+        return [value]
+    if isinstance(value, (list, tuple)):
+        return list(value)
+    raise TypeError(
+        f"{what} must be a list (or a single item), got {type(value).__name__}: {value!r}"
+    )
 
 
 def _now_iso() -> str:
@@ -177,6 +209,17 @@ def compile_style(
     Runs the context compiler (passes 1-12) and style resolver.
     For Tier C/D composers, applies donor strategy.
     """
+    # A bare string is a sequence of CHARACTERS. Passing composers="mozart" — the
+    # obvious call, and the one a reader of the signature makes — compiled seven
+    # bogus one-letter "composers" and then resolved the whole piece's style
+    # against "m": tier D, zero fingerprints, zero cadences, zero LH textures.
+    # The piece still generated; it just had no style at all, and nothing said so.
+    if isinstance(composers, str):
+        composers = [composers]
+    composers = [c for c in (composers or []) if c]
+    if not composers:
+        raise ValueError("compile_style needs at least one composer or style name")
+
     workspace = _WORKSPACE / piece_id
     graph = PieceGraph.load(str(workspace / "piece_graph.json"))
 
@@ -203,7 +246,7 @@ def compile_style(
     graph.style_program = program  # v6
     graph.save(str(workspace / "piece_graph.json"))
 
-    return {
+    result = {
         "composer_id": program.dna.composer_id,
         "tier": program.dna.tier,
         "fingerprints": len(program.dna.fingerprints.items),
@@ -217,6 +260,16 @@ def compile_style(
         "donor_plan": bool(program.donor_plan and program.donor_plan.donors),
         "axis_ownership": program.dna.axis_ownership,
     }
+    # Say it out loud when the style compiled to nothing. A tier-D profile with
+    # no fingerprints and no cadence vocabulary means every brief downstream will
+    # be generic, and that is worth a warning rather than a silent pass.
+    if not result["fingerprints"] and not result["cadences"]:
+        result["warning"] = (
+            f"style '{composers[0]}' compiled with no fingerprints and no cadence "
+            f"vocabulary (tier {result['tier']}) — briefs will be generic. Check "
+            f"the composer name, or arm it with scripts/acquire_composer.py."
+        )
+    return result
 
 
 def build_form_graph(
@@ -232,6 +285,8 @@ def build_form_graph(
 
     Returns list of PhraseSlot summaries for Claude to review.
     """
+    sections = _as_list(sections, "sections")
+    motif_ids = _as_list(motif_ids, "motif_ids")
     workspace = _WORKSPACE / piece_id
     graph = PieceGraph.load(str(workspace / "piece_graph.json"))
 
@@ -258,9 +313,25 @@ def build_form_graph(
         sections=[],
     )
 
+    # Elect ONE principal theme and force its statement at every section opening
+    # (transformed at the recap) — gives the piece a memorable, recurring through-
+    # line instead of locally-optimized, independent phrases.
+    from .theme_planner import elect_principal_theme, plan_section_opening_placements
+
+    if not graph.principal_theme_id:
+        graph.principal_theme_id = elect_principal_theme(graph.motif_bank) or ""
+    _theme_seen_sections: set = set()
+
     # Group phrases into sections and add to graph
     current_section_id = ""
     for slot in phrases:
+        if graph.principal_theme_id and slot.section_id not in _theme_seen_sections:
+            _theme_seen_sections.add(slot.section_id)
+            slot.motif_transforms.extend(
+                plan_section_opening_placements(
+                    _infer_section_role(slot.section_id), graph.principal_theme_id
+                )
+            )
         # Wire the planned emotional arc into per-bar slot curves (keystone:
         # drives dynamics, density targets, register, and the tempo arc).
         _apply_narrative_curves(slot, graph.narrative)
@@ -292,6 +363,17 @@ def build_form_graph(
     form_graph.movements.append(movement)
     graph.form = form_graph
 
+    # The dramatic plan: what each phrase is FOR. Without this, planning produced
+    # a form skeleton with an energy ramp and nothing else — no climax, no tension
+    # arc, no register plan, no strategy for how a return differs from the
+    # statement, and no phrase knowing what it leads into.
+    from . import dramatic_plan
+
+    plan_info = dramatic_plan.build([graph.phrases[p.phrase_id].slot for p in phrases])
+    graph.narrative = _narrative_from_slots(
+        [graph.phrases[p.phrase_id].slot for p in phrases], plan_info
+    )
+
     # Build SectionContracts from the form graph sections
     for sec_id, sec_spec in form_graph.sections.items():
         # Determine section role from phrase functions
@@ -303,6 +385,10 @@ def build_form_graph(
         for s in section_phrases:
             energy_envelope.extend(s.curves.energy if s.curves.energy else [0.5] * s.bar_count)
 
+        from .dramatic_plan import section_rhetoric
+
+        _roles = [getattr(sl, "dramatic_role", "") for sl in section_phrases]
+        _goals, _techs = section_rhetoric([r for r in _roles if r])
         graph.section_contracts[sec_id] = SectionContract(
             id=sec_id,
             movement_id=sec_spec.movement_id or "m1",
@@ -315,7 +401,16 @@ def build_form_graph(
             phrase_ids=sec_spec.phrase_ids,
             cadence_path=cadence_path,
             energy_envelope=energy_envelope,
+            rhetorical_goals=_goals,
+            development_techniques=_techs,
+            texture_family=(
+                section_phrases[0].texture_plan[0].lh_texture
+                if section_phrases and section_phrases[0].texture_plan
+                else ""
+            ),
         )
+        for _sl in section_phrases:
+            _sl.section_techniques = list(_techs)
 
     # ─── Populate expectations from form structure ─────────────────────
     try:
@@ -385,8 +480,47 @@ def build_form_graph(
     return phrase_summaries
 
 
+def _narrative_from_slots(slots, plan_info) -> "NarrativeArc":
+    """Build a NarrativeArc from the planned slots' dramatic roles.
+
+    ``narrative.sections`` was empty after planning and ``primary_climax_section``
+    was blank, so every downstream consumer of the narrative (the brief's CREATIVE
+    INTENT, the per-bar curve interpolation, the critic's arc judgement) had
+    nothing to read.
+    """
+    from .dramatic_plan import ROLE_INTENT
+
+    arc = NarrativeArc()
+    by_section: Dict[str, List] = {}
+    for slot in slots:
+        by_section.setdefault(slot.section_id, []).append(slot)
+    climax_phrase = plan_info.get("climax_phrase")
+    for section_id, group in by_section.items():
+        roles = [getattr(s, "dramatic_role", "") for s in group]
+        is_climax = any(s.phrase_id == climax_phrase for s in group)
+        arc.sections.append(
+            NarrativeSection(
+                id=section_id,
+                label=section_id,
+                bar_start=group[0].bar_start,
+                bar_end=group[-1].bar_start + group[-1].bar_count - 1,
+                energy_curve=[v for s in group for v in (s.curves.energy or [])],
+                tension_curve=[v for s in group for v in (s.curves.tension or [])],
+                density_curve=[v for s in group for v in (s.curves.density or [])],
+                brightness_curve=[v for s in group for v in (s.curves.brightness or [])],
+                climax_type="primary" if is_climax else "",
+                character="; ".join(dict.fromkeys(ROLE_INTENT.get(r, "") for r in roles if r)),
+                gesture=" then ".join(dict.fromkeys(r for r in roles if r)),
+            )
+        )
+        if is_climax:
+            arc.primary_climax_section = section_id
+    return arc
+
+
 def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, Any]:
     """Validate and store motif definitions."""
+    motif_definitions = _as_list(motif_definitions, "motif_definitions")
     workspace = _WORKSPACE / piece_id
     graph = PieceGraph.load(str(workspace / "piece_graph.json"))
 
@@ -407,6 +541,64 @@ def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, An
     return {
         "motifs_stored": len(graph.motif_bank),
         "motif_ids": list(graph.motif_bank.keys()),
+    }
+
+
+def save_narrative(
+    piece_id: str,
+    sections: List[Dict[str, Any]],
+    overall_character: str = "",
+    primary_climax_section: str = "",
+) -> Dict[str, Any]:
+    """Persist the emotional NarrativeArc the agent authored at plan time.
+
+    Each section dict drives composition of every phrase it covers. The
+    ``character`` field is the dramatic EVENT in prose (e.g. "the storm finally
+    breaks, after three failed attempts to rise") — this is what the
+    composition brief surfaces as CREATIVE INTENT and what should drive the
+    notes, not the curve-averaged adjectives. Curves (energy/tension/
+    brightness/density, 0-1) remain optional shaping cues.
+
+    section dict keys: id, label, bar_start, bar_end, character (prose),
+    gesture (optional prose), energy_curve, tension_curve, brightness_curve,
+    density_curve (lists of 0-1), climax_type ("primary"|"secondary"|"anti").
+    """
+    sections = _as_list(sections, "sections")
+    workspace = _WORKSPACE / piece_id
+    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+
+    sec_fields = {f.name for f in fields(NarrativeSection)}
+    arc = NarrativeArc(
+        overall_character=overall_character,
+        primary_climax_section=primary_climax_section,
+    )
+    missing_character = []
+    for sd in sections:
+        if not isinstance(sd, dict):
+            continue
+        sec = NarrativeSection(**{k: v for k, v in sd.items() if k in sec_fields})
+        if not (sec.character or "").strip():
+            missing_character.append(sec.id or sec.label or f"bars {sec.bar_start}-{sec.bar_end}")
+        arc.sections.append(sec)
+    if not primary_climax_section:
+        primary = next((s.id for s in arc.sections if s.climax_type == "primary"), "")
+        arc.primary_climax_section = primary
+    graph.narrative = arc
+    graph.save(str(workspace / "piece_graph.json"))
+
+    return {
+        "sections_stored": len(arc.sections),
+        "overall_character": arc.overall_character,
+        "primary_climax_section": arc.primary_climax_section,
+        # The agent should author prose intent for every section; warn (don't
+        # block) so this stays a planning discipline, not a hard gate.
+        "sections_missing_character": missing_character,
+        "warning": (
+            f"{len(missing_character)} section(s) have no authored character prose — "
+            "the brief will fall back to generic curve-adjectives there"
+            if missing_character
+            else ""
+        ),
     }
 
 
@@ -907,197 +1099,169 @@ def run_scales_section(
 # ─── Form Builders ───────────────────────────────────────────────────────────
 
 
+# ─── Form specifications ─────────────────────────────────────────────────────
+#
+# A form is DATA: an ordered list of phrase specs. Every form used to be built
+# from identical 8-bar phrases (ternary = 8+8 | 8+8 | 8+8; theme-and-variations
+# = 8+8 per variation), which puts a cadence in every eighth bar for the whole
+# piece. Uniform phrase rhythm is one of the strongest machine tells there is —
+# real classical phrases run 4, 5, 6, 8, 10 bars, extend, elide, and are
+# answered by asymmetric consequents. These specs give each form its own phrase
+# rhythm, and the key roles are resolved through the interval helpers so any
+# key spelling works.
+#
+# Each entry: (section, bars, function, cadence, key_role)
+#   key_role ∈ tonic | relative | dominant | subdominant | parallel
+
+_PF = PhraseFunction
+_CT = CadenceTarget
+
+# A cadence at the end of every phrase is a cadence every four to six bars for
+# the whole piece, which is a metronome at the structural level. Real phrases run
+# INTO one another: a continuation that is spinning the idea out does not stop to
+# cadence, it evades or simply carries on (CT.NONE), and only the structural
+# arrivals — the end of a section, the confirmation, the close — actually land.
+_TERNARY_SPEC = [
+    ("m1_a", 4, _PF.PRESENTATION.value, _CT.HC.value, "tonic"),
+    ("m1_a", 4, _PF.CONTINUATION.value, _CT.NONE.value, "tonic"),  # runs on
+    ("m1_a", 6, _PF.CONTINUATION.value, _CT.PAC.value, "tonic"),
+    ("m1_b", 4, _PF.CONTRASTING_THEME.value, _CT.EVADED.value, "relative"),
+    ("m1_b", 5, _PF.CONTINUATION.value, _CT.IAC.value, "relative"),
+    ("m1_retr", 4, _PF.RETRANSITION.value, _CT.HC.value, "tonic"),
+    ("m1_a2", 4, _PF.RETURN.value, _CT.NONE.value, "tonic"),  # elides into the drive
+    ("m1_a2", 6, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+    ("m1_coda", 4, _PF.CODA.value, _CT.PLAGAL.value, "tonic"),
+]
+
+# A complete sonata movement: exposition, development, recapitulation, coda.
+# Building only the exposition (as before) meant asking for sonata form got a
+# fragment that stops after the closing theme, in the wrong key, with the
+# development's promised recapitulation never arriving.
+_SONATA_SPEC = [
+    ("m1_pt", 4, _PF.PRESENTATION.value, _CT.HC.value, "tonic"),
+    ("m1_pt", 4, _PF.CONTINUATION.value, _CT.PAC.value, "tonic"),
+    ("m1_tr", 6, _PF.TRANSITION.value, _CT.EVADED.value, "dominant"),
+    ("m1_st", 4, _PF.CONTRASTING_THEME.value, _CT.HC.value, "dominant"),
+    ("m1_st", 4, _PF.CONTINUATION.value, _CT.NONE.value, "dominant"),
+    ("m1_st", 5, _PF.CADENTIAL.value, _CT.PAC.value, "dominant"),
+    ("m1_cl", 4, _PF.CLOSING.value, _CT.PAC.value, "dominant"),
+    ("m1_dev", 6, _PF.FRAGMENTATION.value, _CT.NONE.value, "relative"),
+    ("m1_dev", 8, _PF.SEQUENCE.value, _CT.NONE.value, "subdominant"),
+    ("m1_dev", 6, _PF.LIQUIDATION.value, _CT.NONE.value, "parallel"),
+    ("m1_dev", 4, _PF.RETRANSITION.value, _CT.HC.value, "tonic"),
+    ("m1_rec_pt", 4, _PF.RETURN.value, _CT.NONE.value, "tonic"),
+    ("m1_rec_pt", 4, _PF.CONTINUATION.value, _CT.PAC.value, "tonic"),
+    ("m1_rec_tr", 4, _PF.TRANSITION.value, _CT.EVADED.value, "tonic"),
+    ("m1_rec_st", 4, _PF.RETURN_VARIED.value, _CT.NONE.value, "tonic"),
+    ("m1_rec_st", 6, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+    ("m1_coda", 6, _PF.CODA.value, _CT.PAC.value, "tonic"),
+]
+
+_SIMPLE_SPEC = [
+    ("m1_a", 4, _PF.PRESENTATION.value, _CT.HC.value, "tonic"),
+    ("m1_a", 4, _PF.CONTINUATION.value, _CT.PAC.value, "tonic"),
+    ("m1_b", 4, _PF.CONTRASTING_THEME.value, _CT.EVADED.value, "relative"),
+    ("m1_a2", 6, _PF.RETURN.value, _CT.PAC.value, "tonic"),
+]
+
+# Each variation gets its own character: a key role, a phrase rhythm, and a
+# tempo scaling. Giving every variation the same key, meter, length and cadence
+# plan (as before) makes a set of variations that vary nothing structural.
+_VARIATION_CHARACTERS = [
+    {"key_role": "tonic", "bars": (4, 4), "tempo_scale": 1.0, "label": "figural"},
+    {"key_role": "parallel", "bars": (4, 6), "tempo_scale": 0.75, "label": "minore"},
+    {"key_role": "tonic", "bars": (4, 5), "tempo_scale": 1.25, "label": "brillante"},
+    {"key_role": "subdominant", "bars": (6, 6), "tempo_scale": 0.85, "label": "cantabile"},
+]
+
+
+def _key_for_role(key: str, role: str) -> str:
+    """Resolve a form spec's key role against the piece's tonic."""
+    fns = {
+        "tonic": lambda k: k,
+        "relative": _relative_key,
+        "dominant": _dominant_key,
+        "subdominant": _subdominant_key,
+        "parallel": _parallel_key,
+    }
+    return fns.get(role, lambda k: k)(key)
+
+
+def _build_from_spec(spec, key, tempo, meter, style) -> List[PhraseSlot]:
+    """Materialize a form spec into PhraseSlots with running bar numbers."""
+    phrases: List[PhraseSlot] = []
+    bar = 1
+    counters: Dict[str, int] = {}
+    for section_id, bars, fn, cad, key_role in spec:
+        counters[section_id] = counters.get(section_id, 0) + 1
+        slot_key = _key_for_role(key, key_role)
+        phrases.append(
+            _make_slot(
+                f"{section_id}_p{counters[section_id]}",
+                section_id,
+                bar,
+                bars,
+                fn,
+                cad,
+                slot_key,
+                meter,
+                tempo,
+                style,
+            )
+        )
+        bar += bars
+    return phrases
+
+
 def _build_ternary(
     key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA
 ) -> List[PhraseSlot]:
-    """Build ABA ternary form."""
-    phrases = []
-    bar = 1
-
-    # A section: 2 phrases (8+8 bars)
-    for i, (fn, cad) in enumerate(
-        [
-            (PhraseFunction.PRESENTATION.value, CadenceTarget.HC.value),
-            (PhraseFunction.CADENTIAL.value, CadenceTarget.PAC.value),
-        ]
-    ):
-        phrases.append(
-            _make_slot(f"m1_a_p{i + 1}", "m1_a", bar, 8, fn, cad, key, meter, tempo, style)
-        )
-        bar += 8
-
-    # B section: 2 phrases (8+8 bars)
-    b_key = _relative_key(key)
-    for i, (fn, cad) in enumerate(
-        [
-            (PhraseFunction.CONTRASTING_THEME.value, CadenceTarget.HC.value),
-            (PhraseFunction.CADENTIAL.value, CadenceTarget.PAC.value),
-        ]
-    ):
-        phrases.append(
-            _make_slot(f"m1_b_p{i + 1}", "m1_b", bar, 8, fn, cad, b_key, meter, tempo, style)
-        )
-        bar += 8
-
-    # A' section: 2 phrases (8+8 bars)
-    for i, (fn, cad) in enumerate(
-        [
-            (PhraseFunction.RETURN.value, CadenceTarget.HC.value),
-            (PhraseFunction.CADENTIAL.value, CadenceTarget.PAC.value),
-        ]
-    ):
-        phrases.append(
-            _make_slot(f"m1_a2_p{i + 1}", "m1_a2", bar, 8, fn, cad, key, meter, tempo, style)
-        )
-        bar += 8
-
-    return phrases
+    """ABA' ternary with a retransition and a coda, and asymmetric phrases."""
+    return _build_from_spec(_TERNARY_SPEC, key, tempo, meter, style)
 
 
 def _build_sonata(
     key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA
 ) -> List[PhraseSlot]:
-    """Build sonata-allegro exposition."""
-    phrases = []
-    bar = 1
-
-    # Primary theme area
-    for i, (fn, cad) in enumerate(
-        [
-            (PhraseFunction.PRESENTATION.value, CadenceTarget.HC.value),
-            (PhraseFunction.CONTINUATION.value, CadenceTarget.PAC.value),
-        ]
-    ):
-        phrases.append(
-            _make_slot(f"m1_pt_p{i + 1}", "m1_pt", bar, 8, fn, cad, key, meter, tempo, style)
-        )
-        bar += 8
-
-    # Transition
-    phrases.append(
-        _make_slot(
-            "m1_tr_p1",
-            "m1_tr",
-            bar,
-            8,
-            PhraseFunction.TRANSITION.value,
-            CadenceTarget.HC.value,
-            key,
-            meter,
-            tempo,
-            style,
-        )
-    )
-    bar += 8
-
-    # Secondary theme
-    s_key = _dominant_key(key)
-    for i, (fn, cad) in enumerate(
-        [
-            (PhraseFunction.CONTRASTING_THEME.value, CadenceTarget.HC.value),
-            (PhraseFunction.CADENTIAL.value, CadenceTarget.PAC.value),
-        ]
-    ):
-        phrases.append(
-            _make_slot(f"m1_st_p{i + 1}", "m1_st", bar, 8, fn, cad, s_key, meter, tempo, style)
-        )
-        bar += 8
-
-    # Closing
-    phrases.append(
-        _make_slot(
-            "m1_cl_p1",
-            "m1_cl",
-            bar,
-            4,
-            PhraseFunction.CLOSING.value,
-            CadenceTarget.PAC.value,
-            s_key,
-            meter,
-            tempo,
-            style,
-        )
-    )
-
-    return phrases
+    """A complete sonata-allegro: exposition, development, recapitulation, coda."""
+    return _build_from_spec(_SONATA_SPEC, key, tempo, meter, style)
 
 
 def _build_theme_variations(
     key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA
 ) -> List[PhraseSlot]:
-    """Build theme + 3 variations."""
-    phrases = []
-    bar = 1
-
-    # Theme
-    for i, (fn, cad) in enumerate(
-        [
-            (PhraseFunction.PRESENTATION.value, CadenceTarget.HC.value),
-            (PhraseFunction.CADENTIAL.value, CadenceTarget.PAC.value),
-        ]
-    ):
-        phrases.append(
-            _make_slot(f"m1_theme_p{i + 1}", "m1_theme", bar, 8, fn, cad, key, meter, tempo, style)
-        )
-        bar += 8
-
-    # Variations
-    for var in range(1, 4):
-        for i, (fn, cad) in enumerate(
-            [
-                (PhraseFunction.RETURN_VARIED.value, CadenceTarget.HC.value),
-                (PhraseFunction.CADENTIAL.value, CadenceTarget.PAC.value),
-            ]
+    """Theme + four variations, each with its own key role, phrase rhythm and tempo."""
+    spec = [
+        ("m1_theme", 4, _PF.PRESENTATION.value, _CT.HC.value, "tonic"),
+        ("m1_theme", 4, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+    ]
+    phrases = _build_from_spec(spec, key, tempo, meter, style)
+    bar = sum(p.bar_count for p in phrases) + 1
+    for i, character in enumerate(_VARIATION_CHARACTERS, start=1):
+        section = f"m1_var{i}"
+        var_key = _key_for_role(key, character["key_role"])
+        var_tempo = max(30, int(round(tempo * character["tempo_scale"])))
+        for j, (bars, fn, cad) in enumerate(
+            (
+                (character["bars"][0], _PF.RETURN_VARIED.value, _CT.HC.value),
+                (character["bars"][1], _PF.CADENTIAL.value, _CT.PAC.value),
+            ),
+            start=1,
         ):
-            phrases.append(
-                _make_slot(
-                    f"m1_var{var}_p{i + 1}",
-                    f"m1_var{var}",
-                    bar,
-                    8,
-                    fn,
-                    cad,
-                    key,
-                    meter,
-                    tempo,
-                    style,
-                )
+            slot = _make_slot(
+                f"{section}_p{j}", section, bar, bars, fn, cad, var_key, meter, var_tempo, style
             )
-            bar += 8
-
+            slot.notes = f"variation {i} — {character['label']}"
+            phrases.append(slot)
+            bar += bars
     return phrases
 
 
 def _build_simple(
     key: str, tempo: int, meter: Tuple[int, int], form: str, style: StyleDNA
 ) -> List[PhraseSlot]:
-    """Build a simple 2-phrase structure."""
-    return [
-        _make_slot(
-            "m1_a_p1",
-            "m1_a",
-            1,
-            8,
-            PhraseFunction.PRESENTATION.value,
-            CadenceTarget.HC.value,
-            key,
-            meter,
-            tempo,
-            style,
-        ),
-        _make_slot(
-            "m1_a_p2",
-            "m1_a",
-            9,
-            8,
-            PhraseFunction.CADENTIAL.value,
-            CadenceTarget.PAC.value,
-            key,
-            meter,
-            tempo,
-            style,
-        ),
-    ]
+    """A short song-form default for unrecognized form names."""
+    return _build_from_spec(_SIMPLE_SPEC, key, tempo, meter, style)
 
 
 def _make_slot(
@@ -1112,26 +1276,50 @@ def _make_slot(
     tempo: int,
     style: StyleDNA,
 ) -> PhraseSlot:
-    """Create a PhraseSlot with default harmony and texture plans."""
-    # Simple harmony plan
-    harmony = _default_harmony_plan(function, cadence, bar_count)
+    """Create a PhraseSlot with SUGGESTED harmony and texture plans.
 
-    # Default texture plan from style
-    texture_plan = []
-    rh_options = list(style.rh_distribution.keys()) or [TextureType.SINGING_MELODY.value]
-    lh_options = list(style.lh_distribution.keys()) or [AccompType.ALBERTI.value]
+    The harmony plan is a corpus-typical *default*, not a mandate: the agent
+    chooses the actual harmony from what it learned studying the reference
+    scores (the brief presents this plan as advisory). It also serves as the
+    chord-frame for clash-avoidance and as input to the engine fallback when a
+    phrase is left unauthored.
+    """
+    from .progression_model import corpus_harmony_plan
 
-    for i in range(bar_count):
-        rh = rh_options[i % len(rh_options)] if rh_options else TextureType.SINGING_MELODY.value
-        lh = lh_options[i % len(lh_options)] if lh_options else AccompType.ALBERTI.value
-        texture_plan.append(
-            BarTexturePlan(
-                rh_texture=rh,
-                lh_texture=lh,
-                rh_density_target=8,
-                lh_density_target=6,
-            )
-        )
+    composer_id = getattr(style, "composer_id", "") or ""
+    target = getattr(style, "target", None)
+    style_name = ""
+    if isinstance(target, dict):
+        style_name = target.get("genre") or target.get("era") or ""
+    else:
+        style_name = getattr(target, "genre", "") or getattr(style, "era", "") or ""
+    from .pitch import is_minor_key
+    from .progression_model import within_bar_detail
+
+    harmony = corpus_harmony_plan(
+        composer_id,
+        style_name,
+        cadence,
+        bar_count,
+        key,
+        seed=bar_start,
+    ) or _default_harmony_plan(function, cadence, bar_count, minor=is_minor_key(key))
+
+    # Where the harmony moves INSIDE each bar, from the composer's own within-bar
+    # patterns. Without this the plan could only ever say one chord per bar.
+    harmony_detail = within_bar_detail(
+        composer_id,
+        style_name,
+        harmony,
+        key,
+        cadence,
+        beats=int(meter[0] * 4 / meter[1]) if meter else 4,
+        seed=bar_start,
+    )
+
+    texture_plan = _default_texture_plan(
+        style, function, cadence, bar_count, meter, seed=bar_start
+    )
 
     # Energy curve
     energy = _default_energy_curve(function, bar_count)
@@ -1143,31 +1331,264 @@ def _make_slot(
         bar_count=bar_count,
         function=function,
         cadence_target=cadence,
-        cadence_bar=bar_start + bar_count - 1,
+        # A phrase that does not cadence has no cadence bar. Setting one anyway
+        # made the density/texture plan thin at the end of EVERY phrase, which
+        # put an audible comma in the music every four to six bars.
+        cadence_bar=(
+            bar_start + bar_count - 1 if cadence and cadence != CadenceTarget.NONE.value else None
+        ),
         key=key,
         meter=meter,
         tempo_bpm=tempo,
         harmony_plan=harmony,
+        harmony_detail=harmony_detail,
         texture_plan=texture_plan,
         curves=PhraseCurves(energy=energy),
     )
 
 
-def _default_harmony_plan(function: str, cadence: str, bar_count: int) -> List[str]:
-    """Generate a default harmony plan."""
-    if bar_count <= 4:
-        if cadence == CadenceTarget.PAC.value:
-            return ["I", "IV", "V", "I"]
-        if cadence == CadenceTarget.HC.value:
-            return ["I", "ii", "IV", "V"]
-        return ["I", "IV", "V", "I"]
+# How often the accompaniment changes character is a MEASURED property of the
+# composer, not a policy. Two wrong answers have been shipped here: a round-robin
+# (`options[i % len(options)]`) that planned a different idiom in every bar for no
+# reason, and then a flat "hold one idiom for the whole phrase", which is just as
+# wrong in the other direction — Mozart's own corpus changes left-hand texture on
+# **62%** of bar transitions (measured over 402 bars of his 3/4 andantes), and his
+# profile records lh_texture_change_pct ≈ 0.54. Holding one figure for six bars is
+# the single most audible way generated music announces itself.
+#
+# So: take the rate from the composer's corpus profile, and take the SUCCESSOR
+# from the corpus transition matrix — what that composer actually moves to next.
+# Not accompaniment idioms a plan can schedule: silence is the absence of one,
+# and "unclassified" is the extractor's junk bucket.
+_UNSCHEDULABLE_LH = {"silence", "unclassified", ""}
 
-    # 8-bar plan
-    if cadence == CadenceTarget.PAC.value:
-        return ["I", "I", "IV", "ii", "V", "V7", "I", "I"]
-    if cadence == CadenceTarget.HC.value:
-        return ["I", "I", "vi", "IV", "ii", "ii6", "V", "V"]
-    return ["I", "vi", "IV", "I", "ii", "V", "I", "I"]
+_CADENCE_LH = {
+    "alberti": "block_chord_sparse",
+    "broken_chord_wave": "block_chord_sparse",
+    "walking_bass": "block_chord_sparse",
+    "block_chord_offbeat": "block_chord_sparse",
+}
+
+
+def _lh_change_rate(style) -> float:
+    """The composer's own measured LH texture-change rate, or a neutral default."""
+    from .composition_brief import corpus_profile
+
+    composer = (getattr(style, "composer_id", "") or "").lower()
+    prof = corpus_profile(composer) if composer else {}
+    stat = (prof or {}).get("metrics", {}).get("lh_texture_change_pct") or {}
+    mean = stat.get("mean")
+    return float(mean) if isinstance(mean, (int, float)) and 0 < mean < 1 else 0.45
+
+
+def _next_lh_texture(style, current: str, options: List[str], seed: int) -> str:
+    """What this composer actually moves to after ``current``.
+
+    This read ``trans["next"]`` — a key ``_transition_patterns`` has never
+    returned. It returns ``after_previous.follow``. So the lookup was dead: the
+    corpus transition matrix, built specifically to say what follows what, was
+    never consulted, and the accompaniment simply cycled through the style's
+    ranked textures by index.
+    """
+    from .composition_brief import _transition_patterns
+
+    try:
+        trans = _transition_patterns(getattr(style, "composer_id", "") or "", None, current)
+        follow = ((trans or {}).get("after_previous") or {}).get("follow") or []
+        ranked = [t for t, _w in follow if t != current and t not in _UNSCHEDULABLE_LH]
+        if ranked:
+            return ranked[seed % min(3, len(ranked))]
+    except Exception:
+        pass
+    alt = [t for t in options if t != current and t not in _UNSCHEDULABLE_LH]
+    return alt[seed % len(alt)] if alt else current
+
+
+def _rh_change_rate(style) -> float:
+    """The composer's own measured RH texture-change rate."""
+    from .composition_brief import corpus_profile
+
+    composer = (getattr(style, "composer_id", "") or "").lower()
+    prof = corpus_profile(composer) if composer else {}
+    stat = (prof or {}).get("metrics", {}).get("texture_change_pct") or {}
+    mean = stat.get("mean")
+    return float(mean) if isinstance(mean, (int, float)) and 0 < mean < 1 else 0.35
+
+
+def _default_texture_plan(
+    style, function: str, cadence: str, bar_count: int, meter, seed: int = 0
+) -> List:
+    """Plan the accompaniment's character bar by bar at the composer's own rate.
+
+    Density targets scale with the bar's real beat count and the chosen texture
+    rather than being the same hard-coded 8-RH / 6-LH for every bar of every
+    piece in every meter.
+    """
+
+    def _ranked(dist, fallback, min_share: float = 0.05):
+        """Textures this composer actually uses often, commonest first.
+
+        The tail is dropped: rotating through the WHOLE ranked list reached
+        idioms a composer uses in 1% of bars, so a tender andante's second phrase
+        was planned as passage-work. Variety should stay inside the composer's
+        mainstream vocabulary, not sample its extremes.
+        """
+        if not dist:
+            return [fallback]
+        ranked = sorted(dist.items(), key=lambda kv: -kv[1])
+        total = sum(v for _, v in ranked) or 1.0
+        keep = [k for k, v in ranked if (v / total) >= min_share]
+        return keep or [ranked[0][0]] or [fallback]
+
+    rh_opts = _ranked(getattr(style, "rh_distribution", None), TextureType.SINGING_MELODY.value)
+    lh_opts = _ranked(getattr(style, "lh_distribution", None), AccompType.ALBERTI.value)
+    # "silence" is a real corpus label (the staff rests for a bar) but it is not
+    # something to PLAN as a phrase's accompaniment idiom — a phrase whose plan
+    # opens on silence has no accompaniment at all. It was filtered out of the
+    # successor choice and not out of the initial pick.
+    rh_opts = [t for t in rh_opts if t not in _UNSCHEDULABLE_LH] or [
+        TextureType.SINGING_MELODY.value
+    ]
+    lh_opts = [t for t in lh_opts if t not in _UNSCHEDULABLE_LH] or [AccompType.ALBERTI.value]
+    # Every phrase used to START on the style's single most common texture and
+    # accrue its changes from zero, so phrase 1 and phrase 9 of the same piece
+    # were planned identically: alberti, alberti, then a change at the same bar
+    # index, over and over. That IS the "same accompaniment throughout" tell the
+    # brief warns about, planned in. Offsetting both the starting texture and the
+    # accrual phase by where the phrase sits in the piece makes each phrase begin
+    # somewhere the previous one did not, while still following the composer's
+    # own distribution and change rate.
+    offset = max(0, int(seed))
+    # The opening states the norm — a piece should not begin on its composer's
+    # fourth-commonest texture — and a RETURN should recall how the material
+    # first sounded rather than arriving in a texture the listener has never
+    # associated with it.
+    anchored = offset <= 1 or (function or "").lower() in ("return", "recapitulation", "coda")
+    step = 0 if anchored else (offset // 4)
+    rh = rh_opts[step % len(rh_opts)]
+    lh = lh_opts[step % len(lh_opts)]
+    rate = _lh_change_rate(style)
+    rh_rate_of_change = _rh_change_rate(style)
+
+    beats = (meter[0] * 4.0 / meter[1]) if meter else 4.0
+    rh_rate = {
+        "held_note": 0.35,
+        "singing_melody": 1.2,
+        "chordal": 1.0,
+        "block_chord_sparse": 0.6,
+        "scalar_run": 3.0,
+        "zigzag_figuration": 3.0,
+        "passage_work": 3.0,
+        "dotted_pairs": 1.5,
+        "dialogue": 1.2,
+        "ornamental_cascade": 3.5,
+    }
+    lh_rate = {
+        "silence": 0.0,
+        "pedal_point": 0.4,
+        "block_chord_sparse": 0.7,
+        "block_chord_offbeat": 1.2,
+        "bass_melody": 1.0,
+        "walking_bass": 1.2,
+        "alberti": 2.0,
+        "broken_chord_wave": 2.0,
+        "broken_chord_asc": 2.0,
+        "broken_chord_desc": 2.0,
+        "interlocking": 2.0,
+        "block_chord_tremolo": 3.0,
+        "sparse_punctuation": 0.6,
+    }
+    cadence_bar = bar_count - 1 if cadence and cadence != CadenceTarget.NONE.value else -1
+
+    plan = []
+    accrued = 0.0 if anchored else (offset * 0.37) % 1.0
+    rh_accrued = 0.0 if anchored else (offset * 0.61) % 1.0
+    for i in range(bar_count):
+        is_cadence = i == cadence_bar
+        if i and not is_cadence:
+            # Deterministic pacing: change once the accumulated rate crosses 1,
+            # which lands the phrase's change COUNT on the composer's own rate.
+            accrued += rate
+            if accrued >= 1.0:
+                accrued -= 1.0
+                lh = _next_lh_texture(style, lh, lh_opts, i + offset)
+            # The UPPER staff was pinned to one texture for the whole phrase —
+            # so every bar retrieved the same exemplars and got the same density
+            # target, while the brief printed the composer's real
+            # texture_change_pct right underneath as a target to hit. A phrase
+            # cannot change texture 40% of the time if the plan says it never
+            # changes at all.
+            rh_accrued += rh_rate_of_change
+            if rh_accrued >= 1.0 and len(rh_opts) > 1:
+                rh_accrued -= 1.0
+                alt = [t for t in rh_opts if t != rh]
+                rh = alt[(i + offset) % len(alt)]
+        bar_lh = _CADENCE_LH.get(lh, lh) if is_cadence else lh
+        # Not every cadence is a held note. Alternating the two idiomatic
+        # cadential upper-staff gestures stops every phrase in every piece from
+        # ending the same way.
+        bar_rh = rh
+        if is_cadence and rh not in ("held_note", "chordal"):
+            bar_rh = "chordal" if (bar_count % 2 == 0) else "held_note"
+        plan.append(
+            BarTexturePlan(
+                rh_texture=bar_rh,
+                lh_texture=bar_lh,
+                rh_density_target=max(
+                    1, round(beats * (0.4 if is_cadence else rh_rate.get(bar_rh, 1.2)))
+                ),
+                lh_density_target=max(
+                    1, round(beats * (0.5 if is_cadence else lh_rate.get(bar_lh, 1.5)))
+                ),
+            )
+        )
+    return plan
+
+
+def _default_harmony_plan(
+    function: str, cadence: str, bar_count: int, minor: bool = False
+) -> List[str]:
+    """Fallback harmony plan when the corpus model has nothing for this composer.
+
+    Built as opening + middle + CADENCE rather than by slicing a fixed 8-bar
+    template: slicing dropped the dominant out of any phrase that was not
+    exactly eight bars, so a six-bar phrase asked for a perfect cadence and got
+    tonic-tonic. Mode-aware too — the old version handed a phrase in A minor an
+    A MAJOR tonic and a major supertonic.
+    """
+    if bar_count <= 0:
+        return []
+    tonic = "i" if minor else "I"
+    sub = "iv" if minor else "IV"
+    supertonic = "iio6" if minor else "ii6"
+    submediant = "VI" if minor else "vi"
+
+    dom7 = "V" if minor else "V7"
+    # EVADED and ELIDED had no entry, so they fell through to an empty tail and
+    # the phrase ended wherever the functional walk happened to be — no dominant,
+    # no arrival, nothing to evade.
+    tails = {
+        CadenceTarget.PAC.value: [dom7, tonic],
+        CadenceTarget.IAC.value: ["V", tonic + "6"],
+        CadenceTarget.HC.value: [supertonic, "V"],
+        CadenceTarget.DC.value: [dom7, submediant],
+        CadenceTarget.PLAGAL.value: [sub, tonic],
+        CadenceTarget.EVADED.value: [dom7, tonic + "6"],
+        CadenceTarget.ELIDED.value: [supertonic, tonic + "6"],
+    }
+    tail = tails.get(cadence, [])
+    if bar_count <= len(tail):
+        return tail[-bar_count:]
+
+    # Middle: a functional walk out from the tonic and back to the predominant,
+    # long enough to fill whatever is left once the cadence is reserved.
+    walk = [tonic, submediant, sub, supertonic, tonic, sub]
+    body = [tonic]
+    i = 0
+    while len(body) < bar_count - len(tail):
+        body.append(walk[i % len(walk)])
+        i += 1
+    return body + tail
 
 
 def _default_energy_curve(function: str, bar_count: int) -> List[float]:
@@ -1241,49 +1662,75 @@ def _apply_narrative_curves(slot: PhraseSlot, narrative) -> bool:
     slot.curves.tension = tension
     slot.curves.density = density
     slot.curves.brightness = brightness
+
+    # Drive note density per bar from the narrative density curve (not just
+    # dynamics) — low density → sparser/sustained texture, high → fuller/running.
+    for i, bt in enumerate(getattr(slot, "texture_plan", []) or []):
+        d = density[i] if i < len(density) else 0.5
+        bt.rh_density_target = int(round(4 + 12 * d))
+        bt.lh_density_target = int(round(3 + 7 * d))
     return True
 
 
+def _parse_key_str(key: str):
+    """Delegates to the single canonical parser (pitch.parse_key)."""
+    from .pitch import parse_key
+
+    return parse_key(key)
+
+
+def _key_name(key_obj) -> str:
+    """Render a music21 Key back to the project's canonical "<Tonic> <mode>" form."""
+    tonic = key_obj.tonic.name.replace("-", "b")
+    return f"{tonic} {key_obj.mode}"
+
+
+def _transpose_key(key: str, interval_name: str, mode: Optional[str] = None) -> str:
+    """Transpose a key by a NAMED interval, optionally switching mode.
+
+    Replaces two hard-coded lookup tables that silently returned "C"/"Am"/"G"
+    for any key spelling they did not contain — which was ALL of them once the
+    planner started writing "a minor" instead of "Am", so every ternary B
+    section and every sonata secondary theme landed in the wrong key.
+
+    The interval is named ("P5", "m3") rather than a semitone count so the
+    spelling stays diatonic: the dominant of D-flat is A-flat, not G-sharp.
+    """
+    import music21
+
+    k = _parse_key_str(key)
+    new_tonic = k.tonic.transpose(music21.interval.Interval(interval_name))
+    return _key_name(music21.key.Key(new_tonic.name, mode or k.mode))
+
+
 def _relative_key(key: str) -> str:
-    """Get relative major/minor key."""
-    if key.endswith("m"):
-        # minor → relative major (up minor 3rd)
-        relatives = {
-            "Am": "C",
-            "Dm": "F",
-            "Em": "G",
-            "Bm": "D",
-            "F#m": "A",
-            "C#m": "E",
-            "Gm": "Bb",
-            "Cm": "Eb",
-        }
-        return relatives.get(key, "C")
-    # major → relative minor (down minor 3rd)
-    relatives = {"C": "Am", "G": "Em", "D": "Bm", "A": "F#m", "F": "Dm", "Bb": "Gm", "Eb": "Cm"}
-    return relatives.get(key, "Am")
+    """The relative major of a minor key, or the relative minor of a major key."""
+    k = _parse_key_str(key)
+    if k.mode == "minor":
+        return _transpose_key(key, "m3", "major")
+    return _transpose_key(key, "-m3", "minor")
 
 
 def _dominant_key(key: str) -> str:
-    """Get dominant key (V)."""
-    dominants = {
-        "C": "G",
-        "G": "D",
-        "D": "A",
-        "A": "E",
-        "E": "B",
-        "F": "C",
-        "Bb": "F",
-        "Eb": "Bb",
-        "Ab": "Eb",
-        "Cm": "Gm",
-        "Gm": "Dm",
-        "Dm": "Am",
-        "Am": "Em",
-        "Em": "Bm",
-        "Fm": "Cm",
-    }
-    return dominants.get(key, "G")
+    """The key a sonata exposition's secondary theme goes to.
+
+    Major: the dominant. Minor: the RELATIVE MAJOR — a minor-mode exposition
+    that modulates to the minor dominant is the exception, not the rule, and the
+    old table did exactly that for every minor key.
+    """
+    k = _parse_key_str(key)
+    if k.mode == "minor":
+        return _relative_key(key)
+    return _transpose_key(key, "P5")
+
+
+def _subdominant_key(key: str) -> str:
+    return _transpose_key(key, "P4")
+
+
+def _parallel_key(key: str) -> str:
+    k = _parse_key_str(key)
+    return _transpose_key(key, "P1", "major" if k.mode == "minor" else "minor")
 
 
 def _infer_section_role(section_id: str) -> str:
@@ -1402,6 +1849,7 @@ def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> 
 
     Each op is a dict with: target_phrase, operation, params, reason.
     """
+    revision_ops = _as_list(revision_ops, "revision_ops")
     from .models import RevisionOp, RevisionScript
     from .patch_engine import PatchEngine
 
@@ -1443,6 +1891,68 @@ def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> 
             if graph.phrases.get(pid) and graph.phrases[pid].status in ("planned", "sketched")
         ],
     }
+
+
+# ─── Engraver's pass ─────────────────────────────────────────────────────────
+
+
+def _engrave_phrase(graph, phrase_id: str, layer: LayerIR, composer: Optional[str]):
+    """Run the engraver's pass over a phrase the agent just wrote.
+
+    `expression_enricher` existed, was fully tested, and was called by nothing.
+    Every score the system produced therefore came out with **zero
+    articulations and zero ties** where a real Mozart sonata movement carries
+    0.27-1.74 articulations and up to 0.89 ties per bar (measured over the nine
+    first movements in `reference_scores/mozart-piano-sonatas`). An
+    unarticulated score sounds like a MIDI file because it is one.
+
+    The pass is strictly non-destructive: it writes only fields the composer
+    left blank, so the agent stays the author and this is the engraver who
+    follows it. The report is stored on the phrase so a reviewer can tell the
+    two apart.
+    """
+    from .expression_enricher import enrich_layer_ir, expression_density
+
+    state = graph.phrases.get(phrase_id)
+    slot = getattr(state, "slot", None) if state else None
+
+    style_name = composer or getattr(graph.style_dna, "composer_id", "") or ""
+    curves = getattr(slot, "curves", None) if slot else None
+    energy = list(getattr(curves, "energy", []) or []) if curves else None
+    harmony = list(getattr(slot, "harmony_plan", []) or []) if slot else None
+    cadence_bar = getattr(slot, "cadence_bar", None) if slot else None
+    character = (getattr(slot, "notes", "") or "") if slot else ""
+    base_dyn = None
+    cont = getattr(slot, "continuation", None) if slot else None
+    if cont is not None:
+        base_dyn = getattr(cont, "last_dynamic", None)
+
+    try:
+        report = enrich_layer_ir(
+            layer,
+            style=style_name,
+            energy_curve=energy,
+            harmony_plan=harmony,
+            cadence_bar=cadence_bar,
+            base_dynamic=base_dyn,
+            character=character,
+            is_final_phrase=_is_final_phrase(graph, phrase_id),
+        )
+    except Exception as exc:  # never let the engraver block a good commit
+        return {"ok": False, "error": f"{type(exc).__name__}: {exc}"}
+
+    out = report.as_dict()
+    out["density_after"] = expression_density(layer)
+    return out
+
+
+def _is_final_phrase(graph, phrase_id: str) -> bool:
+    """True when no later phrase exists anywhere in the piece."""
+    order = list(graph.phrases.keys())
+    try:
+        return order.index(phrase_id) == len(order) - 1
+    except ValueError:
+        return False
 
 
 def _gated_commit(
@@ -1513,7 +2023,19 @@ def _gated_commit(
             ),
         }
 
+    # 3. Engraver's pass — fill in the marks the composer left blank.
+    #    Non-destructive; only blank fields are written.
+    engraving = _engrave_phrase(graph, phrase_id, layer, composer)
+
     graph.commit_agent_phrase(phrase_id, layer)
+
+    # Capture the piece's principal theme from the first phrase whose dramatic
+    # role is to state it. The theme machinery was entirely inert on the default
+    # path: `motif_bank` is empty at plan time so no theme was ever elected, and
+    # `capture_theme_surface` was called only by one optional workflow — so every
+    # later phrase's brief had no theme to develop and a piece came out as N
+    # independently-composed phrases with nothing binding them.
+    _capture_theme_if_first_statement(graph, phrase_id)
 
     # Overrides are auditable: every waived check lands in the history
     for ov in gate.overrides:
@@ -1534,7 +2056,29 @@ def _gated_commit(
         "overrides": gate.overrides,
         "rejected_waivers": gate.rejected_waivers,
     }
+    out["engraving"] = engraving
     return out
+
+
+def _capture_theme_if_first_statement(graph, phrase_id: str) -> None:
+    """Store the principal theme the first time an ESTABLISH phrase is committed."""
+    if getattr(graph, "principal_theme_surface", None):
+        return
+    state = graph.phrases.get(phrase_id)
+    slot = getattr(state, "slot", None) if state else None
+    if slot is None:
+        return
+    role = getattr(slot, "dramatic_role", "")
+    # The opening statement, or (for a piece planned without a dramatic role) the
+    # phrase that starts at bar 1.
+    if role not in ("establish",) and slot.bar_start != 1:
+        return
+    try:
+        from .theme_planner import capture_theme_surface
+
+        capture_theme_surface(graph, phrase_id, n_bars=min(4, slot.bar_count))
+    except Exception:
+        pass  # a missing theme must never block a commit
 
 
 def commit_agent_phrase_layer_ir(
@@ -1555,6 +2099,7 @@ def commit_agent_phrase_layer_ir(
     corpus-derived thresholds; artistic checks can be waived via
     ``allow=[{"check": ..., "reason": ...}]`` (logged to revision history).
     """
+    allow = _as_list(allow, "allow")
     from .validator import validate_layer_ir
 
     workspace = _WORKSPACE / piece_id
@@ -1566,10 +2111,29 @@ def commit_agent_phrase_layer_ir(
     layer.phrase_id = phrase_id
     slot = graph.phrases[phrase_id].slot
     if slot:
-        if not layer.key:
+        # The SLOT is authoritative for key and meter. Testing `if not
+        # layer.meter` never fired, because LayerIR defaults to a truthy (4, 4) —
+        # so a 3/4 phrase committed as raw LayerIR kept 4/4, the meter check then
+        # allowed four beats in a three-beat bar, and the score came out mis-barred.
+        # An explicit meter that disagrees with the slot is reported, not silently
+        # honored: the plan and the notes must agree on the bar length.
+        supplied_meter = tuple(layer.meter) if layer.meter else None
+        slot_meter = tuple(slot.meter) if slot.meter else (4, 4)
+        if supplied_meter and supplied_meter != slot_meter and layer_ir.get("meter"):
+            return {
+                "ok": False,
+                "error": "meter_mismatch",
+                "hint": (
+                    f"LayerIR declares meter {supplied_meter} but phrase slot "
+                    f"{phrase_id} is {slot_meter}. Write the phrase in the "
+                    f"planned meter, or change the plan first."
+                ),
+            }
+        layer.meter = slot_meter
+        # Same trap for key: the dataclass default "C" is truthy, so an unset key
+        # used to stick as C major no matter what the slot planned.
+        if not layer.key or not layer_ir.get("key"):
             layer.key = slot.key
-        if not layer.meter:
-            layer.meter = slot.meter
 
     report = validate_layer_ir(layer)
     if not report.passed:
@@ -1599,6 +2163,8 @@ def commit_agent_phrase_direct_bars(
     The commit gate blocks unambiguously mechanical output; waive a named
     artistic check with ``allow=[{"check": ..., "reason": ...}]``.
     """
+    bars = _as_list(bars, "bars")
+    allow = _as_list(allow, "allow")
     from .direct_compose import compose_phrase
     from .validator import validate_layer_ir
 
@@ -1615,6 +2181,13 @@ def commit_agent_phrase_direct_bars(
             "error": "bar_count_mismatch",
             "expected_bars": slot.bar_count,
             "got": len(bars),
+            "hint": (
+                f"Write exactly {slot.bar_count} bar dicts (bars "
+                f"{slot.bar_start}-{slot.bar_start + slot.bar_count - 1}). A pickup "
+                f"bar OCCUPIES the phrase's first bar — mark that first dict "
+                f"{{'pickup': True}} and write only the upbeat in it; do not add an "
+                f"extra dict for it, or the phrase would run into the next one's bars."
+            ),
         }
 
     layer = compose_phrase(
@@ -1704,6 +2277,76 @@ def _persist_brief_receipt(graph, phrase_id: str, brief) -> bool:
     if composer:
         state.context_trace["brief_composer"] = composer
     return True
+
+
+# ─── Whole-score reference study ─────────────────────────────────────────────
+
+
+def list_reference_scores(composer: str) -> Any:
+    """List the complete reference pieces available to study for a composer.
+
+    Returns one entry per source piece/movement (bar count, key, meter, dominant
+    textures) so the agent can pick 2-4 representative scores to read in full
+    BEFORE composing — the way a human composer studies real scores. Pass a
+    composer name or a ``style__<name>`` id (aggregates over armed members).
+    """
+    from .reference_study import list_reference_scores as _list
+
+    return _list(composer)
+
+
+def get_reference_score(
+    composer: str,
+    source: str,
+    target_key: Optional[str] = None,
+    max_bars: Optional[int] = None,
+) -> Any:
+    """Read one COMPLETE reference piece in readable shorthand.
+
+    Reconstructs the full piece from the corpus (ordered by bar), rendered in the
+    same direct_compose shorthand the brief uses, with each bar's roman/function
+    and RH/LH texture so the agent sees the harmonic and textural arc — not just
+    disconnected notes. Pass ``target_key`` to transpose into the key you'll
+    compose in. The agent reads this and writes its OWN analysis via
+    ``save_reference_study``.
+    """
+    from .reference_study import reconstruct_score
+
+    return reconstruct_score(composer, source, target_key=target_key, max_bars=max_bars)
+
+
+def save_reference_study(
+    piece_id: str,
+    composer: str,
+    source: str,
+    analysis: str,
+    observations: Optional[Dict[str, Any]] = None,
+) -> Any:
+    """Persist the agent's OWN analysis of a reference piece to the PieceGraph.
+
+    ``analysis`` is the agent's prose: form, themes, harmonic language, texture
+    and dynamic arc, "what makes it work". ``observations`` is optional structured
+    notes (e.g. cadence points, recurring gestures). Stored under
+    ``reference_studies["<composer>/<source>"]`` and fed forward into every phrase
+    brief, so the agent composes from its own understanding of real scores.
+    """
+    workspace = _WORKSPACE / piece_id
+    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    key = f"{composer}/{source}"
+    graph.patch(
+        path=f"reference_studies.{key}",
+        operation="set",
+        value={
+            "composer": composer,
+            "source": source,
+            "analysis": analysis,
+            "observations": observations or {},
+        },
+        skill="w-plan",
+        reason=f"Whole-score study of {key}",
+    )
+    graph.save(str(workspace / "piece_graph.json"))
+    return {"saved": True, "key": key, "studies": sorted(graph.reference_studies.keys())}
 
 
 def run_agent_section_briefs(
@@ -1813,16 +2456,42 @@ def get_phrase_continuity(piece_id: str, phrase_id: str) -> Dict[str, Any]:
 
 # Discriminator target bands — corpus-derived human-vs-AI tells
 # (see .claude/context/general/human-sounding-music.md)
+# Generic human-vs-AI bands, keyed by the metric name on the EvidenceBundle
+# (i.e. what style_analyzer measures). Keep these names in sync with
+# EvidenceBundle's fields — a band whose key is not a bundle attribute is
+# silently skipped and the metric simply disappears from the report.
 _DISCRIMINATOR_BANDS = {
-    "texture_change_pct": (0.35, 0.70),
-    "direction_changes_per_bar": (1.0, 2.0),
-    "density_cv": (0.30, None),
-    "rest_ratio": (0.03, 0.15),
-    "stepwise_pct": (0.35, 0.60),
-    "events_per_bar": (6.0, 18.0),
-    "rhythmic_variety": (5, None),
-    "dynamic_markings_per_bar": (0.10, None),
+    # CALIBRATED against 36 real movements by Mozart, Beethoven and Chopin
+    # (5th-95th percentile, widened 10%). Every one of these was previously a
+    # hand-written guess, and every one of them rejected real music — the worst,
+    # texture_change_pct at (0.35, 0.70), rejected **20 of 24** real movements.
+    # A band that flags what real composers actually write does not measure the
+    # music; it measures the band, and it pushes the critic toward the
+    # non-idiomatic. test_discriminator_bands_do_not_reject_real_music keeps
+    # them honest.
+    "texture_change_pct": (0.045, 0.585),
+    # A COUNT of contour reversals per bar, not a fraction (see
+    # _PROFILE_OVERRIDABLE below for why that distinction matters). Real
+    # movements run 0.9 to 3.6; the old (1.0, 2.0) rejected half of them,
+    # including 5 of 12 Mozart sonata movements.
+    "direction_changes_per_bar": (0.9, 3.6),
+    "density_cv": (0.198, None),
+    "rest_ratio": (0.039, 0.265),
+    "stepwise_pct": (0.312, 0.831),
+    "events_per_bar": (5.67, 21.23),
+    "rhythmic_variety": (4.5, None),
+    "dynamic_markings_per_bar": (0.072, None),
 }
+
+# Bands a composer's corpus_profile may narrow to that composer's own spread.
+# This is an ALLOW-LIST on purpose. Overriding by name alone silently swapped
+# units: corpus_profile's old "direction_changes_per_bar" was a FRACTION of bars
+# whose direction label changes (mean 0.56), and it was overriding a band applied
+# to style_analyzer's per-bar reversal COUNT (1-3 for real music). Every section
+# with a healthy melodic contour was therefore reported "high" with the hint
+# "melodic contour is monotonic or jittery" — the discriminator was telling the
+# critic that good melody writing was a defect. Two quantities, one name.
+_PROFILE_OVERRIDABLE = frozenset({"texture_change_pct", "density_cv", "events_per_bar"})
 
 
 def self_evaluate(
@@ -1865,16 +2534,38 @@ def self_evaluate(
         "warnings": warnings,
     }
 
-    # Metrics reported as percentages by the analyzer; bands are fractions
+    # style_analyzer reports these as PERCENTAGES (0-100) while the bands here are
+    # fractions, so they are converted unconditionally. The old rule was "divide
+    # if the value exceeds 1.5", which silently inverted any piece with under 1.5%
+    # rests: 0.8% was read as the fraction 0.8 and reported as far ABOVE a
+    # 0.03-0.15 band — a score with almost no breathing room was told it had too
+    # much. Guessing units from magnitude is not a contract.
     _PCT_METRICS = {"texture_change_pct", "rest_ratio", "stepwise_pct"}
 
-    for metric, (lo, hi) in _DISCRIMINATOR_BANDS.items():
+    # Composer-aware bands: when the resolved composer has a corpus_profile,
+    # judge each metric against THAT composer's own spread (mean ± 2σ) instead
+    # of the generic human-vs-AI band. Otherwise the generic band can fight the
+    # composer — e.g. it demands texture_change ≥0.35 while real Beethoven/Liszt
+    # sit at ~0.26-0.31, penalising idiomatic figural persistence as "monotony".
+    from .composition_brief import corpus_profile as _corpus_profile
+
+    bands = dict(_DISCRIMINATOR_BANDS)
+    _prof_metrics = (_corpus_profile(resolved) or {}).get("metrics", {})
+    for _m, _stat in _prof_metrics.items():
+        if _m not in bands or _m not in _PROFILE_OVERRIDABLE:
+            continue  # same name != same quantity; see _PROFILE_OVERRIDABLE
+        _mean, _sd = _stat.get("mean"), _stat.get("stdev")
+        if _mean is None or not _sd or _sd <= 0:
+            continue  # degenerate (e.g. grace_ratio=0 in MIDI corpus) → keep generic
+        bands[_m] = (max(0.0, _mean - 2 * _sd), _mean + 2 * _sd)
+
+    for metric, (lo, hi) in bands.items():
         value = getattr(bundle, metric, None)
         if value is None:
             value = (bundle.raw_metrics or {}).get(metric)
         if value is None:
             continue
-        if metric in _PCT_METRICS and value > 1.5:
+        if metric in _PCT_METRICS:
             value = value / 100.0
         status = "ok"
         if lo is not None and value < lo:
@@ -1889,10 +2580,15 @@ def self_evaluate(
         if status != "ok":
             hints = {
                 "texture_change_pct": (
-                    "texture is static — real corpus changes texture "
-                    "between ~40-70% of consecutive bars"
+                    "texture is static — real movements change texture between "
+                    "4.5% and 58.5% of consecutive bars"
+                    if status == "low"
+                    else "texture changes more often than any real movement in the corpus"
                 ),
-                "direction_changes_per_bar": ("melodic contour is monotonic or jittery"),
+                "direction_changes_per_bar": (
+                    "the melodic line barely changes direction (monotonic) or "
+                    "reverses far more often than any real movement in the corpus"
+                ),
                 "density_cv": "density is flat — no ebb and flow",
                 "rest_ratio": ("no breathing room" if status == "low" else "too sparse"),
                 "stepwise_pct": (
@@ -1949,45 +2645,185 @@ def self_evaluate(
             f"scripts/build_corpus_profiles.py or arm the composer)"
         )
 
+    # Musical ear: bar/beat-level structural defects (vertical clash, buried
+    # melody, unresolved NCT, no breathing, monotony) — the feedback signal the
+    # actor-critic loop revises against. Reuses the already-assembled score.
+    try:
+        from .musical_ear import ear_report
+
+        report["ear"] = ear_report(
+            path, _extract_generated_bars(path, resolved, scope), graph=graph
+        )
+    except Exception as exc:  # never let the ear crash a review
+        report["ear"] = {
+            "findings": [],
+            "summary": {"error_count": 0, "warn_count": 0},
+            "undetectable": [],
+            "error": str(exc),
+        }
+
+    # Score realism: formula, uniformity and notational poverty — the defects
+    # that are not *wrong* but are obviously not written by a person. The ear
+    # answers "is anything broken here"; this answers "does this read as
+    # engraved music". It reported nothing on a score that used one cadence
+    # formula in seven of its 41 bars and carried no articulation at all,
+    # because none of that is an error. Every finding is advisory: this is
+    # material for the fresh-ears critic to weigh, never an auto-block.
+    try:
+        from .score_realism import realism_report
+
+        report["realism"] = realism_report(path, graph=graph, scope=scope, composer=resolved)
+    except Exception as exc:  # never let the audit crash a review
+        report["realism"] = {
+            "findings": [],
+            "summary": {"by_detector": {}, "warn_count": 0, "info_count": 0},
+            "notation_census": {},
+            "error": f"{type(exc).__name__}: {exc}",
+        }
+
+    # Voicing and cadence analysis over the PieceGraph. These read the phrases
+    # as musical objects rather than as an engraved file, so they see what the
+    # score-side audit cannot: whether the texture's weight actually MOVES
+    # (simultaneity_cv — the measurement that showed the previous piece was not
+    # thin, it was unvarying), and whether each cadence the notes describe is
+    # the cadence the plan asked for, which nothing had ever checked.
+    try:
+        from .cadence_analysis import analyze_cadences
+        from .voicing import analyze_voicing, texture_runs
+
+        in_scope = [
+            ps
+            for ps in graph.phrases.values()
+            if ps.realized and (not section_id or (ps.slot and ps.slot.section_id == section_id))
+        ]
+        in_scope.sort(key=lambda ps: (ps.slot.bar_start if ps.slot else 0))
+        merged = None
+        if in_scope:
+            from .direct_compose import merge_phrases
+
+            merged = merge_phrases(
+                [ps.realized for ps in in_scope],
+                key=(in_scope[0].slot.key if in_scope[0].slot else "C"),
+                meter=(tuple(in_scope[0].slot.meter) if in_scope[0].slot else (4, 4)),
+                piece_id=piece_id,
+            )
+        if merged is not None:
+            v = analyze_voicing(merged, style=resolved)
+            report["voicing"] = {
+                k: getattr(v, k)
+                for k in (
+                    "mean_simultaneity",
+                    "simultaneity_cv",
+                    "rh_notes_per_attack",
+                    "lh_notes_per_attack",
+                    "single_line_rh_pct",
+                    "register_span",
+                    "widest_hand_span",
+                    "unplayable_spans",
+                    "thirds_sixths_pct",
+                    "observations",
+                    "suggestions",
+                )
+            }
+            report["voicing"]["texture_runs"] = [
+                {"idiom": lbl, "from_bar": b0, "to_bar": b1} for lbl, b0, b1 in texture_runs(merged)
+            ]
+            c = analyze_cadences(
+                [
+                    (
+                        ps.realized,
+                        ((ps.slot.bar_start or 1) + (ps.slot.bar_count or 1) - 1)
+                        if ps.slot
+                        else None,
+                        (ps.slot.key if ps.slot else None),
+                        (ps.slot.cadence_target if ps.slot else None),
+                    )
+                    for ps in in_scope
+                ]
+            )
+            report["cadences"] = {
+                "realized": [
+                    (c_.__dict__ if hasattr(c_, "__dict__") else c_) for c_ in (c.cadences or [])
+                ],
+                "matches_plan": c.matches_plan,
+                "variety": c.variety,
+                "repeated_formulas": c.repeated_formulas,
+                "observations": c.observations,
+                "suggestions": c.suggestions,
+            }
+    except Exception as exc:  # never let an analyzer crash a review
+        report["voicing"] = {"error": f"{type(exc).__name__}: {exc}"}
+
     # Section gate (C3): the discriminator report is no longer purely advisory.
     # Egregious failures (mechanical static texture, composed-blind phrases,
-    # many traits far outside the corpus spread) constitute a HARD failure the
-    # pipeline must act on before the section is accepted.
+    # many traits far outside the corpus spread, audible harmonic clashes or a
+    # buried melody) constitute a HARD failure the pipeline must act on.
     report["section_gate"] = _section_gate(report)
     return report
 
 
 def _section_gate(report: Dict[str, Any]) -> Dict[str, Any]:
-    """Derive a hard pass/fail verdict from a self_evaluate report. Only
-    egregious, unambiguous failures block — ordinary out-of-band flags remain
-    advisory for the fresh-ears critic to weigh."""
-    hard: List[str] = []
+    """Derive a pass/fail verdict from a self_evaluate report.
 
-    metrics = report.get("metrics", {})
-    # The single strongest human-vs-AI discriminator: static texture. A value
-    # far below the band (≤0.15 of consecutive bars changing) is mechanical.
-    tcp = metrics.get("texture_change_pct")
-    if tcp and tcp.get("status") == "low" and tcp.get("value", 1.0) <= 0.15:
-        hard.append(f"texture is mechanically static (texture_change_pct={tcp['value']} ≤ 0.15)")
+    Falsified against real scores (2026-06-20): statistical hard-fails
+    (static-texture, |z|>3, musical_ear clash/buried) REJECTED real Chopin,
+    Beethoven, and Bach, so no ARTISTIC check may block. Composing away from the
+    briefed exemplars is a creative choice, not a defect, so ``composed_blind``
+    stays advisory too. The critic's ear judges whether a section works.
 
-    # Phrases that ignored every briefed corpus exemplar.
+    What DOES block is a physically broken score. The ear's ``error``-severity
+    findings — a bar that holds more beats than its meter, a note outside the
+    instrument's range — are not artistic judgements: they cannot be engraved or
+    played, and every one of them has been shipped silently by this system at
+    some point because nothing read the assembled file back. Those detectors
+    were falsified against nine real sonatas and mazurkas first and produce zero
+    errors on them (see musical_ear).
+    """
     authoring = report.get("authoring", {})
     blind = authoring.get("composed_blind", 0)
+    advisory: List[str] = []
     if blind:
-        hard.append(
-            f"{blind} phrase(s) composed blind (resemble no briefed "
-            f"exemplar): {authoring.get('composed_blind_phrases', [])}"
+        advisory.append(
+            f"{blind} phrase(s) composed away from the briefed exemplars: "
+            f"{authoring.get('composed_blind_phrases', [])} — fine if deliberate "
+            f"invention; the critic judges by ear"
         )
 
-    # Many traits far outside the composer's own corpus spread (|z|>3).
-    div = report.get("corpus_divergence", {})
-    far = [m for m, s in (div.get("metrics", {}) or {}).items() if abs(s.get("z", 0)) > 3]
-    if len(far) >= 3:
-        hard.append(
-            f"{len(far)} metrics far outside {div.get('composer', '')} corpus spread (|z|>3): {far}"
+    hard_failures: List[str] = []
+    for finding in (report.get("ear", {}) or {}).get("findings", []):
+        if finding.get("severity") != "error":
+            continue
+        hard_failures.append(f"{finding.get('detector')}: {finding.get('problem')}")
+    if len(hard_failures) > 8:
+        hard_failures = hard_failures[:8] + [f"... and {len(hard_failures) - 8} more"]
+
+    # Realism findings are ADVISORY without exception — every one of them was
+    # falsified against the reference corpus and several fire on canonical
+    # movements (each detector's docstring states its false-positive rate). They
+    # are surfaced here because they were previously computed and then read by
+    # nobody, which is how a score with one cadence formula in seven of its bars
+    # and no articulation at all passed every gate the system had.
+    for finding in (report.get("realism", {}) or {}).get("findings", []):
+        advisory.append(f"{finding.get('detector')}: {finding.get('problem')}")
+    census = (report.get("realism", {}) or {}).get("notation_census") or {}
+    if census:
+        advisory.append(
+            "notation census — "
+            + ", ".join(
+                f"{k}={census[k]}"
+                for k in ("articulations", "slur", "hairpin", "ties", "ornaments", "dynamics")
+                if k in census
+            )
+            + f" over {census.get('bars', '?')} bars "
+            f"({census.get('marks_per_bar', '?')} marks/bar; real Mozart/Beethoven/Chopin "
+            f"movements run 0.11-5.71, median 1.58)"
         )
 
-    return {"passed": not hard, "hard_failures": hard}
+    return {
+        "passed": not hard_failures,
+        "hard_failures": hard_failures,
+        "advisory": advisory,
+    }
 
 
 # ─── Piece-vs-corpus distribution comparison (B3) ────────────────────────────
@@ -2014,12 +2850,12 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
     """
     from .composition_brief import corpus_profile
     from .corpus_metrics import (
-        SCALAR_METRICS,
         bar_metrics,
         l1_distance,
         texture_distribution,
         zscore,
     )
+    from .style_dimensions import style_fingerprint
 
     profile = corpus_profile(composer)
     pm = profile.get("metrics", {}) if isinstance(profile, dict) else {}
@@ -2035,12 +2871,20 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
     if not bars:
         return {"error": "no bars extracted from assembled score"}
 
-    gen = bar_metrics(bars)
+    # Score on EVERY profiled dimension — texture/rhythm (bar_metrics) plus
+    # harmony/melody/rhythm-value (style_fingerprint) — not just texture.
+    gen = {**bar_metrics(bars), **style_fingerprint(bars)}
     metrics: Dict[str, Any] = {}
     flags: List[Dict[str, Any]] = []
-    for name in SCALAR_METRICS:
+    for name in pm:
         stat = pm.get(name)
         if not stat:
+            continue
+        # Skip degenerate corpus stats (zero variance) — e.g. grace_ratio is
+        # always 0 in a MIDI-derived corpus because MIDI cannot encode grace
+        # notes. A z-score against sd=0 is a meaningless sentinel, not evidence
+        # the generated music diverges, so it must not count toward the gate.
+        if not stat.get("stdev") or stat["stdev"] <= 0:
             continue
         value = gen.get(name, 0.0)
         z = zscore(value, stat["mean"], stat["stdev"])
@@ -2137,8 +2981,11 @@ def compare_to_corpus(
     real-corpus metric distribution — the post-generation divergence report.
 
     Returns per-metric z-scores (flagging |z|>2), LH-texture L1 divergence, and
-    a one-line corpus-likeness summary. This is the global piece-vs-corpus
-    check that drives the bounded auto-revision loop; it is composer-specific
+    a one-line corpus-likeness summary. This is a DIAGNOSTIC the critic may read
+    to understand where the section sits relative to the composer's real spread —
+    NOT a revision driver. Out-of-band does not mean bad (real Chopin/Beethoven
+    sit outside MIDI-derived bands); chasing z-scores back into band is the
+    "metric whack-a-mole" the agent-creative direction rejects. Composer-specific
     (vs the generic human-sounding bands in ``self_evaluate``).
     """
     from .assembler import assemble
@@ -2195,6 +3042,8 @@ def commit_candidate_phrase(
     with a standalone MusicXML preview for the judge. Promote the winner
     with ``promote_candidate``.
     """
+    bars = _as_list(bars, "bars")
+    allow = _as_list(allow, "allow")
     from .commit_gate import run_commit_gate
     from .direct_compose import compose_phrase
     from .piece_graph import _deep_serialize
@@ -2208,12 +3057,17 @@ def commit_candidate_phrase(
     if not slot:
         return {"error": "Phrase has no slot"}
 
-    if bars is not None:
+    if bars:
         if len(bars) != slot.bar_count:
             return {
                 "error": "bar_count_mismatch",
                 "expected_bars": slot.bar_count,
                 "got": len(bars),
+                "hint": (
+                    f"Write exactly {slot.bar_count} bar dicts. A pickup bar occupies "
+                    f"the phrase's first bar; mark it {{'pickup': True}} rather than "
+                    f"adding an extra dict."
+                ),
             }
         layer = compose_phrase(
             bars, key=slot.key, bar_start=slot.bar_start, phrase_id=phrase_id, meter=slot.meter
@@ -2246,6 +3100,14 @@ def commit_candidate_phrase(
             "allow=[{'check':..,'reason':..}].",
         }
 
+    # Engrave the candidate too, so the judge compares what will actually ship.
+    # The panel judge picks a winner from a rendered preview; an unengraved
+    # preview has no articulation, no phrasing and no pedal in it, so the judge
+    # was choosing between three MIDI dumps and only the winner was then
+    # engraved on promotion. The pass is non-destructive and idempotent — it
+    # runs again on promotion and finds nothing left blank.
+    engraving = _engrave_phrase(graph, phrase_id, layer, composer)
+
     cand_id = f"{phrase_id}__cand_{lens}"
     cand_path = _candidates_dir(piece_id) / f"{cand_id}.json"
     record = {
@@ -2253,6 +3115,7 @@ def commit_candidate_phrase(
         "lens": lens,
         "layer_ir": _deep_serialize(layer),
         "gate": {"warnings": [d.to_dict() for d in gate.warnings], "overrides": gate.overrides},
+        "engraving": engraving,
         "created_at": _now_iso(),
     }
     with open(cand_path, "w") as f:
@@ -2381,6 +3244,7 @@ def orchestrate_section(
     expansion. Parts go to workspace/<piece>/orchestration/<section>.json;
     render to score with ``assemble_orchestration``.
     """
+    target_ensemble = _as_list(target_ensemble, "target_ensemble")
     from .direct_compose import merge_phrases
 
     workspace = _WORKSPACE / piece_id
@@ -2401,7 +3265,7 @@ def orchestrate_section(
     key = first_slot.key if first_slot else "C"
     meter = first_slot.meter if first_slot else (4, 4)
 
-    if target_ensemble is None:
+    if not target_ensemble:
         target = getattr(graph.contract, "target", None)
         instrumentation = getattr(target, "instrumentation", "orchestra")
         default_ensembles = {

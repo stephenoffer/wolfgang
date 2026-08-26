@@ -1,0 +1,103 @@
+[
+  {
+    "id": "secondary_dominants",
+    "name": "Secondary dominants",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "V/V most common",
+      "V/vi for deceptive turns"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "diminished_7th_chords",
+    "name": "Diminished 7th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Text-painting moments: fear",
+      "wrath",
+      "darkness"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan_bii6",
+    "name": "Neapolitan (bII6)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Minor-key arias at cadential moments"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "augmented_6th",
+    "name": "Augmented 6th",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dramatic climaxes in late oratorios"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_passing_tones",
+    "name": "Chromatic passing tones",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Text-painting",
+      "lament bass patterns"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "suspensions_4_3_7_6",
+    "name": "Suspensions (4-3, 7-6)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Cadences primarily; chains in slow movements"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "cross_relations",
+    "name": "Cross-relations",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Less than Purcell; occasional for shock"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "deceptive_cadences_v_vi",
+    "name": "Deceptive cadences (V-vi)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Extending phrases",
+      "delaying expected resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "handel/harmonic-language.md"
+  }
+]

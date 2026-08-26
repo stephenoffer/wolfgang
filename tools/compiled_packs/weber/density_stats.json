@@ -1,5 +1,6 @@
 {
  "composer": "weber",
+ "schema": 2,
  "total_bars": 241,
  "rh": {
   "held_note": {

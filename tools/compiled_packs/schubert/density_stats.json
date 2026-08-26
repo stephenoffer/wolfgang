@@ -1,5 +1,6 @@
 {
  "composer": "schubert",
+ "schema": 2,
  "total_bars": 82,
  "rh": {
   "held_note": {

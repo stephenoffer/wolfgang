@@ -16,8 +16,7 @@ directly — your only mutation is committing through the gated Python API.
 - Optionally the composition brief text; if not provided, fetch it yourself:
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import get_composition_brief
 print(get_composition_brief('<piece-id>', '<phrase-id>'))
 "
@@ -25,11 +24,21 @@ print(get_composition_brief('<piece-id>', '<phrase-id>'))
 
 ## Before writing a single note
 
-1. **Read the WHOLE brief — every section is load-bearing.** Never compose
-   from imagination, and never skim past a section. The brief is the corpus,
-   the rules, and the patterns distilled for this exact phrase. Use all of it:
+1. **Read the WHOLE brief before writing — then write what the music needs.**
+   Studying is required (a receipt is enforced at commit); what you write from
+   it is yours. Never skim past a section. Use all of it:
+   - **MOTIFS THIS PHRASE CARRIES** — the piece's designed idea and the
+     transform this phrase applies to it. A piece is memorable because ONE idea
+     keeps coming back changed. If a motif is listed, it is your material.
+   - **CHORD FRAME** — each bar's chord tones (and each beat's where the
+     harmony moves inside the bar), spelled ready to write. Voicing beats
+     against it is what keeps the vertical clean.
    - **EXEMPLARS** — real corpus bars (pitches/durations in shorthand) to
-     adapt. There are up to 8; study them, don't glance at one.
+     adapt. There are up to 8 (more on structurally pivotal phrases — theme
+     statements, climaxes, recap entries); study them, don't glance at one.
+   - **CREATIVE INTENT** — the dramatic event this passage enacts, in prose.
+     This is the feeling that should choose the notes. Start here, not from the
+     stats. The stats are guardrails; the intent is the goal.
    - **COMPOSER FINGERPRINTS** — the defining traits of this composer's
      voice. The phrase should *exhibit* these, not merely avoid wrong notes.
    - **STYLE DOCTRINE (this phrase)** — the cadence script, ornament intent,
@@ -38,8 +47,10 @@ print(get_composition_brief('<piece-id>', '<phrase-id>'))
    - **PHRASE SHAPE / CADENCE PATTERN / TEXTURE TRANSITIONS / LH VOCABULARY**
      — corpus patterns above the single bar: the arc to follow, the cadence
      formula, how to move idiomatically between textures, real LH figures.
-   - **TARGET STATS + Corpus targets** — the density and discriminator bands
-     this composer's real music lives in. Aim inside them.
+   - **TARGET STATS + Corpus targets** — the bands this composer's real music
+     lives in. A REALITY CHECK on what you wrote, never a target to write
+     toward: never compose to hit a number. Use them to notice when you have
+     written a sketch, then decide by ear whether that was the intent.
    - **AVOID (AI tells)** — the mechanical patterns that mark fake music.
    - **TRANSITION IN** — the previous phrase's exit, to connect to.
    Fetching the brief is **enforced**: it writes a receipt, and the commit
@@ -58,14 +69,45 @@ print(get_composition_brief('<piece-id>', '<phrase-id>'))
    Cross-check against the FINGERPRINTS and DOCTRINE — your phrase should be
    recognizably this composer, not generic tonal filler.
 
+## Composing a whole section (section mode)
+
+When you are given a **section** and a list of its phrases, compose them as ONE
+continuous musical thought — the way a human writes a section, not as
+independent fragments stitched together. Fetch every phrase's brief in one call:
+
+```bash
+.venv/bin/python -c "
+from scales.scales import run_agent_section_briefs
+print(run_agent_section_briefs('<piece-id>', '<section-id>'))
+"
+```
+
+Then, before writing a note, conceive the section as a whole:
+
+- **One line across the phrases.** The melody is a single arc spanning the
+  section, not N separate tunes. A motive stated in phrase 1 should be answered,
+  extended, or transformed in phrase 2 — they belong to the same sentence.
+- **One shaped climax.** Place a single registral/dynamic high point where the
+  shared CREATIVE INTENT wants it, and let the surrounding phrases build to and
+  release from it. Don't give every phrase its own equal peak.
+- **Accompaniment that evolves.** The texture should develop across the section
+  (thickening into the climax, thinning at a cadence), tracking the harmony —
+  not the same figure photocopied phrase after phrase.
+- **Commit each phrase in order** (`commit_agent_phrase_direct_bars` per phrase),
+  matching each phrase's bar_count, so they connect seamlessly at the seams (the
+  TRANSITION IN of phrase k+1 should meet the exit of phrase k you just wrote).
+
+Per-phrase gate rules below still apply to each commit.
+
 ## Composing rules
 
-- **Adapt, don't copy and don't ignore.** Each bar should be earned from
-  the exemplars: transpose, reharmonize to your chord, re-contour the
-  melody to your sketch anchors while keeping the exemplar's rhythmic
-  identity, or splice (RH idea from one exemplar, LH from another). This is
-  now **measured**: the gate's `composed_blind` check blocks a surface whose
-  rhythm + interval vocabulary resembles none of the briefed exemplars.
+- **Invent freely or adapt — your choice per moment.** You may compose a bar
+  fresh from your reference study, or earn it from the exemplars (transpose,
+  reharmonize to your chord, re-contour to your sketch anchors while keeping the
+  exemplar's rhythmic identity, or splice RH from one exemplar and LH from
+  another). A surface that resembles none of the exemplars earns only an
+  **advisory** `composed_blind` note — never a block. If it's deliberate
+  invention that sings, keep it; the fresh-ears critic judges by ear.
 - **Exhibit the fingerprints.** The brief lists this composer's defining
   traits. A phrase that adapts the exemplars but shows none of the
   fingerprints is generic. Work at least one or two in (a chromatic
@@ -79,12 +121,37 @@ print(get_composition_brief('<piece-id>', '<phrase-id>'))
 - **Honor continuity.** Enter near the previous phrase's exit pitch and
   register (in the brief's TRANSITION IN); don't leap more than a fifth
   into a new phrase without expressive reason.
-- **Hit the density targets.** If the brief says ~10 LH events/bar and you
-  wrote 3 quarter notes, you wrote a sketch, not a realization.
+- **Notice when you have written a sketch.** The density figures are a reality
+  check, not a target — never compose to hit a number. But if the brief says
+  ~10 LH events/bar and you wrote three quarter notes, ask whether that
+  sparseness is a musical decision or just what was quickest to type. Keep it
+  if it is a decision.
+- **Carry the motif.** If the brief lists a motif and a transform, that idea is
+  the phrase's material. Make its recognition anchor audible — the listener has
+  to be able to tell this is the same idea coming back.
 - **Write expression as part of the notes**: slurs over singing lines,
   ornaments where the music yearns or arrives, hairpins shaping dynamics,
   a dynamic marking wherever the level changes. Full shorthand grammar:
-  craft reference §8.
+  craft reference §8. Measured over 26 canonical Mozart/Beethoven/Chopin
+  movements, real engraved music carries a **median 0.57 articulation marks
+  and 0.18 ties per bar** — the last piece this system produced had
+  **zero of both in 41 bars**, which is the single loudest "a machine wrote
+  this" signal there is. An engraver's pass fills in what you leave blank,
+  but it can only phrase what you actually wrote; it will never invent the
+  tenuto on the note that has to be leaned on.
+- **Use register as a structural device.** Real movements span **24-49
+  semitones (median 32.5)** in the melody staff; the last generated piece
+  spanned **19 across 41 bars**, narrower than anything in the corpus. Open
+  below where you intend to peak, take a return an octave up, drop to the
+  tenor for the darkest phrase. This is the cheapest way to make a piece
+  sound composed rather than generated, and it costs nothing.
+- **Vary your cadences.** Seven of the last piece's nine phrase endings were
+  the identical rhythm. Change the approach, the rhythm of the arrival, and
+  whether the line falls to the tonic or rises to the third. (Repeating a
+  *bar* elsewhere is fine — real movements do it constantly.)
+- **A scale is a gesture, not a way to get to the next bar.** Real melody
+  bars are plain unbroken scale runs 0-15% of the time (median 2%); the last
+  piece ran 39%. If a run is not going somewhere, it is filler.
 - **Let texture live.** Vary the accompaniment as the harmony moves;
   simplify under the melodic peak; fill during melodic rests; change
   figure at phrase boundaries. Never photocopy a bar.
@@ -92,8 +159,7 @@ print(get_composition_brief('<piece-id>', '<phrase-id>'))
 ## Committing
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import commit_agent_phrase_direct_bars
 bars = [
   {'rh': '(D5q E5e F5e G5q:tr A5q)', 'lh': 'D3e A3e F3e A3e D3e A3e F3e A3e', 'dyn': 'p'},
@@ -109,19 +175,16 @@ LayerIR JSON and use `commit_agent_phrase_layer_ir` instead.
 
 ## The gate loop
 
-On `quality_gate_blocked`, follow the gate loop (diagnostics table and
-fix patterns: craft reference §9): revise ONLY the flagged bars,
-recommit, **maximum 3 attempts**. Waive a check with
-`allow=[{'check': '<name>', 'reason': '<musical justification>'}]` only
-for genuine musical reasons — never just to make the gate go away. Waivers
-are constrained: the reason must be real (**≥20 chars**) and you may waive
-**at most one blocking check per commit** (waiving the whole set is
-rejected). If
-you cannot satisfy the gate and have no honest artistic override, report
-failure for that phrase — the orchestrator will fall back to engine
-realization. Do not commit notes you don't believe in. Heed warnings
-too: a warning you can fix cheaply (e.g. zero ornaments in an
-ornament-rich style) should be fixed.
+Only **physical** violations block a commit: `meter` (bar capacity), range,
+span. On `quality_gate_blocked`, that's what happened — fix it for real (each
+voice must sum to the meter; pitches in range), revise the flagged bars and
+recommit (**maximum 3 attempts**). Everything else the gate reports
+(`density_low`, `figuration_flat`, `composed_blind`, monotony, …) is an
+**advisory warning**, not a block: read the diagnostics table (craft reference
+§9), fix the ones that name something you actually hear, and consciously keep
+the rest if they're intentional. If you genuinely cannot satisfy a *physical*
+constraint, report failure for that phrase — the orchestrator will fall back to
+engine realization. Do not commit notes you don't believe in.
 
 ## What you return
 

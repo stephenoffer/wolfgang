@@ -1,0 +1,502 @@
+[
+  {
+    "id": "ht_prolong_tonic_prolongation",
+    "category": "prolongation",
+    "emotional_context": "",
+    "tonal_move": "Tonic prolongation",
+    "narrative_meaning": "Surface chords move, but the ear holds onto I as the anchor",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "use": "Opening sections: establish home for 8-16 bars before departing"
+    },
+    "when_to_use": [
+      "Opening sections: establish home for 8-16 bars before departing"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_prolong_dominant_prolongation",
+    "category": "prolongation",
+    "emotional_context": "",
+    "tonal_move": "Dominant prolongation",
+    "narrative_meaning": "V is sustained or circled around, building expectation",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "use": "Pre-recapitulation, climactic approaches: stretch V for 4-8 bars"
+    },
+    "when_to_use": [
+      "Pre-recapitulation",
+      "climactic approaches: stretch V for 4-8 bars"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_prolong_linear_progression",
+    "category": "prolongation",
+    "emotional_context": "",
+    "tonal_move": "Linear progression",
+    "narrative_meaning": "Stepwise voice-leading connects two structural chords",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "use": "Development sections: chromatic lines \"walk\" between distant harmonies"
+    },
+    "when_to_use": [
+      "Development sections: chromatic lines \"walk\" between distant harmonies"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_prolong_interruption",
+    "category": "prolongation",
+    "emotional_context": "",
+    "tonal_move": "Interruption",
+    "narrative_meaning": "The deep I\u2192V\u2192I is broken and restarted",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "use": "Sonata form: exposition stops at V (interruption); recap completes to I"
+    },
+    "when_to_use": [
+      "Sonata form: exposition stops at V (interruption); recap completes to I"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tonal_tonic_dominant_i_v",
+    "category": "emotional_to_harmonic",
+    "emotional_context": "Setting out from home, expectation",
+    "tonal_move": "Tonic \u2192 dominant (I\u2192V)",
+    "narrative_meaning": "Setting out from home, expectation",
+    "tension_level": null,
+    "harmonic_parameters": {},
+    "when_to_use": [
+      "Expositions",
+      "first halves",
+      "questions"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tonal_tonic_relative_minor_i_vi",
+    "category": "emotional_to_harmonic",
+    "emotional_context": "Turning inward, shadow falls",
+    "tonal_move": "Tonic \u2192 relative minor (I\u2192vi)",
+    "narrative_meaning": "Turning inward, shadow falls",
+    "tension_level": null,
+    "harmonic_parameters": {},
+    "when_to_use": [
+      "Introspective episodes",
+      "B sections"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tonal_tonic_chromatic_mediant_i_bvi_i_iii",
+    "category": "emotional_to_harmonic",
+    "emotional_context": "Sudden new world, transformation",
+    "tonal_move": "Tonic \u2192 chromatic mediant (I\u2192bVI, I\u2192III)",
+    "narrative_meaning": "Sudden new world, transformation",
+    "tension_level": null,
+    "harmonic_parameters": {},
+    "when_to_use": [
+      "Magical moments",
+      "dramatic pivots"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tonal_tonic_tritone_i_bii_or_iv",
+    "category": "emotional_to_harmonic",
+    "emotional_context": "Maximum distance, crisis point",
+    "tonal_move": "Tonic \u2192 tritone (I\u2192bII or #IV)",
+    "narrative_meaning": "Maximum distance, crisis point",
+    "tension_level": null,
+    "harmonic_parameters": {},
+    "when_to_use": [
+      "Development climaxes",
+      "dramatic rupture"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tonal_return_to_tonic",
+    "category": "emotional_to_harmonic",
+    "emotional_context": "Homecoming \u2014 but transformed by the journey",
+    "tonal_move": "Return to tonic",
+    "narrative_meaning": "Homecoming \u2014 but transformed by the journey",
+    "tension_level": null,
+    "harmonic_parameters": {},
+    "when_to_use": [
+      "Recapitulations",
+      "final resolutions"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tonal_progressive_tonality_end_start",
+    "category": "emotional_to_harmonic",
+    "emotional_context": "The journey changed us; we can't go back",
+    "tonal_move": "Progressive tonality (end \u2260 start)",
+    "narrative_meaning": "The journey changed us; we can't go back",
+    "tension_level": null,
+    "harmonic_parameters": {},
+    "when_to_use": [
+      "Mahler symphonies",
+      "narrative works"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_1_(rest)",
+    "category": "tension_curve",
+    "emotional_context": "Perfect agreement, stillness",
+    "tonal_move": "",
+    "narrative_meaning": "Perfect agreement, stillness",
+    "tension_level": 0.14285714285714285,
+    "harmonic_parameters": {
+      "intervals": "Unison, octave",
+      "role": "Arrivals, pedal points, endings"
+    },
+    "when_to_use": [
+      "Arrivals",
+      "pedal points",
+      "endings"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_2_(calm)",
+    "category": "tension_curve",
+    "emotional_context": "Open, stable, spacious",
+    "tonal_move": "",
+    "narrative_meaning": "Open, stable, spacious",
+    "tension_level": 0.2857142857142857,
+    "harmonic_parameters": {
+      "intervals": "Perfect 5th",
+      "role": "Foundations, open cadences"
+    },
+    "when_to_use": [
+      "Foundations",
+      "open cadences"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_3_(gentle_motion)",
+    "category": "tension_curve",
+    "emotional_context": "Warm consonance",
+    "tonal_move": "",
+    "narrative_meaning": "Warm consonance",
+    "tension_level": 0.42857142857142855,
+    "harmonic_parameters": {
+      "intervals": "Major 3rd, minor 6th",
+      "role": "Harmonic sweetness, major-mode repose"
+    },
+    "when_to_use": [
+      "Harmonic sweetness",
+      "major-mode repose"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_4_(soft_tension)",
+    "category": "tension_curve",
+    "emotional_context": "Darker consonance, slight pull",
+    "tonal_move": "",
+    "narrative_meaning": "Darker consonance, slight pull",
+    "tension_level": 0.5714285714285714,
+    "harmonic_parameters": {
+      "intervals": "Minor 3rd, major 6th",
+      "role": "Minor-mode warmth, gentle longing"
+    },
+    "when_to_use": [
+      "Minor-mode warmth",
+      "gentle longing"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_5_(active)",
+    "category": "tension_curve",
+    "emotional_context": "Movement, needs continuation",
+    "tonal_move": "",
+    "narrative_meaning": "Movement, needs continuation",
+    "tension_level": 0.7142857142857143,
+    "harmonic_parameters": {
+      "intervals": "Major 2nd, minor 7th",
+      "role": "Passing motion, suspensions resolving"
+    },
+    "when_to_use": [
+      "Passing motion",
+      "suspensions resolving"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_6_(sharp_tension)",
+    "category": "tension_curve",
+    "emotional_context": "Friction, urgency",
+    "tonal_move": "",
+    "narrative_meaning": "Friction, urgency",
+    "tension_level": 0.8571428571428571,
+    "harmonic_parameters": {
+      "intervals": "Minor 2nd, major 7th",
+      "role": "Appoggiaturas, leading-tone pull, Romantic yearning"
+    },
+    "when_to_use": [
+      "Appoggiaturas",
+      "leading-tone pull",
+      "Romantic yearning"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_tension_7_(maximum)",
+    "category": "tension_curve",
+    "emotional_context": "Instability, demands resolution",
+    "tonal_move": "",
+    "narrative_meaning": "Instability, demands resolution",
+    "tension_level": 1.0,
+    "harmonic_parameters": {
+      "intervals": "Tritone",
+      "role": "Dominant function, dramatic crisis"
+    },
+    "when_to_use": [
+      "Dominant function",
+      "dramatic crisis"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_rhythm_1_chord_per_2_4_bars",
+    "category": "harmonic_rhythm",
+    "emotional_context": "Deep, meditative breathing",
+    "tonal_move": "",
+    "narrative_meaning": "Deep, meditative breathing",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "rhythm_description": "1 chord per 2-4 bars"
+    },
+    "when_to_use": [
+      "Openings",
+      "codas",
+      "pedal-point passages",
+      "establishing home"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_rhythm_1_chord_per_bar",
+    "category": "harmonic_rhythm",
+    "emotional_context": "Calm, steady pacing",
+    "tonal_move": "",
+    "narrative_meaning": "Calm, steady pacing",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "rhythm_description": "1 chord per bar"
+    },
+    "when_to_use": [
+      "Stable themes",
+      "hymn-like passages"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_rhythm_2_chords_per_bar",
+    "category": "harmonic_rhythm",
+    "emotional_context": "Walking pace, purposeful",
+    "tonal_move": "",
+    "narrative_meaning": "Walking pace, purposeful",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "rhythm_description": "2 chords per bar"
+    },
+    "when_to_use": [
+      "Standard phrase motion",
+      "moderate development"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_rhythm_1_chord_per_beat",
+    "category": "harmonic_rhythm",
+    "emotional_context": "Rapid breathing, urgency",
+    "tonal_move": "",
+    "narrative_meaning": "Rapid breathing, urgency",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "rhythm_description": "1 chord per beat"
+    },
+    "when_to_use": [
+      "Cadential acceleration",
+      "approaching climax"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_rhythm_faster_than_beat",
+    "category": "harmonic_rhythm",
+    "emotional_context": "Hyperventilation, crisis",
+    "tonal_move": "",
+    "narrative_meaning": "Hyperventilation, crisis",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "rhythm_description": "Faster than beat"
+    },
+    "when_to_use": [
+      "Development peaks",
+      "cadenza-like passages"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_rhythm_sudden_freeze_1_chord_sustained",
+    "category": "harmonic_rhythm",
+    "emotional_context": "Held breath, anticipation or shock",
+    "tonal_move": "",
+    "narrative_meaning": "Held breath, anticipation or shock",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "rhythm_description": "Sudden freeze (1 chord sustained)"
+    },
+    "when_to_use": [
+      "Before a major structural event",
+      "general pauses"
+    ],
+    "grounding": "interpretive",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_pac_v_i_strong",
+    "category": "cadence_punctuation",
+    "emotional_context": "Satisfaction, closure, arrival",
+    "tonal_move": "PAC (V\u2192I, strong)",
+    "narrative_meaning": "Sentence ended, thought complete",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "Period."
+    },
+    "when_to_use": [
+      "Sentence ended, thought complete"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_iac_v_i_weak",
+    "category": "cadence_punctuation",
+    "emotional_context": "Partial rest, more to come",
+    "tonal_move": "IAC (V\u2192I, weak)",
+    "narrative_meaning": "Thought pauses but continues",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "Comma,"
+    },
+    "when_to_use": [
+      "Thought pauses but continues"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_hc_v",
+    "category": "cadence_punctuation",
+    "emotional_context": "Suspense, expectation",
+    "tonal_move": "HC (\u2192V)",
+    "narrative_meaning": "Question asked, answer awaited",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "Question mark?"
+    },
+    "when_to_use": [
+      "Question asked, answer awaited"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_dc_v_vi",
+    "category": "cadence_punctuation",
+    "emotional_context": "Surprise, redirection, emotional twist",
+    "tonal_move": "DC (V\u2192vi)",
+    "narrative_meaning": "Expected ending denied",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "\"But\u2014\""
+    },
+    "when_to_use": [
+      "Expected ending denied"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_evaded_v_i6",
+    "category": "cadence_punctuation",
+    "emotional_context": "Frustration, continuation forced",
+    "tonal_move": "Evaded (V\u2192I6)",
+    "narrative_meaning": "Almost there, not quite",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "Ellipsis..."
+    },
+    "when_to_use": [
+      "Almost there, not quite"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_plagal_iv_i",
+    "category": "cadence_punctuation",
+    "emotional_context": "Warmth, benediction, coda",
+    "tonal_move": "Plagal (IV\u2192I)",
+    "narrative_meaning": "Gentle affirmation after the real ending",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "Soft period. \"Amen.\""
+    },
+    "when_to_use": [
+      "Gentle affirmation after the real ending"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  },
+  {
+    "id": "ht_cad_elided",
+    "category": "cadence_punctuation",
+    "emotional_context": "Breathless urgency, Wagnerian flow",
+    "tonal_move": "Elided",
+    "narrative_meaning": "No breath between phrases",
+    "tension_level": null,
+    "harmonic_parameters": {
+      "punctuation": "New sentence starts mid-word"
+    },
+    "when_to_use": [
+      "No breath between phrases"
+    ],
+    "grounding": "hard_corroborated",
+    "source_file": "harmonic-expression.md"
+  }
+]

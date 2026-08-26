@@ -1,8 +1,8 @@
 {
   "composer": "bach",
-  "genre": "baroque",
+  "genre": "",
   "support_tier": "A",
-  "corpus_bar_count": 4893,
+  "corpus_bar_count": 6795,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -15,7 +15,18 @@
     "stylistic-evolution.md"
   ],
   "corpus_files": [
-    "bar_index.json"
+    "bar_index.json",
+    "bars_00.json",
+    "bars_01.json",
+    "bars_02.json",
+    "bars_03.json",
+    "gesture_bank.json",
+    "phrase_catalog.json",
+    "window_index.json",
+    "window_index_00.json",
+    "window_index_01.json",
+    "window_index_02.json",
+    "window_index_03.json"
   ],
   "pattern_count": 1609
 }

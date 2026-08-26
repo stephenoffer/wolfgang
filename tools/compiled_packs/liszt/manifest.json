@@ -1,6 +1,6 @@
 {
   "composer": "liszt",
-  "genre": "piano",
+  "genre": "",
   "support_tier": "B",
   "corpus_bar_count": 437,
   "profile_files": [
@@ -16,6 +16,7 @@
   ],
   "corpus_files": [
     "bar_index.json",
+    "bars_00.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",

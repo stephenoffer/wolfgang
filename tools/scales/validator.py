@@ -14,33 +14,71 @@ meter integrity). Artistic guidance is handled by candidate_scorer.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from fractions import Fraction
 from typing import Any, Dict, List, Optional, Tuple
 
-from .duration import bar_duration, dur_to_beats
+from .duration import bar_duration, dur_to_beats, is_grace
 from .models import EventIR, LayerEvent, LayerIR, PhysicalConstraints
 from .pitch import pitch_to_midi
 
 # ─── Voice Ranges ────────────────────────────────────────────────────────────
 
+# Written-pitch ranges in MIDI numbers (sounding pitch for the non-transposing
+# instruments; transposing parts are notated by the orchestration planner at
+# sounding pitch and these bounds are the sounding limits). An instrument missing
+# from this table used to fall back to the full PIANO range (21-108), which let
+# the orchestration planner write a piccolo down to A0 and a tuba up to C8 with
+# nothing flagging it — so the table now covers the standard orchestra.
 INSTRUMENT_RANGES = {
-    # Piano
+    # Keyboard
     "solo_piano": (21, 108),
     "piano": (21, 108),
+    "celesta": (60, 108),
+    "harpsichord": (29, 89),
+    "organ": (24, 96),
+    "harp": (24, 104),
     # Strings
     "violin": (55, 103),
     "viola": (48, 91),
     "cello": (36, 76),
     "double_bass": (28, 67),
     # Woodwinds
+    "piccolo": (74, 108),
     "flute": (60, 96),
+    "alto_flute": (55, 91),
     "oboe": (58, 91),
+    "english_horn": (52, 84),
     "clarinet": (50, 91),
+    "bass_clarinet": (38, 79),
     "bassoon": (34, 75),
+    "contrabassoon": (22, 63),
+    "soprano_sax": (58, 89),
+    "alto_sax": (49, 84),
+    "tenor_sax": (44, 79),
+    "baritone_sax": (37, 72),
     # Brass
     "horn": (34, 77),
     "trumpet": (54, 82),
+    "piccolo_trumpet": (60, 89),
+    "cornet": (54, 82),
     "trombone": (40, 72),
+    "bass_trombone": (34, 67),
     "tuba": (28, 58),
+    "euphonium": (34, 72),
+    # Voices
+    "soprano": (60, 81),
+    "mezzo_soprano": (57, 79),
+    "alto": (53, 76),
+    "tenor": (48, 72),
+    "baritone": (45, 69),
+    "bass": (40, 64),
+    # Pitched percussion
+    "timpani": (36, 57),
+    "glockenspiel": (79, 108),
+    "xylophone": (65, 96),
+    "marimba": (45, 96),
+    "vibraphone": (53, 89),
+    "tubular_bells": (60, 77),
 }
 
 
@@ -168,9 +206,23 @@ def validate_range(
 
 
 def validate_meter(
-    events: List[LayerEvent], meter: Tuple[int, int] = (4, 4), bar_count: int = 4
+    events: List[LayerEvent],
+    meter: Tuple[int, int] = (4, 4),
+    bar_count: int = 4,
+    pickup_bar: Optional[int] = None,
 ) -> List[ValidationIssue]:
-    """Check that note durations sum correctly per bar."""
+    """Check that note durations sum correctly per bar.
+
+    Iterates the bars that actually CARRY EVENTS. LayerEvents hold absolute bar
+    numbers (a phrase starting at bar 17 has events in bars 17-24), so the old
+    ``range(1, bar_count + 1)`` loop found nothing for any phrase but the first
+    and the check silently passed everything — mis-metered bars reached the score
+    unchallenged for every phrase after bar 1.
+
+    An overfull bar is an error (it cannot be engraved as written). An underfull
+    bar is a warning: it may be a deliberate rest at the end of the bar, but it
+    is just as often a truncated exemplar copied one beat short.
+    """
     issues = []
     expected_beats = bar_duration(meter)
 
@@ -179,21 +231,39 @@ def validate_meter(
     for event in events:
         bars.setdefault(event.bar, []).append(event)
 
-    for bar_num in range(1, bar_count + 1):
-        bar_events = bars.get(bar_num, [])
+    for bar_num in sorted(bars):
+        bar_events = bars[bar_num]
         if not bar_events:
             continue
+        if pickup_bar is not None and bar_num == pickup_bar:
+            continue  # an anacrusis is a partial measure by definition
 
         # Grace notes take no metrical time (direct_compose does not advance
         # the beat cursor for them), so they must not count toward the bar sum.
-        total = sum(dur_to_beats(e.duration) for e in bar_events if (e.ornament or "") != "grace")
-        if abs(total - expected_beats) > 0.01:
+        total = sum(dur_to_beats(e.duration) for e in bar_events if not is_grace(e.ornament))
+        if total > expected_beats + Fraction(1, 1000):
             issues.append(
                 ValidationIssue(
                     severity="error",
                     category="meter",
                     bar=bar_num,
-                    message=f"Bar {bar_num}: duration sum {total:.2f} != expected {expected_beats:.2f}",
+                    message=(
+                        f"Bar {bar_num}: duration sum {float(total):.4g} exceeds the "
+                        f"{meter[0]}/{meter[1]} bar ({float(expected_beats):g} beats)"
+                    ),
+                )
+            )
+        elif total < expected_beats - Fraction(1, 1000):
+            issues.append(
+                ValidationIssue(
+                    severity="warning",
+                    category="meter",
+                    bar=bar_num,
+                    message=(
+                        f"Bar {bar_num}: duration sum {float(total):.4g} is short of the "
+                        f"{meter[0]}/{meter[1]} bar ({float(expected_beats):g} beats) — "
+                        f"write the remainder as a rest if the silence is intended"
+                    ),
                 )
             )
 
@@ -266,74 +336,86 @@ def validate_playability(
 # ─── Voice Leading Validation ────────────────────────────────────────────────
 
 
-def validate_voice_leading(
-    soprano_events: List[LayerEvent], bass_events: List[LayerEvent]
-) -> List[ValidationIssue]:
-    """Check for parallel fifths and octaves between outer voices."""
-    issues = []
+def _sounding_outer_voices(layers, at):
+    """(lowest, highest) MIDI sounding at time ``at`` across all given layers."""
+    from .duration import dur_to_beats
 
-    # Build pitch sequences aligned by bar+beat
-    soprano_seq = [
-        (e.bar, e.beat, pitch_to_midi(e.pitch))
-        for e in soprano_events
-        if e.pitch != "rest" and not isinstance(e.pitch, list)
-    ]
-    bass_seq = [
-        (e.bar, e.beat, pitch_to_midi(e.pitch))
-        for e in bass_events
-        if e.pitch != "rest" and not isinstance(e.pitch, list)
-    ]
+    low = high = None
+    for events in layers:
+        for e in events or []:
+            if e.pitch == "rest":
+                continue
+            start = (e.bar, float(e.beat))
+            end_beat = float(e.beat) + float(dur_to_beats(e.duration))
+            if start[0] != at[0]:
+                continue
+            if not (float(e.beat) <= at[1] + 1e-6 < end_beat - 1e-9):
+                continue
+            names = e.pitch if isinstance(e.pitch, list) else [e.pitch]
+            for nm in names:
+                m = pitch_to_midi(nm)
+                if m is None:
+                    continue
+                low = m if low is None else min(low, m)
+                high = m if high is None else max(high, m)
+    return low, high
 
-    if len(soprano_seq) < 2 or len(bass_seq) < 2:
-        return issues
 
-    # Align by matching bar+beat positions
-    aligned = []
-    s_idx, b_idx = 0, 0
-    while s_idx < len(soprano_seq) and b_idx < len(bass_seq):
-        s_bar, s_beat, s_midi = soprano_seq[s_idx]
-        b_bar, b_beat, b_midi = bass_seq[b_idx]
-        if (s_bar, s_beat) == (b_bar, b_beat):
-            if s_midi is not None and b_midi is not None:
-                aligned.append((s_bar, s_beat, s_midi, b_midi))
-            s_idx += 1
-            b_idx += 1
-        elif (s_bar, s_beat) < (b_bar, b_beat):
-            s_idx += 1
-        else:
-            b_idx += 1
+def validate_voice_leading(soprano_events, bass_events, all_layers=None):
+    """Parallel fifths and octaves between the OUTER SOUNDING voices.
 
-    # Check consecutive aligned pairs
-    for i in range(len(aligned) - 1):
-        bar1, beat1, s1, b1 = aligned[i]
-        bar2, beat2, s2, b2 = aligned[i + 1]
-        interval1 = (s1 - b1) % 12
-        interval2 = (s2 - b2) % 12
+    Samples at every attack and takes the highest and lowest pitches actually
+    sounding, rather than pairing notes that share an exact (bar, beat). The old
+    version compared ``principal_line`` against ``bass_foundation`` at identical
+    onsets only, which is a handful of moments per piece once the two hands have
+    independent rhythms — and it was comparing against a bass_foundation that
+    (before the layer-split fix) held one note per bar.
 
-        # Parallel perfect fifths
-        if interval1 == 7 and interval2 == 7 and s1 != s2:
-            issues.append(
-                ValidationIssue(
-                    severity="warning",
-                    category="voice_leading",
-                    bar=bar2,
-                    beat=beat2,
-                    message=f"Parallel 5ths: bar {bar1} beat {beat1} → bar {bar2} beat {beat2}",
-                )
+    Warning-level: real music contains parallel fifths, and this must never
+    block. It exists so the critic can see them.
+    """
+    issues: List[ValidationIssue] = []
+    layers = all_layers if all_layers is not None else [soprano_events, bass_events]
+
+    # Sample at every attack in any layer.
+    points = sorted(
+        {
+            (e.bar, round(float(e.beat), 4))
+            for events in layers
+            for e in (events or [])
+            if e.pitch != "rest"
+        }
+    )
+    samples = []
+    for at in points:
+        low, high = _sounding_outer_voices(layers, at)
+        if low is not None and high is not None and low != high:
+            samples.append((at, low, high))
+
+    for (at1, lo1, hi1), (at2, lo2, hi2) in zip(samples, samples[1:]):
+        if (lo1, hi1) == (lo2, hi2):
+            continue  # nothing moved
+        iv1, iv2 = (hi1 - lo1) % 12, (hi2 - lo2) % 12
+        if iv1 != iv2 or iv1 not in (0, 7):
+            continue
+        # both voices must actually move, in the same direction
+        if hi1 == hi2 or lo1 == lo2:
+            continue
+        if (hi2 - hi1) * (lo2 - lo1) <= 0:
+            continue
+        kind = "octaves/unisons" if iv1 == 0 else "5ths"
+        issues.append(
+            ValidationIssue(
+                severity="warning",
+                category="voice_leading",
+                bar=at2[0],
+                beat=at2[1],
+                message=(
+                    f"Parallel {kind} between the outer voices: bar {at1[0]} beat {at1[1]:g} "
+                    f"→ bar {at2[0]} beat {at2[1]:g}"
+                ),
             )
-
-        # Parallel octaves/unisons
-        if interval1 == 0 and interval2 == 0 and s1 != s2:
-            issues.append(
-                ValidationIssue(
-                    severity="warning",
-                    category="voice_leading",
-                    bar=bar2,
-                    beat=beat2,
-                    message=f"Parallel octaves: bar {bar1} beat {beat1} → bar {bar2} beat {beat2}",
-                )
-            )
-
+        )
     return issues
 
 
@@ -348,12 +430,14 @@ def validate_layer_ir(
     c = constraints or PhysicalConstraints()
 
     # Collect all events for range checking
+    extra = [e for evs in (getattr(layer_ir, "inner_voices", None) or {}).values() for e in evs]
     all_events = (
         layer_ir.principal_line
         + layer_ir.bass_foundation
         + layer_ir.response_layer
         + layer_ir.counter_reply
         + layer_ir.ornamental_surface
+        + extra
     )
 
     # Range
@@ -363,13 +447,25 @@ def validate_layer_ir(
         else:
             report.add_warning(issue.category, issue.message, issue.bar, issue.beat)
 
-    # Meter (check each layer separately)
+    # Meter — each independent VOICE must fill the bar on its own. principal_line
+    # and bass_foundation are voice 1 of each staff; counter_reply is the RH inner
+    # voice (treble voice 2, from '//' multi-voice writing). response_layer is left
+    # lenient: it doubles as the pedal-under-figuration tail, which re-anchors.
+    pickup_bar = None
+    if getattr(layer_ir, "pickup_beats", 0):
+        all_bars = [e.bar for e in all_events]
+        pickup_bar = min(all_bars) if all_bars else None
     for layer_name, events in [
         ("principal_line", layer_ir.principal_line),
         ("bass_foundation", layer_ir.bass_foundation),
+        ("counter_reply", layer_ir.counter_reply),
+        # Each additional independent voice must fill its bar on its own too.
+        *sorted((getattr(layer_ir, "inner_voices", None) or {}).items()),
     ]:
         if events:
-            for issue in validate_meter(events, layer_ir.meter, layer_ir.bar_count):
+            for issue in validate_meter(
+                events, layer_ir.meter, layer_ir.bar_count, pickup_bar=pickup_bar
+            ):
                 if issue.severity == "error":
                     report.add_error(
                         issue.category,
@@ -389,8 +485,18 @@ def validate_layer_ir(
 
     # Playability (piano only)
     if layer_ir.instrumentation in ("solo_piano", "piano"):
-        rh_events = layer_ir.principal_line + layer_ir.ornamental_surface
-        lh_events = layer_ir.bass_foundation + layer_ir.response_layer
+        inner = getattr(layer_ir, "inner_voices", None) or {}
+        rh_events = (
+            layer_ir.principal_line
+            + layer_ir.ornamental_surface
+            + layer_ir.counter_reply
+            + [e for k, v in inner.items() if k.startswith("treble") for e in v]
+        )
+        lh_events = (
+            layer_ir.bass_foundation
+            + layer_ir.response_layer
+            + [e for k, v in inner.items() if k.startswith("bass") for e in v]
+        )
 
         for issue in validate_playability(rh_events, "rh", c):
             if issue.severity == "error":
@@ -404,9 +510,19 @@ def validate_layer_ir(
             else:
                 report.add_warning(issue.category, issue.message, issue.bar, issue.beat, "lh")
 
-    # Voice leading (outer voices)
+    # Voice leading between the outer SOUNDING voices, across every layer.
     if layer_ir.principal_line and layer_ir.bass_foundation:
-        for issue in validate_voice_leading(layer_ir.principal_line, layer_ir.bass_foundation):
+        for issue in validate_voice_leading(
+            layer_ir.principal_line,
+            layer_ir.bass_foundation,
+            all_layers=[
+                layer_ir.principal_line,
+                layer_ir.counter_reply,
+                layer_ir.ornamental_surface,
+                layer_ir.response_layer,
+                layer_ir.bass_foundation,
+            ],
+        ):
             if issue.severity == "error":
                 report.add_error(issue.category, issue.message, issue.bar, issue.beat)
             else:

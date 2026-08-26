@@ -1,11 +1,18 @@
 """
 PerformanceRenderer — populate PerformanceIR and humanize playback.
 
-Bridges the (previously orphaned) PerformanceIR model and PerformanceBank
-templates into something audible: interpolated velocity curves, cadential
-rubato, per-bar sustain pedal, melody voicing emphasis, and gentle
-microtiming. Everything here is deterministic — same phrase in, same
+Turns the PerformanceIR model into something audible: interpolated velocity
+curves, cadential rubato, per-bar sustain pedal, melody voicing emphasis, and
+gentle microtiming. Everything here is deterministic — same phrase in, same
 performance out — so renders are reproducible.
+
+It does **not** use `performance_bank.PerformanceBank`, despite what this
+docstring and `build_performance_ir`'s used to say. That module is a set of
+hand-written heuristic templates, it is imported by nothing, and the shapes
+here are derived from the period profile and the phrase's own cadence instead.
+A docstring asserting a dependency that does not exist is how a reader
+concludes a job is being done that is not — which is exactly how this project
+shipped a score with no articulation in it for as long as it did.
 
 Split of responsibilities (by design):
 - Continuous/expressive (velocity interpolation, microtiming, rubato
@@ -16,7 +23,7 @@ Split of responsibilities (by design):
 
 from __future__ import annotations
 
-from typing import List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 from .models import (
     DynamicPoint,
@@ -61,7 +68,8 @@ def build_performance_ir(
     """Derive a PerformanceIR for one phrase from its notes, slot, and the
     period's performance profile.
 
-    Uses PerformanceBank templates for the cadential shape; hairpins are shaped
+    The cadential shape comes from the period profile, not from
+    `performance_bank` (see the module docstring); hairpins are shaped
     by the profile's velocity curve; pedal follows the harmonic rhythm; breath
     points lift the pedal and seed a micro-stretch. ``profile`` (period-resolved
     performance practice), ``narrative_section`` (for tempo arcs, WS-TEMPO), and
@@ -218,6 +226,212 @@ def build_performance_ir(
         )
 
     return perf
+
+
+# ─── Metric hierarchy ────────────────────────────────────────────────────────
+#
+# Every metre has a hierarchy of stress, and it is not "downbeat vs offbeat".
+# In 4/4 beat 1 is strongest, beat 3 next, beats 2 and 4 weaker, and everything
+# between them weaker again. In 3/4 beat 1 dominates and 2 and 3 are near-equal.
+# In 6/8 the stresses are on the two dotted-quarter beats, and a renderer that
+# accents all six eighths equally makes a jig sound like a march.
+#
+# The playback rule this replaces was a single "offbeats are 6 velocity lighter",
+# which flattens a bar to two levels and is a large part of why MIDI previews of
+# this system sound like a sequencer: the metre is inaudible, so the listener has
+# nothing to hang the rhythm on.
+
+_METER_WEIGHTS: Dict[Tuple[int, int], Dict[float, float]] = {
+    (4, 4): {1.0: 1.00, 3.0: 0.94, 2.0: 0.88, 4.0: 0.88},
+    (2, 4): {1.0: 1.00, 2.0: 0.89},
+    (2, 2): {1.0: 1.00, 3.0: 0.92},
+    (3, 4): {1.0: 1.00, 2.0: 0.89, 3.0: 0.87},
+    (3, 8): {1.0: 1.00, 1.5: 0.88, 2.0: 0.87},
+    (6, 8): {1.0: 1.00, 2.5: 0.93, 1.5: 0.86, 2.0: 0.86, 3.0: 0.86, 3.5: 0.86},
+    (9, 8): {1.0: 1.00, 2.5: 0.92, 4.0: 0.92},
+    (12, 8): {1.0: 1.00, 4.0: 0.94, 2.5: 0.90, 5.5: 0.90},
+    (3, 2): {1.0: 1.00, 3.0: 0.90, 5.0: 0.88},
+    (4, 2): {1.0: 1.00, 5.0: 0.94, 3.0: 0.88, 7.0: 0.88},
+}
+
+# Anything not on a listed beat position is subdivision. A subdivision directly
+# between two beats is stronger than one that is not (the "and" of a beat is
+# stronger than the "e" or the "a"), which is what gives running sixteenths
+# their internal shape instead of a flat stream.
+_SUB_WEIGHT_HALF = 0.83
+_SUB_WEIGHT_OTHER = 0.79
+
+
+def metric_weight(beat: float, meter: Tuple[int, int] = (4, 4)) -> float:
+    """Velocity multiplier for a beat position, from the metre's own hierarchy.
+
+    Returns 1.0 on the downbeat and progressively less on weaker positions.
+    Multiplicative so it composes with dynamics, hairpins and accents rather
+    than overriding them.
+    """
+    try:
+        key = (int(meter[0]), int(meter[1]))
+    except Exception:  # pragma: no cover - defensive
+        key = (4, 4)
+    table = _METER_WEIGHTS.get(key)
+    if table is None:
+        # Unlisted metre: the downbeat is strong, every other whole beat is
+        # middling, subdivisions are weak. Guessing a hierarchy is worse than
+        # admitting there isn't a known one.
+        table = {1.0: 1.0}
+    b = round(float(beat), 4)
+    for pos, w in table.items():
+        if abs(b - pos) < 0.02:
+            return w
+    if abs(b - int(b) - 0.5) < 0.02:
+        return _SUB_WEIGHT_HALF
+    return _SUB_WEIGHT_OTHER
+
+
+def is_strong_beat(beat: float, meter: Tuple[int, int] = (4, 4)) -> bool:
+    """True on a beat the metre stresses — used for agogic and pedal decisions."""
+    return metric_weight(beat, meter) >= 0.93
+
+
+# ─── Phrase arch ─────────────────────────────────────────────────────────────
+
+
+def phrase_arch_points(
+    layer,
+    depth: float = 0.10,
+    min_notes: int = 6,
+) -> List[DynamicPoint]:
+    """Velocity anchors following the melody's own rise and fall.
+
+    A performer shapes every phrase toward its high point and away again, whether
+    or not a hairpin is written — it is what "phrasing" means. The renderer only
+    followed *written* dynamics, so a phrase with no marks was played at one
+    velocity from end to end, which no player has ever done.
+
+    Returns anchors only; they are merged UNDER any written dynamic, so the
+    composer's marks always win. ``depth`` is the fraction of the base velocity
+    the arch is allowed to move (0.10 = ±10%), deliberately small: this is
+    phrasing, not a crescendo.
+    """
+    from .pitch import pitch_to_midi
+
+    mel = [
+        e
+        for e in sorted(layer.principal_line, key=lambda e: (e.bar, e.beat))
+        if getattr(e, "pitch", None) and e.pitch != "rest"
+    ]
+    if len(mel) < min_notes:
+        return []
+    tops: List[int] = []
+    keep = []
+    for e in mel:
+        names = e.pitch if isinstance(e.pitch, list) else [e.pitch]
+        vals = [v for v in (pitch_to_midi(n) for n in names) if v is not None]
+        if not vals:
+            continue
+        tops.append(max(vals))
+        keep.append(e)
+    if len(tops) < min_notes:
+        return []
+
+    lo, hi = min(tops), max(tops)
+    if hi - lo < 3:
+        return []  # a flat line has no arch to follow, and faking one is worse
+
+    points: List[DynamicPoint] = []
+    for e, top in zip(keep, tops):
+        frac = (top - lo) / (hi - lo)  # 0 at the phrase's floor, 1 at its peak
+        # Centred so the middle of the range is neutral: the arch lifts the
+        # peak and eases the trough rather than making everything louder.
+        points.append(
+            DynamicPoint(
+                bar=e.bar,
+                beat=e.beat,
+                velocity=int(round(_DEFAULT_VELOCITY * (1.0 + depth * (2.0 * frac - 1.0)))),
+            )
+        )
+    return points
+
+
+def merge_arch_under_dynamics(
+    perf: PerformanceIR, arch: Sequence[DynamicPoint], written_beats: int = 2
+) -> int:
+    """Add arch anchors only where the composer wrote nothing nearby.
+
+    Returns how many were added. A written dynamic owns its neighbourhood: an
+    arch point next to an explicit ``p`` would argue with it, and the composer
+    wins that argument every time.
+    """
+    if not arch:
+        return 0
+    written = {(p.bar, round(p.beat, 2)) for p in perf.dynamic_curve}
+    if not written:
+        perf.dynamic_curve.extend(arch)
+        perf.dynamic_curve.sort(key=lambda p: (p.bar, p.beat))
+        return len(arch)
+    added = 0
+    for a in arch:
+        near = any(
+            abs((a.bar - b) * 4 + (a.beat - bt)) <= written_beats for (b, bt) in written
+        )
+        if near:
+            continue
+        perf.dynamic_curve.append(a)
+        added += 1
+    perf.dynamic_curve.sort(key=lambda p: (p.bar, p.beat))
+    return added
+
+
+# ─── Melodic lead ────────────────────────────────────────────────────────────
+
+
+def melodic_lead_beats(
+    event, profile: StylePerfProfile, ms_per_beat: float, is_peak: bool = False
+) -> float:
+    """How far AHEAD of the accompaniment a melody note is struck.
+
+    Pianists play the melody a few milliseconds before the notes beneath it —
+    "melodic lead" — and it is one of the most reliably measured features of
+    real performance and one of the strongest cues that a human is playing.
+    Negative because the melody arrives *early*.
+
+    The existing renderer delayed every bass note by a flat amount, which is the
+    same idea applied bluntly: it separates the hands but does not follow the
+    music, so it reads as a constant lag rather than as expression. The lead
+    here grows at expressive peaks and on long notes, which is what a player
+    actually does.
+    """
+    layer = getattr(event, "source_layer", "") or ""
+    if layer not in ("principal_line", "foreground"):
+        return 0.0
+    lead_ms = profile.hand_offset_ms * 1.5
+    if is_peak:
+        lead_ms *= 1.6
+    return -lead_ms / max(ms_per_beat, 1e-6)
+
+
+def agogic_stretch(event, meter: Tuple[int, int], profile: StylePerfProfile) -> float:
+    """Extra time a player takes over a note that matters, in beats.
+
+    A long note on a strong beat, a note carrying an accent, and the note at the
+    top of a leap all get a fraction more time than they are written. Agogic
+    accent is how a pianist stresses a note on an instrument that cannot swell,
+    and none of it was modelled: every note took exactly its notated length.
+    """
+    from .duration import dur_to_beats
+
+    try:
+        dur = float(dur_to_beats(getattr(event, "duration", "q")))
+    except Exception:  # pragma: no cover - defensive
+        return 0.0
+    stretch = 0.0
+    if dur >= 1.0 and is_strong_beat(getattr(event, "beat", 1.0), meter):
+        stretch += 0.02 * profile.rubato_depth / 0.06
+    if getattr(event, "articulation", None) in ("accent", "marcato", "tenuto"):
+        stretch += 0.015
+    if getattr(event, "role", "") in ("appoggiatura", "suspension"):
+        stretch += 0.025
+    return stretch
 
 
 def velocity_at(

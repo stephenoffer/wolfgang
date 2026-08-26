@@ -100,7 +100,11 @@ def pitch_to_midi(p: Union[str, int, float, list, None]) -> Optional[int]:
     if not s:
         return None
 
-    match = re.match(r"^([A-Ga-g])(#{0,2}|b{0,2})(\d+)$", s)
+    # music21 spells a flat "-" ("B-5"), the shorthand spells it "b" ("Bb5"), and
+    # both cross this boundary. Accepting only one of them meant every pitch that
+    # came back from music21 read as None: silently dropped from role inference,
+    # from every melodic statistic and from the voice-leading check.
+    match = re.match(r"^([A-Ga-g])([#b\-]{0,2})(\d)$", s)
     if not match:
         return None
 
@@ -109,8 +113,8 @@ def pitch_to_midi(p: Union[str, int, float, list, None]) -> Optional[int]:
     octave = int(match.group(3))
 
     midi = (octave + 1) * 12 + NOTE_TO_SEMITONE.get(note_name, 0)
-    midi += accidental.count("#") - accidental.count("b")
-    return midi
+    midi += accidental.count("#") - accidental.count("b") - accidental.count("-")
+    return 0 if midi < 0 else (127 if midi > 127 else midi)
 
 
 def midi_to_pitch(midi_val: int, key: str = "C") -> str:
@@ -176,41 +180,52 @@ def clamp_to_range(midi_val: int, low: int, high: int) -> int:
     return midi_val
 
 
-def _normalize_key(key: str) -> str:
-    """Normalize key formats to short form: 'g_minor'->'Gm', 'bb_major'->'Bb', 'eb_major'->'Eb'.
+_KEY_RE = re.compile(
+    r"^\s*(?P<tonic>[A-Ga-g])"
+    r"(?P<acc>(?:##|bb|--|#|b|-|\s*sharp|\s*flat|\s*is|\s*es)*)"
+    r"[\s_-]*(?P<mode>minor|min|moll|m|major|maj|dur)?\s*$",
+    re.IGNORECASE,
+)
 
-    Handles: 'g_minor', 'bb_major', 'Gm', 'Bb', 'F#m', 'C',
-    and modulation arrows 'g_minor->bb_major' (returns first key).
+
+def _normalize_key(key: str) -> str:
+    """Normalize any key spelling this project uses to short form ('Gm', 'Bb').
+
+    Handles 'g_minor', 'bb_major', 'a minor', 'F#m', 'C', 'f_sharp_minor',
+    'b_flat_major', 'Eb Major', and modulation arrows ('g_minor->bb_major',
+    first key wins).
+
+    The old word-splitting version got the spelled-out forms exactly wrong:
+    'f_sharp_minor' split into tonic='f', mode='sharp', consumed the word and
+    left mode empty — so it returned 'F#', a MAJOR key. 'b_flat_major' was worse:
+    'flat' was never handled at all, so B-flat major came back as B major, a
+    semitone off, and every chord frame, every transposition and every key
+    signature derived from it was in the wrong key.
     """
-    k = key.strip()
-    # Handle modulation arrows — use the first key
+    k = str(key or "").strip()
     if "->" in k:
         k = k.split("->")[0].strip()
-    # Handle underscore format: g_minor, bb_major, f_sharp_minor, etc.
-    if "_" in k:
-        parts = k.split("_")
-        tonic = parts[0]
-        mode = parts[1] if len(parts) > 1 else "major"
-        # Capitalize tonic: g -> G, bb -> Bb, eb -> Eb, f# -> F#
-        if len(tonic) == 1:
-            tonic = tonic.upper()
-        elif len(tonic) == 2:
-            if tonic[1] == "b":
-                tonic = tonic[0].upper() + "b"
-            elif tonic[1] == "#":
-                tonic = tonic[0].upper() + "#"
-            else:
-                tonic = tonic[0].upper() + tonic[1]
-        else:
-            tonic = tonic[0].upper() + tonic[1:]
-        # Handle 'sharp' and 'flat' as words
-        if "sharp" in mode:
-            tonic += "#"
-            mode = mode.replace("sharp_", "").replace("sharp", "")
-        if mode in ("minor", "min"):
-            return tonic + "m"
-        return tonic
-    return k
+    if not k:
+        return "C"
+    m = _KEY_RE.match(k.replace("_", " "))
+    if not m:
+        return k
+    tonic = m.group("tonic").upper()
+    acc = (m.group("acc") or "").lower().replace(" ", "").replace("_", "")
+    if "flat" in acc or "sharp" in acc:
+        # "e-flat minor": the hyphen is a separator, not a second flat sign.
+        acc = acc.replace("-", "")
+    # Spelled-out accidentals are consumed FIRST. Counting symbols first meant
+    # the hyphen in "e-flat minor" counted as one flat and the word "flat" as
+    # another, giving E-double-flat.
+    sharps = acc.count("sharp") + acc.count("is")
+    flats = acc.count("flat") + acc.count("es")
+    acc = acc.replace("sharp", "").replace("flat", "").replace("is", "").replace("es", "")
+    sharps += acc.count("#")
+    flats += acc.count("b") + acc.count("-")
+    tonic += "#" * max(0, sharps) + "b" * max(0, flats)
+    mode = (m.group("mode") or "").lower()
+    return tonic + "m" if mode in ("minor", "min", "moll", "m") else tonic
 
 
 def key_to_root_midi(key: str) -> int:
@@ -226,6 +241,34 @@ def key_to_root_midi(key: str) -> int:
     note = match.group(1)
     acc = match.group(2)
     return NOTE_TO_SEMITONE.get(note, 0) + acc.count("#") - acc.count("b")
+
+
+def parse_key(key: str):
+    """The one key parser: any spelling this project uses -> a music21 Key.
+
+    Accepts "F major", "a minor", "Am", "F", "g_minor", "bb_major", "F#m", and
+    modulation arrows ("g_minor->bb_major", first key wins).
+
+    There were FOUR independent key parsers, and three of them silently returned
+    None or C major for the space-separated form the planner actually writes.
+    `composition_brief._key_obj("F major")` returned None, so
+    `RomanNumeral(roman, None)` fell back to C major — meaning the chord frame in
+    every brief, the one concrete harmonic aid the agent is given, was computed in
+    the WRONG KEY. Consolidating them here is the fix; delegating to it is the
+    rule.
+    """
+    import music21
+
+    norm = _normalize_key(key)
+    mode = "minor" if norm.endswith("m") else "major"
+    tonic = norm[:-1] if norm.endswith("m") else norm
+    tonic = tonic.replace("b", "-") if len(tonic) > 1 and tonic[1:] == "b" else tonic
+    for candidate in (tonic, tonic[:1].upper()):
+        try:
+            return music21.key.Key(candidate, mode)
+        except Exception:
+            continue
+    return music21.key.Key("C", "major")
 
 
 def is_minor_key(key: str) -> bool:
@@ -257,3 +300,13 @@ def is_chord_tone(midi_val: int, root_midi: int, quality: str = "major") -> bool
     """Check if a MIDI pitch is a chord tone."""
     ct = chord_tones(root_midi % 12, quality)
     return (midi_val % 12) in [t % 12 for t in ct]
+
+
+def parallel_perfect(s1: int, b1: int, s2: int, b2: int) -> bool:
+    """True if the outer-voice motion (soprano s1->s2 over bass b1->b2) forms a
+    parallel perfect 5th or octave/unison. Single source of truth for both the
+    validator (post-hoc check) and the harmonic solver (generation constraint)."""
+    if s1 == s2 and b1 == b2:
+        return False  # no motion -> not "parallel"
+    i1, i2 = (s1 - b1) % 12, (s2 - b2) % 12
+    return i1 == i2 and i1 in (0, 7) and s1 != s2 and b1 != b2

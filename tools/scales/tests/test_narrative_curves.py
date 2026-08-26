@@ -8,7 +8,9 @@ Run: python3 -m scales.tests.test_narrative_curves
 """
 
 from scales import scales
+from scales.composition_brief import _creative_intent
 from scales.models import NarrativeArc, NarrativeSection, PhraseCurves, PhraseSlot
+from scales.piece_graph import PieceGraph
 
 
 def _slot(bar_start, bar_count):
@@ -84,9 +86,114 @@ def test_uncovered_bars_fall_back():
     assert s.curves.energy[5] == 0.5
 
 
+def test_narrative_survives_save_load(tmp_path):
+    """Regression: narrative was serialized but never reconstructed on load, so
+    section.character never reached compose time. Guard the load-drop bug class."""
+    ws = tmp_path
+    scales._WORKSPACE = ws
+    pid = "narr-roundtrip"
+    (ws / pid).mkdir(parents=True)
+    g = PieceGraph()
+    g.piece_id = pid
+    g.save(str(ws / pid / "piece_graph.json"))
+
+    scales.save_narrative(
+        pid,
+        sections=[
+            {
+                "id": "a",
+                "label": "opening",
+                "bar_start": 1,
+                "bar_end": 8,
+                "character": "the storm finally breaks",
+                "gesture": "a long exhale",
+                "climax_type": "primary",
+            },
+            {"id": "b", "label": "calm", "bar_start": 9, "bar_end": 16},
+        ],
+        overall_character="from struggle to peace",
+    )
+
+    g2 = PieceGraph.load(str(ws / pid / "piece_graph.json"))
+    assert len(g2.narrative.sections) == 2  # not dropped on load
+    assert g2.narrative.overall_character == "from struggle to peace"
+    assert g2.narrative.primary_climax_section == "a"  # inferred from climax_type
+    assert g2.narrative.sections[0].character == "the storm finally breaks"
+    assert g2.narrative.sections[0].gesture == "a long exhale"
+
+
+def test_creative_intent_prefers_authored_prose():
+    arc = NarrativeArc(
+        sections=[
+            NarrativeSection(
+                id="a",
+                label="opening",
+                bar_start=1,
+                bar_end=8,
+                character="the storm finally breaks",
+                energy_curve=[0.9],
+                climax_type="primary",
+            ),
+            NarrativeSection(id="b", label="calm", bar_start=9, bar_end=16, energy_curve=[0.3]),
+        ]
+    )
+
+    class _G:
+        narrative = arc
+
+    g = _G()
+    # Section with authored prose: intent leads with the prose, not adjectives.
+    intent_a = _creative_intent(
+        g, PhraseSlot(phrase_id="a_p1", bar_start=3, function="presentation")
+    )
+    assert "the storm finally breaks" in intent_a
+    assert "intense" not in intent_a  # curve-adjectives suppressed when prose present
+    assert "emotional peak" in intent_a  # climax marker still added
+    # Section with no prose: falls back to curve-derived adjectives.
+    intent_b = _creative_intent(
+        g, PhraseSlot(phrase_id="b_p1", bar_start=10, function="continuation")
+    )
+    assert "gentle" in intent_b
+
+
 if __name__ == "__main__":
+    import inspect
+    import tempfile
+    from pathlib import Path
+
     fns = [(k, v) for k, v in sorted(globals().items()) if k.startswith("test_")]
     for name, fn in fns:
-        fn()
+        if "tmp_path" in inspect.signature(fn).parameters:
+            with tempfile.TemporaryDirectory() as d:
+                fn(Path(d))
+        else:
+            fn()
         print(f"ok {name}")
     print(f"\n{len(fns)} tests passed")
+
+
+def test_texture_plan_changes_at_the_composers_measured_rate():
+    """Two wrong answers shipped here before: a round-robin that changed the
+    accompaniment idiom every bar for no reason, then a flat hold-one-idiom that
+    changed it never. Mozart's own corpus changes left-hand texture on ~54% of bar
+    transitions; the plan should sit near that, not at 0% or 100%."""
+    from scales.models import StyleDNA
+    from scales.scales import _default_texture_plan
+
+    style = StyleDNA()
+    style.composer_id = "mozart"
+    style.lh_distribution = {"alberti": 0.4, "walking_bass": 0.3, "block_chord_sparse": 0.3}
+    lh = [t.lh_texture for t in _default_texture_plan(style, "presentation", "PAC", 8, (3, 4))]
+    changes = sum(1 for a, b in zip(lh, lh[1:]) if a != b)
+    assert 2 <= changes <= 6, f"8-bar plan changed texture {changes} times: {lh}"
+
+
+def test_texture_plan_never_schedules_silence_as_an_idiom():
+    from scales.models import StyleDNA
+    from scales.scales import _default_texture_plan
+
+    style = StyleDNA()
+    style.composer_id = "mozart"
+    style.lh_distribution = {"silence": 0.9, "alberti": 0.1}
+    plan = _default_texture_plan(style, "presentation", "PAC", 8, (3, 4))
+    assert "unclassified" not in [t.lh_texture for t in plan]

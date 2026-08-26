@@ -1,0 +1,28 @@
+[
+  {
+    "id": "cad_penultimate_bar",
+    "type": "Penultimate bar",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "beat1 beat2 beat3",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "handel/harmonic-language.md"
+  },
+  {
+    "id": "cad_cadence_bar",
+    "type": "Cadence bar",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "beat1 beat2 beat3",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "handel/harmonic-language.md"
+  }
+]

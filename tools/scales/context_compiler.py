@@ -49,7 +49,9 @@ class ContextCompiler:
         """
         # Find profile directory
         profile_dir = self._find_profile_dir(composer, genre)
-        output_dir = COMPILED_PACKS / composer
+        from .style_registry import pack_dir_name
+
+        output_dir = COMPILED_PACKS / pack_dir_name(composer)
         output_dir.mkdir(parents=True, exist_ok=True)
 
         results = {}
@@ -299,9 +301,38 @@ class ContextCompiler:
         """Compile statistics from corpus + texture templates + markdown."""
         stats: Dict[str, Any] = {"total_bars": 0, "lh_distribution": {}, "rh_distribution": {}}
 
-        # Source 1: Texture templates (highest priority for texture stats)
+        # Source 1: the corpus profile — measured from the bar records this
+        # composer was actually extracted from.
+        #
+        # ``rh_distribution`` had NO SOURCE AT ALL: nothing ever wrote it, so it
+        # was `{}` for every composer and the texture planner's fallback pinned
+        # the upper staff to "singing_melody" for every bar of every piece ever
+        # generated. The left-hand distribution came from a hand-built template
+        # file carrying labels the extractor no longer emits ("sparse_octaves",
+        # "walking_bass_chromatic", "unclassified"), so the planner could
+        # schedule a texture matching no corpus bar and exemplar retrieval would
+        # silently fall back to an untextured query.
+        from .style_registry import pack_dir_name
+
+        profile_path = COMPILED_PACKS / pack_dir_name(composer) / "corpus_profile.json"
+        if profile_path.exists():
+            try:
+                with open(profile_path) as f:
+                    profile = json.load(f)
+                stats["total_bars"] = profile.get("total_bars", 0)
+                for hand in ("lh", "rh"):
+                    dist = profile.get(f"{hand}_texture_distribution") or {}
+                    stats[f"{hand}_distribution"] = {
+                        k: round(float(v), 4)
+                        for k, v in dist.items()
+                        if k not in ("silence", "unclassified") and v
+                    }
+            except (json.JSONDecodeError, OSError, TypeError, ValueError):
+                pass
+
+        # Source 1b: the legacy texture templates, only where the corpus is silent.
         template_path = TEXTURE_TEMPLATES / f"{composer}.json"
-        if template_path.exists():
+        if not stats["lh_distribution"] and template_path.exists():
             with open(template_path) as f:
                 template = json.load(f)
             stats["total_bars"] = template.get("total_bars_analyzed", 0)
@@ -802,29 +833,41 @@ class ContextCompiler:
                         }
                     )
 
-        # Parse cadence tables
-        cad_pattern = r"\|[^|\n]*(?:Cadence)[^|\n]*\|.*?\n\|[-\s|]+\n((?:\|.*\n)*)"
-        for cmatch in re.finditer(cad_pattern, text, re.IGNORECASE):
-            for row in cmatch.group(1).strip().split("\n"):
+        # Parse cadence tables.
+        #
+        # Two bugs lived here. The header pattern required the literal word
+        # "Cadence" in the HEADER ROW, so Beethoven's table — headed
+        # "| Strategy | How It Works | Dramatic Function |" under a "Cadential
+        # Strategy" heading — was invisible, and the flagship composer shipped an
+        # EMPTY cadence_scripts.json. And each row's own columns were read into a
+        # bare expression that was never assigned, so even where the pack was
+        # populated every script carried empty approach_chords, soprano_line and
+        # bass_motion — the brief could only ever print "Cadence: type PAC".
+        for block in _cadence_table_blocks(text):
+            for row in block:
                 cols = [c.strip() for c in row.split("|")[1:-1]]
-                if len(cols) >= 2:
-                    cad_type = cols[0]
-                    cad_id = re.sub(r"[^a-z0-9]+", "_", cad_type.lower()).strip("_")
-                    cols[2] if len(cols) > 2 else ""
-
-                    cadence_scripts.append(
-                        {
-                            "id": f"cad_{cad_id}",
-                            "type": cad_type,
-                            "approach_chords": [],
-                            "soprano_line": [],
-                            "bass_motion": "",
-                            "inner_voice_rules": [],
-                            "strength": 3,
-                            "typical_texture": "",
-                            "preparation_bars": 2,
-                        }
-                    )
+                if len(cols) < 2 or not cols[0]:
+                    continue
+                cad_type = cols[0]
+                cad_id = re.sub(r"[^a-z0-9]+", "_", cad_type.lower()).strip("_")
+                rest = cols[1:]
+                chords = _chord_chain(rest)
+                usage = next((c for c in rest if c and not _chord_chain([c])), "")
+                cadence_scripts.append(
+                    {
+                        "id": f"cad_{cad_id}",
+                        "type": cad_type,
+                        "approach_chords": chords,
+                        "soprano_line": [],
+                        "bass_motion": _bass_motion(chords),
+                        "usage": usage,
+                        "inner_voice_rules": [],
+                        "strength": 3,
+                        "typical_texture": "",
+                        "preparation_bars": 2,
+                        "source_file": f"{profile_dir.name}/harmonic-language.md",
+                    }
+                )
 
         return {"devices": devices, "cadence_scripts": cadence_scripts}
 
@@ -1877,3 +1920,88 @@ def _parse_range(text: str) -> Optional[tuple]:
         val = int(match.group(1))
         return (val, val)
     return None
+
+
+# ─── Cadence-table parsing helpers ───────────────────────────────────────────
+#
+# A chain of Roman numerals as the profile tables write it: "ii6 -> cad 6/4 ->
+# V7 -> I", "V→vi, V→bVI, then finally V→I".
+
+_ARROW = re.compile(r"\s*(?:->|→|—>|>)\s*")
+_ROMAN_TOKEN = re.compile(r"^(?:cad\s*)?[b#]?[ivIV]+[°ø+o]?(?:64|65|43|42|6|7|2)?$")
+_ROMAN_BASS_DEGREE = {"i": 1, "ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7}
+
+
+def _chord_chain(cells: List[str]) -> List[str]:
+    """Roman-numeral chain from the first table cell that spells one out.
+
+    Cells are prose with a chain embedded: "ii6 -> cad 6/4 -> V7 -> I",
+    "Standard V7 -> vi; then real PAC follows", "V→vi, V→bVI, then finally V→I".
+    Split on the arrow, then keep the one Roman-looking token in each segment
+    and drop the words around it.
+    """
+    for cell in cells:
+        if not cell or not _ARROW.search(cell):
+            continue
+        chain: List[str] = []
+        for seg in _ARROW.split(cell):
+            tok = _roman_in(seg)
+            if tok:
+                chain.append(tok)
+        if len(chain) >= 2:
+            return chain
+    return []
+
+
+def _roman_in(segment: str) -> str:
+    """The single Roman numeral a prose segment names, or ""."""
+    # "cad 6/4" and "cadential 6-4" are the cadential six-four: a tonic triad
+    # over the dominant. Written as a bare figure they match no numeral pattern
+    # and used to break the whole chain they appear in.
+    seg = re.sub(r"\bcad(?:ential)?\s*6[/\-]?4\b", "I64", segment, flags=re.IGNORECASE)
+    seg = seg.replace("6/4", "64")
+    found = ""
+    for word in re.split(r"[\s,;()]+", seg):
+        word = word.strip(".").strip()
+        if not word:
+            continue
+        if _ROMAN_TOKEN.match(word):
+            if found and found != word:
+                return ""  # ambiguous segment — two numerals, no single answer
+            found = word
+    return found
+
+
+def _bass_motion(chords: List[str]) -> str:
+    """Scale-degree bass motion for a chord chain ("2-5-1"), or ""."""
+    degrees = []
+    for c in chords:
+        m = re.match(r"^[b#]?([ivIV]+)", c or "")
+        if not m:
+            return ""
+        deg = _ROMAN_BASS_DEGREE.get(m.group(1).lower())
+        if deg is None:
+            return ""
+        degrees.append(str(deg))
+    return "-".join(degrees) if len(degrees) >= 2 else ""
+
+
+def _cadence_table_blocks(text: str) -> List[List[str]]:
+    """Markdown table row-blocks that describe cadences.
+
+    Matched EITHER by "cadence"/"cadential" in the section heading above the
+    table, OR by the word appearing in the header row itself. Requiring it in
+    the header row alone missed every profile that heads the column "Strategy".
+    """
+    blocks: List[List[str]] = []
+    for sec in re.split(r"\n(?=#{2,4}\s)", text):
+        heading = sec.split("\n", 1)[0]
+        heading_hit = re.search(r"cadenc|cadential", heading, re.IGNORECASE)
+        for tmatch in re.finditer(r"\|([^\n]*)\|\n\|[-\s|:]+\|\n((?:\|.*\n)*)", sec):
+            header, body = tmatch.group(1), tmatch.group(2)
+            if not (heading_hit or re.search(r"cadenc", header, re.IGNORECASE)):
+                continue
+            rows = [r for r in body.strip().split("\n") if r.strip().startswith("|")]
+            if rows:
+                blocks.append(rows)
+    return blocks

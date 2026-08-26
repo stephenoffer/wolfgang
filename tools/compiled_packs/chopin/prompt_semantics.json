@@ -1,0 +1,1779 @@
+[
+  {
+    "word": "joy",
+    "synonyms": [],
+    "tempo_range": [
+      120,
+      152
+    ],
+    "mode_scale": [
+      "Major",
+      "Lydian"
+    ],
+    "dynamics": "mf-f",
+    "texture": "Light, transparent",
+    "register": "Mid-high",
+    "articulation": "Staccato, light",
+    "rhythm_type": "Bouncing, regular",
+    "harmonic_language": "Diatonic, I-IV-V",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "sorrow",
+    "synonyms": [],
+    "tempo_range": [
+      52,
+      72
+    ],
+    "mode_scale": [
+      "Minor",
+      "Aeolian"
+    ],
+    "dynamics": "p-mp",
+    "texture": "Thin, sparse",
+    "register": "Low-mid",
+    "articulation": "Legato, sustained",
+    "rhythm_type": "Slow, weighted",
+    "harmonic_language": "i-iv, suspensions",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "anger",
+    "synonyms": [],
+    "tempo_range": [
+      132,
+      168
+    ],
+    "mode_scale": [
+      "Minor",
+      "Phrygian"
+    ],
+    "dynamics": "ff-fff",
+    "texture": "Dense, heavy",
+    "register": "Full range, low emphasis",
+    "articulation": "Marcato, sfz",
+    "rhythm_type": "Driving, irregular accents",
+    "harmonic_language": "Diminished, dissonance",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "fear",
+    "synonyms": [],
+    "tempo_range": [
+      60,
+      100
+    ],
+    "mode_scale": [
+      "Diminished",
+      "chromatic"
+    ],
+    "dynamics": "pp-mp",
+    "texture": "Sparse, fragmented",
+    "register": "Extreme registers",
+    "articulation": "Tremolo, staccato",
+    "rhythm_type": "Irregular, halting",
+    "harmonic_language": "Tritones, clusters",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "love",
+    "synonyms": [],
+    "tempo_range": [
+      66,
+      88
+    ],
+    "mode_scale": [
+      "Major",
+      "Mixolydian"
+    ],
+    "dynamics": "mp-mf",
+    "texture": "Warm, layered",
+    "register": "Mid, tenor range",
+    "articulation": "Legato, portamento",
+    "rhythm_type": "Flowing, gentle rubato",
+    "harmonic_language": "3rds, 6ths, added 9ths",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "longing",
+    "synonyms": [],
+    "tempo_range": [
+      56,
+      76
+    ],
+    "mode_scale": [
+      "Minor",
+      "Dorian"
+    ],
+    "dynamics": "p-mf",
+    "texture": "Medium, sighing figures",
+    "register": "Mid with upward reaches",
+    "articulation": "Legato, gentle swells",
+    "rhythm_type": "Suspended, unresolved",
+    "harmonic_language": "Deceptive cadences, sus4",
+    "interval_preferences": [
+      "Major 7th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md",
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "triumph",
+    "synonyms": [],
+    "tempo_range": [
+      108,
+      138
+    ],
+    "mode_scale": [
+      "Major",
+      "Lydian"
+    ],
+    "dynamics": "ff-fff",
+    "texture": "Full, massive",
+    "register": "Full range",
+    "articulation": "Marcato, accented",
+    "rhythm_type": "Dotted, march-like",
+    "harmonic_language": "I-V, brass fanfares",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "despair",
+    "synonyms": [],
+    "tempo_range": [
+      40,
+      60
+    ],
+    "mode_scale": [
+      "Minor",
+      "Phrygian"
+    ],
+    "dynamics": "pp-p",
+    "texture": "Very sparse",
+    "register": "Low",
+    "articulation": "Legato, heavy",
+    "rhythm_type": "Dragging, irregular",
+    "harmonic_language": "Chromatic descent, Neapolitan",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "serenity",
+    "synonyms": [],
+    "tempo_range": [
+      60,
+      80
+    ],
+    "mode_scale": [
+      "Major",
+      "pentatonic"
+    ],
+    "dynamics": "pp-mp",
+    "texture": "Open, airy",
+    "register": "Mid-high",
+    "articulation": "Legato, smooth",
+    "rhythm_type": "Even, unhurried",
+    "harmonic_language": "Simple triads, open 5ths",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "tension",
+    "synonyms": [],
+    "tempo_range": [
+      80,
+      120
+    ],
+    "mode_scale": [
+      "Chromatic",
+      "octatonic"
+    ],
+    "dynamics": "mp-ff (growing)",
+    "texture": "Thickening",
+    "register": "Converging",
+    "articulation": "Tremolo, tightening",
+    "rhythm_type": "Accelerating ostinato",
+    "harmonic_language": "Pedal tones, unresolved dom7",
+    "interval_preferences": [
+      "Tritone"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md",
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "mystery",
+    "synonyms": [],
+    "tempo_range": [
+      60,
+      84
+    ],
+    "mode_scale": [
+      "Whole-tone",
+      "Locrian"
+    ],
+    "dynamics": "pp-mp",
+    "texture": "Sparse, coloristic",
+    "register": "Extreme contrasts",
+    "articulation": "Muted, harmonics",
+    "rhythm_type": "Irregular, fragmentary",
+    "harmonic_language": "Augmented, quartal",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "wonder",
+    "synonyms": [],
+    "tempo_range": [
+      72,
+      96
+    ],
+    "mode_scale": [
+      "Major",
+      "Lydian"
+    ],
+    "dynamics": "p-mf",
+    "texture": "Open, wide spacing",
+    "register": "High, shimmering",
+    "articulation": "Arpeggiated, harp-like",
+    "rhythm_type": "Floating, rubato",
+    "harmonic_language": "Major 7ths, add9, open voicing",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "nostalgia",
+    "synonyms": [],
+    "tempo_range": [
+      66,
+      84
+    ],
+    "mode_scale": [
+      "Major turning minor"
+    ],
+    "dynamics": "mp",
+    "texture": "Warm, intimate",
+    "register": "Mid",
+    "articulation": "Legato, gentle",
+    "rhythm_type": "Waltz or lilting",
+    "harmonic_language": "Borrowed chords, plagal",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "playfulness",
+    "synonyms": [],
+    "tempo_range": [
+      120,
+      160
+    ],
+    "mode_scale": [
+      "Major",
+      "Mixolydian"
+    ],
+    "dynamics": "mf",
+    "texture": "Light, bouncing",
+    "register": "Mid-high",
+    "articulation": "Staccato, pizzicato",
+    "rhythm_type": "Syncopated, quirky",
+    "harmonic_language": "Diatonic, unexpected pivot",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "dignity",
+    "synonyms": [],
+    "tempo_range": [
+      72,
+      92
+    ],
+    "mode_scale": [
+      "Major",
+      "Dorian"
+    ],
+    "dynamics": "mf-f",
+    "texture": "Chorale-like",
+    "register": "Mid, even distribution",
+    "articulation": "Sustained, broad",
+    "rhythm_type": "Even, stately",
+    "harmonic_language": "Root position triads",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "chaos",
+    "synonyms": [],
+    "tempo_range": [
+      144,
+      200
+    ],
+    "mode_scale": [
+      "Atonal",
+      "chromatic"
+    ],
+    "dynamics": "ff-fff",
+    "texture": "Maximally dense",
+    "register": "All registers",
+    "articulation": "All mixed, violent",
+    "rhythm_type": "Polyrhythmic, irregular",
+    "harmonic_language": "Clusters, no resolution",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "resolution",
+    "synonyms": [],
+    "tempo_range": [
+      60,
+      80
+    ],
+    "mode_scale": [
+      "Major"
+    ],
+    "dynamics": "mf-mp",
+    "texture": "Clearing, thinning",
+    "register": "Settling to mid",
+    "articulation": "Legato, final",
+    "rhythm_type": "Broadening",
+    "harmonic_language": "V-I, plagal cadence",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "melancholy",
+    "synonyms": [],
+    "tempo_range": [
+      56,
+      76
+    ],
+    "mode_scale": [
+      "Minor",
+      "Aeolian"
+    ],
+    "dynamics": "p-mp",
+    "texture": "Medium, descending lines",
+    "register": "Mid-low",
+    "articulation": "Legato, sighing",
+    "rhythm_type": "Gentle, dragging",
+    "harmonic_language": "iv-i, added 6ths",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "ecstasy",
+    "synonyms": [],
+    "tempo_range": [
+      132,
+      168
+    ],
+    "mode_scale": [
+      "Major",
+      "Lydian"
+    ],
+    "dynamics": "ff",
+    "texture": "Full, soaring",
+    "register": "High, extreme",
+    "articulation": "Sweeping legato",
+    "rhythm_type": "Surging, accelerating",
+    "harmonic_language": "Bright modulations upward",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "fury",
+    "synonyms": [],
+    "tempo_range": [
+      152,
+      184
+    ],
+    "mode_scale": [
+      "Minor",
+      "Phrygian dom."
+    ],
+    "dynamics": "fff",
+    "texture": "Massive, aggressive",
+    "register": "Low-heavy, piercing highs",
+    "articulation": "Sfz, marcato, harsh",
+    "rhythm_type": "Relentless, pounding",
+    "harmonic_language": "Tritones, power chords",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "tenderness",
+    "synonyms": [],
+    "tempo_range": [
+      60,
+      76
+    ],
+    "mode_scale": [
+      "Major"
+    ],
+    "dynamics": "pp-p",
+    "texture": "Duo or trio, intimate",
+    "register": "Mid, close voicing",
+    "articulation": "Legato, gentle",
+    "rhythm_type": "Rocking, lullaby",
+    "harmonic_language": "Stepwise, gentle suspensions",
+    "interval_preferences": [
+      "Minor 3rd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md",
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "grandeur",
+    "synonyms": [],
+    "tempo_range": [
+      76,
+      100
+    ],
+    "mode_scale": [
+      "Major",
+      "Mixolydian"
+    ],
+    "dynamics": "f-ff",
+    "texture": "Full orchestra, broad",
+    "register": "Full, wide spacing",
+    "articulation": "Sustained, massive",
+    "rhythm_type": "Broad, dotted",
+    "harmonic_language": "I-IV-V, plagal, pedal point",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "desolation",
+    "synonyms": [],
+    "tempo_range": [
+      40,
+      56
+    ],
+    "mode_scale": [
+      "Minor",
+      "Phrygian"
+    ],
+    "dynamics": "ppp-pp",
+    "texture": "Solo or unison",
+    "register": "Low, empty",
+    "articulation": "Barely articulated",
+    "rhythm_type": "Sparse, silences",
+    "harmonic_language": "Bare intervals, no 3rds",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "hope",
+    "synonyms": [],
+    "tempo_range": [
+      72,
+      100
+    ],
+    "mode_scale": [
+      "Minor to Major"
+    ],
+    "dynamics": "p-mf (growing)",
+    "texture": "Gradually thickening",
+    "register": "Rising",
+    "articulation": "Legato, brightening",
+    "rhythm_type": "Ascending patterns",
+    "harmonic_language": "Picardy 3rd, modulation up",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "anxiety",
+    "synonyms": [],
+    "tempo_range": [
+      100,
+      132
+    ],
+    "mode_scale": [
+      "Minor",
+      "chromatic"
+    ],
+    "dynamics": "mp-f",
+    "texture": "Agitated, restless",
+    "register": "Mid, tightening",
+    "articulation": "Tremolo, staccato",
+    "rhythm_type": "Ostinato, irregular",
+    "harmonic_language": "Diminished, unresolved",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "peace",
+    "synonyms": [],
+    "tempo_range": [
+      56,
+      72
+    ],
+    "mode_scale": [
+      "Major",
+      "pentatonic"
+    ],
+    "dynamics": "pp-p",
+    "texture": "Open, sustained",
+    "register": "Mid-high",
+    "articulation": "Long legato",
+    "rhythm_type": "Very slow, even",
+    "harmonic_language": "Open 5ths, simple triads",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "passion",
+    "synonyms": [],
+    "tempo_range": [
+      88,
+      120
+    ],
+    "mode_scale": [
+      "Minor",
+      "harmonic minor"
+    ],
+    "dynamics": "mf-ff",
+    "texture": "Rich, layered",
+    "register": "Full, sweeping",
+    "articulation": "Intense legato, vibrato",
+    "rhythm_type": "Surging, rubato",
+    "harmonic_language": "Augmented 6th, chromatic",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "reverence",
+    "synonyms": [],
+    "tempo_range": [
+      52,
+      72
+    ],
+    "mode_scale": [
+      "Major",
+      "Dorian"
+    ],
+    "dynamics": "p-mf",
+    "texture": "Chorale, organ-like",
+    "register": "Mid-low",
+    "articulation": "Sustained, solemn",
+    "rhythm_type": "Even, slow",
+    "harmonic_language": "Plagal, modal harmony",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "whimsy",
+    "synonyms": [],
+    "tempo_range": [
+      112,
+      144
+    ],
+    "mode_scale": [
+      "Major",
+      "Lydian"
+    ],
+    "dynamics": "mp-mf",
+    "texture": "Light, colorful",
+    "register": "Mid-high",
+    "articulation": "Staccato, bouncing",
+    "rhythm_type": "Irregular, playful",
+    "harmonic_language": "Unexpected modulations",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "agony",
+    "synonyms": [],
+    "tempo_range": [
+      56,
+      80
+    ],
+    "mode_scale": [
+      "Minor",
+      "chromatic"
+    ],
+    "dynamics": "p-fff (extremes)",
+    "texture": "Sparse then dense",
+    "register": "Extreme registers",
+    "articulation": "Accented, sfz, cries",
+    "rhythm_type": "Irregular, wrenching",
+    "harmonic_language": "Dissonance, minor 2nds",
+    "interval_preferences": [],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "emotional-vocabulary.md"
+    ]
+  },
+  {
+    "word": "hero",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid-high",
+    "articulation": "",
+    "rhythm_type": "Dotted, march",
+    "harmonic_language": "Major, open voicing",
+    "interval_preferences": [
+      "P4",
+      "P5",
+      "octave"
+    ],
+    "density_range": null,
+    "orchestration_color": "Brass (horn, trumpet)",
+    "contour": "Ascending arch",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "villain",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Low, extreme",
+    "articulation": "",
+    "rhythm_type": "Irregular, lurking",
+    "harmonic_language": "Diminished, chromatic",
+    "interval_preferences": [
+      "Tritone",
+      "m2",
+      "dim5"
+    ],
+    "density_range": null,
+    "orchestration_color": "Low brass, low strings",
+    "contour": "Angular, jagged",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "mentor",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid",
+    "articulation": "",
+    "rhythm_type": "Stately, even",
+    "harmonic_language": "Diatonic, chorale-like",
+    "interval_preferences": [
+      "P5",
+      "M3",
+      "M6"
+    ],
+    "density_range": null,
+    "orchestration_color": "Warm strings, horn",
+    "contour": "Stepwise, calm",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "trickster",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid, jumping",
+    "articulation": "",
+    "rhythm_type": "Syncopated, quirky",
+    "harmonic_language": "Unexpected pivots",
+    "interval_preferences": [
+      "m3",
+      "tritone",
+      "M2"
+    ],
+    "density_range": null,
+    "orchestration_color": "Clarinet, bassoon, pizz.",
+    "contour": "Erratic, leaping",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "lover",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid-high, warm",
+    "articulation": "",
+    "rhythm_type": "Flowing, rubato",
+    "harmonic_language": "Rich 7ths, suspensions",
+    "interval_preferences": [
+      "M3",
+      "M6",
+      "m6"
+    ],
+    "density_range": null,
+    "orchestration_color": "Solo violin, cello, flute",
+    "contour": "Arching, yearning",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "innocent",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "High, light",
+    "articulation": "",
+    "rhythm_type": "Simple, even",
+    "harmonic_language": "Diatonic, pentatonic",
+    "interval_preferences": [
+      "P4",
+      "M3",
+      "P5"
+    ],
+    "density_range": null,
+    "orchestration_color": "Flute, celesta, harp",
+    "contour": "Stepwise ascending",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "wanderer",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid, shifting",
+    "articulation": "",
+    "rhythm_type": "Lilting 6/8, walking",
+    "harmonic_language": "Modal, Dorian/Mixolydian",
+    "interval_preferences": [
+      "P5",
+      "P4",
+      "M2"
+    ],
+    "density_range": null,
+    "orchestration_color": "Oboe, horn, solo cello",
+    "contour": "Winding, searching",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "sovereign",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Full range, wide",
+    "articulation": "",
+    "rhythm_type": "Broad, dotted",
+    "harmonic_language": "Major, root position",
+    "interval_preferences": [
+      "P5",
+      "octave",
+      "M3"
+    ],
+    "density_range": null,
+    "orchestration_color": "Full brass, timpani",
+    "contour": "Grand arch",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "rebel",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid-low, punchy",
+    "articulation": "",
+    "rhythm_type": "Driving, off-beat",
+    "harmonic_language": "Minor, modal mixture",
+    "interval_preferences": [
+      "m7",
+      "tritone",
+      "m2"
+    ],
+    "density_range": null,
+    "orchestration_color": "Brass stabs, percussion",
+    "contour": "Ascending defiant",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "martyr",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Mid-low",
+    "articulation": "",
+    "rhythm_type": "Slow, weighted",
+    "harmonic_language": "Minor, Phrygian",
+    "interval_preferences": [
+      "m2",
+      "m3",
+      "P4"
+    ],
+    "density_range": null,
+    "orchestration_color": "Solo oboe, muted strings",
+    "contour": "Descending, resolving up",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "shadow/double",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Inverted register",
+    "articulation": "",
+    "rhythm_type": "Distorted version of hero",
+    "harmonic_language": "Same progressions, minor",
+    "interval_preferences": [
+      "Mirrors protagonist"
+    ],
+    "density_range": null,
+    "orchestration_color": "Darker version of hero's timbre",
+    "contour": "Inversion of hero",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "nature/elemental",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "Wide, open",
+    "articulation": "",
+    "rhythm_type": "Flowing or static",
+    "harmonic_language": "Pentatonic, quartal",
+    "interval_preferences": [
+      "Open P5",
+      "P4",
+      "M2"
+    ],
+    "density_range": null,
+    "orchestration_color": "Woodwinds, harp, strings trem.",
+    "contour": "Wave-like, circular",
+    "grounding": "interpretive",
+    "source_files": [
+      "character-theme-design.md"
+    ]
+  },
+  {
+    "word": "unity",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Unison"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "resolve",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Unison"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "blankness",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Unison"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "pain",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 2nd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "intimacy",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 2nd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "dread",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 2nd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "stepping",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 2nd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "searching",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 2nd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "gentle tension",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 2nd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "sadness",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 3rd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "folk",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 3rd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "warmth",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 3rd",
+      "Major 6th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "contentment",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 3rd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "clarity",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 3rd"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "questioning",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Perfect 4th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "openness",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Perfect 4th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "call",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Perfect 4th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "evil",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Tritone"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "the forbidden",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Tritone"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "stability",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Perfect 5th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "power",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Perfect 5th",
+      "Octave"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "the open horizon",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Perfect 5th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "yearning",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 6th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "reaching",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 6th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "anguish",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 6th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "nobility",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 6th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "lyric sweep",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 6th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "tension seeking resolution",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 7th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "blues",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Minor 7th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "brightness with edge",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Major 7th"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "transcendence",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Octave"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  },
+  {
+    "word": "reinforcement",
+    "synonyms": [],
+    "tempo_range": null,
+    "mode_scale": [],
+    "dynamics": "",
+    "texture": "",
+    "register": "",
+    "articulation": "",
+    "rhythm_type": "",
+    "harmonic_language": "",
+    "interval_preferences": [
+      "Octave"
+    ],
+    "density_range": null,
+    "orchestration_color": "",
+    "contour": "",
+    "grounding": "interpretive",
+    "source_files": [
+      "musical-semiotics.md"
+    ]
+  }
+]

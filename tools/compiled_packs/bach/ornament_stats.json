@@ -1,0 +1,39 @@
+{
+ "composer": "bach",
+ "schema": 1,
+ "total_bars": 6795,
+ "textures": {
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0032,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1945,
+   "n": 2828
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0014,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2562,
+   "n": 1417
+  },
+  "scalar_run": {
+   "grace": 0.0015,
+   "trill": 0.0056,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1723,
+   "n": 1968
+  },
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2296,
+   "n": 575
+  }
+ }
+}

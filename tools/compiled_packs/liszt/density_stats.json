@@ -1,85 +1,93 @@
 {
  "composer": "liszt",
+ "schema": 2,
  "total_bars": 437,
  "rh": {
+  "chordal": {
+   "median": 5.0,
+   "p25": 3,
+   "p75": 6,
+   "mean": 5.26,
+   "n": 264
+  },
+  "zigzag_figuration": {
+   "median": 11.0,
+   "p25": 9,
+   "p75": 15,
+   "mean": 12.13,
+   "n": 46
+  },
   "singing_melody": {
    "median": 5.0,
-   "p25": 4,
-   "p75": 6,
-   "mean": 4.81,
-   "n": 222
+   "p25": 5,
+   "p75": 7,
+   "mean": 5.57,
+   "n": 82
+  },
+  "scalar_run": {
+   "median": 13.0,
+   "p25": 9,
+   "p75": 16,
+   "mean": 12.79,
+   "n": 14
   },
   "held_note": {
    "median": 2,
    "p25": 1,
    "p75": 2,
    "mean": 1.65,
-   "n": 57
-  },
-  "scalar_run": {
-   "median": 9,
-   "p25": 9,
-   "p75": 10,
-   "mean": 9.7,
-   "n": 53
-  },
-  "chordal": {
-   "median": 6.0,
-   "p25": 5,
-   "p75": 8,
-   "mean": 6.45,
-   "n": 58
-  },
-  "zigzag_figuration": {
-   "median": 16,
-   "p25": 15,
-   "p75": 18,
-   "mean": 16.97,
-   "n": 33
+   "n": 17
   }
  },
  "lh": {
-  "walking_bass": {
-   "median": 18,
-   "p25": 18,
-   "p75": 18,
-   "mean": 17.95,
-   "n": 37
+  "broken_chord_wave": {
+   "median": 12.0,
+   "p25": 10,
+   "p75": 14,
+   "mean": 12.33,
+   "n": 158
   },
-  "alberti": {
-   "median": 11.5,
-   "p25": 9,
-   "p75": 12,
-   "mean": 10.96,
-   "n": 218
+  "walking_bass": {
+   "median": 9,
+   "p25": 6,
+   "p75": 16,
+   "mean": 10.58,
+   "n": 71
   },
   "bass_melody": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 4,
-   "mean": 3.62,
-   "n": 68
+   "median": 5.0,
+   "p25": 4,
+   "p75": 6,
+   "mean": 4.95,
+   "n": 20
   },
-  "broken_chord_wave": {
-   "median": 7,
-   "p25": 6,
-   "p75": 8,
-   "mean": 6.64,
-   "n": 25
+  "block_chord_sparse": {
+   "median": 3,
+   "p25": 2,
+   "p75": 4,
+   "mean": 2.76,
+   "n": 89
+  },
+  "alberti": {
+   "median": 8,
+   "p25": 7,
+   "p75": 10,
+   "mean": 8.27,
+   "n": 11
   },
   "pedal_point": {
    "median": 2,
    "p25": 1,
    "p75": 2,
-   "mean": 1.7,
-   "n": 53
+   "mean": 1.62,
+   "n": 13
   },
-  "block_chord_sparse": {
-   "median": 6.0,
-   "p25": 5,
-   "p75": 8,
-   "mean": 6.41,
-   "n": 22
+  "block_chord_offbeat": {
+   "median": 8,
+   "p25": 6,
+   "p75": 11,
+   "mean": 8.87,
+   "n": 61
   }
  }
 }

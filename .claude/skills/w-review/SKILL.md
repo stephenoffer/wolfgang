@@ -32,9 +32,8 @@ was done inline (not fresh-ears)** so the loss of independence is visible.
 ## Step 1: Discriminator report (evidence, not verdict)
 
 ```bash
-python3 -c "
-import sys, json; sys.path.insert(0, 'tools')
-from scales.scales import self_evaluate
+.venv/bin/python -c "
+import sys, json; from scales.scales import self_evaluate
 print(json.dumps(self_evaluate('<piece-id>', '<section-id>'), indent=1))
 "
 ```
@@ -53,13 +52,17 @@ checklist.
   the generic bands above.
 - **`authoring`** — how many phrases were agent-authored vs engine-realized,
   and any `composed_blind` phrases (a committed surface that resembled none of
-  its briefed exemplars). A blind phrase ignored the corpus that was put in
-  front of it — treat it as a prime revision target.
-- **`section_gate`** — a hard pass/fail verdict (`passed` + `hard_failures`)
-  derived from the egregious cases (mechanically static texture, composed-blind
-  phrases, many traits far outside the corpus). A failed section_gate must be
-  resolved or explicitly justified before the section is accepted — it is not
-  advisory.
+  its briefed exemplars). This is **advisory**: composing away from the briefed
+  exemplars is a legitimate creative choice. Listen — if a blind phrase sings,
+  it stays; if it drifted by accident, that's a revision target. Your ear, not
+  the flag, decides.
+- **`section_gate`** — its `hard_failures` are **physical only**, but they are
+  real: they are read back off the ASSEMBLED score, so they catch what the commit
+  gate could not see (a bar holding more beats than its meter after export, a
+  note outside the instrument's range). Fix those. It never hard-fails on
+  anything artistic; composed-blind phrases and the notation census come through
+  as `advisory`. The fresh-ears critic, not this gate, judges whether the section
+  works.
 
 The numeric style gate (`run_style_review_section`) also runs these
 targets and can emit a machine RevisionScript for engine-realized
@@ -73,9 +76,12 @@ resolutions, climax delivery, texture-variety debts?
 
 ## Step 3: RevisionScript (if revising)
 
-Structured ops, not prose. Target the SMALLEST change that fixes the
-problem; never wholesale re-realize an agent-authored phrase — propose
-bar-level edits instead.
+Structured ops, not prose. Match the fix to the problem: a **local defect**
+(clash, buried note, one weak bar) gets the smallest bar-level edit; a
+**structural weakness** (the line doesn't sing, a flat climax, phrases that
+don't connect) gets a re-heard, recomposed passage — a contiguous run of bars,
+or the phrase — because patching one bar won't fix a line. Drive revision by
+what you hear, never to push a metric back into band.
 
 ```json
 {
@@ -99,32 +105,21 @@ Apply via `apply_revision(piece_id, section_id, ops)`. Max 3 review
 iterations per section — after that, accept or escalate to the user with
 your honest assessment.
 
-## Step 4: Bounded corpus-divergence loop (auto-revision)
+## Step 4: Corpus divergence is a DIAGNOSTIC, not a revision driver
 
-After the ears review, close the loop against the corpus distribution.
-This catches statistical drift the critic may not name — a section that
-sounds fine bar-to-bar but, as a whole, sits outside the composer's real
-spread (too flat, too dense, monotone texture).
+`compare_to_corpus(piece_id, section_id)` z-scores tell you where a section sits
+relative to the composer's real spread. **Read it to understand, never to
+chase.** Falsification against real scores showed an out-of-band z-score does not
+mean bad music — real Chopin and Beethoven sit outside a MIDI-derived corpus's
+narrow bands. Optimizing one metric back into band reliably breaks another
+("metric whack-a-mole"), and that is exactly the mechanical-sounding output this
+system rejects.
 
-Run up to **2 passes**:
-
-1. `compare_to_corpus(piece_id, section_id)` → read `flags` (`|z|>2`),
-   `texture_divergence.over`, and `authoring.composed_blind_phrases`.
-2. If nothing is flagged, stop — the section is corpus-faithful.
-3. Otherwise, translate each flag into a targeted revision and dispatch the
-   `music-critic` with the divergence flags (it returns bar-level
-   `revision_ops`). Map the drift to where it lives:
-   - `texture_change_pct` / `lh_texture_change_pct` **low** → the most
-     monotonous phrases (identical density bar-to-bar); vary the
-     accompaniment, change figure at phrase boundaries.
-   - `events_per_bar` **low** → skeletal phrases; raise figuration to the
-     density target. **high** → overstuffed; thin under the melody.
-   - `density_cv` **low** → flat dynamics of activity; add ebb and flow.
-   - `composed_blind` phrases → re-compose adapting the briefed exemplars
-     (re-read the brief first).
-4. `apply_revision(...)`, then re-run `compare_to_corpus` to confirm.
-
-Stop after 2 passes regardless. **Log the residual** — never hide an
-unresolved drift: report which metrics are still `|z|>2` and which phrases
-were recomposed, so the final state is honest. Targeted bar edits only;
-never wholesale re-realize an agent-authored phrase.
+So there is **no auto-revision loop here**. Revision targets come from the
+fresh-ears critic and the `musical_ear` (audible defects: clashes, buried melody,
+no breathing, monotony) — Steps 2-3. If a z-score flag *coincides* with something
+the critic actually heard ("this section is monotonous"), fix what the critic
+heard; the z-score was just a corroborating hint. If the critic is happy and a
+z-score is out of band, **leave it** — the music is the judge of the metric, not
+the other way around. Always report residual divergence honestly in your summary,
+but do not revise to satisfy it.

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cad_v7_chord_full_texture",
+    "type": "V7 chord, full texture",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I (PAC)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_v7_chord_crescendo",
+    "type": "V7 chord, crescendo",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I (triumphant)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_v7_chord_third_time",
+    "type": "V7 chord, third time",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I (finally)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  }
+]

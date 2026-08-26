@@ -74,6 +74,12 @@ def _real_phrases(composer, limit=60, phrase_len=4):
             if run != list(range(run[0], run[0] + phrase_len)):
                 continue
             key = bd[run[0]].get("key", "C")
+            # The corpus's own meter, not an assumed 4/4. Palestrina is notated in
+            # 4/2 (eight quarter-note beats), so reconstructing his phrases as 4/4
+            # made every one of them overflow: 55 of 60 phrases were discarded as
+            # "meter artifacts" and he was never actually calibrated.
+            meter = list(bd[run[0]].get("time_sig") or [4, 4])
+            capacity = meter[0] * 4.0 / meter[1]
             try:
                 shbars = []
                 tplan = []
@@ -81,7 +87,9 @@ def _real_phrases(composer, limit=60, phrase_len=4):
                 orig_md = orig_ad = 0
                 for bn in run:
                     rh, lh = cb._adapted_to_shorthand(adapter.transpose_bar(bd[bn], key))
-                    if cb._shorthand_overflows_bar(rh, 4.0) or cb._shorthand_overflows_bar(lh, 4.0):
+                    if cb._shorthand_overflows_bar(rh, capacity) or cb._shorthand_overflows_bar(
+                        lh, capacity
+                    ):
                         overflow = True
                         break
                     shbars.append({"rh": rh, "lh": lh})
@@ -96,24 +104,31 @@ def _real_phrases(composer, limit=60, phrase_len=4):
                 if overflow or not shbars:
                     continue
                 layer = direct_compose.compose_phrase(
-                    shbars, key=key, bar_start=1, phrase_id="c", meter=[4, 4]
+                    shbars, key=key, bar_start=1, phrase_id="c", meter=meter
                 )
             except Exception:
                 continue
-            yield layer, [b["rh"] for b in shbars if b["rh"]], key, tplan, (orig_md, orig_ad)
+            yield (
+                layer,
+                [b["rh"] for b in shbars if b["rh"]],
+                key,
+                tplan,
+                (orig_md, orig_ad),
+                meter,
+            )
             n += 1
             if n >= limit:
                 return
 
 
-def _graph(layer, exemplars, key, tplan):
+def _graph(layer, exemplars, key, tplan, meter=(4, 4)):
     slot = PhraseSlot(
         phrase_id="m1_a_p1",
         section_id="m1_a",
         bar_start=1,
         bar_count=layer.bar_count,
         key=key,
-        meter=[4, 4],
+        meter=list(meter),
         texture_plan=tplan,
     )
     g = PieceGraph()
@@ -143,19 +158,21 @@ def _run_for(composer):
     warn_counts = Counter()
     block_counts = Counter()
     cvs = []
-    for layer, exemplars, key, tplan, (orig_md, orig_ad) in _real_phrases(composer):
+    for layer, exemplars, key, tplan, (orig_md, orig_ad), meter in _real_phrases(composer):
         # Reconstruction-collapse filter: direct_compose's LH/RH re-expansion
         # sometimes drops a real multi-event corpus bar to 1 event/bar (the
         # documented LH-reconstruction artifact). Those bars are skeletal in the
         # *reconstruction*, not in the real music, so they are a realization
         # artifact like meter overflow — not a gate-calibration signal.
+        # counter_reply is the RH inner voice (music_io engraves it as treble
+        # voice 2), so it counts toward the right hand — not the left.
         rh_ev = sum(
             len([e for e in getattr(layer, n2) if e.pitch != "rest"])
-            for n2 in ("principal_line", "ornamental_surface")
+            for n2 in ("principal_line", "ornamental_surface", "counter_reply")
         )
         lh_ev = sum(
             len([e for e in getattr(layer, n2) if e.pitch != "rest"])
-            for n2 in ("bass_foundation", "response_layer", "counter_reply")
+            for n2 in ("bass_foundation", "response_layer")
         )
         collapsed = (orig_md >= 8 and rh_ev < 0.6 * orig_md) or (
             orig_ad >= 8 and lh_ev < 0.6 * orig_ad
@@ -163,7 +180,7 @@ def _run_for(composer):
         if collapsed:
             physical_artifacts += 1
             continue
-        g = _graph(layer, exemplars, key, tplan)
+        g = _graph(layer, exemplars, key, tplan, meter)
         res = commit_gate.run_commit_gate(g, "m1_a_p1", layer, composer=composer)
         if any(d.check == "meter" for d in res.blocking):
             physical_artifacts += 1
@@ -228,3 +245,42 @@ if __name__ == "__main__":
         fn()
         print(f"ok {name}")
     print(f"\n{len(fns)} tests passed")
+
+
+@pytest.mark.calibration
+def test_discriminator_bands_do_not_reject_real_music():
+    """Every generic band must pass the standing test: would it reject real
+    canonical scores? `direction_changes_per_bar` was hand-written as (1.0, 2.0)
+    and rejected HALF of 36 real Mozart/Beethoven/Chopin movements — including 5
+    of 12 Mozart sonata movements. A band that fails this is measuring the band,
+    not the music."""
+    import glob
+
+    from scales.scales import _DISCRIMINATOR_BANDS
+    from scales.style_analyzer import analyze_score
+
+    files = []
+    for pat in ("mozart-piano-sonatas", "beethoven-piano-sonatas", "chopin-mazurkas"):
+        files += sorted(glob.glob(f"tools/reference_scores/{pat}/**/*.krn", recursive=True))[:8]
+    if not files:
+        pytest.skip("reference scores not present")
+
+    measured = []
+    for f in files:
+        try:
+            measured.append(analyze_score(f))
+        except Exception:
+            continue
+    assert measured, "no reference scores could be analysed"
+
+    _PCT = {"texture_change_pct", "rest_ratio", "stepwise_pct"}
+    failures = []
+    for metric, (lo, hi) in _DISCRIMINATOR_BANDS.items():
+        vals = [m[metric] for m in measured if metric in m]
+        if len(vals) < 10:
+            continue
+        vals = [v / 100.0 if metric in _PCT else v for v in vals]
+        out = sum(1 for v in vals if (lo is not None and v < lo) or (hi is not None and v > hi))
+        if out / len(vals) > 0.25:
+            failures.append(f"{metric} band ({lo}, {hi}) rejects {out}/{len(vals)} real movements")
+    assert not failures, "\n".join(failures)

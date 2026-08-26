@@ -204,16 +204,13 @@ class PatternRetriever:
 
 
 def _beats_to_dur_str(beats: float) -> str:
-    """Convert beat duration to duration string."""
-    mapping = {
-        4.0: "w",
-        3.0: "dh",
-        2.0: "h",
-        1.5: "dq",
-        1.0: "q",
-        0.75: "de",
-        0.5: "e",
-        0.25: "s",
-    }
-    closest = min(mapping.keys(), key=lambda k: abs(k - beats))
-    return mapping[closest]
+    """Duration code for a beat value — delegates to the one duration table.
+
+    This was a local list of eight plain values, so every tuplet and every value
+    shorter than a 16th snapped to "s": a bar of corpus triplets came back as
+    16ths and summed to two thirds of its meter. There is one duration table in
+    this project and it knows tuplets, 32nds and 64ths.
+    """
+    from .duration import beats_to_dur
+
+    return beats_to_dur(beats)

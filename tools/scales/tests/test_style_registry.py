@@ -1,4 +1,6 @@
-"""Unit tests for style_registry.py. Run: python3 -m scales.tests.test_style_registry"""
+"""Unit tests for style_registry.py. Run: .venv/bin/python -m pytest tools/scales/tests/test_style_registry.py"""
+
+import pytest
 
 from scales import style_registry as SR
 
@@ -61,3 +63,175 @@ if __name__ == "__main__":
         fn()
         print(f"ok {fn.__name__}")
     print(f"\n{len(fns)} tests passed")
+
+
+# ─── Every composer must resolve to a style, and to its OWN genre data ───────
+
+
+def test_every_compiled_pack_has_a_style():
+    """A composer missing from `_STYLE_MEMBERS` is invisible to style references.
+
+    Liszt sat unlisted while being one of only twelve armed composers, so
+    "compose in a romantic style" drew on Chopin, Schubert and Weber and quietly
+    ignored the Liszt corpus — and `genre_for("liszt")` fell through to
+    "classical", handing a Liszt piece Classical texture-transition odds.
+    """
+    import os
+
+    from scales.style_registry import _STYLE_MEMBERS
+
+    packs_dir = os.path.join("tools", "compiled_packs")
+    if not os.path.isdir(packs_dir):
+        pytest.skip("compiled_packs not present")
+    members = {m for v in _STYLE_MEMBERS.values() for m in v}
+    packs = {
+        d
+        for d in os.listdir(packs_dir)
+        if os.path.isdir(os.path.join(packs_dir, d))
+        and not d.startswith(("style__", "blend__", "."))
+    }
+    missing = sorted(packs - members)
+    assert not missing, (
+        f"compiled pack(s) with no entry in _STYLE_MEMBERS: {missing} — these "
+        "resolve to no style at all and drop to the classical genre fallback"
+    )
+
+
+def test_armed_composers_all_resolve_to_a_real_genre():
+    """The armed composers are the ones whose corpus actually gets used."""
+    import os
+
+    from scales.style_registry import genre_for, styles_for_composer
+
+    idx = os.path.join("tools", "reference_index")
+    if not os.path.isdir(idx):
+        pytest.skip("reference_index not present")
+    armed = [d for d in os.listdir(idx) if os.path.isdir(os.path.join(idx, d))]
+    unclassified = [c for c in armed if not styles_for_composer(c)]
+    assert not unclassified, (
+        f"armed composer(s) with no style: {sorted(unclassified)}; "
+        f"genre_for gives them {[genre_for(c) for c in unclassified]}"
+    )
+
+
+def test_a_style_reference_loads_its_own_genre_matrix_not_classical():
+    """The fallback was hard-coded to `by_genre/classical.json` for everyone.
+
+    Genre matrices for baroque, romantic, late-romantic, impressionist, modern,
+    minimalist, nationalistic and film-score sat unread beside it, so every
+    style reference in the system was given Classical texture-transition odds —
+    in the one place whose entire job is style fidelity.
+    """
+    from pathlib import Path
+
+    from scales.style_registry import load_transition_matrix
+
+    lib = Path("tools") / "pattern_library"
+    if not (lib / "transitions" / "by_genre" / "romantic.json").exists():
+        pytest.skip("pattern library not present")
+
+    for ref, expected in (
+        ("style__romantic", "romantic"),
+        ("style__baroque", "baroque"),
+        ("style__classical", "classical"),
+    ):
+        matrix = load_transition_matrix(ref, lib)
+        assert matrix.get("genre") == expected, (
+            f"{ref} loaded the {matrix.get('genre')!r} matrix, expected {expected!r}"
+        )
+
+
+def test_genre_for_falls_back_honestly_on_an_unknown_name():
+    from scales.style_registry import genre_for
+
+    assert genre_for("") == "classical"
+    assert genre_for("someone-nobody-has-heard-of") == "classical"
+
+
+def test_the_transition_matrix_loader_exists_only_once():
+    """`PhraseBank` and `TransitionBank` carried byte-identical copies."""
+    import ast
+    import inspect
+
+    from scales import phrase_bank, transition_bank
+
+    for mod in (phrase_bank, transition_bank):
+        tree = ast.parse(inspect.getsource(mod))
+        for fn in [n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)]:
+            if fn.name != "_load_transition_matrix":
+                continue
+            # Strip the docstring — it *describes* the by_genre bug it fixed.
+            stmts = [n for n in fn.body if not (isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant))]
+            body = "\n".join(ast.unparse(n) for n in stmts)
+            assert "load_transition_matrix" in body, (
+                f"{mod.__name__}._load_transition_matrix does not delegate to "
+                "style_registry.load_transition_matrix"
+            )
+            assert "by_genre" not in body, (
+                f"{mod.__name__}._load_transition_matrix builds genre paths "
+                "itself instead of delegating; that duplication is what fell "
+                "back to classical.json for every composer"
+            )
+
+
+# ─── A composer id is not a safe path component ──────────────────────────────
+
+
+def test_pack_dir_name_makes_a_blend_id_filesystem_safe():
+    """`blend:beethoven+liszt` contains a colon, which Windows will not accept.
+
+    Style ids were already written `style__<name>` precisely to avoid this;
+    blends did not follow the convention, so a blended style could not compile
+    on Windows at all.
+    """
+    assert ":" not in SR.pack_dir_name("blend:beethoven+liszt")
+    assert SR.pack_dir_name("blend:beethoven+liszt") == "blend__beethoven-liszt"
+
+
+def test_pack_dir_name_leaves_ordinary_ids_alone():
+    """No migration for anything already on disk."""
+    for name in ("mozart", "style__classical", "strauss-r", "arvo-part", "rimsky-korsakov"):
+        assert SR.pack_dir_name(name) == name
+
+
+def test_pack_dir_name_cannot_escape_the_packs_directory():
+    """Composer names arrive from free text, and went straight into a path."""
+    for hostile in ("../../etc/passwd", "a/b", "..", "./x", "~/.ssh"):
+        try:
+            safe = SR.pack_dir_name(hostile)
+        except ValueError:
+            continue  # refusing outright is also a correct outcome
+        assert "/" not in safe and ".." not in safe, f"{hostile!r} -> {safe!r}"
+
+
+def test_pack_dir_name_refuses_a_name_with_no_safe_form():
+    """Better than silently mapping to the packs root and writing a pack over
+    the directory that holds every other pack."""
+    for empty in ("", "   ", "...", "___"):
+        with pytest.raises(ValueError):
+            SR.pack_dir_name(empty)
+
+
+def test_every_pack_path_goes_through_the_sanitiser():
+    """Seven read/write sites built `COMPILED_PACKS / composer` by hand."""
+    import re
+    from pathlib import Path
+
+    offenders = []
+    for name in (
+        "context_compiler.py",
+        "style_resolver.py",
+        "donor_strategy.py",
+        "composition_brief.py",
+        "progression_model.py",
+    ):
+        path = Path("tools") / "scales" / name
+        if not path.exists():
+            continue
+        for line in path.read_text().splitlines():
+            if re.search(r"(COMPILED_PACKS|_COMPILED_PACKS)\s*/\s*(composer|key)\b", line):
+                offenders.append(f"{name}: {line.strip()}")
+    assert not offenders, (
+        "raw composer id used as a path component; route it through "
+        "style_registry.pack_dir_name:\n  " + "\n  ".join(offenders)
+    )

@@ -304,7 +304,7 @@ def _arm_from_bars(composer: str, bars: List[Dict[str, Any]]) -> Dict[str, Any]:
     return idx
 
 
-def acquire(composer: str, use_web: bool = True, max_files: int = 60) -> Dict[str, Any]:
+def acquire(composer: str, use_web: bool = True, max_files: int = 120) -> Dict[str, Any]:
     """Arm a composer end to end. Returns a coverage report."""
     from scales.composition_brief import composer_coverage_tier
 
@@ -377,7 +377,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "--no-web", action="store_true", help="local music21 corpus only; do not fetch from the web"
     )
     ap.add_argument(
-        "--max-files", type=int, default=60, help="max score files to ingest (default 60)"
+        "--max-files", type=int, default=120, help="max score files to ingest (default 120)"
     )
     ap.add_argument(
         "--status", action="store_true", help="report the composer's coverage tier and exit"

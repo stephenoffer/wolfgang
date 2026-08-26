@@ -26,7 +26,6 @@ from .pitch import (
     key_to_root_midi,
     midi_to_pitch,
     pitch_to_midi,
-    snap_to_scale,
 )
 
 _CORPUS_DIR = Path(__file__).parent.parent / "reference_index"
@@ -55,6 +54,8 @@ class AdaptedBar:
     """A corpus bar transformed for the target context."""
 
     rh_events: List[Dict] = field(default_factory=list)
+    rh_inner_events: List[Dict] = field(default_factory=list)  # inner RH voice ('//' polyphony)
+    lh_inner_events: List[Dict] = field(default_factory=list)  # inner LH voice ('//' polyphony)
     lh_events: List[Dict] = field(default_factory=list)
     target_key: str = "Gm"
     target_bar_num: int = 1
@@ -62,6 +63,32 @@ class AdaptedBar:
     transforms_applied: List[str] = field(default_factory=list)
     melody_density: int = 0
     accomp_density: int = 0
+
+
+# Parallel-mode degree mapping. Converting a major exemplar for a minor phrase
+# (or the reverse) means changing the 3rd, 6th and 7th degrees — it does NOT
+# mean bending every note to the nearest scale tone.
+_MAJOR_TO_MINOR = {4: 3, 9: 8, 11: 10}
+_MINOR_TO_MAJOR = {3: 4, 8: 9, 10: 11}
+
+
+def _remode(midi: int, tonic_pc: int, src_mode: str, tgt_mode: str) -> int:
+    """Re-cast one pitch from one mode into the other, keeping everything else.
+
+    Snapping to the target scale — which is what this used to do to EVERY note —
+    deletes exactly the notes that matter. The brief tells the composer that a
+    single chromatic inflection "colors the emotional temperature of the
+    phrase", and then hands it exemplars with every chromatic note flattened
+    onto the nearest diatonic degree. Appoggiaturas, applied dominants, the
+    raised fourth and the Neapolitan all vanished before the composer saw them.
+    """
+    if src_mode == tgt_mode:
+        return midi
+    table = _MAJOR_TO_MINOR if src_mode != "minor" else _MINOR_TO_MAJOR
+    degree = (midi - tonic_pc) % 12
+    if degree not in table:
+        return midi
+    return midi + (table[degree] - degree)
 
 
 class CorpusAdapter:
@@ -177,6 +204,7 @@ class CorpusAdapter:
         target_mode = "minor" if is_minor_key(target_key) else "major"
         target_scale = build_scale(target_root + 48, target_mode)
 
+        source_mode = bar.get("key_mode") or ("minor" if is_minor_key(source_key) else "major")
         rh_adapted = self._transpose_events(
             bar.get("rh_events", []),
             bar.get("rh_display", []),
@@ -186,6 +214,7 @@ class CorpusAdapter:
             target_scale,
             target_mode,
             register_base=60,  # RH in octave 4+
+            source_mode=source_mode,
         )
         lh_adapted = self._transpose_events(
             bar.get("lh_events", []),
@@ -196,10 +225,48 @@ class CorpusAdapter:
             target_scale,
             target_mode,
             register_base=36,  # LH in octave 2-3
+            source_mode=source_mode,
+        )
+
+        rh_inner = bar.get("rh_inner_display") or []
+        rh_inner_adapted = (
+            self._transpose_events(
+                rh_inner,
+                rh_inner,
+                source_key,
+                target_key,
+                target_root,
+                target_scale,
+                target_mode,
+                register_base=60,
+                source_mode=source_mode,
+            )
+            if rh_inner
+            else []
+        )
+        # The LOWER staff's inner voice — a chorale's tenor, the middle line of a
+        # keyboard texture. It was extracted into the corpus and then dropped
+        # here, so four-part writing reached the brief as two parts.
+        lh_inner = bar.get("lh_inner_display") or []
+        lh_inner_adapted = (
+            self._transpose_events(
+                lh_inner,
+                lh_inner,
+                source_key,
+                target_key,
+                target_root,
+                target_scale,
+                target_mode,
+                register_base=36,
+            )
+            if lh_inner
+            else []
         )
 
         return AdaptedBar(
             rh_events=rh_adapted,
+            rh_inner_events=rh_inner_adapted,
+            lh_inner_events=lh_inner_adapted,
             lh_events=lh_adapted,
             target_key=target_key,
             target_bar_num=target_bar_num,
@@ -219,8 +286,14 @@ class CorpusAdapter:
         target_scale: List[int],
         target_mode: str,
         register_base: int,
+        source_mode: str = "major",
     ) -> List[Dict]:
-        """Transpose a list of events to target key."""
+        """Transpose a list of events to the target key.
+
+        EXACT interval transposition. Chromatic notes are preserved; only a
+        change of MODE alters a pitch, and then only the 3rd, 6th and 7th
+        degrees that define the mode.
+        """
         result = []
         source_root = key_to_root_midi(source_key)
         transpose_semitones = target_root - source_root
@@ -253,12 +326,10 @@ class CorpusAdapter:
                 for p in pitches:
                     midi = pitch_to_midi(p)
                     if midi is not None:
-                        new_midi = midi + transpose_semitones
-                        # Snap to target scale for style coherence
-                        snapped = snap_to_scale(new_midi, target_scale)
-                        if snapped is None:
-                            snapped = new_midi
-                        new_pitches.append(midi_to_pitch(snapped, target_key))
+                        new_midi = _remode(
+                            midi + transpose_semitones, target_root, source_mode, target_mode
+                        )
+                        new_pitches.append(midi_to_pitch(new_midi, target_key))
                 chord_evt = {"type": "chord", "pitches": new_pitches, "dur": dur}
                 if "chord_intervals" in evt:
                     chord_evt["chord_intervals"] = evt["chord_intervals"]
@@ -270,13 +341,12 @@ class CorpusAdapter:
                 if pitch_str:
                     midi = pitch_to_midi(pitch_str)
                     if midi is not None:
-                        new_midi = midi + transpose_semitones
-                        snapped = snap_to_scale(new_midi, target_scale)
-                        if snapped is None:
-                            snapped = new_midi
+                        new_midi = _remode(
+                            midi + transpose_semitones, target_root, source_mode, target_mode
+                        )
                         note_evt = {
                             "type": "note",
-                            "pitch": midi_to_pitch(snapped, target_key),
+                            "pitch": midi_to_pitch(new_midi, target_key),
                             "dur": dur,
                         }
                         note_evt.update(_ornaments(evt))
@@ -290,12 +360,10 @@ class CorpusAdapter:
                         new_midi = clamp_to_range(new_midi, 60, 96)
                     else:
                         new_midi = clamp_to_range(new_midi, 36, 72)
-                    snapped = snap_to_scale(new_midi, target_scale)
-                    if snapped is None:
-                        snapped = new_midi
+                    new_midi = _remode(new_midi, target_root, source_mode, target_mode)
                     interval_evt = {
                         "type": "note",
-                        "pitch": midi_to_pitch(snapped, target_key),
+                        "pitch": midi_to_pitch(new_midi, target_key),
                         "dur": dur,
                     }
                     interval_evt.update(_ornaments(evt))
@@ -445,44 +513,18 @@ class CorpusAdapter:
     # ─── Conversion to LayerIR events ─────────────────────────────────
 
     def adapted_bar_to_shorthand(self, adapted: AdaptedBar) -> Dict:
-        """Convert an AdaptedBar to direct_compose shorthand format."""
-        from .duration import beats_to_dur
+        """Convert an AdaptedBar to direct_compose shorthand.
 
-        rh_tokens = []
-        for e in adapted.rh_events:
-            if e.get("type") == "rest":
-                dur_code = beats_to_dur(e.get("dur", 1.0))
-                rh_tokens.append(f"rest_{dur_code}")
-            elif e.get("type") == "chord":
-                # Use highest pitch for melody
-                pitches = e.get("pitches", [])
-                if pitches:
-                    dur_code = beats_to_dur(e.get("dur", 1.0))
-                    rh_tokens.append(f"{pitches[-1]}{dur_code}")
-            elif e.get("type") == "note":
-                pitch = e.get("pitch", "C4")
-                dur_code = beats_to_dur(e.get("dur", 1.0))
-                rh_tokens.append(f"{pitch}{dur_code}")
+        Delegates to the brief's renderer, which keeps chords as chords, carries
+        ornaments and grace notes, and shows the inner voice with ``//``. The
+        version that lived here collapsed every chord to ONE note — the top of a
+        right-hand chord, the bottom of a left-hand one — so a bar of real
+        chordal writing came out as a single line with the harmony deleted.
+        """
+        from .composition_brief import _adapted_to_shorthand
 
-        lh_tokens = []
-        for e in adapted.lh_events:
-            if e.get("type") == "rest":
-                dur_code = beats_to_dur(e.get("dur", 1.0))
-                lh_tokens.append(f"rest_{dur_code}")
-            elif e.get("type") == "chord":
-                pitches = e.get("pitches", [])
-                if pitches:
-                    dur_code = beats_to_dur(e.get("dur", 1.0))
-                    lh_tokens.append(f"{pitches[0]}{dur_code}")
-            elif e.get("type") == "note":
-                pitch = e.get("pitch", "C3")
-                dur_code = beats_to_dur(e.get("dur", 1.0))
-                lh_tokens.append(f"{pitch}{dur_code}")
-
-        return {
-            "rh": " ".join(rh_tokens),
-            "lh": " ".join(lh_tokens),
-        }
+        rh, lh = _adapted_to_shorthand(adapted)
+        return {"rh": rh, "lh": lh}
 
     # ─── Top-level: adapt a phrase ────────────────────────────────────
 

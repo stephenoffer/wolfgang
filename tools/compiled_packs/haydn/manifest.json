@@ -1,6 +1,6 @@
 {
   "composer": "haydn",
-  "genre": "classical",
+  "genre": "",
   "support_tier": "A",
   "corpus_bar_count": 1013,
   "profile_files": [
@@ -15,7 +15,12 @@
     "stylistic-evolution.md"
   ],
   "corpus_files": [
-    "bar_index.json"
+    "bar_index.json",
+    "bars_00.json",
+    "gesture_bank.json",
+    "phrase_catalog.json",
+    "window_index.json",
+    "window_index_00.json"
   ],
   "pattern_count": 981
 }

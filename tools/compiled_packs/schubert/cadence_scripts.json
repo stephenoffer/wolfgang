@@ -1,0 +1,54 @@
+[
+  {
+    "id": "cad_v_bvi",
+    "type": "V \u2192 bVI",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "G7 \u2192 Ab major (in C)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "schubert/harmonic-language.md"
+  },
+  {
+    "id": "cad_v_vi",
+    "type": "V \u2192 vi",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "G7 \u2192 A minor (in C)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "schubert/harmonic-language.md"
+  },
+  {
+    "id": "cad_v_iv6",
+    "type": "V \u2192 IV6",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "G7 \u2192 F/A (in C)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "schubert/harmonic-language.md"
+  },
+  {
+    "id": "cad_v_iii",
+    "type": "V \u2192 iii",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "G7 \u2192 E minor (in C)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "schubert/harmonic-language.md"
+  }
+]

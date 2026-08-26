@@ -1,71 +1,72 @@
 {
  "composer": "bach",
- "total_bars": 4893,
+ "schema": 2,
+ "total_bars": 6795,
  "rh": {
-  "held_note": {
-   "median": 1.0,
-   "p25": 1,
-   "p75": 2,
-   "mean": 1.46,
-   "n": 1490
-  },
   "singing_melody": {
-   "median": 4.0,
+   "median": 6.0,
    "p25": 4,
-   "p75": 5,
-   "mean": 4.18,
-   "n": 3110
-  },
-  "scalar_run": {
-   "median": 8,
-   "p25": 7,
-   "p75": 9,
-   "mean": 8.23,
-   "n": 101
+   "p75": 8,
+   "mean": 5.75,
+   "n": 2828
   },
   "zigzag_figuration": {
    "median": 14,
-   "p25": 14,
-   "p75": 14,
-   "mean": 14.11,
-   "n": 9
+   "p25": 11,
+   "p75": 17,
+   "mean": 16.04,
+   "n": 1417
   },
-  "passage_work": {
-   "median": 13.5,
-   "p25": 13,
-   "p75": 16,
-   "mean": 14.55,
-   "n": 22
+  "scalar_run": {
+   "median": 10.0,
+   "p25": 9,
+   "p75": 11,
+   "mean": 10.4,
+   "n": 1968
+  },
+  "held_note": {
+   "median": 2,
+   "p25": 2,
+   "p75": 2,
+   "mean": 2.0,
+   "n": 575
   }
  },
  "lh": {
   "pedal_point": {
-   "median": 1.0,
-   "p25": 1,
+   "median": 2.0,
+   "p25": 2,
    "p75": 2,
-   "mean": 1.4,
-   "n": 1192
+   "mean": 1.79,
+   "n": 780
   },
-  "bass_melody": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 4,
-   "mean": 3.63,
-   "n": 1752
-  },
-  "alberti": {
-   "median": 5.0,
+  "walking_bass": {
+   "median": 8,
    "p25": 5,
-   "p75": 6,
-   "mean": 5.79,
-   "n": 564
+   "p75": 10,
+   "mean": 7.5,
+   "n": 2553
   },
   "broken_chord_wave": {
-   "median": 5.0,
-   "p25": 5,
-   "p75": 6,
-   "mean": 5.67,
-   "n": 1182
+   "median": 10,
+   "p25": 8,
+   "p75": 12,
+   "mean": 10.17,
+   "n": 2641
+  },
+  "bass_melody": {
+   "median": 4,
+   "p25": 2,
+   "p75": 4,
+   "mean": 3.41,
+   "n": 527
+  },
+  "alberti": {
+   "median": 6.0,
+   "p25": 6,
+   "p75": 9,
+   "mean": 7.71,
+   "n": 284
   }
  }
 }

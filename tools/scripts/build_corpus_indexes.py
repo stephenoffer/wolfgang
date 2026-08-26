@@ -499,7 +499,19 @@ def main(argv: Optional[List[str]] = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     force = "--force" in argv
     argv = [a for a in argv if a != "--force"]
-    composers = argv or [c for c in all_composers_with_bars() if force or c not in _FLAGSHIP]
+    # Skipping the flagship composers by default made "rebuild the indexes" a
+    # silent no-op for mozart, beethoven and chopin — the three composers most
+    # pieces are written against. Their catalogs then survived across corpus
+    # changes: beethoven's phrase_catalog was 59% MOZART phrases, so a Beethoven
+    # brief cited "corpus K.279/i" for its phrase shape. Stale is now opt-in.
+    composers = argv or all_composers_with_bars()
+    if not argv and not force:
+        stale = [c for c in composers if c in _FLAGSHIP]
+        if stale:
+            print(
+                f"note: rebuilding flagship composers too ({', '.join(sorted(stale))}); "
+                f"existing per-artifact files are still kept unless --force"
+            )
     for composer in composers:
         result = build_composer(composer, force=force)
         print(json.dumps(result))

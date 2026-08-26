@@ -1,6 +1,8 @@
-"""Enforcement tests for the hardened commit path: brief receipt requirement,
-hard density floor when corpus stats are missing, blocking corpus_alignment
-(composed_blind), tightened waivers, and the corpus-bar calibration guard.
+"""Enforcement tests for the commit path: brief receipt requirement (still
+enforced — studying references is required), and the now-ADVISORY corpus
+checks. Density floors, figuration_flat, and composed_blind still DETECT, but
+they warn rather than block — only physical constraints (meter) reject a commit,
+so the agent has creative liberty to invent away from the corpus.
 
 Run: python3 -m scales.tests.test_commit_gate_enforcement
 """
@@ -64,15 +66,16 @@ def _graph(slot, trace=None):
 # ─── B2: hard density floor when corpus stats are missing ─────────────────────
 
 
-def test_density_floor_blocks_when_stats_missing():
-    # 2 events/bar LH with NO corpus stats must still be blocked (generic floor).
+def test_density_floor_warns_when_stats_missing():
+    # 2 events/bar LH with NO corpus stats must still be DETECTED (generic floor)
+    # — now advisory (warn), not blocking.
     layer = _layer_from_bars(
         [["C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6"]] * 4,  # rich RH
         [["C3", "G3"]] * 4,  # skeletal LH
     )
     d = commit_gate._check_density(layer, _slot(4), density_stats={}, hand="lh")
     assert d is not None, "missing stats must NOT disable the density guard"
-    assert d.severity == "block"
+    assert d.severity == "warn"
     assert "generic floor" in d.corpus_ref
 
 
@@ -107,7 +110,7 @@ def test_figuration_flat_fires_on_sustained_photocopy():
         [bar, bar, bar, bar],  # identical alberti every bar
     )
     d = commit_gate._check_figuration_flat(layer, _slot(4), "mozart")
-    assert d is not None and d.severity == "block"
+    assert d is not None and d.severity == "warn"
 
 
 def test_figuration_flat_exempts_static_texture():
@@ -124,11 +127,12 @@ def test_figuration_flat_exempts_static_texture():
     assert d is None, "static block-chord texture must be exempt"
 
 
-# ─── B1: corpus_alignment (composed_blind) blocks ─────────────────────────────
+# ─── B1: corpus_alignment (composed_blind) is advisory ────────────────────────
 
 
-def test_corpus_alignment_blocks_when_surface_ignores_exemplars():
+def test_corpus_alignment_warns_when_surface_ignores_exemplars():
     # Exemplars: smooth stepwise eighths. Surface: huge leaps, all whole notes.
+    # Detected and recorded, but advisory (warn) — invention is allowed.
     exemplars = ["C5e D5e E5e F5e G5e A5e B5e C6e"] * 3
     layer = _layer_from_bars([["C5", "C8"]], [["C3"]])  # 2 wild notes, sparse
     layer.principal_line = [
@@ -139,8 +143,8 @@ def test_corpus_alignment_blocks_when_surface_ignores_exemplars():
     g = _graph(_slot(2), trace={"briefed_exemplars": exemplars})
     ds = commit_gate._check_corpus_alignment(g, "m1_a_p1", layer)
     blind = [d for d in ds if d.check == "composed_blind"]
-    assert blind and blind[0].severity == "block"
-    # and the trace flag was recorded for self_evaluate
+    assert blind and blind[0].severity == "warn"
+    # and the trace flag was recorded for self_evaluate / the critic
     assert g.phrases["m1_a_p1"].context_trace["composed_blind"] is True
 
 
@@ -190,20 +194,39 @@ def test_waiver_requires_substantial_reason():
     assert any("real musical reason" in r for r in res.rejected_waivers)
 
 
-def test_waiver_caps_blocking_checks():
-    layer = _layer_from_bars([["C5", "D5"]], [["C3", "G3"]])
-    g = _graph(_slot(1))
-    res = commit_gate.run_commit_gate(
-        g,
-        "m1_a_p1",
-        layer,
-        allow=[
-            {"check": "density_low_rh", "reason": "deliberate pointillist gap here"},
-            {"check": "density_low_lh", "reason": "deliberate pointillist gap here"},
-        ],
-        composer="mozart",
+# ─── Only physical constraints block; corpus checks are advisory ──────────────
+
+
+def test_advisory_checks_do_not_block_commit():
+    # Skeletal LH + a surface that ignores the briefed exemplars: both are
+    # DETECTED but neither blocks. The commit passes (warnings only) — the agent
+    # has creative liberty; the fresh-ears critic judges the result.
+    exemplars = ["C5e D5e E5e F5e G5e A5e B5e C6e"] * 3
+    layer = _layer_from_bars(
+        [["C5", "C8"]] * 4,  # wild leaps, sparse RH (trips composed_blind)
+        [["C3", "G3"]] * 4,  # skeletal LH (trips density floor)
     )
-    assert any("too many blocking checks" in r for r in res.rejected_waivers)
+    g = _graph(_slot(4), trace={"briefed_exemplars": exemplars})
+    res = commit_gate.run_commit_gate(g, "m1_a_p1", layer, composer="mozart")
+    assert res.passed, "advisory checks must not block a commit"
+    assert not res.blocking
+    warned = {d.check for d in res.warnings}
+    assert "composed_blind" in warned or "density_low_lh" in warned, warned
+
+
+def test_meter_overflow_still_blocks():
+    # Physical constraint: five quarter notes in a 4/4 bar overflow capacity.
+    layer = LayerIR(phrase_id="m1_a_p1", bar_count=1, key="C", meter=[4, 4])
+    layer.principal_line = [
+        LayerEvent(
+            bar=1, beat=float(i + 1), pitch="C5", duration="q", source_layer="principal_line"
+        )
+        for i in range(5)
+    ]
+    g = _graph(_slot(1))
+    res = commit_gate.run_commit_gate(g, "m1_a_p1", layer, composer="mozart")
+    assert not res.passed, "meter overflow must still block"
+    assert any(d.check == "meter" for d in res.blocking)
 
 
 # ─── A: brief receipt requirement through the public commit API ───────────────
@@ -358,19 +381,32 @@ def test_unarmed_composer_not_silently_substituted():
         assert smatched is True and sr.is_style_id(sname), (sname, smatched)
 
 
-# ─── C3: section gate elevates egregious flags ────────────────────────────────
+# ─── C3: section gate carries no artistic hard-failures ───────────────────────
 
 
-def test_section_gate_flags_composed_blind_and_static_texture():
+def test_section_gate_has_no_artistic_hard_failures():
+    # Agent-creative direction (2026-06-21): composing away from the briefed
+    # exemplars is a legitimate creative choice, not a defect. composed_blind is
+    # now ADVISORY — the gate always passes at the artistic level (physical
+    # constraints are enforced at commit), and surfaces blind phrases for the
+    # critic to weigh.
     report = {
         "metrics": {"texture_change_pct": {"status": "low", "value": 0.05}},
         "authoring": {"composed_blind": 2, "composed_blind_phrases": ["p1", "p2"]},
         "corpus_divergence": {"composer": "mozart", "metrics": {}},
     }
     gate = scales._section_gate(report)
-    assert gate["passed"] is False
-    assert any("mechanically static" in h for h in gate["hard_failures"])
-    assert any("composed blind" in h for h in gate["hard_failures"])
+    assert gate["passed"] is True
+    assert not gate["hard_failures"]
+    assert any("composed away" in a for a in gate["advisory"])
+
+    # Static texture + huge z-divergence (real, grounded music) also passes.
+    static_but_grounded = {
+        "metrics": {"texture_change_pct": {"status": "low", "value": 0.05}},
+        "authoring": {"composed_blind": 0, "composed_blind_phrases": []},
+        "corpus_divergence": {"composer": "chopin", "metrics": {"x": {"z": 9.0}}},
+    }
+    assert scales._section_gate(static_but_grounded)["passed"] is True
 
 
 def test_section_gate_passes_clean_report():

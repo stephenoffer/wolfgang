@@ -5,7 +5,11 @@
   "corpus_bar_count": 241,
   "profile_files": [],
   "corpus_files": [
-    "bar_index.json"
+    "bar_index.json",
+    "gesture_bank.json",
+    "phrase_catalog.json",
+    "window_index.json",
+    "window_index_00.json"
   ],
   "pattern_count": 233
 }

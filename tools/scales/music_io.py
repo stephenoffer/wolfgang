@@ -85,26 +85,47 @@ def layer_ir_to_event_ir(layer_ir: LayerIR) -> List[EventIR]:
     if layer_ir.instrumentation in ("solo_piano", "piano"):
         for event in layer_ir.principal_line:
             events.append(_layer_to_event(event, "treble", 1))
-        for event in layer_ir.ornamental_surface:
-            events.append(_layer_to_event(event, "treble", 2))
+        # counter_reply and ornamental_surface are DIFFERENT voices. Filing both
+        # as treble voice 2 put two independent lines in one music21 Voice at
+        # overlapping offsets, which serializes without a backup and spills past
+        # the barline — the same class of defect the pedal-under-figuration fix
+        # addressed for the left hand.
         for event in layer_ir.counter_reply:
             events.append(_layer_to_event(event, "treble", 2))
+        orn_voice = 3 if layer_ir.counter_reply else 2
+        for event in layer_ir.ornamental_surface:
+            events.append(_layer_to_event(event, "treble", orn_voice))
         for event in layer_ir.bass_foundation:
             events.append(_layer_to_event(event, "bass", 1))
         for event in layer_ir.response_layer:
             events.append(_layer_to_event(event, "bass", 2))
+        # Third and fourth voices per hand, each on its own numbered staff voice.
+        for name, evs in (getattr(layer_ir, "inner_voices", None) or {}).items():
+            staff = "treble" if name.startswith("treble") else "bass"
+            voice = int(name[-1]) if name[-1].isdigit() else 3
+            for event in evs or []:
+                events.append(_layer_to_event(event, staff, voice))
     else:
-        # Orchestra: each layer gets its own staff
-        for event in layer_ir.principal_line:
-            events.append(_layer_to_event(event, "melody", 1))
-        for event in layer_ir.foreground or []:
-            events.append(_layer_to_event(event, "foreground", 1))
-        for event in layer_ir.countermelody or []:
-            events.append(_layer_to_event(event, "counter", 1))
-        for event in layer_ir.harmonic_mass or []:
-            events.append(_layer_to_event(event, "harmony", 1))
-        for event in layer_ir.bass_foundation:
-            events.append(_layer_to_event(event, "bass", 1))
+        # Orchestra: each layer gets its own staff. EVERY layer must be emitted —
+        # rhythmic_motor, color_layer, punctuation, response_layer, counter_reply
+        # and ornamental_surface used to be silently dropped here, so an
+        # orchestrated section lost whole instrumental parts on the way to the
+        # score with no error anywhere.
+        for staff, layer in (
+            ("melody", layer_ir.principal_line),
+            ("foreground", layer_ir.foreground),
+            ("counter", layer_ir.countermelody),
+            ("counter_reply", layer_ir.counter_reply),
+            ("harmony", layer_ir.harmonic_mass),
+            ("response", layer_ir.response_layer),
+            ("motor", layer_ir.rhythmic_motor),
+            ("color", layer_ir.color_layer),
+            ("punctuation", layer_ir.punctuation),
+            ("ornament", layer_ir.ornamental_surface),
+            ("bass", layer_ir.bass_foundation),
+        ):
+            for event in layer or []:
+                events.append(_layer_to_event(event, staff, 1))
 
     # Sort by bar, beat, staff
     events.sort(key=lambda e: (e.bar, e.beat, e.staff, e.voice))
@@ -112,7 +133,13 @@ def layer_ir_to_event_ir(layer_ir: LayerIR) -> List[EventIR]:
 
 
 def _layer_to_event(event: LayerEvent, staff: str, voice: int) -> EventIR:
-    """Convert a LayerEvent to an EventIR."""
+    """Convert a LayerEvent to an EventIR.
+
+    Every notation field on LayerEvent must be forwarded. This conversion is
+    the single choke point between "what the agent wrote" and "what gets
+    engraved": a field missing from this list is a mark that vanishes with no
+    error anywhere, which is how ``expression`` used to be lost.
+    """
     return EventIR(
         staff=staff,
         bar=event.bar,
@@ -129,33 +156,23 @@ def _layer_to_event(event: LayerEvent, staff: str, voice: int) -> EventIR:
         slur=event.slur,
         hairpin=event.hairpin,
         expression=event.expression,
+        technique=getattr(event, "technique", None),
+        pedal=getattr(event, "pedal", None),
+        fingering=getattr(event, "fingering", None),
     )
 
 
 def _m21_duration_to_code(dur) -> str:
-    """Convert music21 Duration to SCALES duration code."""
-    ql = dur.quarterLength
-    mapping = {
-        4.0: "w",
-        3.0: "dh",
-        2.0: "h",
-        1.5: "dq",
-        1.0: "q",
-        0.75: "de",
-        0.5: "e",
-        0.375: "ds",
-        0.25: "s",
-        0.125: "t",
-    }
-    # Find closest
-    best = "q"
-    best_diff = abs(ql - 1.0)
-    for val, code in mapping.items():
-        diff = abs(ql - val)
-        if diff < best_diff:
-            best_diff = diff
-            best = code
-    return best
+    """Convert a music21 Duration to a SCALES duration code.
+
+    Delegates to ``duration.beats_to_dur``, which knows tuplets. The old local
+    table had no tuplet entries, so every triplet read out of a real score was
+    rounded to the nearest 16th — silently corrupting the rhythm of any ingested
+    reference material.
+    """
+    from .duration import beats_to_dur
+
+    return beats_to_dur(dur.quarterLength)
 
 
 def _get_dynamic(element) -> Optional[str]:

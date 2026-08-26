@@ -7,12 +7,24 @@ generated piece's bars (assembled to MusicXML, then re-extracted with
 identical metric definitions, a generated piece can be scored against the
 distribution of real movements with a meaningful z-score.
 
-CONSTRAINT — only fields produced by BOTH paths may be used. ``analyze_score_bars``
-emits: melody_density, accomp_density, rh_texture, lh_texture, melody_direction,
-has_grace_notes, has_dotted_rhythms, register_center, harmony_quality,
-phrase_position. It does NOT emit ``has_rests`` or per-event lists, and neither
-do the music21-sourced corpora (bach, haydn, …) — so those are deliberately not
-used here. Keep this set in sync with ``analyze_score_bars`` if it changes.
+NAMING — ``melody_direction_change_pct`` is the fraction of consecutive BARS
+whose coarse melodic direction label changes (0-1). It is NOT
+``musicality.direction_changes_per_bar``, which counts contour reversals per bar
+(0-many). The two shared a name until 2026-08-18, so the commit gate told the
+agent the corpus norm was "1.0-2.0" while the brief, reading the corpus profile,
+said Beethoven's mean was 0.41 — the same label, two incomparable quantities,
+contradicting each other in the same context window.
+
+CONSTRAINT — only fields produced by BOTH paths may be used. Since the generated
+side runs ``analyze_score_bars`` itself (see ``scales._extract_generated_bars``),
+"both paths" means "whatever that function emits", which today includes
+melody_density, accomp_density, rh_texture, lh_texture, melody_direction,
+has_grace_notes, has_dotted_rhythms, has_rests, register_center, harmony_quality,
+phrase_position, roman/function, melody_line and the rh/lh display event lists.
+This note used to assert that ``has_rests`` and the event lists were NOT emitted
+— they are, and have been — which kept silence out of the comparison entirely.
+Silence is one of the strongest human/machine discriminators there is. Keep this
+set in sync with ``analyze_score_bars`` if it changes.
 """
 
 from __future__ import annotations
@@ -30,10 +42,12 @@ SCALAR_METRICS = [
     "lh_texture_change_pct",
     "rh_texture_change_pct",
     "density_cv",
-    "direction_changes_per_bar",
+    "melody_direction_change_pct",
     "grace_ratio",
     "dotted_ratio",
     "register_span",
+    "rest_bar_ratio",
+    "rest_event_ratio",
 ]
 
 _DENSITY_DELTA = 4  # note-count shift that counts as a texture change
@@ -86,11 +100,27 @@ def bar_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
         "lh_texture_change_pct": round(_frac_changes(lh_tex), 4),
         "rh_texture_change_pct": round(_frac_changes(rh_tex), 4),
         "density_cv": round(density_cv, 4),
-        "direction_changes_per_bar": round(_frac_changes(directions), 4),
+        "melody_direction_change_pct": round(_frac_changes(directions), 4),
         "grace_ratio": round(sum(1 for b in bars if b.get("has_grace_notes")) / n, 4),
         "dotted_ratio": round(sum(1 for b in bars if b.get("has_dotted_rhythms")) / n, 4),
         "register_span": round(max(registers) - min(registers), 2) if registers else 0.0,
+        # Silence. Generated music's most consistent tell is that it never stops
+        # playing: real Mozart rests somewhere in a majority of his bars.
+        "rest_bar_ratio": round(sum(1 for b in bars if b.get("has_rests")) / n, 4),
+        "rest_event_ratio": round(_rest_event_ratio(bars), 4),
     }
+
+
+def _rest_event_ratio(bars: List[Dict[str, Any]]) -> float:
+    """Fraction of notated events (both hands) that are rests."""
+    rests = events = 0
+    for b in bars:
+        for key in ("rh_display", "rh_inner_display", "lh_display", "lh_inner_display"):
+            for e in b.get(key) or []:
+                events += 1
+                if e.get("type") == "rest":
+                    rests += 1
+    return (rests / events) if events else 0.0
 
 
 def texture_distribution(bars: List[Dict[str, Any]], hand: str = "lh") -> Dict[str, float]:

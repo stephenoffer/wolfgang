@@ -73,19 +73,18 @@ class TransitionBank:
         return pairs
 
     def _load_transition_matrix(self) -> Dict:
-        if self._transition_matrix is not None:
-            return self._transition_matrix
+        """Delegates to the single canonical loader.
 
-        for path in [
-            PATTERN_LIBRARY / "transitions" / "by_composer" / f"{self.composer}.json",
-            PATTERN_LIBRARY / "transitions" / "by_genre" / "classical.json",
-        ]:
-            if path.exists():
-                with open(path) as f:
-                    self._transition_matrix = json.load(f)
-                return self._transition_matrix
+        This method existed twice, byte-identical, in this class and in
+        `TransitionBank`, and both fell back to the *classical* genre matrix for
+        every composer — so a Bach or a ``style__romantic`` piece was handed
+        Classical texture-transition odds while `by_genre/baroque.json` and
+        `by_genre/romantic.json` sat unread next to it.
+        """
+        if self._transition_matrix is None:
+            from .style_registry import load_transition_matrix
 
-        self._transition_matrix = {"counts": {}}
+            self._transition_matrix = load_transition_matrix(self.composer, PATTERN_LIBRARY)
         return self._transition_matrix
 
     def score_transition(

@@ -1,190 +1,93 @@
 {
  "composer": "beethoven",
- "total_bars": 16812,
+ "schema": 2,
+ "total_bars": 17757,
  "rh": {
-  "unclassified": {
-   "median": 1,
+  "held_note": {
+   "median": 1.0,
    "p25": 1,
    "p75": 1,
-   "mean": 1.0,
-   "n": 523
+   "mean": 1.23,
+   "n": 526
   },
   "singing_melody": {
    "median": 4.0,
    "p25": 3,
    "p75": 6,
-   "mean": 4.5,
-   "n": 6338
+   "mean": 4.76,
+   "n": 5762
   },
   "chordal": {
-   "median": 3,
-   "p25": 2,
-   "p75": 4,
-   "mean": 3.93,
-   "n": 2945
-  },
-  "scalar_run": {
-   "median": 9.0,
-   "p25": 8,
-   "p75": 12,
-   "mean": 10.79,
-   "n": 1104
-  },
-  "held_note": {
-   "median": 1.0,
-   "p25": 1,
-   "p75": 1,
-   "mean": 1.0,
-   "n": 716
-  },
-  "zigzag_figuration": {
-   "median": 9,
-   "p25": 8,
-   "p75": 12,
-   "mean": 10.77,
-   "n": 1747
-  },
-  "passage_work": {
-   "median": 9,
-   "p25": 8,
-   "p75": 12,
-   "mean": 10.58,
-   "n": 1527
-  },
-  "dialogue_chords": {
    "median": 3.0,
    "p25": 2,
-   "p75": 5,
-   "mean": 4.5,
-   "n": 582
+   "p75": 4,
+   "mean": 3.58,
+   "n": 5326
   },
-  "ornamental_cascade": {
-   "median": 16,
-   "p25": 14,
-   "p75": 24,
-   "mean": 18.98,
-   "n": 349
+  "zigzag_figuration": {
+   "median": 8.0,
+   "p25": 7,
+   "p75": 12,
+   "mean": 10.22,
+   "n": 3090
   },
-  "dotted_pairs": {
-   "median": 6.0,
-   "p25": 5,
-   "p75": 8,
-   "mean": 7.21,
-   "n": 578
-  },
-  "stammer_repeat": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 6,
-   "mean": 4.41,
-   "n": 112
+  "scalar_run": {
+   "median": 9,
+   "p25": 7,
+   "p75": 13,
+   "mean": 10.43,
+   "n": 2689
   }
  },
  "lh": {
-  "block_chord_offbeat": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 4,
-   "mean": 7.92,
-   "n": 446
-  },
-  "sparse_punctuation": {
-   "median": 1,
-   "p25": 1,
-   "p75": 1,
-   "mean": 1.22,
-   "n": 715
-  },
-  "pedal_point": {
+  "block_chord_sparse": {
    "median": 2,
    "p25": 1,
    "p75": 2,
-   "mean": 1.76,
-   "n": 1179
+   "mean": 1.93,
+   "n": 3719
   },
   "bass_melody": {
-   "median": 5.0,
-   "p25": 4,
-   "p75": 6,
-   "mean": 4.68,
-   "n": 2580
-  },
-  "walking_bass_chromatic": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 5,
-   "mean": 4.03,
-   "n": 338
-  },
-  "block_chord_sparse": {
-   "median": 2.0,
-   "p25": 1,
-   "p75": 2,
-   "mean": 2.57,
-   "n": 2224
-  },
-  "alberti": {
-   "median": 9.0,
-   "p25": 8,
-   "p75": 12,
-   "mean": 11.34,
-   "n": 2512
-  },
-  "unclassified": {
-   "median": 4.0,
-   "p25": 3,
-   "p75": 5,
-   "mean": 4.53,
-   "n": 2480
+   "median": 3.0,
+   "p25": 2,
+   "p75": 4,
+   "mean": 3.13,
+   "n": 1442
   },
   "walking_bass": {
    "median": 5,
    "p25": 4,
-   "p75": 6,
-   "mean": 4.77,
-   "n": 913
+   "p75": 8,
+   "mean": 6.12,
+   "n": 3481
   },
-  "oscillation_trill": {
-   "median": 4,
-   "p25": 4,
-   "p75": 6,
-   "mean": 4.84,
-   "n": 409
-  },
-  "broken_chord_wave": {
-   "median": 9,
-   "p25": 8,
-   "p75": 12,
-   "mean": 10.42,
-   "n": 789
-  },
-  "broken_chord_descending": {
-   "median": 8.0,
-   "p25": 8,
-   "p75": 10,
-   "mean": 9.28,
-   "n": 548
-  },
-  "broken_chord_ascending": {
-   "median": 8,
-   "p25": 8,
-   "p75": 11,
-   "mean": 9.44,
-   "n": 495
-  },
-  "sparse_octaves": {
+  "pedal_point": {
    "median": 1.0,
    "p25": 1,
-   "p75": 2,
-   "mean": 1.4,
-   "n": 356
+   "p75": 1,
+   "mean": 1.17,
+   "n": 624
   },
-  "block_chord_tremolo": {
+  "alberti": {
    "median": 8.0,
    "p25": 6,
    "p75": 8,
-   "mean": 7.7,
-   "n": 240
+   "mean": 8.09,
+   "n": 2872
+  },
+  "broken_chord_wave": {
+   "median": 8.0,
+   "p25": 6,
+   "p75": 12,
+   "mean": 10.43,
+   "n": 2220
+  },
+  "block_chord_offbeat": {
+   "median": 6.0,
+   "p25": 4,
+   "p75": 8,
+   "mean": 6.37,
+   "n": 1866
   }
  }
 }

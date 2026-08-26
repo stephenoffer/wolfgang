@@ -57,7 +57,7 @@ def test_texture_and_direction_changes():
     ]
     m = CM.bar_metrics(bars)
     assert abs(m["lh_texture_change_pct"] - 0.5) < 1e-6  # 1 of 2 pairs
-    assert abs(m["direction_changes_per_bar"] - 0.5) < 1e-6  # 1 of 2 pairs
+    assert abs(m["melody_direction_change_pct"] - 0.5) < 1e-6  # 1 of 2 pairs
 
 
 def test_register_span_and_ratios():

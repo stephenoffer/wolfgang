@@ -4,73 +4,193 @@ Duration and meter utilities for SCALES.
 Ported from tools/v3/pitch_utils.py duration section.
 """
 
+from fractions import Fraction
 from typing import Union
 
 # ─── Duration Constants ──────────────────────────────────────────────────────
+#
+# Values are exact ``Fraction``s, never floats: music21 reproduces a tuplet or a
+# 64th perfectly from an exact quarterLength (1/3 -> eighth in a 3:2 tuplet) but
+# a float 0.333… drifts, and float snapping is what used to destroy every
+# triplet and every 32nd on the way to MusicXML. Fraction arithmetic keeps beat
+# cursors exact too, so a bar of triplets sums to the meter on the nose.
 
 DURATION_VALUES = {
     # Standard
-    "w": 4.0,  # whole
-    "h": 2.0,  # half
-    "q": 1.0,  # quarter
-    "e": 0.5,  # eighth
-    "s": 0.25,  # sixteenth
-    "16": 0.25,  # sixteenth alias
-    "t": 0.125,  # thirty-second
-    "32": 0.125,  # thirty-second alias
+    "w": Fraction(4),  # whole
+    "h": Fraction(2),  # half
+    "q": Fraction(1),  # quarter
+    "e": Fraction(1, 2),  # eighth
+    "s": Fraction(1, 4),  # sixteenth
+    "16": Fraction(1, 4),  # sixteenth alias
+    "t": Fraction(1, 8),  # thirty-second
+    "32": Fraction(1, 8),  # thirty-second alias
+    "x": Fraction(1, 16),  # sixty-fourth
+    "64": Fraction(1, 16),  # sixty-fourth alias
     # Dotted
-    "dw": 6.0,
-    "dh": 3.0,
-    "dq": 1.5,
-    "de": 0.75,
-    "ds": 0.375,
+    "dw": Fraction(6),
+    "dh": Fraction(3),
+    "dq": Fraction(3, 2),
+    "de": Fraction(3, 4),
+    "ds": Fraction(3, 8),
+    "dt": Fraction(3, 16),
     # Double-dotted
-    "ddh": 3.5,
-    "ddq": 1.75,
-    "dde": 0.875,
-    # Triplets
-    "trip_q": 2 / 3,
-    "trip_e": 1 / 3,
-    "trip_s": 1 / 6,
+    "ddh": Fraction(7, 2),
+    "ddq": Fraction(7, 4),
+    "dde": Fraction(7, 8),
+    # Triplets (three in the space of two)
+    "trip_w": Fraction(8, 3),
+    "trip_h": Fraction(4, 3),
+    "trip_q": Fraction(2, 3),
+    "trip_e": Fraction(1, 3),
+    "trip_s": Fraction(1, 6),
+    "trip_t": Fraction(1, 12),
+    # Quintuplets / sextuplets / septuplets (per quarter-note beat)
+    "quint_e": Fraction(2, 5),
+    "quint_s": Fraction(1, 5),
+    "sext_s": Fraction(1, 6),
+    "sept_s": Fraction(1, 7),
+}
+
+# Codes that notate as a tuplet. Kept explicit so the shorthand parser can
+# recognize a tuplet suffix and the assembler can label the bracket.
+TUPLET_PREFIXES = ("trip_", "quint_", "sext_", "sept_")
+
+# Base (non-tuplet) code -> tuplet code, so "e_trip" / "etrip" style suffixes can
+# be normalized onto a real code.
+TRIPLET_OF = {
+    "w": "trip_w",
+    "h": "trip_h",
+    "q": "trip_q",
+    "e": "trip_e",
+    "s": "trip_s",
+    "t": "trip_t",
 }
 
 
-def dur_to_beats(d: Union[str, int, float]) -> float:
-    """Convert a duration code to quarter-note beats.
+# ─── Grace ornaments ────────────────────────────────────────────────────────
+#
+# Ornaments whose note is played BEFORE (or crushed into) its principal and
+# therefore consumes no metric time. This set is the single source of truth:
+# the shorthand parser, the meter validator, the commit gate and the assembler
+# all need the same answer, and each of them used to carry its own idea of it.
+# Three separate places tested `ornament != "grace"` and so counted an
+# appoggiatura or an acciaccatura against the bar's capacity — a bar with one
+# in it was reported as overfull and rejected, which made the whole
+# slashed/unslashed grace distinction unusable the moment it was added.
+GRACE_ORNAMENTS = frozenset({"grace", "appoggiatura", "acciaccatura"})
 
-    Accepts codes ('q', 'dq', 'trip_e') or numeric values.
-    Returns 0.0 for unrecognized strings.
+
+def is_grace(ornament) -> bool:
+    """True when an ornament name denotes a note that takes no metric time."""
+    return (ornament or "") in GRACE_ORNAMENTS
+
+
+# Trailing-dot spelling ("h." for a dotted half, "q.." for double-dotted) — the
+# form used by the examples in the brief and the craft doc. Without this the
+# parser read "Ab5h." as a plain half note and every bar written from the
+# documented example came out a beat short, silently.
+DOTTED_OF = {
+    "w": "dw",
+    "h": "dh",
+    "q": "dq",
+    "e": "de",
+    "s": "ds",
+    "t": "dt",
+}
+DOUBLE_DOTTED_OF = {"h": "ddh", "q": "ddq", "e": "dde"}
+
+# A code that is ALREADY dotted, plus another dot. "dh." and "dq." are natural
+# things to write and both used to normalize to nothing, fall through to the
+# parser's fallback, and silently become a QUARTER — turning a 3.5-beat note
+# into a 1-beat one with no error anywhere.
+_REDOT = {"dh": "ddh", "dq": "ddq", "de": "dde"}
+
+
+def normalize_dot_suffix(code: str) -> str:
+    """Fold a trailing-dot duration spelling onto its canonical code.
+
+    Handles the plain forms ("h." → "dh", "h.." → "ddh"), the already-dotted
+    forms ("dh." → "ddh"), and dotted tuplets ("trip_e." → 1.5 × a triplet
+    eighth), which are real rhythms with no canonical code — they resolve to the
+    nearest expressible value rather than silently collapsing to a quarter.
     """
+    stripped = code.rstrip(".")
+    dots = len(code) - len(stripped)
+    if dots == 0:
+        return code
+    if dots == 1:
+        if stripped in DOTTED_OF:
+            return DOTTED_OF[stripped]
+        if stripped in _REDOT:
+            return _REDOT[stripped]
+    elif dots == 2 and stripped in DOUBLE_DOTTED_OF:
+        return DOUBLE_DOTTED_OF[stripped]
+    # A dotted tuplet ("trip_e.", "quint_s."): no code exists for it, so express
+    # the value and let beats_to_dur pick the closest notatable one.
+    if stripped in DURATION_VALUES:
+        factor = Fraction(2) - Fraction(1, 2**dots)
+        return beats_to_dur(DURATION_VALUES[stripped] * factor)
+    return code
+
+
+def is_tuplet_code(code: str) -> bool:
+    """True when a duration code notates as a tuplet (bracketed) figure."""
+    return str(code).startswith(TUPLET_PREFIXES)
+
+
+def dur_codes_longest_first() -> list:
+    """Duration codes ordered so a longest-match suffix scan is unambiguous.
+
+    ``C5trip_e`` must match ``trip_e``, not ``e``; ``C5ds`` must match ``ds``,
+    not ``s``. Sorting by descending length gives both.
+    """
+    return sorted(DURATION_VALUES, key=len, reverse=True)
+
+
+def dur_to_beats(d: Union[str, int, float]) -> Fraction:
+    """Convert a duration code to quarter-note beats as an exact ``Fraction``.
+
+    Accepts codes ('q', 'dq', 'trip_e') or numeric values. Returns 0 for
+    unrecognized strings. The result is exact so bar sums are exact: three
+    ``trip_e`` sum to exactly 1, where floats sum to 0.9999999999999999 and made
+    every triplet bar look like a meter violation.
+    """
+    if isinstance(d, Fraction):
+        return d
     if isinstance(d, (int, float)):
-        return float(d)
+        return Fraction(d).limit_denominator(64)
     d_str = str(d).strip()
     if d_str in DURATION_VALUES:
         return DURATION_VALUES[d_str]
     try:
-        return float(d_str)
-    except (ValueError, TypeError):
-        return 0.0
+        return Fraction(d_str).limit_denominator(64)
+    except (ValueError, TypeError, ZeroDivisionError):
+        return Fraction(0)
 
 
 def beats_to_dur(beats: float) -> str:
-    """Convert beat value to nearest duration code."""
-    best = "q"
-    best_diff = abs(beats - 1.0)
+    """Convert a beat value to the nearest duration code.
+
+    Plain (non-tuplet) codes win ties, so an ordinary 16th never round-trips
+    into a tuplet code just because both are equidistant.
+    """
+    target = Fraction(beats).limit_denominator(64) if not isinstance(beats, Fraction) else beats
+    best, best_key = "q", (abs(target - Fraction(1)), 0)
     for code, val in DURATION_VALUES.items():
-        diff = abs(val - beats)
-        if diff < best_diff:
-            best_diff = diff
-            best = code
+        key = (abs(val - target), 1 if is_tuplet_code(code) else 0)
+        if key < best_key:
+            best_key, best = key, code
     return best
 
 
-def bar_duration(time_sig: tuple) -> float:
-    """Total beats in a bar given a time signature (num, denom).
+def bar_duration(time_sig: tuple) -> Fraction:
+    """Total beats in a bar given a time signature (num, denom), exact.
 
-    (4, 4) -> 4.0, (3, 4) -> 3.0, (6, 8) -> 3.0
+    (4, 4) -> 4, (3, 4) -> 3, (6, 8) -> 3, (4, 2) -> 8
     """
     num, denom = time_sig
-    return num * (4.0 / denom)
+    return Fraction(int(num) * 4, int(denom))
 
 
 def is_strong_beat(beat: float, time_sig: tuple) -> bool:

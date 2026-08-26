@@ -284,7 +284,9 @@ class StyleResolver:
 
     def _load_pack(self, composer: str) -> Dict:
         """Load a compiled ComposerPack."""
-        pack_dir = COMPILED_PACKS / composer
+        from .style_registry import pack_dir_name
+
+        pack_dir = COMPILED_PACKS / pack_dir_name(composer)
         pack = {}
         for filename in [
             "manifest.json",

@@ -60,6 +60,10 @@ class PhraseFunction(str, Enum):
 
 class TextureType(str, Enum):
     SINGING_MELODY = "singing_melody"
+    # A bar the upper staff sustains through. Emitted by the corpus extractor and
+    # used by the phrase texture plan since well before it was listed here, so
+    # anything validating against this enum silently rejected it.
+    HELD_NOTE = "held_note"
     SCALAR_RUN = "scalar_run"
     ZIGZAG_FIGURATION = "zigzag_figuration"
     CHORDAL = "chordal"

@@ -15,8 +15,7 @@ Before assembly, verify all sections have realized phrases.
 ## Assembly
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.piece_graph import PieceGraph
 from scales.assembler import assemble
 graph = PieceGraph.load('workspace/<piece-id>/piece_graph.json')
@@ -28,8 +27,7 @@ print(f'MusicXML written to: {path}')
 ## MIDI Preview
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.piece_graph import PieceGraph
 from scales.midi_renderer import render_midi
 graph = PieceGraph.load('workspace/<piece-id>/piece_graph.json')

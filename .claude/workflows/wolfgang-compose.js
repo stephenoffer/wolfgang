@@ -1,11 +1,12 @@
 export const meta = {
   name: 'wolfgang-compose',
-  description: 'Deterministically compose a PLANNED Wolfgang piece: survey sections, compose each phrase via the phrase-composer subagent with a code-enforced 3-attempt gate-retry loop, fresh-ears review every section via music-critic, then assemble. Control flow (loops, retry, review-per-section) is in code, not prose — the orchestrator cannot skip a step.',
+  description: 'Deterministically compose a PLANNED Wolfgang piece: survey sections, compose each phrase via the phrase-composer subagent with a code-enforced 3-attempt gate-retry loop, fresh-ears review every section via music-critic, ACT on the review with one bounded targeted-revision pass plus a re-review, then assemble. Control flow (loops, retry, review, revise) is in code, not prose — the orchestrator cannot skip a step.',
   whenToUse: 'After /w-plan has built the contract + form + phrase slots for a piece. Pass args:{piece_id, composer}. Resume-safe: already agent-authored phrases are skipped.',
   phases: [
     { title: 'Survey' },
     { title: 'Compose' },
     { title: 'Review' },
+    { title: 'Revise' },
     { title: 'Assemble' },
   ],
 }
@@ -47,14 +48,24 @@ const SURVEY = {
   },
 }
 
-const COMMIT = {
+const SECTION_COMMIT = {
   type: 'object', additionalProperties: false,
-  required: ['phrase_id', 'committed'],
+  required: ['section_id', 'phrases'],
   properties: {
-    phrase_id: { type: 'string' },
-    committed: { type: 'boolean' },
-    blocking: { type: 'string', description: 'gate/brief block reason if not committed' },
-    summary: { type: 'string', description: 'one line on what was written' },
+    section_id: { type: 'string' },
+    phrases: {
+      type: 'array',
+      items: {
+        type: 'object', additionalProperties: false,
+        required: ['phrase_id', 'committed'],
+        properties: {
+          phrase_id: { type: 'string' },
+          committed: { type: 'boolean' },
+          blocking: { type: 'string', description: 'gate/brief block reason if not committed' },
+        },
+      },
+    },
+    summary: { type: 'string', description: 'one line on the section as a whole musical thought' },
   },
 }
 
@@ -65,6 +76,23 @@ const REVIEW = {
     section_id: { type: 'string' },
     verdict: { type: 'string', enum: ['approve', 'revise'] },
     section_gate_passed: { type: 'boolean' },
+    // What specifically to fix, so a revision pass has a target rather than
+    // "make it better". Without these the critic's verdict is unactionable.
+    fix_bars: {
+      type: 'array',
+      description: 'bar numbers that need rewriting, most important first',
+      items: { type: 'integer' },
+    },
+    notes: { type: 'string' },
+  },
+}
+
+const REVISION = {
+  type: 'object', additionalProperties: false,
+  required: ['section_id', 'revised_bars'],
+  properties: {
+    section_id: { type: 'string' },
+    revised_bars: { type: 'integer' },
     notes: { type: 'string' },
   },
 }
@@ -84,7 +112,7 @@ phase('Survey')
 const survey = await agent(
   `Run exactly this and return ONLY the JSON it prints (no commentary):\n` +
   '```\n' +
-  `python3 -c "import sys,json; sys.path.insert(0,'tools'); ` +
+  `.venv/bin/python -c "import json; ` +
   `from scales.scales import list_sections; ` +
   `print(json.dumps(list_sections('${piece}')))"\n` +
   '```\n' +
@@ -99,40 +127,45 @@ if (!sections.length) {
 const todo = sections.reduce((n, s) => n + s.phrases.filter(p => !p.agent_authored).length, 0)
 log(`${piece}: ${sections.length} sections, ${todo} phrase(s) to compose (resume-safe)`)
 
-// ── 2. Compose: sections in order; phrases sequential within a section ────────
-// Continuity flows phrase→phrase (and section→section), so composition is
-// deliberately sequential. The 3-attempt gate-retry is enforced HERE, in code.
+// ── 2. Compose: each SECTION as ONE continuous musical thought ────────────────
+// A section is one act of imagination — a line spanning its phrases, one shaped
+// climax — not phrases stitched together. So ONE composer per section reads ALL
+// its phrase briefs together (run_agent_section_briefs — one corpus load),
+// composes the whole arc, and commits each phrase in order. Sections run in
+// order so continuity flows section→section. Commit granularity stays per-phrase
+// (gate/ledger/resume are per-phrase); only WHO composes together changes. Up to
+// 2 section-level passes; the composer fixes gate-flagged bars per phrase.
 phase('Compose')
 const composedSections = []
 for (const sec of sections) {
-  for (const ph of sec.phrases) {
-    if (ph.agent_authored) continue            // resume: already committed
-    let committed = false
-    for (let attempt = 1; attempt <= 3 && !committed; attempt++) {
-      const r = await agent(
-        `You are composing ONE phrase of a planned Wolfgang piece.\n` +
-        `piece_id='${piece}'  phrase_id='${ph.phrase_id}'  attempt ${attempt}/3` +
-        (composer ? `  composer='${composer}'` : '') + `\n\n` +
-        `Do, in order (all via: python3 -c "import sys; sys.path.insert(0,'tools'); ...):\n` +
-        `1. Fetch the brief: get_composition_brief('${piece}', '${ph.phrase_id}'${composerArg}). ` +
-        `This is REQUIRED — the commit is rejected (brief_not_fetched) without it. ` +
-        `If it reports no exemplars (brief_insufficient), return committed=false with that as blocking.\n` +
-        `2. Compose every note by ADAPTING the brief's real corpus exemplars ` +
-        `(never copy verbatim, never ignore — the gate blocks composed_blind).\n` +
-        `3. Commit via commit_agent_phrase_direct_bars('${piece}', '${ph.phrase_id}', bars${composerArg}). ` +
-        `On quality_gate_blocked, revise ONLY the flagged bars and recommit; ` +
-        `this is attempt ${attempt} of 3.\n\n` +
-        `Return {phrase_id, committed:true} when the commit returns ok:true, ` +
-        `else {phrase_id, committed:false, blocking:'<reason>'}.`,
-        { label: `compose:${ph.phrase_id}#${attempt}`, phase: 'Compose',
-          agentType: 'phrase-composer', schema: COMMIT })
-      committed = !!(r && r.committed)
-    }
-    if (!committed) {
-      log(`⚠ ${ph.phrase_id}: not committed after 3 attempts — engine fallback will realize it`)
-    }
-  }
+  let remaining = sec.phrases.filter(p => !p.agent_authored).map(p => p.phrase_id)
   composedSections.push(sec.section_id)
+  if (!remaining.length) continue              // resume: already committed
+  for (let pass = 1; pass <= 2 && remaining.length; pass++) {
+    const r = await agent(
+      `Compose section '${sec.section_id}' of a planned Wolfgang piece as ONE continuous musical thought.\n` +
+      `piece_id='${piece}'` + (composer ? `  composer='${composer}'` : '') + `  pass ${pass}/2\n\n` +
+      `Do, in order (all via: .venv/bin/python -c "...):\n` +
+      `1. Fetch ALL the section's phrase briefs in ONE call (REQUIRED — commits are rejected with ` +
+      `brief_not_fetched otherwise): run_agent_section_briefs('${piece}', '${sec.section_id}'${composerArg}). ` +
+      `If a brief reports no exemplars (brief_insufficient), report that phrase as committed=false.\n` +
+      `2. Conceive the WHOLE section before writing: one melodic line spanning these phrases (not ` +
+      `${remaining.length} unrelated tunes), a single shaped peak where the CREATIVE INTENT wants it, ` +
+      `accompaniment that evolves. INVENT freely or ADAPT the corpus exemplars (never copy verbatim; ` +
+      `composed_blind is advisory, not a block).\n` +
+      `3. Commit each phrase IN ORDER so they connect, via ` +
+      `commit_agent_phrase_direct_bars('${piece}', '<phrase_id>', bars${composerArg}). Only physical ` +
+      `violations block; on quality_gate_blocked (meter/range) fix the flagged bars of THAT phrase and ` +
+      `recommit. Compose these phrases this pass: ${remaining.join(', ')}.\n\n` +
+      `Return {section_id:'${sec.section_id}', phrases:[{phrase_id, committed, blocking}], summary}.`,
+      { label: `compose:${sec.section_id}#${pass}`, phase: 'Compose',
+        agentType: 'phrase-composer', schema: SECTION_COMMIT })
+    const done = new Set((r && r.phrases || []).filter(p => p.committed).map(p => p.phrase_id))
+    remaining = remaining.filter(pid => !done.has(pid))
+  }
+  if (remaining.length) {
+    log(`⚠ ${sec.section_id}: ${remaining.join(', ')} not committed — engine fallback will realize them`)
+  }
 }
 
 // ── 3. Review: fresh ears on EVERY section (cannot be skipped) ────────────────
@@ -141,24 +174,81 @@ const reviews = await parallel(composedSections.map(sid => () =>
   agent(
     `Review section '${sid}' of piece '${piece}' with FRESH EARS.\n` +
     `Generate the discriminator report yourself:\n` +
-    `python3 -c "import sys,json; sys.path.insert(0,'tools'); ` +
+    `.venv/bin/python -c "import json; ` +
     `from scales.scales import self_evaluate; ` +
     `print(json.dumps(self_evaluate('${piece}', section_id='${sid}'${composerArg}), indent=1))"\n` +
-    `Read the assembled score + the report. Judge singing line, narrative arc, a ` +
+    `Read the assembled score + the report. Judge BY EAR: singing line, narrative arc, a ` +
     `memorable moment, cross-phrase connection, person-vs-machine, and ` +
-    `does-it-sound-like-the-composer. HONOR section_gate: do not approve over an ` +
-    `unaddressed section_gate.passed=false.\n` +
-    `Return {section_id:'${sid}', verdict:'approve'|'revise', section_gate_passed, notes}.`,
+    `does-it-sound-like-the-composer. corpus_divergence/section_gate are advisory ` +
+    `diagnostics (no artistic hard-failures) — your ear decides, never chase a z-score.\n` +
+    `Return {section_id:'${sid}', verdict:'approve'|'revise', section_gate_passed, ` +
+    `fix_bars:[<bar numbers needing work, most important first>], notes}.`,
     { label: `review:${sid}`, phase: 'Review', agentType: 'music-critic', schema: REVIEW })))
 
-const revised = reviews.filter(Boolean).filter(r => r.verdict === 'revise')
+// ── 4. Revise: ACT on the verdicts ────────────────────────────────────────────
+// This step did not exist. The workflow collected the critic's verdicts into a
+// variable, reported them in the return value, and assembled anyway — so the
+// component the architecture calls "the sole driver of revision" drove nothing
+// on the default path, and every measurement feeding it was decoration. One
+// bounded pass: revise the bars the critic named, then re-review those sections
+// only. Bounded because an unbounded loop is how the earlier actor-critic
+// attempts oscillated.
+phase('Revise')
+const flagged = reviews.filter(Boolean).filter(r => r.verdict === 'revise')
+if (flagged.length) {
+  log(`${flagged.length} section(s) flagged for revision: ${flagged.map(r => r.section_id).join(', ')}`)
+}
+const revisions = await parallel(flagged.map(r => () =>
+  agent(
+    `Revise section '${r.section_id}' of piece '${piece}'. A fresh-ears critic ` +
+    `heard it and asked for changes.
 
-// ── 4. Assemble ───────────────────────────────────────────────────────────────
+` +
+    `WHAT THE CRITIC SAID:
+${r.notes || '(no notes)'}
+` +
+    `BARS TO FIX: ${(r.fix_bars && r.fix_bars.length) ? r.fix_bars.join(', ') : '(critic named none — use its notes)'}
+
+` +
+    `Fix ONLY what the critic named. Re-fetch the brief for each affected phrase, ` +
+    `rewrite those bars, and recommit the phrase with commit_agent_phrase_direct_bars ` +
+    `(the whole phrase, with your revised bars in place). Do not re-roll phrases the ` +
+    `critic did not mention — a targeted revision that leaves the rest alone is the ` +
+    `point. If you conclude the critic is wrong about a bar, leave it and say why.
+` +
+    `Return {section_id:'${r.section_id}', revised_bars:<count>, notes:'<what you changed>'}.`,
+    { label: `revise:${r.section_id}`, phase: 'Revise', agentType: 'phrase-composer', schema: REVISION })))
+
+const rerevised = await parallel(
+  revisions.filter(Boolean).filter(v => v.revised_bars > 0).map(v => () =>
+    agent(
+      `Re-review section '${v.section_id}' of piece '${piece}' with FRESH EARS after a ` +
+      `revision pass. Regenerate the discriminator report:
+` +
+      `.venv/bin/python -c "import json; ` +
+      `from scales.scales import self_evaluate; ` +
+      `print(json.dumps(self_evaluate('${piece}', section_id='${v.section_id}'${composerArg}), indent=1))"
+` +
+      `Judge the section as it now stands. Did the revision help, and does anything ` +
+      `still need work?
+` +
+      `Return {section_id:'${v.section_id}', verdict:'approve'|'revise', ` +
+      `section_gate_passed, fix_bars:[], notes}.`,
+      { label: `re-review:${v.section_id}`, phase: 'Revise', agentType: 'music-critic', schema: REVIEW })))
+
+// Final verdict per section: the re-review where there was one, else the first.
+const finalReviews = reviews.filter(Boolean).map(r => {
+  const again = rerevised.filter(Boolean).find(x => x && x.section_id === r.section_id)
+  return again || r
+})
+const stillFlagged = finalReviews.filter(r => r.verdict === 'revise')
+
+// ── 5. Assemble ───────────────────────────────────────────────────────────────
 phase('Assemble')
 const asm = await agent(
   `Assemble piece '${piece}' to MusicXML (the /w-assemble path). Run:\n` +
   '```\n' +
-  `python3 -c "import sys; sys.path.insert(0,'tools'); ` +
+  `.venv/bin/python -c "` +
   `from scales.piece_graph import PieceGraph; from scales.assembler import assemble; ` +
   `g=PieceGraph.load('workspace/${piece}/piece_graph.json'); ` +
   `print(assemble(g, scope='full'))"\n` +
@@ -171,7 +261,8 @@ return {
   piece,
   sections: sections.length,
   phrases_composed: todo,
-  sections_flagged_for_revision: revised.map(r => r.section_id),
-  reviews: reviews.filter(Boolean),
+  sections_revised: revisions.filter(Boolean).filter(v => v.revised_bars > 0).map(v => v.section_id),
+  sections_still_flagged: stillFlagged.map(r => r.section_id),
+  reviews: finalReviews,
   output: asm,
 }

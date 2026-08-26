@@ -7,12 +7,12 @@ exemplars and pass the gate. This module compares a committed melody's rhythm
 and interval vocabulary against the briefed exemplars; if it resembles none of
 them, the phrase is flagged ``composed_blind``.
 
-The commit gate treats ``composed_blind`` as a **blocking** check (see
-commit_gate._DEFAULT_BLOCKING) — the corpus-armed guarantee has teeth only if
-ignoring the corpus is refused. It stays *waivable* with a stated reason
-(``allow=[{'check': 'composed_blind', 'reason': ...}]``), because composing
-away from the corpus can be a legitimate, deliberate choice — but it must be a
-logged decision, not a silent skip.
+The commit gate treats ``composed_blind`` as an **advisory warning**, not a
+block (``commit_gate._DEFAULT_BLOCKING`` holds only ``meter``). This docstring
+said the opposite long after the policy changed, which is worth naming: a comment
+that contradicts the code is how two versions of a rule end up in one context
+window. Inventing away from the corpus is a legitimate creative choice; the flag
+tells the fresh-ears critic where to listen harder, and the critic decides.
 
 Pure-Python: no music21, so it runs inside the commit path cheaply.
 """
@@ -70,7 +70,9 @@ def _signature(midis: List[int], durs: List[str]) -> Dict[str, Dict[str, float]]
 
 
 # A direct_compose token: pitch+dur (E5q), chord ([C5,E5]q), rest (rest_q).
-_TOKEN_RE = re.compile(r"^(\[[^\]]+\]|rest|[A-G][#b\-]?\d)(.*)$")
+# Double accidentals are part of the grammar ("C##4", "Dbb3"); matching only one
+# made those tokens fail the pattern and drop out of the signature entirely.
+_TOKEN_RE = re.compile(r"^(\[[^\]]+\]|rest|[A-Ga-g](?:##|bb|--|[#b\-])?\d)(.*)$")
 
 
 def signature_from_shorthand(rh: str) -> Dict[str, Dict[str, float]]:

@@ -1,0 +1,411 @@
+"""Elect ONE principal theme and force its recurrence/development across sections.
+
+Motifs were only ever realized if hand-placed in a sketch; nothing stated a
+theme and brought it back, so pieces had no memorable through-line. This elects
+the most theme-like motif at plan time and attaches motif placements to each
+section-opening phrase (statement at expositions/A, fragment/sequence in
+development, augmented restatement at the recap) — reusing the existing
+MotifTransform algebra so the normal realization path then materializes them.
+"""
+
+from __future__ import annotations
+
+from typing import Dict, List, Optional
+
+from .models import MotifObject, MotifTransform, MotifTransformOp
+from .pitch import midi_to_pitch
+
+_DEV_ROLES = ("development", "contrasting", "episode")
+_RECAP_ROLES = ("recap", "return", "reprise", "a2", "a_return", "coda")
+
+
+def elect_principal_theme(motif_bank: Dict[str, MotifObject]) -> Optional[str]:
+    """Pick the most theme-like motif: a real contour + recognition anchor +
+    a non-trivial rhythm cell. Returns its id, or None for an empty bank."""
+    if not motif_bank:
+        return None
+
+    def score(m: MotifObject) -> int:
+        return (
+            len(m.interval_contour or [])
+            + len(m.rhythm_cell or [])
+            + (3 if m.recognition_anchor else 0)
+        )
+
+    return max(motif_bank.values(), key=score).motif_id
+
+
+def plan_section_opening_placements(role: str, theme_id: str) -> List[MotifTransform]:
+    """MotifTransform(s) for a section's opening phrase, by section role:
+    development → fragment, recap/coda → augment (transformed restatement),
+    everything else → state (clear statement)."""
+    r = (role or "").lower()
+    if any(k in r for k in _RECAP_ROLES):
+        op = MotifTransformOp.AUGMENT.value
+    elif any(k in r for k in _DEV_ROLES):
+        op = MotifTransformOp.FRAGMENT.value
+    else:
+        op = MotifTransformOp.STATE.value
+    return [MotifTransform(operation=op, params={"motif_id": theme_id})]
+
+
+# ─── Theme as REAL composed material (not an abstract contour) ────────────────
+
+# Duration algebra for augmentation and diminution. The old tables were a
+# 7-entry dict and its reverse, so a theme in triplets, 32nds, 64ths or
+# double-dotted values came back UNCHANGED from "augment" — the transform
+# silently did nothing and the brief told the agent it was an augmentation.
+# Deriving both directions from the real duration values covers every code.
+_DUR_HALVE: Dict[str, str] = {}
+_DUR_DOUBLE: Dict[str, str] = {}
+
+
+def _build_duration_tables() -> None:
+    from .duration import DURATION_VALUES
+
+    by_value: Dict[object, str] = {}
+    for code, val in DURATION_VALUES.items():
+        # Prefer the canonical spelling over an alias ("s" over "16").
+        if val not in by_value or len(code) < len(by_value[val]):
+            by_value[val] = code
+    for code, val in DURATION_VALUES.items():
+        half = by_value.get(val / 2)
+        if half:
+            _DUR_HALVE[code] = half
+        double = by_value.get(val * 2)
+        if double:
+            _DUR_DOUBLE[code] = double
+
+
+_build_duration_tables()
+
+
+def _ev_top_midi(ev) -> Optional[int]:
+    """Top MIDI of a LayerEvent pitch (note name or chord-name list)."""
+    import music21
+    p = ev.pitch
+    names = p if isinstance(p, list) else [p]
+    mids = []
+    for n in names:
+        if n and n != "rest":
+            try:
+                mids.append(music21.pitch.Pitch(n).midi)
+            except Exception:
+                pass
+    return max(mids) if mids else None
+
+
+def capture_theme_surface(graph, phrase_id: str, n_bars: int = 4):
+    """Store the COMPOSED theme (the principal_line of the first n_bars of the
+    committed theme phrase) on the graph, so later sections DEVELOP the real
+    melody the agent wrote — not re-invent it. Returns the captured LayerIR or
+    None."""
+    from .models import LayerEvent, LayerIR
+
+    st = graph.phrases.get(phrase_id)
+    if not st or not getattr(st, "realized", None):
+        return None
+    real = st.realized
+    bars = sorted({e.bar for e in real.principal_line})[:n_bars]
+    theme = LayerIR(phrase_id=f"{phrase_id}__theme", key=real.key, meter=real.meter,
+                    instrumentation=real.instrumentation, bar_count=len(bars))
+    base = bars[0] if bars else 1
+    for e in sorted(real.principal_line, key=lambda x: (x.bar, x.beat)):
+        if e.bar in bars:
+            theme.principal_line.append(
+                LayerEvent(bar=e.bar - base + 1, beat=e.beat, pitch=e.pitch,
+                           duration=e.duration, role=e.role, source_layer="principal_line")
+            )
+    graph.principal_theme_surface = theme
+    return theme
+
+
+def _theme_span_beats(theme) -> float:
+    """Beats the theme occupies, from its own bars and meter."""
+    from .duration import dur_to_beats
+
+    evs = getattr(theme, "principal_line", None) or []
+    if not evs:
+        return 0.0
+    meter = tuple(getattr(theme, "meter", (4, 4)) or (4, 4))
+    try:
+        bpb = float(int(meter[0]) * 4 / int(meter[1]))
+    except Exception:  # pragma: no cover - defensive
+        bpb = 4.0
+    bars = {int(getattr(e, "bar", 1)) for e in evs}
+    span = len(bars) * bpb
+    written = 0.0
+    for e in evs:
+        try:
+            written += float(dur_to_beats(getattr(e, "duration", "q")))
+        except Exception:  # pragma: no cover - defensive
+            continue
+    return max(span, written)
+
+
+def _fit_to_span(mids, durs, span_beats: float):
+    """Drop trailing notes that would run past ``span_beats``."""
+    from .duration import dur_to_beats
+
+    if span_beats <= 0:
+        return mids, durs
+    out_m, out_d, total = [], [], 0.0
+    for m, d in zip(mids, durs):
+        try:
+            b = float(dur_to_beats(d))
+        except Exception:  # pragma: no cover - defensive
+            b = 1.0
+        if total + b > span_beats + 1e-6:
+            break
+        out_m.append(m)
+        out_d.append(d)
+        total += b
+    return (out_m, out_d) if out_m else (mids[:1], durs[:1])
+
+
+def develop_theme_surface(theme, op: str, transpose_semitones: int = 0) -> str:
+    """Render a SUGGESTED development of the real theme melody as shorthand, for
+    the brief. The agent treats it as a starting point to develop creatively, not
+    a verbatim output. op ∈ state/sequence/fragment/invert/augment/retrograde."""
+    if theme is None or not theme.principal_line:
+        return ""
+    evs = sorted(theme.principal_line, key=lambda x: (x.bar, x.beat))
+    notes = [(_ev_top_midi(e), e.duration) for e in evs]
+    notes = [(m, d) for m, d in notes if m is not None]
+    if not notes:
+        return ""
+    op_l = (op or "state").lower()
+    mids = [m for m, _ in notes]
+    durs = [d for _, d in notes]
+
+    if op_l == "fragment":
+        k = max(1, len(notes) // 2)
+        mids, durs = mids[:k], durs[:k]
+    elif op_l == "retrograde":
+        mids, durs = list(reversed(mids)), list(reversed(durs))
+    elif op_l == "invert":
+        head = mids[0]
+        mids = [head - (m - head) for m in mids]
+    elif op_l == "augment":
+        durs = [_DUR_DOUBLE.get(d, d) for d in durs]
+        # Augmentation doubles the theme's LENGTH, so the same number of notes
+        # no longer fits the same number of bars. Handing the agent a suggestion
+        # that overflows its own phrase is worse than handing it nothing: it
+        # either gets truncated at the barline or pushes the phrase out of shape.
+        # Trim to what the theme's own span can hold.
+        mids, durs = _fit_to_span(mids, durs, _theme_span_beats(theme))
+    elif op_l == "diminish":
+        durs = [_DUR_HALVE.get(d, d) for d in durs]
+    # sequence/state: pitch handled by transpose below
+
+    mids = [m + transpose_semitones for m in mids]
+
+    # Spell in the theme's own key. Spelling everything with flats turned a
+    # theme in E major into E-Gb-Ab — wrong accidentals, and a wrong harmonic
+    # reading of the agent's own principal theme every time it was developed.
+    key = getattr(theme, "key", None) or "C"
+    return " ".join(
+        f"{midi_to_pitch(m, key)}{d}" for m, d in zip(mids, durs)
+    )
+
+
+# ─── Is it actually a theme? ─────────────────────────────────────────────────
+#
+# The system elects a "principal theme" by counting how many entries its motif
+# object has, which measures how much data was written down, not whether the
+# tune is memorable. Nothing ever asked whether the elected theme has the
+# properties that make a melody stick: a distinctive rhythm, a shape with a
+# clear high point, a singable range, and an interval profile that is neither a
+# scale nor an arpeggio.
+#
+# These are descriptive. A great theme can break any of them (the Fifth
+# Symphony's is four notes and three of them are the same pitch), so nothing
+# here blocks — it exists so a reviewer can be told "this is a scale, not a
+# tune", which is the commonest failure of generated melody and the one nobody
+# was measuring.
+
+
+def analyze_theme(theme) -> Dict[str, object]:
+    """Memorability properties of a captured theme surface.
+
+    Returns measurements plus plain-language observations. ``None`` fields mean
+    the theme was too short to say.
+    """
+    from .duration import dur_to_beats
+
+    evs = sorted(
+        (e for e in (getattr(theme, "principal_line", None) or [])
+         if getattr(e, "pitch", None) and e.pitch != "rest"),
+        key=lambda e: (getattr(e, "bar", 1), getattr(e, "beat", 1.0)),
+    )
+    out: Dict[str, object] = {
+        "notes": len(evs),
+        "observations": [],
+        "concerns": [],
+    }
+    if len(evs) < 3:
+        out["observations"].append("too short to analyze")
+        return out
+
+    mids = [m for m in (_ev_top_midi(e) for e in evs) if m is not None]
+    if len(mids) < 3:
+        out["observations"].append("no readable pitches")
+        return out
+
+    durs = []
+    for e in evs:
+        try:
+            durs.append(float(dur_to_beats(getattr(e, "duration", "q"))))
+        except Exception:  # pragma: no cover - defensive
+            durs.append(1.0)
+
+    intervals = [b - a for a, b in zip(mids, mids[1:])]
+    steps = sum(1 for i in intervals if 0 < abs(i) <= 2)
+    leaps = sum(1 for i in intervals if abs(i) > 2)
+    repeats = sum(1 for i in intervals if i == 0)
+    n_iv = max(1, len(intervals))
+
+    out["range_semitones"] = max(mids) - min(mids)
+    out["step_ratio"] = round(steps / n_iv, 3)
+    out["leap_ratio"] = round(leaps / n_iv, 3)
+    out["repeat_ratio"] = round(repeats / n_iv, 3)
+    out["distinct_durations"] = len(set(durs))
+    out["peak_position"] = round(mids.index(max(mids)) / (len(mids) - 1), 3)
+    # A theme whose every interval points the same way is a scale or an
+    # arpeggio, not a shape.
+    dirs = [(1 if i > 0 else -1) for i in intervals if i != 0]
+    changes = sum(1 for a, b in zip(dirs, dirs[1:]) if a != b)
+    out["direction_changes"] = changes
+
+    # Longest run of consecutive same-direction steps: 5+ is a scale passage.
+    run = best = 1
+    for a, b in zip(dirs, dirs[1:]):
+        run = run + 1 if a == b else 1
+        best = max(best, run)
+    out["longest_scalar_run"] = best
+
+    obs, concerns = out["observations"], out["concerns"]
+    obs.append(
+        f"{len(mids)} notes spanning {out['range_semitones']} semitones, "
+        f"{out['step_ratio']:.0%} steps / {out['leap_ratio']:.0%} leaps, "
+        f"peak {out['peak_position']:.0%} of the way through"
+    )
+
+    if out["distinct_durations"] < 2:
+        concerns.append(
+            "every note is the same length — a theme is remembered by its rhythm "
+            "at least as much as its pitches, and an undifferentiated stream has "
+            "no rhythmic identity to remember"
+        )
+    if best >= 5:
+        concerns.append(
+            f"{best} consecutive steps in one direction — this is a scale passage, "
+            f"not a shape a listener can hold on to"
+        )
+    if changes == 0:
+        concerns.append("the line never changes direction; it has no arch")
+    if out["range_semitones"] < 4:
+        concerns.append(
+            f"the whole theme sits inside {out['range_semitones']} semitones — "
+            f"too narrow to have a profile"
+        )
+    if out["range_semitones"] > 24:
+        concerns.append(
+            f"{out['range_semitones']} semitones is beyond what a listener hears as "
+            f"one melodic line"
+        )
+    if out["leap_ratio"] > 0.7:
+        concerns.append(
+            "almost every move is a leap — this outlines a chord rather than "
+            "singing a tune"
+        )
+    if out["repeat_ratio"] > 0.6:
+        concerns.append("most of the theme is one repeated pitch")
+    if not concerns:
+        obs.append("has a distinct rhythm, a clear shape and a singable range")
+    return out
+
+
+def theme_recurrence(graph, theme_surface, tolerance: int = 1) -> Dict[str, object]:
+    """Where the principal theme's shape comes back across the piece.
+
+    Matching is on the INTERVAL contour, not on absolute pitch, so a
+    transposed, re-harmonised or differently-registered return still counts —
+    which is the whole point of a theme. A piece whose theme never returns has
+    no memory, and nothing measured that either.
+    """
+    target = _contour_of(theme_surface)
+    hits: List[Dict[str, object]] = []
+    if len(target) < 3:
+        return {"theme_length": len(target), "recurrences": hits, "sections": []}
+
+    for phrase_id, state in (getattr(graph, "phrases", None) or {}).items():
+        realized = getattr(state, "realized", None)
+        if realized is None:
+            continue
+        line = getattr(realized, "principal_line", None)
+        if line is None and isinstance(realized, dict):
+            line = realized.get("principal_line")
+        if not line:
+            continue
+        mids = _midis_of(line)
+        bars = [
+            (e.get("bar") if isinstance(e, dict) else getattr(e, "bar", 1)) for e in line
+        ]
+        contour = [b - a for a, b in zip(mids, mids[1:])]
+        for i in range(len(contour) - len(target) + 1):
+            window = contour[i : i + len(target)]
+            if all(abs(a - b) <= tolerance for a, b in zip(window, target)):
+                hits.append(
+                    {
+                        "phrase_id": phrase_id,
+                        "bar": bars[i] if i < len(bars) else None,
+                        "exact": window == target,
+                    }
+                )
+                break  # one hit per phrase is enough to say "it returns here"
+    return {
+        "theme_length": len(target),
+        "recurrences": hits,
+        "sections": sorted({str(h["phrase_id"]).rsplit("_p", 1)[0] for h in hits}),
+    }
+
+
+def _midis_of(source) -> List[int]:
+    """Top MIDI per note from a shorthand string, a LayerIR, or an event list.
+
+    Accepting only a shorthand string forced every caller to re-serialize its
+    material first, and a caller that got that wrong — printing a chord as
+    ``['A5', 'F5']`` — silently produced an empty contour and reported that the
+    theme never recurs. Taking the material directly removes the round-trip.
+    """
+    from .pitch import pitch_to_midi
+
+    def _top(pitch):
+        if not pitch or pitch == "rest":
+            return None
+        names = pitch if isinstance(pitch, list) else [pitch]
+        vals = [v for v in (pitch_to_midi(n) for n in names) if v is not None]
+        return max(vals) if vals else None
+
+    if isinstance(source, str):
+        from .direct_compose import _parse_shorthand
+
+        return [m for m in (_top(ev.get("pitch")) for ev in _parse_shorthand(source)) if m is not None]
+
+    events = getattr(source, "principal_line", None)
+    if events is None:
+        events = source if isinstance(source, (list, tuple)) else []
+    out = []
+    for e in events:
+        pitch = e.get("pitch") if isinstance(e, dict) else getattr(e, "pitch", None)
+        m = _top(pitch)
+        if m is not None:
+            out.append(m)
+    return out
+
+
+def _contour_of(source) -> List[int]:
+    """Interval contour of a melody, given in any of the accepted forms."""
+    mids = _midis_of(source)
+    return [b - a for a, b in zip(mids, mids[1:])]

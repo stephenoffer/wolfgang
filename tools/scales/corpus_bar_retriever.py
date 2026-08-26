@@ -151,7 +151,8 @@ class CorpusBarRetriever:
                 if evt.get("is_grace"):
                     continue
                 dur_beats = evt.get("dur", 0.25)
-                beat = round(beat * 4) / 4
+                # Do NOT snap the beat cursor to a 16th grid: two notes of a
+                # triplet run land on the same position and one of them is lost.
                 dur_beats = _quantize_duration(dur_beats)
 
                 if beat > max_beats + 0.01:
@@ -232,24 +233,26 @@ def _transpose_pitch(pitch_str: str, transposition: int, dst_key: str) -> Option
 
 
 def _quantize_duration(beats: float) -> float:
-    """Snap to nearest standard duration value."""
-    standard = [4.0, 3.0, 2.0, 1.5, 1.0, 0.75, 0.5, 0.25]
-    return min(standard, key=lambda s: abs(beats - s))
+    """Snap to the nearest value the notation can actually express.
+
+    The old list held eight plain durations, so a triplet eighth (1/3) snapped to
+    a 16th and a 32nd vanished — a bar of corpus triplets came back a third
+    short. The duration table IS the definition of what is notatable.
+    """
+    from .duration import DURATION_VALUES
+
+    values = sorted({float(v) for v in DURATION_VALUES.values()})
+    return min(values, key=lambda v: abs(v - float(beats)))
 
 
 def _beats_to_dur_str(beats: float) -> str:
-    """Convert beat duration to duration string."""
-    durations = [
-        (4.0, "w"),
-        (3.0, "dh"),
-        (2.0, "h"),
-        (1.5, "dq"),
-        (1.0, "q"),
-        (0.75, "de"),
-        (0.5, "e"),
-        (0.25, "s"),
-    ]
-    for threshold, dur_str in durations:
-        if beats >= threshold - 0.05:
-            return dur_str
-    return "s"
+    """Duration code for a beat value — delegates to the one duration table.
+
+    This was a local list of eight plain values, so every tuplet and every value
+    shorter than a 16th snapped to "s": a bar of corpus triplets came back as
+    16ths and summed to two thirds of its meter. There is one duration table in
+    this project and it knows tuplets, 32nds and 64ths.
+    """
+    from .duration import beats_to_dur
+
+    return beats_to_dur(beats)

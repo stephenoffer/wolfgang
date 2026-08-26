@@ -1,0 +1,102 @@
+[
+  {
+    "id": "1",
+    "name": "1",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Theme returns in wrong key",
+      "then corrects to tonic"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "2",
+    "name": "2",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Fortissimo chord where piano was expected (or reverse)"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "3",
+    "name": "3",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "V-vi where V-I was expected",
+      "followed by pause"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "4",
+    "name": "4",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "First theme restated in dominant as \"second theme\""
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "5",
+    "name": "5",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sudden arrival in bVI",
+      "bII",
+      "or enharmonic territory"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "6",
+    "name": "6",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Bass holds V for 8-16 bars while upper voices avoid resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "7",
+    "name": "7",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Multiple deceptive cadences before the real PAC"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "8",
+    "name": "8",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Unrelated chord follows without preparation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "haydn/harmonic-language.md"
+  }
+]

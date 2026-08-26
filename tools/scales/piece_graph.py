@@ -23,8 +23,8 @@ from .models import (
     LayerEvent,
     LayerIR,
     MotifObject,
-    MovementContract,
     NarrativeArc,
+    NarrativeSection,
     PhraseSlot,
     PhraseState,
     PieceContract,
@@ -116,141 +116,158 @@ def _merge_nested(data: dict, path: str, value: dict) -> None:
         existing.update(value)
 
 
+def _coerce(hint, raw):
+    """Coerce one serialized value to what its type hint asks for.
+
+    Recurses through the containers the models actually use:
+    ``Optional[X]``, ``List[X]``, ``Dict[K, V]`` and ``Tuple[...]``, in any
+    nesting. The earlier version handled only a bare ``List[Dataclass]`` and a
+    bare dataclass, so a field typed ``Optional[List[LayerEvent]]`` — which is
+    every orchestra layer — or ``Dict[str, List[LayerEvent]]`` — which is
+    `inner_voices`, the third and fourth contrapuntal voices — fell through to
+    the raw branch and came back as **plain dicts pretending to be notes**.
+    Nothing downstream type-checks, so those layers reached the assembler as
+    dicts and simply produced no sound.
+    """
+    import dataclasses
+    import typing
+
+    if hint is None:
+        return raw
+    origin = typing.get_origin(hint)
+    args = typing.get_args(hint)
+
+    if origin is typing.Union:  # includes Optional[X]
+        if raw is None:
+            return None
+        inner = [a for a in args if a is not type(None)]
+        return _coerce(inner[0], raw) if len(inner) == 1 else raw
+    if origin is list:
+        if not isinstance(raw, list):
+            return raw
+        return [_coerce(args[0], x) for x in raw] if args else list(raw)
+    if origin is dict:
+        if not isinstance(raw, dict):
+            return raw
+        return {k: _coerce(args[1], v) for k, v in raw.items()} if len(args) == 2 else dict(raw)
+    if origin is tuple:
+        return tuple(raw) if isinstance(raw, list) else raw
+    if dataclasses.is_dataclass(hint) and isinstance(raw, dict):
+        return _dataclass_from_dict(hint, raw)
+    return raw
+
+
+def _dataclass_from_dict(cls, data):
+    """Rebuild a dataclass from a dict by its OWN declared fields.
+
+    Hand-enumerated loaders are how this project keeps losing state: the
+    PhraseSlot loader listed ten fields and silently dropped every other one, so
+    `curves` (the narrative energy arc), `motif_transforms` (the theme
+    placements the theme planner attaches at plan time), `harmony_detail`,
+    `pickup_beats`, `continuation` and `notes` all vanished on the first save/load
+    round-trip. Adding a field to a model must not require remembering to add it
+    here too — so this reads the field list from the dataclass and recurses into
+    nested dataclasses through every container in `_coerce`.
+
+    `test_piece_graph_roundtrip.py` fails if any model loses a field.
+    """
+    import dataclasses
+    import typing
+
+    if not dataclasses.is_dataclass(cls):
+        return data
+    if not isinstance(data, dict):
+        return cls()
+    try:
+        hints = typing.get_type_hints(cls)
+    except Exception:
+        hints = {}
+    kwargs = {}
+    for f in dataclasses.fields(cls):
+        if f.name not in data:
+            continue
+        kwargs[f.name] = _coerce(hints.get(f.name), data[f.name])
+    try:
+        return cls(**kwargs)
+    except TypeError:
+        return cls()
+
+
+def _slot_from_dict(slot_data):
+    """Rebuild a PhraseSlot from serialized form, losing nothing."""
+    slot = _dataclass_from_dict(PhraseSlot, slot_data)
+    if isinstance(slot.meter, list):
+        slot.meter = tuple(slot.meter)
+    return slot
+
+
 def _reconstruct_sketch_ir(data: dict) -> "SketchIR":
-    """Reconstruct a SketchIR from a dict."""
-    from .models import (
-        Anchor,
-        BreathPoint,
-        CadenceApproach,
-        DynamicEvent,
-        HarmonyEvent,
-        SketchIR,
-    )
+    """Rebuild a SketchIR from serialized form, losing nothing.
 
-    def _anchors(key: str) -> list:
-        return [
-            Anchor(
-                bar=a.get("bar", 1),
-                beat=a.get("beat", 1.0),
-                pitch_or_degree=a.get("pitch_or_degree", ""),
-                weight=a.get("weight", 1.0),
-                role=a.get("role", "structural"),
-            )
-            for a in data.get(key, [])
-            if isinstance(a, dict)
-        ]
+    This was a hand-enumerated loader that named six of SketchIR's eleven
+    fields, so `texture_plan`, `expression_marks`, `motif_placements`,
+    `entry_signature` and `exit_signature` were **silently dropped on every
+    load**. The sketch is what Claude writes before composing the surface: the
+    texture intent per bar, the expression marks, and the motif placements that
+    tie a phrase to the piece's theme all survived the commit that wrote them
+    and vanished the next time the graph was read from disk.
 
-    def _harmony() -> list:
-        return [
-            HarmonyEvent(
-                bar=h.get("bar", 1),
-                beat=h.get("beat", 1.0),
-                roman=h.get("roman", "I"),
-                key=h.get("key", "C"),
-                function=h.get("function", "tonic"),
-            )
-            for h in data.get("harmonic_rhythm", [])
-            if isinstance(h, dict)
-        ]
+    Drive the field list off the dataclass — see `_dataclass_from_dict`, and
+    `test_piece_graph_roundtrip.py`, which fails if any model loses a field on
+    a save/load round-trip.
+    """
+    from .models import SketchIR
 
-    def _dynamics() -> list:
-        return [
-            DynamicEvent(
-                bar=d.get("bar", 1),
-                beat=d.get("beat", 1.0),
-                level=d.get("level", "mf"),
-                hairpin=d.get("hairpin"),
-            )
-            for d in data.get("dynamic_shape", [])
-            if isinstance(d, dict)
-        ]
-
-    def _breaths() -> list:
-        return [
-            BreathPoint(
-                bar=b.get("bar", 1),
-                beat=b.get("beat", 1.0),
-                type=b.get("type", "rest"),
-            )
-            for b in data.get("breath_points", [])
-            if isinstance(b, dict)
-        ]
-
-    cadence_data = data.get("cadence", {})
-    cadence = (
-        CadenceApproach(
-            type=cadence_data.get("type", "PAC"),
-            approach_bar=cadence_data.get("approach_bar", 7),
-            arrival_bar=cadence_data.get("arrival_bar", 8),
-            soprano_arrival_degree=cadence_data.get("soprano_arrival_degree", 1),
-            bass_motion=cadence_data.get("bass_motion", "V-I"),
-        )
-        if cadence_data
-        else CadenceApproach()
-    )
-
-    return SketchIR(
-        phrase_id=data.get("phrase_id", ""),
-        melody_anchors=_anchors("melody_anchors"),
-        bass_anchors=_anchors("bass_anchors"),
-        harmonic_rhythm=_harmony(),
-        dynamic_shape=_dynamics(),
-        breath_points=_breaths(),
-        cadence=cadence,
-    )
+    return _dataclass_from_dict(SketchIR, data or {})
 
 
 def _reconstruct_layer_event(data: dict) -> LayerEvent:
-    """Reconstruct a LayerEvent from a dict."""
-    return LayerEvent(
-        bar=data.get("bar", 1),
-        beat=data.get("beat", 1.0),
-        pitch=data.get("pitch", "C4"),
-        duration=data.get("duration", "q"),
-        role=data.get("role", "structural"),
-        dynamic=data.get("dynamic"),
-        articulation=data.get("articulation"),
-        ornament=data.get("ornament"),
-        tie=data.get("tie"),
-        slur=data.get("slur"),
-        hairpin=data.get("hairpin"),
-        expression=data.get("expression"),
-        source_layer=data.get("source_layer"),
-    )
+    """Reconstruct a LayerEvent from a dict.
+
+    Hand-enumerating the field list here is a standing hazard: a field added to
+    LayerEvent and not added here is silently dropped on every load, so the
+    notation survives one commit and disappears the next time the graph is
+    read. Drive the list off the dataclass instead of restating it.
+    """
+    from dataclasses import fields as _fields
+
+    kwargs = {}
+    for f in _fields(LayerEvent):
+        if f.name in data:
+            kwargs[f.name] = data[f.name]
+    return LayerEvent(**kwargs)
 
 
 def _reconstruct_layer_ir(data: dict) -> "LayerIR":
-    """Reconstruct a LayerIR from a dict."""
+    """Rebuild a LayerIR from serialized form, losing nothing.
+
+    Hand-enumerating the field list here is a standing hazard: a field added to
+    LayerIR (or to LayerEvent) and not added here is silently dropped on every
+    load, so the notation survives one commit and disappears the next time the
+    graph is read. `inner_voices` (three- and four-voice counterpoint) and
+    `pickup_beats` (the anacrusis marker) were both lost that way. The field
+    list now comes from the dataclass.
+    """
     from .models import LayerIR
 
-    def _events(key: str) -> list:
-        raw = data.get(key)
-        if raw and isinstance(raw, list):
-            return [_reconstruct_layer_event(e) for e in raw if isinstance(e, dict)]
-        return []
-
-    meter = data.get("meter", [4, 4])
-    if isinstance(meter, list):
-        meter = tuple(meter)
-
-    return LayerIR(
-        phrase_id=data.get("phrase_id", ""),
-        instrumentation=data.get("instrumentation", "solo_piano"),
-        principal_line=_events("principal_line"),
-        bass_foundation=_events("bass_foundation"),
-        response_layer=_events("response_layer"),
-        counter_reply=_events("counter_reply"),
-        ornamental_surface=_events("ornamental_surface"),
-        foreground=_events("foreground") or None,
-        countermelody=_events("countermelody") or None,
-        harmonic_mass=_events("harmonic_mass") or None,
-        rhythmic_motor=_events("rhythmic_motor") or None,
-        color_layer=_events("color_layer") or None,
-        punctuation=_events("punctuation") or None,
-        key=data.get("key", "C"),
-        meter=meter,
-        bar_count=data.get("bar_count", 4),
-    )
+    layer = _dataclass_from_dict(LayerIR, data or {})
+    if isinstance(layer.meter, list):
+        layer.meter = tuple(layer.meter)
+    # The orchestra layers are Optional and the assembler branches on `is None`
+    # to decide whether a part exists at all; an empty list would engrave a
+    # silent staff for every instrument the piece does not use.
+    for name in (
+        "foreground",
+        "countermelody",
+        "harmonic_mass",
+        "rhythmic_motor",
+        "color_layer",
+        "punctuation",
+    ):
+        if not getattr(layer, name, None):
+            setattr(layer, name, None)
+    layer.pickup_beats = float(layer.pickup_beats or 0)
+    return layer
 
 
 def load_layer_ir_from_dict(data: dict) -> "LayerIR":
@@ -276,6 +293,8 @@ class PieceGraph:
         self.narrative: NarrativeArc = NarrativeArc()
         self.form: FormGraph = FormGraph()
         self.motif_bank: Dict[str, MotifObject] = {}
+        self.principal_theme_id: str = ""  # elected recurring theme (theme_planner)
+        self.principal_theme_surface: Optional[LayerIR] = None  # the COMPOSED theme, to develop
         self.phrases: Dict[str, PhraseState] = {}
 
         self.phase: str = PipelinePhase.INIT.value
@@ -289,6 +308,14 @@ class PieceGraph:
         self.context_traces: Dict[str, ContextTrace] = {}
         self.context_utilization: Optional[ContextUtilizationReport] = None
         self.style_review_reports: Dict[str, Any] = {}
+
+        # Whole-score reference study — the agent's OWN analysis of complete
+        # reference pieces it read before composing (form, themes, harmonic
+        # language, texture arc, "what makes it work"). Keyed by
+        # "<composer>/<source>". Feeds the planning step and every phrase
+        # brief, so the agent composes from its own understanding of real
+        # scores, not just from statistically-retrieved disconnected bars.
+        self.reference_studies: Dict[str, Any] = {}
 
         # Persisted CrossScaleLedger state (raw dict, schema-versioned) —
         # carries musical promises/debts across runs and movements
@@ -308,6 +335,12 @@ class PieceGraph:
             "narrative": _deep_serialize(self.narrative),
             "form": _deep_serialize(self.form),
             "motif_bank": {k: _deep_serialize(v) for k, v in self.motif_bank.items()},
+            "principal_theme_id": self.principal_theme_id,
+            "principal_theme_surface": (
+                _deep_serialize(self.principal_theme_surface)
+                if self.principal_theme_surface
+                else None
+            ),
             "phrases": {k: _deep_serialize(v) for k, v in self.phrases.items()},
             "phase": self.phase,
             "revision_history": [_deep_serialize(r) for r in self.revision_history],
@@ -329,6 +362,8 @@ class PieceGraph:
             data["context_utilization"] = _deep_serialize(self.context_utilization)
         if hasattr(self, "style_review_reports"):
             data["style_review_reports"] = _deep_serialize(self.style_review_reports)
+        if getattr(self, "reference_studies", None):
+            data["reference_studies"] = _deep_serialize(self.reference_studies)
         if getattr(self, "cross_scale_ledger", None):
             data["cross_scale_ledger"] = self.cross_scale_ledger
 
@@ -413,6 +448,22 @@ class PieceGraph:
             else PieceContract()
         )
 
+        # NarrativeArc reconstruction — without this, narrative was serialized
+        # but never loaded back, so the agent's authored emotional intent
+        # (section.character) never survived to compose time. Defensive,
+        # field-filtered like the other dataclass loads.
+        nar_data = data.get("narrative", {})
+        self.narrative = NarrativeArc()
+        if isinstance(nar_data, dict):
+            self.narrative.primary_climax_section = nar_data.get("primary_climax_section", "")
+            self.narrative.overall_character = nar_data.get("overall_character", "")
+            sec_fields = {f.name for f in fields(NarrativeSection)}
+            for sec in nar_data.get("sections", []):
+                if isinstance(sec, dict):
+                    self.narrative.sections.append(
+                        NarrativeSection(**{k: v for k, v in sec.items() if k in sec_fields})
+                    )
+
         # FormGraph reconstruction
         form_data = data.get("form", {})
         self.form = FormGraph()
@@ -438,39 +489,8 @@ class PieceGraph:
                 ps = PhraseState(status=pdata.get("status", PhraseStatus.PLANNED.value))
                 slot_data = pdata.get("slot", {})
                 if isinstance(slot_data, dict):
-                    meter = slot_data.get("meter", [4, 4])
-                    if isinstance(meter, list):
-                        meter = tuple(meter)
-                    # Reconstruct texture_plan
-                    from .models import BarTexturePlan
-
-                    texture_plan = []
-                    for tp in slot_data.get("texture_plan", []):
-                        if isinstance(tp, dict):
-                            texture_plan.append(
-                                BarTexturePlan(
-                                    rh_texture=tp.get("rh_texture", "singing_melody"),
-                                    lh_texture=tp.get("lh_texture", "alberti"),
-                                    rh_density_target=tp.get("rh_density_target", 8),
-                                    lh_density_target=tp.get("lh_density_target", 6),
-                                    gesture_family=tp.get("gesture_family", ""),
-                                )
-                            )
-
-                    ps.slot = PhraseSlot(
-                        phrase_id=slot_data.get("phrase_id", pid),
-                        section_id=slot_data.get("section_id", ""),
-                        bar_start=slot_data.get("bar_start", 1),
-                        bar_count=slot_data.get("bar_count", 4),
-                        function=slot_data.get("function", "presentation"),
-                        cadence_target=slot_data.get("cadence_target", "none"),
-                        cadence_bar=slot_data.get("cadence_bar"),
-                        key=slot_data.get("key", "C"),
-                        meter=meter,
-                        tempo_bpm=slot_data.get("tempo_bpm", 120),
-                        harmony_plan=slot_data.get("harmony_plan", []),
-                        texture_plan=texture_plan,
-                    )
+                    slot_data.setdefault("phrase_id", pid)
+                    ps.slot = _slot_from_dict(slot_data)
                 # Reconstruct sketch SketchIR if present
                 sketch_data = pdata.get("sketch")
                 if sketch_data and isinstance(sketch_data, dict):
@@ -492,14 +512,32 @@ class PieceGraph:
         self.motif_bank = {}
         for mid, mdata in motif_data.items():
             if isinstance(mdata, dict):
+                # Every field, not six of twelve. `recognition_anchor` (what
+                # makes the motif recognizable) and `accent_profile` (where it
+                # leans) were serialized on save and silently dropped on load, so
+                # a motif came back without the two fields that define its
+                # identity — and the appearances list, which is how the piece
+                # knows where the motif has already been.
                 self.motif_bank[mid] = MotifObject(
                     motif_id=mdata.get("motif_id", mid),
                     character=mdata.get("character", ""),
-                    scale_degree_contour=mdata.get("scale_degree_contour", []),
-                    interval_contour=mdata.get("interval_contour", []),
-                    rhythm_cell=mdata.get("rhythm_cell", []),
-                    allowed_transforms=mdata.get("allowed_transforms", []),
+                    scale_degree_contour=mdata.get("scale_degree_contour", []) or [],
+                    interval_contour=mdata.get("interval_contour", []) or [],
+                    rhythm_cell=mdata.get("rhythm_cell", []) or [],
+                    accent_profile=mdata.get("accent_profile", []) or [],
+                    recognition_anchor=mdata.get("recognition_anchor", {}) or {},
+                    phrase_functions=mdata.get("phrase_functions", []) or [],
+                    harmonic_contexts=mdata.get("harmonic_contexts", []) or [],
+                    accompaniment_hints=mdata.get("accompaniment_hints", []) or [],
+                    typical_registers=[
+                        tuple(r) for r in (mdata.get("typical_registers") or []) if r
+                    ],
+                    allowed_transforms=mdata.get("allowed_transforms", []) or [],
+                    appearances=mdata.get("appearances", []) or [],
                 )
+        self.principal_theme_id = data.get("principal_theme_id", "")
+        pts = data.get("principal_theme_surface")
+        self.principal_theme_surface = _reconstruct_layer_ir(pts) if isinstance(pts, dict) else None
 
         # Reconstruct StyleDNA scalar fields. It is serialized on save but was
         # never read back, so composer_id/tier were silently lost on load —
@@ -540,83 +578,49 @@ class PieceGraph:
         else:
             self.style_program = None
 
-        # v6: Reconstruct ContextTraces
-        ct_data = data.get("context_traces", {})
-        self.context_traces = {}
-        for ct_id, ct_dict in ct_data.items():
-            if isinstance(ct_dict, dict):
-                self.context_traces[ct_id] = ContextTrace(
-                    phrase_id=ct_dict.get("phrase_id", ct_id),
-                    corpus_patterns_used=ct_dict.get("corpus_patterns_used", []),
-                    corpus_bars_used=ct_dict.get("corpus_bars_used", []),
-                    gestures_applied=ct_dict.get("gestures_applied", []),
-                    devices_used=ct_dict.get("devices_used", []),
-                    fingerprints_expressed=ct_dict.get("fingerprints_expressed", []),
-                    breathing_rules_applied=ct_dict.get("breathing_rules_applied", []),
-                    ornament_intents_applied=ct_dict.get("ornament_intents_applied", []),
-                    fallback_bar_count=ct_dict.get("fallback_bar_count", 0),
-                    donor_bar_count=ct_dict.get("donor_bar_count", 0),
-                    total_bar_count=ct_dict.get("total_bar_count", 0),
-                )
+        # v6: ContextTraces, SectionContracts and the WorkGraph.
+        #
+        # All three were hand-enumerated and all three dropped fields:
+        # SectionContract lost `orchestration_role_map` and
+        # `theme_families_active`; TonalItinerary lost `key_relationships` and
+        # `progressive_tonality`; MovementContract lost `sections`,
+        # `theme_families_active`, `development_strategies`, `recap_logic`,
+        # `coda_logic`, `contrast_with_previous` and `orchestration_zones` —
+        # which is most of what makes a movement contract worth having. A
+        # symphony planned with cyclic themes and a recapitulation strategy read
+        # those fields back as empty on the very next tool call.
+        self.context_traces = {
+            ct_id: _dataclass_from_dict(ContextTrace, ct_dict)
+            for ct_id, ct_dict in (data.get("context_traces") or {}).items()
+            if isinstance(ct_dict, dict)
+        }
+        for ct_id, ct in self.context_traces.items():
+            if not ct.phrase_id:
+                ct.phrase_id = ct_id
 
-        # v6: SectionContracts
-        sc_data = data.get("section_contracts", {})
-        self.section_contracts = {}
-        for sc_id, sc_dict in sc_data.items():
-            if isinstance(sc_dict, dict):
-                self.section_contracts[sc_id] = SectionContract(
-                    id=sc_dict.get("id", sc_id),
-                    movement_id=sc_dict.get("movement_id", ""),
-                    role=sc_dict.get("role", ""),
-                    key=sc_dict.get("key", "C"),
-                    bar_start=sc_dict.get("bar_start", 1),
-                    bar_end=sc_dict.get("bar_end", 8),
-                    phrase_ids=sc_dict.get("phrase_ids", []),
-                    cadence_path=sc_dict.get("cadence_path", []),
-                    energy_envelope=sc_dict.get("energy_envelope", []),
-                    texture_family=sc_dict.get("texture_family", ""),
-                    transition_debt_in=sc_dict.get("transition_debt_in", ""),
-                    transition_debt_out=sc_dict.get("transition_debt_out", ""),
-                    rhetorical_goals=sc_dict.get("rhetorical_goals", []),
-                    salience=sc_dict.get("salience", "normal"),
-                    development_techniques=sc_dict.get("development_techniques", []),
-                )
+        self.section_contracts = {
+            sc_id: _dataclass_from_dict(SectionContract, sc_dict)
+            for sc_id, sc_dict in (data.get("section_contracts") or {}).items()
+            if isinstance(sc_dict, dict)
+        }
+        for sc_id, sc in self.section_contracts.items():
+            if not sc.id:
+                sc.id = sc_id
 
-        # v6: WorkGraph
         wg_data = data.get("work_graph")
         if wg_data and isinstance(wg_data, dict):
-            from .models import TonalItinerary
-
-            self.work_graph = WorkGraph(
-                work_id=wg_data.get("work_id", ""),
-                movement_count=wg_data.get("movement_count", 1),
-                emotional_narrative=wg_data.get("emotional_narrative", ""),
-                finale_payoff=wg_data.get("finale_payoff", ""),
-                tonal_itinerary=TonalItinerary(
-                    home_key=wg_data.get("tonal_itinerary", {}).get("home_key", "C"),
-                    movement_keys=wg_data.get("tonal_itinerary", {}).get("movement_keys", {}),
-                ),
-            )
-            for mvt_data in wg_data.get("movements", []):
-                if isinstance(mvt_data, dict):
-                    self.work_graph.movements.append(
-                        MovementContract(
-                            id=mvt_data.get("id", ""),
-                            form=mvt_data.get("form", ""),
-                            key=mvt_data.get("key", "C"),
-                            tempo_bpm=mvt_data.get("tempo_bpm", 120),
-                            meter=tuple(mvt_data.get("meter", [4, 4])),
-                            tempo_marking=mvt_data.get("tempo_marking", ""),
-                            character=mvt_data.get("character", ""),
-                            role_in_work=mvt_data.get("role_in_work", ""),
-                        )
-                    )
+            self.work_graph = _dataclass_from_dict(WorkGraph, wg_data)
+            for mvt in self.work_graph.movements:
+                if isinstance(getattr(mvt, "meter", None), list):
+                    mvt.meter = tuple(mvt.meter)
         else:
             self.work_graph = None
 
         self.context_utilization = None
 
         self.style_review_reports = dict(data.get("style_review_reports") or {})
+
+        self.reference_studies = dict(data.get("reference_studies") or {})
 
         # Store raw data
         self._data = data

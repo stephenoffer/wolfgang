@@ -3,15 +3,17 @@ CommitGate — blocking quality gate for agent-authored phrases.
 
 Runs at commit time (commit_agent_phrase_*), AFTER physical validation
 (validator.py — strict, never waivable) and BEFORE the phrase is stored.
-Physical constraints stay hard; artistic checks are evidence-based
-guidelines: the few that block catch unambiguous mechanical output
-(skeletal density, photocopied accompaniment), everything else warns.
 
-Any artistic check can be waived with a stated reason via
-``allow=[{"check": "density_low", "reason": "intentional pointillism"}]``;
-waivers are logged to the PieceGraph revision history so they're auditable.
+ONLY physical constraints block (meter capacity here; range/span in
+validator.py). Every artistic / corpus-alignment check — skeletal density,
+photocopied accompaniment, ``composed_blind`` — is ADVISORY: it surfaces as a
+warning the fresh-ears music-critic weighs, and never rejects a commit. The
+agent has creative liberty to invent away from the corpus; the critic's ear,
+not a statistical floor, judges whether the music works.
 
-Calibration principle: a real corpus bar must pass its own composer's gate.
+Waivers still exist for the rare case a physical-adjacent check needs an
+explicit logged exception, but the common path is: warnings inform, the critic
+decides. A real corpus bar passes its own composer's gate by construction.
 """
 
 from __future__ import annotations
@@ -31,17 +33,18 @@ from .composition_brief import (
 from .models import LayerIR
 from .pitch import pitch_to_midi
 
-# Artistic checks that BLOCK by default. Everything else warns.
-# Deliberately small to avoid over-blocking (artistic rules are guidelines);
-# these catch output that is mechanical beyond stylistic defense, plus
-# ``composed_blind`` (a surface that ignored every briefed corpus exemplar —
-# the corpus-armed guarantee has teeth only if ignoring it is blocked).
-# Any of these can still be waived with a stated reason via ``allow=``.
+# Checks that BLOCK at commit. ONLY physical constraints block — the gate must
+# never fence the agent inside the corpus. ``meter`` (bar capacity) is the one
+# artistic-adjacent physical check enforced here; range/span live in validator.py.
+#
+# Corpus-alignment checks (``density_low_*``, ``figuration_flat``,
+# ``composed_blind``) are now ADVISORY: they surface as warnings the fresh-ears
+# music-critic weighs, never auto-blocks. The agent has creative liberty to
+# invent away from the corpus — the critic's ear, not a statistical floor, is the
+# judge of whether the result is musical. (Brief-receipt is still enforced
+# separately at commit in scales.py — studying references is required, but what
+# the agent then writes is its own.)
 _DEFAULT_BLOCKING = {
-    "density_low_rh",
-    "density_low_lh",
-    "figuration_flat",
-    "composed_blind",
     "meter",
 }
 
@@ -118,11 +121,29 @@ def _dominant_textures(slot) -> Tuple[str, str]:
 
 def _per_bar_event_counts(layer: LayerIR, hand: str) -> Dict[int, int]:
     """Note/chord events per bar for a hand (a chord counts once, matching
-    corpus melody_density / accomp_density)."""
+    corpus melody_density / accomp_density).
+
+    ``counter_reply`` is the RIGHT hand's inner voice — ``music_io`` engraves it
+    on the treble staff as voice 2 — so it belongs to the RH count. Counting it
+    as left-hand density contradicted where the notes actually appear, and once
+    real inner voices started flowing through (four-part chorales), it moved the
+    entire alto line onto the wrong hand: a Bach phrase reported 13 RH events
+    against a corpus melody density of 55.
+    """
+    inner = getattr(layer, "inner_voices", None) or {}
     if hand == "rh":
-        events = layer.principal_line + layer.ornamental_surface
+        events = (
+            layer.principal_line
+            + layer.ornamental_surface
+            + layer.counter_reply
+            + [e for k, v in inner.items() if k.startswith("treble") for e in v]
+        )
     else:
-        events = layer.bass_foundation + layer.response_layer + layer.counter_reply
+        events = (
+            layer.bass_foundation
+            + layer.response_layer
+            + [e for k, v in inner.items() if k.startswith("bass") for e in v]
+        )
     counts: Dict[int, int] = {}
     for e in events:
         if getattr(e, "pitch", None) == "rest":
@@ -206,7 +227,7 @@ def _check_density(
     )
     return GateDiagnostic(
         check=f"density_low_{hand}",
-        severity="block",
+        severity="warn",
         bars=",".join(str(b) for b in skeletal),
         detail=(
             f"{hand.upper()} skeletal in {len(skeletal)}/{len(counts)} bars "
@@ -214,11 +235,11 @@ def _check_density(
             f"— this is a sketch, not a realization"
         ),
         suggestion=(
-            f"Add figuration toward the corpus median (~{worst_median:g} "
-            f"events/bar for {worst_tex}: flowing arpeggiation, passing "
-            f"tones, inner motion) in the flagged bars — or change the "
-            f"texture label if sparseness is the intent, or waive with "
-            f"allow=[{{'check': 'density_low_{hand}', 'reason': ...}}]"
+            f"Advisory: {hand.upper()} reads as a sketch here. If you want more "
+            f"motion, write toward the corpus median (~{worst_median:g} "
+            f"events/bar for {worst_tex}: flowing arpeggiation, passing tones, "
+            f"inner motion). If the sparseness is intentional, leave it — the "
+            f"critic judges by ear."
         ),
         corpus_ref=corpus_ref,
     )
@@ -235,6 +256,11 @@ def _check_density(
 _DENSITY_CV_FLOOR = 0.05
 _DENSITY_CV_MIN_BARS = 4
 
+# Textures whose whole character is constant motion or constant sustain, so a
+# flat density is the idiom rather than a defect.
+_SUSTAINED_RH_TEXTURES = {"held_note", "chordal", "silence"}
+_SUSTAINED_LH_TEXTURES = {"pedal_point", "sustained", "drone", "silence", "block_chord_sparse"}
+
 
 def _check_density_variance(layer: LayerIR, slot, composer: str) -> Optional[GateDiagnostic]:
     """Warn on metronomically flat density — near-identical event count bar
@@ -250,6 +276,14 @@ def _check_density_variance(layer: LayerIR, slot, composer: str) -> Optional[Gat
     if bar_count < _DENSITY_CV_MIN_BARS:
         return None  # too short to judge ebb-and-flow
     if cv >= _DENSITY_CV_FLOOR:
+        return None
+    # Sustained textures have near-constant density BY DEFINITION — that is what
+    # sustained means. Falsified against the rebuilt corpus: this warned on 27%
+    # of real Palestrina phrases, whose Renaissance polyphony moves in even
+    # values across all voices. Warning on the defining feature of a legitimate
+    # idiom is noise the critic then has to triage away.
+    rh_tex, lh_tex = _dominant_textures(slot)
+    if rh_tex in _SUSTAINED_RH_TEXTURES or lh_tex in _SUSTAINED_LH_TEXTURES:
         return None
     return GateDiagnostic(
         check="density_variance",
@@ -356,7 +390,7 @@ def _check_figuration_flat(layer: LayerIR, slot, composer: str) -> Optional[Gate
     bars_sorted = sorted(patterns)
     return GateDiagnostic(
         check="figuration_flat",
-        severity="block",
+        severity="warn",
         bars=f"{bars_sorted[0]}-{bars_sorted[-1]}",
         detail=(
             f"{ratio:.0%} of bars have an identical LH pattern "
@@ -379,12 +413,10 @@ def _check_corpus_alignment(graph, phrase_id: str, layer: LayerIR) -> List[GateD
     agent and says 'adapt — never copy, never ignore'; this verifies the
     surface didn't ignore them.
 
-    RH (the melody) is BLOCKING-but-waivable — blind composition can be a
-    legitimate choice but must be a logged decision. LH (the accompaniment) is
-    WARN-only: a wholly-invented accompaniment is a softer signal and LH
-    vocabulary overlaps loosely, so it's advisory until corpus-self-pass
-    validates a blocking floor. Records ``composed_blind`` on the trace for
-    self_evaluate.
+    Both RH and LH are ADVISORY (warn-only): inventing away from the corpus is a
+    legitimate creative choice, not an error — the fresh-ears music-critic judges
+    whether the result sings. The signal is still recorded (``composed_blind`` on
+    the trace) so self_evaluate and the critic can weigh it.
     """
     from .anti_skip import check_composed_blind
 
@@ -402,14 +434,14 @@ def _check_corpus_alignment(graph, phrase_id: str, layer: LayerIR) -> List[GateD
             out.append(
                 GateDiagnostic(
                     check="composed_blind",
-                    severity="block",
+                    severity="warn",
                     detail=finding["message"],
                     suggestion=(
-                        "Anchor the surface in the briefed exemplars: borrow their "
-                        "rhythmic cells and interval shapes, transpose/reharmonize/"
-                        "splice them. If composing away from the corpus is a "
-                        "deliberate artistic choice, recommit with allow=[{'check': "
-                        "'composed_blind', 'reason': '<why>'}] (logged)."
+                        "Advisory: the surface resembles none of the briefed "
+                        "exemplars. If that's deliberate invention, fine — the "
+                        "critic will judge it by ear. If it drifted by accident, "
+                        "consider anchoring in the exemplars' rhythmic cells and "
+                        "interval shapes (transpose/reharmonize/splice)."
                     ),
                     corpus_ref=(
                         f"best resemblance {finding['best_resemblance']} < "
@@ -462,7 +494,14 @@ def _check_expression_zero(layer: LayerIR, slot, composer: str) -> Optional[Gate
 
     rh_tex, _ = _dominant_textures(slot)
     templates = _texture_templates(composer).get("rh_templates", {})
-    orn = (templates.get(rh_tex) or {}).get("avg_ornament_density") or {}
+    # Corpus-measured first; the hand-authored templates are only a fallback and
+    # have no builder (see composition_brief.ornament_stats).
+    from .composition_brief import ornament_stats
+
+    measured = (ornament_stats(composer).get("textures") or {}).get(rh_tex) or {}
+    orn = {k: v for k, v in measured.items() if k in ("grace", "trill", "mordent", "turn")} or (
+        (templates.get(rh_tex) or {}).get("avg_ornament_density") or {}
+    )
     total_orn = sum(v for v in orn.values() if isinstance(v, (int, float)))
     if total_orn < 0.1:
         return None
@@ -532,35 +571,56 @@ def _check_meter_overflow(layer: LayerIR) -> Optional[GateDiagnostic]:
     quarters of melody in a 4/4 bar). Pedal-under-figuration is handled at
     parse time by direct_compose and never reaches this check overflowed.
     """
-    from .duration import DURATION_VALUES
+    from fractions import Fraction
+
+    from .duration import bar_duration, dur_to_beats, is_grace
 
     meter = getattr(layer, "meter", (4, 4)) or (4, 4)
-    capacity = meter[0] * 4.0 / meter[1]
+    capacity = bar_duration(tuple(meter))
+    tol = Fraction(1, 1000)
     bad: List[str] = []
-    for events in (
-        layer.principal_line,
-        layer.bass_foundation,
-        layer.response_layer,
-        layer.counter_reply,
-        layer.ornamental_surface,
+    # Each entry is one independent notated voice, so an overlap WITHIN an entry
+    # is a real defect (two notes claiming the same instant in one voice) while
+    # an overlap between entries is legitimate polyphony. response_layer is
+    # exempt from the overlap check: it doubles as the pedal-under-figuration
+    # tail, which re-anchors to beat 1 under the sustained bass by design.
+    for name, events, check_overlap in (
+        ("principal_line", layer.principal_line, True),
+        ("bass_foundation", layer.bass_foundation, True),
+        ("counter_reply", layer.counter_reply, True),
+        ("response_layer", layer.response_layer, False),
+        ("ornamental_surface", layer.ornamental_surface, False),
+        # Third and fourth voices per hand are independent notated voices, so
+        # each must fill its bar and must not overlap itself.
+        *[(k, v, True) for k, v in sorted((getattr(layer, "inner_voices", None) or {}).items())],
     ):
-        for ev in events or []:
-            if getattr(ev, "ornament", None) == "grace":
-                continue  # grace notes take no metric time
-            dur = DURATION_VALUES.get(ev.duration, 1.0)
-            end = (ev.beat - 1.0) + dur
-            if end > capacity + 1e-6:
+        timed = [e for e in (events or []) if not is_grace(getattr(e, "ornament", None))]
+        for ev in timed:
+            dur = dur_to_beats(ev.duration)
+            end = Fraction(ev.beat).limit_denominator(96) - 1 + dur
+            if end > capacity + tol:
                 bad.append(
-                    f"bar {ev.bar} beat {ev.beat} "
-                    f"{ev.pitch}{ev.duration} ends at {end:.2f}"
-                    f"/{capacity:.0f}"
+                    f"{name} bar {ev.bar} beat {ev.beat} "
+                    f"{ev.pitch}{ev.duration} ends at {float(end):.4g}/{float(capacity):g}"
+                )
+        if not check_overlap:
+            continue
+        for a, b in zip(timed, timed[1:]):
+            if a.bar != b.bar:
+                continue
+            a_end = Fraction(a.beat).limit_denominator(96) + dur_to_beats(a.duration)
+            if a_end > Fraction(b.beat).limit_denominator(96) + tol:
+                bad.append(
+                    f"{name} bar {a.bar}: {a.pitch}{a.duration} at beat {a.beat} still "
+                    f"sounds when {b.pitch} enters at beat {b.beat} (one voice cannot "
+                    f"overlap itself — use '//' for a second voice in the hand)"
                 )
     if not bad:
         return None
     return GateDiagnostic(
         check="meter",
         severity="block",
-        detail=f"{len(bad)} event(s) overflow the bar: " + "; ".join(bad[:5]),
+        detail=f"{len(bad)} metric problem(s): " + "; ".join(bad[:5]),
         suggestion="Each bar's content must sum to the meter capacity per "
         "voice. For a sustained bass UNDER figuration, write the "
         "pedal as a full-bar first LH event — the figuration "

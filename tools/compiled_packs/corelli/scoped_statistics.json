@@ -1,7 +1,15 @@
 {
   "total_bars": 19,
-  "lh_distribution": {},
-  "rh_distribution": {},
+  "lh_distribution": {
+    "bass_melody": 0.5263,
+    "broken_chord_wave": 0.3158,
+    "pedal_point": 0.1579
+  },
+  "rh_distribution": {
+    "singing_melody": 0.7895,
+    "held_note": 0.1053,
+    "scalar_run": 0.1053
+  },
   "transition_matrix": {
     "bass_melody": {
       "bass_melody": 0.4,

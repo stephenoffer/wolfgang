@@ -2,13 +2,19 @@
   {
     "id": "cad_heroic_pac",
     "type": "Heroic PAC",
-    "approach_chords": [],
+    "approach_chords": [
+      "I64",
+      "V7",
+      "I"
+    ],
     "soprano_line": [],
-    "bass_motion": "",
+    "bass_motion": "1-5-1",
+    "usage": "Triumphant arrival",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
-    "preparation_bars": 2
+    "preparation_bars": 2,
+    "source_file": "liszt/harmonic-language.md"
   },
   {
     "id": "cad_deceptive_to_augmented",
@@ -16,21 +22,28 @@
     "approach_chords": [],
     "soprano_line": [],
     "bass_motion": "",
+    "usage": "V7 -> Aug triad",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
-    "preparation_bars": 2
+    "preparation_bars": 2,
+    "source_file": "liszt/harmonic-language.md"
   },
   {
     "id": "cad_plagal_with_picardy",
     "type": "Plagal with Picardy",
-    "approach_chords": [],
+    "approach_chords": [
+      "iv",
+      "I"
+    ],
     "soprano_line": [],
-    "bass_motion": "",
+    "bass_motion": "4-1",
+    "usage": "Religious, organ-like",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
-    "preparation_bars": 2
+    "preparation_bars": 2,
+    "source_file": "liszt/harmonic-language.md"
   },
   {
     "id": "cad_no_cadence_late",
@@ -38,10 +51,12 @@
     "approach_chords": [],
     "soprano_line": [],
     "bass_motion": "",
+    "usage": "Music stops on dissonance or silence",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
-    "preparation_bars": 2
+    "preparation_bars": 2,
+    "source_file": "liszt/harmonic-language.md"
   },
   {
     "id": "cad_rhetorical_caesura",
@@ -49,20 +64,27 @@
     "approach_chords": [],
     "soprano_line": [],
     "bass_motion": "",
+    "usage": "Full stop (silence) -> restart in new key/tempo",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
-    "preparation_bars": 2
+    "preparation_bars": 2,
+    "source_file": "liszt/harmonic-language.md"
   },
   {
     "id": "cad_hungarian_cadence",
     "type": "Hungarian cadence",
-    "approach_chords": [],
+    "approach_chords": [
+      "V",
+      "i"
+    ],
     "soprano_line": [],
-    "bass_motion": "",
+    "bass_motion": "5-1",
+    "usage": "Folk character",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
-    "preparation_bars": 2
+    "preparation_bars": 2,
+    "source_file": "liszt/harmonic-language.md"
   }
 ]

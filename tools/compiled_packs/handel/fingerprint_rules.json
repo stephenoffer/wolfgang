@@ -6,35 +6,40 @@
       "name": "Grand choral/ensemble gesture",
       "description": "Homophonic arrival after polyphonic buildup. The \"Hallelujah effect\": voices unite in rhythmic unison at the emotional peak. Even in instrumental writing, the tutti statement has this quality \u2014 all vo",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "immediately_memorable_theme",
       "name": "Immediately memorable theme",
       "description": "The theme states itself completely in 4 bars and could be sung by anyone after one hearing. No Baroque spinning \u2014 the theme is a statement, not a generator. Strong opening interval (often a fifth or s",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "da_capo_architecture",
       "name": "Da capo architecture",
       "description": "A section, B section (contrasting, usually more chromatic or in a related minor key), return of A (often with ornamental elaboration). Even in instrumental writing, this ABA thinking shapes the overal",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "sequences_that_build_dramatic_momentum",
       "name": "Sequences that build dramatic momentum",
       "description": "Sequences (usually descending thirds or circle of fifths) used not just for development but for emotional buildup toward a climax. The sequence intensifies; the resolution releases.",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "dramatic_contrast_between_major_and_minor",
       "name": "Dramatic contrast between major and minor",
       "description": "Handel shifts between parallel major and minor (C major \u2192 C minor) for dramatic effect in a way Bach typically does not. A joyful section turning to minor for a sudden shadow, then returning to major ",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

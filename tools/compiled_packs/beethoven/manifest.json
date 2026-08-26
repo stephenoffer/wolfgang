@@ -1,8 +1,8 @@
 {
   "composer": "beethoven",
-  "genre": "piano",
+  "genre": "",
   "support_tier": "A",
-  "corpus_bar_count": 16812,
+  "corpus_bar_count": 17757,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -41,7 +41,8 @@
     "window_index_06.json",
     "window_index_07.json",
     "window_index_08.json",
-    "window_index_09.json"
+    "window_index_09.json",
+    "window_index_10.json"
   ],
   "pattern_count": 11422
 }

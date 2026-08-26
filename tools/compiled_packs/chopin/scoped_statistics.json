@@ -1,175 +1,126 @@
 {
-  "total_bars": 4692,
+  "total_bars": 4853,
   "lh_distribution": {
-    "unclassified": 0.552,
-    "bass_melody": 0.129,
-    "pedal_point": 0.085,
-    "block_chord_offbeat": 0.076,
-    "block_chord_sparse": 0.046,
-    "silence": 0.032,
-    "walking_bass": 0.029,
-    "walking_bass_chromatic": 0.016,
-    "sparse_punctuation": 0.011,
-    "oscillation_trill": 0.009,
-    "alberti": 0.007,
-    "sparse_octaves": 0.007,
-    "broken_chord_descending": 0.001,
-    "broken_chord_wave": 0.001,
-    "broken_chord_ascending": 0.0
+    "walking_bass": 0.087,
+    "bass_melody": 0.1222,
+    "broken_chord_wave": 0.0305,
+    "block_chord_sparse": 0.5854,
+    "broken_chord_desc": 0.0031,
+    "block_chord_offbeat": 0.0569,
+    "alberti": 0.0328,
+    "pedal_point": 0.0144,
+    "broken_chord_asc": 0.0029,
+    "block_chord_tremolo": 0.0004
   },
-  "rh_distribution": {},
+  "rh_distribution": {
+    "chordal": 0.2512,
+    "singing_melody": 0.5224,
+    "zigzag_figuration": 0.1455,
+    "held_note": 0.0303,
+    "scalar_run": 0.0336
+  },
   "transition_matrix": {
     "silence": {
-      "pedal_point": 0.0201,
-      "silence": 0.3557,
-      "bass_melody": 0.094,
-      "oscillation_trill": 0.0067,
-      "walking_bass_chromatic": 0.0268,
-      "walking_bass": 0.047,
-      "unclassified": 0.302,
-      "block_chord_offbeat": 0.0537,
-      "block_chord_sparse": 0.0268,
-      "sparse_octaves": 0.0268,
-      "sparse_punctuation": 0.0403
-    },
-    "pedal_point": {
-      "bass_melody": 0.0919,
-      "pedal_point": 0.2887,
-      "block_chord_sparse": 0.0289,
-      "alberti": 0.0052,
-      "unclassified": 0.3727,
-      "block_chord_offbeat": 0.0577,
-      "silence": 0.0945,
-      "walking_bass_chromatic": 0.0105,
-      "walking_bass": 0.0262,
-      "sparse_octaves": 0.0079,
-      "oscillation_trill": 0.0052,
-      "sparse_punctuation": 0.0105
-    },
-    "bass_melody": {
-      "bass_melody": 0.5458,
-      "walking_bass": 0.0699,
-      "pedal_point": 0.0666,
-      "broken_chord_descending": 0.0083,
-      "unclassified": 0.1414,
-      "walking_bass_chromatic": 0.0399,
-      "block_chord_sparse": 0.0366,
-      "alberti": 0.025,
-      "oscillation_trill": 0.025,
-      "silence": 0.0116,
-      "block_chord_offbeat": 0.01,
-      "sparse_punctuation": 0.0083,
-      "broken_chord_wave": 0.0033,
-      "sparse_octaves": 0.0083
+      "walking_bass": 0.0388,
+      "silence": 0.712,
+      "bass_melody": 0.0421,
+      "block_chord_sparse": 0.1715,
+      "broken_chord_wave": 0.0032,
+      "pedal_point": 0.0162,
+      "block_chord_offbeat": 0.0065,
+      "broken_chord_desc": 0.0097
     },
     "walking_bass": {
-      "bass_melody": 0.3456,
-      "walking_bass": 0.2059,
-      "unclassified": 0.1176,
-      "walking_bass_chromatic": 0.1471,
-      "pedal_point": 0.0441,
-      "block_chord_offbeat": 0.0441,
-      "broken_chord_wave": 0.0074,
-      "block_chord_sparse": 0.0294,
-      "sparse_octaves": 0.0074,
-      "sparse_punctuation": 0.0147,
-      "silence": 0.0294,
-      "oscillation_trill": 0.0074
+      "bass_melody": 0.1981,
+      "walking_bass": 0.4439,
+      "broken_chord_wave": 0.074,
+      "block_chord_sparse": 0.1432,
+      "alberti": 0.0859,
+      "pedal_point": 0.0239,
+      "broken_chord_desc": 0.0048,
+      "block_chord_offbeat": 0.0167,
+      "silence": 0.0048,
+      "broken_chord_asc": 0.0048
     },
-    "broken_chord_descending": {
-      "walking_bass": 1.0
-    },
-    "unclassified": {
-      "silence": 0.0027,
-      "unclassified": 0.8009,
-      "bass_melody": 0.0384,
-      "walking_bass": 0.005,
-      "block_chord_sparse": 0.0384,
-      "pedal_point": 0.062,
-      "walking_bass_chromatic": 0.0023,
-      "block_chord_offbeat": 0.0372,
-      "sparse_punctuation": 0.007,
-      "sparse_octaves": 0.0012,
-      "alberti": 0.0012,
-      "oscillation_trill": 0.0027,
-      "broken_chord_ascending": 0.0008,
-      "broken_chord_wave": 0.0004
-    },
-    "oscillation_trill": {
-      "oscillation_trill": 0.3,
-      "bass_melody": 0.475,
-      "pedal_point": 0.025,
-      "unclassified": 0.125,
-      "block_chord_sparse": 0.025,
-      "walking_bass": 0.05
-    },
-    "walking_bass_chromatic": {
-      "oscillation_trill": 0.0137,
-      "bass_melody": 0.3562,
-      "unclassified": 0.2329,
-      "walking_bass_chromatic": 0.1507,
-      "pedal_point": 0.0548,
-      "walking_bass": 0.1507,
-      "alberti": 0.0411
-    },
-    "block_chord_sparse": {
-      "block_chord_sparse": 0.33,
-      "pedal_point": 0.075,
-      "unclassified": 0.425,
-      "silence": 0.035,
-      "bass_melody": 0.06,
-      "block_chord_offbeat": 0.025,
-      "walking_bass": 0.025,
-      "alberti": 0.015,
-      "sparse_punctuation": 0.005,
-      "sparse_octaves": 0.005
-    },
-    "alberti": {
-      "walking_bass": 0.0625,
-      "unclassified": 0.2812,
-      "bass_melody": 0.2188,
-      "alberti": 0.1562,
-      "pedal_point": 0.1875,
-      "broken_chord_wave": 0.0312,
-      "walking_bass_chromatic": 0.0625
-    },
-    "block_chord_offbeat": {
-      "unclassified": 0.2493,
-      "pedal_point": 0.1076,
-      "block_chord_offbeat": 0.5609,
-      "block_chord_sparse": 0.0198,
-      "walking_bass": 0.0113,
-      "sparse_punctuation": 0.0085,
-      "bass_melody": 0.0198,
-      "sparse_octaves": 0.0142,
-      "walking_bass_chromatic": 0.0057,
-      "alberti": 0.0028
-    },
-    "sparse_punctuation": {
-      "pedal_point": 0.098,
-      "block_chord_sparse": 0.0588,
-      "unclassified": 0.3137,
-      "silence": 0.1373,
-      "sparse_octaves": 0.1176,
-      "bass_melody": 0.0784,
-      "block_chord_offbeat": 0.098,
-      "sparse_punctuation": 0.098
-    },
-    "sparse_octaves": {
-      "unclassified": 0.1613,
-      "sparse_punctuation": 0.1935,
-      "block_chord_offbeat": 0.2258,
-      "bass_melody": 0.0645,
-      "pedal_point": 0.0968,
-      "sparse_octaves": 0.0968,
-      "walking_bass": 0.129,
-      "silence": 0.0323
+    "bass_melody": {
+      "bass_melody": 0.4155,
+      "walking_bass": 0.1199,
+      "broken_chord_wave": 0.0405,
+      "silence": 0.0135,
+      "block_chord_sparse": 0.2635,
+      "broken_chord_desc": 0.0084,
+      "block_chord_offbeat": 0.0625,
+      "alberti": 0.0608,
+      "pedal_point": 0.0068,
+      "broken_chord_asc": 0.0084
     },
     "broken_chord_wave": {
-      "silence": 0.25,
-      "pedal_point": 0.75
+      "walking_bass": 0.2095,
+      "broken_chord_wave": 0.2027,
+      "block_chord_sparse": 0.1351,
+      "bass_melody": 0.25,
+      "alberti": 0.1216,
+      "block_chord_offbeat": 0.0338,
+      "broken_chord_asc": 0.027,
+      "pedal_point": 0.0135,
+      "silence": 0.0068
     },
-    "broken_chord_ascending": {
+    "block_chord_sparse": {
+      "block_chord_sparse": 0.8598,
+      "broken_chord_wave": 0.0093,
+      "walking_bass": 0.0189,
+      "bass_melody": 0.0514,
+      "block_chord_offbeat": 0.026,
+      "alberti": 0.0078,
+      "pedal_point": 0.01,
+      "silence": 0.0146,
+      "broken_chord_desc": 0.0014,
+      "broken_chord_asc": 0.0007
+    },
+    "broken_chord_desc": {
+      "broken_chord_desc": 0.0667,
+      "walking_bass": 0.1333,
+      "bass_melody": 0.3333,
+      "block_chord_sparse": 0.1333,
+      "alberti": 0.2667,
+      "broken_chord_wave": 0.0667
+    },
+    "block_chord_offbeat": {
+      "block_chord_sparse": 0.2788,
+      "block_chord_offbeat": 0.4981,
+      "bass_melody": 0.1152,
+      "silence": 0.0074,
+      "broken_chord_wave": 0.0409,
+      "walking_bass": 0.0372,
+      "alberti": 0.0186,
+      "pedal_point": 0.0037
+    },
+    "alberti": {
+      "block_chord_offbeat": 0.0566,
+      "broken_chord_wave": 0.1132,
+      "alberti": 0.239,
+      "block_chord_sparse": 0.1824,
+      "bass_melody": 0.1824,
+      "walking_bass": 0.2013,
+      "pedal_point": 0.0252
+    },
+    "pedal_point": {
+      "block_chord_sparse": 0.3143,
+      "walking_bass": 0.2286,
+      "pedal_point": 0.2,
+      "block_chord_offbeat": 0.0857,
+      "silence": 0.0714,
+      "bass_melody": 0.0571,
+      "block_chord_tremolo": 0.0286,
+      "broken_chord_asc": 0.0143
+    },
+    "broken_chord_asc": {
+      "block_chord_sparse": 0.1429,
+      "broken_chord_wave": 0.2857,
+      "walking_bass": 0.2857,
+      "silence": 0.2857
+    },
+    "block_chord_tremolo": {
       "walking_bass": 1.0
     }
   }

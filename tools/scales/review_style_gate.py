@@ -26,36 +26,66 @@ def build_style_targets_from_dna(
     """Build comparator-style targets {metric: {mean, stdev}} from StyleDNA density."""
     cls = "slow" if tempo_bpm < 76 else ("fast" if tempo_bpm > 138 else "moderate")
     dt = density_targets.get(cls) or density_targets.get("moderate")
+    # Fallbacks are the measured real-corpus medians (RH 5.1 / LH 4.1 events per
+    # bar), not the old 8/6 guess — which put the gate's idea of a normal bar 40%
+    # busier than any of the 20 real movements measured, so a correctly spare
+    # Classical texture was scored as too thin.
     if dt is None:
-        rh, lh = 8.0, 6.0
+        rh, lh = 5.1, 4.1
     elif hasattr(dt, "rh_mean"):
         rh, lh = float(dt.rh_mean), float(dt.lh_mean)
     elif isinstance(dt, dict):
-        rh = float(dt.get("rh_mean", 8.0))
-        lh = float(dt.get("lh_mean", 6.0))
+        rh = float(dt.get("rh_mean", 5.1))
+        lh = float(dt.get("lh_mean", 4.1))
     else:
-        rh, lh = 8.0, 6.0
+        rh, lh = 5.1, 4.1
 
     total_ev = rh + lh
     # NOTE: style_analyzer reports *_pct metrics and rest_ratio as
     # PERCENTAGES (0-100), not fractions — targets must match those units.
+    #
+    # ── Every number below was MEASURED, on 2026-08-26, by running
+    # ``style_analyzer.analyze_score`` over 20 real movements (Mozart sonatas,
+    # Beethoven sonatas, Chopin mazurkas). It has to be that function's own
+    # output: a target taken from a document, or from a differently-defined
+    # metric that happens to share a name, does not describe what this gate
+    # measures. The previous set was written from prose and was wrong in one
+    # direction or the other on nine of eleven metrics — most damagingly
+    # ``texture_change_pct``, which asked for **52%** where real music measures
+    # a median of **20.5%**. That single number told every composer to change
+    # its accompaniment idiom two and a half times more often than Mozart,
+    # Beethoven or Chopin ever did, which produces exactly the restless,
+    # unsettled surface the metric was introduced to prevent.
+    #
+    #   metric                     old    real median   real range
+    #   events_per_bar             14.0        9.9      5.5 - 24.2
+    #   rest_ratio                  8.0       17.1      4.3 - 28.9
+    #   rhythmic_variety            5.0        8.5      5.0 - 12.0
+    #   chromatic_pct              12.0       26.3     10.7 - 85.4
+    #   dynamic_markings_per_bar    0.15       0.77     0.06 - 2.22
+    #   texture_change_pct         52.0       20.5      4.7 - 61.3
+    #   density_cv                  0.55       0.36     0.22 - 0.54*
+    #   stepwise_pct               45.0       58.7     35.5 - 76.4
+    #   (* one outlier movement at 6.17 excluded from the range)
+    #
+    # Standard deviations are set wide enough that the real min and max both sit
+    # inside roughly two of them, because the honest reading of this data is
+    # that the repertoire is broad. A narrow band around a real median would
+    # still reject most real music, which is the failure this replaces.
     return {
-        "events_per_bar": {"mean": total_ev, "stdev": max(2.0, total_ev * 0.2)},
-        "events_per_bar_rh": {"mean": rh, "stdev": max(1.5, rh * 0.25)},
-        "events_per_bar_lh": {"mean": lh, "stdev": max(1.5, lh * 0.25)},
-        "rest_ratio": {"mean": 8.0, "stdev": 6.0},
-        "triplet_pct": {"mean": 6.0, "stdev": 8.0},
-        "rhythmic_variety": {"mean": 5.0, "stdev": 2.5},
-        "chromatic_pct": {"mean": 12.0, "stdev": 10.0},
-        "leap_pct": {"mean": 18.0, "stdev": 12.0},
-        "dynamic_markings_per_bar": {"mean": 0.15, "stdev": 0.12},
-        # Human-vs-AI discriminators (human-sounding-music.md):
-        # texture change rate is the single biggest separator — corpus
-        # Beethoven ≈58%, typical AI output ≈12%
-        "texture_change_pct": {"mean": 52.0, "stdev": 15.0},
-        "direction_changes_per_bar": {"mean": 1.5, "stdev": 0.6},
-        "density_cv": {"mean": 0.55, "stdev": 0.2},
-        "stepwise_pct": {"mean": 45.0, "stdev": 12.0},
+        "events_per_bar": {"mean": total_ev, "stdev": max(2.5, total_ev * 0.35)},
+        "events_per_bar_rh": {"mean": rh, "stdev": max(2.0, rh * 0.4)},
+        "events_per_bar_lh": {"mean": lh, "stdev": max(1.8, lh * 0.4)},
+        "rest_ratio": {"mean": 17.0, "stdev": 8.0},
+        "triplet_pct": {"mean": 8.5, "stdev": 12.0},
+        "rhythmic_variety": {"mean": 8.5, "stdev": 2.5},
+        "chromatic_pct": {"mean": 26.0, "stdev": 14.0},
+        "leap_pct": {"mean": 19.0, "stdev": 10.0},
+        "dynamic_markings_per_bar": {"mean": 0.75, "stdev": 0.5},
+        "texture_change_pct": {"mean": 20.5, "stdev": 14.0},
+        "direction_changes_per_bar": {"mean": 1.8, "stdev": 1.0},
+        "density_cv": {"mean": 0.36, "stdev": 0.14},
+        "stepwise_pct": {"mean": 58.0, "stdev": 14.0},
     }
 
 

@@ -158,6 +158,25 @@ class OverlayBuilder:
                     if observed_avg is not None:
                         transition_updates[src][tgt] = round(observed_avg, 4)
 
+        # An overlay OVERRIDES the compiled statistics wholesale, so a texture
+        # label that no longer exists survives in it forever. The shipped Mozart
+        # overlay still carried "sparse_octaves", "walking_bass_chromatic",
+        # "oscillation_trill" and "unclassified" from an April extraction — none
+        # of which the classifier emits any more and none of which any corpus bar
+        # carries — and it was overriding the freshly compiled distribution for
+        # the flagship composer. The planner then scheduled textures that could
+        # never be retrieved.
+        from ..enums import AccompType
+
+        valid = {t.value for t in AccompType}
+        lh_merged = {k: v for k, v in lh_merged.items() if k in valid}
+        transition_updates = {
+            src: {t: v for t, v in tgts.items() if t in valid}
+            for src, tgts in transition_updates.items()
+            if src in valid
+        }
+        transition_updates = {k: v for k, v in transition_updates.items() if v}
+
         if not lh_changed and not transition_updates:
             return None
 

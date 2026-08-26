@@ -43,8 +43,7 @@ Commit via `commit_candidate_phrase` with your lens — NEVER via
 judge has ruled):
 
 ```bash
-python3 -c "
-import sys; sys.path.insert(0, 'tools')
+.venv/bin/python -c "
 from scales.scales import commit_candidate_phrase
 bars = [ ... ]  # same shorthand as commit_agent_phrase_direct_bars
 r = commit_candidate_phrase('<piece-id>', '<phrase-id>', '<lens>', bars=bars)

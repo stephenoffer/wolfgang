@@ -26,16 +26,58 @@ STYLE_PREFIX = "style__"
 # Canonical period → member composers (supersets; filtered to armed at runtime).
 # Names align with tools/pattern_library/transitions/by_genre/ and
 # .claude/context/<genre>/ where they exist.
+# A composer may belong to more than one style; `styles_for_composer` returns
+# all of them. Every composer with a directory under `compiled_packs/` must
+# appear here — an unlisted one resolves to no style at all, which silently
+# excludes its corpus from every style reference and drops it to the hard-coded
+# "classical" genre fallback. **Liszt** was missing from this table while being
+# one of only twelve armed composers, so "compose in a romantic style" drew on
+# Chopin, Schubert and Weber and quietly ignored the Liszt corpus entirely.
+# `test_style_registry.py` fails if a compiled pack has no style.
 _STYLE_MEMBERS: Dict[str, List[str]] = {
     "renaissance": ["palestrina", "monteverdi"],
     "baroque": ["bach", "handel", "corelli", "vivaldi", "scarlatti"],
     "classical": ["mozart", "haydn", "beethoven", "clementi"],
-    "romantic": ["chopin", "schubert", "schumann", "brahms", "weber"],
-    "late-romantic": ["mahler", "bruckner", "strauss-r", "elgar"],
+    "romantic": [
+        "chopin",
+        "schubert",
+        "schumann",
+        "brahms",
+        "weber",
+        "liszt",
+        "mendelssohn",
+        "tchaikovsky",
+    ],
+    "late-romantic": [
+        "mahler",
+        "bruckner",
+        "strauss-r",
+        "elgar",
+        "wagner",
+        "rachmaninoff",
+        "faure",
+        "sibelius",
+    ],
     "impressionist": ["debussy", "ravel", "satie"],
-    "modern": ["bartok", "stravinsky", "prokofiev", "shostakovich", "copland"],
+    "modern": [
+        "bartok",
+        "stravinsky",
+        "prokofiev",
+        "shostakovich",
+        "copland",
+        "schoenberg",
+        "webern",
+        "messiaen",
+    ],
     "minimalist": ["glass", "reich", "arvo-part"],
-    "nationalistic": ["dvorak", "grieg", "smetana"],
+    "nationalistic": [
+        "dvorak",
+        "grieg",
+        "smetana",
+        "mussorgsky",
+        "rimsky-korsakov",
+        "sibelius",
+    ],
     "film-score": ["williams", "zimmer", "morricone"],
 }
 
@@ -207,3 +249,96 @@ def available_styles() -> List[Dict[str, Any]]:
         if members:
             out.append({"style": style, "members": members})
     return out
+
+
+# ─── Filesystem-safe pack directory names ────────────────────────────────────
+
+
+def pack_dir_name(composer_id: str) -> str:
+    """The directory name a composer/style/blend id gets under `compiled_packs/`.
+
+    A composer id came straight from the user's request into a filesystem path
+    with no sanitising, which had two consequences.
+
+    The mild one: a blend id is built as ``blend:beethoven+liszt`` (see
+    `style_resolver.resolve_blend_program`), and a colon is not a legal filename
+    character on Windows, so a blended style could not compile there at all.
+    Style ids were already written ``style__<name>`` precisely to avoid this —
+    the convention existed and blends did not follow it.
+
+    The sharper one: nothing stopped a name containing ``/`` or ``..`` from
+    walking out of `compiled_packs/` entirely. Composer names arrive from free
+    text ("compose something like Kapustin"), and `acquire_composer` will
+    happily be pointed at whatever it is given.
+
+    Empty or fully-stripped input is refused rather than silently mapped to the
+    packs root — writing a pack over the directory that holds every other pack
+    is not a failure mode worth having.
+    """
+    raw = str(composer_id or "").strip()
+    # ':' separates the blend marker from its members; '+' joins the members.
+    safe = raw.replace(":", "__").replace("+", "-")
+    safe = "".join(c if (c.isalnum() or c in "-_.") else "_" for c in safe)
+    safe = safe.strip("._")
+    if not safe:
+        raise ValueError(f"composer id {composer_id!r} has no filesystem-safe form")
+    return safe
+
+
+# ─── Texture-transition matrices ─────────────────────────────────────────────
+
+_MATRIX_CACHE: Dict[str, Dict[str, Any]] = {}
+
+
+def genre_for(composer: str) -> str:
+    """The genre whose corpus data stands in when a composer has none of its own.
+
+    Both `PhraseBank` and `TransitionBank` carried a byte-identical
+    `_load_transition_matrix` that fell back to `by_genre/classical.json` for
+    *every* composer. There are genre matrices for baroque, romantic,
+    late-romantic, impressionist, modern, minimalist, nationalistic and
+    film-score sitting unused beside it, so a Bach piece with no composer matrix
+    was given Classical texture-transition odds, and so was a
+    ``style__romantic`` one — silently, and in the one place whose entire job is
+    style fidelity.
+    """
+    ref = (composer or "").strip().lower()
+    if not ref:
+        return "classical"
+    if is_style_id(ref):
+        name = style_name(ref)
+        return name if name in _STYLE_MEMBERS else "classical"
+    if ref in _STYLE_MEMBERS:
+        return ref
+    styles = styles_for_composer(ref)
+    return styles[0] if styles else "classical"
+
+
+def load_transition_matrix(composer: str, pattern_library: Any) -> Dict[str, Any]:
+    """Load a composer's LH texture-transition matrix, or its genre's.
+
+    The single implementation. `pattern_library` is the ``pattern_library/``
+    Path (callers already hold it).
+    """
+    ref = (composer or "").strip().lower() or "classical"
+    if ref in _MATRIX_CACHE:
+        return _MATRIX_CACHE[ref]
+
+    import json
+
+    candidates = [
+        pattern_library / "transitions" / "by_composer" / f"{ref}.json",
+        pattern_library / "transitions" / "by_genre" / f"{genre_for(ref)}.json",
+        pattern_library / "transitions" / "by_genre" / "classical.json",
+    ]
+    for path in candidates:
+        try:
+            if path.exists():
+                with open(path) as fh:
+                    matrix = json.load(fh)
+                _MATRIX_CACHE[ref] = matrix
+                return matrix
+        except (OSError, ValueError):
+            continue
+    _MATRIX_CACHE[ref] = {"counts": {}}
+    return _MATRIX_CACHE[ref]

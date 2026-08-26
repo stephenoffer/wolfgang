@@ -10,10 +10,17 @@ Handles: key signatures, time signatures, tempo, dynamics, articulations,
 
 from __future__ import annotations
 
+from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .duration import DURATION_VALUES
+from .duration import (
+    DURATION_VALUES,
+    GRACE_ORNAMENTS,
+    bar_duration,
+    beats_to_dur,
+    dur_to_beats,
+)
 from .models import EventIR
 from .music_io import layer_ir_to_event_ir
 from .piece_graph import PieceGraph
@@ -49,11 +56,6 @@ def assemble(
     if not all_events:
         raise ValueError(f"No realized phrases found for scope '{scope}'")
 
-    # Performance indications (rit. / a tempo / con pedale): attach text
-    # expressions to existing events so they flow through measure building
-    if performance_marks:
-        _apply_performance_marks(piece_graph, scope, all_events)
-
     # Get metadata
     contract = piece_graph.contract
     key_str = "C"
@@ -71,12 +73,7 @@ def assemble(
     # Build music21 score
     score = music21.stream.Score()
     score.metadata = music21.metadata.Metadata()
-    desc = contract.description if hasattr(contract, "description") else ""
-    score.metadata.title = desc[:50] if desc else "Composition"
-    composer_id = (
-        piece_graph.style_dna.composer_id if hasattr(piece_graph.style_dna, "composer_id") else ""
-    )
-    score.metadata.composer = f"Wolfgang SCALES ({composer_id})"
+    _apply_metadata(score, piece_graph, contract)
 
     # Determine instrumentation (handle dict or dataclass target)
     target = contract.target if hasattr(contract, "target") else {}
@@ -84,19 +81,64 @@ def assemble(
         instrumentation = target.get("instrumentation", "solo_piano")
     else:
         instrumentation = getattr(target, "instrumentation", "solo_piano")
+    # Normalize free-text forms ("solo piano", "Solo-Piano") so the piano grand
+    # staff path is taken — the ensemble path can't render the two-voice
+    # pedal-under-figuration overlap and spills it past the barline.
+    instrumentation = str(instrumentation).strip().lower().replace(" ", "_").replace("-", "_")
+    if instrumentation not in ("solo_piano", "piano") and "piano" in instrumentation.split("_"):
+        instrumentation = "solo_piano"
 
-    # Build per-bar metadata (key/tempo) from PieceGraph phrases
+    # Build per-bar metadata (key/meter/tempo) from PieceGraph phrases. METER is
+    # per bar, not global: taking the first phrase's meter for the whole score
+    # mis-barred every piece with a meter change (a minuet + trio, a 6/8 finale,
+    # any multi-movement work).
     bar_meta = {}
     for phrase_id, phrase_state in piece_graph.phrases.items():
-        if phrase_state.slot:
-            s = phrase_state.slot
-            for b in range(s.bar_start, s.bar_start + s.bar_count):
-                bar_meta[b] = {"key": s.key, "tempo": s.tempo_bpm}
+        s = phrase_state.slot
+        if not s or not _in_scope(phrase_state, scope) or not phrase_state.realized:
+            continue
+        s_meter = tuple(s.meter) if s.meter else meter
+        pickup = float(getattr(phrase_state.realized, "pickup_beats", 0) or 0)
+        for b in range(s.bar_start, s.bar_start + s.bar_count):
+            bar_meta[b] = {"key": s.key, "tempo": s.tempo_bpm, "meter": s_meter}
+        if pickup:
+            bar_meta[s.bar_start]["pickup_beats"] = pickup
+    # Partial scopes re-base bar numbers in _collect_events — mirror the shift so
+    # per-bar key/meter still line up with the events.
+    if bar_meta and scope != "full":
+        shift = min(bar_meta) - 1
+        if shift > 0:
+            bar_meta = {b - shift: m for b, m in bar_meta.items()}
+    # The opening key/meter come from the first sounding bar, not from whichever
+    # phrase happens to be first in dict order.
+    if bar_meta:
+        first = bar_meta[min(bar_meta)]
+        key_str, meter, tempo_bpm = first["key"], first["meter"], first["tempo"]
+
+    # A note that runs past its barline becomes real tied fragments. This must
+    # happen AFTER bar_meta exists (it needs each bar's capacity) and BEFORE the
+    # performance marks are placed (so a mark can't land on an event that is
+    # about to be split and lose its first fragment).
+    all_events = _split_events_over_barlines(all_events, bar_meta, meter)
+    _resolve_cross_phrase_ties(all_events)
+    _dedupe_cross_staff_marks(all_events)
+
+    # Performance indications (rit. / a tempo / con pedale): attach text
+    # expressions to existing events so they flow through measure building
+    if performance_marks:
+        _apply_performance_marks(piece_graph, scope, all_events)
 
     if instrumentation in ("solo_piano", "piano"):
         score = _build_piano_score(score, all_events, key_str, meter, tempo_bpm, bar_meta=bar_meta)
     else:
-        score = _build_ensemble_score(score, all_events, key_str, meter, tempo_bpm)
+        score = _build_ensemble_score(
+            score, all_events, key_str, meter, tempo_bpm, bar_meta=bar_meta
+        )
+
+    # Structural barlines: a double bar where a section ends, a final barline at
+    # the end. Every engraved score has these and their absence is one of the
+    # first things that makes a printout look machine-generated.
+    _apply_structural_barlines(score, piece_graph, scope)
 
     # Write to file
     if output_dir is None:
@@ -106,7 +148,17 @@ def assemble(
 
     filename = f"{piece_graph.piece_id}.musicxml"
     filepath = output_path / filename
-    score.write("musicxml", fp=str(filepath))
+    try:
+        score.write("musicxml", fp=str(filepath))
+    except Exception as exc:
+        # Name the bar. A bare music21 export exception loses the whole score and
+        # says nothing actionable about which bar is malformed.
+        raise ValueError(
+            f"MusicXML export failed for '{piece_graph.piece_id}': {exc}. "
+            f"This means a bar's content cannot be notated as written — check the "
+            f"reported measure with the meter gate (self_evaluate's ear reports "
+            f"bar_length errors)."
+        ) from exc
 
     # Update piece graph
     piece_graph.output_paths["musicxml"] = str(filepath)
@@ -114,21 +166,135 @@ def assemble(
     return str(filepath)
 
 
+def _dedupe_cross_staff_marks(events: List[EventIR]) -> None:
+    """One dynamic per moment, not one per staff.
+
+    ``dyn`` on a bar dict lands on the first event of BOTH hands, so a piano
+    score came out with the same marking printed twice at every dynamic change —
+    once under each staff. On a grand staff a dynamic belongs between the staves,
+    once. The same goes for a text expression ("rit.", "con pedale"): duplicated,
+    it reads as two instructions.
+
+    Keeps the mark on the upper staff (where a pianist reads it) and clears the
+    duplicate below.
+    """
+    seen: Dict[tuple, str] = {}
+    order = {"treble": 0, "melody": 0, "bass": 1}
+    for e in sorted(events, key=lambda x: (x.bar, x.beat, order.get(x.staff, 2), x.voice)):
+        for field in ("dynamic", "expression"):
+            value = getattr(e, field, None)
+            if not value:
+                continue
+            key = (e.bar, round(float(e.beat), 4), field, value)
+            if key in seen:
+                setattr(e, field, None)
+            else:
+                seen[key] = e.staff
+
+
+def _apply_metadata(score, piece_graph, contract) -> None:
+    """Title, composer and movement on the score.
+
+    A score whose title is the first fifty characters of the request prompt and
+    whose composer field reads "Wolfgang SCALES (mozart)" announces what it is
+    before a note is read. Use the piece's own description as a title and name
+    the style as a subtitle instead of impersonating the composer.
+    """
+    md = score.metadata
+    desc = (getattr(contract, "description", "") or "").strip()
+    title = desc.split(".")[0].split(",")[0].strip() if desc else ""
+    title = (title[:60] or piece_graph.piece_id.replace("-", " ")).strip()
+    # Assign from the local string, never by reading md.title back: music21
+    # processes a title on read (it strips a leading article for sorting and
+    # title-cases the rest), so round-tripping turned "Andante grazioso in F
+    # major" into "Ndante Grazioso In F Major".
+    md.title = title
+    try:
+        md.movementName = title
+    except Exception:
+        pass
+    style_ref = ""
+    dna = getattr(piece_graph, "style_dna", None)
+    if dna is not None:
+        style_ref = getattr(dna, "composer_id", "") or getattr(dna, "active_period", "") or ""
+    # Not "composer: Mozart" — this is not by Mozart. Name the model honestly.
+    md.composer = f"after {style_ref}" if style_ref else ""
+
+
+def _apply_structural_barlines(score, piece_graph, scope: str) -> None:
+    """A double bar where a section ends, a final barline at the end.
+
+    Every engraved score has these; their absence is one of the first things that
+    makes a printout look machine-generated.
+    """
+    import music21
+
+    section_ends = set()
+    by_section: Dict[str, List[int]] = {}
+    for _pid, ps in piece_graph.phrases.items():
+        slot = getattr(ps, "slot", None)
+        if slot is None or not _in_scope(ps, scope) or not ps.realized:
+            continue
+        by_section.setdefault(slot.section_id, []).append(slot.bar_start + slot.bar_count - 1)
+    for ends in by_section.values():
+        section_ends.add(max(ends))
+
+    if scope != "full" and section_ends:
+        shift = (
+            min(
+                slot.bar_start
+                for ps in piece_graph.phrases.values()
+                if (slot := getattr(ps, "slot", None)) and _in_scope(ps, scope) and ps.realized
+            )
+            - 1
+        )
+        if shift > 0:
+            section_ends = {b - shift for b in section_ends}
+
+    last_bar = max(section_ends) if section_ends else None
+    for part in score.parts:
+        for measure in part.getElementsByClass("Measure"):
+            if measure.number not in section_ends:
+                continue
+            style = "final" if measure.number == last_bar else "double"
+            try:
+                measure.rightBarline = music21.bar.Barline(type=style)
+            except Exception:
+                continue
+
+
+def _in_scope(phrase_state, scope: str) -> bool:
+    """Is this phrase included by ``scope``?
+
+    "full" takes everything; "section-<id>" one section; "movement-<id>" one
+    movement (matched on the slot's movement, falling back to the ``m<N>_``
+    prefix convention of section ids) — that used to silently include the whole
+    piece, so asking for one movement assembled all of them.
+    """
+    if not scope or scope == "full":
+        return True
+    slot = getattr(phrase_state, "slot", None)
+    if slot is None:
+        return False
+    if scope.startswith("section-"):
+        return slot.section_id == scope[len("section-") :]
+    if scope.startswith("movement-"):
+        want = scope[len("movement-") :]
+        mv = getattr(slot, "movement_id", "") or ""
+        if mv:
+            return mv == want or mv == f"m{want}"
+        sec = slot.section_id or ""
+        return sec.startswith(f"m{want}_") or sec.startswith(f"{want}_")
+    return True
+
+
 def _collect_events(piece_graph: PieceGraph, scope: str) -> List[EventIR]:
     """Collect all EventIR from realized phrases matching scope."""
     events = []
 
     for phrase_id, phrase_state in piece_graph.phrases.items():
-        # Check scope
-        if scope != "full":
-            if scope.startswith("movement-"):
-                # Would filter by movement — for now include all
-                pass
-            elif scope.startswith("section-"):
-                section_id = scope.replace("section-", "")
-                if phrase_state.slot.section_id != section_id:
-                    continue
-
+        if not _in_scope(phrase_state, scope):
+            continue
         if phrase_state.realized:
             phrase_events = layer_ir_to_event_ir(phrase_state.realized)
             events.extend(phrase_events)
@@ -141,6 +307,20 @@ def _collect_events(piece_graph: PieceGraph, scope: str) -> List[EventIR]:
             shift = min_bar - 1
             for e in events:
                 e.bar -= shift
+
+    # Drop exact duplicates. The same pitch, at the same instant, in the same
+    # voice, for the same duration is not a unison — it is a double-commit or a
+    # merge artifact, and music21 turns the resulting zero-length gaps into
+    # unnotatable durations that abort the whole export.
+    seen: set = set()
+    unique = []
+    for e in events:
+        key = (e.staff, e.voice, e.bar, round(float(e.beat), 4), str(e.pitch), e.duration)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(e)
+    events = unique
 
     # Sort by bar, beat
     events.sort(key=lambda e: (e.bar, e.beat, e.staff, e.voice))
@@ -192,53 +372,64 @@ def _build_piano_score(
         max(bass_bars.keys(), default=0),
     )
 
-    beats_per_bar = meter[0] * 4.0 / meter[1]
-
-    # Build measures
-    current_key = key_str
-    current_tempo = tempo_bpm
+    # Build measures. Key, meter and tempo are all per bar — compared by their
+    # NORMALIZED value so "a minor" and "Am" (two spellings of the same key used
+    # by different phrase slots) don't re-print a key signature at every phrase.
+    current_key_sig = None
+    current_meter = None
+    current_tempo = None
 
     for bar_num in range(1, max_bar + 1):
         meta = bar_meta.get(bar_num, {})
-        new_key = meta.get("key", current_key)
-        new_tempo = meta.get("tempo", current_tempo)
+        new_key = meta.get("key", key_str)
+        new_tempo = meta.get("tempo", tempo_bpm)
+        bar_meter = tuple(meta.get("meter", meter))
+        beats_per_bar = bar_duration(bar_meter)
 
-        # Treble measure
-        t_measure = music21.stream.Measure(number=bar_num)
-        if bar_num == 1 or new_key != current_key:
-            t_measure.insert(0, _parse_key(new_key))
-            t_measure.insert(0, music21.meter.TimeSignature(f"{meter[0]}/{meter[1]}"))
-        if bar_num == 1 or new_tempo != current_tempo:
-            t_measure.insert(0, music21.tempo.MetronomeMark(number=new_tempo))
+        key_obj = _parse_key(new_key)
+        key_changed = current_key_sig is None or key_obj.sharps != current_key_sig.sharps
+        meter_changed = bar_meter != current_meter
+        tempo_changed = new_tempo != current_tempo
 
-        treble_evts = treble_bars.get(bar_num, [])
-        if treble_evts:
-            # Clip events to bar boundaries and add
-            _add_events_voiced(t_measure, treble_evts, meter, note_map)
-        else:
-            r = music21.note.Rest()
-            r.duration = music21.duration.Duration(beats_per_bar)
-            t_measure.append(r)
+        for part, bars_by_num, is_treble in (
+            (treble, treble_bars, True),
+            (bass, bass_bars, False),
+        ):
+            measure = music21.stream.Measure(number=bar_num)
+            if key_changed:
+                measure.insert(0, _parse_key(new_key))
+            if meter_changed:
+                measure.insert(0, music21.meter.TimeSignature(f"{bar_meter[0]}/{bar_meter[1]}"))
+            if tempo_changed and is_treble:
+                # Carry the tempo WORD, not just the number. A metronome mark
+                # alone ("quarter = 76") with no "Andante" over it is how a data
+                # export looks, not how a score looks.
+                mm = music21.tempo.MetronomeMark(
+                    number=new_tempo, text=tempo_word(new_tempo) if current_tempo is None else None
+                )
+                measure.insert(0, mm)
 
-        treble.append(t_measure)
+            pickup = meta.get("pickup_beats")
+            shift = Fraction(0)
+            if pickup:
+                # An anacrusis is a PARTIAL measure: tell music21 how much of the
+                # bar is missing so it exports an implicit measure rather than a
+                # bar that looks short by mistake.
+                shift = beats_per_bar - Fraction(pickup).limit_denominator(96)
+                measure.paddingLeft = float(shift)
 
-        # Bass measure
-        b_measure = music21.stream.Measure(number=bar_num)
-        if bar_num == 1 or new_key != current_key:
-            b_measure.insert(0, _parse_key(new_key))
-            b_measure.insert(0, music21.meter.TimeSignature(f"{meter[0]}/{meter[1]}"))
+            evts = bars_by_num.get(bar_num, [])
+            if evts:
+                _add_events_voiced(measure, evts, bar_meter, note_map, offset_shift=shift)
+            elif not pickup:
+                r = music21.note.Rest()
+                r.duration = music21.duration.Duration(beats_per_bar)
+                measure.append(r)
+            part.append(measure)
 
-        bass_evts = bass_bars.get(bar_num, [])
-        if bass_evts:
-            _add_events_voiced(b_measure, bass_evts, meter, note_map)
-        else:
-            r = music21.note.Rest()
-            r.duration = music21.duration.Duration(beats_per_bar)
-            b_measure.append(r)
-
-        bass.append(b_measure)
-
-        current_key = new_key
+        if key_changed:
+            current_key_sig = key_obj
+        current_meter = bar_meter
         current_tempo = new_tempo
 
     # Set clefs
@@ -250,49 +441,125 @@ def _build_piano_score(
     _apply_spanners(treble, [e for e in events if e.staff == "treble"], note_map)
     _apply_spanners(bass, [e for e in events if e.staff == "bass"], note_map)
 
-    # Create a StaffGroup for piano grand staff
     score.insert(0, treble)
     score.insert(0, bass)
+    # A real braced grand staff. Without this, MuseScore imports two unrelated
+    # single-staff parts that both happen to be called "Piano".
+    group = music21.layout.StaffGroup(
+        [treble, bass], name="Piano", abbreviation="Pno.", symbol="brace"
+    )
+    group.barTogether = True
+    score.insert(0, group)
 
     return score
 
 
-def _build_ensemble_score(
-    score, events: List[EventIR], key_str: str, meter: Tuple[int, int], tempo_bpm: int
-):
-    """Build an ensemble score with multiple parts."""
+# Orchestral layer name → the instrument an engraver would put on that staff.
+# Without an Instrument object every part exports with no MIDI program, so an
+# orchestrated score plays back as a room full of pianos.
+_LAYER_INSTRUMENTS = {
+    "melody": "Violin",
+    "foreground": "Flute",
+    "counter": "Viola",
+    "counter_reply": "Clarinet",
+    "harmony": "Horn",
+    "response": "Bassoon",
+    "motor": "Violin",
+    "color": "Oboe",
+    "punctuation": "Trumpet",
+    "ornament": "Flute",
+    "bass": "Violoncello",
+    "treble": "Piano",
+}
+
+
+def _instrument_for(staff_name: str):
+    """A music21 Instrument for a layer/staff name (Piano as the fallback)."""
     import music21
+
+    cls_name = _LAYER_INSTRUMENTS.get(staff_name, "Piano")
+    try:
+        return getattr(music21.instrument, cls_name)()
+    except Exception:
+        return music21.instrument.Piano()
+
+
+def _build_ensemble_score(
+    score,
+    events: List[EventIR],
+    key_str: str,
+    meter: Tuple[int, int],
+    tempo_bpm: int,
+    bar_meta: Optional[Dict[int, Dict]] = None,
+):
+    """Build an ensemble score with multiple parts.
+
+    Brought to parity with the piano path, which had quietly accumulated four
+    capabilities this one lacked: per-bar key/meter/tempo changes (so an
+    orchestral piece with a meter change was mis-barred), voice containers (so
+    two simultaneous voices in one part spilled past the barline — the exact bug
+    that was fixed for piano and left here), a real Instrument on each part, and
+    a tempo mark at all.
+    """
+    import music21
+
+    if bar_meta is None:
+        bar_meta = {}
 
     # Group by staff
     staff_events: Dict[str, List[EventIR]] = {}
     for event in events:
         staff_events.setdefault(event.staff, []).append(event)
 
-    ks = _parse_key(key_str)
-    ts = music21.meter.TimeSignature(f"{meter[0]}/{meter[1]}")
-
     for staff_name, staff_evts in staff_events.items():
         part = music21.stream.Part()
-        part.partName = staff_name
+        part.partName = staff_name.replace("_", " ").title()
+        part.id = staff_name
         note_map: Dict[int, Any] = {}
+        part.insert(0, _instrument_for(staff_name))
 
         max_bar = max((e.bar for e in staff_evts), default=1)
         bars: Dict[int, List[EventIR]] = {}
         for event in staff_evts:
             bars.setdefault(event.bar, []).append(event)
 
+        current_key_sig = None
+        current_meter = None
+        current_tempo = None
         for bar_num in range(1, max_bar + 1):
+            m_meta = bar_meta.get(bar_num, {})
+            new_key = m_meta.get("key", key_str)
+            new_tempo = m_meta.get("tempo", tempo_bpm)
+            bar_meter = tuple(m_meta.get("meter", meter))
+            beats_per_bar = bar_duration(bar_meter)
+
+            key_obj = _parse_key(new_key)
             measure = music21.stream.Measure(number=bar_num)
-            if bar_num == 1:
-                measure.insert(0, ks)
-                measure.insert(0, ts)
+            # A fresh key/meter object per measure: music21 streams take
+            # ownership of inserted elements, so sharing one object across every
+            # part gives it conflicting sites and can drop it on export.
+            if current_key_sig is None or key_obj.sharps != current_key_sig.sharps:
+                measure.insert(0, _parse_key(new_key))
+                current_key_sig = key_obj
+            if bar_meter != current_meter:
+                measure.insert(0, music21.meter.TimeSignature(f"{bar_meter[0]}/{bar_meter[1]}"))
+                current_meter = bar_meter
+            if new_tempo != current_tempo:
+                measure.insert(
+                    0,
+                    music21.tempo.MetronomeMark(
+                        number=new_tempo,
+                        text=tempo_word(new_tempo) if current_tempo is None else None,
+                    ),
+                )
+                current_tempo = new_tempo
 
-            for event in bars.get(bar_num, []):
-                _add_event_to_measure(measure, event, meter, note_map=note_map)
-
-            if not bars.get(bar_num):
+            evts = bars.get(bar_num, [])
+            if evts:
+                _add_events_voiced(measure, evts, bar_meter, note_map)
+            else:
                 r = music21.note.Rest()
-                r.duration = music21.duration.Duration(meter[0] * 4 / meter[1])
+                r.duration = music21.duration.Duration(beats_per_bar)
                 measure.append(r)
 
             part.append(measure)
@@ -344,7 +611,25 @@ def _apply_performance_marks(piece_graph: PieceGraph, scope: str, events: List[E
             target = min(candidates, key=lambda e: e.beat)
             target.expression = text
 
-    rit_bars = []
+    # Which phrases actually END at a structural cadence? A rit. is a rare,
+    # deliberate mark: it belongs at the approach to a real sectional close, not
+    # at every phrase, and certainly not at a phrase's FIRST bar.
+    #
+    # The old code appended `w.bar_start` for every rubato window and a window
+    # was built for essentially every phrase, so a 41-bar andante came out with
+    # nine "rit." marks alternating with nine "a tempo" marks — a mark on almost
+    # every other bar. No engraved score in history looks like that, and the
+    # MIDI preview slowed down and sped up continuously as a result.
+    _STRONG_CADENCES = {"PAC", "IAC", "authentic", "perfect_authentic", "imperfect_authentic"}
+    last_by_section: Dict[str, Any] = {}
+    for ps in phrases:
+        sec = getattr(ps.slot, "section_id", "") or ""
+        prev = last_by_section.get(sec)
+        if prev is None or (ps.slot.bar_start or 0) > (prev.slot.bar_start or 0):
+            last_by_section[sec] = ps
+    section_final_phrases = set(id(p) for p in last_by_section.values())
+
+    rit_bars: List[int] = []
     any_pedal = False
     for ps in phrases:
         try:
@@ -353,12 +638,30 @@ def _apply_performance_marks(piece_graph: PieceGraph, scope: str, events: List[E
             continue
         if pedal_bars(perf):
             any_pedal = True
+        if id(ps) not in section_final_phrases:
+            continue
+        cadence = str(getattr(ps.slot, "cadence_target", "") or "")
+        if cadence not in _STRONG_CADENCES:
+            continue
+        # The broadening lands on the phrase's LAST bar — the cadence itself.
         for w in perf.rubato_windows:
-            rit_bars.append(w.bar_start - shift)
+            rit_bars.append(w.bar_end - shift)
 
-    for rit_bar in rit_bars:
+    # Keep them sparse even so: a rit. within eight bars of the previous one is
+    # not a structural broadening, it is noise.
+    rit_bars = sorted(set(rit_bars))
+    spaced: List[int] = []
+    for b in rit_bars:
+        if not spaced or b - spaced[-1] >= 8:
+            spaced.append(b)
+
+    last_bar = max((e.bar for e in events), default=0)
+    for rit_bar in spaced:
+        # No "rit." on the final cadence of the piece — that is what the closing
+        # fermata/final barline says, and "a tempo" would have nothing to restore.
+        if rit_bar >= last_bar:
+            continue
         _mark(rit_bar, "rit.")
-        # restore at the next phrase entry, if there is one
         following = [e.bar for e in events if e.bar > rit_bar]
         if following:
             _mark(min(following), "a tempo")
@@ -368,20 +671,219 @@ def _apply_performance_marks(piece_graph: PieceGraph, scope: str, events: List[E
         _mark(first_bar, "con pedale", prefer_treble=False)
 
 
-def _quantize_beat(beat: float, grid: float = 0.25) -> float:
-    """Snap a beat to the nearest grid position (default: sixteenth note)."""
-    return round(beat / grid) * grid
+# Metronome ranges → the Italian tempo word an engraver would actually print.
+# A score with a bare "quarter = 76" and no tempo heading reads as a data dump.
+_TEMPO_WORDS = (
+    (44, "Adagio"),
+    (54, "Larghetto"),
+    (64, "Andante"),
+    (76, "Andantino"),
+    (88, "Moderato"),
+    (108, "Allegretto"),
+    (132, "Allegro"),
+    (160, "Vivace"),
+    (10**6, "Presto"),
+)
 
 
-def _expressible_duration(dur_beats: float) -> float:
-    """Snap duration to nearest expressible value in standard notation."""
-    expressible = [0.125, 0.25, 0.375, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0]
-    best = min(expressible, key=lambda x: abs(x - dur_beats))
-    return best
+def tempo_word(bpm: float) -> str:
+    """The conventional tempo word for a metronome value."""
+    for ceiling, word in _TEMPO_WORDS:
+        if bpm <= ceiling:
+            return word
+    return "Allegro"
+
+
+def _resolve_cross_phrase_ties(events: List[EventIR]) -> None:
+    """Bind a tie left open at the end of a phrase to the next phrase's entry.
+
+    `direct_compose` resolves ties within one phrase, because one phrase is all
+    it can see. A tie-start on a phrase's LAST note therefore had nothing to
+    bind to and was dropped — so the one place a tie matters most, an **elided
+    cadence** where the resolution is held into the next phrase's downbeat, was
+    the one place it could not be written.
+
+    This runs over the assembled event stream, the first point at which both
+    sides of the join exist. Same staff, same voice, same pitch, and the very
+    next event in that voice: anything else is not a tie, and a start that
+    cannot resolve is cleared rather than left dangling.
+    """
+    from collections import defaultdict
+
+    by_voice = defaultdict(list)
+    for e in events:
+        if e.pitch == "rest" or e.ornament in _GRACE_ORNAMENTS:
+            continue
+        by_voice[(e.staff, getattr(e, "voice", 1) or 1)].append(e)
+
+    for evs in by_voice.values():
+        evs.sort(key=lambda e: (e.bar, e.beat))
+        for cur, nxt in zip(evs, evs[1:]):
+            if cur.tie != "start":
+                continue
+            if nxt.tie in ("stop", "continue"):
+                continue  # already bound inside its own phrase
+            if nxt.pitch != cur.pitch:
+                cur.tie = None
+                continue
+            nxt.tie = "stop"
+            for f in _ATTACK_FIELDS:  # the far side of a tie is not a new attack
+                setattr(nxt, f, None)
+        if evs and evs[-1].tie == "start":
+            evs[-1].tie = None
+
+
+def _split_events_over_barlines(
+    events: List[EventIR],
+    bar_meta: Dict[int, Dict],
+    default_meter: Tuple[int, int],
+) -> List[EventIR]:
+    """Split any event that runs past its barline into tied fragments.
+
+    A note held across a barline is completely ordinary music — a melody that
+    leans into the next bar, a pedal bass under a phrase joint, a suspension
+    resolving late. The engraving path had no way to represent one: an event
+    longer than the space left in its bar was silently CLAMPED to the barline,
+    so the score contained no ties at all and every bar was a sealed box. The
+    fix belongs here rather than in the shorthand, because the shorthand's
+    per-bar contract (each voice sums to the meter) is what makes the meter
+    check possible.
+
+    Fragments chain with real ties; attack marks (articulation, ornament,
+    dynamic, text) stay on the first, release marks (slur/hairpin stop) move to
+    the last, and a pre-existing tie on the source event is preserved.
+    """
+    import copy
+
+    def _capacity(bar: int) -> Fraction:
+        meta = bar_meta.get(bar) or {}
+        cap = bar_duration(tuple(meta.get("meter", default_meter)))
+        pickup = meta.get("pickup_beats")
+        if pickup:
+            cap = Fraction(pickup).limit_denominator(96)
+        return cap
+
+    out: List[EventIR] = []
+    for e in events:
+        if e.ornament in _GRACE_ORNAMENTS or e.pitch == "rest":
+            out.append(e)
+            continue
+        offset = _exact_offset(e.beat)
+        remaining = dur_to_beats(e.duration)
+        cap = _capacity(e.bar)
+        if offset < 0 or remaining <= 0 or offset + remaining <= cap:
+            out.append(e)
+            continue
+
+        original_tie = e.tie
+        bar = e.bar
+        beat = e.beat
+        first = True
+        pieces: List[EventIR] = []
+        # Guard the loop: a corrupt duration should not spawn thousands of bars.
+        while remaining > 0 and len(pieces) < 64:
+            space = _capacity(bar) - (offset if first else Fraction(0))
+            if space <= 0:
+                break
+            take = min(remaining, space)
+            frag = copy.copy(e)
+            frag.bar = bar
+            frag.beat = float(beat) if first else 1.0
+            frag.duration = beats_to_dur(take)
+            pieces.append(frag)
+            remaining -= take
+            bar += 1
+            first = False
+        if not pieces:
+            out.append(e)
+            continue
+        for i, frag in enumerate(pieces):
+            is_first, is_last = i == 0, i == len(pieces) - 1
+            if not is_first:
+                for f in _ATTACK_FIELDS:
+                    setattr(frag, f, None)
+            if not is_last:
+                for f in _RELEASE_FIELDS:
+                    setattr(frag, f, None)
+            if is_last:
+                # The tail carries whatever tie the source event already had, so
+                # a chain of held notes across several bars still joins up.
+                frag.tie = "continue" if original_tie in ("start", "continue") else "stop"
+            else:
+                frag.tie = "start" if is_first and original_tie != "stop" else "continue"
+        out.extend(pieces)
+    out.sort(key=lambda e: (e.bar, e.beat, e.staff, e.voice))
+    return out
+
+
+# Shortest value the engraver can notate (a 64th note).
+_MIN_NOTATABLE = Fraction(1, 16)
+
+# The durations this system can write, taken straight from the duration table
+# rather than re-listed here. Hand-listing them was a mistake that snapped 1/5 to
+# 3/16 and 1/7 to 1/8 — silently corrupting the quintuplets and septuplets the
+# grammar had just been extended to support. The table IS the definition of what
+# is notatable; anything else is a computed remainder that has to land on one of
+# these values.
+_NOTATABLE = sorted(set(DURATION_VALUES.values()))
+
+# Largest denominator a metric position can have. 48 covers everything the
+# shorthand can express (64ths = 1/16, triplet-32nds = 1/12, sextuplet-32nds =
+# 1/24, quintuplets = 1/5, septuplets = 1/7) while still snapping a sloppily
+# rounded legacy value like 1.33 onto the 4/3 it means. A larger bound does NOT
+# help: at 96, 1.33 resolves to 125/94, and the resulting sliver-sized gaps make
+# music21 emit a 2048th-note rest and abort the export of the entire score.
+_MAX_POSITION_DENOM = 48
+
+# Ornaments that take no metric time, so a note carrying one is never split
+# across a barline. The canonical set lives in duration.py — a schleifer/slide
+# is deliberately NOT one of them: it is a sign printed on an ordinary,
+# full-length note.
+_GRACE_ORNAMENTS = GRACE_ORNAMENTS
+
+# When one note is split across a barline, its ATTACK markings belong only to the
+# first fragment and its RELEASE markings only to the last — otherwise a single
+# tied note re-articulates its dynamic, accent and ornament in every bar it
+# crosses, which is both wrong and audible.
+_ATTACK_FIELDS = ("dynamic", "articulation", "ornament", "expression", "technique", "pedal")
+_RELEASE_FIELDS = ("slur", "hairpin")
+
+
+def _notatable(dur: Fraction) -> Fraction:
+    """Snap a duration to the nearest value the shorthand can actually express.
+
+    A clamped remainder or a corrupt stored duration can be an arbitrary
+    fraction; handing music21 a 1/512 makes it raise
+    ``Cannot convert "2048th" duration to MusicXML`` and lose the whole score.
+    """
+    if dur in _NOTATABLE:
+        return dur
+    if dur <= _MIN_NOTATABLE:
+        return _MIN_NOTATABLE
+    return min(_NOTATABLE, key=lambda v: (abs(v - dur), v))
+
+
+def _exact_offset(beat: float) -> Fraction:
+    """Recover the exact metric position from a stored (float) beat.
+
+    The IR stores beats as JSON floats, so a triplet position arrives as
+    1.333333 and must map back to exactly 4/3. Snapping happens BEFORE the
+    0-based shift — subtracting first turns the float error into a much worse
+    approximation.
+
+    This replaces a 16th-note rounding grid that made 32nd notes COLLIDE: beats
+    1.0 and 1.125 both snapped to offset 0.0, so half the notes of any 32nd-note
+    figuration landed on top of each other and vanished from the score.
+    """
+    return Fraction(beat).limit_denominator(_MAX_POSITION_DENOM) - 1
 
 
 def _add_events_voiced(
-    measure, evts, meter: Tuple[int, int], note_map: Optional[Dict[int, Any]] = None
+    measure,
+    evts,
+    meter: Tuple[int, int],
+    note_map: Optional[Dict[int, Any]] = None,
+    offset_shift: Fraction = Fraction(0),
 ) -> None:
     """Add a staff's events to a measure, grouping by voice.
 
@@ -402,37 +904,74 @@ def _add_events_voiced(
 
     if len(by_voice) <= 1:
         for event in evts:
-            _add_event_to_measure(measure, event, meter, note_map=note_map)
+            _add_event_to_measure(
+                measure, event, meter, note_map=note_map, offset_shift=offset_shift
+            )
         return
 
     for vid in sorted(by_voice):
         voice = music21.stream.Voice(id=str(vid))
         for event in by_voice[vid]:
-            _add_event_to_measure(voice, event, meter, note_map=note_map)
+            # Notes go into the voice; dynamics / text / pedal go on the MEASURE.
+            _add_event_to_measure(
+                voice,
+                event,
+                meter,
+                note_map=note_map,
+                offset_shift=offset_shift,
+                marks_target=measure,
+            )
         measure.insert(0, voice)
 
 
 def _add_event_to_measure(
-    measure, event: EventIR, meter: Tuple[int, int], note_map: Optional[Dict[int, Any]] = None
+    measure,
+    event: EventIR,
+    meter: Tuple[int, int],
+    note_map: Optional[Dict[int, Any]] = None,
+    offset_shift: Fraction = Fraction(0),
+    marks_target=None,
 ) -> None:
     """Add an EventIR to a music21 Measure.
 
     Registers the created note/chord in ``note_map`` (keyed by
     ``id(event)``) so the spanner pass can attach slurs/hairpins.
+
+    Offsets and durations stay exact (``Fraction``), so music21 builds the right
+    tuplet bracket for a 1/3 and the right 64th for a 1/16 instead of receiving
+    a value already rounded onto a 16th-note grid.
     """
     import music21
 
-    beats_per_bar = meter[0] * 4.0 / meter[1]
-    offset = _quantize_beat(event.beat - 1.0)  # music21 uses 0-based offsets
-    dur_beats = DURATION_VALUES.get(event.duration, 1.0)
+    beats_per_bar = Fraction(int(meter[0]) * 4, int(meter[1]))
+    # music21 uses 0-based offsets. In an anacrusis the IR keeps the metrically
+    # TRUE beat (a one-beat pickup in 4/4 sits on beat 4), while music21 wants the
+    # content at offset 0 of a measure declared short via paddingLeft — so shift.
+    offset = _exact_offset(event.beat) - offset_shift
+    if offset_shift:
+        beats_per_bar -= offset_shift
+    if offset < 0:
+        offset = Fraction(0)
+    dur_beats = dur_to_beats(event.duration)
+    if dur_beats <= 0:
+        dur_beats = Fraction(1)
 
-    # Clamp duration so note doesn't exceed measure boundary
+    # An event that starts past the barline is corrupt input (the meter check at
+    # commit is what should catch it). Pull it back to the last position inside
+    # the bar rather than silently lengthening the measure, which used to produce
+    # 5-beat bars in a 4/4 score.
+    if offset >= beats_per_bar:
+        offset = max(Fraction(0), beats_per_bar - dur_beats)
+    # Clamp duration so the note doesn't cross the barline. The remainder must
+    # still be a notatable value: clamping to whatever was left over could yield
+    # a 1/512 note, which music21 refuses to export ("cannot convert 2048th
+    # duration") and which no engraver could render anyway.
     remaining = beats_per_bar - offset
-    if dur_beats > remaining and remaining > 0:
+    if dur_beats > remaining:
+        if remaining < _MIN_NOTATABLE:
+            return  # no room left in the bar — the meter check flags the cause
         dur_beats = remaining
-
-    # Snap to expressible duration
-    dur_beats = _expressible_duration(dur_beats)
+    dur_beats = _notatable(dur_beats)
 
     if event.pitch == "rest":
         n = music21.note.Rest()
@@ -454,66 +993,176 @@ def _add_event_to_measure(
     n.duration = music21.duration.Duration(dur_beats)
     _apply_markings(n, event)
 
-    # Dynamics and text expressions are measure-level objects in music21,
-    # not note attributes — inserting into the note silently fails (and
-    # used to drop the note entirely)
+    # Dynamics and text expressions are MEASURE-level objects in music21, not
+    # note attributes and not voice contents: a Dynamic inserted into a Voice
+    # exports inside that voice's backup/forward block, where engravers place it
+    # inconsistently. ``marks_target`` is the enclosing measure when this event
+    # is being added to a voice container.
+    target = marks_target if marks_target is not None else measure
+    seen = _marks_seen(target)
+
     if event.dynamic:
-        try:
-            measure.insert(offset, music21.dynamics.Dynamic(event.dynamic))
-        except Exception:
-            pass
+        # One dynamic per position. A bar-level dynamic used to be written onto
+        # the first note of BOTH staves, so every dynamic in the score was
+        # printed twice, once above each staff.
+        key = ("dyn", float(offset))
+        if key not in seen:
+            seen.add(key)
+            try:
+                target.insert(offset, music21.dynamics.Dynamic(event.dynamic))
+            except Exception:
+                pass
     if event.expression:
-        try:
-            te = music21.expressions.TextExpression(event.expression)
-            te.style.fontStyle = "italic"
-            measure.insert(offset, te)
-        except Exception:
-            pass
+        key = ("text", float(offset), event.expression)
+        if key not in seen:
+            seen.add(key)
+            try:
+                te = music21.expressions.TextExpression(event.expression)
+                te.style.fontStyle = "italic"
+                target.insert(offset, te)
+            except Exception:
+                pass
+    # Pedal is emitted by `_apply_spanners` as a real MusicXML <pedal> line,
+    # which is what makes MuseScore draw the bracket and sustain on playback.
+    # It used to be written here as the literal text "Ped." / "*", on the
+    # grounds that "music21 has no PedalMark in this version" — music21 9.9.1
+    # has `expressions.PedalMark`, a Spanner that exports
+    # `<pedal type="start"/>` … `<pedal type="stop"/>`. A text glyph looks
+    # right on the page and does nothing at all.
 
     measure.insert(offset, n)
     if note_map is not None:
         note_map[id(event)] = n
 
 
-def _apply_markings(note_obj, event: EventIR) -> None:
-    """Apply articulations, ornaments, ties, and expression text to a note.
+def _marks_seen(measure) -> set:
+    """Per-measure set of already-emitted (kind, offset) marks.
 
-    Dynamics and spanners (slurs, hairpins) are handled by the caller —
-    they live on the measure/part, not the note.
+    Stashed on the measure so the dedupe survives across the two staves and the
+    several voices that all insert into the same measure.
+    """
+    got = getattr(measure, "_wolfgang_marks", None)
+    if got is None:
+        got = set()
+        try:
+            measure._wolfgang_marks = got
+        except Exception:
+            return set()
+    return got
+
+
+def _articulation_classes() -> Dict[str, Any]:
+    """Name → music21 articulation class.
+
+    Kept as a function so the module imports without music21 present. The map
+    used to cover five names, so a staccatissimo wedge, a portato, a breath mark
+    and a caesura were all silently discarded on the way to the page.
+    """
+    import music21
+
+    a = music21.articulations
+    return {
+        "staccato": a.Staccato,
+        "staccatissimo": a.Staccatissimo,
+        "portato": a.DetachedLegato,
+        "detached_legato": a.DetachedLegato,
+        "spiccato": a.Spiccato,
+        "accent": a.Accent,
+        "tenuto": a.Tenuto,
+        "marcato": a.StrongAccent,
+        "strong_accent": a.StrongAccent,
+        "breath": a.BreathMark,
+        "caesura": a.Caesura,
+        "stress": a.Stress,
+        "unstress": a.Unstress,
+        # "legato" is a SLUR, not a note-attached mark. Rendering it as a tenuto
+        # printed a dash on every note of a legato passage — the opposite of the
+        # smooth line intended.
+        "legato": None,
+    }
+
+
+def _ornament_classes() -> Dict[str, Any]:
+    """Name → music21 ornament class (None = handled specially by the caller)."""
+    import music21
+
+    e = music21.expressions
+    return {
+        "trill": e.Trill,
+        "tr": e.Trill,
+        "mordent": e.Mordent,
+        "mord": e.Mordent,
+        "inverted_mordent": e.InvertedMordent,
+        "prall": e.InvertedMordent,
+        "turn": e.Turn,
+        "inverted_turn": e.InvertedTurn,
+        "schleifer": e.Schleifer,
+        "fermata": e.Fermata,
+    }
+
+
+def _apply_markings(note_obj, event: EventIR) -> None:
+    """Apply articulations, ornaments, ties, techniques and fingering to a note.
+
+    Dynamics, text expressions and spanners (slurs, hairpins, glissandi, ottava)
+    are handled by the caller — they live on the measure/part, not the note.
     """
     import music21
 
     if event.articulation:
-        art_map = {
-            "staccato": music21.articulations.Staccato,
-            "accent": music21.articulations.Accent,
-            "tenuto": music21.articulations.Tenuto,
-            "legato": music21.articulations.Tenuto,  # closest
-            "marcato": music21.articulations.StrongAccent,
-        }
-        art_class = art_map.get(event.articulation)
+        art_class = _articulation_classes().get(event.articulation)
         if art_class:
             note_obj.articulations.append(art_class())
 
     if event.ornament:
-        orn_map = {
-            "trill": music21.expressions.Trill,
-            "tr": music21.expressions.Trill,
-            "mordent": music21.expressions.Mordent,
-            "mord": music21.expressions.Mordent,
-            "inverted_mordent": music21.expressions.InvertedMordent,
-            "turn": music21.expressions.Turn,
-            "fermata": music21.expressions.Fermata,
-        }
-        orn_class = orn_map.get(event.ornament)
+        orn_class = _ornament_classes().get(event.ornament)
         if orn_class:
             note_obj.expressions.append(orn_class())
         elif event.ornament in ("grace", "appoggiatura", "acciaccatura"):
-            # Grace notes change the note itself rather than decorating it
+            # Grace notes change the note itself rather than decorating it. An
+            # acciaccatura is the SLASHED (crushed) form and an appoggiatura the
+            # unslashed one — engravers and players read them differently, and
+            # collapsing both onto a plain grace lost that distinction.
             try:
-                note_obj.getGrace(inPlace=True)
+                if event.ornament == "acciaccatura":
+                    note_obj.getGrace(appoggiatura=False, inPlace=True)
+                    try:
+                        note_obj.duration.slash = True
+                    except Exception:
+                        pass
+                elif event.ornament == "appoggiatura":
+                    note_obj.getGrace(appoggiatura=True, inPlace=True)
+                else:
+                    note_obj.getGrace(inPlace=True)
             except Exception:
                 pass
+
+    technique = getattr(event, "technique", None)
+    if technique:
+        try:
+            if technique in ("arpeggio", "arpeggio_up", "arpeggio_down"):
+                # A rolled chord. Only meaningful on a chord, and the direction
+                # is part of the notation ('up' is the default an engraver
+                # assumes, so a downward roll must actually say so).
+                if isinstance(note_obj, music21.chord.Chord):
+                    kind = {
+                        "arpeggio": "normal",
+                        "arpeggio_up": "up",
+                        "arpeggio_down": "down",
+                    }[technique]
+                    note_obj.expressions.append(music21.expressions.ArpeggioMark(kind))
+            elif technique == "tremolo":
+                note_obj.expressions.append(music21.expressions.Tremolo())
+        except Exception:
+            pass
+
+    fingering = getattr(event, "fingering", None)
+    if fingering:
+        try:
+            fg = music21.articulations.Fingering(str(fingering))
+            note_obj.articulations.append(fg)
+        except Exception:
+            pass
 
     if event.tie in ("start", "stop", "continue"):
         import music21.tie
@@ -521,13 +1170,27 @@ def _apply_markings(note_obj, event: EventIR) -> None:
         note_obj.tie = music21.tie.Tie(event.tie)
 
 
-def _apply_spanners(part, events: List[EventIR], note_map: Dict[int, Any]) -> None:
-    """Attach slurs and hairpins (crescendo/diminuendo wedges) to a part.
+# A spanner left open by the composer is a mistake, not an instruction to slur
+# the rest of the piece. An unclosed span reaches at most this many bars from
+# where it started, then closes.
+_MAX_SPANNER_BARS = 4
 
-    Spanners reference the actual Note objects created in the first pass,
-    so this must run after all measures are built. Events are walked in
-    time order; ``slur``/``hairpin`` use start/stop markers. Dangling
-    starts are closed at the last spanned note so export stays valid.
+
+def _apply_spanners(part, events: List[EventIR], note_map: Dict[int, Any]) -> None:
+    """Attach slurs, hairpins, glissandi and ottava lines to a part.
+
+    Spanners reference the actual Note objects created in the first pass, so
+    this must run after all measures are built. Events are walked in time order;
+    ``slur`` / ``hairpin`` / ``technique`` use start/stop markers.
+
+    A dangling start used to be closed at the FINAL note of the part, so one
+    unclosed ``(`` produced a single slur arcing across the entire piece. Now an
+    unclosed span is cut off after ``_MAX_SPANNER_BARS`` bars, which is what an
+    engraver reading the same passage would do.
+
+    Slurs are tracked PER VOICE. A single cursor meant a slur opened in the
+    melody was closed by the next 'stop' in the inner voice, tying two
+    independent lines into one spanner.
     """
     import music21
 
@@ -535,84 +1198,139 @@ def _apply_spanners(part, events: List[EventIR], note_map: Dict[int, Any]) -> No
         (e for e in events if id(e) in note_map),
         key=lambda e: (e.bar, e.beat, e.voice),
     )
+    if not ordered:
+        return
 
-    open_slur: List[Any] = []
-    open_hairpin: Optional[Tuple[str, List[Any]]] = None
+    # voice → (start_bar, [notes])
+    open_slurs: Dict[int, Tuple[int, List[Any]]] = {}
+    open_hairpin: Optional[Tuple[str, int, List[Any]]] = None
+    open_gliss: Optional[Tuple[int, List[Any]]] = None
+    open_ottava: Optional[Tuple[str, int, List[Any]]] = None
+    open_pedal: Optional[Tuple[int, List[Any]]] = None
 
-    def _close_slur():
-        nonlocal open_slur
-        if len(open_slur) >= 2:
-            try:
-                part.insert(0, music21.spanner.Slur(open_slur))
-            except Exception:
-                pass
-        open_slur = []
+    def _emit(spanner_obj):
+        try:
+            part.insert(0, spanner_obj)
+        except Exception:
+            pass
+
+    def _close_slur(voice: int):
+        entry = open_slurs.pop(voice, None)
+        if entry and len(entry[1]) >= 2:
+            _emit(music21.spanner.Slur(entry[1]))
 
     def _close_hairpin():
         nonlocal open_hairpin
-        if open_hairpin and len(open_hairpin[1]) >= 2:
-            kind, notes = open_hairpin
+        if open_hairpin and len(open_hairpin[2]) >= 2:
+            kind, _b, notes = open_hairpin
             cls = (
                 music21.dynamics.Crescendo
                 if kind.startswith("cresc")
                 else music21.dynamics.Diminuendo
             )
+            _emit(cls(notes))
+        open_hairpin = None
+
+    def _close_gliss():
+        nonlocal open_gliss
+        if open_gliss and len(open_gliss[1]) >= 2:
+            _emit(music21.spanner.Glissando(open_gliss[1]))
+        open_gliss = None
+
+    def _close_ottava():
+        nonlocal open_ottava
+        if open_ottava and open_ottava[2]:
+            kind, _b, notes = open_ottava
             try:
-                part.insert(0, cls(notes))
+                _emit(music21.spanner.Ottava(notes, type=kind))
             except Exception:
                 pass
-        open_hairpin = None
+        open_ottava = None
+
+    def _close_pedal():
+        nonlocal open_pedal
+        if open_pedal and len(open_pedal[1]) >= 2:
+            try:
+                _emit(music21.expressions.PedalMark(open_pedal[1]))
+            except Exception:
+                pass
+        open_pedal = None
 
     for event in ordered:
         n = note_map[id(event)]
+        vid = getattr(event, "voice", 1) or 1
+        bar = event.bar
 
-        if open_slur:
-            open_slur.append(n)
+        # Extend every open span this note falls inside, then time it out.
+        for v, (b0, notes) in list(open_slurs.items()):
+            if v != vid:
+                continue
+            notes.append(n)
+            if bar - b0 >= _MAX_SPANNER_BARS:
+                _close_slur(v)
         if open_hairpin:
-            open_hairpin[1].append(n)
+            open_hairpin[2].append(n)
+            if bar - open_hairpin[1] >= _MAX_SPANNER_BARS:
+                _close_hairpin()
+        if open_gliss:
+            open_gliss[1].append(n)
+            if bar - open_gliss[0] > 1:
+                _close_gliss()
+        if open_ottava:
+            open_ottava[2].append(n)
+            if bar - open_ottava[1] >= _MAX_SPANNER_BARS * 2:
+                _close_ottava()
+        if open_pedal:
+            open_pedal[1].append(n)
+            if bar - open_pedal[0] >= _MAX_SPANNER_BARS:
+                _close_pedal()
 
         if event.slur == "start":
-            if open_slur:
-                _close_slur()
-            open_slur = [n]
-        elif event.slur == "stop" and open_slur:
-            _close_slur()
+            if vid in open_slurs:
+                _close_slur(vid)
+            open_slurs[vid] = (bar, [n])
+        elif event.slur == "stop" and vid in open_slurs:
+            _close_slur(vid)
 
         hp = event.hairpin or ""
         if hp in ("cresc_start", "dim_start", "cresc", "dim", "<", ">"):
             if open_hairpin:
                 _close_hairpin()
             kind = "cresc" if hp in ("cresc_start", "cresc", "<") else "dim"
-            open_hairpin = (kind, [n])
+            open_hairpin = (kind, bar, [n])
         elif hp in ("stop", "cresc_stop", "dim_stop", "!") and open_hairpin:
             _close_hairpin()
 
-    # Close any dangling spanners at the final note
-    _close_slur()
+        tech = getattr(event, "technique", None)
+        if tech == "gliss_start":
+            _close_gliss()
+            open_gliss = (bar, [n])
+        elif tech == "gliss_stop":
+            _close_gliss()
+        elif tech in ("8va", "8vb"):
+            _close_ottava()
+            open_ottava = ("8va" if tech == "8va" else "8vb", bar, [n])
+        elif tech == "octave_stop":
+            _close_ottava()
+
+        ped = getattr(event, "pedal", None)
+        if ped in ("down", "change"):
+            # "change" is a lift-and-retake: close the span and open the next.
+            _close_pedal()
+            open_pedal = (bar, [n])
+        elif ped == "up":
+            _close_pedal()
+
+    for v in list(open_slurs):
+        _close_slur(v)
     _close_hairpin()
+    _close_gliss()
+    _close_ottava()
+    _close_pedal()
 
 
 def _parse_key(key_str: str):
-    """Parse a key string like 'C', 'Dm', 'F#m', 'g_minor', 'bb_major' to music21 Key."""
-    import music21
+    """Delegates to the single canonical parser (pitch.parse_key)."""
+    from .pitch import parse_key
 
-    # Normalize space-separated form ('d minor') to underscore form ('d_minor')
-    key_str = key_str.strip().replace(" ", "_")
-
-    # Handle underscore format: g_minor, bb_major, eb_major, etc.
-    if "_" in key_str:
-        parts = key_str.split("_")
-        # Handle modulation arrows like "g_minor->bb_major" — use first key
-        if "->" in key_str:
-            return _parse_key(key_str.split("->")[0])
-        tonic = parts[0].upper()
-        # Handle flats: bb -> B-, eb -> E-
-        if len(tonic) == 2 and tonic[1] == "B":
-            tonic = tonic[0] + "-"
-        mode = parts[1] if len(parts) > 1 else "major"
-        return music21.key.Key(tonic, mode)
-
-    if key_str.endswith("m"):
-        tonic = key_str[:-1]
-        return music21.key.Key(tonic, "minor")
-    return music21.key.Key(key_str, "major")
+    return parse_key(key_str)

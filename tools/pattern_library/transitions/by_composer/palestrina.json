@@ -1,35 +1,65 @@
 {
-  "counts": {
-    "silence": {
-      "silence": 404,
-      "pedal_point": 284,
-      "bass_melody": 63,
-      "broken_chord_wave": 5
-    },
-    "pedal_point": {
-      "bass_melody": 1126,
-      "pedal_point": 1383,
-      "broken_chord_wave": 219,
-      "silence": 189
-    },
-    "bass_melody": {
-      "bass_melody": 1732,
-      "pedal_point": 1133,
-      "silence": 58,
-      "broken_chord_wave": 556
-    },
-    "broken_chord_wave": {
-      "pedal_point": 219,
-      "bass_melody": 552,
-      "broken_chord_wave": 170,
-      "silence": 9
-    }
+ "counts": {
+  "pedal_point": {
+   "pedal_point": 11315,
+   "bass_melody": 5044,
+   "walking_bass": 2592,
+   "broken_chord_wave": 39,
+   "silence": 501,
+   "alberti": 41,
+   "interlocking": 2
   },
-  "self_continuation": {
-    "silence": 0.5344,
-    "pedal_point": 0.4741,
-    "bass_melody": 0.4978,
-    "broken_chord_wave": 0.1789
+  "bass_melody": {
+   "bass_melody": 17350,
+   "pedal_point": 5048,
+   "walking_bass": 3605,
+   "broken_chord_wave": 856,
+   "alberti": 683,
+   "silence": 44,
+   "interlocking": 1
   },
-  "total_transitions": 8102
+  "walking_bass": {
+   "bass_melody": 3565,
+   "walking_bass": 1444,
+   "pedal_point": 2645,
+   "broken_chord_wave": 88,
+   "alberti": 85,
+   "silence": 18,
+   "interlocking": 1
+  },
+  "broken_chord_wave": {
+   "broken_chord_wave": 238,
+   "bass_melody": 846,
+   "alberti": 83,
+   "walking_bass": 102,
+   "pedal_point": 46
+  },
+  "silence": {
+   "silence": 1115,
+   "pedal_point": 946,
+   "bass_melody": 49,
+   "walking_bass": 17
+  },
+  "alberti": {
+   "bass_melody": 672,
+   "broken_chord_wave": 94,
+   "walking_bass": 79,
+   "alberti": 54,
+   "pedal_point": 47
+  },
+  "interlocking": {
+   "bass_melody": 3,
+   "pedal_point": 1
+  }
+ },
+ "self_continuation": {
+  "pedal_point": 0.5792,
+  "bass_melody": 0.6289,
+  "walking_bass": 0.184,
+  "broken_chord_wave": 0.181,
+  "silence": 0.5242,
+  "alberti": 0.0571,
+  "interlocking": 0.0
+ },
+ "total_transitions": 59359
 }

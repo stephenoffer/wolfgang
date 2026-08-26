@@ -11,6 +11,16 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional, Tuple
 
+# Roman numeral → scale degree offset (from root, in semitones)
+# Roman numeral -> (degree, quality) is parsed, not looked up. The two tables
+# that used to live here were hand-maintained and full of holes: "viio7" was
+# listed but "V7" was not, so every dominant seventh in every progression model
+# and every chord frame silently degraded to a plain triad; "I6" was listed but
+# "I64" was not, so second-inversion chords came out in root position. A parser
+# covers the whole grammar by construction — see
+# ``scales.harmony_analysis.parse_roman``, which round-trips against
+# ``spell_roman`` for all 12 degrees, 9 qualities and every inversion.
+from .harmony_analysis import parse_roman as _parse_roman
 from .models import (
     CadenceScript,
     HarmonicCell,
@@ -25,93 +35,20 @@ from .pitch import (
     midi_to_pitch,
 )
 
-# Roman numeral → scale degree offset (from root, in semitones)
-_ROMAN_TO_DEGREE = {
-    "I": 0,
-    "i": 0,
-    "II": 2,
-    "ii": 2,
-    "bII": 1,
-    "III": 4,
-    "iii": 4,
-    "bIII": 3,
-    "IV": 5,
-    "iv": 5,
-    "V": 7,
-    "v": 7,
-    "VI": 9,
-    "vi": 9,
-    "bVI": 8,
-    "VII": 11,
-    "vii": 11,
-    "bVII": 10,
-    # Common applied chords
-    "V/V": 2,
-    "V/iv": 0,
-    "V/vi": 4,
-    "V/III": 11,
-    # Inversions (same root, different bass)
-    "ii6": 2,
-    "iv6": 5,
-    "I6": 0,
-    "V6": 7,
-    "ii_dim6": 2,
-    "ii_dim": 2,
-    "ii°6": 2,
-    "ii°": 2,
-    # Neapolitan
-    "N6": 1,
-    "N": 1,
-    "bII6": 1,
-    # Augmented sixths
-    "It6": 8,
-    "Fr6": 8,
-    "Ger6": 8,
-    # Applied dominants with key suffixes (V/g, iv/g, etc.)
-    "V/g": 7,
-    "iv/g": 5,
-}
 
-_ROMAN_TO_QUALITY = {
-    "I": "major",
-    "i": "minor",
-    "II": "major",
-    "ii": "minor",
-    "bII": "major",
-    "III": "major",
-    "iii": "minor",
-    "bIII": "major",
-    "IV": "major",
-    "iv": "minor",
-    "V": "major",
-    "v": "minor",
-    "VI": "major",
-    "vi": "minor",
-    "bVI": "major",
-    "VII": "major",
-    "vii": "dim",
-    "bVII": "major",
-    "V7": "dom7",
-    "V/V": "major",
-    "V/III": "major",
-    "viio": "dim",
-    "ii6": "minor",
-    "iv6": "minor",
-    "I6": "major",
-    "V6": "major",
-    "ii_dim6": "dim",
-    "ii_dim": "dim",
-    "ii°6": "dim",
-    "ii°": "dim",
-    "N6": "major",
-    "N": "major",
-    "bII6": "major",
-    "It6": "major",
-    "Fr6": "major",
-    "Ger6": "major",
-    "V/g": "major",
-    "iv/g": "minor",
-}
+def _roman_degree(roman: str, mode: str = "major") -> int:
+    parsed = _parse_roman(roman, mode)
+    return int(parsed["degree"]) if parsed else 0
+
+
+def _roman_quality(roman: str, mode: str = "major") -> str:
+    parsed = _parse_roman(roman, mode)
+    return str(parsed["quality"]) if parsed else "major"
+
+
+def _roman_inversion(roman: str, mode: str = "major") -> int:
+    parsed = _parse_roman(roman, mode)
+    return int(parsed["inversion"]) if parsed else 0
 
 
 class HarmonicSolver:
@@ -191,8 +128,8 @@ class HarmonicSolver:
         voice-leading hints and emotional color guidance.
         """
         roman = cell.roman
-        quality = cell.quality or _ROMAN_TO_QUALITY.get(roman, "major")
-        degree_offset = _ROMAN_TO_DEGREE.get(roman, 0)
+        quality = cell.quality or _roman_quality(roman, mode)
+        degree_offset = _roman_degree(roman, mode)
 
         # Compute root MIDI
         cell_root = root_midi + degree_offset
@@ -207,8 +144,11 @@ class HarmonicSolver:
             if matching and matching.voice_leading_hints:
                 device_hint = matching.voice_leading_hints[0]
 
-        # Apply inversion
-        inversion = cell.inversion
+        # Apply inversion. A figured symbol ("V65", "I64") carries its own
+        # inversion; ignoring it and reading only ``cell.inversion`` put every
+        # chord the corpus spells in inversion back into root position, which is
+        # exactly the stepwise-bass writing that inversions exist to produce.
+        inversion = cell.inversion or _roman_inversion(roman, mode)
         bass_midi = tones[inversion % len(tones)] if tones else cell_root
 
         # If device provides bass guidance, apply as soft influence
@@ -222,7 +162,7 @@ class HarmonicSolver:
 
         # Place soprano — use device hint or voice-leading hint
         soprano_hint = device_hint or cell.voice_leading_hint
-        soprano_midi = self._choose_soprano(tones, sop_range, prev, soprano_hint)
+        soprano_midi = self._choose_soprano(tones, sop_range, prev, soprano_hint, bass=bass_midi)
 
         # Fill inner voices
         alto_midi, tenor_midi = self._fill_inner(tones, soprano_midi, bass_midi)
@@ -261,8 +201,11 @@ class HarmonicSolver:
         sop_range: Tuple[int, int],
         prev: Optional[Dict],
         hint: Optional[str],
+        bass: Optional[int] = None,
     ) -> int:
         """Choose soprano pitch with voice-leading optimization."""
+        from .pitch import parallel_perfect
+
         candidates = []
         for tone in tones:
             placed = self._place_in_range(tone, sop_range)
@@ -273,6 +216,15 @@ class HarmonicSolver:
 
         if prev and "soprano_midi" in prev:
             prev_sop = prev["soprano_midi"]
+            # Hard-avoid outer-voice parallel 5ths/8ves against the chosen bass.
+            if bass is not None and "bass_midi" in prev:
+                safe = [
+                    c
+                    for c in candidates
+                    if not parallel_perfect(prev_sop, prev["bass_midi"], c, bass)
+                ]
+                if safe:
+                    candidates = safe
             # Choose candidate closest to previous soprano
             candidates.sort(key=lambda c: abs(c - prev_sop))
             # Apply hint if present

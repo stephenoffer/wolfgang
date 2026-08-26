@@ -1,8 +1,8 @@
 {
   "composer": "mozart",
-  "genre": "classical",
+  "genre": "",
   "support_tier": "A",
-  "corpus_bar_count": 6987,
+  "corpus_bar_count": 7022,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -11,6 +11,8 @@
     "harmonic-language.md",
     "index.md",
     "melodic-style.md",
+    "mozart-devices.md",
+    "mozart-lh-vocabulary.md",
     "orchestration.md",
     "stylistic-evolution.md"
   ],

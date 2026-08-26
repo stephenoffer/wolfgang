@@ -8,35 +8,40 @@
       "texture_affinities": [
         "alberti"
       ],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "grace_note_entry",
       "name": "Grace-note entry",
       "description": "Phrases begin with a grace note leaning into the first structural pitch. The melody breathes before it sings. Combined with rubato, the arrival is never mechanical.",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "chromatic_inner_voice",
       "name": "Chromatic inner voice",
       "description": "While soprano moves diatonically, a middle voice descends chromatically (often C\u2013B\u2013Bb\u2013A) creating warmth and ache beneath the melody.",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "enharmonic_modulation",
       "name": "Enharmonic modulation",
       "description": "Distant key arrived at through a diminished seventh or German augmented sixth respelled. The listener finds themselves somewhere new without a clear \"moment of departure.\"",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     },
     {
       "id": "ornamental_passagework_as_melody",
       "name": "Ornamental passagework as melody",
-      "description": "Chromatic runs, cascading sixteenth passages from a peak note are not decoration \u2014 they ARE the melody continuing. Do not write them as ornament shorthand; write out every note.\n\n---",
+      "description": "Chromatic runs, cascading sixteenth passages from a peak note are not decoration \u2014 they ARE the melody continuing. Do not write them as ornament shorthand; write out every note.",
       "texture_affinities": [],
-      "frequency": "per_section"
+      "frequency": "per_section",
+      "period": ""
     }
   ]
 }

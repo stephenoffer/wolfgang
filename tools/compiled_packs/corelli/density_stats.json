@@ -1,5 +1,6 @@
 {
  "composer": "corelli",
+ "schema": 2,
  "total_bars": 19,
  "rh": {
   "singing_melody": {

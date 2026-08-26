@@ -113,8 +113,12 @@ def rhythmic_variety(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     detail["distinct"] = len(counts)
     total = len(durs)
     entropy = -sum((c / total) * math.log2(c / total) for c in counts.values())
-    # log2(8) = 3 bits ≈ the variety of a richly figured human phrase
-    score = min(1.0, entropy / 3.0)
+    # MEASURED on 20 real movements: 1.24-2.69 bits, median 1.95, using 5-12
+    # distinct duration values. Normalizing by log2(8)=3 bits made a full score
+    # unreachable by any real music — the richest movement measured topped out
+    # at 0.90 and the median scored 0.65. 2.7 bits is what the repertoire's own
+    # ceiling actually is.
+    score = min(1.0, entropy / 2.7)
     detail["entropy_bits"] = round(entropy, 3)
     return round(score, 3), detail
 
@@ -169,9 +173,12 @@ def figuration_richness(
     """Events/bar for one hand vs the corpus median for the target texture.
 
     ``density_stats`` is the per-texture stats dict produced by
-    composition_brief.texture_density_stats(); ``texture`` selects the
-    entry. Without stats, falls back to the generic human-sounding range
-    (RH 5-7, LH 5-6 events/bar from human-sounding-music.md).
+    composition_brief.texture_density_stats(); ``texture`` selects the entry.
+    Without stats, the fallback is the MEASURED real-corpus median (RH 5.2,
+    LH 4.3 events per bar over 20 movements). The previous fallback of RH 6.0 /
+    LH 5.5 came from a doc rather than from measurement and asked for a busier
+    bar than the repertoire's own median, so a correctly spare Classical texture
+    scored as under-figured.
     """
     actual = events_per_bar(layer, hand=hand)
     detail: Dict[str, Any] = {"events_per_bar": round(actual, 2), "hand": hand}
@@ -187,9 +194,9 @@ def figuration_richness(
             detail["corpus_median"] = median
             detail["corpus_p25"] = p25
     if median is None:
-        median = 6.0 if hand == "rh" else 5.5
+        median = 5.2 if hand == "rh" else 4.3
         detail["corpus_median"] = median
-        detail["fallback"] = "generic human-sounding range"
+        detail["fallback"] = "measured real-corpus median (20 movements)"
 
     score = min(1.0, actual / median) if median > 0 else 0.0
     detail["ratio_to_median"] = round(actual / median, 2) if median else None
@@ -224,28 +231,35 @@ def voice_leading_smoothness(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
 def direction_changes_per_bar(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     """Melodic contour direction changes per bar.
 
-    Human corpus norm is ~1.0-2.0 changes/bar (human-sounding-music.md);
-    monotonic lines (an AI signature) score low, jittery zigzags also taper.
+    MEASURED on 20 real movements (Mozart, Beethoven, Chopin sonatas and
+    mazurkas, 2026-08-26): median **2.05** changes per bar, range 1.03-6.97.
+    The band used to be 1.0-2.0, which put the repertoire's median at its top
+    edge and scored the most active real movement measured at 0.3 — the score
+    penalized real music for having a lively melodic line. Monotonic lines are
+    the actual AI signature and still score low.
     """
     intervals = [i for i in _melody_intervals(layer) if i != 0]
     bars = max(1, layer.bar_count)
     changes = sum(1 for a, b in zip(intervals, intervals[1:]) if (a > 0) != (b > 0))
     rate = changes / bars
     detail = {"changes": changes, "bars": bars, "per_bar": round(rate, 2)}
-    if 1.0 <= rate <= 2.0:
+    if 1.0 <= rate <= 3.5:
         score = 1.0
     elif rate < 1.0:
         score = rate  # 0 changes → 0
     else:
-        score = max(0.3, 1.0 - (rate - 2.0) * 0.2)
+        # Gentle taper: 7 changes/bar is real (fast figuration), not a defect.
+        score = max(0.6, 1.0 - (rate - 3.5) * 0.08)
     return round(score, 3), detail
 
 
 def rest_ratio(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     """Fraction of total event time that is rests — does the music breathe?
 
-    Corpus norm ~5-10%; zero rests is a classic AI tell, but a sparse
-    texture legitimately exceeds the band, so the score tapers gently.
+    MEASURED on 20 real movements: median **16.3%** of event time is rest,
+    range 2.7-27.0%. The band used to be 3-15%, so the repertoire's own median
+    sat OUTSIDE it and typical real music was marked down for breathing a normal
+    amount. Zero rests remains a classic AI tell and still scores near 0.
     """
     rest_beats = 0.0
     total_beats = 0.0
@@ -262,12 +276,12 @@ def rest_ratio(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
         return 0.0, detail
     ratio = rest_beats / total_beats
     detail["ratio"] = round(ratio, 3)
-    if 0.03 <= ratio <= 0.15:
+    if 0.025 <= ratio <= 0.28:
         score = 1.0
-    elif ratio < 0.03:
-        score = max(0.0, ratio / 0.03) * 0.7  # zero rests scores 0
+    elif ratio < 0.025:
+        score = max(0.0, ratio / 0.025) * 0.7  # zero rests scores 0
     else:
-        score = max(0.3, 1.0 - (ratio - 0.15) * 2.0)
+        score = max(0.3, 1.0 - (ratio - 0.28) * 2.0)
     return round(score, 3), detail
 
 

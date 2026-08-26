@@ -305,6 +305,12 @@ class NarrativeSection:
     density_curve: List[float] = field(default_factory=list)
     brightness_curve: List[float] = field(default_factory=list)
     climax_type: Optional[str] = None  # primary | secondary | anti-climax
+    # Authored prose intent — the dramatic EVENT this section enacts, written by
+    # the agent at plan time (e.g. "the storm finally breaks, after three failed
+    # attempts to rise"). This, not the curve-averaged adjectives, is what drives
+    # the notes. Mirrors MotifObject.character.
+    character: str = ""
+    gesture: str = ""  # optional: the physical/gestural shape (e.g. "a long exhale")
 
 
 @dataclass
@@ -409,15 +415,35 @@ class PhraseSlot:
     function: str = PhraseFunction.PRESENTATION.value
     cadence_target: str = CadenceTarget.NONE.value
     cadence_bar: Optional[int] = None
+    # Beats of anacrusis before the phrase's first full bar (0 = downbeat start).
+    pickup_beats: float = 0.0
     key: str = "C"
     meter: Tuple[int, int] = (4, 4)
     tempo_bpm: int = 120
     harmony_plan: List[str] = field(default_factory=list)
+    # Per bar, the harmonies the bar moves THROUGH (empty = holds one chord).
+    # Additive alongside harmony_plan, which stays one-roman-per-bar so every
+    # existing consumer is unaffected.
+    harmony_detail: List[List[str]] = field(default_factory=list)
     motif_transforms: List[MotifTransform] = field(default_factory=list)
     texture_plan: List[BarTexturePlan] = field(default_factory=list)
     curves: PhraseCurves = field(default_factory=PhraseCurves)
     continuation: ContinuationContext = field(default_factory=ContinuationContext)
     forward_context: Optional[str] = None  # what the next phrase is
+    # ─── What this phrase is FOR (dramatic_plan.py) ───────────────────────
+    # A phrase used to know its cadence and its bar count and nothing about why
+    # it exists, so every one came out locally optimal and the piece had no arc.
+    dramatic_role: str = ""  # establish|extend|depart|intensify|crisis|
+    # retreat|return|confirm|close
+    climax_distance: int = 0  # phrases from the piece's peak (0 = it IS)
+    return_strategy: str = ""  # how a RETURN must differ from the statement
+    return_strategy_detail: str = ""
+    key_motion: str = ""  # prolong | depart | arrive
+    pivot_hint: str = ""  # tones common to the old and new key
+    section_techniques: List[str] = field(default_factory=list)  # from SectionContract
+    # Free-text character note from the form spec (e.g. "variation 2 — minore").
+    # Surfaced in the brief so a variation set actually varies in character.
+    notes: str = ""
 
 
 # ─── SketchIR (what Claude writes) ──────────────────────────────────────────
@@ -560,6 +586,16 @@ class LayerEvent:
     expression: Optional[str] = None
     source_layer: Optional[str] = None
 
+    # Playing technique that is neither an articulation nor an ornament:
+    # "arpeggio" / "arpeggio_up" / "arpeggio_down" (a rolled chord — ubiquitous
+    # in real piano writing and previously inexpressible), "tremolo",
+    # "gliss_start" / "gliss_stop", "8va" / "8vb" / "octave_stop".
+    technique: Optional[str] = None
+    # Sustain pedal as a NOTATED mark: "down" | "up" | "change".
+    pedal: Optional[str] = None
+    # Fingering digit(s) for piano — engraved above/below the note.
+    fingering: Optional[str] = None
+
 
 @dataclass
 class LayerIR:
@@ -583,10 +619,22 @@ class LayerIR:
     color_layer: Optional[List[LayerEvent]] = None
     punctuation: Optional[List[LayerEvent]] = None
 
+    # Additional independent voices beyond the two a hand's main layers carry,
+    # keyed "treble3", "treble4", "bass3"... Three- and four-voice writing was
+    # simply unavailable in the shorthand: '//' gave two voices per hand and a
+    # fugue or a chorale needs more, so real counterpoint required hand-written
+    # LayerIR JSON and therefore never happened.
+    inner_voices: Dict[str, List[LayerEvent]] = field(default_factory=dict)
+
     # Metadata
     key: str = "C"
     meter: Tuple[int, int] = (4, 4)
     bar_count: int = 4
+    # Beats in an opening ANACRUSIS (pickup). 0 = the phrase starts on the
+    # downbeat. Without this every phrase in every piece had to begin on beat 1
+    # of a full bar, which rules out a large share of the classical repertoire's
+    # melodies before a note is written.
+    pickup_beats: float = 0.0
 
 
 # ─── EventIR (final merged stream) ──────────────────────────────────────────
@@ -612,6 +660,12 @@ class EventIR:
     slur: Optional[str] = None
     hairpin: Optional[str] = None  # "cresc_start" | "dim_start" | "stop"
     expression: Optional[str] = None
+
+    # Mirrors of the LayerEvent notation fields — see LayerEvent. These have to
+    # be carried through to EventIR or the mark is silently lost at engraving.
+    technique: Optional[str] = None
+    pedal: Optional[str] = None
+    fingering: Optional[str] = None
 
 
 # ─── PerformanceIR ───────────────────────────────────────────────────────────

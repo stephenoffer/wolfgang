@@ -1,0 +1,98 @@
+[
+  {
+    "id": "cad_decorated_pac",
+    "type": "Decorated PAC",
+    "approach_chords": [
+      "V7",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "The arrival is ornamented, not blunt",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "chopin/harmonic-language.md"
+  },
+  {
+    "id": "cad_plagal_close",
+    "type": "Plagal close",
+    "approach_chords": [
+      "iv",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "4-1",
+    "usage": "Tender, hymn-like; avoids dominant tension",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "chopin/harmonic-language.md"
+  },
+  {
+    "id": "cad_deceptive_to_bvi",
+    "type": "Deceptive to bVI",
+    "approach_chords": [
+      "V7",
+      "bVI"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-6",
+    "usage": "The heart opens instead of closing",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "chopin/harmonic-language.md"
+  },
+  {
+    "id": "cad_half_cadence_with_trill",
+    "type": "Half-cadence with trill",
+    "approach_chords": [
+      "ii",
+      "V"
+    ],
+    "soprano_line": [],
+    "bass_motion": "2-5",
+    "usage": "Suspension \u2014 the phrase is not done",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "chopin/harmonic-language.md"
+  },
+  {
+    "id": "cad_phrygian_half_cadence",
+    "type": "Phrygian half-cadence",
+    "approach_chords": [
+      "iv6",
+      "V"
+    ],
+    "soprano_line": [],
+    "bass_motion": "4-5",
+    "usage": "Spanish/modal darkness",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "chopin/harmonic-language.md"
+  },
+  {
+    "id": "cad_evaded_cadence",
+    "type": "Evaded cadence",
+    "approach_chords": [
+      "V",
+      "I6"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "The phrase continues past its expected end",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "chopin/harmonic-language.md"
+  }
+]

@@ -21,25 +21,39 @@ Real Mozart uses ALL 20 gesture types. The typical AI composition uses only 2-3.
 
 ## AI Music Tells (Ranked by Detectability)
 
-### Tell #1: Flat Density (same events/bar throughout)
-Real music breathes — dense passages alternate with sparse ones. A piece at constant 8 events/bar sounds mechanical.
-- **Fix:** Manage a density arc: sparse at boundaries, dense at climaxes, breathing room between intense passages
-- **Metric:** Density coefficient of variation should be > 0.5
+> **The numbers below were re-measured on 2026-08-26 against 24 real movements**
+> (12 Mozart sonatas, 6 Beethoven sonatas, 6 Chopin mazurkas, 64 bars each).
+> Four of the previous targets would have **rejected almost all real music**:
+> `density_cv > 0.5` failed on 92% of it, `chord % > 20` on 58%, and
+> `distinct bass roots/bar > 0.3` and `LH unique patterns > 0.6` on **100%** —
+> not one real movement met either. Composing toward those numbers pushes you to
+> churn the harmony and the accompaniment every bar, which is itself a machine
+> tell. The ranges below are what the repertoire actually does. **They are
+> context, not targets** — see "Do not compose to a number" at the end.
 
-### Tell #2: Repetitive Accompaniment (same LH pattern every bar)
-Real accompaniment responds to the melody — simplifies at peaks, fills during rests, changes pattern every 4-8 bars.
-- **Fix:** Use at least 5 distinct LH patterns per piece. Change pattern at every phrase boundary.
-- **Metric:** LH unique patterns / total bars > 0.6
+### Tell #1: Flat Density (the texture never thickens or thins)
+Real music breathes — dense passages alternate with sparse ones. A piece at a constant 8 events/bar sounds mechanical.
+- **Fix:** Give the piece a density arc: sparse at boundaries, dense at climaxes, breathing room between intense passages. What matters is that the *texture moves*, not how far.
+- **Measured:** density CV — Mozart 0.38 [0.21–0.47], Beethoven 0.40 [0.23–0.54], Chopin 0.27 [0.21–0.32]. Below about **0.20** is outside the repertoire entirely.
+- Note the direction of the finding: generated pieces are usually flat *below* this band, not short of some high target. One measured at 0.19 — the texture literally never changed thickness.
+
+### Tell #2: Repetitive Accompaniment (the same LH figure, unchanged, all piece)
+Real accompaniment responds to the melody — it simplifies at peaks, fills during rests, and changes at structural points.
+- **Fix:** Change the accompaniment idiom **at structural boundaries** — a new section, a new key, the approach to a cadence — not on a timer. Between those points, let a good figure hold.
+- **Measured:** distinct LH bar-patterns / bars — Mozart 0.33 [0.16–0.42], Beethoven 0.27 [0.20–0.52], Chopin 0.15 [0.06–0.26]. **Real music repeats its accompaniment far more than you would guess**: three quarters of Chopin's bars reuse a figure already heard.
+- The failure to avoid is not repetition, it is repetition that *ignores* the melody and the harmony. A figure that follows the chords is an accompaniment; the same figure over changing harmony is wallpaper.
 
 ### Tell #3: No Inner Voice (only melody + bass)
-Real piano writing has 3-6 simultaneous voices. The middle voices provide harmonic color.
-- **Fix:** Add sustained inner voices. Use chords in RH (melody on top, chord tones below).
-- **Metric:** Chord percentage > 20% for piano writing
+Real piano writing has 3–6 simultaneous voices. The middle voices provide the harmonic colour.
+- **Fix:** Add sustained inner voices; put chords under the melody in the right hand; write in thirds and sixths at a phrase's high point.
+- **Measured:** share of attacks that are chords — Mozart 0.13 [0.06–0.21], Beethoven 0.18 [0.11–0.28], Chopin 0.32 [0.24–0.56]. A Classical texture is **thinner than intuition suggests**; a Romantic one is genuinely thick.
+- Careful with this one: right-hand notes-per-attack in real Mozart is about 1.15. A generated piece measured at 1.13 is not thin — it is Mozart-thin. Judge by the *variance* (Tell #1), not the average.
 
-### Tell #4: Stale Harmony (oscillating between 2 chords)
-Real harmony progresses — ii→V→I, deceptive cadences, walking bass, circle of 5ths.
-- **Fix:** Minimum 4 distinct bass roots per 8-bar phrase. Cadential preparation (ii→V→I or cad 6/4→V7→I).
-- **Metric:** Distinct bass roots / bars > 0.3
+### Tell #4: Stale Harmony (oscillating between two chords)
+Real harmony progresses — ii→V→I, deceptive cadences, walking bass, circle of fifths.
+- **Fix:** Make sure the harmony *goes somewhere* across a phrase and prepares its cadence (ii→V→I, or cad 6/4→V7→I). Prolonging one harmony for several bars is a device, not a defect — a pedal point is prolongation, and so is most of a development section.
+- **Measured:** distinct bass pitch-classes / bars — Mozart 0.15 [0.14–0.28], Beethoven 0.17 [0.16–0.18], Chopin 0.13 [0.09–0.16]. That is roughly **one new bass root every 6–7 bars**, not four per phrase.
+- The old target here (4 distinct roots per 8 bars) forced a chord change every other bar. Nothing in the repertoire behaves that way, and harmony that changes on a schedule is the tell, not the cure.
 
 ### Tell #5: No Appoggiaturas or Suspensions
 Real melody leans into chord tones through non-chord tones on strong beats. Clean chord tones on every beat = arpeggiated accompaniment, not melody.
@@ -48,7 +62,8 @@ Real melody leans into chord tones through non-chord tones on strong beats. Clea
 ### Tell #6: Monotonous Melody Direction
 Real melody changes direction 1-2x per bar. A melody that descends for 4 bars without changing direction sounds like a scale exercise.
 - **Fix:** After 3 notes in one direction, step back or leap the other way.
-- **Metric:** Direction changes per bar > 0.8
+- **Measured:** melodic direction changes per bar — Mozart 2.65 [1.66–7.0], Beethoven 2.02 [1.24–3.60], Chopin 2.50 [1.42–3.61]. This is the one target of the five that survived falsification: **no** real movement measured came in under 1.2, so a line changing direction less than about once a bar really is a scale exercise.
+- Do not confuse this with `direction_changes_per_bar` as the commit gate once reported it, or with the corpus brief's `melody_direction_change_pct` — three different quantities have worn similar names in this codebase, and two of them disagreed by 3-4x in the same context window.
 
 ### Tell #7: No Texture Evolution
 Real pieces evolve texture across sections. The same texture from start to finish = one long section.
