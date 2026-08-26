@@ -2015,7 +2015,7 @@ def _retrieve_exemplars(
 
     # One query per distinct (texture pair, position) in the phrase
     seen_specs = []
-    for (rh, lh), pos in zip(textures, positions):
+    for (rh, lh), pos in zip(textures, positions, strict=True):
         spec = (rh, lh, pos)
         if spec not in seen_specs:
             seen_specs.append(spec)
@@ -2948,7 +2948,7 @@ def _chord_frame(slot, key: str) -> List[Dict[str, Any]]:
             # in a four-beat bar gave a step of 1 and put a chord on "beat 5".
             entry["within"] = [
                 {"beat": b, "roman": r, "tones": _tones(r)}
-                for b, r in zip(_spread_beats(beats, len(within)), within)
+                for b, r in zip(_spread_beats(beats, len(within)), within, strict=True)
             ]
         out.append(entry)
     return out

@@ -134,7 +134,7 @@ def _bar_table(score) -> List[Dict[str, Any]]:
 
 def _rhythm_sig(rec: Dict[str, Any]) -> Tuple:
     """The bar's rhythm alone: (onset, duration) pairs."""
-    return tuple(zip(rec["onsets"], rec["durations"]))
+    return tuple(zip(rec["onsets"], rec["durations"], strict=True))
 
 
 def _contour_sig(rec: Dict[str, Any]) -> Tuple:

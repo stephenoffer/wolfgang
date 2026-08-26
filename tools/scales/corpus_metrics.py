@@ -76,7 +76,7 @@ def bar_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
 
     md = [int(b.get("melody_density", 0)) for b in bars]
     ad = [int(b.get("accomp_density", 0)) for b in bars]
-    total = [a + b for a, b in zip(md, ad)]
+    total = [a + b for a, b in zip(md, ad, strict=True)]
     rh_tex = [b.get("rh_texture", "unclassified") for b in bars]
     lh_tex = [b.get("lh_texture", "unclassified") for b in bars]
     directions = [b.get("melody_direction", "static") for b in bars]

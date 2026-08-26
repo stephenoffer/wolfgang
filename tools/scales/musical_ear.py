@@ -762,7 +762,8 @@ def detect_photocopied_accompaniment(bars: List[Dict[str, Any]], cap: int = 4):
     if share < 0.7:
         return out
     first = next(
-        (b.get("bar_num") for b, x in zip(bars, sigs) if x == most_common), bars[0].get("bar_num")
+        (b.get("bar_num") for b, x in zip(bars, sigs, strict=True) if x == most_common),
+            bars[0].get("bar_num"),
     )
     out.append(
         _finding(

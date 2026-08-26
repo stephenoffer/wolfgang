@@ -1,0 +1,8 @@
+{
+ "type": "window_index",
+ "total": 5250,
+ "shards": [
+  5000,
+  250
+ ]
+}

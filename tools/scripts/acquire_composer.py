@@ -419,6 +419,21 @@ def acquire(
     print(f"  {len(paths)} candidate score files ({source})")
 
     bars, ok, bad = _extract_bars(paths, composer, max_files)
+    # Local files that PARSE TO NOTHING must not block the web fallback. music21
+    # ships three Schumann files; none yielded a bar, and because `paths` was
+    # non-empty the web was never consulted and the composer stayed unarmed with
+    # "no_bars_extracted". Having files is not the same as having usable ones.
+    if not bars and use_web and not web_always and source == "music21-local":
+        print(f"  local files yielded no bars ({bad} unparseable); → web fallback")
+        tmp = _TOOLS / "reference_scores" / f"_fetch_{composer}"
+        for src_name, fetcher in _WEB_SOURCES:
+            print(f"→ web: {src_name}")
+            got = fetcher(composer, tmp, max_files)
+            if got:
+                source = src_name
+                bars, ok, bad = _extract_bars(got, composer, max_files)
+                if bars:
+                    break
     if not bars:
         return {
             "ok": False,

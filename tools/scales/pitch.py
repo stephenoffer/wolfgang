@@ -387,7 +387,7 @@ def voice_leading_cost(prev: List[int], curr: List[int]) -> int:
     """Total semitone motion between two voicings (same length assumed)."""
     if len(prev) != len(curr):
         return 999
-    return sum(abs(a - b) for a, b in zip(prev, curr))
+    return sum(abs(a - b) for a, b in zip(prev, curr, strict=True))
 
 
 def is_chord_tone(midi_val: int, root_midi: int, quality: str = "major") -> bool:

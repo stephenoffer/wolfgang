@@ -573,7 +573,7 @@ def analyze_bar(
     positions = [pos for pos, cands in beats if cands]
     out: List[Dict[str, object]] = []
     seen_chord: Optional[Tuple[int, str]] = None
-    for pos, (root, qual, inv) in zip(positions, seq):
+    for pos, (root, qual, inv) in zip(positions, seq, strict=True):
         if merge and seen_chord == (root, qual):
             continue
         seen_chord = (root, qual)
