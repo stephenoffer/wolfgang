@@ -1747,14 +1747,70 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     ]
     for i in (matched or idioms)[:3]:
         fig_lines.append(f"LH idiom — {i.get('name', '')}: {i.get('description', '')[:180]}")
+
+    # The composer's DEVICE catalogue. Every entry was loaded and then dropped:
+    # the loop below matches on `pattern_keyword`, which the general figuration
+    # library has and a device does not, so a device fell through both branches.
+    # 276 entries across 13 packs reached the pack and never the composer — the
+    # appoggiatura sigh, the terraced echo, the general pause, Beethoven's
+    # sforzando on a weak beat. They are the most directly usable thing in the
+    # pack, because each description carries the shorthand written out.
+    devices = [
+        f
+        for f in (figs if isinstance(figs, list) else [])
+        if f.get("category") == "composer_device"
+    ]
+    # A phrase needs BOTH kinds: something to do with the line, and something to
+    # do with the shape. Which it needs MORE of depends on its job — a thematic
+    # phrase leans melodic, a transition or a real cadential arrival leans
+    # structural. Selecting on the cadence target alone put the same three
+    # structural devices in front of every phrase, because nearly every phrase
+    # has one.
+    function = str(getattr(slot, "function", "") or "").lower()
+    cadence = str(getattr(slot, "cadence_target", "") or "").lower()
+    melodic = [d for d in devices if "melod" in str(d.get("section", "")).lower()]
+    structural = [d for d in devices if "melod" not in str(d.get("section", "")).lower()]
+
+    structural_lean = function in (
+        "transition", "retransition", "sequence", "fragmentation", "liquidation",
+        "cadential", "closing", "coda",
+    ) or cadence in ("pac", "iac")
+    # Rotate the starting point by the phrase's own bar so consecutive phrases
+    # are not handed the identical three devices — the catalogue is 15 entries
+    # deep and a piece should see more than the first three of them.
+    offset = int(getattr(slot, "bar_start", 1) or 1)
+
+    def _take(pool, n):
+        if not pool:
+            return []
+        start = offset % len(pool)
+        return [pool[(start + i) % len(pool)] for i in range(min(n, len(pool)))]
+
+    picked = (
+        _take(structural, 2) + _take(melodic, 1)
+        if structural_lean
+        else _take(melodic, 2) + _take(structural, 1)
+    )
+    for d in (picked or devices)[:3]:
+        section = str(d.get("section", "") or "device").split("/")[0].strip()
+        fig_lines.append(
+            f"{section} — {d.get('name', '')}: {str(d.get('description', ''))[:200]}"
+        )
+
+    # The general figuration library, matched to this phrase's planned textures.
+    general = []
     for fdef in figs if isinstance(figs, list) else []:
         kw = (fdef.get("pattern_keyword", "") or "").lower()
         if kw and any(kw in lt for lt in lh_textures):
             char = fdef.get("character", "")
             use = (fdef.get("when_to_use") or [""])[0]
-            fig_lines.append(f"{fdef.get('name', kw)} — {char}; {use}")
+            general.append(f"{fdef.get('name', kw)} — {char}; {use}")
+    fig_lines.extend(general[:2])
+
+    # A per-category budget, not a global cap: `fig_lines[:5]` let the three LH
+    # idioms take most of it and left no room for anything else.
     if fig_lines:
-        out["figuration"] = fig_lines[:5]
+        out["figuration"] = fig_lines[:8]
 
     # Harmonic temperature — the tonal-motion intent appropriate to this phrase's
     # energy/role (prolongation early, instability mid, resolution at cadence).

@@ -1836,3 +1836,70 @@ def test_a_plain_composer_still_reads_its_own_bank():
     from scales.composition_brief import _bank_composers
 
     assert _bank_composers("mozart") == ["mozart"]
+
+
+# ── The device catalogue, loaded and dropped ───────────────────────────────
+
+
+def _devices_for(composer, **slot_kw):
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import PhraseSlot
+
+    base = dict(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                key="F major", meter=(3, 4), tempo_bpm=76)
+    base.update(slot_kw)
+    figs = _doctrine_slices(composer, PhraseSlot(**base), "").get("figuration") or []
+    return [f for f in figs if not f.startswith("LH idiom")]
+
+
+def test_the_device_catalogue_reaches_the_composer():
+    """Every device entry was loaded and then dropped: the match was on
+    `pattern_keyword`, which the general figuration library has and a device
+    does not, so a device fell through both branches. 276 entries across 13
+    packs reached the pack and never the composer."""
+    found = _devices_for("mozart", function="presentation", cadence_target="HC")
+    assert found, "the device catalogue still reaches nobody"
+    assert any("Melodic" in f or "Structural" in f for f in found), found
+    # Each description carries the shorthand written out — that is the point.
+    joined = " ".join(found)
+    assert "`" in joined or any(c.isdigit() for c in joined), joined
+
+
+def test_devices_are_weighted_by_what_the_phrase_is_doing():
+    """A phrase needs both kinds; which it needs MORE of depends on its job.
+    Selecting on the cadence target alone put the same three structural devices
+    in front of every phrase, because nearly every phrase has one."""
+    thematic = _devices_for("mozart", function="presentation", cadence_target="HC")
+    cadential = _devices_for("mozart", function="cadential", cadence_target="PAC", bar_start=9)
+
+    def leading_kind(lines):
+        return lines[0].split("—")[0].strip() if lines else ""
+
+    assert leading_kind(thematic) == "Melodic"
+    assert leading_kind(cadential) == "Structural"
+
+
+def test_consecutive_phrases_do_not_get_the_identical_devices():
+    """The catalogue is fifteen entries deep and a piece should see more than
+    the first three of them."""
+    sets = {
+        tuple(_devices_for("mozart", function="continuation", cadence_target="none", bar_start=b))
+        for b in (1, 5, 9, 13, 17)
+    }
+    assert len(sets) >= 3, f"only {len(sets)} distinct device sets across five phrases"
+
+
+def test_the_lh_idioms_are_not_crowded_out_by_the_devices():
+    """`fig_lines[:5]` let three LH idioms take most of the budget; adding
+    devices to a global cap would have pushed one kind out entirely."""
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import PhraseSlot
+
+    figs = _doctrine_slices(
+        "mozart",
+        PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                   key="F major", meter=(3, 4), tempo_bpm=76, function="presentation"),
+        "",
+    ).get("figuration") or []
+    assert any(f.startswith("LH idiom") for f in figs), figs
+    assert any(not f.startswith("LH idiom") for f in figs), figs
