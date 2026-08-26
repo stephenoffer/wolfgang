@@ -194,6 +194,8 @@ class CompositionBrief:
     # Named idioms from the composer's own pack, with the notes and the
     # expression already on them. See _gestures.
     gestures: List[Dict[str, Any]] = field(default_factory=list)
+    # Real shapes from the corpus, indexed by what they DO. See _corpus_gestures.
+    corpus_gestures: List[Dict[str, Any]] = field(default_factory=list)
     # Written rules / doctrine (WS-C) — the composer's voice + phrase-scoped craft
     fingerprints: List[Dict[str, str]] = field(default_factory=list)
     doctrine: Dict[str, Any] = field(default_factory=dict)
@@ -1307,6 +1309,74 @@ def _fingerprints(composer: str) -> List[Dict[str, str]]:
         first = desc.split(". ")[0].strip()
         out.append({"name": it.get("name", it.get("id", "")), "rule": first})
     return out
+
+
+# What a phrase of each FUNCTION is doing, in the vocabulary the gesture bank
+# indexes by. The bank's functions are what a gesture DOES — answer, insist,
+# push to a cadence — which is a different axis from the exemplar bars (what a
+# bar contains) and maps straight onto the slot's own phrase function.
+_FUNCTION_GESTURES = {
+    "presentation": ("pickup", "insist"),
+    "continuation": ("answer", "insist", "answer_with_space"),
+    "contrasting_theme": ("answer", "pickup"),
+    "transition": ("insist", "cadential_push"),
+    "cadential": ("cadential_push", "cadential_release"),
+    "closing": ("cadential_release", "cadential_push"),
+    "coda": ("cadential_release",),
+    "retransition": ("cadential_push", "insist"),
+    "fragmentation": ("insist", "answer_with_space"),
+    "sequence": ("insist", "answer"),
+    "liquidation": ("answer_with_space", "cadential_release"),
+    "return": ("pickup", "answer"),
+    "return_varied": ("pickup", "answer"),
+}
+
+
+def _corpus_gestures(composer: str, slot, n: int = 4) -> List[Dict[str, Any]]:
+    """Real gestures from the corpus, indexed by what they DO.
+
+    `gesture_bank.json` is 89 MB of shapes extracted from the actual scores —
+    rhythm profile, accent profile, contour, how the gesture enters and how it
+    leaves — and it was reachable ONLY from the engine-fallback path. The
+    agent-authored default path, which is the path every piece takes, never saw
+    one. Mozart's bank alone holds 6,922 of them across six functions.
+
+    This is a different axis from the exemplar bars. An exemplar says what a bar
+    CONTAINS; a gesture says what a shape DOES and how it joins to what is
+    around it, which is what a phrase with a function needs.
+    """
+    try:
+        from .gesture_bank import GestureBank, GestureQuery
+    except ImportError:
+        return []
+    function = str(getattr(slot, "function", "") or "").lower()
+    wanted = _FUNCTION_GESTURES.get(function) or ("answer", "insist")
+    try:
+        bank = GestureBank(composer)
+    except Exception:
+        return []
+    out: List[Dict[str, Any]] = []
+    per = max(1, n // max(1, len(wanted)))
+    for fn_name in wanted:
+        try:
+            hits = bank.retrieve(GestureQuery(function=fn_name, n=per))
+        except Exception:
+            continue
+        for h in hits:
+            durs = list(getattr(h, "dur_profile", None) or [])
+            if not durs:
+                continue
+            out.append({
+                "does": fn_name.replace("_", " "),
+                "rhythm": " ".join(durs),
+                "contour": getattr(h, "contour", "") or "",
+                "enters": getattr(h, "entry_state", "") or "",
+                "leaves": getattr(h, "exit_state", "") or "",
+                "lh_texture": getattr(h, "lh_texture", "") or "",
+                "source": getattr(h, "source", "") or "",
+                "span_beats": getattr(h, "span_beats", None),
+            })
+    return out[:n]
 
 
 def _gestures(composer: str, slot, n: int = 5) -> List[Dict[str, Any]]:
@@ -3229,6 +3299,7 @@ def build_brief(
         transition_patterns=_transition_patterns(resolved, slot, transition.get("exit_lh_texture")),
         lh_vocabulary=_lh_vocabulary(resolved, slot, key),
         gestures=_gestures(resolved, slot),
+        corpus_gestures=_corpus_gestures(resolved, slot),
         # WS-C: written rules / doctrine, scoped to this phrase
         fingerprints=_fingerprints(resolved),
         doctrine=_doctrine_slices(resolved, slot, role),
@@ -3610,6 +3681,22 @@ def render_text(brief: CompositionBrief) -> str:
             for hand in ("rh", "lh"):
                 if g.get(hand):
                     lines.append(f"      {hand.upper()}: {g[hand]}")
+
+    if brief.corpus_gestures:
+        lines.append("")
+        lines.append(
+            f"CORPUS GESTURES for a '{s.get('function', '')}' phrase — real shapes from "
+            f"{brief.composer}'s scores, by what they DO (rhythm and contour, not pitches; "
+            f"the pitches are yours):"
+        )
+        for g in brief.corpus_gestures:
+            joint = " → ".join(x for x in (g.get("enters"), g.get("leaves")) if x)
+            lines.append(
+                f"  • {g['does']}: {g['rhythm']}"
+                + (f"  [{g['contour']}]" if g.get("contour") else "")
+                + (f"  ({joint})" if joint else "")
+                + (f"  — {g['source']}" if g.get("source") else "")
+            )
 
     ts = brief.target_stats
     lines.append("")

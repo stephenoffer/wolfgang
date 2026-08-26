@@ -1665,3 +1665,50 @@ def test_the_critic_guidance_tells_it_the_rubric_exists():
     if not doc.exists():
         pytest.skip("critic guidance not present")
     assert "style_rubric" in doc.read_text()
+
+
+def test_the_corpus_gesture_bank_reaches_the_composer():
+    """`gesture_bank.json` is 89 MB of shapes extracted from the actual scores —
+    rhythm profile, contour, how the gesture enters and leaves — and it was
+    reachable ONLY from the engine-fallback path. The agent-authored default
+    path, which every piece takes, never saw one."""
+    from scales.composition_brief import _corpus_gestures
+    from scales.models import PhraseSlot
+
+    def slot_for(function):
+        return PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                          key="F major", meter=(3, 4), tempo_bpm=76, function=function)
+
+    found = _corpus_gestures("mozart", slot_for("presentation"))
+    assert found, "no corpus gestures reached the brief"
+    for g in found:
+        assert g["rhythm"], g
+        assert g["does"], g
+        assert g["source"], "a gesture must say which bar it came from"
+
+
+def test_gestures_are_selected_by_what_the_phrase_is_doing():
+    """A cadential phrase and a presentation need different shapes. The bank
+    indexes by what a gesture DOES, which maps onto the slot's own function."""
+    from scales.composition_brief import _corpus_gestures
+    from scales.models import PhraseSlot
+
+    def does_for(function):
+        slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                          key="F major", meter=(3, 4), tempo_bpm=76, function=function)
+        return {g["does"] for g in _corpus_gestures("mozart", slot)}
+
+    coda = does_for("coda")
+    opening = does_for("presentation")
+    assert coda and opening
+    assert any("cadential" in d for d in coda), coda
+    assert coda != opening, "every phrase function got the same gestures"
+
+
+def test_an_unarmed_composer_yields_no_gestures_rather_than_raising():
+    from scales.composition_brief import _corpus_gestures
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                      key="C", meter=(4, 4), tempo_bpm=100, function="presentation")
+    assert _corpus_gestures("no-such-composer", slot) == []
