@@ -24,7 +24,7 @@ the composer to write toward whatever artefact the check is actually measuring.
 
 import pytest
 
-from scales.craft_checker import CraftChecker
+from scales.craft_checker import CraftChecker, check_phrase, craft_findings, craft_score
 from scales.models import LayerEvent, LayerIR
 
 
@@ -205,3 +205,43 @@ def test_every_meter_checks_without_error(meter):
     ir = _decent_phrase()
     ir.meter = meter
     CraftChecker().check(ir)  # must not raise
+
+
+# ─── Findings a person can act on ────────────────────────────────────────────
+#
+# `check` returns nine booleans, which tell a reviewer that something is wrong
+# but not what. And the checklist has never run on a phrase the system composed:
+# `craft_check` is written only inside the engine fallback path, measured at
+# 0 of 164 phrases across 12 pieces. A check that never runs cannot be observed
+# to be wrong, which is how the four broken ones survived.
+
+
+def test_a_failing_phrase_produces_sentences_not_booleans():
+    _chk, findings = check_phrase(_empty_phrase())
+    assert findings
+    assert all(isinstance(f, str) and len(f) > 30 for f in findings)
+
+
+def test_a_passing_phrase_produces_no_findings():
+    _chk, findings = check_phrase(_decent_phrase())
+    assert findings == []
+
+
+def test_findings_are_ordered_worst_first():
+    """No melodic shape is a different order of problem from no ornament."""
+    findings = craft_findings(CraftChecker().check(_empty_phrase()))
+    assert "no clear shape" in findings[0]
+    assert "distinctive" in findings[-1]
+
+
+def test_the_score_summarizes_without_gating():
+    assert craft_score(CraftChecker().check(_decent_phrase())) == 1.0
+    assert craft_score(CraftChecker().check(_empty_phrase())) < 0.4
+
+
+def test_findings_name_only_what_failed():
+    ir = _decent_phrase()
+    ir.principal_line = [e for e in ir.principal_line if e.pitch != "rest"]
+    findings = craft_findings(CraftChecker().check(ir))
+    assert any("No rest anywhere" in f for f in findings)
+    assert not any("no clear shape" in f for f in findings)

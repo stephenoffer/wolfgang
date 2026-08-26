@@ -1,0 +1,23 @@
+{
+ "composer": "schubert",
+ "schema": 1,
+ "total_bars": 82,
+ "textures": {
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 39
+  },
+  "singing_melody": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.7674,
+   "n": 43
+  }
+ }
+}

@@ -77,7 +77,7 @@ class ContextCompiler:
         results["formal"] = len(formal.get("forms", {}))
 
         # Pass 5: Harmonic rules
-        harmonic = self._pass_harmonic_rules(profile_dir)
+        harmonic = self._pass_harmonic_rules(profile_dir, composer)
         self._write_json(output_dir / "harmonic_rules.json", harmonic)
         results["harmonic"] = len(harmonic.get("cadence_vocabulary", []))
 
@@ -108,7 +108,7 @@ class ContextCompiler:
         results["anti_pattern_rules"] = len(anti_patterns)
 
         # Pass 10: Harmonic devices + cadence scripts
-        devices = self._pass_harmonic_devices(profile_dir)
+        devices = self._pass_harmonic_devices(profile_dir, composer)
         self._write_json(output_dir / "harmonic_devices.json", devices.get("devices", []))
         self._write_json(output_dir / "cadence_scripts.json", devices.get("cadence_scripts", []))
         results["harmonic_devices"] = len(devices.get("devices", []))
@@ -158,6 +158,48 @@ class ContextCompiler:
         results["grounding"] = grounding_report
 
         return results
+
+    @staticmethod
+    def _shared_harmony_text(profile_dir: Optional[Path], composer: str = "") -> str:
+        """The genre-level harmony file a composer profile delegates to.
+
+        Composer profiles say so explicitly — Bach's `harmonic-language.md`
+        opens with "For shared Baroque harmonic vocabulary (figured bass,
+        **cadence types**, sequences, voice-leading conventions), see
+        baroque-harmony.md" — and the compiler never followed the pointer. It
+        read only `<genre>/composer-profiles/<composer>/harmonic-language.md`,
+        so every composer that delegates its cadence vocabulary compiled to an
+        **empty `cadence_scripts.json`**: bach, corelli, monteverdi, palestrina
+        and weber, five of the twelve armed composers.
+
+        The brief's cadence doctrine was therefore silent for them — while
+        "every phrase ends the same way" (`score_realism.detect_cadence_formula_reuse`)
+        is the single most reliable tell that a machine wrote the piece.
+
+        The shared file is a *fallback layer*: the composer's own text is
+        concatenated first, so a composer-specific cadence entry still wins.
+        """
+        genre_dir = None
+        if profile_dir:
+            genre_dir = profile_dir.parent.parent  # <genre>/composer-profiles/<name>
+        elif composer:
+            # Armed by corpus but with no written profile at all — corelli,
+            # monteverdi, palestrina and weber are all in this position. The
+            # genre's shared vocabulary is the honest thing to give them; the
+            # alternative is an empty cadence_scripts.json and a brief whose
+            # cadence doctrine says nothing.
+            from .style_registry import genre_for
+
+            genre_dir = CONTEXT_DIR / genre_for(composer)
+        if genre_dir is None or not genre_dir.is_dir():
+            return ""
+        out = []
+        for path in sorted(genre_dir.glob("*-harmony.md")):
+            try:
+                out.append(path.read_text())
+            except OSError:
+                continue
+        return "\n\n".join(out)
 
     def _find_profile_dir(self, composer: str, genre: str = "") -> Optional[Path]:
         """Find the composer profile directory."""
@@ -349,9 +391,16 @@ class ContextCompiler:
             if idx.get("total_bars", 0) > stats["total_bars"]:
                 stats["total_bars"] = idx["total_bars"]
 
-        # Source 3: Transition matrix
+        # Source 3: Transition matrix.
+        # The genre fallback was hard-coded to "classical" here as well as in
+        # PhraseBank and TransitionBank, so a Bach pack was compiled against
+        # Classical texture-transition odds while by_genre/baroque.json sat
+        # unread beside it.
+        from .style_registry import genre_for as _genre_for
+
         for path in [
             PATTERN_LIBRARY / "transitions" / "by_composer" / f"{composer}.json",
+            PATTERN_LIBRARY / "transitions" / "by_genre" / f"{_genre_for(composer)}.json",
             PATTERN_LIBRARY / "transitions" / "by_genre" / "classical.json",
         ]:
             if path.exists():
@@ -404,16 +453,15 @@ class ContextCompiler:
 
     # ─── Pass 5: Harmonic Rules ──────────────────────────────────────────
 
-    def _pass_harmonic_rules(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_harmonic_rules(self, profile_dir: Optional[Path], composer: str = "") -> Dict:
         """Extract harmonic vocabulary from harmonic-language.md."""
-        if not profile_dir:
+        harmonic = (profile_dir / "harmonic-language.md") if profile_dir else None
+        own = harmonic.read_text() if (harmonic and harmonic.exists()) else ""
+        text = "\n\n".join(
+            t for t in (own, self._shared_harmony_text(profile_dir, composer)) if t
+        )
+        if not text:
             return {"cadence_vocabulary": [], "chromatic_techniques": []}
-
-        harmonic = profile_dir / "harmonic-language.md"
-        if not harmonic.exists():
-            return {"cadence_vocabulary": [], "chromatic_techniques": []}
-
-        text = harmonic.read_text()
 
         # Extract cadence patterns
         cadences = []
@@ -781,7 +829,7 @@ class ContextCompiler:
 
     # ─── Pass 10: Harmonic Devices + Cadence Scripts ──────────────────────
 
-    def _pass_harmonic_devices(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_harmonic_devices(self, profile_dir: Optional[Path], composer: str = "") -> Dict:
         """Extract harmonic devices and cadence scripts from harmonic-language.md.
 
         Richer than pass 5 — extracts actual chord sequences, voice-leading
@@ -790,14 +838,21 @@ class ContextCompiler:
         devices: List[Dict] = []
         cadence_scripts: List[Dict] = []
 
-        if not profile_dir:
+        hl_file = (profile_dir / "harmonic-language.md") if profile_dir else None
+        own = hl_file.read_text() if (hl_file and hl_file.exists()) else ""
+        # Composer-specific text FIRST so its entries win; the genre file supplies
+        # the shared vocabulary the profile explicitly delegates to it.
+        shared = self._shared_harmony_text(profile_dir, composer)
+        text = "\n\n".join(t for t in (own, shared) if t)
+        # A composer with no written profile still gets the genre's shared
+        # vocabulary, so the provenance label has to say where it came from.
+        _source_label = (
+            f"{profile_dir.name}/harmonic-language.md"
+            if profile_dir
+            else f"<shared {composer or 'genre'} harmony>"
+        )
+        if not text:
             return {"devices": devices, "cadence_scripts": cadence_scripts}
-
-        hl_file = profile_dir / "harmonic-language.md"
-        if not hl_file.exists():
-            return {"devices": devices, "cadence_scripts": cadence_scripts}
-
-        text = hl_file.read_text()
 
         # Parse markdown tables for harmonic techniques
         # Look for tables with columns like: Technique | Frequency | Context | Example
@@ -829,7 +884,7 @@ class ContextCompiler:
                             "contexts": [c.strip() for c in context.split(",") if c.strip()],
                             "frequency_weight": freq_weight,
                             "emotional_color": "",
-                            "source_file": f"{profile_dir.name}/harmonic-language.md",
+                            "source_file": _source_label,
                         }
                     )
 
@@ -865,7 +920,7 @@ class ContextCompiler:
                         "strength": 3,
                         "typical_texture": "",
                         "preparation_bars": 2,
-                        "source_file": f"{profile_dir.name}/harmonic-language.md",
+                        "source_file": _source_label,
                     }
                 )
 

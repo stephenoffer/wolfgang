@@ -86,8 +86,34 @@ def _runs(bars, mode):
     return out
 
 
+def _bars_for(reference: str) -> List[Dict[str, Any]]:
+    """Bar records for a composer OR a style.
+
+    `load_bars` reads one composer's own directory. A style id
+    (`style__classical`) has no directory of its own — it aggregates over its
+    member composers at read time — so building a progression model for a style
+    silently found nothing and every style fell back to hard-coded I-IV-V
+    templates. Composing "in the Classical style" rather than "as Mozart" is a
+    first-class mode of this system, and it had no corpus harmony at all.
+    """
+    from scales.style_registry import is_style_id, style_members
+
+    if not is_style_id(reference):
+        return load_bars(reference)
+    bars: List[Dict[str, Any]] = []
+    for member in style_members(reference, armed_only=True):
+        member_bars = load_bars(member)
+        # Keep the source tag distinct per member so `_runs` never splices one
+        # composer's cadence onto another's approach chord.
+        for b in member_bars:
+            b = dict(b)
+            b["source"] = f"{member}:{b.get('source', '')}"
+            bars.append(b)
+    return bars
+
+
 def build_model(composer: str, order: int = 2, min_bars: int = 6) -> Optional[Dict[str, Any]]:
-    bars = load_bars(composer)
+    bars = _bars_for(composer)
     if not bars:
         return None
     by_mode: Dict[str, Dict[str, Any]] = {}

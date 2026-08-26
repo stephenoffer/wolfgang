@@ -1,56 +1,94 @@
 {
-  "counts": {
-    "pedal_point": {
-      "bass_melody": 690,
-      "pedal_point": 887,
-      "silence": 127,
-      "alberti": 33,
-      "broken_chord_wave": 133
-    },
-    "bass_melody": {
-      "bass_melody": 1065,
-      "pedal_point": 719,
-      "alberti": 49,
-      "silence": 31,
-      "broken_chord_wave": 299
-    },
-    "silence": {
-      "bass_melody": 46,
-      "silence": 291,
-      "pedal_point": 161,
-      "alberti": 4,
-      "broken_chord_wave": 7
-    },
-    "alberti": {
-      "bass_melody": 57,
-      "alberti": 68,
-      "pedal_point": 26,
-      "broken_chord_wave": 1,
-      "silence": 3
-    },
-    "broken_chord_wave": {
-      "pedal_point": 127,
-      "bass_melody": 307,
-      "broken_chord_wave": 114,
-      "silence": 5,
-      "alberti": 0
-    }
+ "counts": {
+  "pedal_point": {
+   "alberti": 149,
+   "walking_bass": 189,
+   "bass_melody": 58,
+   "broken_chord_wave": 163,
+   "pedal_point": 111,
+   "broken_chord_desc": 3,
+   "silence": 1,
+   "broken_chord_asc": 1
   },
-  "self_continuation": {
-    "pedal_point": 0.4743,
-    "bass_melody": 0.4924,
-    "silence": 0.5717,
-    "alberti": 0.4387,
-    "broken_chord_wave": 0.2061
+  "alberti": {
+   "broken_chord_wave": 635,
+   "walking_bass": 126,
+   "alberti": 470,
+   "bass_melody": 148,
+   "pedal_point": 92,
+   "broken_chord_asc": 2,
+   "silence": 1
   },
-  "total_transitions": 5250,
-  "genre": "baroque",
-  "source_composers": [
-    "bach",
-    "palestrina",
-    "monteverdi",
-    "handel",
-    "corelli"
-  ],
-  "synthetic": false
+  "broken_chord_wave": {
+   "alberti": 498,
+   "bass_melody": 236,
+   "broken_chord_wave": 1370,
+   "pedal_point": 237,
+   "walking_bass": 176,
+   "broken_chord_desc": 1
+  },
+  "bass_melody": {
+   "bass_melody": 111,
+   "alberti": 173,
+   "pedal_point": 61,
+   "walking_bass": 145,
+   "broken_chord_wave": 205,
+   "broken_chord_desc": 3,
+   "silence": 4,
+   "broken_chord_asc": 1
+  },
+  "walking_bass": {
+   "walking_bass": 375,
+   "alberti": 183,
+   "pedal_point": 134,
+   "broken_chord_wave": 226,
+   "bass_melody": 124,
+   "broken_chord_asc": 5,
+   "block_chord_tremolo": 3,
+   "broken_chord_desc": 3,
+   "block_chord_sparse": 1
+  },
+  "broken_chord_asc": {
+   "pedal_point": 3,
+   "walking_bass": 6,
+   "bass_melody": 2
+  },
+  "broken_chord_desc": {
+   "walking_bass": 5,
+   "broken_chord_asc": 1,
+   "bass_melody": 2,
+   "pedal_point": 1,
+   "alberti": 1,
+   "broken_chord_desc": 1
+  },
+  "silence": {
+   "bass_melody": 3,
+   "broken_chord_wave": 1,
+   "pedal_point": 3,
+   "alberti": 1,
+   "silence": 1
+  },
+  "block_chord_tremolo": {
+   "pedal_point": 1
+  }
+ },
+ "self_continuation": {
+  "pedal_point": 0.1644,
+  "alberti": 0.3189,
+  "broken_chord_wave": 0.5441,
+  "bass_melody": 0.1579,
+  "walking_bass": 0.3558,
+  "broken_chord_asc": 0.0,
+  "broken_chord_desc": 0.0909,
+  "silence": 0.1111,
+  "block_chord_tremolo": 0.0
+ },
+ "total_transitions": 6456,
+ "genre": "baroque",
+ "source_composers": [
+  "bach",
+  "handel",
+  "corelli"
+ ],
+ "synthetic": false
 }

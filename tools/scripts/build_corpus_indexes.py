@@ -430,6 +430,87 @@ def build_transition_matrix(groups: "OrderedDict[str, List[Dict]]") -> Dict[str,
     }
 
 
+def merge_transition_matrices(matrices: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Sum several composers' texture-transition counts into one matrix."""
+    counts: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    total = 0
+    for m in matrices:
+        for src, row in (m.get("counts") or {}).items():
+            for dst, n in row.items():
+                counts[src][dst] += int(n)
+                total += int(n)
+    self_cont: Dict[str, float] = {}
+    for src, row in counts.items():
+        tot = sum(row.values())
+        self_cont[src] = round(row.get(src, 0) / tot, 4) if tot else 0.0
+    return {
+        "counts": {k: dict(v) for k, v in counts.items()},
+        "self_continuation": self_cont,
+        "total_transitions": total,
+    }
+
+
+def build_genre_matrices(force: bool = False) -> Dict[str, Any]:
+    """Aggregate each style's ARMED members into a by_genre transition matrix.
+
+    These were built once by `migrate_pattern_library.py` and never again, so
+    six of the nine were still **synthetic** — the Classical matrix with
+    hand-picked multipliers applied ("baroque: alberti x0.3, pedal_point x1.5")
+    — and the two real ones were wrong in different ways:
+
+      * `baroque.json` was sourced from bach + handel + corelli **plus
+        palestrina and monteverdi**, folding Renaissance polyphony into the
+        Baroque odds.
+      * `romantic.json` was chopin alone, while schubert, liszt and weber are
+        all armed.
+      * There was no `renaissance.json` at all, so Palestrina and Monteverdi
+        fell through to `classical.json` — Renaissance counterpoint judged by
+        Classical texture statistics.
+
+    Membership comes from `style_registry`, so arming a composer now grows its
+    style's matrix automatically instead of leaving a hand-edited file behind.
+    """
+    from scales.style_registry import _STYLE_MEMBERS
+
+    armed = set(all_composers_with_bars())
+    out: Dict[str, Any] = {}
+    for style, members in _STYLE_MEMBERS.items():
+        present = [m for m in members if m in armed]
+        mats = []
+        for m in present:
+            path = PATTERN_LIBRARY / "transitions" / "by_composer" / f"{m}.json"
+            if path.exists():
+                try:
+                    mats.append(json.loads(path.read_text()))
+                except (OSError, ValueError):
+                    continue
+        if not mats:
+            out[style] = {"skipped": "no armed member has a transition matrix"}
+            continue
+        dest = PATTERN_LIBRARY / "transitions" / "by_genre" / f"{style}.json"
+        if dest.exists() and not force:
+            existing = {}
+            try:
+                existing = json.loads(dest.read_text())
+            except (OSError, ValueError):
+                pass
+            # A synthetic matrix is always worth replacing with real data.
+            if not existing.get("synthetic"):
+                out[style] = {"kept": str(dest), "hint": "pass --force to rebuild"}
+                continue
+        merged = merge_transition_matrices(mats)
+        merged["genre"] = style
+        merged["source_composers"] = present
+        merged["synthetic"] = False
+        _write_json(dest, merged)
+        out[style] = {
+            "written": str(dest),
+            "sources": present,
+            "transitions": merged["total_transitions"],
+        }
+    return out
+
+
 # ─── Orchestration ───────────────────────────────────────────────────────────
 
 
@@ -515,6 +596,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     for composer in composers:
         result = build_composer(composer, force=force)
         print(json.dumps(result))
+
+    # Genre matrices are derived from the per-composer ones, so they must be
+    # rebuilt after them or they go stale the moment a composer is armed.
+    print(json.dumps({"genre_matrices": build_genre_matrices(force=force)}))
     return 0
 
 

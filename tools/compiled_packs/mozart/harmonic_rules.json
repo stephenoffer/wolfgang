@@ -5,7 +5,19 @@
       "frequency_weight": 0.5
     },
     {
+      "type": "IAC",
+      "frequency_weight": 0.5
+    },
+    {
       "type": "HC",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "DC",
+      "frequency_weight": 0.5
+    },
+    {
+      "type": "plagal",
       "frequency_weight": 0.5
     },
     {
@@ -28,6 +40,10 @@
     },
     {
       "name": "secondary dominant",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "borrowed chord",
       "frequency_weight": 0.3
     }
   ]

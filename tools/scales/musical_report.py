@@ -50,6 +50,7 @@ class MusicalReport:
     texture: Dict[str, Any] = field(default_factory=dict)
     part_writing: Dict[str, Any] = field(default_factory=dict)
     page: Dict[str, Any] = field(default_factory=dict)
+    craft: Dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> Dict[str, Any]:
         return {
@@ -61,6 +62,7 @@ class MusicalReport:
             "texture": self.texture,
             "part_writing": self.part_writing,
             "page": self.page,
+            "craft": self.craft,
         }
 
 
@@ -330,6 +332,40 @@ def _page_section(merged, style: Optional[str]) -> Dict[str, Any]:
     return out
 
 
+def _craft_section(kept, layers) -> Dict[str, Any]:
+    """The phrase-sanctity checklist, per phrase.
+
+    The checklist has existed all along and has run on **no phrase the system
+    ever composed** — ``craft_check`` is written only inside the engine fallback
+    path, which the default flow never takes. Measured 0 of 164 phrases across
+    12 pieces. Running it here is the first time its findings reach anyone.
+    """
+    from .craft_checker import check_phrase, craft_score
+
+    out: Dict[str, Any] = {"observations": [], "concerns": [], "per_phrase": {}}
+    scores = []
+    counts: Dict[str, int] = {}
+    for (pid, _state, _slot), ir in zip(kept, layers):
+        check, findings = check_phrase(ir)
+        scores.append(craft_score(check))
+        if findings:
+            out["per_phrase"][pid] = findings
+            for f in findings:
+                counts[f] = counts.get(f, 0) + 1
+    if scores:
+        out["mean_score"] = round(sum(scores) / len(scores), 3)
+        out["observations"].append(
+            f"craft checklist: {out['mean_score']:.0%} of checks pass on average "
+            f"across {len(scores)} phrases"
+        )
+    # Report a fault that recurs across phrases once, not once per phrase — a
+    # reviewer needs the pattern, not forty copies of the same sentence.
+    for finding, n in sorted(counts.items(), key=lambda kv: -kv[1]):
+        if n >= max(2, len(scores) // 3):
+            out["concerns"].append(f"[{n} of {len(scores)} phrases] {finding}")
+    return out
+
+
 # ─── Entry point ─────────────────────────────────────────────────────────────
 
 
@@ -369,6 +405,7 @@ def build_report(graph, style: Optional[str] = None, scope: str = "full") -> Mus
     report.texture = _texture_section(merged, style)
     report.part_writing = _part_writing_section(merged, key)
     report.page = _page_section(merged, style)
+    report.craft = _craft_section(kept, layers)
     return report
 
 
@@ -402,6 +439,7 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
     block("CADENCES", report.cadences, extra_key="lines")
     block("TEXTURE", report.texture)
     block("THE PAGE", report.page)
+    block("CRAFT", report.craft)
 
     pw = report.part_writing
     if pw.get("lines") or pw.get("errors"):
@@ -422,7 +460,7 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
 def concerns_only(report: MusicalReport) -> List[str]:
     """Just the things worth a second look, worst-first-ish, for a short review."""
     out: List[str] = []
-    for section in (report.theme, report.cadences, report.texture, report.page):
+    for section in (report.theme, report.cadences, report.texture, report.page, report.craft):
         out.extend(section.get("concerns") or [])
     out.extend(report.part_writing.get("lines") or [])
     return out

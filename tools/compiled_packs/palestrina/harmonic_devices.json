@@ -1,1 +1,138 @@
-[]
+[
+  {
+    "id": "suspension",
+    "name": "Suspension",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The principal expressive device \u2014 4-3",
+      "7-6",
+      "9-8",
+      "and 2-3 in the bass"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "passing_tone",
+    "name": "Passing tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Everywhere"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "neighbor_tone",
+    "name": "Neighbor tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Everywhere"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "cambiata",
+    "name": "Cambiata",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "A stock melodic formula",
+      "not a free choice"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "anticipation",
+    "name": "Anticipation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "At cadences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "escape_tone",
+    "name": "Escape tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sparing"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "points_of_imitation",
+    "name": "Points of imitation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The structural unit of a motet or mass movement"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "paired_imitation",
+    "name": "Paired imitation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Gives a large texture internal articulation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "homorhythmic_declamation",
+    "name": "Homorhythmic declamation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "For emphasis \u2014 a sudden clarity after polyphony"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "voice_pairing",
+    "name": "Voice pairing",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Colour and relief within a full texture"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  },
+  {
+    "id": "full_texture",
+    "name": "Full texture",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Reserve it; constant tutti has nowhere to grow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared palestrina harmony>"
+  }
+]

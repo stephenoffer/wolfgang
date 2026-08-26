@@ -37,5 +37,242 @@
     "typical_texture": "",
     "preparation_bars": 2,
     "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_pac",
+    "type": "PAC",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V(7)-I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_iac",
+    "type": "IAC",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V-I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_hc",
+    "type": "HC",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "any-V",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_dc",
+    "type": "DC",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V-vi",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_plagal",
+    "type": "Plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "IV-I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_pc_phrygian",
+    "type": "PC (Phrygian)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "iv6-V",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_approach",
+    "type": "Approach",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "ii6 or IV",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_cad_6_4",
+    "type": "Cad 6/4",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I6/4",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_resolution",
+    "type": "Resolution",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V or V7",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_arrival",
+    "type": "Arrival",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_antecedent",
+    "type": "Antecedent",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "4 (or 8)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_consequent",
+    "type": "Consequent",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "4 (or 8)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_standard",
+    "type": "Standard",
+    "approach_chords": [
+      "V",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "ii6 ->",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_with_decoration",
+    "type": "With decoration",
+    "approach_chords": [
+      "V7",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "IV ->",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_double",
+    "type": "Double",
+    "approach_chords": [
+      "ii6",
+      "I64",
+      "V"
+    ],
+    "soprano_line": [],
+    "bass_motion": "2-1-5",
+    "usage": "I6/4 ->",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_with_neapolitan",
+    "type": "With Neapolitan",
+    "approach_chords": [
+      "V",
+      "i"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "bII6 ->",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
+  },
+  {
+    "id": "cad_concerto_cadenza",
+    "type": "Concerto cadenza",
+    "approach_chords": [
+      "V",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "Orchestra ->",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "haydn/harmonic-language.md"
   }
 ]

@@ -235,3 +235,74 @@ def test_every_pack_path_goes_through_the_sanitiser():
         "raw composer id used as a path component; route it through "
         "style_registry.pack_dir_name:\n  " + "\n  ".join(offenders)
     )
+
+
+# ─── Genre matrices must come from real armed members ────────────────────────
+
+
+def test_genre_matrices_are_not_contaminated_across_periods():
+    """`baroque.json` was sourced from bach + handel + corelli **plus
+    palestrina and monteverdi** — Renaissance polyphony folded into Baroque
+    texture odds."""
+    import json
+    from pathlib import Path
+
+    lib = Path("tools") / "pattern_library" / "transitions" / "by_genre"
+    if not lib.is_dir():
+        pytest.skip("pattern library not present")
+    for path in sorted(lib.glob("*.json")):
+        style = path.stem
+        data = json.loads(path.read_text())
+        sources = data.get("source_composers") or []
+        if not sources:
+            continue
+        members = set(SR._STYLE_MEMBERS.get(style, []))
+        strays = [c for c in sources if c not in members]
+        assert not strays, (
+            f"{path.name} is built from {strays}, which are not members of the "
+            f"{style!r} style"
+        )
+
+
+def test_every_armed_style_has_a_real_matrix():
+    """A style with armed members must not still be using the synthetic one.
+
+    Six matrices were synthesised once from Classical with hand-picked
+    multipliers and never rebuilt; `renaissance.json` did not exist at all, so
+    Palestrina and Monteverdi fell through to Classical texture statistics.
+    """
+    import json
+    import os
+    from pathlib import Path
+
+    idx = Path("tools") / "reference_index"
+    lib = Path("tools") / "pattern_library" / "transitions" / "by_genre"
+    if not idx.is_dir() or not lib.is_dir():
+        pytest.skip("corpus not present")
+    armed = {d for d in os.listdir(idx) if (idx / d).is_dir()}
+
+    for style, members in SR._STYLE_MEMBERS.items():
+        if not (set(members) & armed):
+            continue  # no armed member — synthetic is the only option
+        path = lib / f"{style}.json"
+        assert path.exists(), f"{style} has armed members but no by_genre matrix"
+        data = json.loads(path.read_text())
+        assert not data.get("synthetic"), (
+            f"{style} has armed members ({sorted(set(members) & armed)}) but its "
+            "matrix is still the synthetic Classical derivative"
+        )
+
+
+def test_a_synthetic_matrix_is_declared_as_such():
+    """A style with nothing armed may only use synthetic data if it says so."""
+    import json
+    from pathlib import Path
+
+    lib = Path("tools") / "pattern_library" / "transitions" / "by_genre"
+    if not lib.is_dir():
+        pytest.skip("pattern library not present")
+    for path in sorted(lib.glob("*.json")):
+        data = json.loads(path.read_text())
+        assert "synthetic" in data or data.get("source_composers"), (
+            f"{path.name} declares neither real sources nor synthetic provenance"
+        )

@@ -60,5 +60,163 @@
     "frequency_weight": 0.3,
     "emotional_color": "",
     "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "internal_expansion",
+    "name": "Internal expansion",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Broadens phrase"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "cadential_extension",
+    "name": "Cadential extension",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Delays closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "prefix",
+    "name": "Prefix",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sets up phrase"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "suffix_codetta",
+    "name": "Suffix (codetta)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Confirms closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "evaded_cadence",
+    "name": "Evaded cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Restarts phrase"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "one_more_time",
+    "name": "One more time",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Emphasis"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "secondary_dominants",
+    "name": "Secondary dominants",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Very common"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "augmented_6th_chords",
+    "name": "Augmented 6th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Moderate (more in late Classical)"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan_6th",
+    "name": "Neapolitan 6th",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Moderate",
+      "dramatic cadences"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_passing_tones",
+    "name": "Chromatic passing tones",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Common in inner voices"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "mode_mixture",
+    "name": "Mode mixture",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Increasingly common"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "diminished_7th_chords",
+    "name": "Diminished 7th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Common",
+      "esp. in development"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_modulation",
+    "name": "Enharmonic modulation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Rare in early Classical; Beethoven"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "",
+    "source_file": "beethoven/harmonic-language.md"
   }
 ]

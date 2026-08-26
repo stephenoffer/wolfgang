@@ -1,0 +1,104 @@
+{
+ "counts": {
+  "pedal_point": {
+   "pedal_point": 11740,
+   "bass_melody": 5140,
+   "walking_bass": 2804,
+   "broken_chord_wave": 62,
+   "silence": 579,
+   "alberti": 91,
+   "interlocking": 2,
+   "block_chord_tremolo": 6,
+   "broken_chord_desc": 1,
+   "block_chord_sparse": 1
+  },
+  "bass_melody": {
+   "bass_melody": 17574,
+   "pedal_point": 5185,
+   "walking_bass": 3744,
+   "broken_chord_wave": 902,
+   "alberti": 763,
+   "silence": 54,
+   "interlocking": 1,
+   "block_chord_tremolo": 1,
+   "block_chord_sparse": 1
+  },
+  "walking_bass": {
+   "bass_melody": 3713,
+   "walking_bass": 1888,
+   "pedal_point": 2874,
+   "broken_chord_wave": 149,
+   "alberti": 204,
+   "silence": 22,
+   "interlocking": 1,
+   "block_chord_tremolo": 15,
+   "broken_chord_desc": 1
+  },
+  "broken_chord_wave": {
+   "broken_chord_wave": 345,
+   "bass_melody": 911,
+   "alberti": 153,
+   "walking_bass": 162,
+   "pedal_point": 64,
+   "block_chord_tremolo": 2
+  },
+  "silence": {
+   "silence": 1419,
+   "pedal_point": 1004,
+   "bass_melody": 58,
+   "walking_bass": 48,
+   "alberti": 2,
+   "broken_chord_wave": 2,
+   "block_chord_tremolo": 1,
+   "block_chord_sparse": 1
+  },
+  "alberti": {
+   "bass_melody": 766,
+   "broken_chord_wave": 173,
+   "walking_bass": 200,
+   "alberti": 242,
+   "pedal_point": 82,
+   "block_chord_tremolo": 1
+  },
+  "interlocking": {
+   "bass_melody": 3,
+   "pedal_point": 1
+  },
+  "block_chord_tremolo": {
+   "walking_bass": 12,
+   "alberti": 7,
+   "pedal_point": 6,
+   "bass_melody": 3,
+   "block_chord_tremolo": 3
+  },
+  "broken_chord_desc": {
+   "broken_chord_wave": 2
+  },
+  "block_chord_sparse": {
+   "silence": 3
+  },
+  "block_chord_offbeat": {
+   "alberti": 1
+  }
+ },
+ "self_continuation": {
+  "pedal_point": 0.5748,
+  "bass_melody": 0.6226,
+  "walking_bass": 0.2129,
+  "broken_chord_wave": 0.2108,
+  "silence": 0.5598,
+  "alberti": 0.1653,
+  "interlocking": 0.0,
+  "block_chord_tremolo": 0.0968,
+  "broken_chord_desc": 0.0,
+  "block_chord_sparse": 0.0,
+  "block_chord_offbeat": 0.0
+ },
+ "total_transitions": 63195,
+ "genre": "renaissance",
+ "source_composers": [
+  "palestrina",
+  "monteverdi"
+ ],
+ "synthetic": false
+}

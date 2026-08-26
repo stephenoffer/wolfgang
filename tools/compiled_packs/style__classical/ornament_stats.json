@@ -1,0 +1,55 @@
+{
+ "composer": "style__classical",
+ "schema": 1,
+ "total_bars": 25792,
+ "textures": {
+  "scalar_run": {
+   "grace": 0.169,
+   "trill": 0.0702,
+   "mordent": 0.0127,
+   "turn": 0.0127,
+   "dotted": 0.1687,
+   "n": 3775
+  },
+  "singing_melody": {
+   "grace": 0.0448,
+   "trill": 0.0325,
+   "mordent": 0.0108,
+   "turn": 0.0116,
+   "dotted": 0.2547,
+   "n": 8698
+  },
+  "chordal": {
+   "grace": 0.0092,
+   "trill": 0.0033,
+   "mordent": 0.0,
+   "turn": 0.0019,
+   "dotted": 0.1976,
+   "n": 6423
+  },
+  "zigzag_figuration": {
+   "grace": 0.0327,
+   "trill": 0.0217,
+   "mordent": 0.0023,
+   "turn": 0.0121,
+   "dotted": 0.167,
+   "n": 5719
+  },
+  "held_note": {
+   "grace": 0.0027,
+   "trill": 0.0602,
+   "mordent": 0.0,
+   "turn": 0.0055,
+   "dotted": 0.1984,
+   "n": 731
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 446
+  }
+ }
+}

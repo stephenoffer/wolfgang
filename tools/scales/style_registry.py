@@ -110,12 +110,22 @@ _SYNONYMS: Dict[str, str] = {
 
 
 def normalize_style(name: Optional[str]) -> Optional[str]:
-    """Map a free-text style/genre request to a canonical style name, or None."""
+    """Map a free-text style/genre request to a canonical style name, or None.
+
+    The ``style__`` prefix has to come off BEFORE separators are normalized.
+    Replacing ``_`` with ``-`` first turned this system's own canonical id
+    ``style__classical`` into ``style--classical``, which then failed the
+    prefix test, was never stripped, and matched nothing — so
+    ``normalize_style`` returned None for every ``style__`` id the system
+    itself produces, and with it ``all_style_members`` and ``style_members``
+    returned an empty list for all four armed styles.
+    """
     if not name:
         return None
-    n = str(name).strip().lower().replace(" ", "-").replace("_", "-")
+    n = str(name).strip().lower()
     if n.startswith(STYLE_PREFIX):
         n = n[len(STYLE_PREFIX) :]
+    n = n.replace(" ", "-").replace("_", "-")
     if n in _STYLE_MEMBERS:
         return n
     return _SYNONYMS.get(n)

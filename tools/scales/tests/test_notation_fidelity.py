@@ -877,3 +877,98 @@ def test_piano_staves_are_still_treble_then_bass(tmp_path):
     graph = _piano_graph([{"rh": "C5w", "lh": "C3w"}])
     score = music21.converter.parse(assemble(graph, output_dir=str(tmp_path)))
     assert identify_staves(score, _bar_table(score)) == (0, 1)
+
+
+def test_expectation_ledger_is_populated_and_reaches_the_brief(tmp_path, monkeypatch):
+    """The ExpectationLedger held no entries in any piece, ever. Every write was
+    guarded by `if ledger is not None` and a fresh graph had no ledger, so the
+    population block ran to completion and recorded nothing — and then the brief
+    read only the PHRASE scale, which is the one scale nothing is filed at."""
+    import shutil
+
+    from scales import scales as scales_mod
+    from scales.composition_brief import _ledger_lines, _reconstruct_ledger
+    from scales.cross_scale_ledger import ledger_summary
+    from scales.piece_graph import PieceGraph
+
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    pid = "ledger-test"
+    scales_mod.init_workspace(pid, description="a sonata in C major", mode="compose_from_text")
+    scales_mod.build_form_graph(pid, form="sonata", key="C major")
+
+    graph = PieceGraph.load(str(tmp_path / pid / "piece_graph.json"))
+    summary = ledger_summary(graph)
+    assert summary["open"] > 0, "the ledger recorded nothing"
+    assert summary["by_scale"], "expectations must carry the scale they belong to"
+
+    # And they must survive the save/load, or a promise made at plan time is
+    # gone before composition ever reads it.
+    view = _reconstruct_ledger(graph)
+    assert view is not None and len(view.entries) == summary["open"]
+
+    first = min(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)
+    lines = _ledger_lines(graph, first)
+    assert lines, "the composer cannot pay a debt it cannot see"
+    shutil.rmtree(tmp_path / pid, ignore_errors=True)
+
+
+def test_ledger_view_exposes_the_expectation_ledger_api():
+    """The brief's ledger view must answer the ExpectationLedger's questions
+    (prohibitions, cooldowns, locks), not the container's."""
+    from scales.composition_brief import _reconstruct_ledger
+    from scales.cross_scale_ledger import CrossScaleLedger
+    from scales.piece_graph import PieceGraph
+
+    csl = CrossScaleLedger()
+    csl.add_section_expectation(
+        exp_type="debt", domain="cadence", object_ref="x", introduced_at="s1",
+        expected_form="resolution", urgency=0.5,
+    )
+    graph = PieceGraph()
+    graph.cross_scale_ledger = csl.to_dict()
+    view = _reconstruct_ledger(graph)
+    assert view is not None and view.entries
+    assert hasattr(view, "get_active_prohibitions")
+
+
+# ── Style composition, which was silently degraded to templates ────────────
+
+
+def test_style_ids_resolve_to_their_members():
+    """`normalize_style` replaced '_' with '-' BEFORE stripping the `style__`
+    prefix, so the system's own canonical id became 'style--classical', failed
+    the prefix test, and matched nothing. Every style resolved to zero members."""
+    from scales.style_registry import normalize_style, style_members
+
+    for style_id, expected in (
+        ("style__classical", "classical"),
+        ("style__baroque", "baroque"),
+        ("style__romantic", "romantic"),
+        ("style__renaissance", "renaissance"),
+    ):
+        assert normalize_style(style_id) == expected
+        assert style_members(style_id, armed_only=True), f"{style_id} has no armed members"
+    # Free text and hyphenated names must keep working.
+    assert normalize_style("Classical") == "classical"
+    assert normalize_style("late romantic") == "late-romantic"
+    assert normalize_style("style__late-romantic") == "late-romantic"
+    assert normalize_style("not-a-style") is None
+
+
+@pytest.mark.parametrize(
+    "style", ["style__classical", "style__baroque", "style__romantic", "style__renaissance"]
+)
+def test_every_armed_style_has_corpus_harmony(style):
+    """Composing "in the Classical style" rather than "as Mozart" is a
+    first-class mode, and every style fell back to hard-coded I-IV-V templates
+    because the progression-model builder could not read a style's bars."""
+    from scales.progression_model import corpus_harmony_plan, load_progression_model
+
+    model = load_progression_model(style)
+    assert model, f"{style} has no progression model"
+    assert model["total_transitions"] > 500
+
+    plans = [corpus_harmony_plan(style, "", "PAC", 4, "C major", seed=s) for s in range(6)]
+    assert all(p and p[0] == "I" and p[-1] == "I" for p in plans)
+    # A template would give the same handful of chords every time.
+    assert len({tuple(p) for p in plans}) >= 4, f"{style} harmony looks templated: {plans}"

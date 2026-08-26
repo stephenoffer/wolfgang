@@ -205,6 +205,73 @@ real music passes, empty music does not.
 
 ---
 
+## 4c. Seven subsystems have never produced anything
+
+A census across all 12 workspace pieces (164 phrases, five months of output),
+asking of every documented field: has this *ever* held a value?
+
+| field | pieces/phrases with anything |
+|---|---|
+| `cross_scale_ledger` | **0 / 12** |
+| `style_review_reports` | **0 / 12** |
+| `control` (PhraseControlIR) | **0 / 164** |
+| `sketch_candidates` | **0 / 164** |
+| `onset_bundles` | **0 / 164** |
+| `candidates` | **0 / 164** |
+| `craft_check` | **0 / 164** |
+| `sketch` | 10 / 164 |
+| `review` | 10 / 164 |
+
+### The ExpectationLedger
+
+CLAUDE.md lists it among the core design principles — "the system's working
+memory of unfinished musical business", carrying promises, debts, cooldowns and
+locks so a piece coheres at long range. It has never held one entry.
+
+The 2026-08-18 audit filed this as C21: population failures hidden by a bare
+`except Exception: pass`. **That was a misdiagnosis, and the correction matters
+more than the original finding.** Nothing ever raised. Planning guards every
+write with `if _cross_ledger is not None` / `elif _ledger is not None`, and a
+fresh `PieceGraph` has `cross_scale_ledger = None` and no `expectation_ledger`
+attribute at all. Both guards are False for every section, the block runs to
+completion, and nothing is recorded. There was no ledger to populate.
+
+A second defect sat behind it: the graph field is typed `Optional[Dict]`, the
+*serialized* form, so even a created ledger would not survive `save` — and a
+subsystem for carrying expectations across time that loses them at the first
+save is the same as not having one.
+
+`ensure_ledger(graph)` / `persist_ledger(graph, ledger)` make the object exist
+and reach disk, restoring a persisted ledger so promises survive movement
+boundaries. `ledger_summary` reads both the live object and the stored dict:
+reading only the live one reported "no ledger" on a freshly loaded graph whose
+expectations had in fact survived.
+
+### The craft checklist
+
+`craft_check` is written in exactly one place — inside `run_scales_section`, the
+**engine fallback path**, which CLAUDE.md states the default flow never takes.
+So the phrase-sanctity checklist has never been applied to an agent-authored
+phrase, which is every phrase the system actually composes.
+
+This is also the explanation for §4b: a check that never runs cannot be observed
+to be wrong. Four of the nine had been broken for as long as they had existed,
+and one of them could not be passed by any music at all.
+
+`check_phrase(layer_ir)` now returns `(check, findings)` where findings are
+sentences a composer can act on, ordered worst-first, and the report runs the
+checklist over every phrase — reporting a fault that recurs across phrases once
+with a count, rather than forty copies of the same sentence.
+
+### The generalisable check
+
+A documented subsystem holding zero values across every piece ever produced is
+vestigial, whatever the documentation claims. That question — *has this ever
+held a value?* — takes about twenty lines of script and found seven of them here,
+after two earlier sessions had each found one by accident.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and

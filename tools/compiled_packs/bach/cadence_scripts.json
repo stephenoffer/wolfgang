@@ -1,1 +1,93 @@
-[]
+[
+  {
+    "id": "cad_authentic_pac",
+    "type": "Authentic (PAC)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V-I, soprano on 1",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  },
+  {
+    "id": "cad_half_cadence",
+    "type": "Half cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "any-V",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  },
+  {
+    "id": "cad_phrygian",
+    "type": "Phrygian",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "iv6-V (minor)",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  },
+  {
+    "id": "cad_deceptive",
+    "type": "Deceptive",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V-vi",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  },
+  {
+    "id": "cad_plagal",
+    "type": "Plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "IV-I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  },
+  {
+    "id": "cad_evaded",
+    "type": "Evaded",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V-I with voice exchange",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  },
+  {
+    "id": "cad_baroque_cadence",
+    "type": "Baroque cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "ii6-V-I with 4-3 sus",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bach/harmonic-language.md"
+  }
+]

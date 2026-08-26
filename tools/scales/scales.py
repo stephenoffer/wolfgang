@@ -313,25 +313,9 @@ def build_form_graph(
         sections=[],
     )
 
-    # Elect ONE principal theme and force its statement at every section opening
-    # (transformed at the recap) — gives the piece a memorable, recurring through-
-    # line instead of locally-optimized, independent phrases.
-    from .theme_planner import elect_principal_theme, plan_section_opening_placements
-
-    if not graph.principal_theme_id:
-        graph.principal_theme_id = elect_principal_theme(graph.motif_bank) or ""
-    _theme_seen_sections: set = set()
-
     # Group phrases into sections and add to graph
     current_section_id = ""
     for slot in phrases:
-        if graph.principal_theme_id and slot.section_id not in _theme_seen_sections:
-            _theme_seen_sections.add(slot.section_id)
-            slot.motif_transforms.extend(
-                plan_section_opening_placements(
-                    _infer_section_role(slot.section_id), graph.principal_theme_id
-                )
-            )
         # Wire the planned emotional arc into per-bar slot curves (keystone:
         # drives dynamics, density targets, register, and the tempo arc).
         _apply_narrative_curves(slot, graph.narrative)
@@ -413,68 +397,87 @@ def build_form_graph(
             _sl.section_techniques = list(_techs)
 
     # ─── Populate expectations from form structure ─────────────────────
-    try:
-        _ledger = getattr(graph, "expectation_ledger", None)
-        _cross_ledger = getattr(graph, "cross_scale_ledger", None)
+    #
+    # This block wrote nothing, for any piece, for the entire life of the
+    # project. Not because it raised — the `except Exception: pass` that used to
+    # wrap it never fired — but because every write was guarded by
+    # `if _cross_ledger is not None` / `elif _ledger is not None`, and a fresh
+    # PieceGraph has `cross_scale_ledger = None` and no `expectation_ledger`
+    # attribute at all. Both guards were False every time, so the loop ran to
+    # completion and recorded nothing, and the swallow-everything handler hid
+    # the cause. `ensure_ledger` creates or restores one, so there is now
+    # something to populate.
+    from .cross_scale_ledger import ensure_ledger, persist_ledger
 
-        for sec_id, sec_contract in graph.section_contracts.items():
-            role = sec_contract.role
+    _cross_ledger = ensure_ledger(graph)
+    _ledger = None
 
-            # Development sections promise theme recapitulation
-            if role == "development":
-                if _cross_ledger is not None:
-                    _cross_ledger.add_movement_expectation(
-                        exp_type=ExpectationType.PROMISE.value,
-                        domain=ExpectationDomain.MOTIF_THEME.value,
-                        object_ref=f"theme_recap_after_{sec_id}",
-                        introduced_at=sec_id,
-                        expected_form="theme recapitulation",
-                        urgency=0.7,
-                        details={"source_section": sec_id, "role": role},
-                    )
-                elif _ledger is not None:
-                    _ledger.add_promise(
-                        object_ref=f"theme_recap_after_{sec_id}",
-                        introduced_at=sec_id,
-                        expected_form="theme recapitulation",
-                        urgency=0.7,
-                        details={"source_section": sec_id, "role": role},
-                    )
+    for sec_id, sec_contract in graph.section_contracts.items():
+        role = sec_contract.role
 
-            # Sections with cadence paths create a debt for cadence resolution
-            if sec_contract.cadence_path:
-                if _cross_ledger is not None:
-                    _cross_ledger.add_section_expectation(
-                        exp_type=ExpectationType.DEBT.value,
-                        domain=ExpectationDomain.CADENCE.value,
-                        object_ref=f"cadence_resolution_{sec_id}",
-                        introduced_at=sec_id,
-                        must_resolve_by=sec_contract.phrase_ids[-1]
-                        if sec_contract.phrase_ids
-                        else None,
-                        urgency=0.6,
-                        details={
-                            "cadence_path": [str(c) for c in sec_contract.cadence_path],
-                            "section": sec_id,
-                        },
-                    )
-                elif _ledger is not None:
-                    _ledger.add_debt(
-                        object_ref=f"cadence_resolution_{sec_id}",
-                        opened_at=sec_id,
-                        must_resolve_by=sec_contract.phrase_ids[-1]
-                        if sec_contract.phrase_ids
-                        else None,
-                        urgency=0.6,
-                        details={
-                            "cadence_path": [str(c) for c in sec_contract.cadence_path],
-                            "section": sec_id,
-                        },
-                    )
-    except Exception:
-        pass  # Ledger not initialized — skip gracefully
+        # Development sections promise theme recapitulation
+        if role == "development":
+            if _cross_ledger is not None:
+                _cross_ledger.add_movement_expectation(
+                    exp_type=ExpectationType.PROMISE.value,
+                    domain=ExpectationDomain.MOTIF_THEME.value,
+                    object_ref=f"theme_recap_after_{sec_id}",
+                    introduced_at=sec_id,
+                    expected_form="theme recapitulation",
+                    urgency=0.7,
+                    details={"source_section": sec_id, "role": role},
+                )
+            elif _ledger is not None:
+                _ledger.add_promise(
+                    object_ref=f"theme_recap_after_{sec_id}",
+                    introduced_at=sec_id,
+                    expected_form="theme recapitulation",
+                    urgency=0.7,
+                    details={"source_section": sec_id, "role": role},
+                )
+
+        # Sections with cadence paths create a debt for cadence resolution
+        if sec_contract.cadence_path:
+            if _cross_ledger is not None:
+                _cross_ledger.add_section_expectation(
+                    exp_type=ExpectationType.DEBT.value,
+                    domain=ExpectationDomain.CADENCE.value,
+                    object_ref=f"cadence_resolution_{sec_id}",
+                    introduced_at=sec_id,
+                    must_resolve_by=sec_contract.phrase_ids[-1]
+                    if sec_contract.phrase_ids
+                    else None,
+                    urgency=0.6,
+                    details={
+                        "cadence_path": [str(c) for c in sec_contract.cadence_path],
+                        "section": sec_id,
+                    },
+                )
+            elif _ledger is not None:
+                _ledger.add_debt(
+                    object_ref=f"cadence_resolution_{sec_id}",
+                    opened_at=sec_id,
+                    must_resolve_by=sec_contract.phrase_ids[-1]
+                    if sec_contract.phrase_ids
+                    else None,
+                    urgency=0.6,
+                    details={
+                        "cadence_path": [str(c) for c in sec_contract.cadence_path],
+                        "section": sec_id,
+                    },
+                )
+    # Serialize before saving: `PieceGraph.cross_scale_ledger` is typed as the
+    # SERIALIZED form, so leaving the live object on it breaks `save` and every
+    # promise recorded here would be gone before composition ever read it.
+    persist_ledger(graph, _cross_ledger)
 
     graph.phase = PipelinePhase.PLANNING.value
+    # Elect ONE principal theme and state it at every section opening
+    # (transformed at the recap) — a memorable, recurring through-line instead of
+    # locally-optimized, independent phrases. Runs AFTER the slots exist, and is
+    # idempotent, so `resolve_motifs` can do the same work if it comes second.
+    _place_principal_theme(graph)
+
     graph.save(str(workspace / "piece_graph.json"))
 
     return phrase_summaries
@@ -537,11 +540,65 @@ def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, An
         )
         graph.motif_bank[motif.motif_id] = motif
 
+    # Back-fill theme placements onto slots that already exist.
+    #
+    # `build_form_graph` writes `slot.motif_transforms` only if
+    # `graph.principal_theme_id` is already set, which requires the motif bank to
+    # exist at that moment. The documented plan order is motifs (step 4) then
+    # form (step 5), but in practice the form is built first — and then nothing
+    # ever revisits it. Measured over the twelve pieces in `workspace/`: five have
+    # a populated motif bank (3, 5, 6, 3 and 3 motifs) and NOT ONE has an elected
+    # principal theme or a single placement on any of its 113 phrases. The theme
+    # system — the thing that makes a piece memorable rather than a run of
+    # individually plausible phrases — has never been active in a real run.
+    #
+    # Making the two steps order-independent is the fix; the election logic
+    # itself works on every one of those banks.
+    placed = _place_principal_theme(graph)
+
     graph.save(str(workspace / "piece_graph.json"))
     return {
         "motifs_stored": len(graph.motif_bank),
         "motif_ids": list(graph.motif_bank.keys()),
+        "principal_theme_id": graph.principal_theme_id,
+        "sections_given_a_theme_statement": placed,
     }
+
+
+def _place_principal_theme(graph) -> int:
+    """Elect the principal theme and place it at each section opening.
+
+    Idempotent: a section that already carries a placement is left alone, so this
+    is safe to call from both `build_form_graph` and `resolve_motifs` regardless
+    of which ran first.
+    """
+    from .theme_planner import elect_principal_theme, plan_section_opening_placements
+
+    if not graph.motif_bank:
+        return 0
+    if not graph.principal_theme_id:
+        graph.principal_theme_id = elect_principal_theme(graph.motif_bank) or ""
+    if not graph.principal_theme_id:
+        return 0
+
+    by_section: Dict[str, List] = {}
+    for state in graph.phrases.values():
+        slot = getattr(state, "slot", None)
+        if slot is not None:
+            by_section.setdefault(slot.section_id, []).append(slot)
+
+    placed = 0
+    for section_id, slots in by_section.items():
+        slots.sort(key=lambda s: s.bar_start)
+        if any(s.motif_transforms for s in slots):
+            continue  # this section already has its statement planned
+        slots[0].motif_transforms.extend(
+            plan_section_opening_placements(
+                _infer_section_role(section_id), graph.principal_theme_id
+            )
+        )
+        placed += 1
+    return placed
 
 
 def save_narrative(

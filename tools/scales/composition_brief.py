@@ -777,6 +777,20 @@ def _transition_patterns(composer: str, slot, from_texture: Optional[str]) -> Di
             return [(t, round(c / total, 2)) for t, c in ranked[:k] if c]
 
         out: Dict[str, Any] = {}
+        # Six style matrices have no armed member, so they are still SYNTHETIC:
+        # the Classical matrix with hand-picked multipliers ("baroque: alberti
+        # x0.3, pedal_point x1.5"). Composing "in an impressionist style" against
+        # those means composing against Mozart's texture habits with a fudge
+        # factor. That has to be said out loud, not passed off as corpus
+        # evidence — a silent substitution is how a piece ends up in the wrong
+        # idiom with numbers that look supportive.
+        if matrix.get("synthetic"):
+            out["provenance"] = (
+                "SYNTHETIC texture-transition data — no composer in this style is "
+                "armed, so these odds are the Classical matrix with adjustment "
+                "weights applied, NOT corpus evidence. Treat them as a weak prior "
+                "and lean on the written doctrine instead."
+            )
         if from_texture:
             follow = _top_follow(from_texture)
             if follow:
@@ -1613,21 +1627,50 @@ def _summarize_sketch(sketch) -> Dict[str, Any]:
 
 
 def _reconstruct_ledger(graph):
-    """The per-piece ExpectationLedger. It is persisted on the graph as the raw
-    ``cross_scale_ledger`` dict (and reconstructed via CrossScaleLedger), so the
-    brief must rebuild it rather than read a (non-existent) live attribute."""
+    """The piece's open expectations, across EVERY scale.
+
+    This read only ``CrossScaleLedger.phrase_ledger``. Expectations are recorded
+    at the scale they belong to — a promise to recapitulate a theme is a
+    *movement*-scale obligation and a cadence debt is a *section*-scale one —
+    and essentially nothing is ever recorded at phrase scale. So the brief's
+    ledger section was empty for every phrase of every piece even once the
+    ledger was being populated: it was reading the one drawer nothing is filed
+    in. Long-range coherence is the whole point of the subsystem, and a
+    phrase-composer that cannot see a debt cannot pay it.
+    """
     live = getattr(graph, "expectation_ledger", None)
-    if live is not None and getattr(live, "entries", None) is not None:
+    if live is not None and getattr(live, "entries", None):
         return live
     raw = getattr(graph, "cross_scale_ledger", None)
     if not raw:
-        return None
+        return live
     try:
         from .cross_scale_ledger import CrossScaleLedger
 
-        return CrossScaleLedger.from_dict(raw).phrase_ledger
+        csl = CrossScaleLedger.from_dict(raw)
     except Exception:
-        return None
+        return live
+
+    class _AllScales:
+        """A read-only view whose ``entries`` spans every scale."""
+
+        def __init__(self, ledger):
+            self._csl = ledger
+            phrase = list(getattr(ledger.phrase_ledger, "entries", []) or [])
+            wider = [e for e in ledger.get_all_open() if e not in phrase]
+            self.entries = phrase + wider
+
+        def __getattr__(self, name):
+            # The caller expects an ExpectationLedger's API (prohibitions,
+            # cooldowns, locks). CrossScaleLedger is a container of those, so
+            # forward to the phrase ledger first and only then to the container.
+            inner = getattr(self._csl, "phrase_ledger", None)
+            if inner is not None and hasattr(inner, name):
+                return getattr(inner, name)
+            return getattr(self._csl, name)
+
+    view = _AllScales(csl)
+    return view if view.entries else (live or None)
 
 
 def _global_phrase_order(graph) -> List[str]:
@@ -2178,8 +2221,17 @@ def _motif_brief(graph, slot) -> List[Dict[str, Any]]:
     # principal motif, stated.
     wanted: List[Tuple[str, str]] = []
     for mt in getattr(slot, "motif_transforms", None) or []:
-        mid = getattr(mt, "motif_id", "") or (mt.get("motif_id") if isinstance(mt, dict) else "")
-        op = getattr(mt, "transform", "") or (mt.get("transform") if isinstance(mt, dict) else "")
+        # A MotifTransform is (operation, params) — the motif id lives in
+        # params["motif_id"]. Reading `mt.motif_id` and `mt.transform` found
+        # neither, so even a phrase WITH a planned placement showed no motif.
+        if isinstance(mt, dict):
+            params = mt.get("params") or {}
+            mid = params.get("motif_id") or mt.get("motif_id") or ""
+            op = mt.get("operation") or mt.get("transform") or ""
+        else:
+            params = getattr(mt, "params", None) or {}
+            mid = params.get("motif_id") or getattr(mt, "motif_id", "") or ""
+            op = getattr(mt, "operation", "") or getattr(mt, "transform", "") or ""
         if mid:
             wanted.append((mid, op or "state"))
     if not wanted:
@@ -2956,6 +3008,10 @@ def render_text(brief: CompositionBrief) -> str:
         reg = ps.get("register_arc") or []
         if reg and len(set(reg)) > 1:
             lines.append(f"  register arc: {reg}")
+
+    if brief.transition_patterns.get("provenance"):
+        lines.append("")
+        lines.append(f"  ! {brief.transition_patterns['provenance']}")
 
     # ── Cadence pattern ──
     if brief.cadence_exemplars:

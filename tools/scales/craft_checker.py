@@ -247,3 +247,111 @@ class CraftChecker:
                 if not j.structural_reasons or not j.local_reasons:
                     return False
         return True
+
+
+# ─── Findings a person can act on ────────────────────────────────────────────
+#
+# ``check`` returns nine booleans. A boolean tells a reviewer that something is
+# wrong but not what or where, so even when the checklist ran its output was
+# close to unusable — and it did not run: ``craft_check`` is written only inside
+# ``run_scales_section``, the engine fallback path that the default flow never
+# takes. Measured 2026-08-26: **0 of 164 phrases across 12 pieces** carried a
+# craft check. The checklist has never been applied to an agent-authored phrase,
+# which is every phrase the system actually composes.
+#
+# That is also why the four broken checks below went unnoticed for so long: a
+# check that never runs cannot be observed to be wrong.
+
+_FINDINGS = {
+    "melodic_claim_clear": (
+        "The melody has no clear shape — fewer than three notes, or a range "
+        "narrower than a minor third. There is nothing here for a listener to "
+        "follow."
+    ),
+    "rhythm_has_identity": (
+        "Every note is the same length. A phrase is remembered by its rhythm at "
+        "least as much as by its pitches."
+    ),
+    "bass_has_purpose": (
+        "The bass does not sound in most bars, so the harmony has no floor under "
+        "it."
+    ),
+    "harmony_is_voiced": (
+        "Nothing sounds three-deep anywhere in the phrase: this is a melody and a "
+        "bass line with an empty middle. An inner voice, or a third under the "
+        "melody, is what gives a keyboard texture body."
+    ),
+    "has_breath_point": (
+        "No rest anywhere in the phrase. Music that never stops sounding gives the "
+        "listener nowhere to catch up, and a phrase with no breath does not sound "
+        "like a phrase."
+    ),
+    "accompaniment_responds_to_melody": (
+        "There is effectively no accompaniment — one note per bar or less beneath "
+        "the melody."
+    ),
+    "entry_exit_earned": (
+        "The phrase does not begin with sound. It opens with silence and arrives "
+        "late, so its entry is not heard as an entry."
+    ),
+    "has_memorable_detail": (
+        "Nothing in this phrase is distinctive: no expressive leap, no note that "
+        "arrives and holds, no silence, no ornament or articulation, no dynamic "
+        "that moves. It will be heard and immediately forgotten."
+    ),
+    "all_notes_justified": (
+        "Some notes carry no structural or local reason for being where they are."
+    ),
+}
+
+# Which failures are worth a composer's attention first. A phrase with no melodic
+# shape is a different order of problem from one with no ornament.
+_SEVERITY = {
+    "melodic_claim_clear": 0,
+    "harmony_is_voiced": 1,
+    "bass_has_purpose": 1,
+    "accompaniment_responds_to_melody": 2,
+    "rhythm_has_identity": 2,
+    "entry_exit_earned": 3,
+    "has_breath_point": 3,
+    "has_memorable_detail": 4,
+    "all_notes_justified": 4,
+}
+
+
+def craft_findings(check) -> List[str]:
+    """Failed checks as sentences a composer can act on, worst first.
+
+    Takes a ``PhraseCraftCheck`` (or anything with the same boolean attributes)
+    and returns only what failed. An empty list means the phrase passed.
+    """
+    failed = [
+        name
+        for name in _FINDINGS
+        if hasattr(check, name) and getattr(check, name) is False
+    ]
+    failed.sort(key=lambda n: _SEVERITY.get(n, 9))
+    return [_FINDINGS[n] for n in failed]
+
+
+def check_phrase(layer_ir, control=None, bundles=None):
+    """Run the checklist and return ``(check, findings)`` in one call.
+
+    The convenience form, so applying the checklist on the agent path is one
+    line rather than three.
+    """
+    check = CraftChecker().check(layer_ir, control=control, bundles=bundles)
+    return check, craft_findings(check)
+
+
+def craft_score(check) -> float:
+    """Fraction of the checklist a phrase passes, 0-1.
+
+    A blunt summary for a status line. Do not gate on it: the checks are not
+    equally important and a great phrase can legitimately fail two of them.
+    """
+    values = [
+        getattr(check, name) for name in _FINDINGS if hasattr(check, name)
+    ]
+    values = [v for v in values if isinstance(v, bool)]
+    return round(sum(values) / len(values), 3) if values else 0.0
