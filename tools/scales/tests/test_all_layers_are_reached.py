@@ -4,6 +4,15 @@ That shape has now produced the same silent failure three times in this
 codebase — a check that runs, computes, and reads an empty drawer, which is
 indistinguishable from a clean result. These pin the derived accessors that
 replaced the enumerations.
+
+Honest scope, measured rather than assumed: the six ORCHESTRAL LayerIR layers
+are currently written by nothing in production. `plan_orchestration` returns a
+plain ``dict[str, list[dict]]`` of instrument -> events and writes it to
+``orchestration/<section>.json``; it never builds a LayerIR from those fields.
+So the range hole these close is a hole nothing currently walks through — the
+fix is defensive, and the coverage matters the day something does populate
+them. The live orchestration path is range-safe by construction instead, which
+`test_orchestration_clamps_every_part_into_its_range` pins.
 """
 
 from scales.models import LayerEvent, LayerIR
@@ -83,3 +92,55 @@ def test_ensure_layer_handles_the_two_different_defaults():
     assert len(ir.color_layer) == 1
     ir.ensure_layer("principal_line").append(_note("D4", "principal_line"))
     assert len(ir.principal_line) == 1
+
+
+def test_orchestration_clamps_every_part_into_its_range():
+    """The live orchestration path never goes through `validate_layer_ir` — it
+    returns a plain dict of instrument -> events — so its range safety rests
+    entirely on the planner clamping as it assigns.
+
+    Falsified with deliberately extreme piano writing (C8 melody, C0 bass)
+    across a ten-instrument ensemble: every assigned note lands inside its own
+    instrument's practical range.
+    """
+    from scales.orchestration_planner import plan_orchestration, practical_range
+    from scales.pitch import pitch_to_midi
+
+    ir = LayerIR(phrase_id="p", instrumentation="orchestra", key="C", meter=(4, 4), bar_count=4)
+    ir.principal_line = [
+        _note(p, "principal_line", bar=b, duration="q")
+        for b, p in enumerate(["C7", "G7", "C8", "A7"], 1)
+    ]
+    ir.bass_foundation = [
+        _note(p, "bass_foundation", bar=b, duration="q")
+        for b, p in enumerate(["A0", "C1", "E1", "C0"], 1)
+    ]
+
+    ensemble = [
+        "flute",
+        "oboe",
+        "clarinet",
+        "bassoon",
+        "violin",
+        "viola",
+        "cello",
+        "contrabass",
+        "horn",
+        "trumpet",
+    ]
+    parts = plan_orchestration(ir, ensemble, key="C")
+    assert parts, "the planner assigned nothing"
+
+    for instrument, events in parts.items():
+        lo, hi = practical_range(instrument)
+        for event in events:
+            pitch = event.get("pitch")
+            if not pitch or pitch == "rest":
+                continue
+            for one in pitch if isinstance(pitch, list) else [pitch]:
+                midi = pitch_to_midi(one)
+                if midi is None:
+                    continue
+                assert lo <= midi <= hi, (
+                    f"{instrument} given {one} (midi {midi}), range [{lo},{hi}]"
+                )
