@@ -852,3 +852,125 @@ def summarize_for_critic(report: CounterpointReport, limit: int = 12) -> List[st
         if len(out) >= limit:
             break
     return out
+
+
+# ─── What a phrase leaves behind ─────────────────────────────────────────────
+#
+# The two facts a composer looks at first when continuing from the previous
+# phrase: where its melody came to rest and which way it was moving, and whether
+# it left a dissonance hanging. Neither existed anywhere. `ContinuationContext`
+# declares `last_soprano_pitch`, `last_soprano_contour` and `pending_resolution`
+# and no code writes or reads any of them; the live continuity context reports
+# the melody's recent RANGE but not its endpoint, which is a different question.
+#
+# Without them, phrase N+1 cannot know where phrase N ended, so every phrase
+# begins as if from nothing — the most audible cause of music that restarts
+# rather than continues.
+
+
+def phrase_tail(layer_ir, key: Optional[str] = None) -> Dict[str, Any]:
+    """Where this phrase leaves the music, for the next one to continue from.
+
+    Returns the melody's final pitch and direction, the bass's final pitch, the
+    closing sonority, and any dissonance still unresolved at the double bar.
+    """
+    spans = extract_voices(layer_ir)
+    out: Dict[str, Any] = {
+        "last_soprano_pitch": None,
+        "last_soprano_midi": None,
+        "last_soprano_contour": None,
+        "last_bass_pitch": None,
+        "last_bass_midi": None,
+        "pending_resolution": None,
+        "final_interval_from_bass": None,
+    }
+    if not spans:
+        return out
+
+    from .pitch import midi_to_pitch
+
+    key = key or getattr(layer_ir, "key", "C") or "C"
+    end = max(s.end for s in spans)
+
+    def _last_of(layers):
+        candidates = [s for s in spans if s.voice.split("#")[0].split("@")[0] in layers]
+        return max(candidates, key=lambda s: (s.start, s.midi)) if candidates else None
+
+    soprano = _last_of(_MELODIC_LAYERS)
+    bass = _last_of(_BASS_LAYERS)
+    if soprano is None:
+        # A phrase with no principal line still has a top voice.
+        latest = max(s.start for s in spans)
+        top = [s for s in spans if s.start == latest]
+        soprano = max(top, key=lambda s: s.midi) if top else None
+
+    if soprano is not None:
+        out["last_soprano_midi"] = soprano.midi
+        out["last_soprano_pitch"] = midi_to_pitch(soprano.midi, key)
+        # Direction of the approach to that last note — what the line was doing
+        # as it arrived, which is what decides whether continuing feels natural.
+        same_voice = sorted(
+            (s for s in spans if s.voice == soprano.voice), key=lambda s: s.start
+        )
+        if len(same_voice) >= 2:
+            step = soprano.midi - same_voice[-2].midi
+            out["last_soprano_contour"] = (
+                "rising" if step > 0 else ("falling" if step < 0 else "static")
+            )
+            out["last_soprano_interval"] = step
+
+    if bass is not None:
+        out["last_bass_midi"] = bass.midi
+        out["last_bass_pitch"] = midi_to_pitch(bass.midi, key)
+        if soprano is not None:
+            out["final_interval_from_bass"] = (soprano.midi - bass.midi) % 12
+
+    # A dissonance still sounding when everything else has stopped owes a
+    # resolution the next phrase has to honour.
+    #
+    # CALIBRATED against 126 real 8-bar phrase endings. The first version
+    # counted fourths, tritones and major sevenths as well, and fired on
+    # **49% of them** — because a fourth above the bass is consonant in tonal
+    # practice (it is an inverted fifth), and a tritone at a phrase end is
+    # usually just a half cadence's dominant seventh doing exactly what a half
+    # cadence does. Neither is an unpaid debt.
+    #
+    # What is left is the minor seventh and the minor ninth: intervals that
+    # genuinely lean, held to the end by a voice that was not merely passing
+    # through.
+    _OWED = {10: "seventh", 1: "minor ninth"}
+    still = [
+        s
+        for s in spans
+        if s.end >= end
+        and s.role not in ("passing", "neighbor", "ornamental", "anticipation")
+        and (s.end - s.start) >= Fraction(1, 2)
+    ]
+    if bass is not None and still:
+        for s in still:
+            if s.midi == bass.midi:
+                continue
+            iv = (s.midi - bass.midi) % 12
+            if iv in _OWED:
+                out["pending_resolution"] = (
+                    f"{_OWED[iv]} above the bass ({midi_to_pitch(s.midi, key)} "
+                    f"over {midi_to_pitch(bass.midi, key)}) is left sounding"
+                )
+                break
+    return out
+
+
+def continuation_hint(tail: Dict[str, Any]) -> str:
+    """One sentence telling the next phrase what it is continuing from."""
+    if not tail or tail.get("last_soprano_pitch") is None:
+        return ""
+    parts = [f"the melody ended on {tail['last_soprano_pitch']}"]
+    contour = tail.get("last_soprano_contour")
+    if contour and contour != "static":
+        parts.append(f"{contour} into it")
+    if tail.get("last_bass_pitch"):
+        parts.append(f"over {tail['last_bass_pitch']} in the bass")
+    line = ", ".join(parts)
+    if tail.get("pending_resolution"):
+        line += f" — and a {tail['pending_resolution']}, which this phrase owes"
+    return line

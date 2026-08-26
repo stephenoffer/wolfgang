@@ -183,6 +183,7 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
             except (TypeError, ValueError):
                 continue
         return end
+
     out: List[Dict[str, Any]] = []
     for part in score.parts:
         for m in part.getElementsByClass("Measure"):
@@ -330,8 +331,21 @@ def _scale(bar) -> frozenset:
 
 
 def detect_unresolved_nct(bars: List[Dict[str, Any]], cap: int = 8) -> List[Dict[str, Any]]:
-    """Melody notes outside the bar's chord that are approached AND left by leap
-    read as wrong notes (a real NCT is a step-approached/left passing/neighbor)."""
+    """Melody notes outside the key AND outside the bar's harmony, approached AND
+    left by leap, inside an otherwise stepwise line — these read as wrong notes.
+
+    Falsified against the rebuilt corpus (73 real movements across seven
+    composers): fires on **6 of 73 = 8%**, down from 83%. The three conditions were each added
+    because the version without it flagged canonical music:
+
+    * key only, no chord check -> 20/24 Mozart+Beethoven movements, every case a
+      secondary dominant's leading tone (F#5 in C major, B-4 in G major);
+    * headline chord only, not the bar's other harmonies -> still 17/24, because
+      a bar's ``roman`` is only what it sits on at the downbeat;
+    * no texture guard -> broken-chord and broken-octave figures, where every
+      note is leapt to by construction and "leapt to and from" describes the
+      texture rather than a mistake.
+    """
     out: List[Dict[str, Any]] = []
     for bar in bars:
         line = [e for e in (bar.get("melody_line") or []) if e.get("type") == "note"]
@@ -339,17 +353,42 @@ def detect_unresolved_nct(bars: List[Dict[str, Any]], cap: int = 8) -> List[Dict
             continue
         scale = _scale(bar)  # in-key pcs relative to tonic
         tonic = _tonic_pc(bar)
+        # A chromatic note that BELONGS TO THE BAR'S CHORD is not a wrong note,
+        # however it is approached. Falsified against the rebuilt corpus: without
+        # this the detector fired on 10 of 12 real Mozart movements and 10 of 12
+        # Beethoven, and every case inspected was a secondary dominant's leading
+        # tone inside an arpeggiated figure — F#5 in C major, B-4 in G major —
+        # which is the commonest chromatic note in the repertoire, not a mistake.
+        chord = _chord_pcs(bar)
         mids = [e.get("midi") for e in line if e.get("midi") is not None]
+        # In a broken-chord or alternating-register figure, "approached and left
+        # by leap" describes the TEXTURE, not a mistake — every note in it is
+        # leapt to. Falsified against the rebuilt corpus: the remaining false
+        # positives were all bars like Beethoven Op.2/1/iv b22 (a C minor
+        # arpeggio with a passing F#) and Op.2/2/iv b73 (a chromatic scale in
+        # broken octaves). A wrong note is only legible as one inside a line that
+        # is otherwise stepwise.
+        # A bar needs enough motion to HAVE a texture: with two intervals, "all
+        # leaps" says nothing about the idiom, and a lone chromatic leap in a
+        # sparse bar is exactly the case worth flagging.
+        steps = [abs(b - a) for a, b in zip(mids, mids[1:])]
+        if len(steps) >= 4 and sum(1 for d in steps if d > 2) / len(steps) > 0.5:
+            continue
         for i in range(1, len(mids) - 1):
-            # High precision: only a truly CHROMATIC (out-of-key) note, leapt to
-            # AND from, is a likely wrong note. Diatonic passing tones are fine,
-            # and we avoid depending on noisy per-bar roman extraction.
+            # High precision: only a truly CHROMATIC (out-of-key, out-of-chord)
+            # note, leapt to AND from, is a likely wrong note. Diatonic passing
+            # tones are fine.
             if ((mids[i] - tonic) % 12) in scale:
+                continue
+            if chord and (mids[i] % 12) in chord:
                 continue
             approach = abs(mids[i] - mids[i - 1])
             leave = abs(mids[i + 1] - mids[i])
             if approach > 2 and leave > 2:
-                import music21
+                # Name the note the way the KEY writes it. music21 defaults to
+                # sharps, so a flagged A-flat was reported as "G#5" — a message
+                # naming a different note than the one on the page.
+                from .pitch import midi_to_pitch
 
                 out.append(
                     _finding(
@@ -357,7 +396,7 @@ def detect_unresolved_nct(bars: List[Dict[str, Any]], cap: int = 8) -> List[Dict
                         bar.get("bar_num"),
                         None,
                         "warn",
-                        f"Bar {bar.get('bar_num')}: {music21.pitch.Pitch(midi=mids[i]).nameWithOctave} "
+                        f"Bar {bar.get('bar_num')}: {midi_to_pitch(mids[i], bar.get('key') or 'C')} "
                         f"is chromatic (outside {bar.get('key')} {bar.get('key_mode')}) and is both "
                         f"approached and left by leap — reads as a wrong note.",
                         "Resolve it by step into a chord/scale tone, or remove the leap into it.",
@@ -491,12 +530,25 @@ def detect_monotony(bars: List[Dict[str, Any]], cap: int = 6) -> List[Dict[str, 
 
 
 def _chord_pcs(bar) -> frozenset:
-    """Pitch classes of a bar's harmony, from its Roman numeral. Empty if unknown."""
-    roman, key = bar.get("roman"), bar.get("key")
-    if not roman or not key:
+    """Pitch classes of EVERY harmony the bar moves through. Empty if unknown.
+
+    Not just the headline chord. A bar's ``roman`` is what it sits on at the
+    downbeat, and most bars in this corpus move through more than one harmony —
+    so checking a chromatic note against the headline alone still called the
+    third of a passing V/V a wrong note, because the bar's *first* chord was V.
+    Falsified against the rebuilt corpus: headline-only fired on 9 of 12 real
+    Mozart movements.
+    """
+    key = bar.get("key")
+    romans = [bar.get("roman")] + [
+        e.get("roman") for e in (bar.get("harmony_events") or []) if e.get("roman")
+    ]
+    romans = [r for r in dict.fromkeys(romans) if r]
+    if not romans or not key:
         return frozenset()
     cache = _chord_pcs.__dict__.setdefault("_cache", {})
-    hit = cache.get((roman, key, bar.get("key_mode")))
+    ckey = (tuple(romans), key, bar.get("key_mode"))
+    hit = cache.get(ckey)
     if hit is not None:
         return hit
     # Read through the project's own Roman parser, not music21's. The corpus
@@ -507,8 +559,9 @@ def _chord_pcs(bar) -> frozenset:
     from .pitch import key_to_root_midi
 
     mode = bar.get("key_mode") or "major"
-    pcs = frozenset(roman_pitches(roman, key_to_root_midi(key) % 12, mode))
-    cache[(roman, key, bar.get("key_mode"))] = pcs
+    tonic = key_to_root_midi(key) % 12
+    pcs = frozenset(pc for r in romans for pc in roman_pitches(r, tonic, mode))
+    cache[ckey] = pcs
     return pcs
 
 

@@ -52,6 +52,7 @@ class MusicalReport:
     page: Dict[str, Any] = field(default_factory=dict)
     craft: Dict[str, Any] = field(default_factory=dict)
     orchestration: Dict[str, Any] = field(default_factory=dict)
+    continuity: Dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> Dict[str, Any]:
         return {
@@ -65,6 +66,7 @@ class MusicalReport:
             "page": self.page,
             "craft": self.craft,
             "orchestration": self.orchestration,
+            "continuity": self.continuity,
         }
 
 
@@ -244,6 +246,71 @@ def _cadence_section(rows, layers) -> Dict[str, Any]:
         "observations": rep.observations,
         "concerns": rep.suggestions,
     }
+
+
+def _continuity_section(kept, layers) -> Dict[str, Any]:
+    """Whether each phrase continues from the last, or restarts.
+
+    Reports where each phrase's melody came to rest and any dissonance it left
+    hanging, then checks whether the next phrase picked either up. Nothing has
+    ever carried these across a phrase boundary: `ContinuationContext` declares
+    the fields and no code writes or reads them, and the live continuity context
+    reports the melody's recent RANGE but never its ENDPOINT — a different
+    question, and the one a composer asks first.
+    """
+    from .counterpoint import continuation_hint, phrase_tail
+    from .pitch import pitch_to_midi
+
+    out: Dict[str, Any] = {"observations": [], "concerns": [], "tails": {}}
+    if len(layers) < 2:
+        return out
+
+    tails = []
+    for (pid, _state, slot), ir in zip(kept, layers):
+        tail = phrase_tail(ir, key=slot.get("key"))
+        tails.append((pid, tail))
+        hint = continuation_hint(tail)
+        if hint:
+            out["tails"][pid] = hint
+
+    unresolved = [pid for pid, t in tails[:-1] if t.get("pending_resolution")]
+    if unresolved:
+        out["concerns"].append(
+            f"{len(unresolved)} phrase(s) end with a dissonance still sounding "
+            f"({', '.join(unresolved[:3])}). Nothing carries that across the "
+            f"barline, so the next phrase does not know it owes a resolution."
+        )
+
+    # A phrase whose melody starts a long way from where the last one ended is
+    # beginning again rather than continuing. A leap across a phrase boundary is
+    # a legitimate gesture; doing it every time is a piece of disconnected
+    # fragments.
+    jumps = 0
+    for ((_pid_a, tail), ir_b) in zip(tails, layers[1:]):
+        prev = tail.get("last_soprano_midi")
+        first = next(
+            (
+                e
+                for e in sorted(ir_b.principal_line, key=lambda e: (e.bar, e.beat))
+                if e.pitch and e.pitch != "rest"
+            ),
+            None,
+        )
+        if prev is None or first is None:
+            continue
+        names = first.pitch if isinstance(first.pitch, list) else [first.pitch]
+        vals = [v for v in (pitch_to_midi(n) for n in names) if v is not None]
+        if vals and abs(max(vals) - prev) > 12:
+            jumps += 1
+    if jumps and jumps >= max(2, (len(layers) - 1) // 2):
+        out["concerns"].append(
+            f"{jumps} of {len(layers) - 1} phrase boundaries jump more than an "
+            f"octave from where the previous phrase's melody ended. One is a "
+            f"gesture; this many reads as a set of fragments rather than a line."
+        )
+    if not out["concerns"]:
+        out["observations"].append("each phrase picks up near where the last one left off")
+    return out
 
 
 def _texture_section(merged, style: Optional[str]) -> Dict[str, Any]:
@@ -440,6 +507,7 @@ def build_report(graph, style: Optional[str] = None, scope: str = "full") -> Mus
     report.page = _page_section(merged, style)
     report.craft = _craft_section(kept, layers)
     report.orchestration = _orchestration_section(kept)
+    report.continuity = _continuity_section(kept, layers)
     return report
 
 
@@ -474,6 +542,7 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
     block("TEXTURE", report.texture)
     block("THE PAGE", report.page)
     block("CRAFT", report.craft)
+    block("CONTINUITY", report.continuity)
     block("ORCHESTRATION", report.orchestration)
 
     pw = report.part_writing
@@ -502,6 +571,7 @@ def concerns_only(report: MusicalReport) -> List[str]:
         report.page,
         report.craft,
         report.orchestration,
+        report.continuity,
     ):
         out.extend(section.get("concerns") or [])
     out.extend(report.part_writing.get("lines") or [])

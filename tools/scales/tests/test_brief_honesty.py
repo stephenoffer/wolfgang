@@ -176,3 +176,138 @@ def test_every_armed_composer_has_real_fingerprints():
         "armed composer(s) without enough fingerprints to make a phrase "
         f"recognisably theirs: {thin}"
     )
+
+
+def test_melody_doctrine_is_composer_specific():
+    """`melody_priors.json` came out **byte-identical for every composer**.
+
+    `_pass_melody_priors` read only the general `melodic-construction.md` and
+    `melody-craft.md`; the `melodic-style.md` describing each composer's actual
+    melodic voice sat unread in **44 profile directories**. Melody is the most
+    audible thing in the output, and the brief's melody doctrine said the same
+    thing whether it was building a Bach fugue subject or a Chopin nocturne.
+    """
+    import json
+    import os
+    from pathlib import Path
+
+    idx = Path("tools") / "reference_index"
+    packs = Path("tools") / "compiled_packs"
+    if not idx.is_dir() or not packs.is_dir():
+        pytest.skip("corpus not present")
+
+    armed = sorted(d for d in os.listdir(idx) if (idx / d).is_dir())
+    generic = []
+    for composer in armed:
+        path = packs / composer / "melody_priors.json"
+        if not path.exists():
+            generic.append(f"{composer}: no melody_priors.json")
+            continue
+        priors = json.loads(path.read_text())
+        own = [p for p in priors if p.get("category") == "composer_melodic_voice"]
+        if len(own) < 3:
+            generic.append(f"{composer}: {len(own)} composer-specific priors")
+    assert not generic, (
+        "armed composer(s) whose melody doctrine is generic boilerplate: " f"{generic}"
+    )
+
+
+def test_two_composers_do_not_get_identical_melody_doctrine():
+    """The direct symptom: Bach and Chopin used to receive the same file."""
+    import json
+    from pathlib import Path
+
+    packs = Path("tools") / "compiled_packs"
+    a = packs / "bach" / "melody_priors.json"
+    b = packs / "chopin" / "melody_priors.json"
+    if not (a.exists() and b.exists()):
+        pytest.skip("packs not present")
+    assert json.loads(a.read_text()) != json.loads(b.read_text())
+
+
+def test_the_composers_own_voice_leads_the_melody_slice():
+    """Generic contour advice must not crowd out the composer's own voice."""
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(
+        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+        key="F major", meter=(4, 4), cadence_target="HC",
+    )
+    priors = _doctrine_slices("bach", slot, "opening").get("melody_priors") or []
+    if not priors:
+        pytest.skip("bach pack not present")
+    assert len(priors) > 2, "the slice still carries only the two generic priors"
+    assert "Fortspinnung" in priors[0], f"composer voice does not lead: {priors[0]!r}"
+
+
+def test_ornament_doctrine_is_composer_specific_where_the_profile_provides_it():
+    """`ornament_intents.json` was identical for all twelve armed composers.
+
+    Ornament choice is one of the most composer-specific things in the idiom —
+    Mozart's appoggiatura sigh, Bach's structural mordent, Chopin's chromatic
+    cascade that continues the line rather than decorating it — and every brief
+    recommended the same ornament in the same place, while the table saying what
+    each composer actually does sat uncompiled in their profile.
+    """
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(
+        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+        key="F major", meter=(4, 4), cadence_target="PAC",
+    )
+    seen = {}
+    for composer in ("mozart", "bach", "chopin"):
+        got = _doctrine_slices(composer, slot, "closing").get("ornament_intent") or []
+        if not got:
+            pytest.skip(f"{composer} pack not present")
+        seen[composer] = got[0]
+    assert len(set(seen.values())) == len(seen), (
+        f"composers share an identical leading ornament intent: {seen}"
+    )
+    assert "ppoggiatura" in seen["mozart"], seen["mozart"]
+    assert "rill" in seen["bach"] or "ordent" in seen["bach"], seen["bach"]
+
+
+def test_the_composers_own_lh_catalogue_reaches_the_brief():
+    """`mozart-lh-vocabulary.md` was opened by nothing.
+
+    It was written against the failure it names in its own first sentence — "a
+    static bass note held under perpetual figuration, the same idiom every bar"
+    — catalogues ten alternatives in this system's own shorthand, and never
+    compiled. The brief's LH VOCABULARY comes from the corpus pattern library
+    instead, which supplies real figures but not the *when*.
+    """
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import BarTexturePlan, PhraseSlot
+
+    slot = PhraseSlot(
+        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+        key="D minor", meter=(4, 4), cadence_target="HC",
+    )
+    slot.texture_plan = [BarTexturePlan(lh_texture="alberti")]
+    figs = _doctrine_slices("mozart", slot, "opening").get("figuration") or []
+    if not figs:
+        pytest.skip("mozart pack not present")
+    assert any(f.startswith("LH idiom") for f in figs), (
+        f"the composer's own LH catalogue is not reaching the brief: {figs}"
+    )
+    # and it must carry the shorthand, which is what makes it usable
+    assert any("`" in f for f in figs if f.startswith("LH idiom"))
+
+
+def test_a_composer_without_an_lh_catalogue_still_gets_generic_figuration():
+    """The new source is additive; nothing regresses for the other eleven."""
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import BarTexturePlan, PhraseSlot
+
+    slot = PhraseSlot(
+        phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+        key="D minor", meter=(4, 4), cadence_target="HC",
+    )
+    slot.texture_plan = [BarTexturePlan(lh_texture="alberti")]
+    figs = _doctrine_slices("bach", slot, "opening").get("figuration") or []
+    if not figs:
+        pytest.skip("bach pack not present")
+    assert figs, "generic figuration doctrine disappeared"

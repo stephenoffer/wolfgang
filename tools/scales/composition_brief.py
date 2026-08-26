@@ -17,13 +17,12 @@ import json
 import logging
 import statistics
 from dataclasses import dataclass, field
-from dataclasses import fields as _dc_fields
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from .corpus_adapter import AdaptedBar, CorpusAdapter, CorpusQuery
 from .duration import beats_to_dur, dur_to_beats
-from .pitch import is_minor_key
+from .pitch import is_minor_key, pitch_to_midi
 
 logger = logging.getLogger(__name__)
 
@@ -1161,12 +1160,15 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     # mechanical thing this system produces: one accompaniment idiom, every bar,
     # for a whole piece. It was read by nothing.
     idioms = [
-        f for f in (figs if isinstance(figs, list) else [])
+        f
+        for f in (figs if isinstance(figs, list) else [])
         if f.get("category") == "composer_hand_idiom"
     ]
     matched = [
-        i for i in idioms
-        if lh_textures and any(t and t.split("_")[0] in i.get("name", "").lower() for t in lh_textures)
+        i
+        for i in idioms
+        if lh_textures
+        and any(t and t.split("_")[0] in i.get("name", "").lower() for t in lh_textures)
     ]
     for i in (matched or idioms)[:3]:
         fig_lines.append(f"LH idiom — {i.get('name', '')}: {i.get('description', '')[:180]}")
@@ -1351,9 +1353,7 @@ def _shorthand_beats(shorthand: str) -> Optional[float]:
     Returns None only if a token genuinely cannot be parsed.
     """
     if "//" in (shorthand or ""):
-        lengths = [
-            _shorthand_beats(v.strip()) for v in shorthand.split("//") if v.strip()
-        ]
+        lengths = [_shorthand_beats(v.strip()) for v in shorthand.split("//") if v.strip()]
         real = [x for x in lengths if x is not None]
         if not real:
             return None
@@ -1946,9 +1946,7 @@ def _ledger_lines(graph, phrase_id: str) -> List[str]:
         else:
             elsewhere += 1
     if elsewhere:
-        mine.append(
-            f"({elsewhere} more open elsewhere in the piece — not this phrase's to pay)"
-        )
+        mine.append(f"({elsewhere} more open elsewhere in the piece — not this phrase's to pay)")
     return mine[:8]
 
 
@@ -2193,16 +2191,113 @@ def _transition_context(graph, phrase_id: str) -> Dict[str, Any]:
                 "last_chord": exit_sig.last_chord,
             }
 
-    cont = getattr(state.slot, "continuation", None)
-    if cont and getattr(cont, "last_soprano_pitch", None):
-        out.setdefault("continuation", {})
-        # Every field, not five of thirteen: the contour the melody arrives on,
-        # how dense the last bar was, what the accompaniment was doing and which
-        # motifs have already been stated are exactly what a phrase composed in
-        # an isolated context cannot otherwise know.
-        out["continuation"] = {
-            f.name: getattr(cont, f.name, None) for f in _dc_fields(type(cont))
-        }
+    # Derive the continuation from the previous phrase's REALIZED music.
+    #
+    # This used to copy `slot.continuation`, a `ContinuationContext` dataclass
+    # declaring thirteen fields that no code outside models.py has ever written.
+    # So the block below — which the brief renders in full, including the
+    # hanging-dominant warning and the list of motifs already stated — was empty
+    # for every phrase of every piece. There are now two representations of one
+    # idea and only this one is alive; see the note on ContinuationContext.
+    if prev_id and prev_id in graph.phrases:
+        derived = _derive_continuation(graph, prev_id)
+        if derived:
+            out["continuation"] = derived
+    return out
+
+
+def _derive_continuation(graph, prev_id: str) -> Dict[str, Any]:
+    """What the previous phrase leaves behind, read off its committed notes."""
+    prev = graph.phrases.get(prev_id)
+    layer = getattr(prev, "realized", None) if prev else None
+    if layer is None:
+        return {}
+    out: Dict[str, Any] = {}
+
+    mel = sorted(
+        (e for e in (layer.principal_line or []) if e.pitch != "rest"),
+        key=lambda e: (e.bar, e.beat),
+    )
+    if not mel:
+        return {}
+    last_bar = mel[-1].bar
+    slot_for_key = getattr(prev, "slot", None)
+
+    # Where the phrase came to rest — the pitch, the direction it arrived from,
+    # the bass under it, and anything left hanging. `counterpoint.phrase_tail`
+    # is the ONE implementation of this: it reads the real interval above the
+    # bass and was falsified against 126 real phrase endings, where a first
+    # heuristic (counting fourths, tritones and major sevenths as unpaid debts)
+    # fired on 49% of them. Re-deriving contour or a hanging dissonance here
+    # would be a second, unfalsified answer to the same question.
+    try:
+        from .counterpoint import phrase_tail
+
+        tail_facts = phrase_tail(layer, key=getattr(slot_for_key, "key", None)) or {}
+    except Exception:
+        tail_facts = {}
+    for field_name in (
+        "last_soprano_pitch",
+        "last_soprano_contour",
+        "last_bass_pitch",
+        "pending_resolution",
+    ):
+        if tail_facts.get(field_name):
+            out[field_name] = tail_facts[field_name]
+    out.setdefault("last_soprano_pitch", _pitch_token(mel[-1].pitch))
+
+    out["last_rh_density"] = float(sum(1 for e in mel if e.bar == last_bar))
+    lh = [
+        e
+        for e in (layer.bass_foundation or []) + (layer.response_layer or [])
+        if e.pitch != "rest" and e.bar == last_bar
+    ]
+    out["last_lh_density"] = float(len(lh))
+
+    slot = getattr(prev, "slot", None)
+    textures = _slot_textures(slot) if slot else []
+    if textures:
+        out["last_rh_texture"], out["last_lh_texture"] = textures[-1]
+    if slot is not None:
+        out["last_key"] = getattr(slot, "key", None)
+        plan = getattr(slot, "harmony_plan", None) or []
+        if plan:
+            out["last_chord"] = plan[-1]
+            # A PLANNED dominant close is a weaker signal than a sounding one,
+            # so it only fills in where the notes said nothing.
+            from .harmony_analysis import roman_function
+
+            mode = "minor" if is_minor_key(getattr(slot, "key", "C") or "C") else "major"
+            if roman_function(plan[-1], mode) == "dominant":
+                out.setdefault("pending_resolution", "the dominant, left hanging")
+    dyn = next((e.dynamic for e in reversed(mel) if e.dynamic), None)
+    if dyn:
+        out["last_dynamic"] = dyn
+
+    # Which motifs the piece has already put on the table, so the next phrase
+    # develops rather than invents.
+    stated, developed = [], []
+    for pid, st in graph.phrases.items():
+        s2 = getattr(st, "slot", None)
+        if s2 is None or s2.bar_start > (getattr(slot, "bar_start", 0) if slot else 0):
+            continue
+        if not getattr(st, "realized", None):
+            continue
+        for mt in getattr(s2, "motif_transforms", None) or []:
+            params = getattr(mt, "params", None) or (
+                mt.get("params") if isinstance(mt, dict) else {}
+            )
+            mid = (params or {}).get("motif_id")
+            op = getattr(mt, "operation", "") or (
+                mt.get("operation") if isinstance(mt, dict) else ""
+            )
+            if not mid:
+                continue
+            (stated if op in ("", "state") else developed).append(mid)
+    if stated:
+        out["motifs_stated"] = sorted(dict.fromkeys(stated))
+    if developed:
+        out["motifs_developed"] = sorted(dict.fromkeys(developed))
     return out
 
 
@@ -2477,7 +2572,7 @@ def _register_target(graph, slot) -> List[str]:
     where it sits in the arc. Suggestions, not constraints — nothing enforces
     them, and a phrase with a reason to sit low should sit low.
     """
-    from .pitch import midi_to_pitch, pitch_to_midi
+    from .pitch import midi_to_pitch
 
     key = getattr(slot, "key", "C") or "C"
     used: List[int] = []
@@ -3065,11 +3160,11 @@ def render_text(brief: CompositionBrief) -> str:
                 bits.append(f"left hand was '{cont['last_lh_texture']}'")
             if bits:
                 lines.append("  coming out of the last phrase: " + "; ".join(bits))
-            if cont.get("pending_resolution") == "dominant":
+            if cont.get("pending_resolution"):
                 lines.append(
-                    "  ⚠ the previous phrase ended on the DOMINANT and left it hanging. "
-                    "This phrase owes that resolution — open by answering it, or make the "
-                    "delay deliberate and audible."
+                    f"  ⚠ the previous phrase left something hanging: "
+                    f"{cont['pending_resolution']}. This phrase owes that resolution — "
+                    f"answer it at the entry, or make the delay deliberate and audible."
                 )
             if cont.get("motifs_stated"):
                 lines.append(
@@ -3150,7 +3245,13 @@ def render_text(brief: CompositionBrief) -> str:
         orn = entry.get("ornament_density")
         if orn:
             top = sorted(orn.items(), key=lambda kv: -kv[1])[:3]
-            line += " | ornaments/bar: " + ", ".join(f"{k} {v:.2f}" for k, v in top if v >= 0.01)
+            # Spelled out as a COUNT per bar. The same fact appears three times
+            # in this brief in three units — 0.04 of notes, 0.22 of bars, 0.27
+            # per bar are all "Mozart's dotted rhythm" — and an unlabelled 0.27
+            # beside an unlabelled 0.01 reads as a contradiction.
+            line += " | ornaments per bar (a count, not a share): " + ", ".join(
+                f"{k} {v:.2f}" for k, v in top if v >= 0.01
+            )
         lines.append(line)
     for t, entry in ts.get("lh_textures", {}).items():
         d = entry.get("events_per_bar", {})
@@ -3194,8 +3295,13 @@ def render_text(brief: CompositionBrief) -> str:
         lines.append(
             f"  STYLE TARGETS ({brief.composer}'s own corpus, mean ± σ — a reality "
             f"check on the finished phrase, NOT a target to compose toward). "
-            f"NOTE: 'events_per_bar' here counts BOTH HANDS together; the "
-            f"per-texture medians above count one hand:"
+            f"NOTE ON UNITS — these are all SHARES OF NOTES, which is not how "
+            f"the numbers above are counted. 'events_per_bar' here counts BOTH "
+            f"HANDS together while the per-texture medians count one hand; and "
+            f"'dotted_eighth_ratio' is the share of NOTES that are dotted "
+            f"eighths (~0.01 for Mozart), which is the same music as the ~0.27 "
+            f"dotted ornaments PER BAR above and the ~0.22 of BARS that contain "
+            f"one. Low ratios here do not mean 'avoid dotted rhythms':"
         )
         for label, keys in groups.items():
             present = [(k, disc[k]) for k in keys if k in disc]

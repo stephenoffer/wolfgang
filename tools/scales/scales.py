@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import fields
+from dataclasses import fields as _dataclass_fields
 from datetime import datetime, timezone
 from fractions import Fraction as _F
 from pathlib import Path
@@ -1032,7 +1033,9 @@ def run_scales_section(
             # same voice was still sounding, and beat positions like 1.56 that
             # are not on any notatable grid. Repair what is mechanically
             # repairable, and report the rest.
-            repairs = _repair_engine_surface(node.surface, tuple(slot_meter_for(graph, node.phrase_id)))
+            repairs = _repair_engine_surface(
+                node.surface, tuple(slot_meter_for(graph, node.phrase_id))
+            )
             if repairs:
                 engine_repairs[node.phrase_id] = repairs
             graph.commit_phrase(node.phrase_id, node.surface)
@@ -2045,10 +2048,18 @@ def _engrave_phrase(graph, phrase_id: str, layer: LayerIR, composer: Optional[st
     harmony = list(getattr(slot, "harmony_plan", []) or []) if slot else None
     cadence_bar = getattr(slot, "cadence_bar", None) if slot else None
     character = (getattr(slot, "notes", "") or "") if slot else ""
+    # The dynamic the previous phrase ended on, so the engraver does not restate
+    # a level the music is already at. This read `slot.continuation.last_dynamic`
+    # — a field of a dataclass nothing has ever written — so it was always None.
     base_dyn = None
-    cont = getattr(slot, "continuation", None) if slot else None
-    if cont is not None:
-        base_dyn = getattr(cont, "last_dynamic", None)
+    try:
+        from .composition_brief import _transition_context
+
+        base_dyn = ((_transition_context(graph, phrase_id) or {}).get("continuation") or {}).get(
+            "last_dynamic"
+        )
+    except Exception:
+        base_dyn = None
 
     try:
         report = enrich_layer_ir(
@@ -2245,90 +2256,39 @@ def _record_continuation(graph, phrase_id: str) -> None:
     """Hand the NEXT phrase what it needs to continue from this one.
 
     `ContinuationContext` declares thirteen fields and **nothing anywhere in the
-    system ever set one**. Every phrase slot carried the default, so every field
-    was None, and the brief's continuation block never rendered for any piece.
-    Cross-phrase continuity ran on two values computed ad-hoc from the previous
-    phrase's tail — which is why a phrase could not know the register the melody
-    had been sitting in, how dense the texture had been, what the accompaniment
-    was doing, or which motifs had already been stated.
+    system ever set one**, so every phrase slot carried the default and every
+    consumer of the model field — the engraver's opening dynamic among them —
+    read None.
 
-    Written onto the FOLLOWING phrase's slot, at commit, from the phrase that
-    was just committed.
+    The facts themselves come from `composition_brief._derive_continuation`,
+    which is the one implementation: the brief derives the same thing on read
+    (robust for graphs written before this existed), and a second copy here
+    would be a second answer to the same question, which is how this project
+    ends up with two of everything.
     """
+    from .composition_brief import _derive_continuation
     from .models import ContinuationContext
 
     state = graph.phrases.get(phrase_id)
     slot = getattr(state, "slot", None) if state else None
-    layer = getattr(state, "realized", None) if state else None
-    if slot is None or layer is None:
+    if slot is None or getattr(state, "realized", None) is None:
         return
-
     here = slot.bar_start or 0
     following = [
-        (ps.slot.bar_start, pid, ps)
-        for pid, ps in graph.phrases.items()
+        (ps.slot.bar_start, ps)
+        for ps in graph.phrases.values()
         if ps.slot and (ps.slot.bar_start or 0) > here
     ]
     if not following:
         return
-    _, _next_id, nxt = min(following, key=lambda t: t[0])
+    nxt = min(following, key=lambda t: t[0])[1]
 
-    melody = [e for e in (layer.principal_line or []) if e.pitch != "rest"]
-    bass = [e for e in (layer.bass_foundation or []) if e.pitch != "rest"]
-    last_bar = max((e.bar for e in (layer.principal_line or [])), default=here)
-
-    contour = None
-    if len(melody) >= 3:
-        from .pitch import pitch_to_midi
-
-        tail = []
-        for e in melody[-4:]:
-            try:
-                tail.append(pitch_to_midi(e.pitch if isinstance(e.pitch, str) else e.pitch[-1]))
-            except (ValueError, KeyError, TypeError):
-                pass
-        if len(tail) >= 3:
-            rise = tail[-1] - tail[0]
-            peaked = max(tail) > max(tail[0], tail[-1])
-            if peaked:
-                contour = "arch"
-            elif rise > 1:
-                contour = "rising"
-            elif rise < -1:
-                contour = "falling"
-            else:
-                contour = "static"
-
-    def _density(events) -> Optional[float]:
-        in_bar = [e for e in events if e.bar == last_bar and e.pitch != "rest"]
-        return float(len(in_bar)) if in_bar else None
-
-    textures = list(getattr(slot, "texture_plan", None) or [])
-    cadence = str(getattr(slot, "cadence_target", "") or "")
-    transforms = list(getattr(slot, "motif_transforms", None) or [])
-
+    facts = _derive_continuation(graph, phrase_id) or {}
+    if not facts:
+        return
+    known = {f.name for f in _dataclass_fields(ContinuationContext)}
     nxt.slot.continuation = ContinuationContext(
-        last_soprano_pitch=(melody[-1].pitch if melody else None),
-        last_bass_pitch=(bass[-1].pitch if bass else None),
-        last_soprano_contour=contour,
-        last_chord=(list(getattr(slot, "harmony_plan", None) or []) or [None])[-1],
-        last_key=slot.key,
-        # A half cadence leaves the dominant hanging: that IS the pending
-        # resolution, and the next phrase is the one that owes it.
-        pending_resolution=("dominant" if cadence in ("HC", "half") else None),
-        last_rh_density=_density(layer.principal_line or []),
-        last_lh_density=_density((layer.bass_foundation or []) + (layer.response_layer or [])),
-        last_rh_texture=(getattr(textures[-1], "rh_texture", None) if textures else None),
-        last_lh_texture=(getattr(textures[-1], "lh_texture", None) if textures else None),
-        last_dynamic=next(
-            (e.dynamic for e in reversed(layer.principal_line or []) if e.dynamic), None
-        ),
-        motifs_stated=[
-            str(getattr(t, "motif_id", t)) for t in transforms if getattr(t, "op", "") == "state"
-        ],
-        motifs_developed=[
-            str(getattr(t, "motif_id", t)) for t in transforms if getattr(t, "op", "") != "state"
-        ],
+        **{k: v for k, v in facts.items() if k in known}
     )
 
 
@@ -2371,7 +2331,9 @@ def _craft_check_phrase(graph, phrase_id: str, layer: LayerIR) -> Optional[Dict[
         for name, text in asks.items()
         if getattr(result, name, True) is False
     ]
-    return {"failed": failed, "passed": len(asks) - len(failed), "of": len(asks)} if failed else None
+    return (
+        {"failed": failed, "passed": len(asks) - len(failed), "of": len(asks)} if failed else None
+    )
 
 
 def slot_meter_for(graph, phrase_id: str) -> Tuple[int, int]:
@@ -2740,7 +2702,9 @@ def commit_phrase_sketch(piece_id: str, phrase_id: str, sketch: Dict[str, Any]) 
         "ok": True,
         "phrase_id": phrase_id,
         "recorded": sorted(k for k in summary),
-        "ignored_keys": sorted(set(data) - {f.name for f in __import__("dataclasses").fields(SketchIR)}),
+        "ignored_keys": sorted(
+            set(data) - {f.name for f in __import__("dataclasses").fields(SketchIR)}
+        ),
     }
 
 
@@ -2965,7 +2929,9 @@ def plan_readiness(piece_id: str) -> Dict[str, Any]:
             "brief has no material to name"
         )
     else:
-        placed = sum(1 for st in graph.phrases.values() if getattr(st.slot, "motif_transforms", None))
+        placed = sum(
+            1 for st in graph.phrases.values() if getattr(st.slot, "motif_transforms", None)
+        )
         if not graph.principal_theme_id:
             missing.append("motifs — no principal theme elected")
         elif not placed:

@@ -156,21 +156,45 @@ def test_section_rhetoric_differs_by_role():
 # ─── Harmony follows the role ───────────────────────────────────────────────
 
 
-def test_a_statement_is_planned_diatonically():
-    """The B-flat major opening was planned as `I - iv - viio - V` while the same
-    brief told the composer "clear periodic phrasing, diatonic harmony". A
-    statement that opens on the borrowed minor subdominant does not read as a
-    statement, and the sampler had no idea what the phrase was for."""
+def test_a_statement_is_not_built_out_of_borrowed_chords():
+    """The B-flat major opening was planned as `I - iv - viio - V` — half its
+    bars borrowed, five times the rate Mozart uses — while the same brief said
+    "diatonic harmony" two lines above it.
+
+    Note what this does NOT assert. The first version of this test demanded zero
+    mixture in a statement, and measuring 3,964 real Mozart bars falsified it:
+    mixture appears in 10.7% of his opening bars, indistinguishable from its
+    10.9% rate mid-phrase. The defect was rate, not presence.
+    """
     from scales.progression_model import _is_chromatic, corpus_harmony_plan
 
-    for seed in range(1, 12):
+    for seed in range(1, 16):
         plan = corpus_harmony_plan("mozart", "", "PAC", 6, "Bb major", seed=seed, role="establish")
         borrowed = [r for r in plan if _is_chromatic(r, "major")]
-        assert not borrowed, f"seed {seed}: statement planned with {borrowed} in {plan}"
+        assert len(borrowed) <= 1, f"seed {seed}: {len(borrowed)} borrowed in {plan}"
+
+
+def test_the_chromatic_ceiling_sits_above_what_mozart_actually_does():
+    """A cap below the measured corpus rate would fight real music. Every role's
+    ceiling must leave room for the 10.6% mixture rate measured over the
+    corpus."""
+    from scales.progression_model import _DEFAULT_CHROMATIC_SHARE, _ROLE_CHROMATIC_SHARE
+
+    _MEASURED_MOZART_RATE = 0.106
+    for role, share in _ROLE_CHROMATIC_SHARE.items():
+        assert share > _MEASURED_MOZART_RATE, f"{role} ceiling {share} is below the corpus rate"
+    assert _DEFAULT_CHROMATIC_SHARE > _MEASURED_MOZART_RATE
+
+
+def test_an_unstable_role_may_reach_further_for_colour():
+    from scales.progression_model import _ROLE_CHROMATIC_SHARE as SH
+
+    assert SH["crisis"] > SH["establish"]
+    assert SH["depart"] > SH["confirm"]
 
 
 def test_mode_mixture_counts_as_chromatic_in_a_major_key():
-    """`iv` and `bVI` carry no accidental in their own symbol, so a test for
+    """`iv` and `VI` carry no accidental in their own symbol, so a test for
     "b"/"#" called the borrowed minor subdominant diatonic."""
     from scales.progression_model import _is_chromatic
 
@@ -181,15 +205,6 @@ def test_mode_mixture_counts_as_chromatic_in_a_major_key():
     # In minor the raised leading-tone dominant is normal practice, not colour.
     assert not _is_chromatic("V", "minor")
     assert not _is_chromatic("iv", "minor")
-
-
-def test_an_unstable_role_may_still_reach_for_colour():
-    """The fix must not flatten the whole piece into the diatonic scale — a
-    crisis is exactly where mixture belongs."""
-    from scales.progression_model import _ROLE_ALLOWS_CHROMATIC
-
-    assert _ROLE_ALLOWS_CHROMATIC.get("crisis") is True
-    assert _ROLE_ALLOWS_CHROMATIC.get("establish") is False
 
 
 def test_planner_hands_the_role_to_the_harmony_sampler():

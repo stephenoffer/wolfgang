@@ -119,7 +119,7 @@ class ContextCompiler:
         results["breathing_rules"] = len(breathing)
 
         # Pass 12: Ornament intents
-        ornaments = self._pass_ornament_policy()
+        ornaments = self._pass_ornament_policy(profile_dir)
         self._write_json(output_dir / "ornament_intents.json", ornaments)
         results["ornament_intents"] = len(ornaments)
 
@@ -134,7 +134,7 @@ class ContextCompiler:
         results["melody_priors"] = len(melody_pr)
 
         # Pass 15: Figuration templates
-        fig_tmpl = self._pass_figuration_templates()
+        fig_tmpl = self._composer_hand_idioms(profile_dir) + self._pass_figuration_templates()
         self._write_json(output_dir / "figuration_templates.json", fig_tmpl)
         results["figuration_templates"] = len(fig_tmpl)
 
@@ -993,12 +993,117 @@ class ContextCompiler:
 
     # ─── Pass 12: Ornament Intents ────────────────────────────────────────
 
-    def _pass_ornament_policy(self) -> List[Dict]:
-        """Extract ornament intent rules from ornament-intent.md.
+    @staticmethod
+    def _composer_ornament_intents(profile_dir: Optional[Path]) -> List[Dict]:
+        """This composer's own ornament usage, from their profile.
 
-        Parses the "Ornament Decision Framework" table and emotion table.
+        Ornament choice is one of the most composer-specific things there is —
+        Mozart's appoggiatura sigh, Bach's structural mordent, Chopin's
+        chromatic run that continues the line rather than decorating it — and
+        `ornament_intents.json` was **identical for all twelve armed
+        composers**, extracted only from the general `ornament-intent.md`. The
+        tables that say what each composer actually does are sitting in their
+        `melodic-style.md` and never compiled.
+
+        Looks for a table whose first column names an ornament, in any of the
+        profile files that carry one.
         """
-        intents: List[Dict] = []
+        if not profile_dir:
+            return []
+        out: List[Dict] = []
+        seen: set = set()
+        for name in ("melodic-style.md", "composition-guide.md", "harmonic-language.md"):
+            path = profile_dir / name
+            if not path.exists():
+                continue
+            try:
+                text = path.read_text()
+            except OSError:
+                continue
+            for row in _parse_markdown_table(text, required_header="Ornament"):
+                ornament = (row.get("ornament") or "").strip()
+                if not ornament:
+                    continue
+                rest = [
+                    str(v).strip()
+                    for k, v in row.items()
+                    if k != "ornament" and str(v).strip()
+                ]
+                if not rest:
+                    continue
+                slug = re.sub(r"[^a-z0-9]+", "_", ornament.lower()).strip("_")
+                if slug in seen:
+                    continue
+                seen.add(slug)
+                out.append(
+                    {
+                        "id": f"composer_ornament_{slug}",
+                        "category": "composer_ornament_usage",
+                        "ornament": ornament,
+                        "usage": rest[0],
+                        "intent": rest[1] if len(rest) > 1 else "",
+                        "position": "any",
+                        "grounding": "profile",
+                        "source_file": f"{profile_dir.name}/{name}",
+                    }
+                )
+        return out
+
+    @staticmethod
+    def _composer_hand_idioms(profile_dir: Optional[Path]) -> List[Dict]:
+        """A composer's catalogue of hand idioms, from `<name>-lh-vocabulary.md`.
+
+        `mozart-lh-vocabulary.md` was written specifically against the failure
+        it names in its own first sentence — "a static bass note held under
+        perpetual figuration, the same idiom every bar" — catalogues ten
+        alternatives **in this system's own shorthand**, and is opened by
+        nothing. The brief's LH VOCABULARY section comes from the corpus pattern
+        library instead, which supplies real figures but not the *when*: which
+        idiom suits a lyrical theme, which one drives a transition, and that a
+        rest in the left hand is not a bug.
+
+        Matched by filename convention (`*-lh-vocabulary.md`) so adding one for
+        another composer needs no code change. Entries are numbered list items
+        of the form ``N. **Name** — description``.
+        """
+        if not profile_dir:
+            return []
+        out: List[Dict] = []
+        for path in sorted(profile_dir.glob("*-lh-vocabulary.md")):
+            try:
+                text = path.read_text()
+            except OSError:
+                continue
+            for m in re.finditer(
+                r"^\s*\d+\.\s+\*\*(.+?)\*\*\s*[—:-]\s*(.+?)(?=\n\s*\n|\n\s*\d+\.\s+\*\*|\Z)",
+                text,
+                re.MULTILINE | re.DOTALL,
+            ):
+                name = m.group(1).strip()
+                body = " ".join(m.group(2).split())
+                if not name or not body:
+                    continue
+                slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
+                out.append(
+                    {
+                        "id": f"lh_idiom_{slug}",
+                        "category": "composer_hand_idiom",
+                        "hand": "lh",
+                        "name": name,
+                        "description": body[:400],
+                        "source_file": f"{profile_dir.name}/{path.name}",
+                        "grounding": "profile",
+                    }
+                )
+        return out
+
+    def _pass_ornament_policy(self, profile_dir: Optional[Path] = None) -> List[Dict]:
+        """Extract ornament intent rules.
+
+        The composer's own usage leads; the general `ornament-intent.md`
+        decision framework follows as the floor beneath it.
+        """
+        intents: List[Dict] = self._composer_ornament_intents(profile_dir)
 
         oi_file = CONTEXT_DIR / "general" / "ornament-intent.md"
         if not oi_file.exists():

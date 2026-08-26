@@ -15,8 +15,10 @@ from fractions import Fraction
 from scales.counterpoint import (
     analyze_counterpoint,
     attack_times,
+    continuation_hint,
     extract_voices,
     find_doubled_pairs,
+    phrase_tail,
     sounding_at,
     summarize_for_critic,
     voice_independence,
@@ -225,3 +227,77 @@ def test_attack_times_are_exact_under_triplets():
     ir.principal_line = [_ev(1, 1 + i / 3, "C5", "trip_e") for i in range(3)]
     ts = attack_times(extract_voices(ir))
     assert ts[-1] + Fraction(1, 3) == Fraction(1), "three triplets must fill exactly one beat"
+
+
+# ─── What a phrase leaves behind ─────────────────────────────────────────────
+#
+# `ContinuationContext` declares `last_soprano_pitch`, `last_soprano_contour`
+# and `pending_resolution`; no code writes or reads any of them, and the live
+# continuity context reports the melody's recent RANGE but never its ENDPOINT —
+# a different question, and the one a composer asks first. Without it every
+# phrase begins as if from nothing, which is the most audible cause of music
+# that restarts rather than continues.
+
+
+def _closing_phrase():
+    ir = LayerIR(key="C major", meter=(4, 4))
+    ir.principal_line = [_ev(1, 1.0, "C5", "h"), _ev(1, 3.0, "F5", "h")]
+    ir.bass_foundation = [_ev(1, 1.0, "C3", "w")]
+    return ir
+
+
+def test_the_melodys_last_note_is_reported():
+    tail = phrase_tail(_closing_phrase())
+    assert tail["last_soprano_pitch"] == "F5"
+    assert tail["last_bass_pitch"] == "C3"
+
+
+def test_the_direction_the_melody_arrived_from_is_reported():
+    rising = phrase_tail(_closing_phrase())
+    assert rising["last_soprano_contour"] == "rising"
+
+    ir = LayerIR(key="C major", meter=(4, 4))
+    ir.principal_line = [_ev(1, 1.0, "G5", "h"), _ev(1, 3.0, "C5", "h")]
+    assert phrase_tail(ir)["last_soprano_contour"] == "falling"
+
+
+def test_a_repeated_final_note_is_static_not_a_direction():
+    ir = LayerIR(key="C major", meter=(4, 4))
+    ir.principal_line = [_ev(1, 1.0, "C5", "h"), _ev(1, 3.0, "C5", "h")]
+    assert phrase_tail(ir)["last_soprano_contour"] == "static"
+
+
+def test_a_seventh_left_sounding_is_reported_as_owed():
+    ir = _closing_phrase()
+    ir.counter_reply = [_ev(1, 3.0, "Bb4", "h")]
+    tail = phrase_tail(ir)
+    assert tail["pending_resolution"]
+    assert "seventh" in tail["pending_resolution"]
+
+
+def test_a_consonant_ending_owes_nothing():
+    ir = LayerIR(key="C major", meter=(4, 4))
+    ir.principal_line = [_ev(1, 1.0, "E5", "h"), _ev(1, 3.0, "C5", "h")]
+    ir.bass_foundation = [_ev(1, 1.0, "C3", "w")]
+    ir.counter_reply = [_ev(1, 3.0, "G4", "h")]
+    assert phrase_tail(ir)["pending_resolution"] is None
+
+
+def test_a_phrase_with_no_principal_line_still_has_a_top_voice():
+    ir = LayerIR(key="C major", meter=(4, 4))
+    ir.bass_foundation = [_ev(1, 1.0, "C3", "h"), _ev(1, 3.0, ["E3", "G3"], "h")]
+    assert phrase_tail(ir)["last_soprano_pitch"] is not None
+
+
+def test_an_empty_phrase_leaves_nothing_behind():
+    tail = phrase_tail(LayerIR())
+    assert tail["last_soprano_pitch"] is None
+    assert continuation_hint(tail) == ""
+
+
+def test_the_hint_reads_as_a_sentence():
+    ir = _closing_phrase()
+    ir.counter_reply = [_ev(1, 3.0, "Bb4", "h")]
+    hint = continuation_hint(phrase_tail(ir))
+    assert hint.startswith("the melody ended on F5")
+    assert "rising" in hint and "owes" in hint

@@ -18,7 +18,6 @@ from .duration import (
     DURATION_VALUES,
     GRACE_ORNAMENTS,
     bar_duration,
-    beats_to_dur,
     dur_to_beats,
     largest_dur_at_most,
 )
@@ -882,7 +881,16 @@ def _split_events_over_barlines(
             frag = copy.copy(e)
             frag.bar = bar
             frag.beat = float(beat) if first else 1.0
-            frag.duration = beats_to_dur(take)
+            # The LONGEST value that fits, never the nearest: `beats_to_dur` of
+            # a 1.4375 remainder is a dotted quarter at 1.5, and of a 0.3125
+            # remainder a triplet eighth at 0.3333 — both LONGER than the space
+            # they were clamped to. A note split to fix an overflow would
+            # re-create one, compounding across each barline it crosses. It
+            # bites hardest exactly where the split is most needed: a clean
+            # remainder converts fine, and only an awkward one — the whole
+            # reason the note is being split — lands on a longer neighbour.
+            frag.duration = largest_dur_at_most(take)
+            take = dur_to_beats(frag.duration)
             pieces.append(frag)
             remaining -= take
             bar += 1

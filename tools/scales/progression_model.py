@@ -155,17 +155,29 @@ def _is_chromatic(roman: str, mode: str = "major") -> bool:
 # FOR, so an opening statement — whose own doctrine in the same brief says "clear
 # periodic phrasing, diatonic harmony" — was handed `I - iv - viio - V`. A
 # statement that opens on borrowed chords does not read as a statement.
-_ROLE_ALLOWS_CHROMATIC = {
-    "establish": False,
-    "confirm": False,
-    "close": False,
-    "return": False,
-    "extend": True,
-    "depart": True,
-    "intensify": True,
-    "crisis": True,
-    "retreat": True,
+# How much mode mixture a phrase may carry, as a share of its bars.
+#
+# The first version of this was a BAN: stable roles got no borrowed chords at
+# all. Measuring 3,964 real Mozart bars killed that rule — mixture appears in
+# 10.7% of his OPENING bars, statistically indistinguishable from its 10.9% rate
+# mid-phrase. A ban would reject one opening bar in ten of his own music.
+#
+# The actual defect it was written for was rate, not presence: the sampler
+# produced `I | iv | viio | V`, half the bars borrowed, five times the corpus
+# rate. So this is a ceiling a little above what Mozart does, never a floor —
+# stable phrases may reach for colour, they just may not be built out of it.
+_ROLE_CHROMATIC_SHARE = {
+    "establish": 0.15,
+    "confirm": 0.15,
+    "close": 0.15,
+    "return": 0.15,
+    "extend": 0.35,
+    "depart": 0.35,
+    "intensify": 0.35,
+    "crisis": 0.35,
+    "retreat": 0.35,
 }
+_DEFAULT_CHROMATIC_SHARE = 0.35
 
 
 def sample_progression(
@@ -175,7 +187,7 @@ def sample_progression(
     cadence: str,
     tonic: str,
     seed: int = 0,
-    allow_chromatic: bool = True,
+    chromatic_share: float = _DEFAULT_CHROMATIC_SHARE,
 ) -> Optional[List[str]]:
     """Sample a roman walk: tonic start, corpus-idiomatic middle, cadence ending.
 
@@ -246,11 +258,10 @@ def sample_progression(
     # Everything chromatic in this mode's vocabulary, computed once: a statement
     # should be plainly in its key, and the sampler has no idea what the phrase is
     # for unless it is told.
-    chromatic_block: tuple = ()
-    if not allow_chromatic:
-        chromatic_block = tuple(
-            r for r in (mb.get("uni") or {}) if _is_chromatic(r, mode)
-        )
+    chromatic_vocab = tuple(r for r in (mb.get("uni") or {}) if _is_chromatic(r, mode))
+    # A ceiling, not a ban: at least one borrowed chord is always reachable, so a
+    # four-bar statement can still darken the way Mozart's do.
+    chromatic_budget = max(1, int(round(chromatic_share * bar_count)))
 
     n_mid = max(1, bar_count - len(tail))
     plan: List[str] = [tonic]
@@ -260,14 +271,14 @@ def sample_progression(
         # tell. The only guard is against a chord running more than three bars.
         # A stable role should not sit on one chord for three bars either — a
         # statement that repeats I6 three times is not prolonging, it is stalling.
-        repeat_limit = 2 if not allow_chromatic else 3
+        repeat_limit = 2 if chromatic_share <= 0.2 else 3
         exclude = (
             (plan[-1],)
             if len(plan) >= repeat_limit and len(set(plan[-repeat_limit:])) == 1
             else ()
         )
-        if chromatic_block:
-            exclude = tuple(exclude) + chromatic_block
+        if sum(1 for r in plan if _is_chromatic(r, mode)) >= chromatic_budget:
+            exclude = tuple(exclude) + chromatic_vocab
         plan.append(_backoff(mb, plan, order, rng, exclude=exclude) or tonic)
     return (plan[:n_mid] + tail)[:bar_count]
 
@@ -376,5 +387,5 @@ def corpus_harmony_plan(
         cadence,
         tonic,
         seed=seed,
-        allow_chromatic=_ROLE_ALLOWS_CHROMATIC.get(role, True),
+        chromatic_share=_ROLE_CHROMATIC_SHARE.get(role, _DEFAULT_CHROMATIC_SHARE),
     )

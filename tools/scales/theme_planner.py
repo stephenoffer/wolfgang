@@ -371,18 +371,40 @@ def analyze_theme(theme) -> Dict[str, object]:
     return out
 
 
-def theme_recurrence(graph, theme_surface, tolerance: int = 1) -> Dict[str, object]:
+# How many intervals of a theme a listener needs to recognise it. A theme is
+# recognised by its HEAD, not by its whole shape: a recapitulation restates the
+# opening gesture and then goes somewhere else, and an ornamented or
+# re-harmonised return changes everything after the first few notes.
+#
+# CALIBRATED against 16 real movements. Matching the whole contour found the
+# opening theme returning **only once in 10 of them** — including Mozart
+# sonatas, which are built on thematic return. That is not a property of the
+# music, it is a broken detector: a 47-interval contour has no chance of
+# recurring intact, and demanding it does means never finding a real return.
+_HEAD_INTERVALS = 5
+
+
+def theme_recurrence(
+    graph, theme_surface, tolerance: int = 1, head: int = _HEAD_INTERVALS
+) -> Dict[str, object]:
     """Where the principal theme's shape comes back across the piece.
 
-    Matching is on the INTERVAL contour, not on absolute pitch, so a
-    transposed, re-harmonised or differently-registered return still counts —
-    which is the whole point of a theme. A piece whose theme never returns has
-    no memory, and nothing measured that either.
+    Matching is on the INTERVAL contour of the theme's HEAD, not on absolute
+    pitch and not on the whole theme. Contour rather than pitch means a
+    transposed, re-harmonised or differently-registered return still counts,
+    which is the whole point of a theme; the head rather than the whole means a
+    return that continues differently — which is most of them — still counts too.
     """
-    target = _contour_of(theme_surface)
+    full = _contour_of(theme_surface)
+    target = full[:head] if len(full) > head else full
     hits: List[Dict[str, object]] = []
     if len(target) < 3:
-        return {"theme_length": len(target), "recurrences": hits, "sections": []}
+        return {
+            "theme_length": len(full),
+            "head_length": len(target),
+            "recurrences": hits,
+            "sections": [],
+        }
 
     for phrase_id, state in (getattr(graph, "phrases", None) or {}).items():
         realized = getattr(state, "realized", None)
@@ -410,7 +432,8 @@ def theme_recurrence(graph, theme_surface, tolerance: int = 1) -> Dict[str, obje
                 )
                 break  # one hit per phrase is enough to say "it returns here"
     return {
-        "theme_length": len(target),
+        "theme_length": len(full),
+        "head_length": len(target),
         "recurrences": hits,
         "sections": sorted({str(h["phrase_id"]).rsplit("_p", 1)[0] for h in hits}),
     }

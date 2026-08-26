@@ -796,8 +796,11 @@ def _orch_graph():
         return LayerEvent(bar=b, beat=t, pitch=p, duration=d, **k)
 
     lir = LayerIR(phrase_id="o1", instrumentation="orchestra", key="C", meter=(4, 4), bar_count=2)
-    lir.principal_line = [ev(1, 1.0, "C6", "h", articulation="tenuto"), ev(1, 3.0, "E6", "h"),
-                          ev(2, 1.0, "G6", "w")]
+    lir.principal_line = [
+        ev(1, 1.0, "C6", "h", articulation="tenuto"),
+        ev(1, 3.0, "E6", "h"),
+        ev(2, 1.0, "G6", "w"),
+    ]
     lir.foreground = [ev(1, 1.0, "G5", "w"), ev(2, 1.0, "C6", "w")]
     lir.harmonic_mass = [ev(1, 1.0, ["C4", "E4", "G4"], "w"), ev(2, 1.0, ["C4", "F4", "A4"], "w")]
     lir.bass_foundation = [ev(1, 1.0, "C2", "w"), ev(2, 1.0, "C2", "w", dynamic="p")]
@@ -805,12 +808,21 @@ def _orch_graph():
     g = PieceGraph()
     g.piece_id = "orch-test"
     g.contract = PieceContract(
-        piece_id="orch-test", description="An orchestral test",
+        piece_id="orch-test",
+        description="An orchestral test",
         target=TargetSpec(instrumentation="orchestra"),
     )
     g.phrases["o1"] = PhraseState(
-        slot=PhraseSlot(phrase_id="o1", section_id="s1", bar_start=1, bar_count=2,
-                        key="C", meter=(4, 4), tempo_bpm=100, cadence_target="PAC"),
+        slot=PhraseSlot(
+            phrase_id="o1",
+            section_id="s1",
+            bar_start=1,
+            bar_count=2,
+            key="C",
+            meter=(4, 4),
+            tempo_bpm=100,
+            cadence_target="PAC",
+        ),
         realized=lir,
     )
     return g
@@ -921,8 +933,12 @@ def test_ledger_view_exposes_the_expectation_ledger_api():
 
     csl = CrossScaleLedger()
     csl.add_section_expectation(
-        exp_type="debt", domain="cadence", object_ref="x", introduced_at="s1",
-        expected_form="resolution", urgency=0.5,
+        exp_type="debt",
+        domain="cadence",
+        object_ref="x",
+        introduced_at="s1",
+        expected_form="resolution",
+        urgency=0.5,
     )
     graph = PieceGraph()
     graph.cross_scale_ledger = csl.to_dict()
@@ -981,8 +997,16 @@ def test_authentic_cadences_are_approached_by_a_dominant():
     finished, and the same defect was found by hand in generated output."""
     from scales.progression_model import _is_dominant_function, corpus_harmony_plan
 
-    styles = ["mozart", "beethoven", "chopin", "bach", "haydn",
-              "style__classical", "style__baroque", "style__romantic"]
+    styles = [
+        "mozart",
+        "beethoven",
+        "chopin",
+        "bach",
+        "haydn",
+        "style__classical",
+        "style__baroque",
+        "style__romantic",
+    ]
     checked = 0
     for style in styles:
         for seed in range(20):
@@ -1000,11 +1024,40 @@ def test_authentic_cadences_are_approached_by_a_dominant():
 def test_dominant_function_distinguishes_the_degrees_that_matter():
     from scales.progression_model import _is_dominant_function as is_dom
 
-    for symbol in ("V", "V7", "V6", "V65", "V43", "V42", "v", "v6",
-                   "viio", "viio7", "vii", "viiø43", "#viio7", "V7/V"):
+    for symbol in (
+        "V",
+        "V7",
+        "V6",
+        "V65",
+        "V43",
+        "V42",
+        "v",
+        "v6",
+        "viio",
+        "viio7",
+        "vii",
+        "viiø43",
+        "#viio7",
+        "V7/V",
+    ):
         assert is_dom(symbol), f"{symbol} carries dominant function"
-    for symbol in ("I", "i", "IV", "IV64", "iv", "ii", "ii6", "vi", "vi6", "vi7",
-                   "III", "VI", "VII", "bVII", "bII6"):
+    for symbol in (
+        "I",
+        "i",
+        "IV",
+        "IV64",
+        "iv",
+        "ii",
+        "ii6",
+        "vi",
+        "vi6",
+        "vi7",
+        "III",
+        "VI",
+        "VII",
+        "bVII",
+        "bII6",
+    ):
         # vi is not v; VII (uppercase) is the subtonic, not the leading-tone
         # chord; bVII less so.
         assert not is_dom(symbol), f"{symbol} does not resolve as a dominant"
@@ -1058,7 +1111,8 @@ def _sonata_graph():
     graph = PieceGraph()
     graph.piece_id = "sonata-test"
     graph.contract = PieceContract(
-        piece_id="sonata-test", description="A sonata in three movements",
+        piece_id="sonata-test",
+        description="A sonata in three movements",
         target=TargetSpec(instrumentation="solo_piano", movements=3),
     )
     plan = [
@@ -1070,8 +1124,14 @@ def _sonata_graph():
     lh = {(4, 4): "C3w", (3, 4): "C3h.", (6, 8): "C3h."}
     for mid, key, meter, tempo, start, marking in plan:
         graph.form.movements.append(
-            MovementContract(id=mid, key=key, tempo_bpm=tempo, meter=meter,
-                             tempo_marking=marking, sections=[f"{mid}_a"])
+            MovementContract(
+                id=mid,
+                key=key,
+                tempo_bpm=tempo,
+                meter=meter,
+                tempo_marking=marking,
+                sections=[f"{mid}_a"],
+            )
         )
         graph.form.sections[f"{mid}_a"] = SectionSpec(
             id=f"{mid}_a", movement_id=mid, key=key, bar_start=start, bar_end=start + 3
@@ -1079,10 +1139,22 @@ def _sonata_graph():
         for i in range(4):
             pid = f"{mid}_a_p{i + 1}"
             graph.phrases[pid] = PhraseState(
-                slot=PhraseSlot(phrase_id=pid, section_id=f"{mid}_a", bar_start=start + i,
-                                bar_count=1, key=key, meter=meter, tempo_bpm=tempo),
-                realized=compose_phrase([{"rh": rh[meter], "lh": lh[meter]}], key=key,
-                                        bar_start=start + i, phrase_id=pid, meter=meter),
+                slot=PhraseSlot(
+                    phrase_id=pid,
+                    section_id=f"{mid}_a",
+                    bar_start=start + i,
+                    bar_count=1,
+                    key=key,
+                    meter=meter,
+                    tempo_bpm=tempo,
+                ),
+                realized=compose_phrase(
+                    [{"rh": rh[meter], "lh": lh[meter]}],
+                    key=key,
+                    bar_start=start + i,
+                    phrase_id=pid,
+                    meter=meter,
+                ),
             )
     return graph
 
@@ -1178,7 +1250,10 @@ def test_continuation_is_recorded_for_the_next_phrase(tmp_path, monkeypatch):
     graph.phrases[first].realized = compose_phrase(
         [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e", "dyn": "mf"}]
         * slot.bar_count,
-        key="C major", bar_start=slot.bar_start, phrase_id=first, meter=(4, 4),
+        key="C major",
+        bar_start=slot.bar_start,
+        phrase_id=first,
+        meter=(4, 4),
     )
     scales_mod._record_continuation(graph, first)
 
@@ -1186,20 +1261,27 @@ def test_continuation_is_recorded_for_the_next_phrase(tmp_path, monkeypatch):
     assert cont is not None
     assert cont.last_soprano_pitch == "F5"
     assert cont.last_soprano_contour == "rising", "the melody arrives rising"
+    assert cont.last_bass_pitch, "the bass under the close is part of the continuation"
     assert cont.last_rh_density == 4.0 and cont.last_lh_density == 8.0
     assert cont.last_key == "C major"
     assert cont.last_dynamic == "mf"
-    # A half cadence leaves the dominant hanging; the NEXT phrase owes it.
-    assert cont.pending_resolution == "dominant"
+    # Something is owed, and it is described in terms of the SOUNDING harmony
+    # rather than the planned cadence label — the label says what was intended,
+    # not what was written.
+    assert cont.pending_resolution, "a half cadence leaves the dominant hanging"
+    assert isinstance(cont.pending_resolution, str) and cont.pending_resolution.strip()
     shutil.rmtree(tmp_path / pid, ignore_errors=True)
 
 
-def test_the_brief_tells_the_composer_a_resolution_is_owed(tmp_path, monkeypatch):
+def test_the_brief_carries_every_continuation_fact(tmp_path, monkeypatch):
+    """The brief exported five of thirteen continuation fields. The contour the
+    melody arrives on, how dense the last bar was, what the accompaniment was
+    doing and what is left hanging are exactly what a phrase composed in an
+    isolated context cannot otherwise know."""
     import shutil
 
     from scales import scales as scales_mod
     from scales.composition_brief import _transition_context
-    from scales.models import ContinuationContext
     from scales.piece_graph import PieceGraph
 
     monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
@@ -1208,14 +1290,60 @@ def test_the_brief_tells_the_composer_a_resolution_is_owed(tmp_path, monkeypatch
     scales_mod.build_form_graph(pid, form="ternary", key="C major")
     graph = PieceGraph.load(str(tmp_path / pid / "piece_graph.json"))
     order = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)
-    graph.phrases[order[1]].slot.continuation = ContinuationContext(
-        last_soprano_pitch="G5", last_soprano_contour="arch", pending_resolution="dominant",
-        last_rh_density=5.0, last_lh_density=8.0, last_lh_texture="alberti",
+    first, second = order[0], order[1]
+
+    slot = graph.phrases[first].slot
+    # Close on F5 over G3: a seventh above the bass, left sounding.
+    graph.phrases[first].realized = compose_phrase(
+        [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e", "dyn": "mf"}]
+        * slot.bar_count,
+        key="C major", bar_start=slot.bar_start, phrase_id=first, meter=(4, 4),
     )
-    out = _transition_context(graph, order[1])
-    cont = out.get("continuation") or {}
-    # Every field, not the five that used to be exported.
-    assert cont.get("last_soprano_contour") == "arch"
-    assert cont.get("last_lh_texture") == "alberti"
-    assert cont.get("pending_resolution") == "dominant"
+
+    cont = (_transition_context(graph, second) or {}).get("continuation") or {}
+    assert cont.get("last_soprano_pitch") == "F5"
+    assert cont.get("last_soprano_contour") == "rising"
+    assert cont.get("last_rh_density") == 4.0
+    assert cont.get("last_lh_density") == 8.0
+    assert cont.get("last_dynamic") == "mf"
+    # Read from the SOUNDING harmony, not from the planned cadence label.
+    assert cont.get("pending_resolution"), "a hanging seventh must be carried across"
     shutil.rmtree(tmp_path / pid, ignore_errors=True)
+
+
+def test_continuation_has_one_implementation(tmp_path, monkeypatch):
+    """`_record_continuation` writes the model field and the brief derives the
+    same facts on read. Two answers to one question is how this project ends up
+    with two of everything, so they must agree."""
+    import shutil
+    from dataclasses import fields as dc_fields
+
+    from scales import scales as scales_mod
+    from scales.composition_brief import _derive_continuation
+    from scales.models import ContinuationContext
+    from scales.piece_graph import PieceGraph
+
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    pid = "continuation-single"
+    scales_mod.init_workspace(pid, description="a piece in C major", mode="compose_from_text")
+    scales_mod.build_form_graph(pid, form="ternary", key="C major")
+    graph = PieceGraph.load(str(tmp_path / pid / "piece_graph.json"))
+    order = sorted(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)
+    first, second = order[0], order[1]
+    slot = graph.phrases[first].slot
+    graph.phrases[first].realized = compose_phrase(
+        [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e", "dyn": "mf"}]
+        * slot.bar_count,
+        key="C major", bar_start=slot.bar_start, phrase_id=first, meter=(4, 4),
+    )
+    scales_mod._record_continuation(graph, first)
+
+    written = graph.phrases[second].slot.continuation
+    derived = _derive_continuation(graph, first)
+    assert isinstance(written, ContinuationContext)
+    known = {f.name for f in dc_fields(ContinuationContext)}
+    for key, value in derived.items():
+        if key in known:
+            assert getattr(written, key) == value, f"{key} disagrees between the two paths"
+    shutil.rmtree(tmp_path / pid, ignore_errors=True)
+

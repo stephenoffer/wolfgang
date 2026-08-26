@@ -22,15 +22,27 @@ import pytest
 
 from scales.duration import DURATION_VALUES
 
-# The notation grid. 1/48 of a quarter is the obvious choice and it is WRONG: it
-# covers triplets, sextuplets, 32nds and 64ths, and silently destroys
-# quintuplets and septuplets — a five-note run snapped to it drifts by up to
-# 0.0083 of a beat per note and no longer sums to its own beat. That is the same
-# class of bug as the old 16th-note quantization that destroyed every triplet in
-# the system, one tuplet family further out.
+# The finest grid on which every supported duration is exact. The denominators
+# in `DURATION_VALUES` are 1,2,3,4,5,6,7,8,12,16 and their least common multiple
+# is 1680.
 #
-# The denominators actually in `DURATION_VALUES` are 1,2,3,4,5,6,7,8,12,16, and
-# their least common multiple is 1680. Anything coarser rounds a real duration.
+# Two opposite mistakes are possible here and the repair path hit both:
+#
+# * **Too coarse.** 1/48 is the obvious choice — it covers triplets,
+#   sextuplets, 32nds and 64ths — and it silently destroys quintuplets (1/5) and
+#   septuplets (1/7), because 5 and 7 do not divide 48. A five-note quintuplet
+#   snapped to it drifts up to 0.0083 of a beat per note and no longer sums to
+#   its own beat. That is the 16th-note quantization that once destroyed every
+#   triplet in this system, moved out one tuplet family.
+# * **Too fine.** 1/1680 is exact for every real duration and therefore useless
+#   as a *repair* grid: a smeared onset of 1.56 is already on it (941/1680), so
+#   snapping leaves the smear untouched.
+#
+# So this constant is the right invariant for the DURATION TABLE — every value
+# must be expressible — and not a repair rule. Repair resolves a position to the
+# simplest subdivision that explains it within a tolerance, walking subdivisions
+# coarsest first and restricted to divisors of 1680; that lives in
+# `scales._resolve_position` and is tested in `test_patch_engine.py`.
 _GRID = Fraction(1, 1680)
 
 
@@ -126,5 +138,17 @@ def test_every_duration_value_is_exact():
 
 
 def test_every_duration_value_lands_on_the_grid():
+    """The invariant that makes the coarse-grid bug unrepeatable.
+
+    Any quantization grid used anywhere must have every one of these as an exact
+    multiple, or it rounds a duration the system claims to support.
+    """
     off = [k for k, v in DURATION_VALUES.items() if (v % _GRID) != 0]
     assert not off, f"these durations are not expressible on the 1/1680 grid: {off}"
+
+
+def test_a_coarser_grid_would_corrupt_a_supported_duration():
+    """Demonstrates why 1/48 is not a safe choice, so nobody re-picks it."""
+    coarse = Fraction(1, 48)
+    corrupted = [k for k, v in DURATION_VALUES.items() if (v % coarse) != 0]
+    assert set(corrupted) >= {"quint_s", "sept_s"}, corrupted

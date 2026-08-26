@@ -387,7 +387,21 @@ class PhraseCurves:
 
 @dataclass
 class ContinuationContext:
-    """Memory from the previous phrase."""
+    """DEAD REPRESENTATION — do not write to this, and do not read it.
+
+    The live continuity path is ``composition_brief._derive_continuation``, which
+    reads these same facts off the previous phrase's REALIZED notes and returns
+    them as the ``continuation`` dict inside ``_transition_context`` /
+    ``get_phrase_continuity``. That is what the brief renders.
+
+    This dataclass declares thirteen fields and **no code outside this module has
+    ever written one of them**. It sits on every PhraseSlot and is serialized on
+    every save, so it survives here only so that existing graphs still load; a
+    future reader would otherwise reasonably assume the declared representation
+    is the real one. Two representations of one idea, with one of them dead, is
+    the hazard this project keeps getting bitten by — see
+    `docs/AUDIT-CORPUS-2026-08-26.md`.
+    """
 
     last_soprano_pitch: Optional[str] = None
     last_bass_pitch: Optional[str] = None

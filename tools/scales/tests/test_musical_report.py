@@ -228,3 +228,53 @@ def test_a_piano_piece_says_nothing_about_orchestration():
     rep = build_report(_graph([("m1_a_p1", 1, 1, "PAC", mel, bass)]), style="mozart")
     assert rep.orchestration["observations"] == []
     assert rep.orchestration["concerns"] == []
+
+
+# ─── Continuity across a phrase boundary ─────────────────────────────────────
+
+
+def test_a_dissonance_left_hanging_across_a_boundary_is_reported():
+    """Nothing carried this across a barline, so phrase N+1 never knew it."""
+    mel1 = [_ev(1, 1.0, "C5", "h"), _ev(1, 3.0, "F5", "h")]
+    bass1 = [_ev(1, 1.0, "C3", "w")]
+    mel2, bass2 = _plain_phrase(2, ["E5", "D5", "C5", "B4"])
+    g = _graph([("m1_a_p1", 1, 1, "HC", mel1, bass1), ("m1_a_p2", 2, 1, "PAC", mel2, bass2)])
+    g.phrases["m1_a_p1"].realized.counter_reply = [_ev(1, 3.0, "Bb4", "h")]
+    rep = build_report(g, style="mozart")
+    assert any("dissonance still sounding" in c for c in rep.continuity["concerns"])
+
+
+def test_a_line_that_continues_draws_no_complaint():
+    mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    mel2, bass2 = _plain_phrase(2, ["G5", "F5", "E5", "D5"])
+    g = _graph([("m1_a_p1", 1, 1, "HC", mel1, bass1), ("m1_a_p2", 2, 1, "PAC", mel2, bass2)])
+    rep = build_report(g, style="mozart")
+    assert rep.continuity["concerns"] == []
+    assert any("picks up near" in o for o in rep.continuity["observations"])
+
+
+def test_repeated_octave_jumps_between_phrases_are_reported():
+    """One leap across a boundary is a gesture; every time is fragments."""
+    specs = []
+    for i in range(4):
+        pitches = ["C3", "D3", "E3", "F3"] if i % 2 else ["C6", "D6", "E6", "F6"]
+        mel, bass = _plain_phrase(i + 1, pitches)
+        specs.append((f"m1_a_p{i + 1}", i + 1, 1, "PAC", mel, bass))
+    rep = build_report(_graph(specs), style="mozart")
+    assert any("jump more than an octave" in c for c in rep.continuity["concerns"])
+
+
+def test_a_single_phrase_says_nothing_about_continuity():
+    mel, bass = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    rep = build_report(_graph([("m1_a_p1", 1, 1, "PAC", mel, bass)]), style="mozart")
+    assert rep.continuity["concerns"] == []
+    assert rep.continuity["observations"] == []
+
+
+def test_each_phrases_tail_is_reported_for_the_next_one():
+    mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    mel2, bass2 = _plain_phrase(2, ["G5", "F5", "E5", "D5"])
+    g = _graph([("m1_a_p1", 1, 1, "HC", mel1, bass1), ("m1_a_p2", 2, 1, "PAC", mel2, bass2)])
+    tails = build_report(g, style="mozart").continuity["tails"]
+    assert "m1_a_p1" in tails
+    assert "the melody ended on" in tails["m1_a_p1"]
