@@ -1,5 +1,89 @@
 [
   {
+    "id": "melodic_voice_singable_at_sight",
+    "category": "composer_melodic_voice",
+    "description": "Singable at sight: Every interval is one a chorister can pitch from the previous note; no augmented or diminished intervals melodically",
+    "parameters": {
+      "feature": "Singable at sight",
+      "note": "The line can be *performed*, which is the constraint the whole idiom is built on"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_leap_recovery",
+    "category": "composer_melodic_voice",
+    "description": "Leap recovery: A leap is answered by stepwise motion in the opposite direction, filling the gap it opened",
+    "parameters": {
+      "feature": "Leap recovery",
+      "note": "Keeps the line balanced and the tessitura stable; the single most recognisable habit of the style"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_predominantly_conjunct",
+    "category": "composer_melodic_voice",
+    "description": "Predominantly conjunct: Steps far outnumber leaps; leaps beyond a sixth are rare and the octave is the limit",
+    "parameters": {
+      "feature": "Predominantly conjunct",
+      "note": "Smoothness is the default, so a leap becomes an event"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_single_arched_climax",
+    "category": "composer_melodic_voice",
+    "description": "Single arched climax: The line rises to one high note, touches it once, and descends",
+    "parameters": {
+      "feature": "Single arched climax",
+      "note": "Gives a phrase of otherwise even motion an audible shape"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_narrow_compass",
+    "category": "composer_melodic_voice",
+    "description": "Narrow compass: A phrase usually spans a ninth or less; a whole voice part rarely exceeds a twelfth",
+    "parameters": {
+      "feature": "Narrow compass",
+      "note": "Keeps every note in the comfortable part of the voice"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_rhythmic_evenness_with_syncopation",
+    "category": "composer_melodic_voice",
+    "description": "Rhythmic evenness with syncopation: Mostly equal note values, displaced by suspensions and ties",
+    "parameters": {
+      "feature": "Rhythmic evenness with syncopation",
+      "note": "The tension comes from where notes *land*, not from how long they are"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_text_governed_length",
+    "category": "composer_melodic_voice",
+    "description": "Text-governed length: The phrase is as long as its line of text, and breathes at its punctuation",
+    "parameters": {
+      "feature": "Text-governed length",
+      "note": "Musical and verbal sense coincide"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

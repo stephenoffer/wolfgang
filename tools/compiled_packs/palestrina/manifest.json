@@ -4,7 +4,8 @@
   "support_tier": "A",
   "corpus_bar_count": 60677,
   "profile_files": [
-    "composition-guide.md"
+    "composition-guide.md",
+    "melodic-style.md"
   ],
   "corpus_files": [
     "bar_index.json",

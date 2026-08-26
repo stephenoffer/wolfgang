@@ -118,3 +118,33 @@ analyzers and fixed, which is the loop working:
    cadence bar turned them into real `V7–I`, and the structural arrival at bar
    37 needed the tonic in the *soprano* to be a perfect rather than imperfect
    cadence.
+
+## Second pass — subsystems that were never running
+
+The notation work above made the output expressible. Probing for the *shape* of
+that first set of bugs — a value computed and read by nobody — found that
+several of the system's advertised subsystems had never produced anything.
+
+| Subsystem | State found | Now |
+|---|---|---|
+| ExpectationLedger | **Never held an entry in any piece.** Every write guarded by `if ledger is not None`; a fresh graph has none. And the brief read only the PHRASE scale — the one scale nothing is ever filed at. | A sonata plans 10 open expectations; every phrase's brief sees them |
+| Style composition | `normalize_style` replaced `_` with `-` *before* stripping `style__`, so the system's own id matched nothing. All four styles had **zero members**, so no progression model, so hard-coded I-IV-V. | classical 21,029 transitions, renaissance 53,928, romantic 4,099, baroque 3,670 |
+| `ContinuationContext` | Thirteen fields; **nothing ever wrote one**. | Recorded at commit and rendered, including the resolution a phrase owes |
+| Craft checklist | Ran only in the engine-fallback path, never on the agent path every piece takes | Runs at commit, advisory |
+| Engine fallback | Committed with **no physical validation**: 65 meter errors in one section | 0, with repairs reported not absorbed |
+| Model round-trip | 26 fields lost on save/load; StyleDNA read back 7 of 18 | 0, pinned by a probe test |
+
+## Two rules worth keeping
+
+**`beats_to_dur` is right when you are describing a duration and wrong whenever
+you are fitting one into a space.** Nearest-value conversion is a no-op exactly
+when the clamp matters. Three sites had it.
+
+**A detector's own author is the worst-placed person to spot its false
+positives.** Running it over the repertoire is the only thing that reliably
+does. Between the two sessions this reversed conclusions we were each confident
+about: verbatim bar repetition (not a defect — real movements median 4), LH
+"monoculture" (the generated piece was *less* uniform than real music), hand
+spans (211 false "unplayable" stretches across 1,027 real bars — the ordinary
+pedal-point idiom), and a hanging-dissonance check that fired on 49% of real
+phrase endings.

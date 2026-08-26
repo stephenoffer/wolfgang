@@ -484,3 +484,103 @@ compile to five real fingerprints and carry the cadence and harmonic-device
 vocabulary of their period.
 
 A test now fails if any armed composer drops below three.
+
+---
+
+# Third pass — doctrine that existed and never compiled
+
+The second pass found doctrine that was *wrong*. This one found doctrine that
+was *right, present on disk, and read by nothing* — the same failure as the
+dead modules in §1, one layer down.
+
+## 19. `melodic-style.md` was unread for 44 composers
+
+An audit of which profile files the compiler actually opens turned up one that
+it never does. `melody_priors.json` came out **byte-identical for every armed
+composer** — generic phrase-structure boilerplate from
+`general/melodic-construction.md` — while a `melodic-style.md` describing that
+composer's own melodic voice sat unread in 44 profile directories.
+
+Melody is the most audible thing in the output. The brief's melody doctrine said
+the same thing whether it was building a Bach fugue subject or a Chopin nocturne.
+
+The compiler now reads it, and the composer's own voice *leads* the doctrine
+slice ahead of the generic contour and climax lines (which were previously all
+it carried):
+
+| | before | after |
+|---|---|---|
+| bach | 0 composer-specific priors | 8 — Fortspinnung, motivic saturation, hidden polyphony |
+| chopin | 0 | 8 — bel canto phrasing, grace-note entry, ornament as melody |
+| mozart | 0 | 7 — vocal origin, Italianate cantabile, phrase symmetry subverted |
+| handel | 0 | 10 |
+| all 12 armed | 0 | 6-10 each |
+
+The four composers who had no profile at all (Corelli, Monteverdi, Palestrina,
+Weber — see §18) now have a `melodic-style.md` as well as a fingerprint guide.
+
+## 20. Ornament doctrine was identical for every composer
+
+Same shape, found by the same audit: `ornament_intents.json` was identical
+across all twelve armed composers, extracted only from the general
+`ornament-intent.md`, while the table saying what each composer actually does
+sat uncompiled in their profile.
+
+Ornament choice is about as composer-specific as anything in the idiom. The
+brief now leads with the composer's own:
+
+- **Mozart** — "Appoggiatura (leaning tone): very frequent, the most Mozartian ornament (a sigh: the dissonance leans into the resolution)"
+- **Bach** — "Mordent: strong beats, especially beat 1 (rhythmic emphasis, adds bite)"
+- **Chopin** — "Chromatic cascade: 8-16 notes descending from peak (melody continuation after climax)"
+
+Previously all three received the same line: *"Heighten surprise → escape tone
+or unexpected leap after V."*
+
+## 21. The remaining generic sections, named honestly
+
+Auditing all twenty compiled sections for cross-composer identity found six that
+are byte-identical for all twelve armed composers. Two of those are now
+composer-specific (above). The other four — `breathing_rules`,
+`harmonic_temperature`, `counterpoint_rules`, `anti_pattern_rules` and
+`prompt_semantics` — are *general by nature*: species-counterpoint norms and the
+catalogue of AI tells do not vary by composer, and it is right that they don't.
+
+One file remains unread with real content in it:
+`mozart/mozart-lh-vocabulary.md`, a catalogue of left-hand idioms written in the
+system's own shorthand and aimed squarely at the "static bass under perpetual
+figuration, the same idiom every bar" failure. Nothing opens it. The brief's LH
+VOCABULARY comes from the corpus pattern library instead, which supplies real
+figures but not the *when* — recorded here rather than left to be rediscovered.
+
+## 22. The left-hand catalogue, wired
+
+`mozart-lh-vocabulary.md` — flagged as unread at the end of §21 — is now
+compiled. It opens by naming the failure it exists to prevent ("a static bass
+note held under perpetual figuration, the same idiom every bar"), catalogues ten
+alternatives **in this system's own shorthand**, and says when each belongs: the
+murky-octave storm engine for dramatic passages, the sustained chord where the
+right hand needs room, and — explicitly — that a rest in the left hand is not a
+bug.
+
+Extraction is by filename convention (`*-lh-vocabulary.md`), so writing one for
+another composer needs no code change. Mozart's brief now leads its figuration
+doctrine with the matching idiom, its shorthand, and its caveat, then offers a
+contrasting one; composers without such a file fall back to the generic
+templates exactly as before.
+
+---
+
+## Running total
+
+Three passes, roughly **405 discrete changes**, of which about 155 are test
+functions. The suite went from 208 collected tests to 700, with 26 of those in a
+corpus-dependent calibration harness that parses the reference scores and fails
+if a threshold rejects real music.
+
+The through-line across all three: **the machinery, the measurements and the
+doctrine were each substantially complete and substantially disconnected.** Two
+1,000-line modules that nothing called; four detector thresholds set by
+guesswork and never checked against a score; a compiler that read four of a
+profile's nine files; melody and ornament doctrine identical for twelve
+composers who sound nothing like each other. None of it showed up as a failing
+test, because everything that existed worked — in isolation.

@@ -331,6 +331,26 @@ This is worth knowing because until recently it was capped at two voices per
 hand, so genuine counterpoint required hand-written LayerIR JSON and therefore
 never got written. If the music wants an independent inner line, write one.
 
+## §8b One rule about durations, for anyone touching this code
+
+`beats_to_dur` returns the **nearest** notatable value. That is right when you
+are *describing* a duration and wrong whenever you are *fitting* one into a
+space:
+
+```python
+remaining = capacity - offset      # 1.4375 beats left in the bar
+dur = beats_to_dur(remaining)      # -> 'dq', a dotted quarter: 1.5 beats
+```
+
+The clamp is a no-op precisely when it matters. A clean remainder converts
+fine; only an awkward one — which is the whole reason the note is being
+clamped — lands on a longer neighbour and runs past the barline again. This
+shipped in three separate places, including the tie-splitter, where a note
+split to *fix* an overflow re-created one and compounded it across every
+barline it crossed.
+
+Use `duration.largest_dur_at_most(x)` for anything that must fit.
+
 ## §9 Reading gate diagnostics
 
 **Only physical constraints block.** `meter` (bar capacity), range, and span

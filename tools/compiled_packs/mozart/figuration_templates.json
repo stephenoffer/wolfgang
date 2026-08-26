@@ -1,5 +1,95 @@
 [
   {
+    "id": "lh_idiom_alberti_proper",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Alberti (proper)",
+    "description": "low-high-mid-high, the bass note RE-ARTICULATED, not a held drone: `A2e E3e C3e E3e A2e E3e C3e E3e`. Light, transparent. Best for lyrical themes. Don't run it for more than ~4 bars unbroken.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_oom_pah_the_classical_default_lighter_than_alberti",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Oom-pah (the Classical default, lighter than Alberti)",
+    "description": "bass on beats 1 & 3, chord on 2 & 4: `D2q [D3,F3,A3]q A2q [D3,F3,A3]q`. The single most idiomatic Classical accompaniment. Bass LEAPS between root and fifth; the off-beat chord is mid-register.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_oom_pah_pah_waltz_feel_in_4",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Oom-pah-pah / waltz-feel in 4",
+    "description": "bass then two chords: `D2e [F3,A3]e [F3,A3]e ...`",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_broken_murky_octaves_sturm_und_drang_motor",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Broken / murky octaves (Sturm und Drang motor)",
+    "description": "the D-minor storm engine, alternating octave tremolo: `D2s D3s D2s D3s ...` or `D2e D3e D2e D3e D2e D3e D2e D3e`. Use for dramatic, driving passages \u2014 this is what K.466 uses, NOT static-pedal Alberti.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_pulsing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords (pulsing)",
+    "description": "`[D3,F3,A3]e` \u00d78, or quarter pulses. Gives weight without melodic figuration. Good under a busy RH.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_scalar_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking / scalar bass",
+    "description": "quarter or eighth notes stepping through the harmony: `D2q E2q F2q G2q` \u2014 drives transitions and sequences.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_held",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained / held",
+    "description": "LH holds a chord or octave for the whole bar while the RH carries everything: `[D2,D3]w` or `[D3,A3,D4]w`. ESSENTIAL for breathing \u2014 use it where the RH is active or at a phrase peak.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_unison_octave_doubling_with_rh",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Unison / octave doubling with RH",
+    "description": "both hands strike the same line for a bare, dramatic tutti stroke (theme statements, climaxes): LH mirrors the RH an octave or two below.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_lh_rest_drop_out",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "LH rest / drop-out",
+    "description": "the LH is SILENT for a beat or a bar (rest), letting the RH ring or breathe. Mozart uses silence constantly. A `rest` in the LH is not a bug.",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_two_voice_contrapuntal_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Two-voice / contrapuntal bass",
+    "description": "a real melodic line in the LH answering the RH (varied recaps, developments).",
+    "source_file": "mozart/mozart-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

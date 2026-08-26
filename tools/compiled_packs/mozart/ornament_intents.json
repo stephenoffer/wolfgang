@@ -1,5 +1,65 @@
 [
   {
+    "id": "composer_ornament_appoggiatura_leaning_tone",
+    "category": "composer_ornament_usage",
+    "ornament": "Appoggiatura (leaning tone)",
+    "usage": "Very frequent \u2014 the most Mozartian ornament",
+    "intent": "A sigh: the dissonance leans into the resolution",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_turn",
+    "category": "composer_ornament_usage",
+    "ornament": "Turn",
+    "usage": "Moderate \u2014 at phrase peaks and cadences",
+    "intent": "Grace, elegance \u2014 the melodic equivalent of a smile",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_trill",
+    "category": "composer_ornament_usage",
+    "ornament": "Trill",
+    "usage": "At cadences, especially on penultimate note",
+    "intent": "Anticipation before resolution \u2014 the held breath before arrival",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_grace_note_acciaccatura",
+    "category": "composer_ornament_usage",
+    "ornament": "Grace note (acciaccatura)",
+    "usage": "Moderate \u2014 quick, light",
+    "intent": "Playfulness, wit \u2014 a flicked brushstroke",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_slide_schleifer",
+    "category": "composer_ornament_usage",
+    "ornament": "Slide (Schleifer)",
+    "usage": "Rare \u2014 slow movements",
+    "intent": "Tenderness \u2014 the approach is as important as the arrival",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_written_out_cadenza",
+    "category": "composer_ornament_usage",
+    "ornament": "Written-out cadenza",
+    "usage": "Concerto cadenzas, fermata elaborations",
+    "intent": "The character speaks alone \u2014 the most personal moment",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
     "context": "phrase_entry_bar_1",
     "what_moment_needs": "Signal fresh beginning; draw attention",
     "common_choice": "Grace note from below",

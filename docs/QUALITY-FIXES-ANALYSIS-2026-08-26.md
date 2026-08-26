@@ -422,6 +422,71 @@ line that makes the class of bug unrepeatable.
 
 ---
 
+## 4g. Four declared fields that shaped nothing
+
+The workspace census asks "has this ever held a value?". Running the same
+question against `models.py` instead asks it one step earlier: **97 of 871
+declared model fields are never mentioned anywhere outside `models.py`.** Most
+are aspirational scaffolding. Four were not.
+
+**`ArticulationPlan.dominant_articulation`.** A planner could state a phrase's
+touch — legato, staccato, marcato, portato — and nothing honoured it, so every
+phrase was engraved with its period's default regardless. Now read by
+`expression_enricher`: a phrase planned legato no longer collects staccato dots
+from the Classical convention, and one planned staccato gets them in a Romantic
+context. Testing it surfaced a follow-on — the style's "last note of a phrase,
+short, gets a dot" rule was ungated, so a legato plan still ended with a dot.
+
+**`PerformanceIntentProfile.rubato_contexts` / `.pedal_rules` /
+`.voicing_priorities`.** These map *exactly* onto the three things
+`performance_renderer` produces, and all three were read by nothing. A style
+could state that it rubatos at cadences, pedals by harmony and voices the top
+line, and every directive was discarded. Now: a plan asking for a dry texture
+gets no pedal at all; `voicing_priorities: ["bass", "melody"]` brings the bass
+out above the melody instead of the hardcoded flat boost on "melody" in every
+bar; a `climax` context pushes the tempo forward where the period default only
+knows how to broaden a cadence.
+
+**`RhythmPlan.accelerando_bars` / `.ritardando_bars`.** The only tempo shaping
+any generated piece has ever had is the automatic broadening of a cadence bar. A
+deliberate accelerando into a climax was inexpressible. Now ramps across its
+span, shaped by the period's rubato depth, and a one-bar span is ignored rather
+than dividing by zero.
+
+Every one falls back to previous behaviour when the field is absent, so none can
+regress a piece that does not use it.
+
+### And two continuity systems, one of them dead
+
+`PhraseSlot.continuation: ContinuationContext` declares thirteen fields —
+`last_soprano_pitch`, `last_soprano_contour`, `pending_resolution`,
+`motifs_stated` among them. Nothing outside `models.py` mentioned any of them,
+and (established by a colleague working the same census) nothing had ever
+*written* one either: every phrase carried the default, so every field was None.
+
+Meanwhile `get_phrase_continuity` is the live path and works well — 34 keys of
+genuinely useful context. So this was not a missing capability but a duplicated
+concept with one copy dead, which is the "one parser, one loader" hazard in model
+form. Comparing them field by field, eight of the thirteen had no live
+counterpart, and three were load-bearing: where the previous phrase's melody
+actually *ended* and which way it was moving (the live context reports the recent
+*range*, a different question), and whether a dissonance was left hanging.
+
+`counterpoint.phrase_tail` now derives all three, and `continuation_hint` renders
+them as a sentence a composer can act on. The report gained a CONTINUITY section
+which, on the regenerated andante, flags a genuine hanging dissonance.
+
+**Calibrating it caught my own false positive, again.** The first version counted
+fourths, tritones and major sevenths as unpaid debts and fired on **49% of 126
+real phrase endings** — a fourth above the bass is consonant in tonal practice
+and a tritone at a phrase end is usually a half cadence's dominant seventh doing
+exactly what a half cadence does. Restricted to the minor seventh and minor
+ninth, held to the end by a voice that was not merely passing: **49% → 10.3%**,
+and at that rate the hits are real, because a phrase closing on V7 genuinely does
+owe its resolution to the next one.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and

@@ -1,5 +1,55 @@
 [
   {
+    "id": "composer_ornament_appoggiatura",
+    "category": "composer_ornament_usage",
+    "ornament": "Appoggiatura",
+    "usage": "Frequent; the leaning dissonance on strong beats gives vocal melodies their ache",
+    "intent": "Songs, slow movements",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_grace_note_vorschlag",
+    "category": "composer_ornament_usage",
+    "ornament": "Grace note (Vorschlag)",
+    "usage": "Light, decorative; more common in dance-related themes",
+    "intent": "Impromptus, Moments Musicaux",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_turn",
+    "category": "composer_ornament_usage",
+    "ornament": "Turn",
+    "usage": "Gentle melodic inflection; never virtuosic",
+    "intent": "Piano sonatas, slow movements",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_trill",
+    "category": "composer_ornament_usage",
+    "ornament": "Trill",
+    "usage": "Rare in vocal lines; more common in piano figurations",
+    "intent": "Impromptus, Wanderer Fantasy",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_tremolo",
+    "category": "composer_ornament_usage",
+    "ornament": "Tremolo",
+    "usage": "Not melodic but atmospheric \u2014 the piano tremolo as emotional intensifier",
+    "intent": "\"Erlk\u00f6nig,\" \"Der Doppelg\u00e4nger\"",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
     "context": "phrase_entry_bar_1",
     "what_moment_needs": "Signal fresh beginning; draw attention",
     "common_choice": "Grace note from below",

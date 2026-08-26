@@ -1,5 +1,55 @@
 [
   {
+    "id": "composer_ornament_trill",
+    "category": "composer_ornament_usage",
+    "ornament": "Trill",
+    "usage": "Penultimate note of cadence",
+    "intent": "Signals cadential arrival \u2014 not optional",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_mordent",
+    "category": "composer_ornament_usage",
+    "ornament": "Mordent",
+    "usage": "Strong beats, especially beat 1",
+    "intent": "Rhythmic emphasis, adds bite",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_turn",
+    "category": "composer_ornament_usage",
+    "ornament": "Turn",
+    "usage": "Between melodic notes in stepwise motion",
+    "intent": "Smooths the line, adds elegance",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_appoggiatura",
+    "category": "composer_ornament_usage",
+    "ornament": "Appoggiatura",
+    "usage": "Before chord tones on strong beats",
+    "intent": "Expressive dissonance, lean-and-resolve",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_slide_schleifer",
+    "category": "composer_ornament_usage",
+    "ornament": "Slide (Schleifer)",
+    "usage": "Approaching important notes from below",
+    "intent": "Graceful upward connection",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
     "context": "phrase_entry_bar_1",
     "what_moment_needs": "Signal fresh beginning; draw attention",
     "common_choice": "Grace note from below",

@@ -1,5 +1,55 @@
 [
   {
+    "id": "composer_ornament_single_grace_note_acciaccatura",
+    "category": "composer_ornament_usage",
+    "ornament": "Single grace note (acciaccatura)",
+    "usage": "Crushed note before beat",
+    "intent": "Breath before the phrase; Fingerprint #2",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_written_out_turn",
+    "category": "composer_ornament_usage",
+    "ornament": "Written-out turn",
+    "usage": "4-note group: upper-main-lower-main",
+    "intent": "Vocal ornament between structural notes",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_chromatic_cascade",
+    "category": "composer_ornament_usage",
+    "ornament": "Chromatic cascade",
+    "usage": "8-16 notes descending from peak",
+    "intent": "Melody continuation after climax; Fingerprint #5",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_trill_with_resolution",
+    "category": "composer_ornament_usage",
+    "ornament": "Trill with resolution",
+    "usage": "Trill on penultimate note, resolving to final",
+    "intent": "Half-cadence or phrase-ending tension",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "composer_ornament_gruppetto_turn",
+    "category": "composer_ornament_usage",
+    "ornament": "Gruppetto (turn)",
+    "usage": "Upper neighbor-main-lower neighbor-main",
+    "intent": "Filler between long notes; keeps the \"voice\" alive",
+    "position": "any",
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
     "context": "phrase_entry_bar_1",
     "what_moment_needs": "Signal fresh beginning; draw attention",
     "common_choice": "Grace note from below",

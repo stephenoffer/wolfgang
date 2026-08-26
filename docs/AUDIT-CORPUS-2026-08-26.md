@@ -421,3 +421,66 @@ mozart-andante-fmaj-v2-20260826     2.88
 The pieces made after the fix sit inside the band; the oldest sit an order of
 magnitude below it. `self_evaluate`'s `realism.notation_census` reports this per
 section, so it does not need a separate tool.
+
+---
+
+## Round 4 — re-falsifying the detectors after the rebuild
+
+Changing the corpus changed the data the detectors read. `melody_line` is a real
+skyline now rather than a scrambled concatenation of simultaneous voices, so the
+ear sees melodic intervals it never saw before, and every threshold calibrated
+against the old data is suspect.
+
+**`unresolved_nct` fired on 10 of 12 real Mozart movements and 10 of 12
+Beethoven** — 83% of canonical music. Every case inspected was a secondary
+dominant's leading tone inside an arpeggiated figure: F#5 in C major, B-4 in G
+major, E-5 in A minor. Those are the commonest chromatic notes in the repertoire,
+and the detector's premise — chromatic, leapt to and from, therefore a wrong note
+— is exactly backwards for arpeggiated figuration.
+
+Three conditions, each added because the version without it rejected real music:
+
+| condition | false-positive rate |
+|---|---|
+| key membership only | 83% |
+| + not a chord tone of the bar's headline harmony | 71% |
+| + check every harmony the bar moves through | 30% |
+| + skip bars whose melody is majority leaps | **8%** |
+
+The middle step matters because a bar's `roman` is only what it sits on at the
+downbeat; the passing V/V that owns the F# is in `harmony_events`. The last step
+matters because in a broken-chord or broken-octave figure every note is leapt to
+by construction, so "leapt to and from" describes the texture, not a mistake.
+
+`tools/scales/tests/test_ear_falsification.py` now asserts a bound for all five
+bar-record detectors across five composers, and that none reports `error`
+severity on real music. It is marked `calibration`.
+
+## Round 4b — two continuity systems, one of them dead
+
+`PhraseSlot.continuation` is a `ContinuationContext` declaring thirteen fields.
+**No code outside `models.py` has ever written one of them.** It sits on every
+slot and is serialized on every save.
+
+The brief already *renders* the full block — arrival contour, last-bar densities,
+left-hand texture, a hanging-dominant warning, motifs already stated and
+developed. It read `t["continuation"]`, a dict that `_transition_context` built by
+copying the dataclass. So the renderer was live and good and its source was dead,
+and the block was empty for every phrase of every piece. `scales.py` took the
+engraver's `base_dynamic` from the same place, so the engraver has never known
+what level the previous phrase ended on.
+
+Settled on one representation: `_derive_continuation` reads all of it off the
+previous phrase's realized notes. The three that matter most were absent entirely
+from the live dict:
+
+- **where the melody ended and which way it was moving** — the first thing a
+  composer looks at to continue rather than restart;
+- **`pending_resolution`** — a dominant left hanging across a phrase boundary was
+  simply forgotten by the next phrase;
+- **`motifs_stated` / `motifs_developed`** — nothing tracked what had been put on
+  the table, so nothing could know a theme was due back.
+
+`ContinuationContext` is annotated as dead and points at the live path rather
+than being deleted, because it is serialized on existing graphs and two other
+sessions are in the tree.

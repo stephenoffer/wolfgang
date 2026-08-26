@@ -1,5 +1,89 @@
 [
   {
+    "id": "melodic_voice_singer_s_arch_with_a_breath_point",
+    "category": "composer_melodic_voice",
+    "description": "Singer's arch with a breath point: A rising phrase, a clear peak, a falling answer, and an audible place to breathe in the middle",
+    "parameters": {
+      "feature": "Singer's arch with a breath point",
+      "note": "Gives an instrumental line the shape an audience already knows from the stage"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_appoggiatura_on_the_strong_beat",
+    "category": "composer_melodic_voice",
+    "description": "Appoggiatura on the strong beat: The line leans onto a dissonance above the chord tone and resolves down",
+    "parameters": {
+      "feature": "Appoggiatura on the strong beat",
+      "note": "The characteristic sigh of the idiom; used at the emotional word of an imagined text"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_cadential_turn",
+    "category": "composer_melodic_voice",
+    "description": "Cadential turn: A four-note turn decorating the penultimate note of a phrase",
+    "parameters": {
+      "feature": "Cadential turn",
+      "note": "Closes the phrase with a vocal flourish rather than a plain step"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_horn_fifth_topic",
+    "category": "composer_melodic_voice",
+    "description": "Horn-fifth topic: Open fifths and thirds moving in parallel, in the horn's rhythm",
+    "parameters": {
+      "feature": "Horn-fifth topic",
+      "note": "Instantly evokes the forest, the hunt, the outdoors"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_wide_spanning_arpeggiation",
+    "category": "composer_melodic_voice",
+    "description": "Wide-spanning arpeggiation: Broken chords covering a tenth or more, assuming a large hand",
+    "parameters": {
+      "feature": "Wide-spanning arpeggiation",
+      "note": "Fills the harmonic space without thickening the texture"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_sudden_register_displacement",
+    "category": "composer_melodic_voice",
+    "description": "Sudden register displacement: The phrase is answered two octaves away",
+    "parameters": {
+      "feature": "Sudden register displacement",
+      "note": "Theatrical contrast placed at a join, not smoothed over"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_dance_lilt",
+    "category": "composer_melodic_voice",
+    "description": "Dance lilt: Compound-metre or waltz rhythms with a light second beat",
+    "parameters": {
+      "feature": "Dance lilt",
+      "note": "The vernacular voice against the operatic one"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "weber/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

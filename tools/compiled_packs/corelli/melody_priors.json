@@ -1,5 +1,89 @@
 [
   {
+    "id": "melodic_voice_sequential_continuation",
+    "category": "composer_melodic_voice",
+    "description": "Sequential continuation: A one- or two-bar figure restated a step lower, two or three times",
+    "parameters": {
+      "feature": "Sequential continuation",
+      "note": "How a phrase travels from its opening to its cadence; the engine of the style"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_suspension_driven_line",
+    "category": "composer_melodic_voice",
+    "description": "Suspension-driven line: The upper voice hangs over the bar and resolves down by step, repeatedly",
+    "parameters": {
+      "feature": "Suspension-driven line",
+      "note": "Dissonance becomes the melody's forward motion rather than an incident in it"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_paired_thirds_and_sixths",
+    "category": "composer_melodic_voice",
+    "description": "Paired thirds and sixths: The two violins run in parallel for long stretches, then cross",
+    "parameters": {
+      "feature": "Paired thirds and sixths",
+      "note": "A single sweetened line that periodically separates into two"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_conjunct_with_cadential_leaps",
+    "category": "composer_melodic_voice",
+    "description": "Conjunct with cadential leaps: Mostly stepwise; leaps concentrated at phrase openings and cadential approaches",
+    "parameters": {
+      "feature": "Conjunct with cadential leaps",
+      "note": "Keeps the sequence smooth and marks the joints"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_modest_compass",
+    "category": "composer_melodic_voice",
+    "description": "Modest compass: Rarely above the third position; no extended range display",
+    "parameters": {
+      "feature": "Modest compass",
+      "note": "The interest is the interaction of the parts, not the reach of one"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_even_rhythmic_surface",
+    "category": "composer_melodic_voice",
+    "description": "Even rhythmic surface: Steady quavers or crotchets, changing value at cadences",
+    "parameters": {
+      "feature": "Even rhythmic surface",
+      "note": "The harmonic rhythm carries the drama; the surface stays level"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_written_out_ornament_at_cadences",
+    "category": "composer_melodic_voice",
+    "description": "Written-out ornament at cadences: Trills and appoggiaturas notated into the cadential formula",
+    "parameters": {
+      "feature": "Written-out ornament at cadences",
+      "note": "The cadence is the ornamental moment, not the phrase interior"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "corelli/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",
