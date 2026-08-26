@@ -266,3 +266,41 @@ def test_repair_recovers_a_smeared_onset(drifted, expected):
     layer.principal_line = [LayerEvent(bar=1, beat=drifted, pitch="C5", duration="t")]
     _repair_engine_surface(layer, (4, 4))
     assert layer.principal_line[0].beat == pytest.approx(expected, abs=1e-4)
+
+
+def test_repair_never_deletes_a_grace_note():
+    """A grace note SHARES its principal's beat by definition — it is played
+    before it and takes no metric time. Reading that as a same-voice overlap
+    deleted every appoggiatura and acciaccatura the composer wrote, silently,
+    in exactly the paths this repair was added to protect."""
+    from scales.direct_compose import compose_phrase
+    from scales.scales import _repair_engine_surface
+
+    layer = compose_phrase(
+        [{"rh": "A5e:appo G5q Bb5dq A5e", "lh": "F3h."}],
+        key="F major", bar_start=1, phrase_id="p", meter=(3, 4),
+    )
+    before = [(e.beat, e.pitch, e.ornament) for e in layer.principal_line]
+    counts = _repair_engine_surface(layer, (3, 4))
+    after = [(e.beat, e.pitch, e.ornament) for e in layer.principal_line]
+
+    assert after == before, "a legal bar with a grace note was altered"
+    assert not counts, f"nothing needed repairing: {counts}"
+    assert any(orn for _, _, orn in after), "the appoggiatura was deleted"
+
+
+def test_repair_still_trims_a_real_overlap_beside_a_grace_note():
+    """The grace-note exemption must not disable the overlap check around it."""
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
+    layer.principal_line = [
+        LayerEvent(bar=1, beat=1.0, pitch="B4", duration="e", ornament="acciaccatura"),
+        LayerEvent(bar=1, beat=1.0, pitch="C5", duration="h"),  # still sounding at 2.0
+        LayerEvent(bar=1, beat=2.0, pitch="D5", duration="h"),
+    ]
+    counts = _repair_engine_surface(layer, (4, 4))
+    assert counts.get("overlaps_trimmed") == 1, "the real overlap was missed"
+    assert len(layer.principal_line) == 3, "nothing should be deleted"
+    assert layer.principal_line[0].ornament == "acciaccatura"

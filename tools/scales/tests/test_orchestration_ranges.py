@@ -113,3 +113,60 @@ def test_the_range_never_inverts():
         for dyn in (None, "pp", "ppp", "ff"):
             lo, hi = practical_range(instrument, dyn)
             assert lo < hi, f"{instrument} at {dyn} inverted: ({lo}, {hi})"
+
+
+# ─── Every mark reaches the orchestral part ──────────────────────────────────
+#
+# `_event_dict` listed seven fields by hand and dropped six. The audible
+# consequence was worse than a missing mark: an appoggiatura arrived in the
+# orchestral score as a plain note, took real time instead of leaning on its
+# principal, collided with the note it was decorating, and left the bar summing
+# to 3.5 beats of a 3/4. A dropped ornament is a wrong rhythm.
+
+
+def test_every_notation_field_survives_orchestration():
+    from scales.models import LayerEvent
+    from scales.orchestration_planner import _event_dict
+
+    e = LayerEvent(
+        bar=3,
+        beat=2.0,
+        pitch="C5",
+        duration="e",
+        dynamic="p",
+        articulation="tenuto",
+        slur="start",
+        ornament="appoggiatura",
+        tie="start",
+        hairpin="cresc_start",
+        expression="dolce",
+        technique="arpeggio",
+        pedal="down",
+        fingering="3",
+    )
+    out = _event_dict(e)
+    for field in (
+        "dynamic", "articulation", "slur", "ornament", "tie",
+        "hairpin", "expression", "technique", "pedal", "fingering",
+    ):
+        assert out.get(field) is not None, f"{field} was dropped on the way to the part"
+
+
+def test_the_field_list_is_derived_not_hand_written():
+    """A field added to LayerEvent must reach the parts without an edit here."""
+    from scales.models import LayerEvent
+    from scales.orchestration_planner import _EVENT_CARRIED_FIELDS
+
+    declared = set(LayerEvent.__dataclass_fields__)
+    carried = set(_EVENT_CARRIED_FIELDS) | {"bar", "beat", "pitch", "role", "source_layer"}
+    assert declared <= carried, f"not carried: {declared - carried}"
+
+
+def test_a_transposed_pitch_still_carries_its_marks():
+    from scales.models import LayerEvent
+    from scales.orchestration_planner import _event_dict
+
+    e = LayerEvent(bar=1, beat=1.0, pitch="C5", duration="q", ornament="trill")
+    out = _event_dict(e, pitch="C4")
+    assert out["pitch"] == "C4"
+    assert out["ornament"] == "trill"

@@ -2410,7 +2410,7 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
     """
     from fractions import Fraction
 
-    from .duration import bar_duration, dur_to_beats
+    from .duration import bar_duration, dur_to_beats, is_grace
 
     capacity = bar_duration(meter)
     counts = {"snapped": 0, "overlaps_trimmed": 0, "overflow_dropped": 0}
@@ -2448,12 +2448,23 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
         events.sort(key=lambda x: (x.bar, x.beat))
         keep = []
         for i, e in enumerate(events):
+            # A grace note SHARES its principal's beat by definition — it is
+            # played before it and takes no metric time. Reading that as a
+            # same-voice overlap deleted every appoggiatura and acciaccatura the
+            # composer wrote, silently, in exactly the paths this repair was
+            # added to protect.
+            if is_grace(e.ornament):
+                keep.append(e)
+                continue
             start = _on_grid(e.beat) - 1
             length = dur_to_beats(e.duration)
             if start >= capacity:
                 counts["overflow_dropped"] += 1
                 continue
-            nxt = next((x for x in events[i + 1 :] if x.bar == e.bar), None)
+            nxt = next(
+                (x for x in events[i + 1 :] if x.bar == e.bar and not is_grace(x.ornament)),
+                None,
+            )
             room = capacity - start
             if nxt is not None:
                 room = min(room, _on_grid(nxt.beat) - 1 - start)
@@ -3886,6 +3897,137 @@ def promote_candidate(piece_id: str, phrase_id: str, lens: str) -> Dict[str, Any
         )
         graph.save(str(workspace / "piece_graph.json"))
     return result
+
+
+def reduce_to_piano(
+    piece_id: str,
+    source_path: str,
+    mode: str = "playable_reduction",
+    key: Optional[str] = None,
+    meter: Optional[Tuple[int, int]] = None,
+) -> Dict[str, Any]:
+    """Reduce an orchestral score to a playable piano texture (SABRE).
+
+    `reduce_to_piano` is one of the six composition modes this system
+    documents, and it had **no entry point**: `SABRE.reduce_to_piano` existed,
+    the orchestrator skill described the mode, and no tool exposed it, so the
+    mode was unreachable from any skill.
+
+    Everything a generator produces is repaired against the same physical rules
+    before it is committed — one hand cannot play two notes at once, a bar
+    cannot hold more beats than its meter — and the repairs are reported rather
+    than absorbed. SABRE's own output needs it: reducing a 14-bar 3/4 section
+    produced 32 meter violations, because the reducer builds its LayerIR at a
+    hard-coded 4/4 and takes no meter argument.
+    """
+    from .music_io import parse_musicxml_to_events
+    from .sabre import SABRE
+
+    workspace = _WORKSPACE / piece_id
+    graph_path = workspace / "piece_graph.json"
+    if not graph_path.exists():
+        return {"error": f"No workspace for '{piece_id}' — run init_workspace first"}
+    graph = PieceGraph.load(str(graph_path))
+
+    src = Path(source_path)
+    if not src.exists():
+        return {"error": f"Source score not found: {source_path}"}
+    try:
+        events, instruments = parse_musicxml_to_events(str(src))
+    except Exception as exc:
+        return {"error": f"Could not read {source_path}: {type(exc).__name__}: {exc}"}
+    if not events:
+        return {"error": f"No events in {source_path}"}
+
+    # The source's own key and meter, unless the caller overrides. Reducing a
+    # 3/4 score into a 4/4 container mis-bars every bar of it.
+    resolved_key = key or _source_key(src) or "C"
+    resolved_meter = tuple(meter) if meter else (_source_meter(src) or (4, 4))
+
+    layer = SABRE().reduce_to_piano(
+        events, instruments=instruments, mode=mode, key=resolved_key
+    )
+    layer.key = resolved_key
+    layer.meter = resolved_meter
+    layer.instrumentation = "solo_piano"
+
+    repairs = _repair_engine_surface(layer, resolved_meter)
+    if repairs:
+        _LOG.warning("reduction repairs for %s: %s", piece_id, repairs)
+
+    bars = sorted({e.bar for e in (layer.principal_line or []) + (layer.bass_foundation or [])})
+    if not bars:
+        return {"error": "Reduction produced no notes"}
+    layer.bar_count = bars[-1] - bars[0] + 1
+
+    phrase_id = f"reduction_{src.stem}"[:64]
+    slot = PhraseSlot(
+        phrase_id=phrase_id,
+        section_id="m1_reduction",
+        bar_start=bars[0],
+        bar_count=layer.bar_count,
+        key=resolved_key,
+        meter=resolved_meter,
+        tempo_bpm=_source_tempo(src) or 100,
+    )
+    from .models import PhraseState
+
+    graph.phrases[phrase_id] = PhraseState(slot=slot, realized=layer, agent_authored=False)
+    graph.save(str(graph_path))
+
+    return {
+        "ok": True,
+        "phrase_id": phrase_id,
+        "source": str(src),
+        "instruments_reduced": len(instruments),
+        "key": resolved_key,
+        "meter": list(resolved_meter),
+        "bars": layer.bar_count,
+        "notes": len(layer.principal_line or []) + len(layer.bass_foundation or []),
+        "repairs": repairs,
+        "hint": (
+            "Review for playability, then assemble. A reduction is a first draft: "
+            "the reducer packs what fits, it does not decide what matters."
+        ),
+    }
+
+
+def _source_key(path: Path) -> Optional[str]:
+    """The key a score is written in, from its own key signature."""
+    try:
+        import music21
+
+        score = music21.converter.parse(str(path))
+        ks = next(iter(score.recurse().getElementsByClass("KeySignature")), None)
+        if ks is None:
+            return None
+        tonic = ks.asKey()
+        return f"{tonic.tonic.name} {tonic.mode}"
+    except Exception:
+        return None
+
+
+def _source_meter(path: Path) -> Optional[Tuple[int, int]]:
+    """The meter a score is written in — NOT an assumed 4/4."""
+    try:
+        import music21
+
+        score = music21.converter.parse(str(path))
+        ts = next(iter(score.recurse().getElementsByClass("TimeSignature")), None)
+        return (int(ts.numerator), int(ts.denominator)) if ts is not None else None
+    except Exception:
+        return None
+
+
+def _source_tempo(path: Path) -> Optional[int]:
+    try:
+        import music21
+
+        score = music21.converter.parse(str(path))
+        mm = next(iter(score.recurse().getElementsByClass("MetronomeMark")), None)
+        return int(mm.number) if mm is not None and mm.number else None
+    except Exception:
+        return None
 
 
 def orchestrate_section(
