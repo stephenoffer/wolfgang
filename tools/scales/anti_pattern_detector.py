@@ -46,7 +46,7 @@ def detect_flat_dynamics(layer: LayerIR, params: Optional[Dict] = None) -> Tuple
     max_same_ratio = (params or {}).get("max_same_ratio", 0.8)
     min_bars = (params or {}).get("min_bars", 4)
     dynamics = []
-    for evt in layer.principal_line:
+    for evt in layer.melody_line():
         if evt.dynamic:
             dynamics.append(evt.dynamic)
 
@@ -133,7 +133,7 @@ def detect_register_monotony(
     """
     min_range = (params or {}).get("min_range_semitones", 7)
     midis = []
-    for evt in layer.principal_line:
+    for evt in layer.melody_line():
         m = _voice_midi(evt.pitch, "top")
         if m is not None:
             midis.append(m)
@@ -231,8 +231,8 @@ def detect_identical_restatement(
             for i in range(len(midis) - 1)
         ]
 
-    c1 = contour(layer.principal_line)
-    c2 = contour(prev_layer.principal_line)
+    c1 = contour(layer.melody_line())
+    c2 = contour(prev_layer.melody_line())
 
     if not c1 or not c2:
         return False, "warning", ""
@@ -255,7 +255,7 @@ def detect_metronomic_rhythm(
 ) -> Tuple[bool, str, str]:
     """All note durations identical → no rhythmic variety."""
     durations = []
-    for evt in layer.principal_line + layer.response_layer:
+    for evt in layer.melody_line() + (layer.response_layer or []):
         if evt.pitch != "rest":
             durations.append(evt.duration)
 
@@ -309,7 +309,7 @@ def detect_scalar_fill(layer: LayerIR, params: Optional[Dict] = None) -> Tuple[b
     """
     min_run = (params or {}).get("min_run_length", 8)
     midis = []
-    for evt in layer.principal_line:
+    for evt in layer.melody_line():
         m = _voice_midi(evt.pitch, "top")
         if m is not None:
             midis.append(m)

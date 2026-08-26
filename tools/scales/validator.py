@@ -531,16 +531,17 @@ def validate_layer_ir(
     report = ValidationReport()
     c = constraints or PhysicalConstraints()
 
-    # Collect all events for range checking
-    extra = [e for evs in (getattr(layer_ir, "inner_voices", None) or {}).values() for e in evs]
-    all_events = (
-        layer_ir.principal_line
-        + layer_ir.bass_foundation
-        + layer_ir.response_layer
-        + layer_ir.counter_reply
-        + layer_ir.ornamental_surface
-        + extra
-    )
+    # Collect all events for range checking.
+    #
+    # This enumerated the five PIANO layers by hand. LayerIR has eleven, and the
+    # six orchestral ones (foreground, countermelody, harmonic_mass,
+    # rhythmic_motor, color_layer, punctuation) were therefore never checked
+    # against their instrument's range — in the one validator whose findings are
+    # STRICT and block a commit. An orchestral piece's notes could sit anywhere.
+    #
+    # `all_events` is derived from the dataclass, so a layer added tomorrow is
+    # covered without anyone remembering this line.
+    all_events = layer_ir.all_events()
 
     # Range
     for issue in validate_range(all_events, layer_ir.instrumentation, c):
@@ -557,10 +558,17 @@ def validate_layer_ir(
     if getattr(layer_ir, "pickup_beats", 0):
         all_bars = [e.bar for e in all_events]
         pickup_bar = min(all_bars) if all_bars else None
+    # The orchestral melodic lines are independent voices in exactly the same
+    # sense as the piano ones, so they are held to the same rule. The remaining
+    # orchestral layers are deliberately absent: harmonic_mass is a sustained
+    # pad, color_layer and punctuation are occasional, and none of them claims
+    # to fill a bar on its own — the same reasoning that exempts response_layer.
     for layer_name, events in [
         ("principal_line", layer_ir.principal_line),
         ("bass_foundation", layer_ir.bass_foundation),
         ("counter_reply", layer_ir.counter_reply),
+        ("foreground", getattr(layer_ir, "foreground", None) or []),
+        ("countermelody", getattr(layer_ir, "countermelody", None) or []),
         # Each additional independent voice must fill its bar on its own too.
         *sorted((getattr(layer_ir, "inner_voices", None) or {}).items()),
     ]:
@@ -599,6 +607,11 @@ def validate_layer_ir(
             + layer_ir.response_layer
             + [e for k, v in inner.items() if k.startswith("bass") for e in v]
         )
+
+        # Hand span and notes-per-hand are facts about a pianist. They apply
+        # only where the two staves ARE two hands.
+        if not getattr(c, "keyboard", True):
+            rh_events = lh_events = []
 
         for issue in validate_playability(rh_events, "rh", c):
             if issue.severity == "error":

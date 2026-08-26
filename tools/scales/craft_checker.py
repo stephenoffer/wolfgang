@@ -49,7 +49,7 @@ class CraftChecker:
 
     def _check_melodic_claim(self, layer: LayerIR) -> bool:
         """Melody exists and has directional movement."""
-        melody = layer.principal_line
+        melody = layer.melody_line()
         if len(melody) < 3:
             return False
 
@@ -70,7 +70,7 @@ class CraftChecker:
 
     def _check_rhythmic_identity(self, layer: LayerIR) -> bool:
         """Rhythm has variety — not all same duration."""
-        all_events = layer.principal_line + layer.response_layer
+        all_events = layer.melody_line() + (layer.response_layer or [])
         if len(all_events) < 4:
             return False
 
@@ -115,7 +115,7 @@ class CraftChecker:
 
     def _check_breathing(self, layer: LayerIR) -> bool:
         """Has at least one rest or breath point."""
-        all_events = layer.principal_line + layer.bass_foundation + layer.response_layer
+        all_events = layer.melody_line() + layer.bass_line() + (layer.response_layer or [])
         rests = sum(1 for evt in all_events if evt.pitch == "rest")
         return rests >= 1 or layer.bar_count <= 2
 
@@ -132,11 +132,7 @@ class CraftChecker:
         more than intuition suggests). What this rules out is no accompaniment
         at all, or one note per bar and nothing else.
         """
-        accomp = [
-            e
-            for e in (layer.bass_foundation + layer.response_layer)
-            if e.pitch != "rest"
-        ]
+        accomp = [e for e in (layer.bass_foundation + layer.response_layer) if e.pitch != "rest"]
         if len(accomp) < 3:
             return False
         bars = {e.bar for e in accomp}
@@ -155,9 +151,7 @@ class CraftChecker:
         What matters is that the phrase *sounds* at its start and reaches a
         sounding note at its end.
         """
-        melody = sorted(
-            (e for e in layer.principal_line), key=lambda e: (e.bar, e.beat)
-        )
+        melody = sorted((e for e in layer.melody_line()), key=lambda e: (e.bar, e.beat))
         sounding = [e for e in melody if e.pitch != "rest"]
         if not sounding:
             return False
@@ -193,16 +187,14 @@ class CraftChecker:
             return False
 
         # Notated detail, anywhere in the texture — not only in the melody.
-        if any(
-            e.ornament or e.articulation or getattr(e, "technique", None) for e in events
-        ):
+        if any(e.ornament or e.articulation or getattr(e, "technique", None) for e in events):
             return True
         if len({e.dynamic for e in events if e.dynamic}) > 1:
             return True
         if any(e.hairpin for e in events):
             return True
 
-        melody = [e for e in layer.principal_line if e.pitch != "rest"]
+        melody = [e for e in layer.melody_line() if e.pitch != "rest"]
         if len(melody) >= 3:
             midis = [m for m in (self._top_midi(e) for e in melody) if m is not None]
             # An expressive leap: a sixth or wider is a gesture, not a step.
@@ -215,7 +207,7 @@ class CraftChecker:
                 if typical > 0 and longest >= typical * 2:
                     return True
         # A written silence inside the phrase is itself a detail.
-        interior = [e for e in layer.principal_line[1:-1] if e.pitch == "rest"]
+        interior = [e for e in layer.melody_line()[1:-1] if e.pitch == "rest"]
         return bool(interior)
 
     @staticmethod
@@ -273,8 +265,7 @@ _FINDINGS = {
         "least as much as by its pitches."
     ),
     "bass_has_purpose": (
-        "The bass does not sound in most bars, so the harmony has no floor under "
-        "it."
+        "The bass does not sound in most bars, so the harmony has no floor under it."
     ),
     "harmony_is_voiced": (
         "Nothing sounds three-deep anywhere in the phrase: this is a melody and a "
@@ -287,8 +278,7 @@ _FINDINGS = {
         "like a phrase."
     ),
     "accompaniment_responds_to_melody": (
-        "There is effectively no accompaniment — one note per bar or less beneath "
-        "the melody."
+        "There is effectively no accompaniment — one note per bar or less beneath the melody."
     ),
     "entry_exit_earned": (
         "The phrase does not begin with sound. It opens with silence and arrives "
@@ -325,11 +315,7 @@ def craft_findings(check) -> list[str]:
     Takes a ``PhraseCraftCheck`` (or anything with the same boolean attributes)
     and returns only what failed. An empty list means the phrase passed.
     """
-    failed = [
-        name
-        for name in _FINDINGS
-        if hasattr(check, name) and getattr(check, name) is False
-    ]
+    failed = [name for name in _FINDINGS if hasattr(check, name) and getattr(check, name) is False]
     failed.sort(key=lambda n: _SEVERITY.get(n, 9))
     return [_FINDINGS[n] for n in failed]
 
@@ -350,8 +336,6 @@ def craft_score(check) -> float:
     A blunt summary for a status line. Do not gate on it: the checks are not
     equally important and a great phrase can legitimately fail two of them.
     """
-    values = [
-        getattr(check, name) for name in _FINDINGS if hasattr(check, name)
-    ]
+    values = [getattr(check, name) for name in _FINDINGS if hasattr(check, name)]
     values = [v for v in values if isinstance(v, bool)]
     return round(sum(values) / len(values), 3) if values else 0.0

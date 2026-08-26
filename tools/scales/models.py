@@ -7,7 +7,7 @@ source of truth; all other models are nodes, edges, or payloads within it.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from typing import Any, Dict, List, Optional, Tuple
 
 from .enums import (
@@ -63,6 +63,12 @@ class PhysicalConstraints:
 
     max_hand_span_semitones: int = 16
     max_notes_per_hand: int = 5
+    # Whether the two staves are TWO HANDS. A four-voice motet puts Tenor and
+    # Bassus on the lower staff as independent singers, and a hand-span limit
+    # applied across them rejects the idiom outright: the first Palestrina motet
+    # written here failed its commit with "lh span 19 semitones exceeds max 16",
+    # which is a fact about a pianist and says nothing about two voices.
+    keyboard: bool = True
     min_tempo_bpm: int = 40
     max_tempo_bpm: int = 200
     # Voice ranges (MIDI): extended piano range
@@ -617,6 +623,64 @@ class LayerEvent:
     fingering: Optional[str] = None
 
 
+# ─── Layer groupings ─────────────────────────────────────────────────────────
+#
+# Defined ONCE, here, beside the model. Nine modules had hand-typed copies of
+# these tuples and most listed only the five piano layers, so orchestral music
+# was silently invisible to them: the critic's whole-piece merge dropped every
+# orchestral note and reported bar_count 1, and the musicality metrics returned
+# an empty measurement rather than an error. Duplicated enumerations are this
+# repo's documented first source of bugs; derive from the model instead.
+#
+# These name GROUPS of layers, for readers that care which group a layer is in
+# (which hand, whether it carries a tune). For "every layer", use the LayerIR
+# methods that already exist and are derived from the dataclass:
+# `event_layer_names()`, `event_layers()`, `all_events()`, `melody_line()`,
+# `bass_line()`, `ensure_layer()`. Do not add a fourth way to iterate layers.
+#
+# NOTE the asymmetry the dataclass preserves: the five piano layers default to
+# `[]`, the six orchestral ones to `None`, so `getattr(ir, name).extend(...)`
+# is correct for one group and an AttributeError for the other. Use
+# `ensure_layer(name)`.
+PIANO_LAYERS: tuple[str, ...] = (
+    "principal_line",
+    "bass_foundation",
+    "response_layer",
+    "counter_reply",
+    "ornamental_surface",
+)
+ORCHESTRAL_LAYERS: tuple[str, ...] = (
+    "foreground",
+    "countermelody",
+    "harmonic_mass",
+    "rhythmic_motor",
+    "color_layer",
+    "punctuation",
+)
+#: Every event-bearing layer. Kept in step with the dataclass by the test
+#: `test_layer_groups_match_the_model`, rather than by anyone remembering.
+ALL_LAYERS: tuple[str, ...] = PIANO_LAYERS + ORCHESTRAL_LAYERS
+
+#: Layers carrying a melody, whichever forces the piece is for.
+MELODIC_LAYERS: tuple[str, ...] = ("principal_line", "foreground")
+#: Right hand at a keyboard; the upper voices of an ensemble.
+UPPER_LAYERS: tuple[str, ...] = (
+    "principal_line",
+    "ornamental_surface",
+    "counter_reply",
+    "foreground",
+    "countermelody",
+)
+#: Left hand at a keyboard; the lower/inner voices of an ensemble.
+LOWER_LAYERS: tuple[str, ...] = (
+    "bass_foundation",
+    "response_layer",
+    "harmonic_mass",
+    "rhythmic_motor",
+    "punctuation",
+)
+
+
 @dataclass
 class LayerIR:
     """Role-based musical layers. Replaces SATB as the native writing format."""
@@ -656,8 +720,67 @@ class LayerIR:
     # melodies before a note is written.
     pickup_beats: float = 0.0
 
+    # ─── EventIR (final merged stream) ──────────────────────────────────────────
 
-# ─── EventIR (final merged stream) ──────────────────────────────────────────
+    # ── One place that knows which fields hold notes ─────────────────────────
+    # Hand-enumerated layer lists are this model's recurring defect: they cover
+    # the five piano layers and silently drop the six orchestral ones. The
+    # validator's RANGE check did exactly that, so no note in an orchestral
+    # layer was ever checked against its instrument's range — and range is one
+    # of the strict physical constraints, the only kind that blocks a commit.
+    #
+    # Derived from the dataclass, so a new layer is covered the day it is added.
+
+    @classmethod
+    def event_layer_names(cls) -> List[str]:
+        """Every field that holds a flat list of LayerEvent, in declared order."""
+        return [
+            f.name for f in fields(cls) if "LayerEvent" in str(f.type) and "Dict" not in str(f.type)
+        ]
+
+    def event_layers(self) -> List[Tuple[str, List[LayerEvent]]]:
+        """(name, events) for every non-empty layer, orchestral ones included.
+
+        Note the two defaults differ: the piano layers default to ``[]`` and the
+        orchestral ones to ``None``, which is why a bare
+        ``getattr(ir, name).extend(...)`` works for one and raises for the other.
+        """
+        out: List[Tuple[str, List[LayerEvent]]] = []
+        for name in self.event_layer_names():
+            events = getattr(self, name, None)
+            if events:
+                out.append((name, list(events)))
+        for voice, events in sorted((self.inner_voices or {}).items()):
+            if events:
+                out.append((voice, list(events)))
+        return out
+
+    def melody_line(self) -> List[LayerEvent]:
+        """The principal melodic line, whichever layer actually holds it.
+
+        `principal_line` is the piano melody; an orchestral LayerIR carries its
+        tune in `foreground` and leaves `principal_line` empty. Detectors that
+        read `principal_line` directly and call it "the melody" therefore search
+        an empty drawer for every orchestral piece and report nothing wrong —
+        which reads exactly like a clean bill of health.
+        """
+        return list(self.principal_line or self.foreground or [])
+
+    def bass_line(self) -> List[LayerEvent]:
+        """The lowest structural line, whichever layer holds it."""
+        return list(self.bass_foundation or self.harmonic_mass or [])
+
+    def all_events(self) -> List[LayerEvent]:
+        """Every note in the phrase, whatever layer it lives in."""
+        return [e for _, events in self.event_layers() for e in events]
+
+    def ensure_layer(self, name: str) -> List[LayerEvent]:
+        """The named layer as a list, creating it if it defaulted to None."""
+        events = getattr(self, name, None)
+        if events is None:
+            events = []
+            setattr(self, name, events)
+        return events
 
 
 @dataclass
