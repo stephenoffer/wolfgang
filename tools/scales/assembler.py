@@ -385,7 +385,16 @@ def _in_scope(phrase_state, scope: str) -> bool:
             return mv == want or mv == f"m{want}"
         sec = slot.section_id or ""
         return sec.startswith(f"m{want}_") or sec.startswith(f"{want}_")
-    return True
+    # A BARE section id. `self_evaluate` takes one ("m1_a") while this took a
+    # prefixed scope ("section-m1_a"), and the two conventions met at a final
+    # `return True`: passing the natural argument, or a typo, silently included
+    # the WHOLE PIECE. The critic then reviewed — and heard — music from
+    # sections it was not reviewing, with nothing to say so.
+    #
+    # Anything matching no phrase now yields an empty collection, and the
+    # caller's existing "No realized phrases found for scope" error fires
+    # instead of a wrong score being returned confidently.
+    return (slot.section_id or "") == scope
 
 
 def _collect_events(piece_graph: PieceGraph, scope: str) -> List[EventIR]:

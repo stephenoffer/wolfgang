@@ -24,6 +24,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+from .assembler import _in_scope
 from .duration import DURATION_VALUES, bar_duration
 from .models import EventIR, PerformanceIR
 from .music_io import layer_ir_to_event_ir
@@ -159,10 +160,13 @@ def render_midi(
     tempo_bpm = 120
     got_tempo = False
     for phrase_id, phrase_state in piece_graph.phrases.items():
-        if scope.startswith("section-"):
-            section_id = scope.replace("section-", "")
-            if not phrase_state.slot or phrase_state.slot.section_id != section_id:
-                continue
+        # One scope matcher, shared with the assembler — this had its own,
+        # which understood only "section-<id>" and silently rendered the whole
+        # piece for every other value, including a bare section id and a typo.
+        # The preview is what the critic HEARS, so a wrong scope here means an
+        # artistic judgement made about the wrong music.
+        if not _in_scope(phrase_state, scope):
+            continue
         if not phrase_state.realized:
             continue
         slot = phrase_state.slot

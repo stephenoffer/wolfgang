@@ -254,9 +254,14 @@ def test_the_documented_corpus_size_matches_the_harness():
             claimed = int(match.group(1))
             if claimed == n:
                 continue
-            following = text[match.end() : match.end() + 600]
+            following = text[match.end() : match.end() + 1200]
             itemised = [int(d) for d in breakdown.findall(following)]
-            if itemised and sum(itemised) == claimed:
+            # A breakdown may or may not carry a TOTAL row ("0/82  all"). Accept
+            # either shape: the parts sum to the claim, or a total row states it
+            # outright. Counting the total as one more part is how this first
+            # read 16+16+16+16+18+82 and called a correct table unsubstantiated.
+            parts = [d for d in itemised if d != claimed]
+            if claimed in itemised or (parts and sum(parts) == claimed):
                 continue  # cites its own corpus and adds up
             wrong.append(
                 f"{src.name} claims {claimed} movements; the harness measures {n} "

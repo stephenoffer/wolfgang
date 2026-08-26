@@ -2111,3 +2111,46 @@ def test_a_choir_is_not_scored_as_a_small_orchestra():
     for vocal in (True, False):
         assert _instrument_for("violin", vocal=vocal).instrumentName == "Violin"
         assert _instrument_for("flute", vocal=vocal).instrumentName == "Flute"
+
+
+def test_an_unrecognised_scope_renders_nothing_rather_than_everything():
+    """`self_evaluate` takes a bare section id ("m1_a"); the assembler and the
+    MIDI renderer took a prefixed scope ("section-m1_a").
+
+    The two conventions met at a final `return True`, so passing the natural
+    argument — or a typo — silently included the WHOLE PIECE. The preview is
+    what the fresh-ears critic hears, so a wrong scope there means an artistic
+    judgement made about music from a section it was not reviewing, with nothing
+    to say so.
+    """
+    from scales.assembler import _in_scope
+    from scales.models import PhraseSlot, PhraseState
+
+    def phrase(section_id):
+        state = PhraseState()
+        state.slot = PhraseSlot(phrase_id=f"{section_id}_p1", section_id=section_id)
+        return state
+
+    a, b = phrase("m1_a"), phrase("m1_b")
+
+    assert _in_scope(a, "full") and _in_scope(b, "full")
+    assert _in_scope(a, "section-m1_a") and not _in_scope(b, "section-m1_a")
+    # The bare form now works, matching self_evaluate.
+    assert _in_scope(a, "m1_a") and not _in_scope(b, "m1_a")
+    # And a scope naming nothing includes nothing, so the caller's
+    # "no realized phrases" error fires instead of a wrong score being returned.
+    assert not _in_scope(a, "typo") and not _in_scope(b, "typo")
+    assert not _in_scope(a, "section-nonexistent")
+    # Movement scoping is unaffected.
+    assert _in_scope(a, "movement-1") and _in_scope(b, "movement-1")
+
+
+def test_the_midi_preview_uses_the_same_scope_matcher_as_the_assembler():
+    """It had its own, which understood only "section-<id>"."""
+    import inspect
+
+    from scales import midi_renderer
+
+    src = inspect.getsource(midi_renderer.render_midi)
+    assert "_in_scope" in src, "the renderer must share the assembler's scope matcher"
+    assert 'scope.replace("section-"' not in src, "a second scope convention has come back"
