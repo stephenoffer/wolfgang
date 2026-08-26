@@ -57,6 +57,10 @@ _MIN_BARS = 3
 # skeletal-writing guard.
 _GENERIC_DENSITY_MEDIAN = {"rh": 6.0, "lh": 5.5}
 
+# Textures that mean "this staff has no notes in this bar". Not an idiom with a
+# thin density — an absence, and a floor above zero demands notes in a rest.
+_SILENT_TEXTURES = {"silence", "tacet", "rest"}
+
 # Max number of *blocking* checks that may be waived in a single commit.
 # Waiving more than one blocking check at once usually means "make the gate
 # go away", not a single honest artistic exception.
@@ -178,6 +182,15 @@ def _bar_texture_floors(
         bar = bar_start + i
         tp = plan[i] if i < len(plan) else None
         tex = (getattr(tp, f"{hand}_texture", None) if tp else None) or default_tex
+        if tex in _SILENT_TEXTURES:
+            # A bar whose staff RESTS has no density floor to meet. `silence` is
+            # a real corpus label and density_stats carries no entry for it (its
+            # density is zero), so it fell to the generic 2.75-event floor and
+            # every deliberately silent bar read as skeletal writing. Measured:
+            # 5,872 real bars (4.9%) have a silent LH and not one of them
+            # carries a single note.
+            out[bar] = (0.0, 0.0, tex)
+            continue
         entry = density_stats.get(hand, {}).get(tex)
         if entry:
             median = entry["median"]

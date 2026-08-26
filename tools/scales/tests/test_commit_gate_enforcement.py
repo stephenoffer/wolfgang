@@ -569,3 +569,35 @@ def test_an_unknown_ornament_key_is_ignored_not_summed():
     assert _ornament_rates({"nonsense": 9.0, "grace": 0.1}) == {"grace": 0.1}
     assert _ornament_rates({}) == {}
     assert _ornament_rates(None) == {}
+
+
+def test_a_silent_bar_has_no_density_floor():
+    """`silence` is a real corpus texture — the staff rests — and density_stats
+    carries no entry for it because its density is zero.
+
+    It therefore fell to the generic 2.75-event floor and every deliberately
+    silent bar read as skeletal writing. Measured across the armed corpus:
+    5,872 real bars (4.9%) have a silent LH and not one carries a single note.
+    """
+    import json
+    from pathlib import Path
+
+    from scales.commit_gate import _bar_texture_floors
+    from scales.models import BarTexturePlan, PhraseSlot
+
+    stats_path = (
+        Path(__file__).resolve().parents[2] / "compiled_packs" / "mozart" / "density_stats.json"
+    )
+    stats = json.loads(stats_path.read_text())
+
+    def floor_for(texture):
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=2, meter=(4, 4))
+        slot.texture_plan = [
+            BarTexturePlan(rh_texture="singing_melody", lh_texture=texture) for _ in range(2)
+        ]
+        return _bar_texture_floors(slot, stats, "lh", "mozart")[1][0]
+
+    assert floor_for("silence") == 0.0
+    # An idiom with real stats, and an unknown one, both still get a floor.
+    assert floor_for("alberti") > 0
+    assert floor_for("some_unknown_texture") > 0
