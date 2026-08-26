@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_resonance_chord",
+    "type": "Resonance chord",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The added-sixth / added-fourth chord of the mode, held",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "messiaen/harmonic-language.md"
+  },
+  {
+    "id": "cad_modal_plagal",
+    "type": "Modal plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Movement to the mode's central sonority without leading tone",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "messiaen/harmonic-language.md"
+  },
+  {
+    "id": "cad_rhythmic_completion",
+    "type": "Rhythmic completion",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A non-retrogradable rhythm completes its palindrome",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "messiaen/harmonic-language.md"
+  },
+  {
+    "id": "cad_birdsong_cessation",
+    "type": "Birdsong cessation",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Birdsong simply stops; sustained chord remains",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "messiaen/harmonic-language.md"
+  },
+  {
+    "id": "cad_tutti_unison",
+    "type": "Tutti unison",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "All forces on one line",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "messiaen/harmonic-language.md"
+  },
+  {
+    "id": "cad_fade_to_silence",
+    "type": "Fade to silence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Long diminuendo on an unresolved sonority",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "messiaen/harmonic-language.md"
+  }
+]

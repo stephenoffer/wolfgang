@@ -27,6 +27,7 @@ Nineteen passes:
 from __future__ import annotations
 
 import json
+import logging
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -37,6 +38,9 @@ REFERENCE_INDEX = _BASE / "reference_index"
 PATTERN_LIBRARY = _BASE / "pattern_library"
 TEXTURE_TEMPLATES = _BASE / "texture_templates"
 COMPILED_PACKS = _BASE / "compiled_packs"
+
+
+_LOG = logging.getLogger(__name__)
 
 
 class ContextCompiler:
@@ -214,15 +218,43 @@ class ContextCompiler:
         return "\n\n".join(out)
 
     def _find_profile_dir(self, composer: str, genre: str = "") -> Optional[Path]:
-        """Find the composer profile directory."""
-        # Search all genre directories
-        for genre_dir in CONTEXT_DIR.iterdir():
+        """Find the composer profile directory.
+
+        This took a ``genre`` argument and ignored it, returning whichever
+        directory ``iterdir()`` happened to yield first. Wagner has a profile
+        under BOTH `late-romantic/` and `romantic/` — 65KB and 72KB of different
+        doctrine — so which one compiled was decided by filesystem order, and the
+        other was silently discarded.
+
+        The requested genre now wins. Without one, the choice is deterministic
+        (richest profile, then alphabetical by genre) rather than incidental.
+        """
+        if genre:
+            named = CONTEXT_DIR / genre / "composer-profiles" / composer
+            if named.is_dir():
+                return named
+
+        matches = []
+        for genre_dir in sorted(CONTEXT_DIR.iterdir()):
             if not genre_dir.is_dir():
                 continue
             profiles = genre_dir / "composer-profiles" / composer
             if profiles.is_dir():
-                return profiles
-        return None
+                weight = sum(f.stat().st_size for f in profiles.glob("*.md"))
+                matches.append((-weight, genre_dir.name, profiles))
+        if not matches:
+            return None
+        matches.sort()
+        if len(matches) > 1:
+            _LOG.warning(
+                "%s has %d profile directories (%s); compiling %s. "
+                "Two profiles for one composer means half the doctrine is unreachable.",
+                composer,
+                len(matches),
+                ", ".join(m[1] for m in matches),
+                matches[0][1],
+            )
+        return matches[0][2]
 
     # ─── Pass 1: Manifest ─────────────────────────────────────────────────
 

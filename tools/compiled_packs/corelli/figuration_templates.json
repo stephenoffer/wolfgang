@@ -360,5 +360,176 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_suspension_chain",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "The suspension chain",
+    "description": "the two violins suspending in alternation while the bass walks down by step, 7-6 or 4-3, for four to eight bars. The single most Corellian texture, and the sound the whole style is remembered for.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_imitation_between_the_two_violins",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Imitation between the two violins",
+    "description": "one states, the other answers a bar later at the unison or the octave. Constant in the fast movements.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_voice_crossing_between_the_violins",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Voice crossing between the violins",
+    "description": "the second rising above the first for a bar or two. Gives the trio texture its interweaving quality.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fugal_exposition_in_a_fast_movement",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Fugal exposition in a fast movement",
+    "description": "subject in violin 1, answer in violin 2, then the bass. The church sonata's second movement.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_thirds_and_sixths_between_the_violins",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Parallel thirds and sixths between the violins",
+    "description": "for a lyrical passage or the approach to a cadence.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_circle_of_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Circle of fifths",
+    "description": "longer than anyone before him, six or eight chords, with a sequence in the upper parts. His signature progression.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_4_3_cadence",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The 4-3 cadence",
+    "description": "the upper voice suspends a fourth over the bass's penultimate note and resolves down to the third. Every phrase ends this way, and that consistency is the period's punctuation, not monotony.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_corelli_clash",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The Corelli clash",
+    "description": "the resolution of a suspension sounding briefly against the note it resolves to, in another voice. Named after him.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_secondary_dominants_inside_a_sequence",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Secondary dominants inside a sequence",
+    "description": "each step of a circle tonicised. Systematic rather than expressive.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_pedal_on_the_dominant_before_a_final_cadence_four_to_eight_bars_11_picardy_third_to_end_a_minor_key_movement_12_even_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The pedal on the dominant** before a final cadence, four to eight bars.\n\n11. **Picardy third** to end a minor-key movement.\n\n12. **Even harmonic rhythm",
+    "description": "one chord per beat or per bar, held for a whole section. Irregular harmonic rhythm sounds later than this style.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_exact_sequence",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Exact sequence",
+    "description": "a one- or two-bar unit transposed without variation, three or four times, usually falling by step or by fifth. Do not vary it; the exactness is the idiom.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_slow_fast_slow_fast",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Slow\u2013fast\u2013slow\u2013fast",
+    "description": "the church sonata's four movements: suspensions over a walking bass, fugal, a shorter slow movement often in the relative key, and a dance-like finale in triple time.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_dance_suite_alternative",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The dance suite alternative",
+    "description": "allemande, corrente, sarabande, giga, each in binary form with repeats.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ground_bass",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ground bass",
+    "description": "a descending tetrachord repeated with varied upper material, for a slow movement or a chaconne finale.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ritornello_contrast_in_the_concerto_grosso",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ritornello contrast in the concerto grosso",
+    "description": "the full group (*concerto grosso*) answering the soloists (*concertino*), with the same material.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_regular_four_and_eight_bar_phrases",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Regular four- and eight-bar phrases",
+    "description": "Corelli is squarer than almost anyone, and the regularity is the frame the suspensions hang on.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_written_skeleton_performer_ornamented",
+    "category": "composer_device",
+    "section": "Ornamentation",
+    "name": "The written skeleton, performer-ornamented",
+    "description": "slow movement lines are intentionally plain and were decorated in performance. If writing the ornamentation out, use passing notes, cadential trills and turns around long notes.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_cadential_trill",
+    "category": "composer_device",
+    "section": "Ornamentation",
+    "name": "The cadential trill",
+    "description": "on the penultimate note of every significant cadence, resolving to the final.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_terraced_echo",
+    "category": "composer_device",
+    "section": "Ornamentation",
+    "name": "Terraced echo",
+    "description": "a phrase repeated softer. The whole dynamic vocabulary.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

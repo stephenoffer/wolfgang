@@ -147,3 +147,19 @@ C,8 | C,8 |
 - Zimmer, Hans. *Hans Zimmer Masterclass*, 2017
 - Hurwitz, Matt. "Hans Zimmer: Scoring for the Screen," *Mix Magazine*, 2014
 - Lehman, Frank. *Hollywood Harmony*, 2018
+
+---
+
+## Cadences and closure
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Modal plagal | iv–i, or bVI–bVII–i | End of a cue | Weight without brightness |
+| Ostinato cessation | The driving figure stops dead | Action cue ends | Impact |
+| Suspended add-9 | The final chord carries an added second | Emotional cues | Unresolved, hopeful |
+| Chromatic-mediant arrival | Tonic approached from bIII or bVI | Big statements | Scale, awe |
+| Drone persistence | Harmony changes above a bass that never moves | Whole cues | Stasis, tension |
+| Textural dissolve | Layers removed one at a time until silence | Transitions | Fade rather than end |
+
+Functional dominant-tonic closure is rare and deliberate — it reads as
+old-fashioned in this idiom and is used when that connotation is wanted.

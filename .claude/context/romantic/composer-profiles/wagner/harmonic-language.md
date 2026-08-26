@@ -142,3 +142,22 @@ Each Leitmotif is inseparable from its harmonic context. Changing the harmony ch
 - [orchestration.md](orchestration.md) — Harmonic voicing across the Wagner orchestra
 - [../../romantic-harmony.md](../../romantic-harmony.md) — Shared Romantic harmonic vocabulary
 - [cross-references.md](cross-references.md) — Wagner vs Brahms harmonic philosophy
+
+---
+
+## Cadences and closure
+
+Wagner's whole technique is the avoidance of cadence — "unendliche Melodie"
+means the harmony is not allowed to close until the drama permits it.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Deceptive | V–vi, or V to an unrelated chord | Constantly, for hours | The withheld resolution that drives the form |
+| Evaded | The cadence begins; a voice enters and diverts it | Scene joints | Continuity across sections |
+| Perfect authentic | V7–I, root position | Only at the end of an act or a drama | Overwhelming, because it has been denied |
+| Plagal / redemption | IV–I in the high strings | Transfiguration endings | Benediction |
+| Chromatic-mediant close | Tonic approached from bIII or bVI | Arrivals of leitmotif | Distance, the mythic |
+| Half-diminished suspension | The Tristan chord resolving to a dominant that then evades | The Tristan idiom | Perpetual yearning |
+
+The single authentic cadence at the end of a five-hour drama is the point: every
+evasion before it is what gives that resolution its force.

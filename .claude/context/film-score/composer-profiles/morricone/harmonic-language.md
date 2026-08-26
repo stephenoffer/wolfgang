@@ -152,3 +152,19 @@ A2 G2 F2 E2 |
 - De Rosa, Alessandro. *Ennio Morricone: In His Own Words*, 2019
 - Miceli, Sergio. *Morricone, la musica, il cinema*, 1994
 - Lehman, Frank. *Hollywood Harmony*, 2018
+
+---
+
+## Cadences and closure
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Modal plagal | iv–i or bVII–i, no leading tone | End of a cue | Open, unresolved warmth |
+| Aeolian close | bVI–bVII–i | Western and dramatic cues | The signature ending |
+| Suspended close | The melody ends on 2 or 5 over the tonic | Love themes | Longing left open |
+| Ostinato cessation | The repeating figure simply stops | Action cues | Cut, not cadence |
+| Picardy third | Minor throughout, major triad at the last bar | Redemptive endings | Sudden light |
+| Held drone | The bass pedal outlasts everything above it | Atmospheric cues | The landscape remains |
+
+Cues frequently end without closure because the scene continues; a full
+authentic cadence is reserved for the end of a film, not the end of a cue.

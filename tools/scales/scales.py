@@ -77,6 +77,22 @@ _WORKSPACE = Path("workspace")
 _LOG = logging.getLogger(__name__)
 
 
+# Every revision operation the patch engine implements. An op the engine does
+# not recognise is logged and skipped, so a typo in a critic's revision script
+# came back as a successful revision that changed nothing.
+_REVISION_OPS = frozenset({
+    "re_sketch",
+    "re_realize",
+    "transpose_region",
+    "change_texture",
+    "change_dynamic",
+    "set_articulation",
+    "set_hairpin",
+    "set_expression",
+    "thin_texture",
+})
+
+
 class _MissingPiece(Exception):
     """A tool was asked about a piece that does not exist.
 
@@ -2060,18 +2076,48 @@ def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> 
 
     engine = PatchEngine()
     phrase_order = graph.get_section_phrases(section_id)
-    affected = engine.identify_affected_phrases(script, phrase_order)
+    # A revision that silently applies to nothing looks exactly like one that
+    # worked: the result carried an empty `affected_phrases` and no error, so a
+    # mistyped section or phrase id read as "the critic's fix landed". Every op
+    # names a target and every target has to exist.
+    if not phrase_order:
+        return {
+            "error": f"Unknown section '{section_id}' in '{piece_id}'",
+            "sections": sorted({
+                ps.slot.section_id for ps in graph.phrases.values() if ps.slot
+            }),
+        }
+    unknown = sorted({
+        op.target_phrase
+        for op in ops
+        if op.target_phrase and op.target_phrase not in graph.phrases
+    })
+    if unknown:
+        return {
+            "error": f"Unknown target phrase(s): {', '.join(unknown)}",
+            "phrases_in_section": phrase_order,
+        }
+    unknown_ops = sorted({op.operation for op in ops if op.operation not in _REVISION_OPS})
+    if unknown_ops:
+        return {
+            "error": f"Unknown revision operation(s): {', '.join(unknown_ops)}",
+            "operations": sorted(_REVISION_OPS),
+        }
 
+    affected = engine.identify_affected_phrases(script, phrase_order)
+    applied = 0
     for op in ops:
         if op.target_phrase and op.target_phrase in graph.phrases:
             graph.phrases[op.target_phrase] = engine.apply_revision_op(
                 op, graph.phrases[op.target_phrase]
             )
+            applied += 1
 
     warnings = engine.validate_edit_coherence(affected, phrase_order)
     graph.save(str(workspace / "piece_graph.json"))
 
     return {
+        "ops_applied": applied,
         "affected_phrases": affected,
         "warnings": warnings,
         "needs_recomposition": [
@@ -2830,6 +2876,14 @@ def get_composition_brief(
 
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
+    if phrase_id not in graph.phrases:
+        # `build_brief` raises a KeyError with a good message inside it, but a
+        # traceback is not a result. Every other tool returns one.
+        return {
+            "error": f"Unknown phrase '{phrase_id}' in '{piece_id}'",
+            "phrases": sorted(graph.phrases)[:20],
+            "hint": "get_section_status(piece_id, section_id) lists a section's phrases.",
+        }
     brief = build_brief(graph, phrase_id, n_exemplars=n_exemplars, composer=composer)
     if _persist_brief_receipt(graph, phrase_id, brief):
         graph.save(str(workspace / "piece_graph.json"))
@@ -3984,7 +4038,12 @@ def list_phrase_candidates(piece_id: str, phrase_id: str) -> Dict[str, Any]:
     answer. It must not also mean "this piece does not exist" — the two are
     indistinguishable to a caller and the second is a typo worth reporting.
     """
-    _load_graph(piece_id)  # raises _MissingPiece, which @_tool turns into an error
+    graph = _load_graph(piece_id)  # raises _MissingPiece; @_tool returns it
+    if phrase_id not in graph.phrases:
+        return {
+            "error": f"Unknown phrase '{phrase_id}' in '{piece_id}'",
+            "phrases": sorted(graph.phrases)[:20],
+        }
     out: Dict[str, Any] = {"phrase_id": phrase_id, "candidates": []}
     for path in sorted(_candidates_dir(piece_id).glob(f"{phrase_id}__cand_*.json")):
         try:

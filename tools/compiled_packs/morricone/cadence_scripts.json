@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_modal_plagal",
+    "type": "Modal plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "iv\u2013i or bVII\u2013i, no leading tone",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "cad_aeolian_close",
+    "type": "Aeolian close",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "bVI\u2013bVII\u2013i",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "cad_suspended_close",
+    "type": "Suspended close",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The melody ends on 2 or 5 over the tonic",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "cad_ostinato_cessation",
+    "type": "Ostinato cessation",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The repeating figure simply stops",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "cad_picardy_third",
+    "type": "Picardy third",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Minor throughout, major triad at the last bar",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "morricone/harmonic-language.md"
+  },
+  {
+    "id": "cad_held_drone",
+    "type": "Held drone",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The bass pedal outlasts everything above it",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "morricone/harmonic-language.md"
+  }
+]

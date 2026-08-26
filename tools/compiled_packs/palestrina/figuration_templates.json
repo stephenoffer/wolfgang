@@ -369,5 +369,176 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_point_of_imitation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Point of imitation",
+    "description": "a motif stated by one voice and answered by the others at staggered entries, usually a fourth or fifth apart. Each phrase of text gets its own, and the next point begins before the previous one has finished. That overlap is the technique.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_overlapping_cadences",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Overlapping cadences",
+    "description": "as one voice reaches its cadence, another begins the next point. A cadence where every voice stops together is an ending, and there should be very few.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_reduced_scoring",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Reduced scoring",
+    "description": "dropping from five voices to two or three for a phrase, then returning. The principal means of shaping, and this repertoire's equivalent of a dynamic change.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_voice_pairing",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Voice pairing",
+    "description": "two voices in thirds or sixths answered by the other two. Contrast without changing the number of parts.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_homophonic_declamation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Homophonic declamation",
+    "description": "all voices in the rhythm of the words for one short phrase. Used for the most important line of text, and its rarity is what makes it land.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_full_texture_climax",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Full-texture climax",
+    "description": "all voices sounding together for the first time, placed late.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suspension_and_resolution",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Suspension and resolution",
+    "description": "a voice holds while the bass moves, creating a strong-beat dissonance, then falls by step. The only licensed strong-beat dissonance, and the engine of the expression.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suspension_chain",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Suspension chain",
+    "description": "several in succession, the resolution of one preparing the next.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_passing_dissonance_on_a_weak_beat",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Passing dissonance on a weak beat",
+    "description": "approached and left by step. The other permitted dissonance.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cambiata",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Cambiata",
+    "description": "down a step, down a third, up a step, up a step. The one licensed irregular figure and it sounds unmistakably of the period.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_portamento_anticipation",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Portamento / anticipation",
+    "description": "the cadential note arrived at early as a short note before the beat.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_arch",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The arch",
+    "description": "one high point per phrase, approached and left by step. The peak is not repeated.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_leap_answered_by_step_in_the_opposite_direction",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Leap answered by step in the opposite direction",
+    "description": "after any leap of a fourth or more, the line steps back inside it.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stepwise_motion_overwhelmingly",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Stepwise motion overwhelmingly",
+    "description": "around 80% of intervals. A leap is an event.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_clivis_at_a_cadence",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The clivis at a cadence",
+    "description": "the standard cadential formula: the upper voice suspends over the penultimate bass, resolves down, and the leading tone rises to the final.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_triads_in_root_position_and_first_inversion",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Triads in root position and first inversion",
+    "description": "the whole vocabulary. No seventh chords except as suspensions.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_musica_ficta",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Musica ficta",
+    "description": "the leading tone raised at cadences, and B-flat used to avoid a tritone against F. The only chromaticism in the style.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_plagal_cadence_for_a_final_amen",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Plagal cadence for a final Amen",
+    "description": "IV to I, all voices, extended.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_rather_than_tonal",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal rather than tonal",
+    "description": "the piece is in a mode, and the cadence points are the mode's own degrees, not a tonic-dominant axis.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

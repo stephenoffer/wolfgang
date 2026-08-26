@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_phase_realignment",
+    "type": "Phase realignment",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Two canonic voices return to unison after phasing apart",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "cad_cycle_completion",
+    "type": "Cycle completion",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The rhythmic cycle returns to its downbeat alignment",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "cad_substitution_complete",
+    "type": "Substitution complete",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Every rest in the pattern has been filled with a note",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "cad_augmentation_arrival",
+    "type": "Augmentation arrival",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The augmented voice reaches its longest value",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "cad_chord_cycle_return",
+    "type": "Chord-cycle return",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The slow harmonic cycle returns to its first chord",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "cad_unison_stop",
+    "type": "Unison stop",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "All players articulate the pattern together and cease",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "reich/harmonic-language.md"
+  }
+]

@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_row_completion",
+    "type": "Row completion",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The aggregate finishes; all twelve pitch classes have sounded",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "cad_symmetrical_arrival",
+    "type": "Symmetrical arrival",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The row's palindromic centre lands on a fixed register",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "cad_registral_fixing",
+    "type": "Registral fixing",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A pitch returns to the exact octave it held earlier",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "cad_silence",
+    "type": "Silence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A rest longer than any note in the phrase",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "cad_dynamic_extinction",
+    "type": "Dynamic extinction",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "ppp on an isolated single note",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "cad_klangfarben_cadence",
+    "type": "Klangfarben cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The final gesture passed between three instruments",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "webern/harmonic-language.md"
+  }
+]

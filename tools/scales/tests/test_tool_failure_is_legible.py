@@ -93,12 +93,107 @@ def test_the_failure_names_the_piece_and_says_what_to_do(name, fn, sig):
 
 def test_an_empty_result_never_doubles_as_a_missing_piece(tmp_path, monkeypatch):
     """`list_phrase_candidates` returned an empty list for a piece that does not
-    exist, which is the same answer it gives for a phrase that simply has no
-    candidates yet."""
+    exist — the same answer it gives for a real phrase that simply has no
+    candidates yet. Three different situations must give three answers: no such
+    piece, no such phrase, and no candidates."""
     monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
-    ghost = scales_mod.list_phrase_candidates(_GHOST, "p1")
-    assert "error" in ghost
+    assert "error" in scales_mod.list_phrase_candidates(_GHOST, "p1")
 
-    scales_mod.init_workspace("real", mode="compose_from_text", description="x")
-    real = scales_mod.list_phrase_candidates("real", "p1")
+    scales_mod.init_workspace("real", mode="compose_from_text", description="a piece in C major")
+    scales_mod.build_form_graph("real", form="ternary", key="C major")
+    assert "error" in scales_mod.list_phrase_candidates("real", "no-such-phrase")
+
+    real = scales_mod.list_phrase_candidates("real", "m1_a_p1")
     assert "error" not in real and real["candidates"] == [], real
+
+
+# ── The second dimension: a real piece, a bad section or phrase id ──────────
+
+
+@pytest.fixture()
+def planned_piece(tmp_path, monkeypatch):
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    scales_mod.init_workspace("real", mode="compose_from_text", description="a piece in C major")
+    scales_mod.build_form_graph("real", form="ternary", key="C major")
+    return "real"
+
+
+def _tools_taking_a_section_or_phrase():
+    for name, fn, sig in _tools_taking_a_piece_id():
+        if {"section_id", "phrase_id"} & set(sig.parameters):
+            yield name, fn, sig
+
+
+@pytest.mark.parametrize(
+    "name,fn,sig", list(_tools_taking_a_section_or_phrase()), ids=lambda v: str(v)[:40]
+)
+def test_a_bad_section_or_phrase_id_is_reported(planned_piece, name, fn, sig):
+    args = {}
+    for p in sig.parameters.values():
+        if p.default is not inspect.Parameter.empty:
+            continue
+        if p.name == "piece_id":
+            args[p.name] = planned_piece
+        elif p.name in ("section_id", "phrase_id"):
+            args[p.name] = "no-such-id"
+        elif p.annotation in (str, "str"):
+            args[p.name] = "x"
+        else:
+            args[p.name] = []
+    try:
+        result = fn(**args)
+    except (TypeError, ValueError):
+        return
+    except Exception as exc:  # noqa: BLE001
+        pytest.fail(f"{name} raised {type(exc).__name__} for a bad id: {exc}")
+    assert isinstance(result, dict) and "error" in result, (
+        f"{name} accepted a nonexistent section/phrase and returned: {result}"
+    )
+
+
+def test_a_revision_that_applies_to_nothing_is_an_error(planned_piece):
+    """A revision that silently applies to nothing looks exactly like one that
+    worked: the result carried an empty `affected_phrases` and no error, so a
+    mistyped id read as 'the critic's fix landed'."""
+    out = scales_mod.apply_revision(planned_piece, "no-such-section", [])
+    assert "error" in out and out.get("sections")
+
+    out = scales_mod.apply_revision(
+        planned_piece, "m1_a", [{"target_phrase": "ghost", "operation": "re_realize"}]
+    )
+    assert "error" in out and "ghost" in out["error"]
+
+
+def test_an_unrecognised_revision_operation_is_an_error(planned_piece):
+    """The patch engine logs and skips an operation it does not know, so a typo
+    in a critic's revision script came back as a successful revision that
+    changed nothing."""
+    out = scales_mod.apply_revision(
+        planned_piece, "m1_a", [{"target_phrase": "m1_a_p1", "operation": "make_it_nicer"}]
+    )
+    assert "error" in out
+    assert "set_articulation" in out.get("operations", []), out
+
+
+def test_a_valid_revision_reports_how_many_ops_it_applied(planned_piece):
+    out = scales_mod.apply_revision(
+        planned_piece, "m1_a", [{"target_phrase": "m1_a_p1", "operation": "re_realize"}]
+    )
+    assert "error" not in out
+    assert out["ops_applied"] == 1
+    assert out["affected_phrases"] == ["m1_a_p1"]
+
+
+def test_the_documented_operations_are_the_implemented_ones():
+    """The critic is handed a table of operations in music-critic.md. If the
+    table and the engine disagree, the critic writes ops that do nothing."""
+    from pathlib import Path
+
+    from scales.scales import _REVISION_OPS
+
+    doc = Path(".claude/agents/music-critic.md")
+    if not doc.exists():
+        pytest.skip("critic guidance not present")
+    text = doc.read_text()
+    for op in _REVISION_OPS:
+        assert f"`{op}`" in text, f"{op} is implemented but not offered to the critic"

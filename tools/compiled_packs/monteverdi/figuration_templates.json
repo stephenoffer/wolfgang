@@ -369,5 +369,203 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_rising_line_for_rising_text",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "Rising line for rising text",
+    "description": "*ascende*, *cielo*, *alto*. Literal and deliberate.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_falling_chromatic_line_for_grief",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "Falling chromatic line for grief",
+    "description": "*dolore*, *morte*, *pianto*. Usually a descending fourth by semitones.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_written_sigh",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "The written sigh",
+    "description": "a rest inside a word, then a falling second. *Sospiro* painted by an actual gap.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fast_imitative_scattering_for_flight",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "Fast imitative scattering for flight",
+    "description": "*fugge*, *vola*: the voices chase each other in close entries.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stillness_for_stillness",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "Stillness for stillness",
+    "description": "a held chord, all voices, no motion, for *silenzio* or *dorme*.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_silence_before_the_crucial_word",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "Silence before the crucial word",
+    "description": "everything stops, then the word arrives alone. The most Monteverdian gesture there is and it costs one rest.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sudden_homophony_for_a_line_that_must_be_understood",
+    "category": "composer_device",
+    "section": "Word-painting devices",
+    "name": "Sudden homophony for a line that must be understood",
+    "description": "all voices in the rhythm of speech, then back to polyphony.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unprepared_dissonance",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "Unprepared dissonance",
+    "description": "a seventh or ninth entered without preparation because the text demands it. Forbidden in the older practice; the entire point of the newer one.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cross_relation",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "Cross relation",
+    "description": "the same pitch class natural in one voice and altered in another, close together. Harsh and intentional.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_descending_tetrachord_ground",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "The descending tetrachord ground",
+    "description": "`A3 G3 F3 E3` repeated as an ostinato under changing upper material. The lament bass; the *Lamento della Ninfa* is built entirely on one, and it is the most reusable device in his vocabulary.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_slow_harmonic_rhythm_under_recitative",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "Slow harmonic rhythm under recitative",
+    "description": "one chord for a bar or two while the voice declaims freely above it.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_bass_descent",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "Chromatic bass descent",
+    "description": "semitone by semitone, for grief.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_unresolved_suspension",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "The unresolved suspension",
+    "description": "a dissonance resolving onto another dissonance rather than a consonance.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_harmony_with_expressive_ficta",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the *seconda pratica*",
+    "name": "Modal harmony with expressive ficta",
+    "description": "the raised leading tone used for intensity rather than only at cadences.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stile_concitato",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Stile concitato",
+    "description": "the \"agitated style\": rapid repeated notes on one pitch, `C4s \u00d716`, for warfare and passion. His own invention and unmistakable.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_speech_rhythm",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Speech rhythm",
+    "description": "the vocal line following the accentuation of the words, not the barline. Long notes on stressed syllables, short runs on unstressed.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_echo",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Echo",
+    "description": "a phrase repeated immediately, quieter, often by a different voice or at a distance.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_concertato_contrast",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Concertato contrast",
+    "description": "a small group answered by a large one, or voices answered by instruments. The Baroque's founding textural idea.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_ritornello",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "The ritornello",
+    "description": "a short instrumental refrain between vocal sections.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ornamental_division_on_a_long_note",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Ornamental division on a long note",
+    "description": "the voice decorating a held pitch with rapid written-out figuration.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_strophic_variation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Strophic variation",
+    "description": "the same bass and harmonic plan, new melody in each verse. Between strict strophic and through-composed.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_recitative_aria_alternation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Recitative \u2014 aria alternation",
+    "description": "declamation for narrative, lyrical measured writing for reflection. The structural invention that makes opera possible.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

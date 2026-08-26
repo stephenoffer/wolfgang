@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_cycle_completion",
+    "type": "Cycle completion",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The chord loop returns to its first chord",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "glass/harmonic-language.md"
+  },
+  {
+    "id": "cad_cadential_module",
+    "type": "Cadential module",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A short module whose only job is to close a section",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "glass/harmonic-language.md"
+  },
+  {
+    "id": "cad_additive_exhaustion",
+    "type": "Additive exhaustion",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The additive process reaches its longest form, then stops",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "glass/harmonic-language.md"
+  },
+  {
+    "id": "cad_aeolian_close",
+    "type": "Aeolian close",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "bVII\u2013i, no leading tone",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "glass/harmonic-language.md"
+  },
+  {
+    "id": "cad_sudden_subtraction",
+    "type": "Sudden subtraction",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Voices drop out to leave the bass cycle alone",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "glass/harmonic-language.md"
+  },
+  {
+    "id": "cad_held_tonic_drone",
+    "type": "Held tonic drone",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The cycle stops on its first chord and sustains",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "glass/harmonic-language.md"
+  }
+]

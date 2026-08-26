@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_modal_plagal",
+    "type": "Modal plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "iv\u2013i, or bVI\u2013bVII\u2013i",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "zimmer/harmonic-language.md"
+  },
+  {
+    "id": "cad_ostinato_cessation",
+    "type": "Ostinato cessation",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The driving figure stops dead",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "zimmer/harmonic-language.md"
+  },
+  {
+    "id": "cad_suspended_add_9",
+    "type": "Suspended add-9",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The final chord carries an added second",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "zimmer/harmonic-language.md"
+  },
+  {
+    "id": "cad_chromatic_mediant_arrival",
+    "type": "Chromatic-mediant arrival",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Tonic approached from bIII or bVI",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "zimmer/harmonic-language.md"
+  },
+  {
+    "id": "cad_drone_persistence",
+    "type": "Drone persistence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Harmony changes above a bass that never moves",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "zimmer/harmonic-language.md"
+  },
+  {
+    "id": "cad_textural_dissolve",
+    "type": "Textural dissolve",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Layers removed one at a time until silence",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "zimmer/harmonic-language.md"
+  }
+]

@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_tintinnabuli_unison",
+    "type": "Tintinnabuli unison",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "M-voice and T-voice converge on the tonic triad",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "arvo-part/harmonic-language.md"
+  },
+  {
+    "id": "cad_modal_descent_to_final",
+    "type": "Modal descent to final",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The M-voice steps down to the final",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "arvo-part/harmonic-language.md"
+  },
+  {
+    "id": "cad_silence_between_phrases",
+    "type": "Silence between phrases",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A full rest separating each phrase",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "arvo-part/harmonic-language.md"
+  },
+  {
+    "id": "cad_triad_in_open_spacing",
+    "type": "Triad in open spacing",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The final chord voiced in fifths and octaves",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "arvo-part/harmonic-language.md"
+  },
+  {
+    "id": "cad_fade_on_the_triad",
+    "type": "Fade on the triad",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Long diminuendo on the held tonic triad",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "arvo-part/harmonic-language.md"
+  },
+  {
+    "id": "cad_bare_octave",
+    "type": "Bare octave",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Two voices only, no third",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "arvo-part/harmonic-language.md"
+  }
+]

@@ -1,1 +1,74 @@
-[]
+[
+  {
+    "id": "phase_realignment",
+    "name": "Phase realignment",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "End of a phase piece"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "cycle_completion",
+    "name": "Cycle completion",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Section ends"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "substitution_complete",
+    "name": "Substitution complete",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Build sections"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "augmentation_arrival",
+    "name": "Augmentation arrival",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Ends of movements"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "chord_cycle_return",
+    "name": "Chord-cycle return",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Large-scale form"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "reich/harmonic-language.md"
+  },
+  {
+    "id": "unison_stop",
+    "name": "Unison stop",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Final bar"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "reich/harmonic-language.md"
+  }
+]

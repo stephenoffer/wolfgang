@@ -351,5 +351,176 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_major_minor_inflection",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "Major\u2013minor inflection",
+    "description": "the same melody, the same bass, one note changed from major to minor and back. Often on a repeat of a phrase just heard. His single most characteristic gesture and it costs one accidental.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_flat_submediant_vi",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "The flat submediant (\u266dVI)",
+    "description": "arriving unprepared. C major side-stepping to A-flat major. No pivot, no preparation; the shift itself is the event.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediant_relations",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "Chromatic mediant relations",
+    "description": "keys a third apart with no common dominant: E major from C major, E-flat from G. Schubert modulates by colour rather than by function.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_common_tone_modulation",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "The common-tone modulation",
+    "description": "one note held while everything else moves into a remote key. The held note makes the impossible sound inevitable.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_prolonged_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "Prolonged harmony",
+    "description": "a single chord held for two, four, eight bars while the accompaniment figure continues. Stillness as expression.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_augmented_sixth_as_a_door",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "The augmented sixth as a door",
+    "description": "used to leave a key sideways rather than to approach a dominant.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture_throughout",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "Modal mixture throughout",
+    "description": "borrowing freely from the parallel minor in a major-key piece (\u266dIII, \u266dVI, iv). Not a moment of darkness but a constant colour.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_a_dominant_that_resolves_somewhere_unexpected",
+    "category": "composer_device",
+    "section": "Harmonic devices \u2014 the heart of the style",
+    "name": "A dominant that resolves somewhere unexpected",
+    "description": "set up conventionally, then the resolution goes to a chromatic chord instead.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_line",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The long line",
+    "description": "a melody of eight to sixteen bars with no interior cadence. Do not break it into two-bar units.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_as_an_anchor",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repeated note as an anchor",
+    "description": "the melody returns to one pitch again and again while the harmony beneath changes its meaning. Deeply his.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_sigh_figure",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The sigh figure",
+    "description": "a falling second, slurred, often repeated in sequence.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_doubled_at_the_octave_or_the_sixth_for_a_strophe_s_return_13_ornamental_turn_on_a_long_note",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody doubled at the octave or the sixth** for a strophe's return.\n\n13. **Ornamental turn on a long note",
+    "description": "a decorated arrival, vocal in origin.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_vocal_cadence",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The vocal cadence",
+    "description": "the melody falls to the tonic by step from above, unhurried, with the accompaniment continuing under it.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_strophic_variation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Strophic variation",
+    "description": "the same music repeated with a changed accompaniment, a changed mode, or a changed register. Schubert varies by *colour*, not by development. This is the alternative to Beethovenian argument.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_three_key_exposition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The three-key exposition",
+    "description": "a sonata exposition visiting a third key before settling, instead of moving straight to the dominant.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_lyrical_second_subject",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The long lyrical second subject",
+    "description": "often the emotional centre of the movement rather than a foil to the first.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_coda_that_lingers",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The coda that lingers",
+    "description": "the material recalled quietly rather than summarised loudly.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_trudging_accompaniment_as_a_whole_piece_character",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Trudging accompaniment as a whole-piece character",
+    "description": "one figure maintained for a movement, establishing a walking, wandering quality. The *Winterreise* manner, and it works in instrumental music too.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_a_silence_before_a_modulation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "A silence before a modulation",
+    "description": "a rest, then the music resumes in a distant key with no preparation.",
+    "source_file": "schubert/schubert-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

@@ -360,5 +360,176 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_imitation_at_the_octave_or_fifth",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Imitation at the octave or fifth",
+    "description": "a voice states the subject, another follows one or two bars later. The basic Baroque texture, and the thing most often missing from generated writing.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_inversion",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Inversion",
+    "description": "the same shape upside down: every rising interval falls by the same amount. Used for the answer, for an episode, or for a later entry.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_augmentation_and_diminution",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Augmentation and diminution",
+    "description": "the subject in double or half values. Augmentation at a final entry is a standard climax device.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stretto",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Stretto",
+    "description": "entries overlapping more closely than the subject's length, so the voices pile up. Reserved for the end of a fugue; it is the intensification.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_countersubject",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Countersubject",
+    "description": "a fixed second line that accompanies the subject every time it appears. Invertible: it must work above *or* below.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequence",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Sequence",
+    "description": "a one- or two-bar unit transposed exactly, three or four times, usually falling by step or by fifth. The engine of every episode.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pedal_point",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Pedal point",
+    "description": "the bass locks on the dominant while the upper voices work above it, for four to sixteen bars before a final cadence.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_voice_count_change_as_punctuation",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Voice-count change as punctuation",
+    "description": "four voices thin to two for an episode and return for the next entry. This is Baroque dynamics.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suspension_chain",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Suspension chain",
+    "description": "a held note becomes dissonant when the bass moves, falls by step, is held again. Chains of four or six are ordinary. Baroque expression lives here; a texture with no suspensions is bland however correct.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_circle_of_fifths",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Circle of fifths",
+    "description": "the bass falling a fifth and rising a fourth for six or eight chords. Combined with a sequence in the upper voices it will fill any episode.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_fourth_the_lament",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Chromatic fourth (the lament)",
+    "description": "a descending line covering a fourth by semitones: `A3 Ab3 G3 Gb3 F3 E3`. Used for grief, and often as a ground bass.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_compound_melody",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Compound melody",
+    "description": "a single line implying two voices by alternating registers: `G3s D4s F3s D4s E3s D4s`. One hand, two audible parts. This is how a solo violin or a keyboard line implies harmony.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_written_out_ornamentation",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Written-out ornamentation",
+    "description": "the melodic line decorated in real note values rather than with symbols, especially in slow movements.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_neapolitan_sixth_and_the_diminished_seventh_at_moments_of_intensity_usually_approaching_a_cadence_in_a_minor_key_15_picardy_third",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Neapolitan sixth and the diminished seventh** at moments of intensity,\n    usually approaching a cadence in a minor key.\n\n15. **Picardy third",
+    "description": "a minor-key piece ending on a major tonic chord. The period default for a final cadence.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ritornello",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ritornello",
+    "description": "a fixed passage returning in different keys between episodes. The concerto and many arias are built on it.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_binary_form_with_a_repeat",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Binary form with a repeat",
+    "description": "two halves, the first modulating to the dominant, the second returning. The dance-suite default.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_final_entry_in_augmentation_over_a_pedal",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The final entry in augmentation over a pedal",
+    "description": "the standard fugal peroration: subject slowed to double values, bass locked on the dominant.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_written_out_cadenza_before_the_final_cadence",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Written-out cadenza before the final cadence",
+    "description": "a free flourish, often over a held chord, in the preludes and concertos.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_terraced_dynamics",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Terraced dynamics",
+    "description": "the level changes at a structural point and holds. Not hairpins, which are a later notation.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

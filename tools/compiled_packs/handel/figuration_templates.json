@@ -360,5 +360,167 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_french_overture_opening",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "The French overture opening",
+    "description": "dotted rhythms, slow, ceremonial, both hands in the same rhythm: `[D4,F#4,A4]dq [D4,F#4,A4]e`. Followed by a fast fugal section. The standard way to begin something important.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_terraced_dynamics",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "Terraced dynamics",
+    "description": "`f` for a whole section, `p` for the next. No hairpins. The contrast is architectural.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_echo",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "The echo",
+    "description": "a phrase repeated immediately and softer, often by a smaller group. The period's dynamic vocabulary in one gesture.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_grand_pause_before_a_final_cadence",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "The grand pause before a final cadence",
+    "description": "everything stops, then the cadence. Used in every chorus.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_homophonic_declamation",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "Homophonic declamation",
+    "description": "all voices in the same rhythm on one line of text or one gesture, then back to counterpoint. Rare enough to be striking.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_dominant_pedal",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "The long dominant pedal",
+    "description": "eight to sixteen bars, with the upper parts accumulating. The build to a final entry.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unison_statement",
+    "category": "composer_device",
+    "section": "Rhetorical devices",
+    "name": "Unison statement",
+    "description": "everything on one line in octaves, for an opening or a sudden emphasis.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequential_repetition",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "Sequential repetition",
+    "description": "a four-bar idea stated, then a step or a third lower, then again. Handel builds by sequence more than by development, and the transposition should be exact.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_ground_bass",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "The ground bass",
+    "description": "a repeating bass pattern (often a descending tetrachord) with continuously varied material above. Whole movements are built this way.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ritornello",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "Ritornello",
+    "description": "a fixed instrumental passage returning between vocal or solo episodes, in different keys.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_da_capo_aria",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "Da capo aria",
+    "description": "A, contrasting B, then A again ornamented by the performer. If writing out the return, decorate it.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_written_out_cadenza_before_the_final_cadence_of_an_aria_13_melodic_sequence_over_a_walking_bass",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "The written-out cadenza before the final cadence** of an aria.\n\n13. **Melodic sequence over a walking bass",
+    "description": "the two most common ingredients, combined; it will fill any transitional passage idiomatically.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_wide_singable_intervals",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "Wide, singable intervals",
+    "description": "Handel's lines leap more than Bach's and are more vocal in shape: a rising fourth or fifth, then stepwise descent.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_declamation",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "Repeated-note declamation",
+    "description": "the same pitch several times in speech rhythm, for emphasis.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_circle_of_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Circle of fifths",
+    "description": "plain, long, and used without embarrassment.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suspension_chains_at_cadences",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Suspension chains at cadences",
+    "description": "4-3 and 7-6, the standard Baroque approach.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_neapolitan_sixth_at_a_moment_of_pathos_in_a_minor_key_aria_19_picardy_third_to_end_a_minor_key_movement_20_slow_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The Neapolitan sixth** at a moment of pathos in a minor-key aria.\n\n19. **Picardy third** to end a minor-key movement.\n\n20. **Slow harmonic rhythm",
+    "description": "one chord per bar or per two bars, especially in the grand choruses. Handel prolongs where Bach moves.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_deceptive_cadence_to_extend_a_close",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Deceptive cadence to extend a close",
+    "description": "V to vi, then the cadence restated and completed.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

@@ -3,6 +3,10 @@
     {
       "type": "PAC",
       "frequency_weight": 0.5
+    },
+    {
+      "type": "plagal",
+      "frequency_weight": 0.5
     }
   ],
   "chromatic_techniques": [

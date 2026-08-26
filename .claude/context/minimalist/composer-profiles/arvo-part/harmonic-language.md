@@ -150,3 +150,23 @@ A,3 | A,3 | A,3 |
 - Hillier, Paul. *Arvo Pärt* (Oxford Studies of Composers), 1997
 - Brauneiss, Leopold. "Musical Archetypes: The Basic Elements of the Tintinnabuli Style," in *The Cambridge Companion to Arvo Pärt*, 2012
 - Cizmic, Maria. *Performing Pain: Music and Trauma in Eastern Europe*, 2012
+
+---
+
+## Cadences and closure
+
+Tintinnabuli has two voices — a melodic voice moving stepwise and a
+tintinnabuli voice sounding only tonic-triad notes — and closure is when they
+arrive together on the triad.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Tintinnabuli unison | M-voice and T-voice converge on the tonic triad | End of every phrase and piece | The bell settles |
+| Modal descent to final | The M-voice steps down to the final | Phrase ends | Plainchant closure |
+| Silence between phrases | A full rest separating each phrase | Everywhere | Structural breathing |
+| Triad in open spacing | The final chord voiced in fifths and octaves | Final bar | Resonance |
+| Fade on the triad | Long diminuendo on the held tonic triad | Endings | Stillness |
+| Bare octave | Two voices only, no third | Severe closes | Austerity |
+
+The tonic triad is present throughout, so closure is a matter of *arrival* and
+of silence, never of tension resolving.

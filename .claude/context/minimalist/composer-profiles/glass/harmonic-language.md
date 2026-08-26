@@ -152,3 +152,22 @@ A,4 z4 | G,4 z4 | F,4 z4 | E,4 z4 |
 - Glass, Philip. *Words Without Music: A Memoir*, 2015
 - Potter, Keith. *Four Musical Minimalists* (Glass chapter), 2000
 - Schwarz, K. Robert. *Minimalists*, 1996
+
+---
+
+## Cadences and closure
+
+Glass's harmony is functional in vocabulary and non-functional in behaviour:
+triads and sevenths, but arranged in cycles that return rather than resolve.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Cycle completion | The chord loop returns to its first chord | End of every module | Arrival by return, not by resolution |
+| Cadential module | A short module whose only job is to close a section | Section ends | Punctuation |
+| Additive exhaustion | The additive process reaches its longest form, then stops | Ends of movements | Completion of a process |
+| Aeolian close | bVII–i, no leading tone | Minor-mode sections | Modal, unforced |
+| Sudden subtraction | Voices drop out to leave the bass cycle alone | Transitions | Thinning as a cadence |
+| Held tonic drone | The cycle stops on its first chord and sustains | Final close | Rest |
+
+A V–I with a leading tone is available to him but rare; the loop closing on
+itself is what the ear hears as an ending.

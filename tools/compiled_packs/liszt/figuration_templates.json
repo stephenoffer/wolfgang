@@ -360,5 +360,203 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_thematic_transformation",
+    "category": "composer_device",
+    "section": "Thematic devices",
+    "name": "Thematic transformation",
+    "description": "the same interval sequence, new character. Slow and sustained, then fast and martial, then decorated and lyrical. Change everything except the intervals.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_theme_in_a_new_register",
+    "category": "composer_device",
+    "section": "Thematic devices",
+    "name": "The theme in a new register",
+    "description": "the identical material two octaves up or down is a different piece of music at the keyboard.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_rhythmic_augmentation_into_a_peroration",
+    "category": "composer_device",
+    "section": "Thematic devices",
+    "name": "Rhythmic augmentation into a peroration",
+    "description": "the theme in double values, fortissimo, in octaves, at the end.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fragmentation_into_figuration",
+    "category": "composer_device",
+    "section": "Thematic devices",
+    "name": "Fragmentation into figuration",
+    "description": "the theme's head becomes the basis of a run or a tremolo, so the virtuosity is thematic rather than decorative.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_octave_passages",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Octave passages",
+    "description": "the melody in octaves in one or both hands, at speed. The bravura default.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_third_hand",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "The \"third hand\"",
+    "description": "the melody in the middle register with figuration above *and* below it, shared between the hands.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_alternating_hands_on_one_line",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Alternating hands on one line",
+    "description": "a single scale or arpeggio split between the hands so it can run faster and wider than either could alone.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_orchestral_tremolo",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Orchestral tremolo",
+    "description": "a low tremolo under a sustained chordal melody, transcribing a string section.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cadenza",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Cadenza",
+    "description": "an unmeasured or freely-measured flourish, often over a held harmony, placed before a return or a final statement.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_virtuosity",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Repeated-note virtuosity",
+    "description": "the same pitch struck rapidly with alternating fingers, a device borrowed from Paganini.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_wide_leaps_as_gesture",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Wide leaps as gesture",
+    "description": "the hand jumping two or three octaves between beats, the leap itself being the effect.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chordal_recitative",
+    "category": "composer_device",
+    "section": "Textural and pianistic devices",
+    "name": "Chordal recitative",
+    "description": "a declamatory passage in unison or in bare octaves, freely timed, between sections.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_third_relations",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic third relations",
+    "description": "keys and chords a third apart, with no functional connection. Liszt uses these more freely than anyone before him.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_augmented_triad",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The augmented triad",
+    "description": "as a colour and as a pivot. Symmetrical, so it belongs to no key, and it is his favourite way of dissolving one.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_diminished_seventh_sequences",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Diminished-seventh sequences",
+    "description": "the same shape sliding by minor thirds, obliterating tonality for a passage.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_and_other_symmetrical_scales_especially_in_the_late_works_used_as_transitional_colour_17_bare_open_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone and other symmetrical scales**, especially in the late works,\n    used as transitional colour.\n\n17. **Bare open fifths",
+    "description": "for archaism, for the religious works, and for emptiness.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_dissonance_at_a_section_s_end",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved dissonance at a section's end",
+    "description": "the late works simply stop on an unresolved chord.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_harmony_from_hungarian_sources",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal harmony from Hungarian sources",
+    "description": "the augmented second, the \"Gypsy\" scale, and drone accompaniment in the rhapsodies.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_double_function_form",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Double-function form",
+    "description": "one movement that is simultaneously a sonata and a four-movement cycle. Ambitious; only relevant for a long piece.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_slow_introduction_that_becomes_the_main_theme",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The slow introduction that becomes the main theme",
+    "description": "material introduced ambiguously and then revealed.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_apotheosis",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The apotheosis",
+    "description": "the theme returning at the end transformed into a triumphal or hymnic version, at the loudest and widest point of the piece.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_episodic_construction_with_a_returning_idea",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Episodic construction with a returning idea",
+    "description": "the sections contrast strongly and the theme is what unifies them.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

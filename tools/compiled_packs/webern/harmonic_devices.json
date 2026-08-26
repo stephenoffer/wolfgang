@@ -48,6 +48,78 @@
     "source_file": "webern/harmonic-language.md"
   },
   {
+    "id": "row_completion",
+    "name": "Row completion",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Phrase and section ends"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "symmetrical_arrival",
+    "name": "Symmetrical arrival",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Formal centres"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "registral_fixing",
+    "name": "Registral fixing",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Movement ends"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "silence",
+    "name": "Silence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Between everything"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "dynamic_extinction",
+    "name": "Dynamic extinction",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Movement ends"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
+    "id": "klangfarben_cadence",
+    "name": "Klangfarben cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Ends of variations"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "webern/harmonic-language.md"
+  },
+  {
     "id": "bitonality",
     "name": "Bitonality",
     "chord_sequence": [],

@@ -157,3 +157,22 @@ A,2 C2 E2 D2 |
 - Reich, Steve. *Writings on Music 1965–2000*, 2002
 - Potter, Keith. *Four Musical Minimalists*, 2000
 - Schwarz, K. Robert. *Minimalists*, 1996
+
+---
+
+## Cadences and closure
+
+Reich's music closes when a *process* finishes, not when a harmony resolves. The
+harmony is often a single static field for many minutes.
+
+| Closure device | Construction | Where it belongs | Effect |
+|----------------|--------------|------------------|--------|
+| Phase realignment | Two canonic voices return to unison after phasing apart | End of a phase piece | Complete return; audibly the end |
+| Cycle completion | The rhythmic cycle returns to its downbeat alignment | Section ends | Structural closure |
+| Substitution complete | Every rest in the pattern has been filled with a note | Build sections | Saturation |
+| Augmentation arrival | The augmented voice reaches its longest value | Ends of movements | Slowing to rest |
+| Chord-cycle return | The slow harmonic cycle returns to its first chord | Large-scale form | Harmonic frame closes |
+| Unison stop | All players articulate the pattern together and cease | Final bar | Abrupt, exact |
+
+There is no cadence in the functional sense anywhere in this idiom. A dominant
+seventh resolving would be a foreign object.

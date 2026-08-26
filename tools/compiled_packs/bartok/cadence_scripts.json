@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "cad_unison_octave_close",
+    "type": "Unison / octave close",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "All voices converge on one pitch class",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "cad_axis_close",
+    "type": "Axis close",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Arrival on the tonic of the axis system, approached from its tritone",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "cad_modal_cadence",
+    "type": "Modal cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "bVII\u2013i, or Lydian 4th falling to the final",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "cad_fibonacci_arrival",
+    "type": "Fibonacci arrival",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "The climax placed by golden section, then a rapid fall",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "cad_cluster_resolution",
+    "type": "Cluster resolution",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A dense chord thinning to a bare fifth or octave",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "cad_pizzicato_snap",
+    "type": "Pizzicato snap",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "A single sharp attack after silence",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "bartok/harmonic-language.md"
+  }
+]

@@ -129,3 +129,22 @@ K:none
 - [../../../romantic/composer-profiles/wagner/harmonic-language.md](../../../romantic/composer-profiles/wagner/harmonic-language.md) — Core Wagnerian harmonic techniques
 - [orchestration.md](orchestration.md) — Harmonic voicing in the late orchestra
 - [../../late-romantic-harmony.md](../../late-romantic-harmony.md) — Shared Late Romantic vocabulary
+
+---
+
+## Cadences and closure
+
+Wagner's whole technique is the avoidance of cadence — "unendliche Melodie"
+means the harmony is not allowed to close until the drama permits it.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Deceptive | V–vi, or V to an unrelated chord | Constantly, for hours | The withheld resolution that drives the form |
+| Evaded | The cadence begins; a voice enters and diverts it | Scene joints | Continuity across sections |
+| Perfect authentic | V7–I, root position | Only at the end of an act or a drama | Overwhelming, because it has been denied |
+| Plagal / redemption | IV–I in the high strings | Transfiguration endings | Benediction |
+| Chromatic-mediant close | Tonic approached from bIII or bVI | Arrivals of leitmotif | Distance, the mythic |
+| Half-diminished suspension | The Tristan chord resolving to a dominant that then evades | The Tristan idiom | Perpetual yearning |
+
+The single authentic cadence at the end of a five-hour drama is the point: every
+evasion before it is what gives that resolution its force.
