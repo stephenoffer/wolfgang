@@ -21,7 +21,7 @@ from .duration import (
     dur_to_beats,
     largest_dur_at_most,
 )
-from .models import EventIR
+from .models import EventIR, is_keyboard
 from .music_io import layer_ir_to_event_ir
 from .piece_graph import PieceGraph
 
@@ -128,11 +128,21 @@ def assemble(
     if performance_marks:
         _apply_performance_marks(piece_graph, scope, all_events)
 
-    if instrumentation in ("solo_piano", "piano"):
+    # One decider (models.is_keyboard): this whitelist missed `piano_solo` and
+    # `solo piano`, both of which real saved graphs carry — and routing a piano
+    # piece down the ensemble path is the documented cause of the voice-overlap
+    # bar overflow that desynced the hands in every render.
+    if is_keyboard(instrumentation):
         score = _build_piano_score(score, all_events, key_str, meter, tempo_bpm, bar_meta=bar_meta)
     else:
         score = _build_ensemble_score(
-            score, all_events, key_str, meter, tempo_bpm, bar_meta=bar_meta
+            score,
+            all_events,
+            key_str,
+            meter,
+            tempo_bpm,
+            bar_meta=bar_meta,
+            instrumentation=instrumentation,
         )
 
     # Structural barlines: a double bar where a section ends, a final barline at
@@ -325,9 +335,7 @@ def _apply_movement_headings(score, piece_graph, movement_starts: Dict[int, str]
         marking = (getattr(contract, "tempo_marking", "") or "").strip()
         if not marking:
             marking = tempo_word(getattr(contract, "tempo_bpm", 0) or 120)
-        measure = next(
-            (m for m in top.getElementsByClass("Measure") if m.number == bar), None
-        )
+        measure = next((m for m in top.getElementsByClass("Measure") if m.number == bar), None)
         if measure is None:
             continue
         try:
@@ -608,17 +616,54 @@ _NAMED_INSTRUMENTS = {
 }
 
 
-def _instrument_for(staff_name: str):
+# A CHOIR is not a small orchestra. `_build_ensemble_score` was given no
+# instrumentation at all, so it built a vocal piece exactly like an orchestral
+# one and resolved the layer roles through `_LAYER_INSTRUMENTS`: the upper staff
+# became a Piano and the lower a Violoncello. "A sacred motet for four voices"
+# exported as a piano and a cello — with the wrong MIDI programs, the wrong part
+# names, and no way for a singer to read their own line.
+_VOCAL_ROLES = {
+    "treble": "Soprano",
+    "melody": "Soprano",
+    "foreground": "Soprano",
+    "soprano": "Soprano",
+    "cantus": "Soprano",
+    "counter": "Alto",
+    "counter_reply": "Alto",
+    "alto": "Alto",
+    "altus": "Alto",
+    "harmony": "Tenor",
+    "response": "Tenor",
+    "tenor": "Tenor",
+    "tenore": "Tenor",
+    "bass": "Bass",
+    "bassus": "Bass",
+    "baritone": "Baritone",
+}
+
+
+def _instrument_for(staff_name: str, vocal: bool = False):
     """A music21 Instrument for a part name — a real instrument first, then the
-    abstract layer role, then the piano."""
+    abstract layer role, then the piano.
+
+    ``vocal`` routes the abstract layer roles to voice types instead, so a choir
+    part is a Soprano rather than a Piano. A staff that names a REAL instrument
+    still wins, since a cantata genuinely has an orchestra in it.
+    """
     import music21
 
     key = str(staff_name or "").strip().lower().replace(" ", "_").replace("-", "_")
-    cls_name = _NAMED_INSTRUMENTS.get(key) or _LAYER_INSTRUMENTS.get(key)
-    if cls_name is None:
-        # "violin_1" style suffixes, and anything the plan spelled loosely.
-        stem = key.rsplit("_", 1)[0]
-        cls_name = _NAMED_INSTRUMENTS.get(stem) or _LAYER_INSTRUMENTS.get(stem) or "Piano"
+    named = _NAMED_INSTRUMENTS.get(key)
+    if vocal and named is None:
+        cls_name = _VOCAL_ROLES.get(key) or _VOCAL_ROLES.get(key.rsplit("_", 1)[0])
+        if cls_name is None:
+            cls_name = _NAMED_INSTRUMENTS.get(key.rsplit("_", 1)[0]) or "Vocalist"
+    else:
+        cls_name = named or _LAYER_INSTRUMENTS.get(key)
+        if cls_name is None:
+            # "violin_1" style suffixes, and anything the plan spelled loosely.
+            stem = key.rsplit("_", 1)[0]
+            cls_name = _NAMED_INSTRUMENTS.get(stem) or _LAYER_INSTRUMENTS.get(stem) or "Piano"
     try:
         return getattr(music21.instrument, cls_name)()
     except Exception:
@@ -628,11 +673,41 @@ def _instrument_for(staff_name: str):
 # Conventional score order, top to bottom. A score whose parts come out in
 # whatever order a dict happened to iterate is not readable as a score.
 _SCORE_ORDER = (
-    "melody", "foreground", "piccolo", "flute", "oboe", "clarinet", "bassoon",
-    "horn", "trumpet", "trombone", "tuba", "timpani", "percussion", "harp",
-    "counter", "counter_reply", "harmony", "response", "motor", "color",
-    "punctuation", "ornament", "violin_1", "violin_2", "violin", "viola",
-    "cello", "violoncello", "contrabass", "bass", "treble",
+    "melody",
+    "foreground",
+    "piccolo",
+    "flute",
+    "oboe",
+    "clarinet",
+    "bassoon",
+    "horn",
+    "trumpet",
+    "trombone",
+    "tuba",
+    "timpani",
+    "percussion",
+    "harp",
+    "counter",
+    "counter_reply",
+    "harmony",
+    "response",
+    "motor",
+    "color",
+    "punctuation",
+    "ornament",
+    "violin_1",
+    "violin_2",
+    "violin",
+    "viola",
+    "cello",
+    "violoncello",
+    "contrabass",
+    # The GENERIC staff names, and they must sit in staff order: a piece whose
+    # parts are named "treble"/"bass" had them ranked 30 and 29, so `_score_order`
+    # put the bass staff on TOP. It engraved upside down, and every analysis that
+    # indexes `melody_staff=0` read the bass line as the melody.
+    "treble",
+    "bass",
 )
 
 
@@ -655,6 +730,7 @@ def _build_ensemble_score(
     tempo_bpm: int,
     bar_meta: Optional[Dict[int, Dict]] = None,
     ensemble: Optional[List[str]] = None,
+    instrumentation: str = "",
 ):
     """Build an ensemble score with multiple parts.
 
@@ -666,6 +742,13 @@ def _build_ensemble_score(
     a tempo mark at all.
     """
     import music21
+
+    # A choir is not a small orchestra: its parts are voices, not a piano and a
+    # cello. Nothing told this function which it was building.
+    vocal = any(
+        w in str(instrumentation or "").lower()
+        for w in ("choir", "chorus", "choral", "vocal", "satb", "voices", "a_cappella")
+    )
 
     if bar_meta is None:
         bar_meta = {}
@@ -680,7 +763,7 @@ def _build_ensemble_score(
     # simply absent is not a score for that ensemble — the player counting rests
     # has nothing to count, and a section where the flute is tacet reads as a
     # section scored without a flute.
-    for name in (ensemble or ()):
+    for name in ensemble or ():
         staff_events.setdefault(str(name), [])
     ordered = _score_order(staff_events, ensemble)
 
@@ -688,10 +771,27 @@ def _build_ensemble_score(
         staff_evts = staff_events[staff_name]
         is_top_part = idx == 0
         part = music21.stream.Part()
-        part.partName = staff_name.replace("_", " ").title()
+        instrument = _instrument_for(staff_name, vocal=vocal)
+        # A singer reads their own line by its NAME. Naming a choir part
+        # "Treble" because that is the staff it happened to be written on leaves
+        # nobody able to find the alto. Take the resolved voice type instead; an
+        # instrumental part keeps its staff name, which is already how an
+        # orchestration plan spells it ("violin_1" -> "Violin 1").
+        part.partName = (
+            instrument.instrumentName
+            if vocal and getattr(instrument, "instrumentName", None)
+            else staff_name.replace("_", " ").title()
+        )
         part.id = staff_name
         note_map: Dict[int, Any] = {}
-        part.insert(0, _instrument_for(staff_name))
+        part.insert(0, instrument)
+        # A generic staff carries no instrument to imply its clef, and the score
+        # came out with none at all — unreadable, and `detect_melody_buried`
+        # looks for a treble clef to decide which part carries the tune.
+        if staff_name in ("treble", "melody", "foreground"):
+            part.insert(0, music21.clef.TrebleClef())
+        elif staff_name == "bass":
+            part.insert(0, music21.clef.BassClef())
 
         max_bar = max((e.bar for e in events), default=1)
         bars: Dict[int, List[EventIR]] = {}

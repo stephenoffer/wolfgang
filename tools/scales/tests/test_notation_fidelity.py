@@ -1297,7 +1297,10 @@ def test_the_brief_carries_every_continuation_fact(tmp_path, monkeypatch):
     graph.phrases[first].realized = compose_phrase(
         [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e", "dyn": "mf"}]
         * slot.bar_count,
-        key="C major", bar_start=slot.bar_start, phrase_id=first, meter=(4, 4),
+        key="C major",
+        bar_start=slot.bar_start,
+        phrase_id=first,
+        meter=(4, 4),
     )
 
     cont = (_transition_context(graph, second) or {}).get("continuation") or {}
@@ -1334,7 +1337,10 @@ def test_continuation_has_one_implementation(tmp_path, monkeypatch):
     graph.phrases[first].realized = compose_phrase(
         [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e", "dyn": "mf"}]
         * slot.bar_count,
-        key="C major", bar_start=slot.bar_start, phrase_id=first, meter=(4, 4),
+        key="C major",
+        bar_start=slot.bar_start,
+        phrase_id=first,
+        meter=(4, 4),
     )
     scales_mod._record_continuation(graph, first)
 
@@ -1346,7 +1352,6 @@ def test_continuation_has_one_implementation(tmp_path, monkeypatch):
         if key in known:
             assert getattr(written, key) == value, f"{key} disagrees between the two paths"
     shutil.rmtree(tmp_path / pid, ignore_errors=True)
-
 
 
 def test_the_brief_states_what_the_planned_cadence_requires():
@@ -1424,8 +1429,18 @@ def test_every_ensemble_part_appears_even_when_it_is_tacet(tmp_path, monkeypatch
     path, _ = _orchestrated(tmp_path, monkeypatch)
     score = music21.converter.parse(path)
     names = [str(p.partName).lower().replace(" ", "_") for p in score.parts]
-    for expected in ("flute", "oboe", "clarinet", "bassoon", "horn",
-                     "violin_1", "violin_2", "viola", "cello", "contrabass"):
+    for expected in (
+        "flute",
+        "oboe",
+        "clarinet",
+        "bassoon",
+        "horn",
+        "violin_1",
+        "violin_2",
+        "viola",
+        "cello",
+        "contrabass",
+    ):
         assert expected in names, f"{expected} is missing from the score: {names}"
 
 
@@ -1501,8 +1516,19 @@ def test_a_note_longer_than_a_dotted_whole_can_be_expressed():
 
 @pytest.mark.parametrize(
     "beats,code",
-    [(4, "w"), (6, "dw"), (3, "dh"), (2, "h"), (1, "q"), (0.5, "e"), (0.25, "s"),
-     (1 / 3, "trip_e"), (0.2, "quint_s"), (1 / 7, "sept_s"), (0.0625, "x")],
+    [
+        (4, "w"),
+        (6, "dw"),
+        (3, "dh"),
+        (2, "h"),
+        (1, "q"),
+        (0.5, "e"),
+        (0.25, "s"),
+        (1 / 3, "trip_e"),
+        (0.2, "quint_s"),
+        (1 / 7, "sept_s"),
+        (0.0625, "x"),
+    ],
 )
 def test_adding_long_values_did_not_disturb_the_short_ones(beats, code):
     """Adding entries to the table changes every nearest-match in the system."""
@@ -1542,8 +1568,9 @@ def test_duplicate_part_names_are_disambiguated():
     from bass by instrument name saw a single part."""
     from scales.music_io import parse_musicxml_to_events
 
-    src = Path("workspace/mozart-andante-fmaj-v2-20260826/output"
-               "/mozart-andante-fmaj-v2-20260826.musicxml")
+    src = Path(
+        "workspace/mozart-andante-fmaj-v2-20260826/output/mozart-andante-fmaj-v2-20260826.musicxml"
+    )
     if not src.exists():
         pytest.skip("reference piece not present")
     events, instruments = parse_musicxml_to_events(str(src))
@@ -1562,14 +1589,16 @@ def test_a_score_to_score_mode_can_read_its_source(tmp_path, monkeypatch, mode):
     from scales.piece_graph import PieceGraph
     from scales.validator import validate_meter
 
-    src = Path("workspace/mozart-andante-fmaj-v2-20260826/output"
-               "/mozart-andante-fmaj-v2-20260826.musicxml").resolve()
+    src = Path(
+        "workspace/mozart-andante-fmaj-v2-20260826/output/mozart-andante-fmaj-v2-20260826.musicxml"
+    ).resolve()
     if not src.exists():
         pytest.skip("reference piece not present")
     monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
     pid = f"{mode}-test"
-    scales_mod.init_workspace(pid, mode=mode, description=f"a {mode}",
-                              params={"source_path": str(src)})
+    scales_mod.init_workspace(
+        pid, mode=mode, description=f"a {mode}", params={"source_path": str(src)}
+    )
     result = scales_mod.load_source_score(pid)
     assert result.get("ok"), result
     assert result["phrases_loaded"] > 1
@@ -1600,14 +1629,14 @@ def test_a_score_to_score_mode_gets_a_lock_policy(tmp_path, monkeypatch, mode):
     set or a style transfer is the one thing it cannot mean."""
     from scales import scales as scales_mod
 
-    src = Path("workspace/mozart-andante-fmaj-v2-20260826/output"
-               "/mozart-andante-fmaj-v2-20260826.musicxml").resolve()
+    src = Path(
+        "workspace/mozart-andante-fmaj-v2-20260826/output/mozart-andante-fmaj-v2-20260826.musicxml"
+    ).resolve()
     if not src.exists():
         pytest.skip("reference piece not present")
     monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
     pid = f"{mode}-locks"
-    scales_mod.init_workspace(pid, mode=mode, description="x",
-                              params={"source_path": str(src)})
+    scales_mod.init_workspace(pid, mode=mode, description="x", params={"source_path": str(src)})
     applied = scales_mod.load_source_score(pid).get("locks_applied") or {}
     assert applied.get("form_layout", 0) >= 0.9, "the source's form survives in every mode"
     if mode == "variation":
@@ -1633,8 +1662,15 @@ def test_the_composer_is_shown_its_own_named_gestures():
     from scales.composition_brief import _gestures
     from scales.models import PhraseSlot
 
-    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                      key="F major", meter=(3, 4), tempo_bpm=76)
+    slot = PhraseSlot(
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="F major",
+        meter=(3, 4),
+        tempo_bpm=76,
+    )
     for composer in ("mozart", "beethoven", "chopin"):
         gestures = _gestures(composer, slot)
         assert gestures, f"{composer} has gesture templates that never reach the brief"
@@ -1676,8 +1712,16 @@ def test_the_corpus_gesture_bank_reaches_the_composer():
     from scales.models import PhraseSlot
 
     def slot_for(function):
-        return PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                          key="F major", meter=(3, 4), tempo_bpm=76, function=function)
+        return PhraseSlot(
+            phrase_id="p",
+            section_id="s",
+            bar_start=1,
+            bar_count=4,
+            key="F major",
+            meter=(3, 4),
+            tempo_bpm=76,
+            function=function,
+        )
 
     found = _corpus_gestures("mozart", slot_for("presentation"))
     assert found, "no corpus gestures reached the brief"
@@ -1694,8 +1738,16 @@ def test_gestures_are_selected_by_what_the_phrase_is_doing():
     from scales.models import PhraseSlot
 
     def does_for(function):
-        slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                          key="F major", meter=(3, 4), tempo_bpm=76, function=function)
+        slot = PhraseSlot(
+            phrase_id="p",
+            section_id="s",
+            bar_start=1,
+            bar_count=4,
+            key="F major",
+            meter=(3, 4),
+            tempo_bpm=76,
+            function=function,
+        )
         return {g["does"] for g in _corpus_gestures("mozart", slot)}
 
     coda = does_for("coda")
@@ -1709,8 +1761,16 @@ def test_an_unarmed_composer_yields_no_gestures_rather_than_raising():
     from scales.composition_brief import _corpus_gestures
     from scales.models import PhraseSlot
 
-    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                      key="C", meter=(4, 4), tempo_bpm=100, function="presentation")
+    slot = PhraseSlot(
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="C",
+        meter=(4, 4),
+        tempo_bpm=100,
+        function="presentation",
+    )
     assert _corpus_gestures("no-such-composer", slot) == []
 
 
@@ -1721,8 +1781,16 @@ def test_the_transition_bank_is_called_by_something():
     from scales.composition_brief import _transition_habits
     from scales.models import PhraseSlot
 
-    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=5, bar_count=4,
-                      key="F major", meter=(3, 4), tempo_bpm=76, function="continuation")
+    slot = PhraseSlot(
+        phrase_id="p",
+        section_id="s",
+        bar_start=5,
+        bar_count=4,
+        key="F major",
+        meter=(3, 4),
+        tempo_bpm=76,
+        function="continuation",
+    )
     habits = _transition_habits("mozart", slot, {"last_lh_texture": "alberti"})
     assert habits, "the transition bank still reaches nobody"
     assert habits["samples"] > 0
@@ -1734,8 +1802,16 @@ def test_transition_habits_survive_an_unarmed_composer():
     from scales.composition_brief import _transition_habits
     from scales.models import PhraseSlot
 
-    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                      key="C", meter=(4, 4), tempo_bpm=100, function="continuation")
+    slot = PhraseSlot(
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="C",
+        meter=(4, 4),
+        tempo_bpm=100,
+        function="continuation",
+    )
     assert _transition_habits("no-such-composer", slot, {}) == {}
 
 
@@ -1746,8 +1822,7 @@ def test_every_retrieval_bank_is_reachable_from_the_agent_path():
     import pathlib
 
     brief = pathlib.Path("tools/scales/composition_brief.py").read_text()
-    for bank in ("PhraseBank", "GestureBank", "CadenceBank", "TransitionBank",
-                 "PatternRetriever"):
+    for bank in ("PhraseBank", "GestureBank", "CadenceBank", "TransitionBank", "PatternRetriever"):
         assert bank in brief, f"{bank} does not reach the composer's brief"
 
 
@@ -1826,8 +1901,16 @@ def test_a_style_reaches_the_retrieval_banks_of_its_members(style):
     members = _bank_composers(style)
     assert members and style not in members, f"{style} resolved to {members}"
 
-    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=5, bar_count=4,
-                      key="G minor", meter=(4, 4), tempo_bpm=90, function="continuation")
+    slot = PhraseSlot(
+        phrase_id="p",
+        section_id="s",
+        bar_start=5,
+        bar_count=4,
+        key="G minor",
+        meter=(4, 4),
+        tempo_bpm=90,
+        function="continuation",
+    )
     assert _corpus_gestures(style, slot), f"{style} gets no corpus gestures"
     assert _transition_habits(style, slot, {}).get("samples", 0) > 0
 
@@ -1845,8 +1928,15 @@ def _devices_for(composer, **slot_kw):
     from scales.composition_brief import _doctrine_slices
     from scales.models import PhraseSlot
 
-    base = dict(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                key="F major", meter=(3, 4), tempo_bpm=76)
+    base = dict(
+        phrase_id="p",
+        section_id="s",
+        bar_start=1,
+        bar_count=4,
+        key="F major",
+        meter=(3, 4),
+        tempo_bpm=76,
+    )
     base.update(slot_kw)
     figs = _doctrine_slices(composer, PhraseSlot(**base), "").get("figuration") or []
     return [f for f in figs if not f.startswith("LH idiom")]
@@ -1895,12 +1985,23 @@ def test_the_lh_idioms_are_not_crowded_out_by_the_devices():
     from scales.composition_brief import _doctrine_slices
     from scales.models import PhraseSlot
 
-    figs = _doctrine_slices(
-        "mozart",
-        PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
-                   key="F major", meter=(3, 4), tempo_bpm=76, function="presentation"),
-        "",
-    ).get("figuration") or []
+    figs = (
+        _doctrine_slices(
+            "mozart",
+            PhraseSlot(
+                phrase_id="p",
+                section_id="s",
+                bar_start=1,
+                bar_count=4,
+                key="F major",
+                meter=(3, 4),
+                tempo_bpm=76,
+                function="presentation",
+            ),
+            "",
+        ).get("figuration")
+        or []
+    )
     assert any(f.startswith("LH idiom") for f in figs), figs
     assert any(not f.startswith("LH idiom") for f in figs), figs
 
@@ -1918,11 +2019,8 @@ def test_a_malformed_meter_does_not_take_out_the_notation_path(meter):
     from scales.models import EventIR, LayerIR
     from scales.scales import _repair_engine_surface
 
-    compose_phrase([{"rh": "C5q", "lh": "C3q"}], key="C", bar_start=1,
-                   phrase_id="p", meter=meter)
-    _split_events_over_barlines(
-        [EventIR(bar=1, beat=1.0, pitch="C5", duration="w")], {}, meter
-    )
+    compose_phrase([{"rh": "C5q", "lh": "C3q"}], key="C", bar_start=1, phrase_id="p", meter=meter)
+    _split_events_over_barlines([EventIR(bar=1, beat=1.0, pitch="C5", duration="w")], {}, meter)
     _repair_engine_surface(LayerIR(phrase_id="p", key="C", meter=(4, 4)), meter)
 
 
@@ -1952,3 +2050,64 @@ def test_beats_per_bar_is_computed_in_one_place():
                 continue
             offenders.append(f"{path.name}:{i}")
     assert not offenders, f"compute it with duration.bar_duration: {offenders}"
+
+
+def test_the_documented_dotted_spelling_is_not_silently_zero():
+    """`q.` and `h.` are the spellings the guidance documents, and
+    `dur_to_beats` sent them straight to its 0-returning tail: a dotted quarter
+    written the documented way evaluated to NO DURATION AT ALL, silently.
+
+    `direct_compose` normalises before calling, which is why this survived —
+    every other caller passing a raw code did not, and a silent zero is the
+    worst possible answer.
+    """
+    from scales.duration import dur_to_beats
+
+    assert float(dur_to_beats("q.")) == 1.5
+    assert float(dur_to_beats("h.")) == 3.0
+    assert float(dur_to_beats("e.")) == 0.75
+    assert float(dur_to_beats("w.")) == 6.0
+    # the `d`-prefixed spellings keep working
+    assert float(dur_to_beats("dq")) == 1.5
+    assert float(dur_to_beats("dh")) == 3.0
+    # and genuine nonsense still returns zero rather than raising
+    assert float(dur_to_beats("nonsense")) == 0.0
+
+
+def test_a_compound_meter_bar_sums_with_the_documented_spelling():
+    """The case that surfaced it: a 12/8 bar written as four dotted quarters."""
+    from scales.duration import bar_duration, dur_to_beats
+
+    assert float(bar_duration((12, 8))) == 6.0
+    assert sum(float(dur_to_beats("q.")) for _ in range(4)) == 6.0
+
+
+def test_a_choir_is_not_scored_as_a_small_orchestra():
+    """`_build_ensemble_score` was given no instrumentation, so a vocal piece
+    was built exactly like an orchestral one and resolved its layer roles
+    through `_LAYER_INSTRUMENTS`: the upper staff became a Piano and the lower a
+    Violoncello.
+
+    "A sacred motet for four voices" exported as a piano and a cello — wrong
+    part names, wrong MIDI programs, and no line a singer could find.
+    """
+    from scales.assembler import _instrument_for
+
+    # As a choir: the abstract layer roles resolve to voice types.
+    assert _instrument_for("treble", vocal=True).instrumentName == "Soprano"
+    assert _instrument_for("counter", vocal=True).instrumentName == "Alto"
+    assert _instrument_for("harmony", vocal=True).instrumentName == "Tenor"
+    assert _instrument_for("bass", vocal=True).instrumentName == "Bass"
+    # Renaissance part names too.
+    assert _instrument_for("altus", vocal=True).instrumentName == "Alto"
+    assert _instrument_for("bassus", vocal=True).instrumentName == "Bass"
+
+    # As an ensemble, unchanged.
+    assert _instrument_for("bass").instrumentName == "Violoncello"
+    assert _instrument_for("treble").instrumentName == "Piano"
+
+    # A NAMED real instrument wins in either mode — a cantata has an orchestra
+    # in it, and its violins must not become altos.
+    for vocal in (True, False):
+        assert _instrument_for("violin", vocal=vocal).instrumentName == "Violin"
+        assert _instrument_for("flute", vocal=vocal).instrumentName == "Flute"
