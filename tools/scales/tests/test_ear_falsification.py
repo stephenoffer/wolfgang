@@ -9,6 +9,15 @@ These bounds are what the detectors measure TODAY on the rebuilt corpus. They ar
 deliberately loose — the point is to catch a regression that makes a detector
 start rejecting real music, not to pin an exact number.
 
+**Both halves, because a false-positive bound on its own rewards blindness.** A
+detector that never fires passes every specificity test trivially. Three
+detectors in this project failed the other way in the same week — one reported
+"the theme appears in 1 place" on every piece regardless of the notes, one found
+`pending_resolution` on 49% of real phrase endings, and `unresolved_nct` rejected
+83% of canonical Mozart. Asking "would this reject real music?" catches the third
+and is blind to the first two. So the sensitivity tests below hand each detector
+a case that is unambiguously the defect and require it to fire.
+
 Marked `calibration` because it reads the corpus; run with `pytest -m calibration`.
 """
 
@@ -73,3 +82,91 @@ def test_no_bar_record_detector_reports_an_error_on_real_music():
                     if finding.get("severity") == "error":
                         offenders.append(f"{name} on {movement[0].get('source')}")
     assert not offenders, "error-severity findings on real music: " + "; ".join(offenders[:5])
+
+
+# ── Sensitivity: does the detector find what is definitely there? ─────────────
+
+
+def _notes(pitches, dur=0.5):
+    import music21
+
+    return [
+        {"type": "note", "pitch": p, "midi": music21.pitch.Pitch(p).midi, "dur": dur}
+        for p in pitches
+    ]
+
+
+def _bar(n, melody, **overrides):
+    bar = {
+        "bar_num": n,
+        "key": "C",
+        "key_mode": "major",
+        "roman": "I",
+        "time_sig": [4, 4],
+        "phrase_position": "middle",
+        "melody_line": melody,
+        "rh_display": [{"type": "note", "pitch": e.get("pitch"), "dur": e["dur"]} for e in melody],
+        "lh_display": [],
+        "melody_density": len(melody),
+        "accomp_density": 4,
+    }
+    bar.update(overrides)
+    return bar
+
+
+def _unambiguous_cases():
+    """One case per detector that is, by construction, the defect it names."""
+    return {
+        # A chromatic note leapt to AND from, inside an otherwise stepwise line.
+        "unresolved_nct": [_bar(1, _notes(["C5", "D5", "E5", "Ab5", "D5", "E5", "F5", "G5"]))],
+        # A cadential bar of unbroken eighths: the line never comes to rest.
+        "no_breathing": [
+            _bar(
+                1,
+                _notes(["C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6"]),
+                phrase_position="cadential",
+            )
+        ],
+        # Five bars of identical rhythm and identical contour.
+        "monotony": [_bar(i, _notes(["C5", "D5", "E5", "F5"])) for i in range(1, 6)],
+        # Five bars of pure chord tones reached by leap — accompaniment on the
+        # top staff, which is what "the melody does not sing" looks like.
+        "arpeggiated_melody": [
+            _bar(i, _notes(["C5", "E5", "G5", "C6", "G5", "E5"])) for i in range(1, 6)
+        ],
+        # One unchanging bass note under a moving melody, harmony static too.
+        "static_bass": [
+            _bar(
+                i,
+                _notes(["C5", "D5", "E5", "F5"]),
+                lh_display=[{"type": "note", "pitch": "C2", "dur": 4.0}],
+            )
+            for i in range(1, 7)
+        ],
+    }
+
+
+@pytest.mark.parametrize("name", sorted(_MAX_FALSE_POSITIVE_RATE))
+def test_a_detector_must_find_the_defect_it_names(name):
+    fn = getattr(ME, f"detect_{name}")
+    findings = fn(_unambiguous_cases()[name])
+    assert findings, (
+        f"detect_{name} found nothing in a case constructed to BE that defect. "
+        f"A detector that never fires passes every false-positive bound trivially; "
+        f"specificity without sensitivity is not a working check."
+    )
+
+
+def test_the_chromatic_check_is_not_blinded_by_its_own_texture_guard():
+    """The leap-texture guard must not swallow a wrong note in a long lyrical line.
+
+    It skips bars whose melody is majority leaps, because in a broken-chord
+    figure every note is leapt to. A ten-note stepwise line with one chromatic
+    leap is the opposite case and must still be caught.
+    """
+    # Ten intervals, two of them leaps: the C#6 is leapt to AND from inside a
+    # line that is otherwise stepwise, which is the shape a wrong note takes.
+    line = ["C5", "D5", "E5", "F5", "G5", "C#6", "G5", "A5", "B5", "C6", "D6"]
+    findings = ME.detect_unresolved_nct([_bar(1, _notes(line))])
+    assert findings, "a chromatic leap inside a stepwise line must still be caught"
+    assert "C#6" in findings[0]["problem"], findings[0]["problem"]

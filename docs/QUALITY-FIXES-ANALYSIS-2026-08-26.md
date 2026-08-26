@@ -487,6 +487,60 @@ owe its resolution to the next one.
 
 ---
 
+## 4h. A retraction: "the theme never returns" was the detector
+
+The finding I repeated most often in this pass — that the principal theme
+appears in exactly one place in every generated piece, and that this was the
+largest remaining musical gap — **was an artifact of my own matcher.**
+
+`theme_recurrence` matched the theme's WHOLE interval contour. For one Mozart
+sonata that is 47 intervals, which has no chance of recurring intact, so the
+function reported "1 place" on every piece regardless of the notes. With
+head-matching, one of the same pieces shows its theme recurring in **four places
+across three sections**.
+
+### The ground-truth test, and why it is a different question
+
+Every other harness here asks *would this reject real music?*. That question
+cannot catch a detector that is simply **blind** — one that never fires on
+anything and therefore never rejects anything either. The opposite question is
+*does it find what is demonstrably there?*, and it needs ground truth.
+
+Mozart K.331/i is a theme with six variations, stored here as separate files —
+six pieces of material that provably contain the theme:
+
+| matcher | variations found (of 6) | unrelated movements matched (of 6) |
+|---|---|---|
+| contour + rhythm, head 3–6 | **0** | 0 |
+| contour only, head 3 | 6 | **5** |
+| contour only, head 4 | 4 | 2 |
+| contour only, head 5–6 | **0** | 0 |
+
+Requiring rhythm guarantees failure, because rhythm is exactly what a variation
+changes. A three-interval contour finds every variation and also matches five of
+six unrelated Chopin mazurkas — three notes are not distinctive in tonal music.
+**There is no operating point with both sensitivity and specificity.**
+
+### What the code says now
+
+`theme_recurrence` is documented as a **lower bound** and carries its measured
+recall (0.67) and false rate (0.33) in the result. `theme_return_evidence`
+prefers the plan's own `motif_transforms` placements, which are exact and need no
+matching at all, and returns `source` and `reliable` so a caller cannot treat a
+floor as a count. The report says *"recurs in at least N places"*, or on a miss
+*"found in N places by contour matching — which finds only about two thirds of
+real returns, so this is a floor rather than a count"*, and calls a single
+statement a defect only when the evidence came from the plan.
+
+`test_corpus_theme_recall.py` pins both bounds: it must still find most of what
+is provably there, and it must not match everything.
+
+**The lesson, stated plainly.** Three detectors in this pass fired on real music
+and were caught by the reject-the-canon question. This one was blind, and that
+question could never have caught it. A falsification harness needs both halves.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and
@@ -586,3 +640,4 @@ Run with `pytest -m calibration` (~2 minutes):
 | `test_corpus_craft_checks.py` | a craft check canonical music fails — and, in the same file, a check so loose it passes a one-note phrase |
 | `test_corpus_voicing.py` | a texture floor drifting inside the repertoire, and real music being told its hands cannot reach |
 | `test_generator_onsets.py` | a generated onset that no bar has, and a quantization grid that cannot express a duration the system supports |
+| `test_corpus_theme_recall.py` | a detector going blind (missing what is provably there) or indiscriminate (matching unrelated music) |
