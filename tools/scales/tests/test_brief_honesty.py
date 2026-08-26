@@ -484,3 +484,39 @@ def test_a_composer_with_no_compound_metre_teaches_none():
     # And a composer who DID write compound metre still teaches it.
     slot_c = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(6, 8))
     assert _retrieve_exemplars("chopin", slot_c, 4, [])
+
+
+def test_an_empty_exemplar_result_says_why():
+    """Every filter in the per-bar loop is a `continue`, so a spec whose
+    candidates ALL fail returned nothing and said nothing.
+
+    Handel and Schubert came back with zero exemplars and zero warnings, which
+    reads as "this composer has no material" when it is really "every bar we
+    found was unusable" — their records all underfill their metre, a corpus
+    extraction defect, and both are already flagged `needs_reacquire`.
+    """
+    from scales.composition_brief import _retrieve_exemplars
+    from scales.models import PhraseSlot
+
+    for composer in ("handel", "schubert"):
+        warnings: list = []
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+        exemplars = _retrieve_exemplars(composer, slot, 4, warnings)
+        if exemplars:
+            continue  # re-acquired since; nothing to explain
+        assert warnings, f"{composer} returned nothing and said nothing"
+        assert any("unusable" in w for w in warnings), warnings
+
+
+def test_a_metre_dead_end_blames_the_metre_not_the_texture():
+    """Bach has thousands of singing_melody bars and never wrote 6/8. Reporting
+    "no corpus exemplars for singing_melody/broken_chord_wave" sends the next
+    reader after a texture problem that does not exist."""
+    from scales.composition_brief import _retrieve_exemplars
+    from scales.models import PhraseSlot
+
+    warnings: list = []
+    slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(6, 8))
+    _retrieve_exemplars("bach", slot, 4, warnings)
+    assert any("no 6/8 bars" in w for w in warnings), warnings
+    assert any("metre, not the texture" in w for w in warnings), warnings

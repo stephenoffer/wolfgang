@@ -2337,7 +2337,21 @@ def _retrieve_exemplars(
                     break
             query.time_sig = meter
         if not candidates:
-            warnings.append(f"no corpus exemplars for {rh}/{lh}/{pos} in {composer}")
+            # Name the REAL blocker. This used to report the texture in every
+            # case — "no corpus exemplars for singing_melody/broken_chord_wave"
+            # for a 6/8 Bach phrase, when Bach has thousands of bars of that
+            # texture and simply never wrote 6/8. A message that names the wrong
+            # cause sends the next reader after a problem that does not exist.
+            available_meters = _corpus_meters(composer)
+            if available_meters and tuple(meter) not in available_meters:
+                spelled = ", ".join(f"{m[0]}/{m[1]}" for m in available_meters[:4])
+                warnings.append(
+                    f"{composer} has no {meter[0]}/{meter[1]} bars and nothing "
+                    f"metrically equivalent to borrow — he wrote {spelled}. "
+                    f"The metre, not the texture, is what yields nothing here."
+                )
+            else:
+                warnings.append(f"no corpus exemplars for {rh}/{lh}/{pos} in {composer}")
             continue
         # Map the source BAR LENGTH onto the target's, not denominator onto
         # denominator. 4/2 is eight quarters against 4/4's four, so it halves;
@@ -2353,19 +2367,32 @@ def _retrieve_exemplars(
                 rescale = tgt_len / src_len
 
         added = 0
+        # Why bars were dropped. Every filter below is a `continue`, so a spec
+        # whose candidates ALL fail returns nothing and says nothing — handel and
+        # schubert came back with zero exemplars and zero warnings, which reads
+        # as "this composer has no material" when it is really "every bar we
+        # found was unusable, and here is why".
+        dropped: Dict[str, int] = {}
+
+        def _drop(reason: str) -> None:
+            dropped[reason] = dropped.get(reason, 0) + 1
+
         for bar in candidates:
             src = f"{bar.get('source', '?')}:{bar.get('bar_num', '?')}"
             if src in used_sources:
+                _drop("already shown")
                 continue
             # A truncated record is only PART of a bar (the extractor caps how
             # many events it stores). Presenting half a bar as a bar to adapt
             # teaches a rhythm that does not fill the measure.
             if bar.get("truncated"):
+                _drop("truncated record")
                 continue
             adapted = adapter.transpose_bar(bar, key)
             _rescale_bar_durations(adapted, rescale)
             rh_sh, lh_sh = _adapted_to_shorthand(adapted)
             if not rh_sh and not lh_sh:
+                _drop("no notes after adaptation")
                 continue
             # Skip bars whose RH or LH overflows the meter — a corrupted
             # multi-voice flatten in the corpus record. Showing them misleads
@@ -2375,6 +2402,7 @@ def _retrieve_exemplars(
             if _shorthand_overflows_bar(rh_sh, capacity) or _shorthand_overflows_bar(
                 lh_sh, capacity
             ):
+                _drop("overflows the bar")
                 continue
             # …and bars that fall SHORT of the meter. Only overflow was checked,
             # so half-bars reached briefs as complete bars to adapt — an exemplar
@@ -2384,6 +2412,7 @@ def _retrieve_exemplars(
             if _shorthand_underfills_bar(rh_sh, capacity) or _shorthand_underfills_bar(
                 lh_sh, capacity
             ):
+                _drop("underfills the bar")
                 continue
             # Dedup by CONTENT, not just by source bar. Two different bars of a
             # sonata are frequently the same music (an exposition bar and its
@@ -2391,6 +2420,7 @@ def _retrieve_exemplars(
             # agent's attention without adding an idiom.
             fingerprint = (rh_sh, lh_sh)
             if fingerprint in used_content:
+                _drop("duplicate of a bar already shown")
                 continue
             used_content.add(fingerprint)
             exemplars.append(
@@ -2423,6 +2453,12 @@ def _retrieve_exemplars(
             added += 1
             if added >= per_spec or len(exemplars) >= n_exemplars:
                 break
+        if added == 0 and dropped:
+            why = ", ".join(f"{n} {reason}" for reason, n in sorted(dropped.items()))
+            warnings.append(
+                f"{composer}: {len(candidates)} candidate bars for {rh}/{lh}/{pos} "
+                f"were all unusable ({why})"
+            )
         if len(exemplars) >= n_exemplars:
             break
 
