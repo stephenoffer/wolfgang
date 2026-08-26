@@ -204,6 +204,20 @@ def _expression_text(word: str) -> str:
     return word.replace("_text", "").replace("_", " ")
 
 
+# A pitch this system can actually engrave: a letter A-G, an optional
+# accidental, and an octave. Everything else is a typo, and a typo must say so.
+_PITCH_RE = re.compile(r"^[A-Ga-g](?:##|#|bb|b|x|--|-)?(?:-1|[0-9])$")
+
+
+def is_writable_pitch(name) -> bool:
+    """Can this pitch name be engraved? ``rest`` counts; a chord is checked per note."""
+    if name == "rest":
+        return True
+    if isinstance(name, list):
+        return bool(name) and all(is_writable_pitch(p) for p in name)
+    return bool(name) and bool(_PITCH_RE.match(str(name)))
+
+
 def _parse_token(tok: str) -> Optional[Dict[str, Any]]:
     """Parse one shorthand token into an event dict, or None if empty."""
     ev: Dict[str, Any] = {
@@ -389,6 +403,54 @@ _EVENT_DEFAULTS: Dict[str, Any] = {
     "expression": None,
     "fingering": None,
 }
+
+
+def parse_issues(bars: List[Dict], meter: Tuple[int, int] = (4, 4)) -> List[str]:
+    """Everything in these bars that will not survive to the page.
+
+    The composer writes this shorthand by hand, and the parser used to fail
+    SILENTLY in both directions. A pitch it could not read was passed straight
+    through and then dropped without a word by the engraver, so `H5q` and a bar
+    containing a unicode dash simply lost notes. And a pitch it half-read was
+    worse: `C12q` came back as `C1` — the same note eleven octaves down — because
+    the salvage path took the first thing that looked like a pitch and discarded
+    the rest.
+
+    Neither is a musical judgement. A token that cannot be engraved is a typo,
+    and the composer is the only one who can fix it.
+    """
+    issues: List[str] = []
+    for i, bar in enumerate(bars, start=1):
+        for hand in ("rh", "lh"):
+            raw = bar.get(hand)
+            if not isinstance(raw, str) or not raw.strip():
+                continue
+            for chunk in raw.split("//"):
+                for tok in chunk.split():
+                    ev = _parse_token(tok)
+                    if ev is None:
+                        issues.append(f"bar {i} {hand}: '{tok}' parsed to nothing")
+                        continue
+                    if not is_writable_pitch(ev["pitch"]):
+                        issues.append(
+                            f"bar {i} {hand}: '{tok}' is not a pitch this system can "
+                            f"write (read as {ev['pitch']!r})"
+                        )
+                    elif isinstance(ev["pitch"], str) and ev["pitch"] != "rest":
+                        # A token whose pitch is a strict prefix of what was
+                        # written lost characters: 'C12q' -> 'C1'.
+                        stripped = tok.lstrip("(<>").rstrip(")~!<>")
+                        if stripped.startswith(ev["pitch"]):
+                            tail = stripped[len(ev["pitch"]):].split(":")[0]
+                            if tail and tail not in DURATION_VALUES and not tail.startswith("."):
+                                base = tail.rstrip(".")
+                                if base not in DURATION_VALUES:
+                                    issues.append(
+                                        f"bar {i} {hand}: '{tok}' — '{tail}' is not a "
+                                        f"duration, so it was read as "
+                                        f"{ev['pitch']}{ev['dur']}"
+                                    )
+    return issues
 
 
 def _normalize(seq: Union[str, List]) -> List[Dict[str, Any]]:

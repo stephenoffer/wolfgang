@@ -2745,7 +2745,7 @@ def commit_agent_phrase_direct_bars(
     """
     bars = _as_list(bars, "bars")
     allow = _as_list(allow, "allow")
-    from .direct_compose import compose_phrase
+    from .direct_compose import compose_phrase, parse_issues
     from .validator import validate_layer_ir
 
     workspace = _WORKSPACE / piece_id
@@ -2767,6 +2767,25 @@ def commit_agent_phrase_direct_bars(
                 f"bar OCCUPIES the phrase's first bar — mark that first dict "
                 f"{{'pickup': True}} and write only the upbeat in it; do not add an "
                 f"extra dict for it, or the phrase would run into the next one's bars."
+            ),
+        }
+
+    # Anything in the shorthand that will not survive to the page. The parser
+    # used to fail SILENTLY in both directions: a pitch it could not read was
+    # passed through and then dropped without a word by the engraver, and a
+    # pitch it half-read came back as a different note ('C12q' -> 'C1', eleven
+    # octaves down). Neither is a musical judgement — a token that cannot be
+    # engraved is a typo, and only the composer can fix it.
+    typos = parse_issues(bars, tuple(slot.meter) if slot.meter else (4, 4))
+    if typos:
+        return {
+            "error": "unwritable_tokens",
+            "tokens": typos[:12],
+            "hint": (
+                "These would have been silently dropped or read as a different note. "
+                "A pitch is a letter A-G, an optional accidental (#, b, ##, bb) and an "
+                "octave digit; a duration is one of the codes in craft §8. Fix the "
+                "tokens and recommit."
             ),
         }
 
@@ -3441,6 +3460,23 @@ def self_evaluate(
     # own corpus), reusing the already-assembled score.
     divergence = _corpus_divergence_from_path(path, resolved, scope)
     if "error" not in divergence:
+        # Every z-score here is measured against a corpus that is one genre:
+        # Bach's is 100% four-part chorales, Haydn's 100% string quartets. A
+        # keyboard piece judged "far from Bach" may simply be far from a
+        # chorale. Say so beside the numbers rather than letting them pass as
+        # facts about the composer.
+        try:
+            from .composition_brief import corpus_scope
+
+            sc = corpus_scope(resolved)
+            if sc.get("narrow"):
+                divergence["corpus_scope"] = (
+                    f"{sc['dominant_share']:.0%} of the {resolved} corpus behind these "
+                    f"z-scores is {sc['dominant']}. Divergence from it is divergence "
+                    f"from that genre, not from {resolved}."
+                )
+        except Exception:
+            pass
         report["corpus_divergence"] = divergence
         report["rhythmic_gap"] = _rhythmic_gap(divergence, resolved)
 

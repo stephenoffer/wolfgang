@@ -1749,3 +1749,64 @@ def test_every_retrieval_bank_is_reachable_from_the_agent_path():
     for bank in ("PhraseBank", "GestureBank", "CadenceBank", "TransitionBank",
                  "PatternRetriever"):
         assert bank in brief, f"{bank} does not reach the composer's brief"
+
+
+# ── Silent corruption in hand-written shorthand ────────────────────────────
+
+
+@pytest.mark.parametrize(
+    "shorthand,why",
+    [
+        ("H5q C5q", "H is not a note letter — the engraver dropped it without a word"),
+        ("Cq D5q", "no octave"),
+        ("C5zzz D5q", "unknown duration silently became a quarter"),
+        ("[C5,E5q D5q", "unclosed chord — the whole token vanished"),
+        ("[C5,[E5]]q", "nested brackets produced a garbage pitch"),
+        ("C12q D5q", "read as C1 — the same note eleven octaves down"),
+        ("C5q–D5q", "a unicode dash swallowed the second note"),
+        ("[]q C5q", "empty chord"),
+    ],
+)
+def test_unwritable_shorthand_is_reported_not_silently_mangled(shorthand, why):
+    from scales.direct_compose import parse_issues
+
+    issues = parse_issues([{"rh": shorthand, "lh": "C3w"}])
+    assert issues, f"silently accepted ({why}): {shorthand!r}"
+
+
+@pytest.mark.parametrize(
+    "shorthand",
+    [
+        "(C5q. D5e:tr) [F5,A5,C6]h:arp rest_q",
+        "C5trip_e D5trip_e E5trip_e F5dq G5e",
+        "C5br",
+        "C##5q Dbb5q rest_h",
+        "C5h~ // G4h E4q",
+        "<C5e D5e E5e F5e! G5q:stacc:dolce",
+        "B4e:acci C5dq A5e:appo G5q",
+    ],
+)
+def test_valid_shorthand_is_not_flagged(shorthand):
+    """A check that rejects correct input is worse than no check."""
+    from scales.direct_compose import parse_issues
+
+    assert parse_issues([{"rh": shorthand, "lh": "C3w"}]) == []
+
+
+def test_a_commit_with_an_unwritable_token_is_rejected(tmp_path, monkeypatch):
+    from scales import scales as scales_mod
+    from scales.piece_graph import PieceGraph
+
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    scales_mod.init_workspace("typo", mode="compose_from_text", description="a piece in C major")
+    scales_mod.build_form_graph("typo", form="ternary", key="C major")
+    graph = PieceGraph.load(str(tmp_path / "typo" / "piece_graph.json"))
+    first = min(graph.phrases, key=lambda p: graph.phrases[p].slot.bar_start)
+    n_bars = graph.phrases[first].slot.bar_count
+
+    bars = [{"rh": "C5q D5q E5q F5q", "lh": "C3w"} for _ in range(n_bars)]
+    bars[0]["rh"] = "H5q D5q E5q F5q"
+    out = scales_mod.commit_agent_phrase_direct_bars("typo", first, bars)
+    assert out.get("error") == "unwritable_tokens", out
+    assert any("H5q" in t for t in out["tokens"])
+    assert "hint" in out
