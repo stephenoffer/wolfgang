@@ -20,8 +20,13 @@ from scales.patch_engine import PatchEngine
 def phrase():
     state = PhraseState(
         slot=PhraseSlot(
-            phrase_id="p", section_id="s", bar_start=1, bar_count=2,
-            key="Db major", meter=(4, 4), tempo_bpm=90,
+            phrase_id="p",
+            section_id="s",
+            bar_start=1,
+            bar_count=2,
+            key="Db major",
+            meter=(4, 4),
+            tempo_bpm=90,
         )
     )
     state.realized = compose_phrase(
@@ -29,7 +34,10 @@ def phrase():
             {"rh": "C5q D5q [E5,G5]q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e"},
             {"rh": "G5q A5q B5q C6q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e"},
         ],
-        key="Db major", bar_start=1, phrase_id="p", meter=(4, 4),
+        key="Db major",
+        bar_start=1,
+        phrase_id="p",
+        meter=(4, 4),
     )
     return state
 
@@ -184,7 +192,10 @@ def test_repair_leaves_a_well_formed_surface_alone():
 
     layer = compose_phrase(
         [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e"}],
-        key="C", bar_start=1, phrase_id="p", meter=(4, 4),
+        key="C",
+        bar_start=1,
+        phrase_id="p",
+        meter=(4, 4),
     )
     before = [(e.bar, e.beat, e.pitch, e.duration) for e in layer.principal_line]
     assert not _repair_engine_surface(layer, (4, 4)), "nothing needed repairing"
@@ -197,7 +208,10 @@ def test_repair_keeps_triplets_and_32nds_on_the_grid():
 
     layer = compose_phrase(
         [{"rh": "C5trip_e D5trip_e E5trip_e F5t G5t A5t B5t C6q", "lh": "C3w"}],
-        key="C", bar_start=1, phrase_id="p", meter=(4, 4),
+        key="C",
+        bar_start=1,
+        phrase_id="p",
+        meter=(4, 4),
     )
     beats = [e.beat for e in layer.principal_line]
     _repair_engine_surface(layer, (4, 4))
@@ -278,7 +292,10 @@ def test_repair_never_deletes_a_grace_note():
 
     layer = compose_phrase(
         [{"rh": "A5e:appo G5q Bb5dq A5e", "lh": "F3h."}],
-        key="F major", bar_start=1, phrase_id="p", meter=(3, 4),
+        key="F major",
+        bar_start=1,
+        phrase_id="p",
+        meter=(3, 4),
     )
     before = [(e.beat, e.pitch, e.ornament) for e in layer.principal_line]
     counts = _repair_engine_surface(layer, (3, 4))
@@ -304,3 +321,69 @@ def test_repair_still_trims_a_real_overlap_beside_a_grace_note():
     assert counts.get("overlaps_trimmed") == 1, "the real overlap was missed"
     assert len(layer.principal_line) == 3, "nothing should be deleted"
     assert layer.principal_line[0].ornament == "acciaccatura"
+
+
+def test_the_documented_revision_params_are_the_ones_the_engine_reads():
+    """Each handler reads ONE key with `op.params.get(...)`, and most supply a
+    default — so an op carrying the wrong name applies cleanly, changes nothing
+    (or changes the wrong thing), and still reports `ops_applied`.
+
+    `transpose_region` defaults `interval` to 0, so a script saying `semitones`
+    transposes by nothing. `set_hairpin` defaults `kind` to "cresc", so a script
+    asking for a diminuendo gets a crescendo — which is how the first version of
+    the guard table got this entry wrong: probing it "worked" because the
+    default fired.
+
+    Derived from the source so the table and the handlers cannot drift.
+    """
+    import re
+    from pathlib import Path
+
+    from scales.scales import _REVISION_OP_PARAMS, _REVISION_OPS
+
+    src = (Path(__file__).resolve().parents[1] / "patch_engine.py").read_text()
+    blocks = re.split(r'(?:elif|if) operation == "([a-z_]+)":', src)
+    actual = {}
+    for i in range(1, len(blocks), 2):
+        name, body = blocks[i], blocks[i + 1]
+        keys = re.findall(r'op\.params\.get\(\s*"([a-z_]+)"', body)
+        # `key` is a fallback lookup in transpose_region, not its subject.
+        keys = [k for k in keys if k != "key"]
+        if keys:
+            actual[name] = keys[0]
+
+    assert actual, "no revision handlers found — did the dispatch shape change?"
+    for operation, primary in actual.items():
+        if operation not in _REVISION_OPS:
+            continue
+        declared = _REVISION_OP_PARAMS.get(operation)
+        assert declared, f"{operation} reads {primary!r} but the guard declares no parameter"
+        assert primary in declared, (
+            f"{operation} reads {primary!r}; the guard declares {declared}. "
+            "A script using the declared name would be a silent no-op."
+        )
+    # And nothing is declared for an operation that reads no parameter at all.
+    for operation in _REVISION_OP_PARAMS:
+        assert operation in actual, f"{operation} is declared but reads no parameter"
+
+
+def test_the_critic_guidance_documents_the_real_parameter_names():
+    """The agent writing a RevisionScript has no way to know the key but to be
+    told, and the table in `music-critic.md` is where it is told."""
+    import re
+    from pathlib import Path
+
+    from scales.scales import _REVISION_OP_PARAMS
+
+    doc = Path(__file__).resolve().parents[3] / ".claude" / "agents" / "music-critic.md"
+    if not doc.exists():
+        return
+    text = doc.read_text()
+    for operation, keys in _REVISION_OP_PARAMS.items():
+        row = re.search(rf"\|\s*`{operation}`\s*\|(.*?)\|", text)
+        if not row:
+            continue
+        assert any(f'"{k}"' in row.group(1) for k in keys), (
+            f"music-critic.md documents {operation} as {row.group(1).strip()!r}, "
+            f"but the engine reads {' or '.join(keys)}"
+        )

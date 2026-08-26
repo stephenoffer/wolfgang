@@ -82,17 +82,33 @@ _LOG = logging.getLogger(__name__)
 # Every revision operation the patch engine implements. An op the engine does
 # not recognise is logged and skipped, so a typo in a critic's revision script
 # came back as a successful revision that changed nothing.
-_REVISION_OPS = frozenset({
-    "re_sketch",
-    "re_realize",
-    "transpose_region",
-    "change_texture",
-    "change_dynamic",
-    "set_articulation",
-    "set_hairpin",
-    "set_expression",
-    "thin_texture",
-})
+_REVISION_OPS = frozenset(
+    {
+        "re_sketch",
+        "re_realize",
+        "transpose_region",
+        "change_texture",
+        "change_dynamic",
+        "set_articulation",
+        "set_hairpin",
+        "set_expression",
+        "thin_texture",
+    }
+)
+
+
+#: The parameter key each operation actually READS. Every handler uses
+#: `op.params.get(<key>)` and does nothing when it is absent, so an op carrying
+#: the wrong name is a silent no-op that still counts as applied.
+_REVISION_OP_PARAMS = {
+    "transpose_region": ("interval",),
+    "change_texture": ("lh_texture",),
+    "change_dynamic": ("dynamic",),
+    "set_articulation": ("articulation",),
+    "set_hairpin": ("kind",),
+    "set_expression": ("text",),
+    # re_sketch, re_realize and thin_texture take no parameters.
+}
 
 
 class _MissingPiece(Exception):
@@ -179,6 +195,141 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+# Reading the forces out of a request. Three word classes, because two was not
+# enough — see `_infer_instrumentation`.
+
+#: Words that name SINGERS. These are people, and they always win.
+#:
+#: Matched on WORD BOUNDARIES, not as substrings. "chorale" contains "choral",
+#: so a substring test turned "a chorale prelude for organ" — a solo organ work
+#: — into a choir. Single voice-part names (soprano, alto, tenor, bass) are
+#: deliberately absent: "double bass", "bass line" and "soprano recorder" are
+#: all instruments, and "SATB"/"for four voices" already cover the real cases.
+_VOCAL_FORCES = (
+    "voice",
+    "voices",
+    "choir",
+    "choirs",
+    "chorus",
+    "choral",
+    "satb",
+    "singers",
+    "cappella",
+    "acappella",
+)
+#: Words that name repertoire which is USUALLY vocal but has a keyboard
+#: literature — an organ mass, a chorale prelude, a keyboard transcription.
+#: These mean singers only when no instrument is named.
+_VOCAL_GENRES = (
+    "motet",
+    "madrigal",
+    "mass",
+    "masses",
+    "chorale",
+    "chorales",
+    "anthem",
+    "cantata",
+    "requiem",
+    "magnificat",
+    "psalm",
+)
+_ENSEMBLE_WORDS = (
+    "quartet",
+    "quintet",
+    "trio",
+    "orchestra",
+    "orchestral",
+    "symphony",
+    "symphonic",
+    "concerto",
+    "ensemble",
+    "octet",
+    "sextet",
+    "band",
+    "consort",
+)
+_KEYBOARD_WORDS = (
+    "keyboard",
+    "piano",
+    "harpsichord",
+    "organ",
+    "clavichord",
+    "fortepiano",
+    "pianoforte",
+    "clavier",
+)
+#: "two-voice", "four-part" — a COUNT OF CONTRAPUNTAL LINES, not a count of
+#: people. It is the standard way to describe keyboard counterpoint.
+_TEXTURE_COUNT = re.compile(
+    r"\b(?:two|three|four|five|six|2|3|4|5|6)[\s\-]?(?:voice|voices|part|parts)\b"
+)
+
+
+def _words_of(text: str) -> frozenset:
+    return frozenset(re.findall(r"[a-z]+", text))
+
+
+def _names_any(text: str, words) -> bool:
+    present = _words_of(text)
+    return any(w in present for w in words)
+
+
+def _infer_instrumentation(description: str) -> Optional[str]:
+    """Read the forces out of the request.
+
+    Nothing did. "A short sacred motet for FOUR VOICES in the Dorian mode" was
+    recorded as `solo_piano`, and the pianist's hand-span limit was applied to
+    Tenor and Bassus as one hand — the motet failed its commit with "lh span 19
+    semitones exceeds max 16", true of a hand and meaningless for two singers.
+
+    The first fix then over-corrected in the other direction, and that error was
+    worse. "A two-voice invention in D minor FOR KEYBOARD" came back `choir`,
+    because "N-voice" is the standard way to describe keyboard counterpoint and
+    the named instrument in the same sentence was never consulted. The piece
+    routed down the ensemble path and exported with the **left hand as a
+    cello** — two instruments instead of a grand staff, no brace, LH on its own
+    MIDI channel — and that path is the documented cause of the voice-overlap
+    bar overflow that desyncs the hands.
+
+    So three classes rather than two:
+
+      * a word naming SINGERS always wins ("a cantata for choir and orchestra"
+        is choral, not orchestral);
+      * a word naming vocal REPERTOIRE means singers only when no instrument is
+        named, so "a chorale prelude for organ" and "an organ mass" stay
+        keyboard works while a bare "a mass" is still choral;
+      * "N-voice"/"N-part" is discounted as a texture only when an instrument
+        is actually named, so an unqualified "for four voices" still means four
+        people.
+
+    Vocal is tested before ensemble and keyboard is not a shortcut, or "a piano
+    trio" resolves to a keyboard piece.
+    """
+    d = (description or "").lower()
+    names_keyboard = _names_any(d, _KEYBOARD_WORDS)
+    scanned = _TEXTURE_COUNT.sub(" ", d) if names_keyboard else d
+    if _names_any(scanned, _VOCAL_FORCES):
+        return "choir"
+    if _names_any(scanned, _ENSEMBLE_WORDS):
+        return "ensemble"
+    if not names_keyboard and _names_any(scanned, _VOCAL_GENRES):
+        return "choir"
+    return None
+
+
+def _physical_constraints(graph):
+    """Constraints for THIS piece — hand limits only where there are hands."""
+    from .models import PhysicalConstraints
+
+    inst = ""
+    try:
+        inst = (getattr(graph.contract.target, "instrumentation", "") or "").lower()
+    except Exception:
+        inst = ""
+    keyboard = inst in ("", "solo_piano", "piano", "harpsichord", "organ", "celesta")
+    return PhysicalConstraints(keyboard=keyboard)
+
+
 # ─── Workspace Management ────────────────────────────────────────────────────
 
 
@@ -207,6 +358,12 @@ def init_workspace(
             graph.contract.target.instrumentation = params["instrumentation"]
         if "difficulty" in params:
             graph.contract.target.difficulty = params["difficulty"]
+
+    # Read the forces out of the request when the caller did not name them.
+    if not (params or {}).get("instrumentation"):
+        inferred = _infer_instrumentation(description)
+        if inferred:
+            graph.contract.target.instrumentation = inferred
 
     graph.phase = PipelinePhase.INIT.value
     graph.save(str(workspace / "piece_graph.json"))
@@ -1984,11 +2141,19 @@ def init_work(
     from .models import TonalItinerary
 
     # Handle contract possibly being a dict (from JSON deserialization)
+    # The home key of a multi-movement work came from
+    # `target.instrumentation` — the wrong attribute entirely, so a piano work's
+    # tonal itinerary recorded a home key of "solo_piano". Take it from the
+    # music: the key of the first phrase that exists, and only then a default.
     home_key = "C"
-    if hasattr(graph.contract, "target"):
-        target = graph.contract.target
-        if hasattr(target, "instrumentation"):
-            home_key = target.instrumentation or "C"
+    slots = sorted(
+        (ps.slot for ps in graph.phrases.values() if getattr(ps, "slot", None)),
+        key=lambda sl: getattr(sl, "bar_start", 0),
+    )
+    for slot in slots:
+        if getattr(slot, "key", None):
+            home_key = slot.key
+            break
     work = WorkGraph(
         work_id=piece_id,
         movement_count=movement_count,
@@ -2037,6 +2202,12 @@ def plan_movement(
     )
     graph.work_graph.movements.append(movement)
     graph.work_graph.tonal_itinerary.movement_keys[movement_id] = key
+    # The work's home key is the FIRST movement's key. `init_work` runs before
+    # any movement or phrase exists, so it can only default — a three-movement
+    # sonatina in G major recorded a home key of "C", and every later question
+    # about where the work lives got the wrong answer.
+    if len(graph.work_graph.movements) == 1 and key:
+        graph.work_graph.tonal_itinerary.home_key = key
     graph.save(str(workspace / "piece_graph.json"))
 
     return {
@@ -2085,15 +2256,15 @@ def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> 
     if not phrase_order:
         return {
             "error": f"Unknown section '{section_id}' in '{piece_id}'",
-            "sections": sorted({
-                ps.slot.section_id for ps in graph.phrases.values() if ps.slot
-            }),
+            "sections": sorted({ps.slot.section_id for ps in graph.phrases.values() if ps.slot}),
         }
-    unknown = sorted({
-        op.target_phrase
-        for op in ops
-        if op.target_phrase and op.target_phrase not in graph.phrases
-    })
+    unknown = sorted(
+        {
+            op.target_phrase
+            for op in ops
+            if op.target_phrase and op.target_phrase not in graph.phrases
+        }
+    )
     if unknown:
         return {
             "error": f"Unknown target phrase(s): {', '.join(unknown)}",
@@ -2104,6 +2275,27 @@ def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> 
         return {
             "error": f"Unknown revision operation(s): {', '.join(unknown_ops)}",
             "operations": sorted(_REVISION_OPS),
+        }
+    # Each operation reads ONE specific param key, and reads it with `.get`. A
+    # script that says `semitones` where the engine reads `interval`, or
+    # `texture` where it reads `lh_texture`, therefore applies cleanly, changes
+    # nothing, and reports ops_applied. The reviewer is told its revision landed
+    # and the music is identical. Names it is, then — a critic writing one of
+    # these has no way to know the key but to be told.
+    bad_params = []
+    for op in ops:
+        required = _REVISION_OP_PARAMS.get(op.operation)
+        if required and not any(k in (op.params or {}) for k in required):
+            got = sorted(op.params or {}) or ["nothing"]
+            bad_params.append(
+                f"{op.operation} on {op.target_phrase or '?'} needs "
+                f"{' or '.join(required)}, got {', '.join(got)}"
+            )
+    if bad_params:
+        return {
+            "error": "revision operation(s) missing the parameter they read: "
+            + "; ".join(bad_params),
+            "op_parameters": {k: sorted(v) for k, v in _REVISION_OP_PARAMS.items()},
         }
 
     affected = engine.identify_affected_phrases(script, phrase_order)
@@ -2419,9 +2611,7 @@ def _record_continuation(graph, phrase_id: str) -> None:
     if not facts:
         return
     known = {f.name for f in _dataclass_fields(ContinuationContext)}
-    nxt.slot.continuation = ContinuationContext(
-        **{k: v for k, v in facts.items() if k in known}
-    )
+    nxt.slot.continuation = ContinuationContext(**{k: v for k, v in facts.items() if k in known})
 
 
 def _craft_check_phrase(graph, phrase_id: str, layer: LayerIR) -> Optional[Dict[str, Any]]:
@@ -2715,7 +2905,7 @@ def commit_agent_phrase_layer_ir(
         if not layer.key or not layer_ir.get("key"):
             layer.key = slot.key
 
-    report = validate_layer_ir(layer)
+    report = validate_layer_ir(layer, _physical_constraints(graph))
     if not report.passed:
         return {
             "ok": False,
@@ -2797,7 +2987,7 @@ def commit_agent_phrase_direct_bars(
         phrase_id=phrase_id,
         meter=slot.meter,
     )
-    report = validate_layer_ir(layer)
+    report = validate_layer_ir(layer, _physical_constraints(graph))
     if not report.passed:
         return {
             "ok": False,
@@ -3257,7 +3447,6 @@ _DISCRIMINATOR_BANDS = {
 # "melodic contour is monotonic or jittery" — the discriminator was telling the
 # critic that good melody writing was a defect. Two quantities, one name.
 _PROFILE_OVERRIDABLE = frozenset({"texture_change_pct", "density_cv", "events_per_bar"})
-
 
 
 # The four surface facts that most decide whether a phrase sounds like a person
@@ -3773,6 +3962,11 @@ def _extract_generated_bars(path: str, composer: str, source_name: str):
     return analyze_score_bars(score, composer, source_name)
 
 
+# Above this, a z-score is reporting a degenerate corpus distribution rather
+# than anything about the music. See the note in _corpus_divergence_from_path.
+_Z_DEGENERATE = 8.0
+
+
 def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[str, Any]:
     """Compare an assembled score's bar metrics to the composer's corpus
     distribution (corpus_profile.json) via per-metric z-scores.
@@ -3821,7 +4015,16 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
             continue
         value = gen.get(name, 0.0)
         z = zscore(value, stat["mean"], stat["stdev"])
+        # A |z| this large cannot come from a well-sampled distribution over a
+        # bounded metric; it means the corpus barely varies on this measure and
+        # the division is amplifying noise. A two-part invention reported
+        # `min_chord_ratio z = +142.8` — it has exactly two chord events in 18
+        # bars, one of them minor, so the ratio is 1/2 against a corpus mean of
+        # 0.0002 and sd 0.0035. Nothing about that number is evidence, and left
+        # unmarked it reads as the single worst thing about the piece.
         status = "ok" if abs(z) <= 2 else ("low" if z < 0 else "high")
+        if abs(z) > _Z_DEGENERATE:
+            status = "unreliable"
         metrics[name] = {
             "value": value,
             "z": z,
@@ -3829,7 +4032,13 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
             "corpus_sd": stat["stdev"],
             "status": status,
         }
-        if status != "ok":
+        if status == "unreliable":
+            metrics[name]["note"] = (
+                f"corpus sd is {stat['stdev']:.4g} against mean {stat['mean']:.4g} — "
+                "this composer's corpus barely varies on this measure, so the "
+                "comparison is not evidence about the piece."
+            )
+        if status not in ("ok", "unreliable"):
             flags.append(
                 {
                     "metric": name,
@@ -4014,7 +4223,7 @@ def commit_candidate_phrase(
     else:
         return {"error": "Provide bars or layer_ir"}
 
-    report = validate_layer_ir(layer)
+    report = validate_layer_ir(layer, _physical_constraints(graph))
     if not report.passed:
         return {
             "ok": False,
@@ -4184,23 +4393,39 @@ def promote_candidate(piece_id: str, phrase_id: str, lens: str) -> Dict[str, Any
 # variation set or a style transfer is the one thing it cannot mean.
 _MODE_LOCKS = {
     "variation": {
-        "principal_melody": 0.8, "form_layout": 0.9, "phrase_count": 0.9,
-        "cadence_hits": 0.7, "key_scheme": 0.8,
+        "principal_melody": 0.8,
+        "form_layout": 0.9,
+        "phrase_count": 0.9,
+        "cadence_hits": 0.7,
+        "key_scheme": 0.8,
     },
     "style_transfer": {
-        "principal_melody": 0.6, "form_layout": 0.9, "phrase_count": 0.9,
-        "cadence_hits": 0.5, "key_scheme": 0.7,
+        "principal_melody": 0.6,
+        "form_layout": 0.9,
+        "phrase_count": 0.9,
+        "cadence_hits": 0.5,
+        "key_scheme": 0.7,
     },
     "continue_piece": {
-        "principal_melody": 0.3, "form_layout": 0.2, "key_scheme": 0.6,
+        "principal_melody": 0.3,
+        "form_layout": 0.2,
+        "key_scheme": 0.6,
     },
     "orchestrate": {
-        "principal_melody": 0.95, "bass_foundation": 0.9, "cadence_hits": 0.9,
-        "form_layout": 1.0, "phrase_count": 1.0, "key_scheme": 1.0,
+        "principal_melody": 0.95,
+        "bass_foundation": 0.9,
+        "cadence_hits": 0.9,
+        "form_layout": 1.0,
+        "phrase_count": 1.0,
+        "key_scheme": 1.0,
     },
     "reduce_to_piano": {
-        "principal_melody": 0.9, "bass_foundation": 0.8, "cadence_hits": 0.8,
-        "form_layout": 1.0, "phrase_count": 1.0, "key_scheme": 1.0,
+        "principal_melody": 0.9,
+        "bass_foundation": 0.8,
+        "cadence_hits": 0.8,
+        "form_layout": 1.0,
+        "phrase_count": 1.0,
+        "key_scheme": 1.0,
     },
 }
 
