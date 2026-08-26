@@ -4,6 +4,7 @@
   "support_tier": "A",
   "corpus_bar_count": 6795,
   "profile_files": [
+    "bach-lh-vocabulary.md",
     "biography.md",
     "composition-guide.md",
     "cross-references.md",

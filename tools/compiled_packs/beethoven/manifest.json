@@ -4,6 +4,8 @@
   "support_tier": "A",
   "corpus_bar_count": 17757,
   "profile_files": [
+    "beethoven-devices.md",
+    "beethoven-lh-vocabulary.md",
     "biography.md",
     "composition-guide.md",
     "cross-references.md",

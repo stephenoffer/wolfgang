@@ -437,7 +437,18 @@ class ContextCompiler:
     # ─── Pass 4: Formal Grammar ──────────────────────────────────────────
 
     def _pass_formal_grammar(self, profile_dir: Optional[Path]) -> Dict:
-        """Extract form templates from formal-approach.md."""
+        """Extract form templates from formal-approach.md.
+
+        This used to ask ``if "sonata" in text.lower()``, which cannot tell a
+        composer who writes sonatas from one whose profile says he does not.
+        Palestrina's formal-approach.md opens "There is no sonata, no rondo, no
+        ternary reprise" — and the compiler gave a 16th-century vocal polyphonist
+        a sonata graph with exposition keys I and V and a tonic recapitulation
+        rule. Thirteen profiles phrase a form that way.
+
+        A form now counts only where it is asserted: named in a heading or a
+        table cell, or in a sentence that is not negating it.
+        """
         if not profile_dir:
             return {"forms": {}}
 
@@ -447,20 +458,24 @@ class ContextCompiler:
 
         text = formal.read_text()
         forms = {}
-
-        # Look for sonata form proportions
-        if "sonata" in text.lower():
-            forms["sonata"] = {
-                "sections": _extract_section_proportions(text, "sonata"),
-                "key_scheme": {"exposition_keys": ["I", "V"], "recap_rule": "tonic"},
-            }
-
-        if "rondo" in text.lower():
-            forms["rondo"] = {"sections": [], "key_scheme": {}}
-
-        if "ternary" in text.lower():
-            forms["ternary"] = {"sections": [], "key_scheme": {}}
-
+        for name in ("sonata", "rondo", "ternary"):
+            if not _form_is_asserted(text, name):
+                continue
+            sections = _extract_section_proportions(text, name)
+            if name == "sonata":
+                forms["sonata"] = {
+                    "sections": sections,
+                    # A minor-key exposition goes to the relative major, not the
+                    # dominant; stating one scheme for both was wrong for every
+                    # minor-key sonata in the repertoire.
+                    "key_scheme": {
+                        "exposition_keys_major": ["I", "V"],
+                        "exposition_keys_minor": ["i", "III"],
+                        "recap_rule": "tonic",
+                    },
+                }
+            elif sections:
+                forms[name] = {"sections": sections, "key_scheme": {}}
         return {"forms": forms}
 
     # ─── Pass 5: Harmonic Rules ──────────────────────────────────────────
@@ -2109,6 +2124,37 @@ def _extract_texture_refs(text: str) -> List[str]:
             textures.append(texture)
     return textures
 
+
+
+# Phrases that negate whatever form name follows them within the same clause.
+_NEGATORS = re.compile(
+    r"\b(?:no|not|never|without|neither|nor|unlike|rather\s+than|instead\s+of|"
+    r"far\s+from|nothing\s+like|is\s+not|are\s+not|isn't|aren't)\b",
+    re.IGNORECASE,
+)
+
+
+def _form_is_asserted(text: str, form: str) -> bool:
+    """Is ``form`` claimed by this profile, rather than merely mentioned?
+
+    Headings and table cells are assertions. Prose counts only when the clause
+    naming the form carries no negator before it.
+    """
+    for line in text.splitlines():
+        low = line.lower()
+        if form not in low:
+            continue
+        stripped = line.strip()
+        if stripped.startswith("#") or stripped.startswith("|"):
+            return True
+        # Split into clauses so "it is a rondo, not a sonata" is read per-clause.
+        for clause in re.split(r"[;,.]|\s+—\s+", low):
+            if form not in clause:
+                continue
+            before = clause.split(form, 1)[0]
+            if not _NEGATORS.search(before):
+                return True
+    return False
 
 def _extract_section_proportions(text: str, form_type: str) -> List[Dict]:
     """Extract section proportion data from text."""

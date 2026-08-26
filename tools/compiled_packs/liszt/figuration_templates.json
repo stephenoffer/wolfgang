@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_three_octave_arpeggio_sweep",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Three-octave arpeggio sweep",
+    "description": "`Ab1e Eb2e Ab2e C3e Eb3e Ab3e C4e Eb4e`. One bar, one gesture, the full compass of the hand's reach with pedal. The signature sound.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_leaping_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Leaping bass",
+    "description": "a low octave on the beat, a chord two octaves higher off it: `[Ab1,Ab2]q [Eb3,Ab3,C4]q [Ab1,Ab2]q [Eb3,Ab3,C4]q`. The distance is the effect; a close-position version of this is a waltz.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_third_hand",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The \"third hand\"",
+    "description": "the melody in the middle register, shared between the hands, with figuration above and below it. Written as a left-hand line that *is* the tune while the right hand ornaments around it.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_in_the_low_register",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo in the low register",
+    "description": "`[Ab1,Eb2]s \u00d716`. Orchestral: it is a string tremolo transcribed. Under a sustained chordal melody it produces the \"orchestra at the keyboard\" texture the transcriptions are built on.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_octaves_driving",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated octaves, driving",
+    "description": "`[Ab1,Ab2]e \u00d78` at `ff`. Relentless, and the basis of the bravura passages.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_scale_in_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic scale in octaves",
+    "description": "both hands, or the left alone, sweeping across two octaves. Transitional, and used to obliterate the previous key.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_widely_spaced_sustained_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Widely-spaced sustained chords",
+    "description": "`[Ab1,Ab2,Eb3,Ab3]w`. Cathedral-like, for the religious and meditative works. The spacing is open: an octave at the bottom, then fifths and octaves above.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_alone_unaccompanied_declamatory",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass alone, unaccompanied, declamatory",
+    "description": "a single melodic line low on the instrument with nothing above it. Used at openings and before returns. Sparse and rhetorical.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_alternating_hands_on_one_figure",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Alternating hands on one figure",
+    "description": "the two hands share a single arpeggio or scale, alternating notes, so it can run faster and wider than either could alone. A virtuoso device with a real textural result.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_harmonic_pedal_with_chromatic_inner_motion",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Harmonic pedal with chromatic inner motion",
+    "description": "a held low octave while an inner voice slides chromatically. Liszt's tension-builder, usually before a climax.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence_complete",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence, complete",
+    "description": "Liszt drops everything for a bar with a fermata, more often than any Romantic composer. The rhetoric is operatic: a pause before the next declamation.",
+    "source_file": "liszt/liszt-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

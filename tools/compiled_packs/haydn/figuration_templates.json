@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_two_part_texture_bass_as_a_real_line",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Two-part texture, bass as a real line",
+    "description": "often just a single melodic line under the melody, no chords at all: `C3q D3q E3q F3q`. Haydn writes far more two-voice keyboard texture than Mozart, and it is the most under-used idiom in generated Classical writing.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_oom_pah_dry",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Oom-pah, dry",
+    "description": "`C2q [E3,G3]q C2q [E3,G3]q`. Present, but lighter and more often staccato than in Mozart. The dots matter: without them it is heavy.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_alberti",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Alberti",
+    "description": "used, but Haydn tires of it faster. Two to four bars, then something else.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_sudden_rest",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The sudden rest",
+    "description": "`rest_h [G2,B2,D3]h`, or a whole bar of silence in the middle of a phrase. Haydn's signature. A joke needs a beat of nothing before the punchline.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_notes_as_a_drone",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated notes as a drone",
+    "description": "the same bass note pulsing under changing harmony above: `G2e \u00d78`. The rustic, folk-derived sound of the finales; suggests a drone instrument.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_for_emphasis",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves for emphasis",
+    "description": "`[C2,C3]h` at the start of a phrase or a development, with nothing in between. Stark and attention-getting.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_off_beat_entries",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Off-beat entries",
+    "description": "the accompaniment begins on beat 2 rather than beat 1: `rest_q [C3,E3,G3]q [C3,E3,G3]q [C3,E3,G3]q`. Displaces the whole bar's feeling without changing a note of the melody.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_bass_into_a_cadence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking bass into a cadence",
+    "description": "quarters stepping down to the dominant over two bars. Straightforward, and it is what makes his cadences sound inevitable.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_hand_crossing_bass_above_the_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Hand crossing / bass above the melody",
+    "description": "occasionally the left hand plays *above* the right for a bar or two. A colour effect, and unmistakably his.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_unison_passages",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Unison passages",
+    "description": "both hands on the same line, often at the start of a development or after a fermata. Bare and dramatic in a way the galant style otherwise avoids.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_chord_under_a_running_right_hand",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held chord under a running right hand",
+    "description": "`[C3,E3,G3]w`. Simple, and it gives the right hand room to be virtuosic.",
+    "source_file": "haydn/haydn-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

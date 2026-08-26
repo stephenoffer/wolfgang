@@ -1,5 +1,92 @@
 [
   {
+    "id": "diminished_seventh",
+    "name": "Diminished seventh",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Terror",
+      "the uncanny; any of four resolutions"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_reinterpretation",
+    "name": "Enharmonic reinterpretation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sudden",
+      "motivated key shift"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_mediant",
+    "name": "Chromatic mediant",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The magical",
+      "the distant"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "augmented_sixth",
+    "name": "Augmented sixth",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Intensifying a dominant arrival"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan",
+    "name": "Neapolitan",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Pathos in minor-key arias"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "modal_mixture",
+    "name": "Modal mixture",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Shadow across a major-key phrase"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "tremolo_pedal_under_shifting_harmony",
+    "name": "Tremolo pedal under shifting harmony",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Atmosphere; the operatic storm"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
     "id": "chromatic_mediants_c_to_ab_c_to_e",
     "name": "Chromatic mediants (C to Ab, C to E)",
     "chord_sequence": [],

@@ -1,5 +1,113 @@
 [
  {
+  "id": "lh_idiom_point_of_imitation",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Point of imitation",
+  "description": "one voice states a motif, the others enter with the same motif at staggered distances, usually a fourth or fifth apart. Each section of text gets its own point. This is the *form*, not a device: a piece is a chain of them.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_stepwise_motion_overwhelmingly",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Stepwise motion, overwhelmingly",
+  "description": "real Palestrina is around 80% stepwise. A leap is an event. Any line that arpeggiates is out of style.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_a_leap_answered_by_a_step_in_the_opposite_direction",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "A leap answered by a step in the opposite direction",
+  "description": "the rule that makes the lines singable. After a leap of a fourth or more, the next note steps back inside it. Never two leaps in the same direction.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_the_arch",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "The arch",
+  "description": "a voice rises to a single high point and descends. One peak per phrase, and the peak is not repeated.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_suspension_and_resolution",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Suspension and resolution",
+  "description": "a voice holds while the harmony changes beneath it, creating a dissonance on the strong beat, then falls by step: `G4h~ G4q F4q`. The engine of Renaissance expression, and the only place dissonance is allowed on a strong beat.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_passing_dissonance_on_the_weak_beat",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Passing dissonance on the weak beat",
+  "description": "the other permitted dissonance, and only when approached and left by step.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_cambiata",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Cambiata",
+  "description": "the one licensed \"wrong\" figure: down a step, down a third, up a step, up a step. A formula worth having in the vocabulary because it sounds authentic and nothing else does the same job.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_cadence_with_a_suspended_fourth",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Cadence with a suspended fourth",
+  "description": "the standard close: the upper voice suspends over the penultimate bass note, resolves down, and the final is reached by step. The leading tone rises.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_voice_pairing",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Voice pairing",
+  "description": "two voices move together in thirds or sixths, answered by the other two. Gives contrast without changing the number of parts.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_reduced_scoring",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Reduced scoring",
+  "description": "dropping from five voices to two or three for a phrase, then returning to full. The Renaissance equivalent of a dynamic change, and the principal means of shaping a piece.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_homophony_for_emphasis",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Homophony for emphasis",
+  "description": "all voices in the same rhythm on one phrase of text, usually a short one, then back to polyphony. Rare and therefore striking.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_rests_as_entries",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Rests as entries",
+  "description": "a voice is silent for several bars before its next point of imitation. Voices enter and drop out constantly, and a texture where all voices sing continuously is a texture with no articulation.",
+  "source_file": "palestrina/palestrina-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
   "id": "fig_1_alberti",
   "name": "Alberti bass",
   "pattern_keyword": "alberti",
@@ -261,6 +369,114 @@
   "register_suggestion": "",
   "grounding": "interpretive",
   "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "lh_idiom_point_of_imitation",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Point of imitation",
+  "description": "as in Palestrina, and the default in the earlier madrigal texture: a motif passed between voices at staggered entries.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_the_declaiming_solo_over_a_slow_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "The declaiming solo over a slow bass",
+  "description": "one voice in speech rhythm, the bass holding whole notes underneath: `C3w` under a freely-moving upper line. The recitative texture, and Monteverdi's invention as a musical form.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_basso_continuo_in_slow_harmonic_rhythm",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Basso continuo in slow harmonic rhythm",
+  "description": "`G2w`, `C3w`, one chord per bar or per two bars. It supports; it does not compete.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_descending_tetrachord_ground",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Descending tetrachord ground",
+  "description": "`A3h G3h F3h E3h` repeated as an ostinato under changing upper material. The lament bass, and the *Lamento della Ninfa* is built entirely on one. The most reusable device in his vocabulary.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_stile_concitato",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Stile concitato",
+  "description": "the \"agitated style\": rapid repeated notes on one pitch, `C4s \u00d716`, representing warfare and passion. Monteverdi's own invention and unmistakably his.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_unprepared_dissonance_for_a_word",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Unprepared dissonance for a word",
+  "description": "a seventh or a ninth entered without preparation because the text says *cruda*, *dolore*, *morte*. Forbidden in the *prima pratica* and the whole point of the second.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_suspension_chains",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Suspension chains",
+  "description": "as in Palestrina, but longer and more insistent, and allowed to resolve onto another dissonance.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_homophonic_declamation",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Homophonic declamation",
+  "description": "all voices together in the rhythm of the words, for a line of text that must be understood. Alternates with polyphony.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_voice_pairs_answering",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Voice pairs answering",
+  "description": "two upper voices against two lower, trading a phrase. The concertato texture.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_chromatic_descent_in_the_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Chromatic descent in the bass",
+  "description": "semitone by semitone, `A2q Ab2q G2q Gb2q`. Grief. Later than Palestrina and earlier than everyone else who used it.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_echo",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Echo",
+  "description": "a phrase repeated immediately, quieter, often by a different voice or at a distance. Written as a literal repeat.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_silence_for_a_word",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Silence for a word",
+  "description": "everything stops before a crucial word. The most Monteverdian gesture there is, and it costs one rest.",
+  "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
  },
  {
   "id": "fig_3_broken_chord_desc",

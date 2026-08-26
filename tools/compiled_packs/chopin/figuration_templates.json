@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_wide_arpeggiated_wave",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide arpeggiated wave",
+    "description": "the nocturne engine. One bass note, then the chord unfolding upward across an octave and a half: `Ab1e Eb3e Ab3e C4e Eb4e C4e Ab3e Eb3e`. The span from the bass to the top of the figure is 15\u201320 semitones; the *width* is the sound.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_note_plus_displaced_chord",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass note plus displaced chord",
+    "description": "`Bb1q [F3,Bb3,D4]q [F3,Bb3,D4]q` in 3/4. The mazurka and waltz shape. The gap between the bass and the chord is the point; closing it makes it sound like a folk band.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rocking_tenths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rocking tenths",
+    "description": "`Ab1e C3e Ab1e C3e \u2026`. A tenth apart, alternating. Warm and open, and the tenth is what makes it Romantic rather than an octave.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_pedal_bass_under_moving_inner_voices",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained pedal bass under moving inner voices",
+    "description": "`Ab1w // Eb3e F3e Gb3e F3e Eb3e F3e Gb3e F3e`. The bass holds for the whole bar while a middle voice moves. This is genuine two-voice left-hand writing and it is what most generated Chopin is missing.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_inner_voice_descent",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic inner-voice descent",
+    "description": "the bass stays, the note above it falls by semitone across four bars: `C3 \u2192 B2 \u2192 Bb2 \u2192 A2`. Chopin's most reliable way of making a repeated harmony feel like it is going somewhere.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_doubled_octaves_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Doubled octaves in the bass",
+    "description": "`[Ab1,Ab2]h [Eb2,Eb3]h`. For weight at a climax, or for the ballades' declamatory passages. Rare and heavy; do not use it as a default.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_waltz_oom_pah_pah_widely_spaced",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Waltz oom-pah-pah, widely spaced",
+    "description": "`Ab1q [C3,Eb3]q [C3,Eb3]q`. The textbook figure, but the bass is an octave lower than a Classical waltz would put it and the chord is thinner (two notes, not three).",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_free_arpeggio_spanning_the_whole_hand",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Free arpeggio spanning the whole hand",
+    "description": "`Db1e Ab1e F2e Ab2e Db3e F3e Ab3e Db4e`, a two-and-a-half-octave sweep in one bar. The barcarolle and the later nocturnes. Written as one gesture, pedalled through.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chord_with_a_moving_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chord with a moving bass",
+    "description": "the chord stays put while the bass walks underneath it: `Ab1e [C3,Eb3]e G1e [C3,Eb3]e F1e [C3,Eb3]e \u2026`. Motion without any change in colour.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_left_hand_carries_the_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The left hand carries the melody",
+    "description": "in the middle register, with the right hand accompanying above. Used for a return, or for the middle section of a nocturne. The tune sounds completely different an octave lower with a different attack, which is the reason to do it.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence_under_a_cadenza",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence under a cadenza",
+    "description": "`rest_w`. The right hand runs free and the left hand simply stops. Chopin does this at every written-out ornamental flourish; keeping the accompaniment going through one is the surest way to make it sound mechanical.",
+    "source_file": "chopin/chopin-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -261,5 +360,176 @@
     "register_suggestion": "",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_written_out_ornamental_flourish",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Written-out ornamental flourish",
+    "description": "a cadenza-like run of small notes over a held or absent accompaniment, notated in real values (often 32nds or a burst of irregular groupings). Placed at a phrase's peak or before a return. The left hand usually stops.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_ornamented_return",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The ornamented return",
+    "description": "a melody comes back decorated rather than plain. This is Chopin's principal variation technique: same notes, more of them, arriving in a different order around the same anchors.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_appoggiatura_sigh",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Appoggiatura sigh",
+    "description": "a dissonance on the beat resolving down by step, slurred: `(Ab5q G5q)`. The core expressive gesture, and it should recur.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_rubato_against_a_steady_bass",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Rubato against a steady bass",
+    "description": "the melody written with values that do not align evenly with the accompaniment: a triplet against duple, a quintuplet over four, dotted rhythms over even ones.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_passing_motion_inside_a_diatonic_line",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Chromatic passing motion inside a diatonic line",
+    "description": "the melody steps through notes outside the key on its way between chord tones. Colour without modulation.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_breathed_line",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long-breathed line",
+    "description": "a phrase of eight or more bars that does not cadence in the middle. The line arches once and lands once.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melodic_leap_of_a_sixth_or_seventh_filled_in_on_the_way_back",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melodic leap of a sixth or seventh, filled in on the way back",
+    "description": "the operatic gesture: an expressive upward leap, then a stepwise descent from it.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_with_changing_harmony_beneath",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repeated note with changing harmony beneath",
+    "description": "the melody holds one pitch while the chord under it moves, so the same note means something different in each bar.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_melody_in_the_tenor",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The melody in the tenor",
+    "description": "the tune moves to the left hand's upper register with accompaniment above and below it. Used for a middle section or a transformed return.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_voice_leading",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic voice leading",
+    "description": "inner voices sliding by semitone between chords that would otherwise be plain. The harmony is often simple; the *motion* between chords is the interest.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_enharmonic_pivot",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Enharmonic pivot",
+    "description": "a diminished seventh or an augmented sixth respelled to land in a remote key. Chopin modulates further and faster than any of his contemporaries.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_neapolitan_and_augmented_sixth_colour_at_moments_of_pathos_especially_in_the_mazurkas_and_nocturnes_13_modal_inflection_from_polish_folk_music",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Neapolitan and augmented-sixth colour** at moments of pathos, especially in\n    the mazurkas and nocturnes.\n\n13. **Modal inflection from Polish folk music",
+    "description": "a raised fourth (Lydian) or a flattened seventh in the mazurkas, and drone fifths in the bass. This is what separates a mazurka from a waltz.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_a_dominant_that_refuses_to_resolve",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "A dominant that refuses to resolve",
+    "description": "the chord held, decorated, delayed over several bars before the tonic finally arrives.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_diminished_sevenths_descending",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel diminished sevenths descending",
+    "description": "a sequence of the same chord shape sliding down by semitone or minor third. Transitional, and it dissolves the key.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ternary_with_an_ornamented_return",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Ternary with an ornamented return",
+    "description": "A, contrasting B, then A again with the melody decorated. The nocturne and mazurka default.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_coda_that_dissolves",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "The coda that dissolves",
+    "description": "the texture thins, the register rises or falls away, the dynamic drops to `pp` or `ppp`. Chopin rarely ends loudly.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_mazurka_rhythm",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Mazurka rhythm",
+    "description": "the stress on beat 2 or 3 rather than 1, in 3/4. Written as a dotted or accented second beat. Without it a mazurka is a waltz.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_rhythmic_dissolution_before_a_return",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Rhythmic dissolution before a return",
+    "description": "the pulse becomes ambiguous through irregular groupings, then the return re-establishes it.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bel_canto_phrasing_marks",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Bel canto phrasing marks",
+    "description": "long slurs over whole phrases, not bar by bar. A slur that stops at the barline is not this idiom.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

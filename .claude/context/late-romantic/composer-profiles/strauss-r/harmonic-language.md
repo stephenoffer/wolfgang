@@ -125,3 +125,19 @@ V:Lower clef=bass
 - [orchestration.md](orchestration.md) — Harmonic voicing across the Strauss orchestra
 - [../../late-romantic-harmony.md](../../late-romantic-harmony.md) — Shared Late Romantic vocabulary
 - [cross-references.md](cross-references.md) — Wagner inheritance, vs Mahler
+
+---
+
+## Cadences and closure
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Perfect authentic | V7–I, often after chromatic saturation | Structural closes | Resolution arrives as relief |
+| Chromatic-mediant close | Approach to the tonic from bIII or bVI | Apotheosis endings | Glow, distance |
+| Suspended cadence | Dominant prolonged under a soaring line | Climaxes | The line resolves before the harmony does |
+| Deceptive chain | V–vi, then again, then again | Extending a peroration | Repeated postponement |
+| Diatonic collapse | Dense chromaticism resolving suddenly to plain triads | Endings of tone poems | Transfiguration |
+| Open ending | Unresolved dominant or added-note chord | Where the narrative is unfinished | Question mark |
+
+The signature is the long-delayed authentic cadence: the dominant may be held
+for dozens of bars, decorated with appoggiaturas, before the tonic is allowed.

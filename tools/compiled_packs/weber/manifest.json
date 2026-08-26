@@ -5,7 +5,10 @@
   "corpus_bar_count": 241,
   "profile_files": [
     "composition-guide.md",
-    "melodic-style.md"
+    "formal-approach.md",
+    "harmonic-language.md",
+    "melodic-style.md",
+    "orchestration.md"
   ],
   "corpus_files": [
     "bar_index.json",

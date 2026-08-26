@@ -5,7 +5,11 @@
   "corpus_bar_count": 19,
   "profile_files": [
     "composition-guide.md",
-    "melodic-style.md"
+    "corelli-lh-vocabulary.md",
+    "formal-approach.md",
+    "harmonic-language.md",
+    "melodic-style.md",
+    "orchestration.md"
   ],
   "corpus_files": [
     "bar_index.json",

@@ -1,5 +1,83 @@
 [
   {
+    "id": "cad_perfect_authentic",
+    "type": "Perfect authentic",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V7\u2013I, soprano on 1",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "cad_cadential_6_4",
+    "type": "Cadential 6-4",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I64\u2013V7\u2013I",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "cad_half_cadence",
+    "type": "Half cadence",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "ii6 or IV to V",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "cad_deceptive",
+    "type": "Deceptive",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "V\u2013vi, or V\u2013bVI",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "cad_diminished_seventh_interruption",
+    "type": "Diminished-seventh interruption",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "vii\u00b07 held, then reinterpreted",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
+    "id": "cad_horn_call_plagal",
+    "type": "Horn-call plagal",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "IV\u2013I with horns in thirds",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "weber/harmonic-language.md"
+  },
+  {
     "id": "cad_plagal_with_added_6th",
     "type": "Plagal with added 6th",
     "approach_chords": [

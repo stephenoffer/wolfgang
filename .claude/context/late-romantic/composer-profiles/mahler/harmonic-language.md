@@ -137,3 +137,19 @@ K:C
 - [orchestration.md](orchestration.md) — How harmonic thinning maps to orchestral texture
 - [../../late-romantic-harmony.md](../../late-romantic-harmony.md) — Shared Late Romantic harmonic vocabulary
 - [cross-references.md](cross-references.md) — Contrast with Wagner and Bruckner harmonic approaches
+
+---
+
+## Cadences and closure
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Perfect authentic | V7–I, often long-delayed | End of a movement, after enormous preparation | Hard-won arrival |
+| Plagal / chorale close | IV–I, brass and winds in chorale scoring | Transfiguration endings | Benediction |
+| Deceptive | V–bVI or V–vi | Postponing a close that has been promised for pages | The withheld resolution |
+| Progressive-tonal close | The movement ends in a different key than it began | Whole movements and whole symphonies | The journey does not return |
+| Collapse | Texture and dynamic drain away over a pedal | End of an adagio | Dissolution rather than cadence |
+| Interrupted by irruption | A cadence begins and is broken by an unrelated idea | Mid-movement | Irony, disruption |
+
+Closure in Mahler is frequently *refused*. A movement that ends in the key it
+started in, on time, with a clean authentic cadence, is not characteristic.

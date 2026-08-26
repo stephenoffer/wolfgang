@@ -141,3 +141,23 @@ Webern rarely writes traditional "chords." When multiple notes sound simultaneou
 - [orchestration.md](orchestration.md) — How intervals distribute across instruments
 - [formal-approach.md](formal-approach.md) — Row symmetry as formal architecture
 - [../../modern-harmony.md](../../modern-harmony.md) — Twelve-tone technique reference
+
+---
+
+## Cadences and closure
+
+Twelve-tone music has no cadence. What ends a Webern phrase is the completion of
+a row, a registral fixing, and silence — and these are structural, not
+decorative.
+
+| Closure device | Construction | Where it belongs | Effect |
+|----------------|--------------|------------------|--------|
+| Row completion | The aggregate finishes; all twelve pitch classes have sounded | Phrase and section ends | Structural closure |
+| Symmetrical arrival | The row's palindromic centre lands on a fixed register | Formal centres | Balance |
+| Registral fixing | A pitch returns to the exact octave it held earlier | Movement ends | Recognition, place |
+| Silence | A rest longer than any note in the phrase | Between everything | The primary punctuation |
+| Dynamic extinction | ppp on an isolated single note | Movement ends | Vanishing |
+| Klangfarben cadence | The final gesture passed between three instruments | Ends of variations | Dissolution of the line |
+
+Silence is not the absence of the music here; it is the strongest event in it.
+Writing continuous texture destroys the idiom completely.

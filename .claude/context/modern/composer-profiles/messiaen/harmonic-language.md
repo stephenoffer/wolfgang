@@ -138,3 +138,22 @@ Messiaen's chords do not progress by tonal logic (V-I); they progress by color a
 - [melodic-style.md](melodic-style.md) — Modal melody over modal harmony
 - [formal-approach.md](formal-approach.md) — Harmonic stasis as formal architecture
 - [../../modern-harmony.md](../../modern-harmony.md) — Modes of limited transposition table
+
+---
+
+## Cadences and closure
+
+Messiaen's modes of limited transposition have no leading tone and therefore no
+functional cadence. Closure is by stasis, by resonance, and by completion of a
+process.
+
+| Cadence | Construction | Where it belongs | Effect |
+|---------|--------------|------------------|--------|
+| Resonance chord | The added-sixth / added-fourth chord of the mode, held | Ends of contemplative movements | Suspension in light |
+| Modal plagal | Movement to the mode's central sonority without leading tone | Sectional closes | Arrival without tension release |
+| Rhythmic completion | A non-retrogradable rhythm completes its palindrome | Rhythmic movements | Closure by symmetry |
+| Birdsong cessation | Birdsong simply stops; sustained chord remains | Nature movements | Silence as the ending |
+| Tutti unison | All forces on one line | Apocalyptic movements | Proclamation |
+| Fade to silence | Long diminuendo on an unresolved sonority | Slow movements | Eternity, not conclusion |
+
+Nothing here resolves in the tonal sense; the music arrives and remains.

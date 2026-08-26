@@ -39,15 +39,55 @@
         }
       ],
       "key_scheme": {
-        "exposition_keys": [
+        "exposition_keys_major": [
           "I",
           "V"
+        ],
+        "exposition_keys_minor": [
+          "i",
+          "III"
         ],
         "recap_rule": "tonic"
       }
     },
     "rondo": {
-      "sections": [],
+      "sections": [
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        }
+      ],
       "key_scheme": {}
     }
   }

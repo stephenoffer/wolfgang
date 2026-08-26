@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_walking_quarters_through_the_harmony",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking quarters through the harmony",
+    "description": "`D3q A2q Bb2q F2q G2q D2q Eb2q A2q`. Steady, mostly by step or by fourth, one note per chord. The default and the sound of the style.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_circle_of_fifths_exact",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Circle of fifths, exact",
+    "description": "the bass falling a fifth and rising a fourth, four to eight chords in a row: `D3q G2q C3q F2q Bb2q E2q A2q D2q`. Corelli uses longer circles than anyone before him, and the exactness is the point.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_suspension_chain_the_7_6_or_4_3_chain",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Suspension chain (the 7-6 or 4-3 chain)",
+    "description": "the upper voices suspend in alternation while the bass walks down by step. `D3q C3q Bb2q A2q` under suspending violins. This is the single most Corellian texture there is.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pedal_on_the_dominant",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pedal on the dominant",
+    "description": "`A2w` held for four to eight bars before a final cadence, with the violins intensifying above.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_notes_for_insistence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated notes for insistence",
+    "description": "`D3e \u00d78` under a sequential passage.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_imitating_the_violins",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass imitating the violins",
+    "description": "in the fugal movements the bass takes the subject at the octave below. The trio sonata's fast movements are usually fugal and the bass must participate.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_descending_tetrachord_ground",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Descending tetrachord ground",
+    "description": "`D3h C3h Bb2h A2h`, repeated. Used for the slow movements and the chaconne-like finales.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_long_notes_under_a_solo_passage",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Long notes under a solo passage",
+    "description": "whole notes while a violin ornaments freely above. The slow-movement texture.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cadential_4_3_with_the_bass_falling_a_fifth",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cadential 4-3 with the bass falling a fifth",
+    "description": "`A2h D2h` under a suspended fourth resolving. Every phrase ends this way; that is not monotony, it is the period's punctuation.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sequences_of_one_bar_units",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sequences of one-bar units",
+    "description": "the same bar transposed down a step or a third, three or four times. Corelli's principal method of continuation, and the transposition should be exact.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence_for_one_beat_before_a_cadence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence for one beat before a cadence",
+    "description": "the whole texture stops, then the cadence lands. Sparing and effective.",
+    "source_file": "corelli/corelli-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

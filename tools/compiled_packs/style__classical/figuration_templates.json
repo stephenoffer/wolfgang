@@ -351,5 +351,536 @@
   "register_suggestion": "",
   "grounding": "interpretive",
   "source_file": "figuration-patterns.md"
+ },
+ {
+  "id": "device_parallel_thirds_sixths",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Parallel thirds & sixths",
+  "description": "the signature Mozart sweetness for lyrical themes. Double the melody a 3rd or 6th below in the same rhythm: `[F5,A5]q [E5,G5]e [D5,F5]e ...`. Use across lyrical second themes and consoling passages. Don't overuse in stormy material.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_appoggiatura_sigh",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Appoggiatura \"sigh\"",
+  "description": "a dissonance ON the strong beat resolving DOWN by step on the weak beat, slurred two-note: `(G5q F5q)` over an F chord (the G leans, the F resolves). The emotional core of Mozart's minor-key writing. Place at phrase peaks and cadential approaches.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_cadential_trill",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Cadential trill",
+  "description": "a trill on scale-degree 2 (or the dominant note) approaching a PAC, ideally with a turned suffix: `A5h:tr` then resolve to the tonic. Reserve for real cadences (PAC, important HC), not every bar.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_turns_mordents",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Turns & mordents",
+  "description": "a gruppetto (turn) wrapping a sustained melody note `:turn`, a mordent `:mord` on an accented note. Ornament arrivals and long notes, not running passages.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_grace_note_appoggiatura",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Grace-note appoggiatura",
+  "description": "a short `:grace` note leaning into a strong beat from a step above. Adds vocal inflection at phrase starts/peaks.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_echo_dynamics_terraced_repetition",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Echo dynamics (terraced repetition)",
+  "description": "state a 1-2 bar idea `f`, then immediately repeat it (often an octave up or same register) `p`. A quintessential Mozart/Classical gesture. Great for presentation phrases and codettas. Mark the dynamics explicitly.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_triplet_contrast",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Triplet contrast",
+  "description": "break prevailing duple (eighths/sixteenths) with a bar or two of triplet figuration for rhythmic variety and forward lilt.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_scale_flourish_as_punctuation",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Scale flourish as punctuation",
+  "description": "a fast run is connective/cadential tissue, used ONCE to drive into an arrival \u2014 not the default surface. If a phrase is >55% stepwise, replace some runs with arpeggios/leaps.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_leap_to_peak_then_step_down",
+  "category": "composer_device",
+  "section": "Melodic / right-hand devices",
+  "name": "Leap-to-peak then step-down",
+  "description": "approach a registral apex by leap (6th, octave, arpeggio), then release it by step. Gives the line a profile and a clear high point.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_periodic_structure",
+  "category": "composer_device",
+  "section": "Structural / harmonic behaviors",
+  "name": "Periodic structure",
+  "description": "antecedent (4 bars, ends on a HC, \"question\") + consequent (4 bars, begins like the antecedent, ends PAC, \"answer\"). Make the consequent's opening RECOGNIZABLY echo the antecedent.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_sentence_structure",
+  "category": "composer_device",
+  "section": "Structural / harmonic behaviors",
+  "name": "Sentence structure",
+  "description": "presentation (a 2-bar basic idea + its repetition, often sequenced up a step or varied) \u2192 continuation (fragment the idea, accelerate harmonic rhythm) \u2192 cadence. Mozart's primary themes are often sentences.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_deceptive_feint",
+  "category": "composer_device",
+  "section": "Structural / harmonic behaviors",
+  "name": "Deceptive feint",
+  "description": "approach the cadence, then resolve V\u2192vi instead of V\u2192I once, before finally landing the real PAC. Adds a moment of surprise.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_cadential_6_4",
+  "category": "composer_device",
+  "section": "Structural / harmonic behaviors",
+  "name": "Cadential 6/4",
+  "description": "at important cadences: I6/4 \u2192 V(7) \u2192 I. Lean the 6/4 on a strong beat (it's a dominant-function suspension).",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_feminine_cadence",
+  "category": "composer_device",
+  "section": "Structural / harmonic behaviors",
+  "name": "Feminine cadence",
+  "description": "resolve the final tonic on a WEAK beat (e.g. beat 2), often after an appoggiatura. Gentler than a downbeat slam; very Mozart for lyrical endings.",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_neapolitan_bii6",
+  "category": "composer_device",
+  "section": "Structural / harmonic behaviors",
+  "name": "Neapolitan (bII6)",
+  "description": "in minor, a flat-supertonic-sixth chord for a dark expressive stab before the dominant. Let it land (fp, slight hold).",
+  "source_file": "mozart/mozart-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_two_part_texture_bass_as_a_real_line",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Two-part texture, bass as a real line",
+  "description": "often just a single melodic line under the melody, no chords at all: `C3q D3q E3q F3q`. Haydn writes far more two-voice keyboard texture than Mozart, and it is the most under-used idiom in generated Classical writing.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_oom_pah_dry",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Oom-pah, dry",
+  "description": "`C2q [E3,G3]q C2q [E3,G3]q`. Present, but lighter and more often staccato than in Mozart. The dots matter: without them it is heavy.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_alberti",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Alberti",
+  "description": "used, but Haydn tires of it faster. Two to four bars, then something else.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_the_sudden_rest",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "The sudden rest",
+  "description": "`rest_h [G2,B2,D3]h`, or a whole bar of silence in the middle of a phrase. Haydn's signature. A joke needs a beat of nothing before the punchline.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_repeated_notes_as_a_drone",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Repeated notes as a drone",
+  "description": "the same bass note pulsing under changing harmony above: `G2e \u00d78`. The rustic, folk-derived sound of the finales; suggests a drone instrument.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_bare_octaves_for_emphasis",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Bare octaves for emphasis",
+  "description": "`[C2,C3]h` at the start of a phrase or a development, with nothing in between. Stark and attention-getting.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_off_beat_entries",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Off-beat entries",
+  "description": "the accompaniment begins on beat 2 rather than beat 1: `rest_q [C3,E3,G3]q [C3,E3,G3]q [C3,E3,G3]q`. Displaces the whole bar's feeling without changing a note of the melody.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_walking_bass_into_a_cadence",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Walking bass into a cadence",
+  "description": "quarters stepping down to the dominant over two bars. Straightforward, and it is what makes his cadences sound inevitable.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_hand_crossing_bass_above_the_melody",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Hand crossing / bass above the melody",
+  "description": "occasionally the left hand plays *above* the right for a bar or two. A colour effect, and unmistakably his.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_unison_passages",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Unison passages",
+  "description": "both hands on the same line, often at the start of a development or after a fermata. Bare and dramatic in a way the galant style otherwise avoids.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_held_chord_under_a_running_right_hand",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Held chord under a running right hand",
+  "description": "`[C3,E3,G3]w`. Simple, and it gives the right hand room to be virtuosic.",
+  "source_file": "haydn/haydn-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_repeated_chord_motor",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Repeated-chord motor",
+  "description": "the engine of the driving movements. Straight eighths or sixteenths on one chord: `[C3,Eb3,G3]e \u00d78`. Relentless, and it *accumulates*: what makes it Beethoven rather than Alberti is that it does not decorate, it insists. Use under a melody that is itself agitated.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_broken_octaves_murky_bass",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Broken octaves / murky bass",
+  "description": "`C2s C3s C2s C3s \u2026`. The storm engine (Op.13 first movement, Op.31/2). Wider and heavier than a tremolo; the two notes are an octave apart and the effect is a low growl, not a shimmer.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_rising_bass_line_against_a_static_melody",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Rising bass line against a static melody",
+  "description": "quarters or half notes climbing chromatically or by step while the right hand holds: `C2h C#2h`, `D2h Eb2h`. This is how Beethoven builds tension without getting louder, and it is almost absent from generated writing.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_the_lh_takes_the_theme",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "The LH takes the theme",
+  "description": "the motif moves to the bass while the right hand accompanies. Not a device to save for a fugue: it happens constantly in the sonatas, usually at the start of a development. If the piece has a theme and the bass never states it, that is a missed opportunity in every movement.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sforzando_punctuation_on_a_weak_beat",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sforzando punctuation on a weak beat",
+  "description": "`rest_q [C2,C3]q:sfz rest_h`. A single loud stab where the metre does not expect one. One of the most recognisable Beethoven fingerprints and it costs one note.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_octave_doubling_of_the_melody",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Octave doubling of the melody",
+  "description": "both hands on the same line, two or three octaves apart, for a bare unison statement. Use at a theme's most emphatic return, and at the opening of a movement that means to sound severe.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_sustained_low_octave_under_everything",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Sustained low octave under everything",
+  "description": "`[C1,C2]w` held for two or four bars while the right hand works above. The bottom of the piano used as a *pedal point*, not as a bass line. Enormous weight for one note.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_alberti_deliberately_plain",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Alberti, deliberately plain",
+  "description": "`C3e G3e E3e G3e \u00d72`. Beethoven inherits it and uses it sparingly, usually in an early or a lyrical work. If a whole movement is Alberti it is Mozart's costume, not Beethoven's.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_silence",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Silence",
+  "description": "`rest_w`. The left hand stops. Beethoven drops the bass out before a return, before a fortissimo, and at the moment a phrase is meant to hang. A whole bar of nothing underneath is a device, not a gap.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_contrary_motion_scales",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Contrary-motion scales",
+  "description": "both hands moving apart or together in scales (`C3e D3e E3e F3e G3e A3e B3e C4e` against a descending right hand). Used at transitions and in codas; it is *motion* rather than accompaniment.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_widely_spaced_arpeggios",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Widely-spaced arpeggios",
+  "description": "the hand covering two octaves per bar: `C2e G2e C3e E3e G3e C4e G3e E3e`. Open, resonant, and characteristic of the later sonatas. Compare with Alberti's narrow oscillation.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "lh_idiom_off_beat_chords_with_a_silent_downbeat",
+  "category": "composer_hand_idiom",
+  "hand": "lh",
+  "name": "Off-beat chords with a silent downbeat",
+  "description": "`rest_e [Eb3,G3]e [Eb3,G3]e [Eb3,G3]e \u2026`. The bar has no floor under its first beat. Unsettling in exactly the way Beethoven likes.",
+  "source_file": "beethoven/beethoven-lh-vocabulary.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_tiny_cell",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "The tiny cell",
+  "description": "a motif of three or four notes, often only a rhythm. Everything grows from it. Write the cell first, then build the theme out of repetitions of it.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_motivic_fragmentation",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Motivic fragmentation",
+  "description": "the theme is stated, then only its first half, then only its first bar, then only its rhythm. Progressive shortening builds tension better than anything else in the vocabulary.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_sforzando_on_a_weak_beat",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Sforzando on a weak beat",
+  "description": "`C5q:sfz` on beat 2 or 4, or off the beat entirely. Displaces the metre without changing it. One of the most reliable Beethoven fingerprints.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_syncopation_across_the_barline",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Syncopation across the barline",
+  "description": "a note tied from the last beat of one bar into the next, so the downbeat is not attacked. Sustained over several bars it makes the metre genuinely ambiguous.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_sudden_dynamic_contradiction",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Sudden dynamic contradiction",
+  "description": "`ff` followed immediately by `p` with no transition, or a long crescendo that arrives at `pp`. The second is the more characteristic and the more startling.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_repeated_note_insistence",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Repeated-note insistence",
+  "description": "the same pitch struck three, four, six times. Not decoration; it is the argument refusing to move on.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_long_crescendo_over_a_pedal",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "The long crescendo over a pedal",
+  "description": "eight to sixteen bars of intensification over an unchanging bass, arriving at a structural downbeat.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_registral_extremes_juxtaposed",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Registral extremes juxtaposed",
+  "description": "a phrase in the deep bass answered immediately two octaves up, with nothing in between.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_silence_as_a_downbeat",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Silence as a downbeat",
+  "description": "a general pause where the ear expects the strongest beat of the phrase. A whole bar of nothing, then the answer.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_trill_as_an_event_not_an_ornament",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Trill as an event, not an ornament",
+  "description": "a long trill sustained over several bars, usually before a return. In the late works it becomes a texture.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_accelerating_rhythmic_values",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "Accelerating rhythmic values",
+  "description": "quarters, then eighths, then triplets, then sixteenths across a passage. Acceleration without a tempo change.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_wrong_note_accent",
+  "category": "composer_device",
+  "section": "Melodic and rhythmic devices",
+  "name": "The wrong-note accent",
+  "description": "a strong beat carrying a chromatic note that is not in the harmony, marked `sfz`, resolving afterwards.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_deceptive_cadence_then_a_second_attempt",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Deceptive cadence, then a second attempt",
+  "description": "V goes to vi, the phrase starts its cadence again, and only the third attempt lands. Extends a close from two bars to eight.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_flattened_sixth_as_a_shock",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "The flattened sixth as a shock",
+  "description": "\u266dVI arriving in place of an expected chord, usually loud and usually at a structural point.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_third_related_keys",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Third-related keys",
+  "description": "moving to the mediant or submediant rather than the dominant. A whole second subject in the mediant is characteristic of the middle and late works.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_diminished_seventh_as_a_pivot",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Diminished seventh as a pivot",
+  "description": "the ambiguous chord used to leave a key abruptly and arrive somewhere remote.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_prolonged_dominant_preparation",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Prolonged dominant preparation",
+  "description": "sixteen or more bars on the dominant before a recapitulation, so the return feels earned rather than scheduled.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_neapolitan_approach_at_a_moment_of_pathos",
+  "category": "composer_device",
+  "section": "Harmonic devices",
+  "name": "Neapolitan approach at a moment of pathos",
+  "description": "\u266dII6 before the dominant, in a minor-key slow movement.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_the_false_return",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "The false return",
+  "description": "the theme comes back in the wrong key or too early, and is corrected.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_coda_as_a_second_development",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Coda as a second development",
+  "description": "the coda is not a wind-down but the movement's real climax, longer than the exposition's closing group.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
+ },
+ {
+  "id": "device_thematic_transformation_across_movements",
+  "category": "composer_device",
+  "section": "Structural devices",
+  "name": "Thematic transformation across movements",
+  "description": "the same cell appears in a later movement in a different character. In a multi-movement work this is what makes it one work.",
+  "source_file": "beethoven/beethoven-devices.md",
+  "grounding": "hard_corroborated"
  }
 ]

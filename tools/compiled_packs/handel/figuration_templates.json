@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_steady_continuo_quarters",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Steady continuo quarters",
+    "description": "`D2q A2q D3q A2q`. Root and fifth alternating, one chord per bar or per half bar. The default, and it should sound unhurried.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_eighths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking eighths",
+    "description": "`D2e E2e F#2e G2e A2e B2e C#3e D3e`. Drives an aria or a fast movement; mostly stepwise with an occasional leap to the next harmony.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_notes_on_one_pitch",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated notes on one pitch",
+    "description": "`D2e \u00d78`. Insistent, and used under a sequence where the harmony above is doing the moving.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_dotted_rhythm_bass_the_french_overture",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Dotted-rhythm bass (the French overture)",
+    "description": "`D2dq D2e A2dq A2e`. Stately and ceremonial. Paired with a dotted upper part; this is the single most recognisable Handel gesture and it belongs at openings.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_descending_tetrachord_ground_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Descending tetrachord / ground bass",
+    "description": "`D2h C2h Bb1h A1h`, repeated as an ostinato under changing upper material. The lament bass. Handel builds whole movements on one.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_octave_leaps_between_root_and_its_octave",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Octave leaps between root and its octave",
+    "description": "`D2q D3q D2q D3q`. Solid and plain; gives weight without motion.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_pedal_on_the_dominant",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained pedal on the dominant",
+    "description": "`A1w` held for four or eight bars while the upper parts intensify. Handel's standard preparation for a final cadence and for a chorus entry.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sequential_descent_by_fifths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sequential descent by fifths",
+    "description": "the bass falling a fourth and rising a second: `D2q G1q E2q A1q F#2q B1q`. The circle-of-fifths engine, and Handel uses it plainly and often.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_unison_with_the_upper_parts",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Unison with the upper parts",
+    "description": "everything on the same line, in octaves, for a declamatory opening or a sudden fortissimo. Bare and public.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence_under_a_solo_entry",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence under a solo entry",
+    "description": "the bass drops out entirely for a phrase so a voice or a solo instrument can be heard alone, then re-enters at the cadence. Common in the arias and almost never generated.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_broken_octaves_for_agitation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Broken octaves for agitation",
+    "description": "`D2e D3e D2e D3e`. The storm and rage idiom; heavier and slower than a Classical tremolo.",
+    "source_file": "handel/handel-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

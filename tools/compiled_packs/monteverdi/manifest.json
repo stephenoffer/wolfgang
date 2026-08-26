@@ -5,7 +5,11 @@
   "corpus_bar_count": 3885,
   "profile_files": [
     "composition-guide.md",
-    "melodic-style.md"
+    "formal-approach.md",
+    "harmonic-language.md",
+    "melodic-style.md",
+    "monteverdi-lh-vocabulary.md",
+    "orchestration.md"
   ],
   "corpus_files": [
     "bar_index.json",

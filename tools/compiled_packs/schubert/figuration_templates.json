@@ -1,5 +1,95 @@
 [
   {
+    "id": "lh_idiom_repeated_chords_steady_and_unhurried",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, steady and unhurried",
+    "description": "`[C3,E3,G3]e \u00d78` or in triplets, `[C3,E3,G3]trip_e \u00d76` per bar in 2/4. The *lied* accompaniment, and the single most Schubertian sound. It can run for sixteen bars unchanged; that is the point, not a defect.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_bass_in_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking bass in octaves",
+    "description": "`[C2,C3]q [G2,G3]q [C2,C3]q [G2,G3]q`. Patient, trudging, the \"wanderer\" tread. Slow and even.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_triplet_accompaniment_against_duple_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Triplet accompaniment against duple melody",
+    "description": "`[C3,E3]trip_e \u00d76` under a melody in eighths and quarters. The cross-rhythm is gentle and constant, and it is everywhere in the late works.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_broken_chord_rising_and_falling_within_an_octave",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Broken chord rising and falling within an octave",
+    "description": "`C3e E3e G3e E3e C3e E3e G3e E3e`. Narrower than Chopin's arpeggios, and closer in feel to Alberti than to a Romantic wave.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_alone_on_the_downbeat_chord_sustained_above",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass alone on the downbeat, chord sustained above",
+    "description": "`C2q [E3,G3]h.` in 4/4. Spacious, and it leaves room for a long melodic line.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_dactyl_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The dactyl rhythm",
+    "description": "long-short-short, `C3q C3e C3e`, repeated for pages. The \"Death and the Maiden\" figure. Obsessive and hypnotic.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_quiet",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo, quiet",
+    "description": "`[C3,E3]s \u00d716` at `pp`. Not a Beethoven storm; a shiver. Used under a sustained melody at a moment of harmonic strangeness.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_chord_across_the_bar",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held chord across the bar",
+    "description": "`[C3,E3,G3]w~`. Schubert lets harmonies sit. Where a Classical composer would move on, he stays, and the stillness is the expression.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_octave_doubling_of_the_melody_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Octave doubling of the melody in the bass",
+    "description": "for a return, or for the second verse of a strophic form. Same tune, entirely different weight.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_drops_out_under_a_modulation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass drops out under a modulation",
+    "description": "the accompaniment thins to two upper notes while the harmony slides somewhere remote, then the bass returns on the new key. His most reliable way of making a distant modulation sound inevitable.",
+    "source_file": "schubert/schubert-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

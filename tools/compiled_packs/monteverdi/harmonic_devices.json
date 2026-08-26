@@ -1,5 +1,82 @@
 [
   {
+    "id": "unprepared_dissonance",
+    "name": "Unprepared dissonance",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "A word of pain lands on the dissonance directly"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "monteverdi/harmonic-language.md"
+  },
+  {
+    "id": "seventh_taken_by_leap",
+    "name": "Seventh taken by leap",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Shock at a specific syllable"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "monteverdi/harmonic-language.md"
+  },
+  {
+    "id": "cross_relation",
+    "name": "Cross-relation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Bitterness",
+      "contradiction in the text"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "monteverdi/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_inflection",
+    "name": "Chromatic inflection",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Weeping",
+      "sighing",
+      "the *durezze* of the lament"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "monteverdi/harmonic-language.md"
+  },
+  {
+    "id": "stile_concitato",
+    "name": "Stile concitato",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Warfare",
+      "anger \u2014 rapid repeated notes on one chord"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "monteverdi/harmonic-language.md"
+  },
+  {
+    "id": "descending_tetrachord_ostinato",
+    "name": "Descending tetrachord ostinato",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The lament: a bass falling a fourth",
+      "over and over"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "monteverdi/harmonic-language.md"
+  },
+  {
     "id": "suspension",
     "name": "Suspension",
     "chord_sequence": [],

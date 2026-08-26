@@ -25,15 +25,41 @@
         }
       ],
       "key_scheme": {
-        "exposition_keys": [
+        "exposition_keys_major": [
           "I",
           "V"
+        ],
+        "exposition_keys_minor": [
+          "i",
+          "III"
         ],
         "recap_rule": "tonic"
       }
     },
     "rondo": {
-      "sections": [],
+      "sections": [
+        {
+          "role": "scenes",
+          "proportion_range": [
+            0.4,
+            0.5
+          ]
+        },
+        {
+          "role": "scenes",
+          "proportion_range": [
+            0.3,
+            0.4
+          ]
+        },
+        {
+          "role": "transition",
+          "proportion_range": [
+            0.1,
+            0.2
+          ]
+        }
+      ],
       "key_scheme": {}
     }
   }

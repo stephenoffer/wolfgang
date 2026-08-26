@@ -19,7 +19,19 @@
       "frequency_weight": 0.3
     },
     {
+      "name": "augmented sixth",
+      "frequency_weight": 0.3
+    },
+    {
       "name": "chromatic",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "diminished seventh",
+      "frequency_weight": 0.3
+    },
+    {
+      "name": "modal mixture",
       "frequency_weight": 0.3
     },
     {

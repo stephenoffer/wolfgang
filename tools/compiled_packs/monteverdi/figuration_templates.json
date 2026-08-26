@@ -1,5 +1,113 @@
 [
   {
+    "id": "lh_idiom_point_of_imitation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Point of imitation",
+    "description": "as in Palestrina, and the default in the earlier madrigal texture: a motif passed between voices at staggered entries.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_declaiming_solo_over_a_slow_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The declaiming solo over a slow bass",
+    "description": "one voice in speech rhythm, the bass holding whole notes underneath: `C3w` under a freely-moving upper line. The recitative texture, and Monteverdi's invention as a musical form.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_basso_continuo_in_slow_harmonic_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Basso continuo in slow harmonic rhythm",
+    "description": "`G2w`, `C3w`, one chord per bar or per two bars. It supports; it does not compete.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_descending_tetrachord_ground",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Descending tetrachord ground",
+    "description": "`A3h G3h F3h E3h` repeated as an ostinato under changing upper material. The lament bass, and the *Lamento della Ninfa* is built entirely on one. The most reusable device in his vocabulary.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_stile_concitato",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Stile concitato",
+    "description": "the \"agitated style\": rapid repeated notes on one pitch, `C4s \u00d716`, representing warfare and passion. Monteverdi's own invention and unmistakably his.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_unprepared_dissonance_for_a_word",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Unprepared dissonance for a word",
+    "description": "a seventh or a ninth entered without preparation because the text says *cruda*, *dolore*, *morte*. Forbidden in the *prima pratica* and the whole point of the second.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_suspension_chains",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Suspension chains",
+    "description": "as in Palestrina, but longer and more insistent, and allowed to resolve onto another dissonance.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_homophonic_declamation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Homophonic declamation",
+    "description": "all voices together in the rhythm of the words, for a line of text that must be understood. Alternates with polyphony.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_voice_pairs_answering",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Voice pairs answering",
+    "description": "two upper voices against two lower, trading a phrase. The concertato texture.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_descent_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic descent in the bass",
+    "description": "semitone by semitone, `A2q Ab2q G2q Gb2q`. Grief. Later than Palestrina and earlier than everyone else who used it.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_echo",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Echo",
+    "description": "a phrase repeated immediately, quieter, often by a different voice or at a distance. Written as a literal repeat.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence_for_a_word",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence for a word",
+    "description": "everything stops before a crucial word. The most Monteverdian gesture there is, and it costs one rest.",
+    "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

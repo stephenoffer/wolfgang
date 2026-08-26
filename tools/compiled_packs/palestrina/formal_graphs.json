@@ -1,22 +1,3 @@
 {
-  "forms": {
-    "sonata": {
-      "sections": [],
-      "key_scheme": {
-        "exposition_keys": [
-          "I",
-          "V"
-        ],
-        "recap_rule": "tonic"
-      }
-    },
-    "rondo": {
-      "sections": [],
-      "key_scheme": {}
-    },
-    "ternary": {
-      "sections": [],
-      "key_scheme": {}
-    }
-  }
+  "forms": {}
 }

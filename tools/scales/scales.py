@@ -77,6 +77,57 @@ _WORKSPACE = Path("workspace")
 _LOG = logging.getLogger(__name__)
 
 
+class _MissingPiece(Exception):
+    """A tool was asked about a piece that does not exist.
+
+    Carries the structured result the tool should return. Raised rather than
+    returned so `_load_graph` can be a one-line call at the top of a tool
+    without every caller needing a two-value unpack.
+    """
+
+    def __init__(self, piece_id: str):
+        self.result = {
+            "error": f"No workspace for '{piece_id}'",
+            "hint": (
+                f"Nothing at workspace/{piece_id}/piece_graph.json. Check the piece id "
+                f"(get_status() lists what exists), or create it with "
+                f"init_workspace('{piece_id}', mode=..., description=...)."
+            ),
+        }
+        super().__init__(self.result["error"])
+
+
+def _load_graph(piece_id: str) -> "PieceGraph":
+    """The piece's graph, or a structured error explaining that it isn't there.
+
+    Every tool here is called by an agent writing a Python snippet, so what a
+    failure LOOKS like is part of the interface. Ten tools raised a bare
+    FileNotFoundError — a traceback with a path in it and no indication that the
+    piece id was the problem — and eight others silently succeeded on a piece
+    that does not exist, which is worse: `load_workspace` returned a plausible
+    dict for nothing, and `save_reference_study` returned `{"saved": True}`
+    after writing state for a piece nobody had created.
+    """
+    path = _WORKSPACE / piece_id / "piece_graph.json"
+    if not path.exists():
+        raise _MissingPiece(piece_id)
+    return PieceGraph.load(str(path))
+
+
+def _tool(fn):
+    """Turn a missing piece into the tool's normal error result."""
+    import functools
+
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        try:
+            return fn(*args, **kwargs)
+        except _MissingPiece as exc:
+            return exc.result
+
+    return wrapper
+
+
 def _as_list(value, what: str):
     """Normalise a tool argument that must be a list, or say why it cannot be.
 
@@ -113,6 +164,7 @@ def _now_iso() -> str:
 # ─── Workspace Management ────────────────────────────────────────────────────
 
 
+@_tool
 def init_workspace(
     piece_id: str, mode: str, description: str = "", params: Optional[Dict] = None
 ) -> Dict[str, Any]:
@@ -149,6 +201,7 @@ def init_workspace(
     }
 
 
+@_tool
 def load_workspace(piece_id: str) -> Dict[str, Any]:
     """Load existing workspace and return status summary."""
     workspace = _WORKSPACE / piece_id
@@ -161,11 +214,13 @@ def load_workspace(piece_id: str) -> Dict[str, Any]:
     return graph.get_status_summary()
 
 
+@_tool
 def get_status(piece_id: str) -> Dict[str, Any]:
     """Quick status check."""
     return load_workspace(piece_id)
 
 
+@_tool
 def list_sections(piece_id: str) -> Dict[str, Any]:
     """Ordered sections with a compact per-phrase summary — the deterministic
     work-list for the compose pipeline (used by the wolfgang-compose workflow
@@ -201,6 +256,7 @@ def list_sections(piece_id: str) -> Dict[str, Any]:
 # ─── Planning Tools ──────────────────────────────────────────────────────────
 
 
+@_tool
 def compile_style(
     piece_id: str,
     composers: List[str],
@@ -225,7 +281,7 @@ def compile_style(
         raise ValueError("compile_style needs at least one composer or style name")
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     # Compile packs for each composer (all 12 passes)
     compiler = ContextCompiler()
@@ -276,6 +332,7 @@ def compile_style(
     return result
 
 
+@_tool
 def build_form_graph(
     piece_id: str,
     form: str,
@@ -292,7 +349,7 @@ def build_form_graph(
     sections = _as_list(sections, "sections")
     motif_ids = _as_list(motif_ids, "motif_ids")
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     # Build sections and phrases based on form
     form_graph = FormGraph()
@@ -532,11 +589,12 @@ def _narrative_from_slots(slots, plan_info) -> "NarrativeArc":
     return arc
 
 
+@_tool
 def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, Any]:
     """Validate and store motif definitions."""
     motif_definitions = _as_list(motif_definitions, "motif_definitions")
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     for mdef in motif_definitions:
         motif = MotifObject(
@@ -643,6 +701,7 @@ def _place_principal_theme(graph) -> int:
     return placed
 
 
+@_tool
 def save_narrative(
     piece_id: str,
     sections: List[Dict[str, Any]],
@@ -664,7 +723,7 @@ def save_narrative(
     """
     sections = _as_list(sections, "sections")
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     sec_fields = {f.name for f in fields(NarrativeSection)}
     arc = NarrativeArc(
@@ -704,6 +763,7 @@ def save_narrative(
 # ─── SCALES Core ─────────────────────────────────────────────────────────────
 
 
+@_tool
 def run_scales_section(
     piece_id: str,
     section_id: str,
@@ -723,7 +783,7 @@ def run_scales_section(
     ``run_style_review_section`` and attaches results under ``style_review``.
     """
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     composer_id = graph.style_dna.composer_id
     if "+" in composer_id:
@@ -1888,6 +1948,7 @@ def _infer_section_role(section_id: str) -> str:
 # ─── Work-Level Planning (multi-movement) ──────────────────────────────────
 
 
+@_tool
 def init_work(
     piece_id: str,
     movement_count: int,
@@ -1900,7 +1961,7 @@ def init_work(
     This is WHERE Wolfgang decides the symphony's dramatic destiny.
     """
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     from .models import TonalItinerary
 
@@ -1927,6 +1988,7 @@ def init_work(
     }
 
 
+@_tool
 def plan_movement(
     piece_id: str,
     movement_id: str,
@@ -1940,7 +2002,7 @@ def plan_movement(
 ) -> Dict[str, Any]:
     """Add a MovementContract to the WorkGraph."""
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     if not graph.work_graph:
         return {"error": "No WorkGraph found — call init_work first"}
@@ -1970,6 +2032,7 @@ def plan_movement(
 # ─── Revision Support ──────────────────────────────────────────────────────
 
 
+@_tool
 def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> Dict[str, Any]:
     """Apply a RevisionScript to a section using the PatchEngine.
 
@@ -1980,7 +2043,7 @@ def apply_revision(piece_id: str, section_id: str, revision_ops: List[Dict]) -> 
     from .patch_engine import PatchEngine
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
 
     ops = [
         RevisionOp(
@@ -2549,6 +2612,7 @@ def _capture_theme_if_first_statement(graph, phrase_id: str) -> None:
         pass  # a missing theme must never block a commit
 
 
+@_tool
 def commit_agent_phrase_layer_ir(
     piece_id: str,
     phrase_id: str,
@@ -2571,7 +2635,7 @@ def commit_agent_phrase_layer_ir(
     from .validator import validate_layer_ir
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     if phrase_id not in graph.phrases:
         return {"error": f"Unknown phrase_id: {phrase_id}"}
 
@@ -2614,6 +2678,7 @@ def commit_agent_phrase_layer_ir(
     return _gated_commit(graph, workspace, phrase_id, layer, allow, composer)
 
 
+@_tool
 def commit_agent_phrase_direct_bars(
     piece_id: str,
     phrase_id: str,
@@ -2637,7 +2702,7 @@ def commit_agent_phrase_direct_bars(
     from .validator import validate_layer_ir
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     if phrase_id not in graph.phrases:
         return {"error": f"Unknown phrase_id: {phrase_id}"}
     slot = graph.phrases[phrase_id].slot
@@ -2676,6 +2741,7 @@ def commit_agent_phrase_direct_bars(
     return _gated_commit(graph, workspace, phrase_id, layer, allow, composer)
 
 
+@_tool
 def run_style_review_section(
     piece_id: str,
     section_id: str,
@@ -2691,6 +2757,7 @@ def run_style_review_section(
 # ─── Agent Composition Support (briefs, continuity, self-evaluation) ─────────
 
 
+@_tool
 def commit_phrase_sketch(piece_id: str, phrase_id: str, sketch: Dict[str, Any]) -> Dict[str, Any]:
     """Record the structural plan for a phrase BEFORE its notes are written.
 
@@ -2740,6 +2807,7 @@ def commit_phrase_sketch(piece_id: str, phrase_id: str, sketch: Dict[str, Any]) 
     }
 
 
+@_tool
 def get_composition_brief(
     piece_id: str,
     phrase_id: str,
@@ -2761,7 +2829,7 @@ def get_composition_brief(
     from .composition_brief import build_brief, render_text
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     brief = build_brief(graph, phrase_id, n_exemplars=n_exemplars, composer=composer)
     if _persist_brief_receipt(graph, phrase_id, brief):
         graph.save(str(workspace / "piece_graph.json"))
@@ -2832,6 +2900,7 @@ def get_reference_score(
     return reconstruct_score(composer, source, target_key=target_key, max_bars=max_bars)
 
 
+@_tool
 def save_reference_study(
     piece_id: str,
     composer: str,
@@ -2848,7 +2917,7 @@ def save_reference_study(
     brief, so the agent composes from its own understanding of real scores.
     """
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     key = f"{composer}/{source}"
     graph.patch(
         path=f"reference_studies.{key}",
@@ -2866,6 +2935,7 @@ def save_reference_study(
     return {"saved": True, "key": key, "studies": sorted(graph.reference_studies.keys())}
 
 
+@_tool
 def run_agent_section_briefs(
     piece_id: str,
     section_id: str,
@@ -2883,7 +2953,7 @@ def run_agent_section_briefs(
     from .composition_brief import build_brief, render_text
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     phrase_ids = graph.get_section_phrases(section_id)
     if not phrase_ids:
         return {"error": f"No phrases found for section '{section_id}'"}
@@ -2904,6 +2974,7 @@ def run_agent_section_briefs(
     return out
 
 
+@_tool
 def plan_readiness(piece_id: str) -> Dict[str, Any]:
     """Is this piece's plan actually complete enough to compose against?
 
@@ -2996,6 +3067,7 @@ def plan_readiness(piece_id: str) -> Dict[str, Any]:
     }
 
 
+@_tool
 def get_section_status(piece_id: str, section_id: str) -> Dict[str, Any]:
     """Compact, section-scoped status — use this instead of dumping the graph.
 
@@ -3004,8 +3076,7 @@ def get_section_status(piece_id: str, section_id: str) -> Dict[str, Any]:
     """
     from .composition_brief import _last_events_summary
 
-    workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     phrase_ids = graph.get_section_phrases(section_id)
     if not phrase_ids:
         known = sorted(graph.form.sections)
@@ -3043,6 +3114,7 @@ def get_section_status(piece_id: str, section_id: str) -> Dict[str, Any]:
     }
 
 
+@_tool
 def get_phrase_continuity(piece_id: str, phrase_id: str) -> Dict[str, Any]:
     """Continuity context for one phrase, read from committed state on disk.
 
@@ -3051,8 +3123,7 @@ def get_phrase_continuity(piece_id: str, phrase_id: str) -> Dict[str, Any]:
     """
     from .composition_brief import _summarize_slot, _transition_context
 
-    workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     state = graph.phrases.get(phrase_id)
     if state is None:
         return {"error": f"Unknown phrase_id: {phrase_id}"}
@@ -3184,6 +3255,7 @@ def _rhythmic_gap(divergence: Dict[str, Any], composer: str) -> Dict[str, Any]:
     return {"composer": composer, "gaps": out}
 
 
+@_tool
 def self_evaluate(
     piece_id: str, section_id: Optional[str] = None, composer: Optional[str] = None
 ) -> Dict[str, Any]:
@@ -3200,7 +3272,7 @@ def self_evaluate(
     from .feedback.evidence_extractor import extract_from_file
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     warnings: List[str] = []
     resolved = resolve_composer(graph, composer, warnings)
 
@@ -3453,6 +3525,7 @@ def self_evaluate(
     return report
 
 
+@_tool
 def review_context(
     piece_id: str, section_id: Optional[str] = None, composer: Optional[str] = None
 ) -> Dict[str, Any]:
@@ -3475,7 +3548,7 @@ def review_context(
     if "error" in report:
         return report
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     scope = f"section-{section_id}" if section_id else "full"
 
     out: Dict[str, Any] = {
@@ -3718,6 +3791,7 @@ def _authoring_summary(graph, section_id: Optional[str]) -> Dict[str, Any]:
     }
 
 
+@_tool
 def compare_to_corpus(
     piece_id: str, section_id: Optional[str] = None, composer: Optional[str] = None
 ) -> Dict[str, Any]:
@@ -3736,7 +3810,7 @@ def compare_to_corpus(
     from .composition_brief import resolve_composer
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     warnings: List[str] = []
     resolved = resolve_composer(graph, composer, warnings)
     scope = f"section-{section_id}" if section_id else "full"
@@ -3770,6 +3844,7 @@ def _candidates_dir(piece_id: str) -> Path:
     return d
 
 
+@_tool
 def commit_candidate_phrase(
     piece_id: str,
     phrase_id: str,
@@ -3793,8 +3868,7 @@ def commit_candidate_phrase(
     from .piece_graph import _deep_serialize
     from .validator import validate_layer_ir
 
-    workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     if phrase_id not in graph.phrases:
         return {"error": f"Unknown phrase_id: {phrase_id}"}
     slot = graph.phrases[phrase_id].slot
@@ -3902,8 +3976,15 @@ def _render_layer_preview(layer: LayerIR, out_path: Path, tempo_bpm: int = 120) 
     return str(out_path)
 
 
+@_tool
 def list_phrase_candidates(piece_id: str, phrase_id: str) -> Dict[str, Any]:
-    """All committed panel candidates for a phrase, with previews."""
+    """All committed panel candidates for a phrase, with previews.
+
+    An empty list means "this phrase has no candidates yet", which is a normal
+    answer. It must not also mean "this piece does not exist" — the two are
+    indistinguishable to a caller and the second is a typo worth reporting.
+    """
+    _load_graph(piece_id)  # raises _MissingPiece, which @_tool turns into an error
     out: Dict[str, Any] = {"phrase_id": phrase_id, "candidates": []}
     for path in sorted(_candidates_dir(piece_id).glob(f"{phrase_id}__cand_*.json")):
         try:
@@ -3926,6 +4007,7 @@ def list_phrase_candidates(piece_id: str, phrase_id: str) -> Dict[str, Any]:
     return out
 
 
+@_tool
 def promote_candidate(piece_id: str, phrase_id: str, lens: str) -> Dict[str, Any]:
     """Promote the winning panel candidate to the canonical phrase.
 
@@ -3935,9 +4017,14 @@ def promote_candidate(piece_id: str, phrase_id: str, lens: str) -> Dict[str, Any
     cand_path = _candidates_dir(piece_id) / f"{phrase_id}__cand_{lens}.json"
     if not cand_path.exists():
         listing = list_phrase_candidates(piece_id, phrase_id)
+        if "error" in listing:
+            # The listing failed for its own reason (usually: no such piece).
+            # Reaching into its "candidates" key raised a bare KeyError on top
+            # of a perfectly good error message.
+            return listing
         return {
             "error": f"No candidate '{lens}' for {phrase_id}",
-            "available": [c["lens"] for c in listing["candidates"]],
+            "available": [c["lens"] for c in listing.get("candidates", [])],
         }
     with open(cand_path) as f:
         record = json.load(f)
@@ -3955,7 +4042,7 @@ def promote_candidate(piece_id: str, phrase_id: str, lens: str) -> Dict[str, Any
     if result.get("ok"):
         result["promoted_from"] = f"{phrase_id}__cand_{lens}"
         workspace = _WORKSPACE / piece_id
-        graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+        graph = _load_graph(piece_id)
         from .models import RevisionEntry
 
         graph.revision_history.append(
@@ -3997,6 +4084,7 @@ _MODE_LOCKS = {
 }
 
 
+@_tool
 def load_source_score(
     piece_id: str,
     source_path: Optional[str] = None,
@@ -4170,6 +4258,7 @@ def load_source_score(
     }
 
 
+@_tool
 def reduce_to_piano(
     piece_id: str,
     source_path: str,
@@ -4301,6 +4390,7 @@ def _source_tempo(path: Path) -> Optional[int]:
         return None
 
 
+@_tool
 def orchestrate_section(
     piece_id: str,
     section_id: str,
@@ -4322,7 +4412,7 @@ def orchestrate_section(
     from .direct_compose import merge_phrases
 
     workspace = _WORKSPACE / piece_id
-    graph = PieceGraph.load(str(workspace / "piece_graph.json"))
+    graph = _load_graph(piece_id)
     phrase_ids = graph.get_section_phrases(section_id)
     if not phrase_ids:
         return {"error": f"Unknown section '{section_id}'"}
@@ -4406,6 +4496,7 @@ def orchestrate_section(
     }
 
 
+@_tool
 def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
     """Render orchestrated parts (from orchestrate_section) to MusicXML."""
     import music21
@@ -4413,6 +4504,10 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
     from .assembler import _build_ensemble_score
     from .models import EventIR
 
+    # Check the PIECE before the orchestration. Reporting "run
+    # orchestrate_section first" for a piece that does not exist points at the
+    # wrong problem: the id is a typo, and no amount of orchestrating will help.
+    _load_graph(piece_id)
     workspace = _WORKSPACE / piece_id
     parts_path = workspace / "orchestration" / f"{section_id}.json"
     if not parts_path.exists():
