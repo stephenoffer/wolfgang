@@ -3113,6 +3113,77 @@ _DISCRIMINATOR_BANDS = {
 _PROFILE_OVERRIDABLE = frozenset({"texture_change_pct", "density_cv", "events_per_bar"})
 
 
+
+# The four surface facts that most decide whether a phrase sounds like a person
+# playing an instrument or a program filling bars, paired with the plain-English
+# sentence to say when the piece is far from the composer on one.
+_GAP_METRICS = {
+    "rest_bar_ratio": (
+        "bars containing a rest",
+        "the music never stops sounding — the clearest single tell of a machine",
+        "the line is so broken up it cannot sustain a phrase",
+    ),
+    "dotted_ratio": (
+        "bars carrying a dotted rhythm",
+        "the rhythm is running even, with no long-short spring in it",
+        "the dotted figure has hardened into a mannerism",
+    ),
+    "lh_texture_change_pct": (
+        "barlines where the left hand changes character",
+        "one accompaniment idiom is being held all the way through",
+        "the accompaniment is restless, changing character faster than the music does",
+    ),
+    "third_ratio": (
+        "melodic intervals that are thirds",
+        "the melody is all steps — it never leaps into a chord",
+        "the melody is noodling in broken chords",
+    ),
+}
+
+
+def _rhythmic_gap(divergence: Dict[str, Any], composer: str) -> Dict[str, Any]:
+    """Restate the biggest corpus divergences as sentences instead of z-scores.
+
+    Everything here is already in ``corpus_divergence``. A B-flat andante was
+    reported at ``rest_bar_ratio z=-2.32`` and the number was read, understood
+    as diagnostic, and left alone; the same fact as "your piece rests in 22% of
+    its bars, Mozart rests in 60%" is one a composer acts on. This is advisory
+    exactly like the rest of the corpus comparison — it names a distance, never
+    a target, and metric-chasing remains the wrong response.
+    """
+    out: List[Dict[str, Any]] = []
+    metrics = (divergence or {}).get("metrics") or {}
+    for key, (what, why_low, why_high) in _GAP_METRICS.items():
+        m = metrics.get(key)
+        if not isinstance(m, dict) or m.get("z") is None:
+            continue
+        try:
+            z = float(m["z"])
+            mine = float(m["value"])
+            theirs = float(m.get("corpus_mean", 0.0))
+        except (TypeError, ValueError):
+            continue
+        if abs(z) < 1.5:
+            continue
+        # The reading depends on WHICH SIDE the piece falls on. A first version
+        # carried only the below-case sentence and reported a piece resting in
+        # 79% of its bars as "the music never stops sounding".
+        direction = "far below" if z < 0 else "far above"
+        why = why_low if z < 0 else why_high
+        out.append(
+            {
+                "metric": key,
+                "z": round(z, 2),
+                "note": (
+                    f"{mine:.0%} of your {what} vs {composer}'s {theirs:.0%} — "
+                    f"{direction} him. Heard as: {why}."
+                ),
+            }
+        )
+    out.sort(key=lambda d: -abs(d["z"]))
+    return {"composer": composer, "gaps": out}
+
+
 def self_evaluate(
     piece_id: str, section_id: Optional[str] = None, composer: Optional[str] = None
 ) -> Dict[str, Any]:
@@ -3244,6 +3315,7 @@ def self_evaluate(
     divergence = _corpus_divergence_from_path(path, resolved, scope)
     if "error" not in divergence:
         report["corpus_divergence"] = divergence
+        report["rhythmic_gap"] = _rhythmic_gap(divergence, resolved)
 
     # Anti-skip: how much of the scope Claude actually authored, and any
     # phrases flagged as composed-blind (resembling no briefed exemplar).
@@ -3897,6 +3969,205 @@ def promote_candidate(piece_id: str, phrase_id: str, lens: str) -> Dict[str, Any
         )
         graph.save(str(workspace / "piece_graph.json"))
     return result
+
+
+# Default lock policy per score-to-score mode — what "keep the source's X" means
+# for each. A LockPolicy of all zeros says "preserve nothing", which for a
+# variation set or a style transfer is the one thing it cannot mean.
+_MODE_LOCKS = {
+    "variation": {
+        "principal_melody": 0.8, "form_layout": 0.9, "phrase_count": 0.9,
+        "cadence_hits": 0.7, "key_scheme": 0.8,
+    },
+    "style_transfer": {
+        "principal_melody": 0.6, "form_layout": 0.9, "phrase_count": 0.9,
+        "cadence_hits": 0.5, "key_scheme": 0.7,
+    },
+    "continue_piece": {
+        "principal_melody": 0.3, "form_layout": 0.2, "key_scheme": 0.6,
+    },
+    "orchestrate": {
+        "principal_melody": 0.95, "bass_foundation": 0.9, "cadence_hits": 0.9,
+        "form_layout": 1.0, "phrase_count": 1.0, "key_scheme": 1.0,
+    },
+    "reduce_to_piano": {
+        "principal_melody": 0.9, "bass_foundation": 0.8, "cadence_hits": 0.8,
+        "form_layout": 1.0, "phrase_count": 1.0, "key_scheme": 1.0,
+    },
+}
+
+
+def load_source_score(
+    piece_id: str,
+    source_path: Optional[str] = None,
+    segment_bars: int = 4,
+) -> Dict[str, Any]:
+    """Read a source score into the PieceGraph as phrases.
+
+    `variation`, `style_transfer` and `continue_piece` are three of the six
+    composition modes this system documents, and **none of them could read its
+    source**. `init_workspace` stored the path on the contract, the mode was
+    recorded on the graph, and nothing anywhere parsed the score — so a
+    variation set had no theme, a style transfer had nothing to restyle, and a
+    continuation had nothing to continue from. The lock policy sat at all
+    zeros, which for those modes means "preserve nothing" — the one thing they
+    cannot mean.
+
+    Segments the source into phrases of ``segment_bars`` bars. That is a plain
+    division, not phrase detection: it gives the modes real material to work
+    from and honest bar numbers, and where the source's own phrasing matters,
+    /w-plan can re-slice it. Phrases are marked `agent_authored=False` and
+    `salience="source"` so nothing downstream mistakes them for composed music.
+    """
+    from .models import LayerEvent, PhraseState
+    from .music_io import parse_musicxml_to_events
+
+    workspace = _WORKSPACE / piece_id
+    graph_path = workspace / "piece_graph.json"
+    if not graph_path.exists():
+        return {"error": f"No workspace for '{piece_id}' — run init_workspace first"}
+    graph = PieceGraph.load(str(graph_path))
+
+    path = source_path or getattr(getattr(graph.contract, "source", None), "path", "")
+    if not path:
+        return {
+            "error": "No source score",
+            "hint": (
+                "Pass source_path, or set it at init_workspace time with "
+                "params={'source_path': '<file>'}."
+            ),
+        }
+    src = Path(path)
+    if not src.exists():
+        return {"error": f"Source score not found: {path}"}
+
+    try:
+        events, instruments = parse_musicxml_to_events(str(src))
+    except Exception as exc:
+        return {"error": f"Could not read {path}: {type(exc).__name__}: {exc}"}
+    if not events:
+        return {"error": f"No notes in {path}"}
+
+    key = _source_key(src) or "C"
+    meter = _source_meter(src) or (4, 4)
+    tempo = _source_tempo(src) or 100
+
+    # The lowest-sounding part is the bass, everything else the upper texture —
+    # the same split the piano path uses, applied to whatever the source has.
+    def _low(ev) -> int:
+        from .pitch import pitch_to_midi
+
+        pitches = ev["pitch"] if isinstance(ev["pitch"], list) else [ev["pitch"]]
+        vals = []
+        for pitch in pitches:
+            try:
+                vals.append(pitch_to_midi(pitch))
+            except (ValueError, KeyError, TypeError):
+                pass
+        return min(vals) if vals else 60
+
+    sounding = [e for e in events if e["pitch"] != "rest"]
+    if not sounding:
+        return {"error": f"No sounding notes in {path}"}
+    # Which part is the bass, by where it actually sits — not by its name. A
+    # piano grand staff is two parts both called "Piano", and a source whose
+    # hands both land in `principal_line` has no bass line at all for anything
+    # downstream to lock, vary or reduce.
+    by_inst: Dict[str, int] = {}
+    for e in sounding:
+        pitch_low = _low(e)
+        inst = e["instrument"]
+        by_inst[inst] = min(by_inst.get(inst, pitch_low), pitch_low)
+    bass_inst = min(by_inst, key=by_inst.get) if len(by_inst) > 1 else None
+    if bass_inst is None and sounding:
+        # A single part carrying both hands: split at the median pitch.
+        pitches = sorted(_low(e) for e in sounding)
+        split_at = pitches[len(pitches) // 2]
+        bass_inst = None  # handled per-event below
+    else:
+        split_at = None
+
+    bars = sorted({e["bar"] for e in events if e.get("bar")})
+    first_bar, last_bar = bars[0], bars[-1]
+    n_phrases = 0
+    for start in range(first_bar, last_bar + 1, max(1, segment_bars)):
+        end = min(start + segment_bars - 1, last_bar)
+        chunk = [e for e in events if start <= e.get("bar", 0) <= end]
+        if not any(e["pitch"] != "rest" for e in chunk):
+            continue
+        layer = LayerIR(
+            phrase_id=f"src_p{n_phrases + 1}",
+            instrumentation="solo_piano",
+            key=key,
+            meter=meter,
+            bar_count=end - start + 1,
+        )
+        for e in chunk:
+            if bass_inst is not None:
+                is_bass = e["instrument"] == bass_inst
+            else:
+                is_bass = split_at is not None and e["pitch"] != "rest" and _low(e) < split_at
+            target = layer.bass_foundation if is_bass else layer.principal_line
+            target.append(
+                LayerEvent(
+                    bar=e["bar"],
+                    beat=e["beat"],
+                    pitch=e["pitch"],
+                    duration=e["duration"],
+                    dynamic=e.get("dynamic"),
+                    source_layer="source",
+                )
+            )
+        _repair_engine_surface(layer, meter)
+        n_phrases += 1
+        pid = layer.phrase_id
+        graph.phrases[pid] = PhraseState(
+            slot=PhraseSlot(
+                phrase_id=pid,
+                section_id="m1_source",
+                bar_start=start,
+                bar_count=end - start + 1,
+                key=key,
+                meter=meter,
+                tempo_bpm=tempo,
+            ),
+            realized=layer,
+            agent_authored=False,
+            salience="source",
+        )
+
+    # A mode that preserves nothing is not that mode.
+    defaults = _MODE_LOCKS.get(getattr(graph, "mode", "") or "", {})
+    applied = {}
+    if defaults and not any(vars(graph.contract.locks).values()):
+        for field_name, value in defaults.items():
+            if hasattr(graph.contract.locks, field_name):
+                setattr(graph.contract.locks, field_name, value)
+                applied[field_name] = value
+
+    if not getattr(getattr(graph.contract, "source", None), "path", ""):
+        from .models import SourceReference
+
+        graph.contract.source = SourceReference(path=str(src))
+    graph.save(str(graph_path))
+
+    return {
+        "ok": True,
+        "source": str(src),
+        "mode": graph.mode,
+        "instruments": instruments,
+        "bars": last_bar - first_bar + 1,
+        "phrases_loaded": n_phrases,
+        "key": key,
+        "meter": list(meter),
+        "tempo_bpm": tempo,
+        "locks_applied": applied,
+        "hint": (
+            "Source phrases are marked salience='source' and agent_authored=False. "
+            "Plan over them with /w-plan, then compose against them — the lock "
+            "policy says how much of each must survive."
+        ),
+    }
 
 
 def reduce_to_piano(

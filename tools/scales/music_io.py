@@ -31,7 +31,18 @@ def parse_musicxml_to_events(path: str) -> Tuple[List[Dict[str, Any]], List[str]
     instruments = []
 
     for part in score.parts:
-        inst_name = part.partName or f"Part_{len(instruments)}"
+        # Part names are not unique. A piano grand staff is TWO parts both
+        # called "Piano", so keying anything by name collapses the two hands
+        # into one — every consumer that split treble from bass by instrument
+        # name saw a single part and put the whole score in one hand. Number
+        # the duplicates.
+        base = part.partName or part.id or f"Part_{len(instruments) + 1}"
+        inst_name = str(base)
+        if inst_name in instruments:
+            n = 2
+            while f"{base}-{n}" in instruments:
+                n += 1
+            inst_name = f"{base}-{n}"
         instruments.append(inst_name)
 
         for measure in part.getElementsByClass("Measure"):

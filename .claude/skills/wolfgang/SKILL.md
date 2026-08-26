@@ -143,8 +143,20 @@ Sequencing rules:
    revisions. **Save/checkpoint after every section.**
 3. `/w-assemble`.
 
-### variation / style_transfer
-Load source MusicXML → `/w-plan` (lock policy) → same loop.
+### variation / style_transfer / continue_piece
+```bash
+.venv/bin/python -c "
+from scales.scales import init_workspace, load_source_score
+init_workspace('<piece-id>', mode='variation', description='...',
+               params={'source_path': '<source.musicxml>'})
+print(load_source_score('<piece-id>'))
+"
+```
+`load_source_score` reads the score into the graph as phrases marked
+`salience='source'` and `agent_authored=False`, in the source's own key, meter
+and tempo, and applies the mode's default lock policy. Without it the mode has
+no material: the path alone is not the music. Then `/w-plan` over those phrases
+and run the same loop, composing against what the locks say must survive.
 
 ### reduce_to_piano
 Load source → SABRE runs → `/w-review` for playability → `/w-assemble`.

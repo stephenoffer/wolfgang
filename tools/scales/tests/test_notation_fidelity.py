@@ -1531,3 +1531,95 @@ def test_a_breve_is_engraved_as_tied_notes_across_the_barline(tmp_path):
         for n in m.flatten().notes
     ]
     assert ("start" in [t for _, t in treble]) and ("stop" in [t for _, t in treble])
+
+
+# ── The score-to-score modes, which could not read their own source ────────
+
+
+def test_duplicate_part_names_are_disambiguated():
+    """A piano grand staff is TWO parts both called 'Piano'. Keying anything by
+    name collapsed the two hands into one, so every consumer that split treble
+    from bass by instrument name saw a single part."""
+    from scales.music_io import parse_musicxml_to_events
+
+    src = Path("workspace/mozart-andante-fmaj-v2-20260826/output"
+               "/mozart-andante-fmaj-v2-20260826.musicxml")
+    if not src.exists():
+        pytest.skip("reference piece not present")
+    events, instruments = parse_musicxml_to_events(str(src))
+    assert len(instruments) == len(set(instruments)), f"names collide: {instruments}"
+    assert len(instruments) == 2, instruments
+    per_part = {i: sum(1 for e in events if e["instrument"] == i) for i in instruments}
+    assert all(n > 0 for n in per_part.values()), per_part
+
+
+@pytest.mark.parametrize("mode", ["variation", "style_transfer", "continue_piece"])
+def test_a_score_to_score_mode_can_read_its_source(tmp_path, monkeypatch, mode):
+    """`variation`, `style_transfer` and `continue_piece` stored a source path
+    and NOTHING ever parsed the score — a variation set had no theme, a style
+    transfer nothing to restyle, a continuation nothing to continue from."""
+    from scales import scales as scales_mod
+    from scales.piece_graph import PieceGraph
+    from scales.validator import validate_meter
+
+    src = Path("workspace/mozart-andante-fmaj-v2-20260826/output"
+               "/mozart-andante-fmaj-v2-20260826.musicxml").resolve()
+    if not src.exists():
+        pytest.skip("reference piece not present")
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    pid = f"{mode}-test"
+    scales_mod.init_workspace(pid, mode=mode, description=f"a {mode}",
+                              params={"source_path": str(src)})
+    result = scales_mod.load_source_score(pid)
+    assert result.get("ok"), result
+    assert result["phrases_loaded"] > 1
+    assert tuple(result["meter"]) == (3, 4), "the source's own meter, not an assumed 4/4"
+    assert result["key"].startswith("F")
+
+    graph = PieceGraph.load(str(tmp_path / pid / "piece_graph.json"))
+    melody = sum(len(p.realized.principal_line or []) for p in graph.phrases.values())
+    bass = sum(len(p.realized.bass_foundation or []) for p in graph.phrases.values())
+    assert melody > 0 and bass > 0, "both hands must load, not one"
+    for state in graph.phrases.values():
+        assert state.agent_authored is False, "source material is not composed music"
+        assert state.salience == "source"
+        for layer_name in ("principal_line", "bass_foundation"):
+            errors = [
+                i
+                for i in validate_meter(
+                    getattr(state.realized, layer_name) or [], tuple(state.slot.meter)
+                )
+                if i.severity == "error"
+            ]
+            assert not errors, [i.message for i in errors]
+
+
+@pytest.mark.parametrize("mode", ["variation", "style_transfer", "orchestrate"])
+def test_a_score_to_score_mode_gets_a_lock_policy(tmp_path, monkeypatch, mode):
+    """A LockPolicy of all zeros says 'preserve nothing', which for a variation
+    set or a style transfer is the one thing it cannot mean."""
+    from scales import scales as scales_mod
+
+    src = Path("workspace/mozart-andante-fmaj-v2-20260826/output"
+               "/mozart-andante-fmaj-v2-20260826.musicxml").resolve()
+    if not src.exists():
+        pytest.skip("reference piece not present")
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    pid = f"{mode}-locks"
+    scales_mod.init_workspace(pid, mode=mode, description="x",
+                              params={"source_path": str(src)})
+    applied = scales_mod.load_source_score(pid).get("locks_applied") or {}
+    assert applied.get("form_layout", 0) >= 0.9, "the source's form survives in every mode"
+    if mode == "variation":
+        assert applied.get("principal_melody", 0) >= 0.8, "a variation varies a THEME"
+    if mode == "orchestrate":
+        assert applied.get("phrase_count", 0) == 1.0, "orchestrating changes no structure"
+
+
+def test_loading_a_source_says_so_when_there_is_none(tmp_path, monkeypatch):
+    from scales import scales as scales_mod
+
+    monkeypatch.setattr(scales_mod, "_WORKSPACE", tmp_path)
+    scales_mod.init_workspace("no-source", mode="variation", description="x")
+    out = scales_mod.load_source_score("no-source")
+    assert "error" in out and "hint" in out, out

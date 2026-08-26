@@ -1,5 +1,113 @@
 [
   {
+    "id": "lh_idiom_point_of_imitation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Point of imitation",
+    "description": "one voice states a motif, the others enter with the same motif at staggered distances, usually a fourth or fifth apart. Each section of text gets its own point. This is the *form*, not a device: a piece is a chain of them.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_stepwise_motion_overwhelmingly",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Stepwise motion, overwhelmingly",
+    "description": "real Palestrina is around 80% stepwise. A leap is an event. Any line that arpeggiates is out of style.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_a_leap_answered_by_a_step_in_the_opposite_direction",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "A leap answered by a step in the opposite direction",
+    "description": "the rule that makes the lines singable. After a leap of a fourth or more, the next note steps back inside it. Never two leaps in the same direction.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_arch",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The arch",
+    "description": "a voice rises to a single high point and descends. One peak per phrase, and the peak is not repeated.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_suspension_and_resolution",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Suspension and resolution",
+    "description": "a voice holds while the harmony changes beneath it, creating a dissonance on the strong beat, then falls by step: `G4h~ G4q F4q`. The engine of Renaissance expression, and the only place dissonance is allowed on a strong beat.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_passing_dissonance_on_the_weak_beat",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Passing dissonance on the weak beat",
+    "description": "the other permitted dissonance, and only when approached and left by step.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cambiata",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cambiata",
+    "description": "the one licensed \"wrong\" figure: down a step, down a third, up a step, up a step. A formula worth having in the vocabulary because it sounds authentic and nothing else does the same job.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cadence_with_a_suspended_fourth",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cadence with a suspended fourth",
+    "description": "the standard close: the upper voice suspends over the penultimate bass note, resolves down, and the final is reached by step. The leading tone rises.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_voice_pairing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Voice pairing",
+    "description": "two voices move together in thirds or sixths, answered by the other two. Gives contrast without changing the number of parts.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_reduced_scoring",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Reduced scoring",
+    "description": "dropping from five voices to two or three for a phrase, then returning to full. The Renaissance equivalent of a dynamic change, and the principal means of shaping a piece.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_homophony_for_emphasis",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Homophony for emphasis",
+    "description": "all voices in the same rhythm on one phrase of text, usually a short one, then back to polyphony. Rare and therefore striking.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rests_as_entries",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rests as entries",
+    "description": "a voice is silent for several bars before its next point of imitation. Voices enter and drop out constantly, and a texture where all voices sing continuously is a texture with no articulation.",
+    "source_file": "palestrina/palestrina-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",

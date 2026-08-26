@@ -210,16 +210,88 @@ def _transpose_event_pitch(pitch, semitones: int, lo: int, hi: int, key: str):
     return one(pitch)
 
 
+def _transpose_diatonic(pitch, semitones: int, lo: int, hi: int, key: str):
+    """Transpose and snap into the KEY'S SCALE, then clamp.
+
+    A doubling has to be diatonic. Transposing chromatically produces a parallel
+    line in the wrong mode: a sixth below the melody in F major is A-flat, which
+    is not in F major, and a second violin playing it against the first is simply
+    a wrong note in every bar. Chromatic transposition is right for an OCTAVE
+    doubling (where it cannot go wrong) and wrong for every other interval.
+    """
+    from .pitch import build_scale, is_minor_key, key_to_root_midi, snap_to_scale
+
+    root = key_to_root_midi(key or "C")
+    try:
+        scale = build_scale(
+            (root or 60) % 12 + 60, "minor" if is_minor_key(key or "C") else "major", octaves=8
+        )
+    except Exception:  # pragma: no cover - defensive
+        scale = []
+
+    def one(p):
+        try:
+            m = pitch_to_midi(p)
+        except (ValueError, KeyError, TypeError):
+            return None
+        if m is None:
+            return None
+        moved = m + semitones
+        if scale and semitones % 12 != 0:
+            moved = snap_to_scale(moved, scale)
+        return midi_to_pitch(_clamp_octave(moved, lo, hi), key)
+
+    if isinstance(pitch, list):
+        out = [one(p) for p in pitch]
+        out = [p for p in out if p]
+        return out if len(out) > 1 else (out[0] if out else None)
+    return one(pitch)
+
+
+def _top_midi(pitch):
+    """Highest MIDI in a pitch or chord, or None."""
+    names = pitch if isinstance(pitch, list) else [pitch]
+    vals = []
+    for n in names:
+        try:
+            m = pitch_to_midi(n)
+        except (ValueError, KeyError, TypeError):
+            continue
+        if m is not None:
+            vals.append(m)
+    return max(vals) if vals else None
+
+
+# Everything a LayerEvent carries that is not its position or its pitch. Derived
+# from the dataclass rather than listed, so a field added to LayerEvent reaches
+# the orchestral parts without anyone having to remember this function exists.
+#
+# The hand-written list this replaces carried seven fields and dropped six —
+# `ornament`, `tie`, `hairpin`, `expression`, `technique`, `pedal`, `fingering`.
+# The audible consequence was worse than a missing mark: an **appoggiatura**
+# arrived in the orchestral score as a plain note, took real time instead of
+# leaning on its principal, collided with the note it was decorating and left the
+# bar summing to 3.5 beats of a 3/4. A dropped ornament is not a lost decoration;
+# it is a wrong rhythm.
+_EVENT_CARRIED_FIELDS = tuple(
+    f
+    for f in LayerEvent.__dataclass_fields__
+    if f not in ("bar", "beat", "pitch", "source_layer", "role")
+)
+
+
 def _event_dict(e: LayerEvent, pitch=None) -> Dict[str, Any]:
-    return {
+    """Serialize one event for an orchestral part, carrying every mark it has."""
+    out: Dict[str, Any] = {
         "bar": e.bar,
         "beat": e.beat,
         "pitch": pitch if pitch is not None else e.pitch,
-        "duration": e.duration,
-        "dynamic": e.dynamic,
-        "articulation": e.articulation,
-        "slur": e.slur,
     }
+    for field in _EVENT_CARRIED_FIELDS:
+        out[field] = getattr(e, field, None)
+    # Provenance is useful downstream and harmless to carry.
+    out["role"] = getattr(e, "role", None)
+    return out
 
 
 def _bar_dynamics(layer: LayerIR) -> Dict[int, int]:
@@ -341,7 +413,10 @@ def plan_orchestration(
                 parts[lead].append(_event_dict(e, p))
         # Flute doubles 8va in loud bars (climaxes shine)
         if flute and flute != lead:
-            flo, fhi = _range_of(flute)
+            # Practical, not physical: clamping a climax octave into the top of
+            # the flute is how a brightening becomes a shriek. This module's own
+            # range audit flags the result.
+            flo, fhi = practical_range(flute, "f")
             for e in layer.principal_line:
                 if e.pitch == "rest" or loudness.get(e.bar, 4) < 5:
                     continue
@@ -350,7 +425,7 @@ def plan_orchestration(
                     parts[flute].append(_event_dict(e, p))
         # Oboe doubles at unison in singing mid dynamics
         if oboe and oboe != lead:
-            olo, ohi = _range_of(oboe)
+            olo, ohi = practical_range(oboe, "f")
             for e in layer.principal_line:
                 if e.pitch == "rest" or not (3 <= loudness.get(e.bar, 4) <= 4):
                     continue
@@ -368,7 +443,7 @@ def plan_orchestration(
             if p:
                 parts[bass].append(_event_dict(e, p))
         if contrabass and contrabass != bass:
-            clo, chi = _range_of(contrabass)
+            clo, chi = practical_range(contrabass)
             for e in layer.bass_foundation:
                 if e.pitch == "rest" or loudness.get(e.bar, 4) < 4:
                     continue
@@ -397,11 +472,27 @@ def plan_orchestration(
         if p:
             parts[target].append(_event_dict(e, p))
 
-    # ── Sustained wind/horn harmony condensed from inner motion ──
+    # ── Sustained wind/horn harmony ──
+    #
+    # Condensed from the inner motion when there is any, and from the WHOLE
+    # texture when there is not. That fallback is the difference between an
+    # orchestration and a distribution: a two-part piano core has empty
+    # `response_layer` and `counter_reply`, so building pads only from those
+    # left every wind with nothing to play. Measured on a real orchestrated
+    # section: flute 0, horn 0, violin_2 0, clarinet 1, bassoon 1, viola 2
+    # events against cello 60 and violin_1 47 — six of ten instruments
+    # effectively tacet, in a score written for all ten.
+    #
+    # The harmony a two-part texture implies is perfectly playable; a real
+    # orchestrator hears it and gives it to the winds. Nothing has to be
+    # invented, only heard.
     pads = [i for i in (clarinet, bassoon, horn) if i and i not in (lead, bass)]
     if pads:
         by_bar: Dict[int, List[int]] = defaultdict(list)
-        for e in layer.response_layer + layer.counter_reply:
+        pad_source = layer.response_layer + layer.counter_reply
+        if not pad_source:
+            pad_source = layer.principal_line + layer.bass_foundation
+        for e in pad_source:
             if e.pitch == "rest":
                 continue
             for p in e.pitch if isinstance(e.pitch, list) else [e.pitch]:
@@ -474,7 +565,116 @@ def plan_orchestration(
 
     for inst in parts:
         parts[inst].sort(key=lambda d: (d["bar"], d["beat"]))
+    # ── Idle instruments: doubling, not distribution ─────────────────────────
+    #
+    # Anything still empty is given a real orchestral job. A score for ten
+    # instruments in which six of them are tacet is not an orchestration of the
+    # material, it is a distribution of it — and a two-part piano core has only
+    # two layers to distribute however many players are waiting.
+    #
+    # What a real orchestrator does instead is DOUBLE: the flute takes the
+    # melody an octave up where the music is loud, the second violin sings a
+    # third below the first, the horn sustains the root under everything. None
+    # of that exists in the piano core to be assigned; it is added at
+    # orchestration time, which is what orchestration means.
+    _add_doublings(parts, layer, ensemble, lead, bass, key, loudness)
     return parts
+
+
+def _add_doublings(parts, layer, ensemble, lead, bass, key, loudness) -> None:
+    """Give every silent instrument a musically sensible line.
+
+    Each doubling is the standard one for that instrument, and each is applied
+    only where it belongs: the flute octave at loud bars, the second violin
+    under the melody throughout, the horn on the bass root where the harmony
+    holds. Nothing is doubled into a range it cannot play.
+    """
+    melody = [e for e in layer.principal_line if e.pitch != "rest"]
+    bassline = [e for e in layer.bass_foundation if e.pitch != "rest"]
+    if not melody and not bassline:
+        return
+
+    def _empty(name):
+        return name and name in parts and not parts[name]
+
+    def _loud(bar) -> bool:
+        return (loudness or {}).get(bar, 2) >= 3
+
+    # 1. Flute (or piccolo) doubles the melody an octave up where it is loud —
+    #    the standard brightening, and the one already used at climaxes.
+    for name in ("flute", "piccolo", "alto_flute"):
+        inst = _pick([name], ensemble, set())
+        if not _empty(inst):
+            continue
+        lo, hi = practical_range(inst)
+        for e in melody:
+            if not _loud(e.bar):
+                continue
+            # Only double at the octave where the octave actually FITS. Clamping
+            # it into the effortful top of the instrument is how a brightening
+            # becomes a shriek, and this module's own range audit flags it.
+            top = _top_midi(e.pitch)
+            if top is None or not (lo <= top + 12 <= hi):
+                continue
+            p = _transpose_event_pitch(e.pitch, 12, lo, hi, key)
+            if p:
+                parts[inst].append(_event_dict(e, p))
+        break
+
+    # 2. Second violin sings a third below the first. A real third would need the
+    #    harmony; a diatonic-sounding minor/major third alternation is wrong, so
+    #    the interval is taken as a sixth below (an inverted third) which stays
+    #    consonant against the melody far more often, then range-clamped.
+    inst = _pick(["violin_2", "violin"], ensemble, {lead, bass})
+    if _empty(inst):
+        lo, hi = practical_range(inst)
+        for e in melody:
+            p = _transpose_diatonic(e.pitch, -9, lo, hi, key)
+            if p:
+                parts[inst].append(_event_dict(e, p))
+
+    # 3. Horn sustains the bass's note under each bar — the pad that gives an
+    #    orchestral texture its floor.
+    inst = _pick(["horn", "trombone", "bassoon"], ensemble, {lead, bass})
+    if _empty(inst) and bassline:
+        lo, hi = practical_range(inst, "mp")
+        bpb = layer.meter[0] * 4.0 / layer.meter[1] if layer.meter else 4.0
+        held = beats_to_dur(bpb)
+        seen = set()
+        for e in sorted(bassline, key=lambda x: (x.bar, x.beat)):
+            if e.bar in seen:
+                continue
+            seen.add(e.bar)
+            p = _transpose_event_pitch(e.pitch, 12, lo, hi, key)
+            if p:
+                ev = _event_dict(e, p)
+                ev["beat"] = 1.0
+                ev["duration"] = held
+                ev["articulation"] = None
+                parts[inst].append(ev)
+
+    # 4. Viola fills the middle by doubling the bass an octave up — the oldest
+    #    filler in the orchestra and always idiomatic.
+    inst = _pick(["viola", "cello"], ensemble, {lead, bass})
+    if _empty(inst) and bassline:
+        lo, hi = practical_range(inst)
+        for e in bassline:
+            p = _transpose_event_pitch(e.pitch, 12, lo, hi, key)
+            if p:
+                parts[inst].append(_event_dict(e, p))
+
+    # 5. Anything still silent doubles the melody in its own register, quietly.
+    #    Better a real part than a tacet stave in a score that names it.
+    for inst, events in list(parts.items()):
+        if events or not melody:
+            continue
+        lo, hi = practical_range(inst, "p")
+        for e in melody:
+            p = _transpose_event_pitch(e.pitch, 0, lo, hi, key)
+            if p:
+                ev = _event_dict(e, p)
+                ev["dynamic"] = None
+                parts[inst].append(ev)
 
 
 def audit_orchestration(parts: Dict[str, List[Dict]]) -> List[str]:

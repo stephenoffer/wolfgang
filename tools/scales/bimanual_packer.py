@@ -32,7 +32,11 @@ class BimanualPacker:
         self.constraints = constraints or PhysicalConstraints()
 
     def pack(
-        self, role_graph: RoleGraph, mode: str = ReductionMode.PLAYABLE.value, key: str = "C"
+        self,
+        role_graph: RoleGraph,
+        mode: str = ReductionMode.PLAYABLE.value,
+        key: str = "C",
+        meter: Tuple[int, int] = (4, 4),
     ) -> LayerIR:
         """Pack a role graph into a piano LayerIR.
 
@@ -40,11 +44,16 @@ class BimanualPacker:
             role_graph: Annotated orchestral score
             mode: study_reduction | playable_reduction | concert_transcription
             key: Target key for pitch spelling
+            meter: The SOURCE's time signature. Omitting it left the LayerIR at
+                its `(4, 4)` default, so reducing a 3/4 orchestral section
+                mis-barred every bar of it — 32 meter violations in one section,
+                and the reduction of a minuet came out in common time.
         """
         layer = LayerIR(
             phrase_id="reduction",
             instrumentation="solo_piano",
             key=key,
+            meter=meter,
             bar_count=role_graph.bars,
         )
 

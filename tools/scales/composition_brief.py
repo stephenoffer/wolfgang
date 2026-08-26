@@ -38,6 +38,7 @@ _DEFAULT_COMPOSER = "mozart"
 _ADAPTER_CACHE: Dict[str, CorpusAdapter] = {}
 _DENSITY_CACHE: Dict[str, Dict[str, Any]] = {}
 _ORNAMENT_CACHE: Dict[str, Any] = {}
+_FINGERPRINT_CACHE: Dict[str, Any] = {}
 _TEXTURE_TEMPLATE_CACHE: Dict[str, Dict[str, Any]] = {}
 _PACK_CACHE: Dict[str, Any] = {}  # compiled_packs/<composer>/<name>.json
 
@@ -567,6 +568,146 @@ def texture_density_stats(composer: str, refresh: bool = False) -> Dict[str, Any
     _DENSITY_CACHE[composer] = stats
     return stats
 
+
+
+_FINGERPRINT_SCHEMA = 1
+# A dotted value is 1.5x a plain one. Written out rather than computed so the
+# 32nd-note case (0.1875) is visible and cannot be lost to float comparison.
+_DOTTED_QLS = frozenset({0.1875, 0.375, 0.75, 1.5, 3.0, 6.0})
+
+
+def rhythmic_fingerprint(composer: str, refresh: bool = False) -> Dict[str, Any]:
+    """The handful of surface facts that most decide whether a phrase sounds
+    like this composer, measured from his own bars.
+
+    Written because a piece can sit inside every band this system checks and
+    still be obviously machine-made. A B-flat andante passed the commit gate,
+    the ear and the realism audit while resting in 22% of its bars against
+    Mozart's 62%, carrying a dotted rhythm in 4.9% against his 22%, and holding
+    NOTHING faster than a sixteenth against his 12.6%. Every one of those facts
+    was derivable from the corpus and none of them was ever put in front of the
+    composer as a fact — the brief carried per-note ratios, which are the same
+    truth in a unit nobody reasons in.
+
+    These are descriptions of what the composer does, not quotas. Returned per
+    composer and cached beside the other measured stats.
+    """
+    if not refresh and composer in _FINGERPRINT_CACHE:
+        return _FINGERPRINT_CACHE[composer]
+    cache_path = _COMPILED_PACKS / _pack_dir(composer) / "rhythmic_fingerprint.json"
+    if not refresh and cache_path.exists():
+        try:
+            with open(cache_path) as f:
+                got = json.load(f)
+            if got.get("schema") == _FINGERPRINT_SCHEMA:
+                _FINGERPRINT_CACHE[composer] = got
+                return got
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    bars = 0
+    rest_bars = 0
+    dotted_bars = 0
+    notes = 0
+    fast_notes = 0
+    durs: Dict[float, int] = {}
+    lh_prev = None
+    lh_changes = 0
+    lh_transitions = 0
+    for bar in _iter_corpus_bars(composer):
+        bars += 1
+        mel = [e for e in (bar.get("melody_line") or []) if isinstance(e, dict)]
+        if any(e.get("type") == "rest" for e in mel) or bar.get("has_rests"):
+            rest_bars += 1
+        if bar.get("has_dotted_rhythms"):
+            dotted_bars += 1
+        for e in mel:
+            if e.get("type") == "rest":
+                continue
+            try:
+                q = round(float(e.get("dur") or 0), 4)
+            except (TypeError, ValueError):
+                continue
+            if q <= 0:
+                continue
+            notes += 1
+            durs[q] = durs.get(q, 0) + 1
+            if q <= 0.125:
+                fast_notes += 1
+        lh = bar.get("lh_texture")
+        if lh_prev is not None:
+            lh_transitions += 1
+            if lh != lh_prev:
+                lh_changes += 1
+        lh_prev = lh
+
+    top = sorted(durs.items(), key=lambda kv: -kv[1])[:5]
+    out = {
+        "composer": composer,
+        "schema": _FINGERPRINT_SCHEMA,
+        "bars": bars,
+        "notes": notes,
+        "rest_bar_pct": round(rest_bars / bars, 4) if bars else 0.0,
+        "dotted_bar_pct": round(dotted_bars / bars, 4) if bars else 0.0,
+        "fast_note_pct": round(fast_notes / notes, 4) if notes else 0.0,
+        "lh_texture_change_pct": round(lh_changes / lh_transitions, 4) if lh_transitions else 0.0,
+        "top_note_values": [[q, round(n / notes, 4)] for q, n in top] if notes else [],
+    }
+    try:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(cache_path, "w") as f:
+            json.dump(out, f, indent=1)
+    except OSError:
+        pass
+    _FINGERPRINT_CACHE[composer] = out
+    return out
+
+
+_QL_NAME = {
+    4.0: "whole", 3.0: "dotted half", 2.0: "half", 1.5: "dotted quarter",
+    1.0: "quarter", 0.75: "dotted eighth", 0.5: "eighth", 0.375: "dotted 16th",
+    0.3333: "triplet eighth", 0.25: "16th", 0.1667: "triplet 16th",
+    0.125: "32nd", 0.0625: "64th",
+}
+
+
+def render_rhythmic_fingerprint(composer: str) -> List[str]:
+    """The fingerprint as brief lines, in the units a composer reasons in."""
+    fp = rhythmic_fingerprint(composer)
+    if not fp.get("bars"):
+        return []
+    vals = ", ".join(
+        f"{_QL_NAME.get(q, str(q))} {share:.0%}" for q, share in fp.get("top_note_values") or []
+    )
+    # Never assert a thin sample as a fact about the composer. Liszt's corpus is
+    # 437 bars from the four lyrical works that are public domain, and it holds
+    # nothing faster than a sixteenth — true of the sample, flatly false of
+    # Liszt, and actively harmful to tell a composer.
+    tier = composer_coverage_tier(composer)
+    sources = tier.get("distinct_sources") or 0
+    thin = tier.get("tier") != "A" or sources < 12
+    if thin:
+        head = [
+            f"RHYTHMIC FINGERPRINT ({composer}) — measured over {fp['bars']} bars from only "
+            f"{sources} source movement(s). THIS IS THE SAMPLE, NOT THE COMPOSER: a narrow "
+            f"corpus under-reports whatever those particular pieces do not happen to do. "
+            f"Where it disagrees with what you know of him, trust what you know.",
+        ]
+    else:
+        head = [
+            f"RHYTHMIC FINGERPRINT ({composer}, measured over {fp['bars']} of his own bars "
+            f"from {sources} movements — these are FACTS ABOUT HIM, not quotas):",
+        ]
+    return head + [
+        f"  • {fp['rest_bar_pct']:.0%} of these bars contain a REST. Music that never stops "
+        f"sounding is the single clearest tell of a machine.",
+        f"  • {fp['dotted_bar_pct']:.0%} of them carry a DOTTED rhythm.",
+        f"  • {fp['fast_note_pct']:.0%} of the melody notes are a 32nd or faster "
+        f"(written `t`; 64ths are `x`).",
+        f"  • the LEFT HAND changes character on {fp['lh_texture_change_pct']:.0%} of barlines "
+        f"— one accompaniment idiom held all the way through is not his texture.",
+        f"  • note values actually written here: {vals}.",
+    ]
 
 _ORNAMENT_SCHEMA = 1
 
@@ -3292,6 +3433,16 @@ def render_text(brief: CompositionBrief) -> str:
 
     ts = brief.target_stats
     lines.append("")
+    # The fingerprint goes ABOVE the per-texture medians deliberately: it is the
+    # part a composer can hold in mind while writing, and the medians below are
+    # the part that gets skimmed.
+    try:
+        fp_lines = render_rhythmic_fingerprint(brief.composer)
+    except Exception:
+        fp_lines = []
+    if fp_lines:
+        lines.extend(fp_lines)
+        lines.append("")
     lines.append(f"TARGET STATS ({brief.composer}):")
     for t, entry in ts.get("rh_textures", {}).items():
         d = entry.get("events_per_bar", {})

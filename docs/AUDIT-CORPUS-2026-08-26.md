@@ -484,3 +484,54 @@ from the live dict:
 `ContinuationContext` is annotated as dead and points at the live path rather
 than being deleted, because it is serialized on existing graphs and two other
 sessions are in the tree.
+
+---
+
+## Round 5 — the other half of falsification
+
+wolfgang-v2-40 retracted a finding ("the principal theme appears in 1 place") as
+a detector artefact and named the general lesson: asking *"would this reject the
+canon?"* cannot catch a detector that is simply **blind**. A false-positive bound
+on its own actively rewards blindness — a check that never fires passes it
+trivially. Both halves are needed: does it reject real music, and does it find
+what is demonstrably there.
+
+Applied to the checks in this layer:
+
+**All five bar-record ear detectors are sensitive** — each fires on a case
+constructed to be its defect. Good, but it was untested until now.
+
+**Four of the ten anti-pattern detectors were blind**, two of them genuinely:
+
+- **`flat_dynamics` returned "insufficient dynamics data" when a phrase had NO
+  dynamic at all.** That is the extreme case of the thing it names, and the state
+  91.3% of every note this project has ever committed is in — so the detector has
+  been silent on precisely its own defect for its whole existence.
+- **`ornament_wallpaper` read `layer.ornamental_surface`**, a layer the shorthand
+  path never populates: an ornament written `C5q:tr` is a FIELD on a note in
+  `principal_line`. It was searching an empty drawer, the same shape as
+  `_reconstruct_ledger` reading `phrase_ledger`. Its position encoding was also
+  `bar * 10 + beat`, which makes a gap across a barline incomparable with one
+  inside a bar.
+
+(The other two — `scalar_fill`, `safe_harmony` — were fine; my positive cases
+were wrong. Worth recording, because a badly-built positive case looks exactly
+like a blind detector.)
+
+Both halves are now pinned in `test_ear_falsification.py`, including that no
+anti-pattern detector fires on a real-looking eight-bar phrase with shaped
+dynamics, varied rhythm, ornaments where the music leans, and a rest.
+
+**`composed_blind` measured on real ground truth.** It is a presence check, so
+the same question applies. Against 784 real Mozart bars judged against eight
+other real Mozart bars, it flags **3%** — good specificity. Its sensitivity is
+structurally limited: the interval histogram returns 1.000 for any stepwise
+surface against any stepwise exemplar, which is most tonal music, so an unrelated
+run of 32nds still clears the floor at 0.643. Rhythm does nearly all the
+discriminating.
+
+Combining the two halves with `min` instead of the mean fixes that false negative
+and **flags 19% of real Mozart** — far worse. The permissive operating point
+stays, and the docstring now states both numbers, because a passing score is not
+evidence the surface used the corpus. Both are pinned by tests so a future
+"improvement" cannot silently start rejecting real music.

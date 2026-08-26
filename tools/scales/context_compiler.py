@@ -133,8 +133,20 @@ class ContextCompiler:
         self._write_json(output_dir / "melody_priors.json", melody_pr)
         results["melody_priors"] = len(melody_pr)
 
-        # Pass 15: Figuration templates
-        fig_tmpl = self._composer_hand_idioms(profile_dir) + self._pass_figuration_templates()
+        # Pass 15: Figuration templates — the composer's own hand idioms first,
+        # then the general library, then the composer's idiomatic DEVICES.
+        #
+        # The devices catalogue names the melodic and structural gestures that
+        # separate one composer from generic tonal music (the appoggiatura sigh,
+        # the terraced echo, the general pause). `mozart-devices.md` had existed
+        # as long as the LH vocabulary and was opened by nothing, so a file
+        # written specifically to stop the surface sounding generic never
+        # reached the composer that reads this pack.
+        fig_tmpl = (
+            self._composer_hand_idioms(profile_dir)
+            + self._pass_figuration_templates()
+            + self._composer_devices(profile_dir)
+        )
         self._write_json(output_dir / "figuration_templates.json", fig_tmpl)
         results["figuration_templates"] = len(fig_tmpl)
 
@@ -1095,6 +1107,58 @@ class ContextCompiler:
                         "grounding": "profile",
                     }
                 )
+        return out
+
+    @staticmethod
+    def _composer_devices(profile_dir: Optional[Path]) -> List[Dict]:
+        """A composer's catalogue of idiomatic devices, from `<name>-devices.md`.
+
+        The companion to `*-lh-vocabulary.md`: where that names accompaniment
+        idioms, this names the melodic and structural gestures that make a line
+        sound like one composer rather than like generic tonal music — the
+        appoggiatura sigh, the terraced echo, the Neapolitan approach, the
+        general pause.
+
+        `mozart-devices.md` had existed for as long as the LH file and was
+        opened by **nothing**, so a catalogue written specifically to stop the
+        surface sounding generic never reached the composer. Matched by filename
+        convention so adding one for another composer needs no code change, and
+        parsed with the same numbered-bold-item grammar.
+        """
+        if not profile_dir:
+            return []
+        out: List[Dict] = []
+        for path in sorted(profile_dir.glob("*-devices.md")):
+            try:
+                text = path.read_text()
+            except OSError:
+                continue
+            section = ""
+            for chunk in re.split(r"^##\s+", text, flags=re.MULTILINE):
+                head = chunk.splitlines()[0].strip() if chunk.strip() else ""
+                if head and not head.startswith(("1.", "-")):
+                    section = head
+                for m in re.finditer(
+                    r"^\s*\d+\.\s+\*\*(.+?)\*\*\s*[—:-]\s*(.+?)(?=\n\s*\n|\n\s*\d+\.\s+\*\*|\Z)",
+                    chunk,
+                    re.MULTILINE | re.DOTALL,
+                ):
+                    name = m.group(1).strip()
+                    body = " ".join(m.group(2).split())
+                    if not name or not body:
+                        continue
+                    slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
+                    out.append(
+                        {
+                            "id": f"device_{slug}",
+                            "category": "composer_device",
+                            "section": section,
+                            "name": name,
+                            "description": body[:400],
+                            "source_file": f"{profile_dir.name}/{path.name}",
+                            "grounding": "profile",
+                        }
+                    )
         return out
 
     def _pass_ornament_policy(self, profile_dir: Optional[Path] = None) -> List[Dict]:

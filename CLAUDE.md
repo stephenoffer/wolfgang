@@ -215,22 +215,22 @@ The note generators below (`sketch_proposer`, `realizer`, `surface_composer`) ar
 **Rebuilding corpus artifacts.** Two layers, in order.
 
 *Bar records* (needs raw scores; only when the extractor changes):
-`python3 -m scripts.build_full_corpus --reference` (mozart/beethoven/chopin from
+`.venv/bin/python -m scripts.build_full_corpus --reference` (mozart/beethoven/chopin from
 `reference_scores/`), `--music21 bach haydn palestrina monteverdi`, and
 `--local <composer> <dir>` for web-acquired sources cached under
 `reference_scores/_fetch_<composer>/`.
 
-*Derived layers* (from bar records alone): `python3 -m scripts.build_corpus_indexes`
+*Derived layers* (from bar records alone): `.venv/bin/python -m scripts.build_corpus_indexes`
 (phrase/gesture/window indexes + transition matrices) then
-`python3 -m scripts.build_corpus_profiles` (per-composer distributions) then
-`python3 -m scripts.build_style_profiles` (per-**style** aggregates under
-`compiled_packs/style__<name>/`) then `python3 -m scripts.build_progression_model`.
+`.venv/bin/python -m scripts.build_corpus_profiles` (per-composer distributions) then
+`.venv/bin/python -m scripts.build_style_profiles` (per-**style** aggregates under
+`compiled_packs/style__<name>/`) then `.venv/bin/python -m scripts.build_progression_model`.
 Pass `--force` to `build_corpus_indexes` to overwrite existing per-artifact files;
 without it, only missing artifacts are written (the flagship composers are no
 longer skipped outright — that let a stale, cross-contaminated phrase catalog
 survive corpus rebuilds).
 
-Arm a missing composer with `python3 -m scripts.acquire_composer <name>` (music21
+Arm a missing composer with `.venv/bin/python -m scripts.acquire_composer <name>` (music21
 local + allowlisted KernScores/Mutopia web). A composer needs **≥3 distinct source
 movements and real harmonic coverage** to count as armed; `composer_coverage_tier`
 reports tier C for anything thinner rather than pretending it can teach a voice.

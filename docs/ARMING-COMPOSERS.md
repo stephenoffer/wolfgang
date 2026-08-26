@@ -13,7 +13,7 @@ Around three dozen other composers have a profile scaffold in `tools/compiled_pa
 Check any composer's status:
 
 ```bash
-python3 -m scripts.acquire_composer --status mozart
+.venv/bin/python -m scripts.acquire_composer --status mozart
 ```
 
 That prints the tier, whether they're armed, the bar count, and whether the density stats and corpus profile exist.
@@ -23,7 +23,7 @@ That prints the tier, whether they're armed, the bar count, and whether the dens
 One command does the whole job — it finds scores, extracts bars, and builds the indexes, profiles, and density stats:
 
 ```bash
-python3 -m scripts.acquire_composer haydn
+.venv/bin/python -m scripts.acquire_composer haydn
 ```
 
 It looks first in music21's built-in corpus (local, no network) and then, if needed, falls back to an allowlisted set of public-domain sources (KernScores / HumdrumOrg), validating what it pulls. Useful options:
@@ -33,8 +33,8 @@ It looks first in music21's built-in corpus (local, no network) and then, if nee
 - `--status` — just report the tier and exit, without acquiring anything.
 
 ```bash
-python3 -m scripts.acquire_composer clementi --max-files 40
-python3 -m scripts.acquire_composer haydn --no-web
+.venv/bin/python -m scripts.acquire_composer clementi --max-files 40
+.venv/bin/python -m scripts.acquire_composer haydn --no-web
 ```
 
 After this finishes, that composer can be briefed against real bars, and `/wolfgang ... in the style of <composer>` will use them.
@@ -44,9 +44,9 @@ After this finishes, that composer can be briefed against real bars, and `/wolfg
 Everything downstream of the raw bars derives from those bars, so you can always rebuild the index and statistics layers without re-downloading anything. The canonical order is indexes, then per-composer profiles, then style profiles:
 
 ```bash
-python3 -m scripts.build_corpus_indexes        # phrase / gesture / window indexes + transition matrices
-python3 -m scripts.build_corpus_profiles       # per-composer metric distributions (corpus_profile.json)
-python3 -m scripts.build_style_profiles        # aggregated profiles + density stats per style
+.venv/bin/python -m scripts.build_corpus_indexes        # phrase / gesture / window indexes + transition matrices
+.venv/bin/python -m scripts.build_corpus_profiles       # per-composer metric distributions (corpus_profile.json)
+.venv/bin/python -m scripts.build_style_profiles        # aggregated profiles + density stats per style
 ```
 
 What each one produces:
@@ -60,8 +60,8 @@ What each one produces:
 If you have scores you want folded into the corpus — and you want the context layer updated too, not just the indexes — use the feedback-loop ingestion path:
 
 ```bash
-python3 tools/scripts/ingest_with_feedback.py path/to/score.musicxml mozart
-python3 tools/scripts/ingest_with_feedback.py --batch path/to/folder mozart
+.venv/bin/python tools/scripts/ingest_with_feedback.py path/to/score.musicxml mozart
+.venv/bin/python tools/scripts/ingest_with_feedback.py --batch path/to/folder mozart
 ```
 
 This extracts musical evidence, matches it against the registry of measurable claims about that composer, promotes recurring evidence into overlay deltas, and flags contradictions — extending both the retrieval indexes and the evidence overlays in one pass.

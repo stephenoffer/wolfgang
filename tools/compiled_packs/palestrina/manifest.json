@@ -5,7 +5,11 @@
   "corpus_bar_count": 60677,
   "profile_files": [
     "composition-guide.md",
-    "melodic-style.md"
+    "formal-approach.md",
+    "harmonic-language.md",
+    "melodic-style.md",
+    "orchestration.md",
+    "palestrina-lh-vocabulary.md"
   ],
   "corpus_files": [
     "bar_index.json",

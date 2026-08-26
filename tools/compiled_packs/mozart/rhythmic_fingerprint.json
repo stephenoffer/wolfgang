@@ -1,0 +1,32 @@
+{
+ "composer": "mozart",
+ "schema": 1,
+ "bars": 7022,
+ "notes": 44577,
+ "rest_bar_pct": 0.6014,
+ "dotted_bar_pct": 0.2091,
+ "fast_note_pct": 0.1197,
+ "lh_texture_change_pct": 0.5157,
+ "top_note_values": [
+  [
+   0.25,
+   0.4182
+  ],
+  [
+   0.5,
+   0.2488
+  ],
+  [
+   0.125,
+   0.1106
+  ],
+  [
+   1.0,
+   0.0781
+  ],
+  [
+   0.1667,
+   0.0518
+  ]
+ ]
+}

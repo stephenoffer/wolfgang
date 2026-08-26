@@ -541,6 +541,91 @@ question could never have caught it. A falsification harness needs both halves.
 
 ---
 
+## 4i. The doctrine layer: 47 of 48 composers had no left-hand vocabulary
+
+`mozart-lh-vocabulary.md` opens by naming the loudest texture tell there is — "a
+static bass note held under perpetual figuration, the same idiom every bar" —
+catalogues ten alternatives in this system's own shorthand, and says when each
+belongs. **It existed for exactly one of forty-eight composers.**
+
+`ContextCompiler._composer_hand_idioms` already matches `*-lh-vocabulary.md` by
+filename convention, so the gap was pure content: every other composer's briefs
+had no catalogue of accompaniment idioms to reach for, and no guidance on *when*
+to change one.
+
+Written for Beethoven, Chopin, Bach, Haydn, Schubert and Liszt — **66 new
+left-hand idioms**, each with its shorthand spelled out, verified compiling
+through the parser. Each file also states the composer's own pacing, which
+differs sharply and is measurable:
+
+- **Bach** has no accompaniment at all — the lower part is another line, and if
+  it does not work played alone it is not the style.
+- **Beethoven** changes idiom when the argument does, and drops the bass out
+  entirely before a return.
+- **Schubert** keeps one figure for sixteen bars while the *harmony* does
+  something remarkable underneath it — changing the accompaniment every phrase
+  destroys the style.
+- **Chopin** is defined by *width*: bass note and chord an octave or more apart,
+  held by pedal. Measured on real mazurkas, distinct LH patterns run 0.15 per bar
+  — six of seven bars reuse a figure already heard.
+- **Haydn** interrupts: sudden rests, off-beat entries, two-voice textures, and
+  a phrase that is five bars because one is repeated.
+- **Liszt** spans three octaves in a bar; a left hand inside one octave is not
+  the idiom.
+
+## 4j. Orchestration was distribution, not orchestration
+
+Assembling an orchestrated section and reading it back — which nothing had done —
+found a two-part piano core spread across ten instruments leaving **six of them
+tacet**: flute 0, horn 0, violin_2 0, clarinet 1, bassoon 1, viola 2, against
+cello 60 and violin_1 47. A score whose named instruments are silent is not an
+orchestration of the material, it is a distribution of it.
+
+The cause was not the assignment code. `plan_orchestration` assigns from the
+piano core's *layers*, and a two-part texture has two populated layers, so there
+is nothing for the rest to receive. What a real orchestrator does instead is
+**double**, and none of that exists in the piano core to be assigned — it has to
+be added at orchestration time, which is what orchestration means.
+
+Three fixes, and two of them were errors in my own additions caught by reading the
+notes and by this module's own range audit:
+
+- **Wind pads now fall back to the whole texture** when the inner layers are
+  empty. The harmony a two-part texture implies is perfectly playable.
+- **`_add_doublings`** gives every silent instrument a standard job: flute octave
+  at loud bars, second violin a sixth below, horn sustaining the bass root, viola
+  doubling the bass up an octave.
+- **The doublings were wrong twice.** Violin 2 played A♭ in F major, because
+  `_transpose_event_pitch` is chromatic and a sixth below F is A♭ — a wrong note
+  in every bar. And the flute was clamped into its effortful top, because the
+  *pre-existing* climax doubling used `_range_of` under different variable names
+  and had escaped an earlier sweep. Now diatonic, and the octave is skipped where
+  it does not fit rather than clamped into a shriek.
+
+Result on the same two-part core: **ten of ten parts sounding, range audit clean.**
+
+### And every mark was being dropped on the way
+
+`_event_dict` listed seven fields by hand and dropped six — `ornament`, `tie`,
+`hairpin`, `expression`, `technique`, `pedal`, `fingering`. The consequence was
+worse than a missing mark: an appoggiatura arrived in the orchestral score as a
+plain note, took real time instead of leaning on its principal, collided with the
+note it decorated, and left the bar summing to 3.5 beats of a 3/4. **A dropped
+ornament is not a lost decoration; it is a wrong rhythm.** Now derived from
+`LayerEvent.__dataclass_fields__`, with a test that the declared set is a subset
+of what is carried.
+
+## 4k. A reduction was always in 4/4
+
+`BimanualPacker.pack` built its LayerIR with no `meter`, taking the dataclass
+default whatever the source was in. Reducing a 3/4 orchestral section mis-barred
+every bar of it, and the reduction of a minuet came out in common time. The
+source's meter is now threaded through `SABRE.reduce_to_piano`, so the caller no
+longer has to read it back off the exported file and repair it — fixing
+downstream what should never have been wrong.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and

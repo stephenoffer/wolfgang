@@ -1,0 +1,32 @@
+{
+ "composer": "bach",
+ "schema": 1,
+ "bars": 6795,
+ "notes": 22850,
+ "rest_bar_pct": 0.248,
+ "dotted_bar_pct": 0.2037,
+ "fast_note_pct": 0.0028,
+ "lh_texture_change_pct": 0.6322,
+ "top_note_values": [
+  [
+   1.0,
+   0.6017
+  ],
+  [
+   0.5,
+   0.2083
+  ],
+  [
+   2.0,
+   0.0849
+  ],
+  [
+   0.25,
+   0.0638
+  ],
+  [
+   3.0,
+   0.0189
+  ]
+ ]
+}

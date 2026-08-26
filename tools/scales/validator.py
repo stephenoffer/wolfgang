@@ -40,7 +40,7 @@ INSTRUMENT_RANGES = {
     # Strings
     "violin": (55, 103),
     "viola": (48, 91),
-    "cello": (36, 76),
+    "cello": (36, 81),  # C2-A5: thumb position is ordinary writing, not extended
     "double_bass": (28, 67),
     # Woodwinds
     "piccolo": (74, 108),
@@ -58,12 +58,12 @@ INSTRUMENT_RANGES = {
     "baritone_sax": (37, 72),
     # Brass
     "horn": (34, 77),
-    "trumpet": (54, 82),
+    "trumpet": (52, 84),  # E3-C6 sounding: written F#3 on a B-flat trumpet sounds E3
     "piccolo_trumpet": (60, 89),
-    "cornet": (54, 82),
+    "cornet": (52, 84),  # same instrument family as the trumpet, same sounding floor
     "trombone": (40, 72),
     "bass_trombone": (34, 67),
-    "tuba": (28, 58),
+    "tuba": (26, 65),  # D1-F4: the old top of B-flat3 excluded the whole tenor register
     "euphonium": (34, 72),
     # Voices
     "soprano": (60, 81),
@@ -73,9 +73,9 @@ INSTRUMENT_RANGES = {
     "baritone": (45, 69),
     "bass": (40, 64),
     # Pitched percussion
-    "timpani": (36, 57),
+    "timpani": (36, 60),  # a modern five-drum set reaches C4
     "glockenspiel": (79, 108),
-    "xylophone": (65, 96),
+    "xylophone": (65, 108),  # sounds an octave above written; the old top clipped that octave
     "marimba": (45, 96),
     "vibraphone": (53, 89),
     "tubular_bells": (60, 77),

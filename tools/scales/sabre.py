@@ -10,7 +10,7 @@ Handles three reduction modes:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from .bimanual_packer import BimanualPacker
 from .enums import ReductionMode
@@ -36,6 +36,7 @@ class SABRE:
         instruments: Optional[List[str]] = None,
         mode: str = ReductionMode.PLAYABLE.value,
         key: str = "C",
+        meter: Tuple[int, int] = (4, 4),
     ) -> LayerIR:
         """Full reduction pipeline: decompose → pack → LayerIR.
 
@@ -44,12 +45,17 @@ class SABRE:
             instruments: List of instruments in the score
             mode: Reduction mode
             key: Target key for pitch spelling
+            meter: The SOURCE's time signature. Without it the reduction was
+                built at a hard-coded 4/4, so reducing a 3/4 section mis-barred
+                every bar — the caller then had to read the meter back off the
+                exported file and repair it, which is fixing downstream what
+                should never have been wrong.
         """
         # Step 1: Decompose into role graph
         role_graph = self.decomposer.decompose(events, instruments)
 
-        # Step 2: Pack into piano hands
-        layer_ir = self.packer.pack(role_graph, mode, key)
+        # Step 2: Pack into piano hands, in the source's own meter
+        layer_ir = self.packer.pack(role_graph, mode, key, meter)
 
         return layer_ir
 

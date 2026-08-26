@@ -170,3 +170,91 @@ def test_a_transposed_pitch_still_carries_its_marks():
     out = _event_dict(e, pitch="C4")
     assert out["pitch"] == "C4"
     assert out["ornament"] == "trill"
+
+
+# ─── Doubling, not distribution ──────────────────────────────────────────────
+#
+# A two-part piano core has two populated layers. Assigning them across ten
+# instruments leaves eight with nothing, and a score whose named instruments are
+# tacet is not an orchestration of the material — it is a distribution of it.
+# Measured on a real orchestrated section before this: flute 0, horn 0,
+# violin_2 0, clarinet 1, bassoon 1, viola 2, against cello 60 and violin_1 47.
+
+
+def _two_part_core():
+    from scales.models import LayerEvent, LayerIR
+
+    ir = LayerIR(key="F major", meter=(3, 4))
+    for b in range(1, 9):
+        for i, p in enumerate(["F5", "G5", "A5"]):
+            ir.principal_line.append(
+                LayerEvent(
+                    bar=b, beat=1 + i, pitch=p, duration="q",
+                    dynamic=("f" if b == 5 and i == 0 else None),
+                )
+            )
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="F2", duration="dh"))
+    return ir
+
+
+_ENSEMBLE = [
+    "flute", "oboe", "clarinet", "bassoon", "horn",
+    "trumpet", "violin_1", "violin_2", "viola", "cello",
+]
+
+
+def test_no_named_instrument_is_left_tacet():
+    from scales.orchestration_planner import plan_orchestration
+
+    parts = plan_orchestration(_two_part_core(), _ENSEMBLE, key="F major")
+    silent = [k for k in _ENSEMBLE if not parts.get(k)]
+    assert not silent, f"these named instruments got nothing to play: {silent}"
+
+
+def test_a_doubling_is_diatonic():
+    """A sixth below F in F major is A-flat — a wrong note in every bar."""
+    from scales.orchestration_planner import plan_orchestration
+
+    parts = plan_orchestration(_two_part_core(), _ENSEMBLE, key="F major")
+    f_major = {"F", "G", "A", "B-", "Bb", "C", "D", "E"}
+    for event in parts["violin_2"]:
+        pitches = event["pitch"] if isinstance(event["pitch"], list) else [event["pitch"]]
+        for p in pitches:
+            name = p[:-1]
+            assert name in f_major, f"violin_2 plays {p}, which is not in F major"
+
+
+def test_the_orchestration_passes_its_own_range_audit():
+    from scales.orchestration_planner import audit_orchestration, plan_orchestration
+
+    parts = plan_orchestration(_two_part_core(), _ENSEMBLE, key="F major")
+    assert audit_orchestration(parts) == []
+
+
+def test_the_flute_octave_is_skipped_rather_than_clamped():
+    """Clamping a climax octave into the top of the flute is a shriek, not a
+    brightening — and this module's own audit flags it."""
+    from scales.orchestration_planner import plan_orchestration
+    from scales.pitch import pitch_to_midi
+
+    parts = plan_orchestration(_two_part_core(), _ENSEMBLE, key="F major")
+    hi = practical_range("flute", "f")[1]
+    for event in parts["flute"]:
+        p = event["pitch"] if not isinstance(event["pitch"], list) else event["pitch"][-1]
+        assert pitch_to_midi(p) <= hi
+
+
+def test_a_rich_core_is_not_given_redundant_doublings():
+    """Doublings fill silence; they must not pile onto a full texture."""
+    from scales.models import LayerEvent, LayerIR
+    from scales.orchestration_planner import plan_orchestration
+
+    ir = LayerIR(key="C major", meter=(4, 4))
+    for b in range(1, 5):
+        for i in range(4):
+            ir.principal_line.append(LayerEvent(bar=b, beat=1 + i, pitch="C5", duration="q"))
+            ir.response_layer.append(LayerEvent(bar=b, beat=1 + i, pitch="E4", duration="q"))
+            ir.counter_reply.append(LayerEvent(bar=b, beat=1 + i, pitch="G4", duration="q"))
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
+    parts = plan_orchestration(ir, _ENSEMBLE, key="C major")
+    assert not [k for k in _ENSEMBLE if not parts.get(k)]
