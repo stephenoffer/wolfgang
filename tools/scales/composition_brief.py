@@ -773,6 +773,60 @@ _CADENCE_ALIASES: Dict[str, Tuple[str, ...]] = {
 }
 
 
+# What each cadence type REQUIRES, as a matter of definition rather than of
+# style. The compiled packs declare a `soprano_line` field for this and it is
+# empty in all 169 places it occurs, because the source doctrine's cadence
+# tables have no soprano column — so the requirement was never stated anywhere
+# the composer could read it. It does not need extracting: a perfect authentic
+# cadence has the tonic in the soprano BY DEFINITION, and one that lands on the
+# third or fifth is an imperfect cadence whatever the plan called it.
+#
+# This is the defect that had to be fixed by hand in the regenerated andante:
+# the structural arrival at bar 37 was planned PAC, closed V7-I correctly, and
+# still read as imperfect because the melody landed on the fifth.
+_CADENCE_REQUIREMENTS = {
+    "PAC": (
+        "the TONIC in the soprano (scale degree 1) on the final chord, and the "
+        "dominant in root position before it — land on the third or fifth and "
+        "it is an imperfect cadence, whatever the plan says"
+    ),
+    "IAC": (
+        "the third or fifth in the soprano — deliberately weaker than a PAC, so "
+        "save the tonic-in-soprano close for the arrival that deserves it"
+    ),
+    "HC": (
+        "stop ON the dominant, not on a chord that resolves to it. Scale degree "
+        "2, 5 or 7 in the soprano; the phrase should sound like a question"
+    ),
+    "DC": (
+        "the dominant resolving to vi instead of I — the promise is made and "
+        "withheld, so the real cadence still has to arrive later"
+    ),
+    "deceptive": (
+        "the dominant resolving to vi instead of I — the promise is made and "
+        "withheld, so the real cadence still has to arrive later"
+    ),
+    "plagal": (
+        "IV-I, with no dominant. An afterthought cadence: it confirms a close "
+        "that has already happened rather than making one"
+    ),
+    "evaded": (
+        "the dominant arrives and its resolution is dodged — an inversion, or "
+        "the bass moving on. The ear must notice it was denied something"
+    ),
+    "elided": (
+        "the resolution IS the next phrase's downbeat. Write the final note "
+        "tied over the barline, or let the next entry overlap it — there is no "
+        "gap between the phrases"
+    ),
+}
+
+
+def cadence_requirement(cadence: str) -> str:
+    """What the planned cadence requires, in one sentence, or ''."""
+    return _CADENCE_REQUIREMENTS.get(str(cadence or "").strip(), "")
+
+
 def _cadence_matches(cad: str, script_type: str) -> bool:
     """True when a pack's cadence script describes the cadence this phrase wants."""
     want = (cad or "").strip().upper()
@@ -1009,6 +1063,9 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
 
     # Cadence script for the slot's cadence
     if cad:
+        requirement = cadence_requirement(cad)
+        if requirement:
+            out["cadence_requirement"] = requirement
         scripts = _load_pack(composer, "cadence_scripts") or []
         for s in scripts if isinstance(scripts, list) else []:
             if _cadence_matches(cad, s.get("type", "") or ""):
@@ -3320,6 +3377,9 @@ def render_text(brief: CompositionBrief) -> str:
     if doc:
         lines.append("")
         lines.append("STYLE DOCTRINE (this phrase):")
+        req = doc.get("cadence_requirement")
+        if req:
+            lines.append(f"  THIS CADENCE REQUIRES: {req}")
         cs = doc.get("cadence_script")
         if cs:
             parts = [f"type {cs.get('type')}"]

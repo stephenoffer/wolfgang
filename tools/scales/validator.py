@@ -467,6 +467,63 @@ def validate_voice_leading(soprano_events, bass_events, all_layers=None):
 # ─── Full Validation ─────────────────────────────────────────────────────────
 
 
+def validate_tempo(tempo_bpm, constraints: Optional[PhysicalConstraints] = None):
+    """A tempo a player could actually take.
+
+    `PhysicalConstraints` has carried `min_tempo_bpm = 40` and
+    `max_tempo_bpm = 200` since the model was written and NOTHING has ever read
+    either. They are physical facts, not artistic preferences — below about 40
+    the pulse stops being felt as a pulse, and above about 200 a quarter-note
+    beat is no longer a beat anyone conducts. A planner that produces a tempo
+    outside them has made an arithmetic mistake, not a bold choice, and the
+    piece is unplayable at the marked speed either way.
+
+    A warning rather than an error: the marking can be honoured by re-reading
+    the beat (a "quarter = 240" is a half = 120), so this names the problem
+    without refusing the music.
+    """
+    issues: List[ValidationIssue] = []
+    c = constraints or PhysicalConstraints()
+    try:
+        bpm = float(tempo_bpm)
+    except (TypeError, ValueError):
+        return issues
+    if bpm <= 0:
+        issues.append(
+            ValidationIssue(
+                severity="error",
+                category="tempo",
+                message=f"tempo of {tempo_bpm} is not a speed",
+            )
+        )
+        return issues
+    if bpm < c.min_tempo_bpm:
+        issues.append(
+            ValidationIssue(
+                severity="warning",
+                category="tempo",
+                message=(
+                    f"tempo {bpm:g} is below {c.min_tempo_bpm} — slower than a pulse can be "
+                    f"felt. If this is meant to be slow, mark it in a longer beat "
+                    f"(a quarter = {bpm:g} is an eighth = {bpm * 2:g})."
+                ),
+            )
+        )
+    elif bpm > c.max_tempo_bpm:
+        issues.append(
+            ValidationIssue(
+                severity="warning",
+                category="tempo",
+                message=(
+                    f"tempo {bpm:g} is above {c.max_tempo_bpm} — faster than a quarter-note "
+                    f"beat is conducted. If this is meant to be fast, mark it in a shorter "
+                    f"beat (a quarter = {bpm:g} is a half = {bpm / 2:g})."
+                ),
+            )
+        )
+    return issues
+
+
 def validate_layer_ir(
     layer_ir: LayerIR, constraints: Optional[PhysicalConstraints] = None
 ) -> ValidationReport:

@@ -1347,3 +1347,47 @@ def test_continuation_has_one_implementation(tmp_path, monkeypatch):
             assert getattr(written, key) == value, f"{key} disagrees between the two paths"
     shutil.rmtree(tmp_path / pid, ignore_errors=True)
 
+
+
+def test_the_brief_states_what_the_planned_cadence_requires():
+    """The compiled packs declare a `soprano_line` for this and it is EMPTY in
+    all 169 places it occurs, because the source doctrine's cadence tables have
+    no soprano column. It does not need extracting: a perfect authentic cadence
+    has the tonic in the soprano by definition. The regenerated andante's
+    structural arrival closed V7-I correctly and still read as imperfect,
+    because the melody landed on the fifth."""
+    from scales.composition_brief import cadence_requirement
+
+    assert "TONIC in the soprano" in cadence_requirement("PAC")
+    assert "third or fifth" in cadence_requirement("IAC")
+    assert "stop ON the dominant" in cadence_requirement("HC")
+    assert "next phrase's downbeat" in cadence_requirement("elided")
+    assert "vi" in cadence_requirement("deceptive")
+    assert cadence_requirement("") == ""
+    assert cadence_requirement("not-a-cadence") == ""
+
+
+@pytest.mark.parametrize(
+    "bpm,expect",
+    [(76, None), (40, None), (200, None), (22, "warning"), (260, "warning"), (0, "error")],
+)
+def test_tempo_must_be_a_speed_a_player_can_take(bpm, expect):
+    """min_tempo_bpm and max_tempo_bpm have sat on PhysicalConstraints since the
+    model was written and nothing has ever read either."""
+    from scales.validator import validate_tempo
+
+    issues = validate_tempo(bpm)
+    if expect is None:
+        assert not issues, [i.message for i in issues]
+    else:
+        assert issues and issues[0].severity == expect
+        # The message must say how to fix it, not just that it is wrong.
+        if expect == "warning":
+            assert "mark it in a" in issues[0].message
+
+
+def test_a_missing_or_unparseable_tempo_is_not_an_error():
+    from scales.validator import validate_tempo
+
+    assert validate_tempo(None) == []
+    assert validate_tempo("presto") == []

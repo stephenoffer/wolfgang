@@ -52,14 +52,72 @@ def _plain_phrase(bar_start, tune, bass_pitch="C3"):
 # ─── It reports the things nothing else did ──────────────────────────────────
 
 
-def test_a_theme_that_never_returns_is_reported():
+def test_a_contour_miss_is_reported_as_a_floor_not_a_fact():
+    """Contour matching is a LOWER BOUND and must not be stated as a count.
+
+    Ground truth: six Mozart variations that provably contain their theme. This
+    matcher finds four of them and also matches unrelated material a third of
+    the time. Reporting a miss as "the theme never returns" overstates a
+    measurement that cannot support it — and an earlier version of this module,
+    which matched the WHOLE contour rather than the head, said exactly that
+    about every piece it was ever run on.
+    """
     mel, bass = _plain_phrase(1, ["C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6"])
     g = _graph([("m1_a_p1", 1, 2, "PAC", mel, bass)])
     g.principal_theme_surface = LayerIR(
-        key="C major", principal_line=[_ev(1, 1 + i, p) for i, p in enumerate(["C5", "G5", "E5", "C5"])]
+        key="C major",
+        principal_line=[_ev(1, 1 + i, p) for i, p in enumerate(["C5", "G5", "E5", "C5"])],
     )
     rep = build_report(g, style="mozart")
-    assert any("never returns" in c or "1 place" in c for c in rep.theme["concerns"])
+    said = " ".join(rep.theme["observations"] + rep.theme["concerns"])
+    assert "floor rather than a count" in said or "at least" in said
+    assert "never returns" not in said
+
+
+def test_a_planned_placement_is_reported_as_exact():
+    """When the plan records placements, the answer is not inferred at all."""
+    from scales.models import MotifTransform
+
+    mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    mel2, bass2 = _plain_phrase(2, ["G5", "A5", "B5", "C6"])
+    g = _graph(
+        [("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)]
+    )
+    g.principal_theme_id = "motif_A"
+    g.principal_theme_surface = LayerIR(
+        key="C major",
+        principal_line=[_ev(1, 1 + i, p) for i, p in enumerate(["C5", "D5", "E5", "F5"])],
+    )
+    for pid in ("m1_a_p1", "m1_b_p1"):
+        g.phrases[pid].slot.motif_transforms = [
+            MotifTransform(operation="state", params={"motif_id": "motif_A"})
+        ]
+    rep = build_report(g, style="mozart")
+    assert rep.theme["evidence_source"] == "plan"
+    assert rep.theme["recurrences"] == 2
+    assert any("brings the theme back in 2 sections" in o for o in rep.theme["observations"])
+
+
+def test_a_plan_that_states_the_theme_once_is_a_real_concern():
+    """With exact evidence, a single placement CAN be reported as a defect."""
+    from scales.models import MotifTransform
+
+    mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    mel2, bass2 = _plain_phrase(2, ["G5", "A5", "B5", "C6"])
+    g = _graph(
+        [("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)]
+    )
+    g.principal_theme_id = "motif_A"
+    g.principal_theme_surface = LayerIR(
+        key="C major",
+        principal_line=[_ev(1, 1 + i, p) for i, p in enumerate(["C5", "D5", "E5", "F5"])],
+    )
+    g.phrases["m1_a_p1"].slot.motif_transforms = [
+        MotifTransform(operation="state", params={"motif_id": "motif_A"})
+    ]
+    rep = build_report(g, style="mozart")
+    assert rep.theme["evidence_source"] == "plan"
+    assert any("never brought back" in c for c in rep.theme["concerns"])
 
 
 def test_a_piece_with_no_theme_at_all_says_so():

@@ -371,17 +371,101 @@ def analyze_theme(theme) -> Dict[str, object]:
     return out
 
 
-# How many intervals of a theme a listener needs to recognise it. A theme is
-# recognised by its HEAD, not by its whole shape: a recapitulation restates the
-# opening gesture and then goes somewhere else, and an ornamented or
-# re-harmonised return changes everything after the first few notes.
+# ─── Thematic return: what can and cannot be measured ────────────────────────
 #
-# CALIBRATED against 16 real movements. Matching the whole contour found the
-# opening theme returning **only once in 10 of them** — including Mozart
-# sonatas, which are built on thematic return. That is not a property of the
-# music, it is a broken detector: a 47-interval contour has no chance of
-# recurring intact, and demanding it does means never finding a real return.
-_HEAD_INTERVALS = 5
+# GROUND TRUTH TEST, and it is a negative result worth recording in full.
+#
+# Mozart K.331/i is a theme with six variations, and this corpus stores each
+# variation as its own file — so there are six pieces of material that
+# *provably* contain the theme. Searching for the theme's head in them:
+#
+#   matcher                     variations found   unrelated movements matched
+#   contour + rhythm, head 3-6        0 / 6                  0 / 6
+#   contour only, head 3              6 / 6                  5 / 6
+#   contour only, head 4              4 / 6                  2 / 6
+#   contour only, head 5-6            0 / 6                  0 / 6
+#
+# Requiring rhythm guarantees failure, because rhythm is exactly what a
+# variation changes. Dropping to a three-interval contour finds every variation
+# and also matches five of six unrelated Chopin mazurkas — a three-note shape is
+# not distinctive in tonal music. There is **no operating point with both
+# sensitivity and specificity**.
+#
+# So this function reports a LOWER BOUND, not a fact. It cannot distinguish "the
+# theme never returns" from "the theme returns in a form I cannot see", and a
+# caller that presents its output as the former is overstating it. `head=4` is
+# used as the least-bad setting, with the measured error rates carried in the
+# result so nobody has to rediscover them.
+#
+# The reliable version of this question is not textual matching at all: ask the
+# PLAN how many sections were given a placement of the principal theme. That is
+# exact. `planned_theme_placements` does it, and `theme_return_evidence`
+# prefers it whenever the plan carries placements.
+_HEAD_INTERVALS = 4
+
+# Measured on the ground-truth test above, at head=4.
+_RECURRENCE_RECALL = 0.67
+_RECURRENCE_FALSE_RATE = 0.33
+
+
+def planned_theme_placements(graph) -> Dict[str, object]:
+    """Sections whose plan places the principal theme. Exact, not inferred.
+
+    Reads `slot.motif_transforms`, which is where the planner records that a
+    phrase restates or develops the elected theme. Unlike contour matching this
+    cannot be wrong — it is what the plan says — though it says nothing about
+    whether the composer honoured it.
+    """
+    principal = getattr(graph, "principal_theme_id", "") or ""
+    sections: Dict[str, List[str]] = {}
+    for pid, state in (getattr(graph, "phrases", None) or {}).items():
+        slot = getattr(state, "slot", None)
+        transforms = getattr(slot, "motif_transforms", None) or []
+        for mt in transforms:
+            params = getattr(mt, "params", None) or (
+                mt.get("params") if isinstance(mt, dict) else {}
+            )
+            mid = (params or {}).get("motif_id", "")
+            if principal and mid and mid != principal:
+                continue
+            op = getattr(mt, "operation", None) or (
+                mt.get("operation") if isinstance(mt, dict) else ""
+            )
+            section = getattr(slot, "section_id", "") or pid.rsplit("_p", 1)[0]
+            sections.setdefault(section, []).append(str(op or "state"))
+    return {
+        "sections": sorted(sections),
+        "placements": sections,
+        "count": len(sections),
+    }
+
+
+def theme_return_evidence(graph, theme_surface) -> Dict[str, object]:
+    """Does the theme come back? Answered from the plan when possible.
+
+    Returns ``source`` = "plan" when the planner recorded placements (exact) or
+    "contour" when it fell back to matching (a lower bound with a measured
+    two-thirds recall). The distinction matters: a caller must not report a
+    contour miss as "the theme never returns".
+    """
+    planned = planned_theme_placements(graph)
+    if planned["count"]:
+        return {
+            "source": "plan",
+            "sections": planned["sections"],
+            "count": planned["count"],
+            "reliable": True,
+            "placements": planned["placements"],
+        }
+    matched = theme_recurrence(graph, theme_surface)
+    return {
+        "source": "contour",
+        "sections": matched["sections"],
+        "count": len(matched["recurrences"]),
+        "reliable": False,
+        "recall": _RECURRENCE_RECALL,
+        "false_rate": _RECURRENCE_FALSE_RATE,
+    }
 
 
 def theme_recurrence(
@@ -391,9 +475,15 @@ def theme_recurrence(
 
     Matching is on the INTERVAL contour of the theme's HEAD, not on absolute
     pitch and not on the whole theme. Contour rather than pitch means a
-    transposed, re-harmonised or differently-registered return still counts,
-    which is the whole point of a theme; the head rather than the whole means a
-    return that continues differently — which is most of them — still counts too.
+    transposed, re-harmonised or differently-registered return still counts;
+    the head rather than the whole means a return that continues differently —
+    which is most of them — still counts too.
+
+    **This is a lower bound.** Measured against six Mozart variations that
+    provably contain their theme, this setting finds four of them and also
+    matches unrelated material a third of the time. A miss here does NOT mean
+    the theme never returns. Prefer `theme_return_evidence`, which uses the
+    plan's own placements when there are any.
     """
     full = _contour_of(theme_surface)
     target = full[:head] if len(full) > head else full

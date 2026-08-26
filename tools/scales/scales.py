@@ -2139,6 +2139,25 @@ def _gated_commit(
             ),
         }
 
+    # 2a. The tempo has to be a speed a player can take. `min_tempo_bpm` and
+    #     `max_tempo_bpm` have sat on PhysicalConstraints unread since the model
+    #     was written.
+    tempo_notes: List[str] = []
+    try:
+        from .validator import validate_tempo
+
+        slot_for_tempo = getattr(state, "slot", None)
+        if slot_for_tempo is not None:
+            tempo_notes = [
+                i.message
+                for i in validate_tempo(
+                    getattr(slot_for_tempo, "tempo_bpm", None),
+                    getattr(graph.contract, "constraints", None),
+                )
+            ]
+    except Exception:
+        tempo_notes = []
+
     # 2. Blocking quality gate (density, figuration, corpus alignment, meter).
     gate = run_commit_gate(graph, phrase_id, layer, allow=allow, composer=composer)
     if not gate.passed:
@@ -2206,6 +2225,8 @@ def _gated_commit(
     out["engraving"] = engraving
     if craft:
         out["craft"] = craft
+    if tempo_notes:
+        out["tempo"] = tempo_notes
     return out
 
 

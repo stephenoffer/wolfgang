@@ -194,7 +194,7 @@ def _merge(layers):
 
 
 def _theme_section(graph, layers, rows) -> Dict[str, Any]:
-    from .theme_planner import analyze_theme, theme_recurrence
+    from .theme_planner import analyze_theme
 
     out: Dict[str, Any] = {"observations": [], "concerns": []}
     surface = getattr(graph, "principal_theme_surface", None)
@@ -214,20 +214,48 @@ def _theme_section(graph, layers, rows) -> Dict[str, Any]:
     out["observations"].extend(analysis.get("observations", []))
     out["concerns"].extend(analysis.get("concerns", []))
 
-    rec = theme_recurrence(graph, theme_ir)
-    out["recurrences"] = len(rec["recurrences"])
-    out["sections"] = rec["sections"]
-    n = len(rec["recurrences"])
+    from .theme_planner import theme_return_evidence
+
+    evidence = theme_return_evidence(graph, theme_ir)
+    out["recurrences"] = evidence["count"]
+    out["sections"] = evidence["sections"]
+    out["evidence_source"] = evidence["source"]
+    n = evidence["count"]
+
+    if evidence["source"] == "plan":
+        # Exact: the plan says which sections carry the theme.
+        if n <= 1:
+            out["concerns"].append(
+                f"The plan places the principal theme in {n} section"
+                f"{'s' if n != 1 else ''}. A theme that is stated and never "
+                f"brought back is not a theme, it is an opening — restating it "
+                f"transposed, re-harmonised, fragmented or in the bass is what "
+                f"makes a piece cohere."
+            )
+        else:
+            out["observations"].append(
+                f"the plan brings the theme back in {n} sections "
+                f"({', '.join(evidence['sections'])})"
+            )
+        return out
+
+    # Contour matching only — a LOWER BOUND, and it must be reported as one.
+    # Measured against six Mozart variations that provably contain their theme,
+    # this finds four and matches unrelated material a third of the time. Saying
+    # "the theme never returns" on the strength of a miss would be overstating a
+    # measurement that cannot support it.
     if n <= 1:
-        out["concerns"].append(
-            f"The principal theme appears in {n} place{'s' if n != 1 else ''} in the "
-            f"whole piece. A theme that is stated and never returns is not a theme, "
-            f"it is an opening. Bringing it back — transposed, re-harmonised, "
-            f"fragmented, in the bass — is what makes a piece cohere."
+        out["observations"].append(
+            f"The theme's opening shape was found in {n} place"
+            f"{'s' if n != 1 else ''} by contour matching — which finds only "
+            f"about two thirds of real returns, so this is a floor rather than "
+            f"a count. Worth checking by ear whether the theme comes back at "
+            f"all; if it does not, that is the piece's largest structural gap."
         )
     else:
         out["observations"].append(
-            f"The theme's shape returns in {n} places ({', '.join(rec['sections'])})."
+            f"the theme's shape recurs in at least {n} places "
+            f"({', '.join(evidence['sections'])})"
         )
     return out
 
