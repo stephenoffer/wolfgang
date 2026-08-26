@@ -374,3 +374,74 @@ def test_an_unknown_composer_infers_from_the_whole_corpus():
     modes = _texture_modes("no-such-composer")
     assert len(modes) == 3
     assert all(rh and lh for rh, lh in modes)
+
+
+# ── Metre relaxation: a corpus in 4/2 can still teach a 4/4 phrase ───────────
+
+
+def test_palestrina_can_produce_a_brief_at_all():
+    """He has 60,677 bars, tier A, and 58,038 of them are in 4/2 — not one in
+    4/4. The retriever filtered metre exactly at every level of its texture
+    relaxation, so a 4/4 request matched nothing and the brief came back EMPTY:
+    the largest corpus in the project, unusable, failing commits with
+    `brief_insufficient`.
+    """
+    from scales.composition_brief import _retrieve_exemplars, _shorthand_beats
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+    warnings: list = []
+    exemplars = _retrieve_exemplars("palestrina", slot, 6, warnings)
+    assert exemplars, "palestrina still yields no exemplars for a 4/4 phrase"
+    # Renotated, not merely relabelled: every voice must fill the target bar.
+    for exemplar in exemplars:
+        for shorthand in (exemplar.rh, exemplar.lh):
+            for voice in shorthand.split("//"):
+                beats = _shorthand_beats(voice.strip())
+                if beats is not None:
+                    assert abs(beats - 4.0) < 0.01, f"{exemplar.source}: {beats} beats"
+    # And it says so — borrowing across notation levels is not silent.
+    assert any("renotated" in w for w in warnings), warnings
+
+
+def test_metre_equivalence_borrows_only_a_real_equivalent():
+    """A 4/2 bar is a 4/4 bar at another notation level. A 2/4 bar is not, and
+    neither is 6/8 — pretending otherwise teaches the wrong rhythm."""
+    from scales.composition_brief import _equivalent_meters
+
+    available = [(4, 2), (2, 2), (3, 4), (2, 4), (6, 8), (3, 2)]
+    equivalent = _equivalent_meters((4, 4), available)
+    assert (4, 2) in equivalent  # same count, another level
+    assert (2, 2) in equivalent  # same total length (alla breve)
+    for wrong in ((3, 4), (2, 4), (6, 8), (3, 2)):
+        assert wrong not in equivalent, wrong
+    # The closest notation level comes first.
+    assert equivalent[0] == (4, 2)
+    # Nothing to borrow is an empty list, not a wrong answer.
+    assert _equivalent_meters((4, 4), [(4, 4)]) == []
+    # A malformed metre defaults to 4/4, matching `duration.bar_duration`, so
+    # the two cannot disagree about what (0, 0) means.
+    assert _equivalent_meters((0, 0), available) == _equivalent_meters((4, 4), available)
+
+
+def test_rescaling_maps_bar_length_not_denominator():
+    """4/2 is eight quarters against 4/4's four, so it halves; 2/2 is already
+    four and must not be touched.
+
+    The denominator form got the first right and quietly halved the second to a
+    two-beat bar, which the overflow guard dropped — so Mussorgsky and Bruckner
+    (whose corpora are entirely 2/2) still came back empty while the warning
+    claimed their bars had been renotated.
+    """
+    from scales.composition_brief import _retrieve_exemplars, _shorthand_beats
+    from scales.models import PhraseSlot
+
+    for composer in ("mussorgsky", "bruckner"):
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+        exemplars = _retrieve_exemplars(composer, slot, 4, [])
+        assert exemplars, f"{composer} yields nothing for 4/4"
+        for exemplar in exemplars:
+            for voice in exemplar.rh.split("//"):
+                beats = _shorthand_beats(voice.strip())
+                if beats is not None:
+                    assert abs(beats - 4.0) < 0.01, f"{composer} {exemplar.source}: {beats}"
