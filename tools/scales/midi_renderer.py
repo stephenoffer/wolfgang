@@ -447,5 +447,11 @@ def render_midi(
     filepath = output_path / f"{piece_graph.piece_id}.mid"
     stream.write("midi", fp=str(filepath))
 
-    piece_graph.output_paths["midi"] = str(filepath)
+    # Setting the field alone wrote it to an object the caller then discards —
+    # the documented flow is load the graph, call this, print the path — so the
+    # MIDI render was never recorded and `get_status` reported a piece with no
+    # output. `record_output` sets it and persists, best-effort.
+    from .piece_graph import record_output
+
+    record_output(piece_graph, "midi", filepath)
     return str(filepath)

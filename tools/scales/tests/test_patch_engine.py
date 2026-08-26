@@ -7,6 +7,8 @@ decorative.
 
 from __future__ import annotations
 
+from fractions import Fraction
+
 import pytest
 
 from scales.direct_compose import compose_phrase
@@ -133,3 +135,70 @@ def test_an_unknown_operation_does_not_destroy_the_phrase(phrase):
     notes = list(phrase.realized.principal_line)
     PatchEngine().apply_revision_op(_op("no_such_operation"), phrase)
     assert phrase.realized.principal_line == notes
+
+
+# ── The engine fallback, which committed without any validation ─────────────
+
+
+def test_engine_surfaces_are_repaired_before_they_are_committed():
+    """`run_scales_section` committed straight to the graph with NO physical
+    validation, while the agent path has enforced meter, range and same-voice
+    overlap at commit for months. A probe of one three-phrase section found 65
+    meter errors going silently to the score."""
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+    from scales.validator import validate_meter
+
+    layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
+    layer.principal_line = [
+        # A beat position on no notatable grid — what a float cursor rounded to
+        # two decimals produces.
+        LayerEvent(bar=1, beat=1.0, pitch="C5", duration="q"),
+        LayerEvent(bar=1, beat=1.56, pitch="D5", duration="q"),
+        # Same voice re-attacking while the previous note still sounds.
+        LayerEvent(bar=1, beat=2.0, pitch="E5", duration="h"),
+        LayerEvent(bar=1, beat=2.5, pitch="F5", duration="q"),
+        # Past the barline: beats are 1-BASED, so beat 5.5 of a 4/4 bar is
+        # offset 4.5 — outside a bar that holds 4 beats.
+        LayerEvent(bar=1, beat=5.5, pitch="G5", duration="q"),
+    ]
+    counts = _repair_engine_surface(layer, (4, 4))
+
+    assert counts, "a malformed surface must report what was repaired"
+    assert counts.get("snapped", 0) >= 1
+    errors = [i for i in validate_meter(layer.principal_line, (4, 4)) if i.severity == "error"]
+    assert not errors, [i.message for i in errors]
+    assert counts.get("overflow_dropped", 0) >= 1, "the out-of-bar note was kept"
+    for e in layer.principal_line:
+        # Every surviving onset sits on the notatable grid (compared at the
+        # precision the IR stores, since beats are JSON floats).
+        offset = Fraction(e.beat).limit_denominator(10**6) - 1
+        assert (offset * 48).denominator == 1, f"beat {e.beat} is off the grid"
+        assert e.beat >= 1.0, "a beat below 1 is not a position in any bar"
+        assert e.beat < 5.0, "a surviving note starts outside its own bar"
+
+
+def test_repair_leaves_a_well_formed_surface_alone():
+    """A repair that rewrites correct music is worse than no repair."""
+    from scales.scales import _repair_engine_surface
+
+    layer = compose_phrase(
+        [{"rh": "C5q D5q E5q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e"}],
+        key="C", bar_start=1, phrase_id="p", meter=(4, 4),
+    )
+    before = [(e.bar, e.beat, e.pitch, e.duration) for e in layer.principal_line]
+    assert not _repair_engine_surface(layer, (4, 4)), "nothing needed repairing"
+    assert [(e.bar, e.beat, e.pitch, e.duration) for e in layer.principal_line] == before
+
+
+def test_repair_keeps_triplets_and_32nds_on_the_grid():
+    """The grid must not be a 16th grid: snapping a triplet onto one destroys it."""
+    from scales.scales import _repair_engine_surface
+
+    layer = compose_phrase(
+        [{"rh": "C5trip_e D5trip_e E5trip_e F5t G5t A5t B5t C6q", "lh": "C3w"}],
+        key="C", bar_start=1, phrase_id="p", meter=(4, 4),
+    )
+    beats = [e.beat for e in layer.principal_line]
+    _repair_engine_surface(layer, (4, 4))
+    assert [e.beat for e in layer.principal_line] == beats, "a legal rhythm was altered"

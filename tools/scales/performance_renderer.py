@@ -64,6 +64,7 @@ def build_performance_ir(
     narrative_section=None,
     neighbor_slots: Optional[Tuple] = None,
     breath_points: Optional[Sequence[Tuple[int, float]]] = None,
+    control=None,
 ) -> PerformanceIR:
     """Derive a PerformanceIR for one phrase from its notes, slot, and the
     period's performance profile.
@@ -169,6 +170,43 @@ def build_performance_ir(
         # broaden the final bar (ritardando into the cadence), on top of the arc
         if arc:
             arc[-1] = min(arc[-1], 1.0) * 0.90
+
+    # ── A PLANNED accelerando or ritardando ──────────────────────────────────
+    #
+    # `RhythmPlan.accelerando_bars` and `.ritardando_bars` have existed on the
+    # model with **no reader anywhere in the codebase**. A planner could name a
+    # stretch of bars to push through or to broaden and nothing would happen —
+    # so the only tempo shaping any piece has ever had is the automatic
+    # broadening of a cadence bar, and a deliberate accelerando into a climax
+    # was simply inexpressible.
+    #
+    # Both are (first_bar, last_bar) inclusive and absolute. The factor ramps
+    # across the span rather than stepping, because a tempo change that arrives
+    # all at once is a tempo *mark*, not an accelerando.
+    plan = getattr(control, "rhythm_plan", None) if control is not None else None
+    if plan is None and slot is not None:
+        plan = getattr(slot, "rhythm_plan", None)
+    if plan is not None and arc:
+        for attr, end_factor in (
+            ("accelerando_bars", 1.0 + profile.tempo_arc_depth * 2.5),
+            ("ritardando_bars", 1.0 - profile.tempo_arc_depth * 2.5),
+        ):
+            span = getattr(plan, attr, None)
+            if not span:
+                continue
+            try:
+                b0, b1 = int(span[0]), int(span[1])
+            except (TypeError, ValueError, IndexError):
+                continue
+            i0 = max(0, b0 - first_bar)
+            i1 = min(len(arc) - 1, b1 - first_bar)
+            if i1 <= i0:
+                continue
+            steps = i1 - i0
+            for i in range(i0, i1 + 1):
+                frac = (i - i0) / steps
+                shaped = shape(frac, profile.rubato_shape)
+                arc[i] *= 1.0 + (end_factor - 1.0) * shaped
     if arc and (is_cadential or any(abs(f - 1.0) > 0.005 for f in arc)):
         perf.rubato_windows.append(
             RubatoWindow(bar_start=first_bar, bar_end=last_bar, curve=arc)

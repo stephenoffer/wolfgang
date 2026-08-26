@@ -192,3 +192,39 @@ def test_every_style_reports_without_error(style):
     rep = build_report(_graph([("m1_a_p1", 1, 2, "PAC", mel, bass)]), style=style)
     assert rep.bars == 2
     render_text(rep)
+
+
+# ─── Orchestration ───────────────────────────────────────────────────────────
+
+
+def test_an_unplayable_orchestral_part_reaches_the_report():
+    """A note at the outer edge of an instrument is legal and miserable."""
+    mel, bass = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    g = _graph([("m1_a_p1", 1, 1, "PAC", mel, bass)])
+    g.phrases["m1_a_p1"].orchestration = {
+        "flute": [{"pitch": "C4", "dynamic": "pp"}, {"pitch": "G5"}],
+        "trumpet": [{"pitch": "C4", "dynamic": "pp"}, {"pitch": "Bb5"}],
+    }
+    rep = build_report(g, style="mozart")
+    joined = " ".join(rep.orchestration["concerns"])
+    assert "flute" in joined and "will not speak" in joined
+    assert "trumpet" in joined and "cannot be played softly" in joined
+
+
+def test_comfortable_orchestration_draws_no_complaint():
+    mel, bass = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    g = _graph([("m1_a_p1", 1, 1, "PAC", mel, bass)])
+    g.phrases["m1_a_p1"].orchestration = {
+        "violin": [{"pitch": "G4", "dynamic": "mf"}, {"pitch": "C5"}],
+        "cello": [{"pitch": "C3", "dynamic": "mf"}],
+    }
+    rep = build_report(g, style="mozart")
+    assert rep.orchestration["concerns"] == []
+    assert any("orchestrated for" in o for o in rep.orchestration["observations"])
+
+
+def test_a_piano_piece_says_nothing_about_orchestration():
+    mel, bass = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
+    rep = build_report(_graph([("m1_a_p1", 1, 1, "PAC", mel, bass)]), style="mozart")
+    assert rep.orchestration["observations"] == []
+    assert rep.orchestration["concerns"] == []

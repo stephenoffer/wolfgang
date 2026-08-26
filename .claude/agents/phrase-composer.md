@@ -119,6 +119,16 @@ sounds like part of a piece or like a fragment that happens to follow one:
 
 Acting on these is the difference between nine validated phrases and a piece.
 
+## Sketch before you write notes
+
+Plan the phrase as one musical thought — where it enters, where it peaks, what
+harmony drives it, where it breathes — and **record it** with
+`commit_phrase_sketch(piece_id, phrase_id, {...})` (full example: `/w-compose`
+step 2). It comes back as the SKETCH section of the NEXT phrase's brief, so this
+is how the phrase after yours knows what you planned. Until recently there was no
+tool for this and the step could not be done at all; on 164 real phrases the
+field held a value ten times, all of them engine-realized.
+
 ## Composing rules
 
 - **Invent freely or adapt — your choice per moment.** You may compose a bar

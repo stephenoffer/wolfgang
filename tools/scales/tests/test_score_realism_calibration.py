@@ -334,13 +334,18 @@ def test_musical_ear_errors_do_not_fire_on_canonical_music():
     error here is the most expensive kind of bug in the system: it rejects music
     that is fine, and the composer has no way to argue.
 
-    One known false positive is tolerated, with its cause: music21's Humdrum
-    importer lays out bar 43 of Mozart's K.281 third movement with offsets
-    running 0 to 16 inside a 2/2 measure. The music is fine; the parse is not.
+    Two known false positives are tolerated, both with the same cause:
+    music21's Humdrum importer collapses a span of source into one measure, so
+    Mozart K.281/iii bar 43 parses as 16 beats inside a 2/2 bar, and Beethoven
+    Op.2 No.2/i bar 54 parses as **465**. The music is fine; the parse is not.
     No measurement of the parsed stream can tell "the importer merged some bars"
     apart from "our exporter overflowed one", so the detector is trustworthy on
     the MusicXML this system writes and should not be pointed at freshly
     imported Humdrum without checking.
+
+    Note the offenders are keyed by their path under `reference_scores/`, not by
+    filename: the Mozart and Beethoven directories both contain a
+    `sonata02-1.krn`, and keying by name alone silently conflated them.
     """
     warnings.filterwarnings("ignore")
     from scales.musical_ear import ear_report
@@ -357,9 +362,14 @@ def test_musical_ear_errors_do_not_fire_on_canonical_music():
             continue
         errs = [x for x in rep.get("findings", []) if x.get("severity") == "error"]
         if errs:
-            offenders[f.name] = sorted({x.get("detector") for x in errs})
+            key = str(f.relative_to(_REF))
+            offenders[key] = sorted({x.get("detector") for x in errs})
 
-    known = {"sonata03-3.krn"}  # the K.281/iii Humdrum import artifact above
+    # Humdrum import artifacts — see the docstring.
+    known = {
+        "mozart-piano-sonatas/kern/sonata03-3.krn",
+        "beethoven-piano-sonatas/kern/sonata02-1.krn",
+    }
     unexpected = {k: v for k, v in offenders.items() if k not in known}
     print(f"\n{len(files)} canonical movements; ear errors on {sorted(offenders)}")
     assert not unexpected, "musical_ear raises BLOCKING errors on canonical music: " + ", ".join(

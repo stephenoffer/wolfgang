@@ -147,3 +147,29 @@ def test_craft_section_cross_references_resolve(path):
         f"{path.relative_to(_REPO)} points at craft-reference section(s) that do "
         f"not exist: {['§' + m for m in missing]}"
     )
+
+def test_every_tool_a_snippet_imports_actually_exists():
+    """A doc that names a tool the code does not have teaches a step nobody can do.
+
+    `/w-compose` step 2 described writing SketchIR as required, with a
+    seven-question checklist — and there was no function anywhere to record one.
+    Measured over 164 real phrases, `state.sketch` held a value ten times, all of
+    them written by the engine fallback the default flow never takes. A missing
+    name in a snippet is the cheapest possible way to find that.
+    """
+    import importlib
+    import re
+
+    broken = []
+    for path in _docs():
+        for m in re.finditer(r"from (scales[\w.]*) import ([\w, ]+)", path.read_text()):
+            module_name, names = m.group(1), [n.strip() for n in m.group(2).split(",") if n.strip()]
+            try:
+                module = importlib.import_module(module_name)
+            except Exception as exc:  # noqa: BLE001 - report, don't mask
+                broken.append(f"{path.name}: cannot import {module_name} ({exc})")
+                continue
+            for name in names:
+                if not hasattr(module, name):
+                    broken.append(f"{path.name}: {module_name} has no '{name}'")
+    assert not broken, "documented snippet imports that do not resolve:\n  " + "\n  ".join(broken)

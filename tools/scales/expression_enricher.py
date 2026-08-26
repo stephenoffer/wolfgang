@@ -56,6 +56,10 @@ class EngravingStyle:
     slur_breaks_on_leap: int = 5  # semitones; a bigger leap ends the arc
     # Articulation
     accompaniment_staccato: bool = True  # detached oom-pah / repeated chords
+    # Whether the MELODY may take staccato dots from the style's own rules. A
+    # phrase planned legato or cantabile sets this False, so a planned character
+    # is not overruled by the period convention it was written to override.
+    melody_detached: bool = True
     staccato_max_beats: Fraction = Fraction(1, 2)  # only short notes get dots
     tenuto_on_appoggiatura: bool = True
     accent_on_syncopation: bool = True
@@ -491,6 +495,63 @@ def add_phrasing_slurs(layer_ir, style: EngravingStyle, report: EnrichmentReport
 # ─── Rule: melodic articulation ──────────────────────────────────────────────
 
 
+# Planned articulation characters, and what each one means for the page. A
+# phrase whose plan says "staccato" should not be engraved legato because the
+# period usually is, and vice versa. `ArticulationPlan.dominant_articulation`
+# has existed on the model with no reader anywhere: the planner could state the
+# phrase's touch and nothing downstream would honour it.
+_PLANNED_TOUCH = {
+    # `melody_legato` suppresses the style's own staccato rules. Without it a
+    # phrase planned legato still collected dots from the period default, which
+    # is the plan being overruled by a convention it was written to override.
+    "legato": {"slur_everything": True, "detach_accompaniment": False, "melody_legato": True},
+    "cantabile": {"slur_everything": True, "detach_accompaniment": False, "melody_legato": True},
+    "sostenuto": {"slur_everything": True, "detach_accompaniment": False, "melody_legato": True},
+    "staccato": {"melody_staccato": True, "detach_accompaniment": True},
+    "leggiero": {"melody_staccato": True, "detach_accompaniment": True},
+    "spiccato": {"melody_staccato": True, "detach_accompaniment": True},
+    "marcato": {"melody_accent": True, "detach_accompaniment": True},
+    "marziale": {"melody_accent": True, "detach_accompaniment": True},
+    "portato": {"melody_portato": True, "detach_accompaniment": False},
+    "tenuto": {"melody_portato": True, "detach_accompaniment": False},
+}
+
+
+def planned_touch(control) -> Dict[str, bool]:
+    """The phrase's planned articulation character, as engraving decisions."""
+    plan = getattr(control, "articulation_plan", None) if control is not None else None
+    name = str(getattr(plan, "dominant_articulation", "") or "").strip().lower()
+    return dict(_PLANNED_TOUCH.get(name, {}))
+
+
+def apply_planned_articulation(
+    layer_ir, style: EngravingStyle, report: EnrichmentReport, touch: Dict[str, bool]
+) -> None:
+    """Mark the melody with the touch the plan asked for.
+
+    Runs before the style's own rules so a planned character wins over a period
+    default, and still never overwrites a mark the composer wrote.
+    """
+    if not touch:
+        return
+    for name in ("principal_line", "counter_reply", "foreground", "countermelody"):
+        events = _sorted(getattr(layer_ir, name, None) or [])
+        for ev in events:
+            if _is_rest(ev) or not _blank(ev, "articulation"):
+                continue
+            if touch.get("melody_staccato") and _beats(ev) <= Fraction(1):
+                ev.articulation = "staccato"
+                report.articulations_added += 1
+            elif touch.get("melody_accent") and _beats(ev) >= Fraction(1, 2):
+                ev.articulation = "marcato"
+                report.articulations_added += 1
+            elif touch.get("melody_portato"):
+                ev.articulation = "tenuto"
+                report.articulations_added += 1
+    if touch:
+        report.detail.append("planned-touch")
+
+
 def add_melodic_articulation(layer_ir, style: EngravingStyle, report: EnrichmentReport) -> None:
     """Tenuto on leaning notes, accents on off-beat stresses, dots on light
     repeated notes — the marks that separate a phrased melody from a MIDI dump.
@@ -562,7 +623,8 @@ def add_melodic_articulation(layer_ir, style: EngravingStyle, report: Enrichment
             # after: a drummed repeated-note figure, which is detached in every
             # period before the Romantics.
             if (
-                style.accompaniment_staccato
+                style.melody_detached
+                and style.accompaniment_staccato
                 and dur <= style.staccato_max_beats
                 and 0 < i < len(events) - 1
                 and _top(ev) is not None
@@ -1032,6 +1094,7 @@ def enrich_layer_ir(
     base_dynamic: Optional[str] = None,
     character: Optional[str] = None,
     is_final_phrase: bool = False,
+    control=None,
     enable: Optional[Dict[str, bool]] = None,
 ) -> EnrichmentReport:
     """Fill in the engraver's marks the composer left blank.
@@ -1065,6 +1128,20 @@ def enrich_layer_ir(
                 for f in ("articulation", "slur", "hairpin", "dynamic", "pedal", "technique")
             ):
                 report.author_marks_kept += 1
+
+    # A planned articulation character comes first, so it wins over the
+    # period's default touch without overriding anything the composer wrote.
+    touch = planned_touch(control)
+    if touch:
+        apply_planned_articulation(layer_ir, st, report, touch)
+        if touch.get("detach_accompaniment") is False:
+            on["accompaniment_articulation"] = False
+        if touch.get("slur_everything"):
+            st = EngravingStyle(**{**vars(st), "slur_max_notes": max(st.slur_max_notes, 12)})
+        if touch.get("melody_legato"):
+            st = EngravingStyle(
+                **{**vars(st), "accompaniment_staccato": False, "melody_detached": False}
+            )
 
     if on["slurs"]:
         add_phrasing_slurs(layer_ir, st, report)

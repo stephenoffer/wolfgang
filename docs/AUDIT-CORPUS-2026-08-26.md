@@ -345,3 +345,31 @@ Run against `mozart-andante-fmaj-20260825` — the piece whose output prompted t
 audit — it reports **no narrative, no motifs, and no reference study**. That is
 the planning-level explanation for "boring", and it would have been visible on
 the first run.
+
+### Three more the census found
+
+- **`state.sketch` was written only by the engine fallback.** `/w-compose` step 2
+  and the phrase-composer agent both describe writing SketchIR as required, with
+  a seven-question checklist — and there was no function anywhere to record one.
+  10 of 164 phrases have a sketch, all engine-realized, so the brief's SKETCH
+  section (how phrase N+1 sees what phrase N planned) was empty for everything
+  the agent ever wrote. Added `commit_phrase_sketch`, and a test that every
+  `from scales... import X` in any skill, agent or workflow resolves — a doc
+  naming a tool the code does not have is the cheapest way to find a step nobody
+  can perform.
+- **No generated piece has ever had an anacrusis** (`pickup_beats` 0/164). The
+  shorthand, parser and engraver all support one correctly; nothing ever asked.
+  **46% of Mozart's movements open with a pickup bar, 57% of Beethoven's, 58% of
+  Chopin's, 69% of Bach's.** The decision is now made at plan time at the
+  composer's measured rate, deterministically seeded by piece id, and the brief
+  tells that phrase to write an upbeat. Two bugs fell out of doing it:
+  `_plan_metric_entry` mutated the caller's local list rather than the graph's
+  own slots (correct in memory, empty on the next load — a field that IS written
+  and still never persists), and `_pickup_start_beat` counted an all-rest voice
+  as content, so `lh: 'rest_q'` under an eighth upbeat in 3/4 aligned it as a
+  full beat.
+- **`assemble()` recorded its output path on an object the caller discards.**
+  The documented flow is load the graph, call assemble, print the path — and
+  `assemble` never saved. Four of twelve pieces have an `output_paths` entry
+  despite all having been assembled. Now goes through `piece_graph.record_output`,
+  which persists. `midi_renderer` has the identical bug.

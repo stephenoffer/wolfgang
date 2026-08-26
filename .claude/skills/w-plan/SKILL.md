@@ -158,6 +158,37 @@ specific enough that a listener could pick it out (a signature interval pair plu
 a rhythm), and let the form deploy it. Skip this step and the composer writes
 nine unrelated good phrases.
 
+## Step 4b: Multi-movement works — plan the WORK before the movements
+
+**Only for symphonies, concertos and multi-movement sonatas.** Skip for a single
+movement.
+
+A multi-movement work needs a dramatic destiny decided once, globally: what each
+movement is FOR, how it contrasts with the one before, and what the finale pays
+off. That lives in the WorkGraph, and `build_form_graph` alone cannot express it
+— it builds one movement's form.
+
+```bash
+.venv/bin/python -c "
+from scales.scales import init_work, plan_movement
+print(init_work('<piece-id>', movement_count=4,
+    description='<the work in a line>',
+    emotional_narrative='<the arc across all movements>',
+    finale_payoff='<what the last movement finally delivers, set up from movement 1>'))
+for mv in [
+    dict(movement_id='m1', form='sonata',  key='C minor', tempo_bpm=120, meter=(4,4),
+         character='stormy', role_in_work='struggle',  tempo_marking='Allegro con brio'),
+    dict(movement_id='m2', form='ternary', key='A-flat major', tempo_bpm=60, meter=(3,4),
+         character='consoling', role_in_work='respite', tempo_marking='Andante'),
+]:
+    print(plan_movement('<piece-id>', **mv))
+"
+```
+
+Then run Step 5 once per movement. Until recently nothing called either function
+— **no piece in `workspace/` has ever had a WorkGraph** — so every "symphony"
+this system produced was a single form graph with no plan above the movement.
+
 ## Step 5: Build Form Graph
 
 ```bash

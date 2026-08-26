@@ -158,6 +158,36 @@ def _coerce(hint, raw):
     return raw
 
 
+# Where pieces live, so an output path can be recorded durably.
+_WORKSPACE_ROOT = Path(__file__).resolve().parent.parent.parent / "workspace"
+
+
+def record_output(piece_graph, kind: str, filepath) -> None:
+    """Record where an output was written, and PERSIST it.
+
+    ``assemble`` and ``render_midi`` both set ``piece_graph.output_paths[...]``
+    and neither saved the graph, while the documented flow is "load the graph,
+    call the function, print the path" — so the field was written to an object
+    the caller then discarded. Measured over the twelve pieces in ``workspace/``,
+    ``output_paths`` is populated in four; the rest have been assembled and have
+    no record of it, so ``get_status`` reports a piece with no output.
+
+    Saving is best-effort: a graph assembled to a scratch directory, or one whose
+    workspace has been removed, must not turn a successful export into an error.
+    """
+    piece_graph.output_paths[kind] = str(filepath)
+    piece_id = getattr(piece_graph, "piece_id", "")
+    if not piece_id:
+        return
+    target = _WORKSPACE_ROOT / piece_id / "piece_graph.json"
+    if not target.exists():
+        return
+    try:
+        piece_graph.save(str(target))
+    except (OSError, TypeError, ValueError):
+        pass
+
+
 def _dataclass_from_dict(cls, data):
     """Rebuild a dataclass from a dict by its OWN declared fields.
 

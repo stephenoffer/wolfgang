@@ -475,3 +475,41 @@ def plan_orchestration(
     for inst in parts:
         parts[inst].sort(key=lambda d: (d["bar"], d["beat"]))
     return parts
+
+
+def audit_orchestration(parts: Dict[str, List[Dict]]) -> List[str]:
+    """Range problems across a finished orchestration, as readable lines.
+
+    Reads each part's own written dynamics, so the verdict accounts for the fact
+    that a note comfortable at forte may be unplayable at pianissimo. Advisory
+    throughout: writing at an extreme is a legitimate effect, and this exists so
+    a reviewer can tell a deliberate one from an accident.
+    """
+    from .pitch import pitch_to_midi
+
+    out: List[str] = []
+    for instrument, events in (parts or {}).items():
+        # Group the part's notes by the dynamic in force when they sound, since
+        # that is what decides whether an extreme is reachable.
+        in_force: Optional[str] = None
+        by_dynamic: Dict[Optional[str], List[int]] = {}
+        for e in events:
+            if not isinstance(e, dict):
+                continue
+            if e.get("dynamic"):
+                in_force = str(e["dynamic"])
+            pitch = e.get("pitch")
+            if not pitch or pitch == "rest":
+                continue
+            names = pitch if isinstance(pitch, list) else [pitch]
+            for n in names:
+                m = pitch_to_midi(n)
+                if m is not None:
+                    by_dynamic.setdefault(in_force, []).append(m)
+        seen = set()
+        for dynamic, midis in by_dynamic.items():
+            for line in range_warnings(instrument, midis, dynamic=dynamic):
+                if line not in seen:
+                    seen.add(line)
+                    out.append(line)
+    return out

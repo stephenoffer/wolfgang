@@ -356,6 +356,36 @@ about to build on.
 
 ---
 
+## 4e. Orchestral parts were written to the edge of what an instrument can produce
+
+Audit item E14. `INSTRUMENT_RANGES` gives the notes an instrument *can* sound,
+and the orchestration planner clamped every octave transfer to those limits — so
+material that did not fit landed in the weak bottom or the effortful top of
+whichever instrument received it. Legal, and miserable to play.
+
+Two distinctions were missing, and both are ordinary orchestration:
+
+**Practical versus physical range.** Every wind instrument's bottom minor third
+is unwieldy and its top is effortful; strings are far more forgiving and only
+their very top is awkward. The trims are small — a tone or two off each end for
+winds, a fifth off the top for strings — and parts are now fitted inside them.
+An instrument with no entry is used unmodified rather than guessed at.
+
+**What a dynamic costs at the extremes.** A flute's low octave will not speak
+quietly. A trumpet, horn, trombone or oboe cannot be played pianissimo at the top
+of its range at all. Ask for it and the part simply comes out louder than
+written, which unbalances everything around it — a quiet orchestration that is
+not quiet. `practical_range(instrument, dynamic)` takes another fourth off
+whichever end refuses.
+
+`audit_orchestration(parts)` reads each part's own written dynamics, so a note
+comfortable at forte and impossible at pianissimo is judged against the dynamic
+actually in force, and the findings reach the critic through the report. Advisory
+throughout: a shrieking piccolo at a climax is a choice, and this exists so a
+reviewer can tell a deliberate extreme from an accidental one.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and

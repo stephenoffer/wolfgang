@@ -160,8 +160,12 @@ def assemble(
             f"bar_length errors)."
         ) from exc
 
-    # Update piece graph
-    piece_graph.output_paths["musicxml"] = str(filepath)
+    # Record where it went, and PERSIST that. Setting the field on an object the
+    # caller is about to discard is why four of twelve pieces in workspace/ have
+    # an output_paths entry despite all of them having been assembled.
+    from .piece_graph import record_output
+
+    record_output(piece_graph, "musicxml", filepath)
 
     return str(filepath)
 

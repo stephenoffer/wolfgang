@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import logging
 import random
+from fractions import Fraction
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -145,21 +146,28 @@ class CorpusBarRetriever:
 
         def process_hand(display_key: str, layer_name: str) -> List[LayerEvent]:
             events: List[LayerEvent] = []
-            beat = 1.0
+            # EXACT arithmetic, as everywhere else that advances a beat cursor.
+            # A float cursor accumulating float durations and then rounded to two
+            # decimals produced beats like 1.56, 2.06 and — after enough drift —
+            # 0.06, which is BELOW beat 1 and not a position in any bar. Three
+            # triplet sixteenths summed to 0.75 instead of 0.75 exactly, and the
+            # error compounded across the bar until the surface overflowed its
+            # meter. Every engine-realized phrase carried this.
+            beat = Fraction(1)
+            cap = Fraction(max_beats).limit_denominator(96)
 
             for evt in bar.get(display_key, []):
                 if evt.get("is_grace"):
                     continue
-                dur_beats = evt.get("dur", 0.25)
-                # Do NOT snap the beat cursor to a 16th grid: two notes of a
-                # triplet run land on the same position and one of them is lost.
-                dur_beats = _quantize_duration(dur_beats)
+                dur_beats = _quantize_duration(evt.get("dur", 0.25))
 
-                if beat > max_beats + 0.01:
+                if beat > cap + 1:
                     break
-                remaining = max_beats - beat + 1.0
-                if dur_beats > remaining + 0.05:
-                    dur_beats = _quantize_duration(max(0.25, remaining))
+                remaining = cap - beat + 1
+                if dur_beats > remaining:
+                    if remaining <= 0:
+                        break
+                    dur_beats = _quantize_duration(remaining)
 
                 dur_str = _beats_to_dur_str(dur_beats)
 
@@ -173,12 +181,12 @@ class CorpusBarRetriever:
                             events.append(
                                 LayerEvent(
                                     bar=target_bar_num,
-                                    beat=round(beat, 2),
+                                    beat=round(float(beat), 6),
                                     pitch=tp,
                                     duration=dur_str,
                                     role=NoteRole.STRUCTURAL.value,
                                     dynamic=dynamic
-                                    if beat <= 1.1 and display_key == "rh_display"
+                                    if beat <= Fraction(11, 10) and display_key == "rh_display"
                                     else None,
                                     source_layer=layer_name,
                                 )
@@ -190,12 +198,12 @@ class CorpusBarRetriever:
                         events.append(
                             LayerEvent(
                                 bar=target_bar_num,
-                                beat=round(beat, 2),
+                                beat=round(float(beat), 6),
                                 pitch=tp,
                                 duration=dur_str,
                                 role=NoteRole.STRUCTURAL.value,
                                 dynamic=dynamic
-                                if beat <= 1.1 and display_key == "rh_display"
+                                if beat <= Fraction(11, 10) and display_key == "rh_display"
                                 else None,
                                 source_layer=layer_name,
                             )
@@ -232,17 +240,20 @@ def _transpose_pitch(pitch_str: str, transposition: int, dst_key: str) -> Option
     return midi_to_pitch(new_midi, dst_key)
 
 
-def _quantize_duration(beats: float) -> float:
-    """Snap to the nearest value the notation can actually express.
+def _quantize_duration(beats) -> Fraction:
+    """Snap to the nearest value the notation can actually express, EXACTLY.
 
     The old list held eight plain durations, so a triplet eighth (1/3) snapped to
     a 16th and a 32nd vanished — a bar of corpus triplets came back a third
     short. The duration table IS the definition of what is notatable.
+
+    Returns a ``Fraction``: returning a float meant three triplet sixteenths
+    summed to 0.7499999999999999 and the beat cursor drifted off the grid.
     """
     from .duration import DURATION_VALUES
 
-    values = sorted({float(v) for v in DURATION_VALUES.values()})
-    return min(values, key=lambda v: abs(v - float(beats)))
+    target = beats if isinstance(beats, Fraction) else Fraction(beats).limit_denominator(96)
+    return min(set(DURATION_VALUES.values()), key=lambda v: (abs(v - target), v))
 
 
 def _beats_to_dur_str(beats: float) -> str:

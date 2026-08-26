@@ -10,6 +10,7 @@ All functions operate on the PieceGraph as the single source of truth.
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import fields
 from datetime import datetime, timezone
 from pathlib import Path
@@ -71,6 +72,7 @@ from .style_resolver import StyleResolver
 from .surface_composer import SurfaceComposer
 
 _WORKSPACE = Path("workspace")
+_LOG = logging.getLogger(__name__)
 
 
 def _as_list(value, what: str):
@@ -1018,8 +1020,20 @@ def run_scales_section(
     )
 
     # Phase 6: Commit best path
+    engine_repairs: Dict[str, Dict[str, int]] = {}
     for node in best_path.nodes:
         if node.surface:
+            # The engine path committed straight to the graph with NO physical
+            # validation, while the agent path has enforced meter, range and
+            # same-voice overlap at commit for months. A probe of one
+            # three-phrase section found 65 meter errors going silently to the
+            # score: bars holding 4.875 beats of a 4/4, notes starting while the
+            # same voice was still sounding, and beat positions like 1.56 that
+            # are not on any notatable grid. Repair what is mechanically
+            # repairable, and report the rest.
+            repairs = _repair_engine_surface(node.surface, tuple(slot_meter_for(graph, node.phrase_id)))
+            if repairs:
+                engine_repairs[node.phrase_id] = repairs
             graph.commit_phrase(node.phrase_id, node.surface)
 
     # Phase 6b: Populate expectations from committed phrases
@@ -1150,6 +1164,11 @@ def run_scales_section(
         "transition_scores": best_path.transition_scores,
         "pipeline": "v6" if (sc and style_program) else "classic",
     }
+    if engine_repairs:
+        # Never silent. A repaired surface means the generator produced
+        # something that could not be engraved, and the caller should see it.
+        result["engine_repairs"] = engine_repairs
+        _LOG.warning("engine surface repairs in %s: %s", section_id, engine_repairs)
 
     if cu_report:
         result["context_utilization"] = {
@@ -2260,6 +2279,108 @@ def _craft_check_phrase(graph, phrase_id: str, layer: LayerIR) -> Optional[Dict[
     return {"failed": failed, "passed": len(asks) - len(failed), "of": len(asks)} if failed else None
 
 
+def slot_meter_for(graph, phrase_id: str) -> Tuple[int, int]:
+    """The meter a phrase is written in (4/4 when the slot does not say)."""
+    state = graph.phrases.get(phrase_id)
+    slot = getattr(state, "slot", None) if state else None
+    meter = getattr(slot, "meter", None) if slot else None
+    return tuple(meter) if meter else (4, 4)
+
+
+# Every metric position the shorthand can express is a multiple of 1/48 of a
+# beat: triplets are 16/48, 32nds 6/48, 64ths 3/48, sextuplets 8/48. Snapping to
+# that grid recovers a position that float drift has smeared without destroying
+# any rhythm the system can actually notate.
+_POSITION_GRID = 48
+
+
+def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
+    """Make an engine-realized surface notatable and meter-legal.
+
+    Three mechanical repairs, in order, each counted so the caller can report
+    what was wrong rather than hiding it:
+
+    1. **Snap every onset to the notatable grid.** A float beat cursor that
+       accumulated float durations and was then rounded produced positions like
+       1.56 and 2.06, which are on no grid and which the engraver has to guess at.
+    2. **Truncate a note that is still sounding when its own voice re-attacks.**
+       One voice cannot play two notes at once; the earlier note ends where the
+       next begins.
+    3. **Drop what runs past the barline.** A bar holding 4.875 beats of a 4/4
+       cannot be engraved; the overflow is the engine's error, not music.
+
+    This is a repair, not a rescue: it makes a malformed surface legal, and the
+    counts it returns are the signal that the generator upstream needs fixing.
+    """
+    from fractions import Fraction
+
+    from .duration import bar_duration, dur_to_beats
+
+    capacity = bar_duration(meter)
+    counts = {"snapped": 0, "overlaps_trimmed": 0, "overflow_dropped": 0}
+
+    def _on_grid(beat) -> Fraction:
+        """The nearest position ON the grid — not merely a fraction with a small
+        denominator. `limit_denominator(48)` leaves 1.56 as 39/25, because 25 is
+        already under 48; what is wanted is the nearest multiple of 1/48, which
+        is 1.5625."""
+        offset = Fraction(beat) - 1
+        snapped = Fraction(round(offset * _POSITION_GRID), _POSITION_GRID) + 1
+        return max(Fraction(1), snapped)
+
+    for events in _all_event_lists(layer):
+        for e in events:
+            exact = _on_grid(e.beat)
+            if exact != Fraction(e.beat):
+                counts["snapped"] += 1
+            e.beat = round(float(exact), 6)
+
+        events.sort(key=lambda x: (x.bar, x.beat))
+        keep = []
+        for i, e in enumerate(events):
+            start = _on_grid(e.beat) - 1
+            length = dur_to_beats(e.duration)
+            if start >= capacity:
+                counts["overflow_dropped"] += 1
+                continue
+            nxt = next((x for x in events[i + 1 :] if x.bar == e.bar), None)
+            room = capacity - start
+            if nxt is not None:
+                room = min(room, _on_grid(nxt.beat) - 1 - start)
+            if room <= 0:
+                counts["overlaps_trimmed"] += 1
+                continue
+            if length > room:
+                from .duration import beats_to_dur
+
+                e.duration = beats_to_dur(room)
+                counts["overlaps_trimmed" if nxt is not None else "overflow_dropped"] += 1
+            keep.append(e)
+        events[:] = keep
+
+    return {k: v for k, v in counts.items() if v}
+
+
+def _all_event_lists(layer) -> List[List]:
+    """Every event list on a LayerIR, including the numbered inner voices."""
+    names = (
+        "principal_line",
+        "bass_foundation",
+        "response_layer",
+        "counter_reply",
+        "ornamental_surface",
+        "foreground",
+        "countermelody",
+        "harmonic_mass",
+        "rhythmic_motor",
+        "color_layer",
+        "punctuation",
+    )
+    out = [getattr(layer, n, None) or [] for n in names]
+    out.extend((getattr(layer, "inner_voices", None) or {}).values())
+    return [e for e in out if e]
+
+
 def _capture_theme_if_first_statement(graph, phrase_id: str) -> None:
     """Store (or refresh) the principal theme when its own phrase is committed.
 
@@ -2444,6 +2565,53 @@ def run_style_review_section(
 
 
 # ─── Agent Composition Support (briefs, continuity, self-evaluation) ─────────
+
+
+def commit_phrase_sketch(piece_id: str, phrase_id: str, sketch: Dict[str, Any]) -> Dict[str, Any]:
+    """Record the structural plan for a phrase BEFORE its notes are written.
+
+    ``/w-compose`` step 2 and the phrase-composer agent both describe writing
+    SketchIR — anchors, harmonic rhythm, texture intent, dynamic shape, breath
+    points, cadence approach — as a required step, with a seven-question
+    checklist. There was no way to do it: ``state.sketch`` was written only
+    inside ``run_scales_section``, the engine fallback the default flow never
+    takes. So on 164 real phrases the field holds a value 10 times, all of them
+    engine-realized, and the brief's SKETCH section — which is how phrase N+1
+    sees what phrase N planned — was empty for everything the agent wrote.
+
+    Accepts a plain dict, so the agent can send exactly the structure it thought
+    in. Unknown keys are ignored rather than rejected; a sketch is a plan, not a
+    contract, and refusing one over a stray key would just push the step back
+    into being skipped.
+    """
+    from .models import SketchIR
+    from .piece_graph import _dataclass_from_dict
+
+    workspace = _WORKSPACE / piece_id
+    path = workspace / "piece_graph.json"
+    if not path.exists():
+        return {"error": f"no workspace for '{piece_id}'"}
+    graph = PieceGraph.load(str(path))
+    state = graph.phrases.get(phrase_id)
+    if state is None:
+        return {"error": f"unknown phrase_id: {phrase_id} (known: {sorted(graph.phrases)[:8]})"}
+    if not isinstance(sketch, dict):
+        return {"error": "sketch must be a dict of SketchIR fields"}
+
+    data = dict(sketch)
+    data.setdefault("phrase_id", phrase_id)
+    state.sketch = _dataclass_from_dict(SketchIR, data)
+    graph.save(str(path))
+
+    from .composition_brief import _summarize_sketch
+
+    summary = _summarize_sketch(state.sketch)
+    return {
+        "ok": True,
+        "phrase_id": phrase_id,
+        "recorded": sorted(k for k in summary),
+        "ignored_keys": sorted(set(data) - {f.name for f in __import__("dataclasses").fields(SketchIR)}),
+    }
 
 
 def get_composition_brief(
@@ -2672,6 +2840,14 @@ def plan_readiness(piece_id: str) -> Dict[str, Any]:
             missing.append("motifs — no principal theme elected")
         elif not placed:
             missing.append("motifs — principal theme is placed in no phrase")
+
+    movements = getattr(getattr(graph, "form", None), "movements", None) or []
+    if len(movements) > 1 and not getattr(graph, "work_graph", None):
+        missing.append(
+            f"work plan — {len(movements)} movements and no WorkGraph (run init_work + "
+            f"plan_movement). Without it nothing decides what each movement is FOR, "
+            f"how it contrasts with the last, or what the finale pays off"
+        )
 
     if not getattr(graph, "reference_studies", None):
         missing.append(

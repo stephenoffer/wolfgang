@@ -450,6 +450,20 @@ print(run_agent_section_briefs('<piece-id>', '<section-id>'))
 "
 ```
 
+Record the phrase's structural plan (it becomes the SKETCH section of the next
+phrase's brief — unknown keys are ignored):
+
+```bash
+.venv/bin/python -c "
+from scales.scales import commit_phrase_sketch
+print(commit_phrase_sketch('<piece-id>', '<phrase-id>', {
+  'melody_anchors': [{'bar': 1, 'beat': 1.0, 'pitch_or_degree': 'F5', 'role': 'entry'}],
+  'harmonic_rhythm': [{'bar': 1, 'beat': 1.0, 'roman': 'I'}],
+  'breath_points': [{'bar': 2, 'beat': 3.0, 'type': 'rest'}],
+}))
+"
+```
+
 Commit shorthand bars through the gate (`allow=[{'check': ..., 'reason': ...}]`
 to waive a named artistic check, logged):
 

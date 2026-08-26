@@ -96,6 +96,27 @@ SketchIR content — every anchor has a reason:
 - **Cadence approach** — how the cadence is approached and arrived at
 - **Entry/exit signatures** — boundary states for transition continuity
 
+**Record it** — the sketch is what phrase N+1 sees of phrase N's plan (it comes
+back as the brief's SKETCH section), so a sketch you only think is a sketch
+nobody else can read:
+
+```bash
+.venv/bin/python -c "
+from scales.scales import commit_phrase_sketch
+print(commit_phrase_sketch('<piece-id>', '<phrase-id>', {
+  'melody_anchors': [{'bar': 1, 'beat': 1.0, 'pitch_or_degree': 'F5', 'role': 'entry'},
+                     {'bar': 3, 'beat': 1.0, 'pitch_or_degree': 'C6', 'role': 'peak'}],
+  'bass_anchors':   [{'bar': 1, 'beat': 1.0, 'pitch_or_degree': 'F2'}],
+  'harmonic_rhythm':[{'bar': 1, 'beat': 1.0, 'roman': 'I'},
+                     {'bar': 4, 'beat': 1.0, 'roman': 'V7'}],
+  'dynamic_shape':  [{'bar': 1, 'level': 'p'}, {'bar': 3, 'level': 'mf', 'hairpin': 'cresc'}],
+  'breath_points':  [{'bar': 2, 'beat': 3.0, 'type': 'rest'}],
+}))
+"
+```
+
+Unknown keys are ignored, so send the structure you actually thought in.
+
 ## Step 3 — Compose every note
 
 0. **Start from the CREATIVE INTENT and the PRINCIPAL THEME.** What must

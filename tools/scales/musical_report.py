@@ -51,6 +51,7 @@ class MusicalReport:
     part_writing: Dict[str, Any] = field(default_factory=dict)
     page: Dict[str, Any] = field(default_factory=dict)
     craft: Dict[str, Any] = field(default_factory=dict)
+    orchestration: Dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> Dict[str, Any]:
         return {
@@ -63,6 +64,7 @@ class MusicalReport:
             "part_writing": self.part_writing,
             "page": self.page,
             "craft": self.craft,
+            "orchestration": self.orchestration,
         }
 
 
@@ -279,6 +281,37 @@ def _part_writing_section(merged, key: str) -> Dict[str, Any]:
     }
 
 
+def _orchestration_section(kept) -> Dict[str, Any]:
+    """Range and dynamic problems in an orchestrated section.
+
+    Only says anything when a piece has actually been orchestrated. A part
+    written at the outer edge of what an instrument can produce is legal and
+    miserable to play, and until now nothing looked.
+    """
+    out: Dict[str, Any] = {"observations": [], "concerns": []}
+    from .orchestration_planner import audit_orchestration
+
+    seen = set()
+    instruments = set()
+    for _pid, state, _slot in kept:
+        parts = getattr(state, "orchestration", None)
+        if parts is None and isinstance(state, dict):
+            parts = state.get("orchestration")
+        if not isinstance(parts, dict) or not parts:
+            continue
+        instruments.update(parts.keys())
+        for line in audit_orchestration(parts):
+            if line not in seen:
+                seen.add(line)
+                out["concerns"].append(line)
+    if instruments:
+        out["observations"].append(
+            f"orchestrated for {len(instruments)} parts: "
+            f"{', '.join(sorted(instruments)[:12])}"
+        )
+    return out
+
+
 def _page_section(merged, style: Optional[str]) -> Dict[str, Any]:
     from .expression_enricher import expression_density
     from .ornament_realization import ornament_summary
@@ -406,6 +439,7 @@ def build_report(graph, style: Optional[str] = None, scope: str = "full") -> Mus
     report.part_writing = _part_writing_section(merged, key)
     report.page = _page_section(merged, style)
     report.craft = _craft_section(kept, layers)
+    report.orchestration = _orchestration_section(kept)
     return report
 
 
@@ -440,6 +474,7 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
     block("TEXTURE", report.texture)
     block("THE PAGE", report.page)
     block("CRAFT", report.craft)
+    block("ORCHESTRATION", report.orchestration)
 
     pw = report.part_writing
     if pw.get("lines") or pw.get("errors"):
@@ -460,7 +495,14 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
 def concerns_only(report: MusicalReport) -> List[str]:
     """Just the things worth a second look, worst-first-ish, for a short review."""
     out: List[str] = []
-    for section in (report.theme, report.cadences, report.texture, report.page, report.craft):
+    for section in (
+        report.theme,
+        report.cadences,
+        report.texture,
+        report.page,
+        report.craft,
+        report.orchestration,
+    ):
         out.extend(section.get("concerns") or [])
     out.extend(report.part_writing.get("lines") or [])
     return out

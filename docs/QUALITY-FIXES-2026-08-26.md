@@ -313,3 +313,157 @@ contribution and claims nothing about composition. Whether the composed output
 improves is a question for the next agent run, which now has actionable
 register targets, five measured instructions it did not have, and an audit that
 can see the four defects it used to miss.
+
+---
+
+# Second pass — the doctrine and the corpus behind it
+
+The first pass fixed the machinery. This one went after the *content* it runs
+on: the 460 markdown files under `.claude/context/` that are read into every
+brief, and the compiled packs and corpus artifacts derived from them.
+
+## 11. Doctrine that contradicted the corpus it described
+
+A number in a doctrine file is an instruction. Seven were measurably wrong, and
+two were wrong **in the direction that causes the defects the audit reports**.
+
+| Claim | Where | Measured |
+|---|---|---|
+| "Beethoven changes texture **58%** of the time between consecutive bars" | `human-sounding-music.md` | **25.5%** over his whole 17,757-bar corpus. Generalised from one movement, and it told the composer to change texture twice as often as Beethoven does — the "different idiom every bar" failure. It also contradicted the calibrated `texture_change_pct` band in `scales.py` outright. |
+| "melodies are roughly **70-80% stepwise**" | `melody-craft.md` | **40-79%, median 64.5%** over 26 movements. Aiming at the top of the range is an instruction to write scales — and `scalar_overuse` fires on the last piece at 39% of melody bars against a real median of 2%. |
+| "Parallel 3rds and 6ths … up to ~4 consecutive" | `counterpoint-essentials.md` | 43 runs longer than 4 across 15 movements; the longest is **25**. A passage in parallel thirds is a standard device, not a ration. |
+| "Every bar should have AT LEAST 2 different bass notes" | Chopin guide | Real Chopin breaks it in **one bar in five**; the sparsest movement satisfies it 20% of the time. |
+| "Every 4-bar phrase should contain at least 2 leaps of P5 or wider" | Chopin guide | Satisfied by **68%** of real 4-bar groups (min 42%). |
+| "**NEVER** write the LH as single-note arpeggiation only" | Chopin guide | A median **7%** of real mazurka bars are exactly that, and one whole movement runs at 87%. |
+| "Minimum 1 dynamic marking per 8 bars" / "at least 1 appoggiatura per 8-bar phrase" / "Plan a voice-count arc: 2→3→4→6→8→6→4→2→1" | `human-sounding-music.md` | Quotas and schedules — the failure mode the same file warns about three sections earlier. |
+
+One claim I expected to be wrong was not: "no more than 4 consecutive notes in
+the same direction" sits inside a **species counterpoint** section, where it is
+pedagogically correct, and the file already frames species rules as exercises.
+Measuring free composition against it was my error, not the file's.
+
+`test_doctrine_matches_corpus.py` now re-derives these from disk, so doctrine
+and corpus cannot drift apart silently again.
+
+## 12. Five composers had no cadence doctrine at all
+
+Composer profiles *delegate* shared vocabulary — Bach's `harmonic-language.md`
+opens "For shared Baroque harmonic vocabulary (figured bass, **cadence types**,
+sequences, voice-leading conventions), see baroque-harmony.md" — and the
+compiler never followed the pointer. It read only the composer's own file, so
+five of the twelve armed composers compiled to an **empty
+`cadence_scripts.json`**, in the one place that addresses the single most
+reliable tell that a machine wrote the piece.
+
+Then the lookup that reads them matched labels with a plain substring test:
+`"HC" in "HALF CADENCE"` is False. A composer profile writes `HC (->V)`, the
+genre files write `Half cadence`, the Renaissance file writes `Clausula vera` —
+so even where scripts existed, only Mozart's matched.
+
+| | cadence scripts before | after |
+|---|---|---|
+| bach | 0 | 7 |
+| corelli | 0 | 7 |
+| weber | 0 | 6 |
+| palestrina / monteverdi | 0 | 13 |
+| mozart | 5 | 22 |
+| beethoven | 4 | 21 |
+| haydn | 3 | 20 |
+| chopin | 6 | 12 (and harmonic devices 0 → 7) |
+| liszt | 6 | 12 |
+| schubert | 4 | 10 |
+| handel | 2 | 9 |
+
+Every armed composer now resolves a cadence script for every common cadence
+type. Palestrina correctly resolves none for a *deceptive* cadence, which is
+right: the Renaissance does not have one.
+
+## 13. A whole period was missing
+
+`style_registry` declared a `renaissance` style with two **armed** composers,
+`compiled_packs/style__renaissance/` held their corpus profiles, and there was
+no `.claude/context/renaissance/` directory at all. Every genre fallback
+therefore handed Renaissance polyphony *Classical* data. Written:
+`renaissance-harmony.md` — cadence types (clausula vera, Phrygian, Landini),
+dissonance treatment, the modes with their finals and reciting tones, musica
+ficta, texture devices, and what not to do in the idiom.
+
+## 14. Genre texture-transition matrices were stale or synthetic
+
+Built once by a migration script and never again. Six of the nine were still
+**synthetic** — the Classical matrix with hand-picked multipliers ("baroque:
+alberti ×0.3, pedal_point ×1.5") — and the two real ones were each wrong:
+
+- `baroque.json` was sourced from bach + handel + corelli **plus palestrina and
+  monteverdi**, folding Renaissance polyphony into Baroque odds.
+- `romantic.json` was chopin alone, while schubert, liszt and weber are armed.
+- There was no `renaissance.json`, so Palestrina fell through to Classical.
+
+`build_corpus_indexes.py` now derives them from whichever members are actually
+armed, and runs after the per-composer matrices it depends on. Result:
+renaissance created (63,195 transitions), baroque decontaminated, classical
+13,317 → 25,615, romantic 4,639 → 5,555. The six styles with nothing armed are
+**skipped honestly** rather than synthesised, and where synthetic data is still
+the only option the brief now says so in the text rather than passing it off as
+corpus evidence.
+
+Three separate places also hard-coded `by_genre/classical.json` as *the* genre
+fallback for every composer — `PhraseBank`, `TransitionBank` (byte-identical
+copies of the same loader) and `context_compiler`. All three now resolve the
+composer's real genre through one shared `style_registry.load_transition_matrix`.
+
+## 15. The brief overstated its own evidence
+
+Composing "as Corelli" from **19 bars** is a different act from composing as
+Mozart from 7,022, and the brief said so only obliquely, through scattered "no
+corpus stats for texture X" warnings the agent had to add up for itself.
+`composer_coverage_tier` had always known the answer; nothing put it in front of
+the composer. Every brief now opens with a `CORPUS COVERAGE` line — tier, bar
+count, and what that means for how much weight the exemplars deserve.
+
+A stale `corpus_profile.json` is now ignored rather than trusted, detected from
+its metric vocabulary: `self_evaluate` narrows its discriminator bands to
+`mean ± 2σ` from those numbers, so a profile written by an older build silently
+becomes the standard a section is judged against.
+
+## 16. Multi-voice exemplars bypassed the malformed-bar filter
+
+`_shorthand_beats` had no case for `//`, so the token failed the note regex, the
+function returned `None`, and both callers read `None` as "unparseable, don't
+judge it". Every multi-voice exemplar therefore skipped the overflow and
+underfill guards — which is most exemplars for exactly the composers where it
+matters most (a Bach sample averages four voices a bar). Measured across the
+armed corpus, 5.0% of the voices handed to the composer did not fill their bar;
+after the fix, 2.8%, and all but ~0.5% of the remainder turned out to be my
+audit's own arithmetic.
+
+## 17. A discriminator band that rejected Bach
+
+`texture_change_pct` was calibrated on Mozart, Beethoven and Chopin, before Bach
+was armed. Bach's corpus mean is **0.622**, above the band's 0.585 ceiling — so
+every Bach section would have been reported "texture change high", the
+discriminator telling the critic that Bach's actual behaviour is a defect. Per
+composer the measured means now span 0.144 (Chopin) to 0.622 (Bach); the band
+covers that range.
+
+## What I got wrong in this pass
+
+Worth recording, because the method only works if the misses are counted too.
+
+- I "fixed" `detect_bar_length_errors` to measure the largest `offset + duration`
+  instead of `measure.duration.quarterLength`, and wrote a confident docstring
+  about the false positive it removed. `Stream.duration` **is** `highestTime`;
+  the change was a no-op. The docstring now says so. The two blocking errors on
+  canonical music turned out to be Humdrum *import* artifacts (Beethoven Op.2
+  No.2/i bar 54 parses as 465 beats in a 2/4 bar), which no measurement of the
+  parsed stream can distinguish from a real export bug — recorded as a stated
+  limit of the only detector family that can block.
+- I reported 31 malformed exemplars before noticing my checker summed both
+  voices of a `//` bar, and 4 more before noticing it counted grace notes as
+  metrical time.
+- I flagged "no more than 4 consecutive notes in one direction" as rejecting real
+  music, having measured free composition against a species-counterpoint
+  exercise rule that the file already framed correctly.
+
+Each of those took a second look at the actual data to catch, and each would
+have shipped as a confident wrong claim.
