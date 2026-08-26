@@ -16,6 +16,16 @@ from typing import Union
 # cursors exact too, so a bar of triplets sums to the meter on the nose.
 
 DURATION_VALUES = {
+    # Longer than a whole note. A breve (double whole) is an ordinary value in
+    # Renaissance polyphony and in any slow movement with a note held across
+    # bars, and the table stopped at the dotted whole — so every one of the
+    # **11,894 breves in the corpus** was read as a dotted whole, losing two
+    # beats each, and no composer using this system could write a note longer
+    # than six quarters at all. The barline splitter turns one into tied
+    # fragments on the way to the page, which is how it is engraved anyway.
+    "br": Fraction(8),  # breve / double whole
+    "dbr": Fraction(12),  # dotted breve
+    "lo": Fraction(16),  # longa
     # Standard
     "w": Fraction(4),  # whole
     "h": Fraction(2),  # half

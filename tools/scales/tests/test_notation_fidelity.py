@@ -1483,3 +1483,51 @@ def test_orchestral_bars_hold_their_meter(tmp_path, monkeypatch):
             total = sum(float(n.quarterLength) for n in m.flatten().notesAndRests)
             if total > 0:
                 assert abs(total - 3.0) < 0.01, f"{part.partName} m{m.number} holds {total}"
+
+
+def test_a_note_longer_than_a_dotted_whole_can_be_expressed():
+    """The duration table stopped at a dotted whole (6 quarters), so every one
+    of the 11,894 breves in the corpus was read as a dotted whole — losing two
+    beats each — and no composer using this system could write a note longer
+    than six quarters at all."""
+    from scales.duration import DURATION_VALUES, beats_to_dur, dur_to_beats
+
+    assert beats_to_dur(8) == "br", "a breve is an ordinary note value"
+    assert dur_to_beats("br") == 8
+    assert dur_to_beats("dbr") == 12
+    assert dur_to_beats("lo") == 16
+    assert max(DURATION_VALUES.values()) >= 16
+
+
+@pytest.mark.parametrize(
+    "beats,code",
+    [(4, "w"), (6, "dw"), (3, "dh"), (2, "h"), (1, "q"), (0.5, "e"), (0.25, "s"),
+     (1 / 3, "trip_e"), (0.2, "quint_s"), (1 / 7, "sept_s"), (0.0625, "x")],
+)
+def test_adding_long_values_did_not_disturb_the_short_ones(beats, code):
+    """Adding entries to the table changes every nearest-match in the system."""
+    from scales.duration import beats_to_dur
+
+    assert beats_to_dur(beats) == code
+
+
+@pytest.mark.parametrize("room", [1.4375, 3.9, 5.5, 7.5, 0.3, 9.0])
+def test_fitting_never_overshoots_after_adding_long_values(room):
+    from scales.duration import DURATION_VALUES, largest_dur_at_most
+
+    assert DURATION_VALUES[largest_dur_at_most(room)] <= room
+
+
+def test_a_breve_is_engraved_as_tied_notes_across_the_barline(tmp_path):
+    import music21
+
+    from scales.assembler import assemble
+
+    graph = _piano_graph([{"rh": "C5br", "lh": "C3w"}, {"rh": "rest_w", "lh": "C3w"}])
+    score = music21.converter.parse(assemble(graph, output_dir=str(tmp_path)))
+    treble = [
+        (m.number, n.tie.type if n.tie else None)
+        for m in score.parts[0].getElementsByClass("Measure")
+        for n in m.flatten().notes
+    ]
+    assert ("start" in [t for _, t in treble]) and ("stop" in [t for _, t in treble])
