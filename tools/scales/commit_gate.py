@@ -542,6 +542,37 @@ def _check_corpus_alignment(graph, phrase_id: str, layer: LayerIR) -> List[GateD
     return out
 
 
+# The corpus and the hand-authored texture templates name the same quantities
+# differently — "grace"/"trill"/"turn" against "grace_notes"/"trills"/"turns" —
+# and the corpus path filtered to its own four keys while the template path
+# summed whatever it found. So a template fallback contributed either nothing
+# (its keys matched no filter) or too much (it summed `dotted_pairs`, which is a
+# rhythm, not an ornament). One normalizer, one vocabulary, both paths.
+_ORNAMENT_KEY_ALIASES = {
+    "grace": "grace",
+    "grace_notes": "grace",
+    "trill": "trill",
+    "trills": "trill",
+    "mordent": "mordent",
+    "mordents": "mordent",
+    "turn": "turn",
+    "turns": "turn",
+    "written_ornaments": "written",
+    # Deliberately absent: "dotted"/"dotted_pairs" is a rhythmic figure, not an
+    # ornament, and counting it made an unornamented phrase look ornamented.
+}
+
+
+def _ornament_rates(stats: Dict) -> Dict[str, float]:
+    """Ornaments-per-bar by canonical name, from either vocabulary."""
+    out: Dict[str, float] = {}
+    for key, value in (stats or {}).items():
+        canon = _ORNAMENT_KEY_ALIASES.get(key)
+        if canon and isinstance(value, (int, float)):
+            out[canon] = out.get(canon, 0.0) + float(value)
+    return out
+
+
 def _check_expression_zero(layer: LayerIR, slot, composer: str) -> Optional[GateDiagnostic]:
     """Warn when corpus says ornaments/slurs are pervasive but the phrase
     has none at all."""
@@ -565,10 +596,10 @@ def _check_expression_zero(layer: LayerIR, slot, composer: str) -> Optional[Gate
     from .composition_brief import ornament_stats
 
     measured = (ornament_stats(composer).get("textures") or {}).get(rh_tex) or {}
-    orn = {k: v for k, v in measured.items() if k in ("grace", "trill", "mordent", "turn")} or (
+    orn = _ornament_rates(measured) or _ornament_rates(
         (templates.get(rh_tex) or {}).get("avg_ornament_density") or {}
     )
-    total_orn = sum(v for v in orn.values() if isinstance(v, (int, float)))
+    total_orn = sum(orn.values())
     # Compare an EXPECTED COUNT for this phrase, not a per-bar rate against a
     # fixed number. `total_orn` is ornaments per bar: at Chopin's measured 0.07
     # in zigzag figuration, a 4-bar phrase is expected to carry 0.28 of an

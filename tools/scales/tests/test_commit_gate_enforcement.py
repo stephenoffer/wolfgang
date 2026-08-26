@@ -9,6 +9,8 @@ Run: python3 -m scales.tests.test_commit_gate_enforcement
 
 from pathlib import Path
 
+import pytest
+
 from scales import commit_gate, scales
 from scales.models import LayerEvent, LayerIR, PhraseSlot, PhraseState
 from scales.piece_graph import PieceGraph
@@ -537,3 +539,33 @@ def test_scalar_run_is_deliberately_not_exempt():
     from scales.commit_gate import _SUSTAINED_RH_TEXTURES
 
     assert "scalar_run" not in _SUSTAINED_RH_TEXTURES
+
+
+def test_both_ornament_vocabularies_normalize_to_one():
+    """The corpus says "grace"/"trill"/"turn"; the hand-authored texture
+    templates say "grace_notes"/"trills"/"turns" for the same quantities.
+
+    The corpus path filtered to its own four keys and the template path summed
+    whatever it found, so a template fallback contributed either nothing — its
+    keys matched no filter — or too much, since it summed `dotted_pairs`.
+    """
+    from scales.commit_gate import _ornament_rates
+
+    corpus = _ornament_rates(
+        {"grace": 0.20, "trill": 0.12, "mordent": 0.02, "turn": 0.01, "dotted": 0.21}
+    )
+    template = _ornament_rates(
+        {"grace_notes": 0.20, "trills": 0.12, "mordents": 0.02, "turns": 0.01, "dotted_pairs": 0.21}
+    )
+    assert corpus == template, (corpus, template)
+    # A dotted pair is a rhythmic figure, not an ornament: counting it made an
+    # unornamented phrase look ornamented.
+    assert "dotted" not in corpus and sum(corpus.values()) == pytest.approx(0.35)
+
+
+def test_an_unknown_ornament_key_is_ignored_not_summed():
+    from scales.commit_gate import _ornament_rates
+
+    assert _ornament_rates({"nonsense": 9.0, "grace": 0.1}) == {"grace": 0.1}
+    assert _ornament_rates({}) == {}
+    assert _ornament_rates(None) == {}
