@@ -1,4 +1,45 @@
 {
-  "required_count": 0,
-  "items": []
+  "required_count": 3,
+  "items": [
+    {
+      "id": "the_words_choose_the_notes",
+      "name": "The words choose the notes",
+      "description": "Text expression outranks contrapuntal propriety, and Monteverdi said so in print when he was attacked for it. A harsh word gets a harsh interval; \"sospiro\" gets a rest that breaks the line mid-word. I",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "unprepared_dissonance_for_expressive_effect",
+      "name": "Unprepared dissonance for expressive effect",
+      "description": "The *seconda pratica* keeps Renaissance technique as the default and breaks it deliberately: an unprepared seventh or a dissonant leap where the meaning demands it. The rule-breaking only registers be",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "declamatory_speech_shaped_rhythm",
+      "name": "Declamatory, speech-shaped rhythm",
+      "description": "Repeated notes on one pitch following the natural stresses of the line, then a sudden melisma where a single word opens out. The rhythm is closer to heightened speech than to a tune.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "abrupt_textural_contrast_between_phrases",
+      "name": "Abrupt textural contrast between phrases",
+      "description": "A homorhythmic block of all voices declaiming together, then a single voice alone, then paired imitation. The changes are sudden and align with the sense of the text rather than with a formal scheme.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "chromatic_inflection_at_the_moment_of_feeling",
+      "name": "Chromatic inflection at the moment of feeling",
+      "description": "A raised or lowered third, a cross-relation between voices, a shift toward the flat side for grief. Used at one specific word, not as a general colouring.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

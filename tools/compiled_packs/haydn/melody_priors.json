@@ -1,5 +1,89 @@
 [
   {
+    "id": "melodic_voice_folk_like_simplicity",
+    "category": "composer_melodic_voice",
+    "description": "Folk-like simplicity: Themes built from scales, triads, repeated notes \u2014 singable, memorable",
+    "parameters": {
+      "feature": "Folk-like simplicity",
+      "note": "Constant"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_motivic_economy",
+    "category": "composer_melodic_voice",
+    "description": "Motivic economy: Entire movements generated from a 2-4 note cell",
+    "parameters": {
+      "feature": "Motivic economy",
+      "note": "Very high"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_hidden_sophistication",
+    "category": "composer_melodic_voice",
+    "description": "Hidden sophistication: Simple surface conceals infinite developmental potential",
+    "parameters": {
+      "feature": "Hidden sophistication",
+      "note": "Constant"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_monothematic_construction",
+    "category": "composer_melodic_voice",
+    "description": "Monothematic construction: \"Second theme\" is often the first theme in a new key",
+    "parameters": {
+      "feature": "Monothematic construction",
+      "note": "Very high"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_phrase_structure_wit",
+    "category": "composer_melodic_voice",
+    "description": "Phrase-structure wit: Regular 4-bar phrases disrupted by extension, compression, or elision",
+    "parameters": {
+      "feature": "Phrase-structure wit",
+      "note": "High"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_theme_as_raw_material",
+    "category": "composer_melodic_voice",
+    "description": "Theme as raw material: The theme exists TO BE developed \u2014 its beauty is secondary to its function",
+    "parameters": {
+      "feature": "Theme as raw material",
+      "note": "High"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_rhythmic_identity",
+    "category": "composer_melodic_voice",
+    "description": "Rhythmic identity: Themes defined more by rhythm than pitch contour",
+    "parameters": {
+      "feature": "Rhythmic identity",
+      "note": "High"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "haydn/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

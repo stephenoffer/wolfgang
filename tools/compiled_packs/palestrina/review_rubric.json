@@ -1,3 +1,34 @@
 {
-  "checks": []
+  "checks": [
+    {
+      "id": "fp_the_line_recovers_from_every_leap",
+      "category": "fingerprint",
+      "description": "The line recovers from every leap",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_dissonance_only_ever_passes_suspends_or_neighbours",
+      "category": "fingerprint",
+      "description": "Dissonance only ever passes, suspends or neighbours",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_arch_shaped_phrases_with_a_single_high_note",
+      "category": "fingerprint",
+      "description": "Arch-shaped phrases with a single high note",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_points_of_imitation_with_staggered_exposed_entries",
+      "category": "fingerprint",
+      "description": "Points of imitation with staggered, exposed entries",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhythmic_independence_over_a_steady_tactus",
+      "category": "fingerprint",
+      "description": "Rhythmic independence over a steady tactus",
+      "severity": "soft"
+    }
+  ]
 }

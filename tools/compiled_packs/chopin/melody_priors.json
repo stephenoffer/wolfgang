@@ -1,5 +1,101 @@
 [
   {
+    "id": "melodic_voice_bel_canto_phrasing",
+    "category": "composer_melodic_voice",
+    "description": "Bel canto phrasing: Long arched lines (8-16 bars) with breath points",
+    "parameters": {
+      "feature": "Bel canto phrasing",
+      "note": "Constant \u2014 the defining trait"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_grace_note_entry",
+    "category": "composer_melodic_voice",
+    "description": "Grace-note entry: Phrases begin with an appoggiatura leaning into the first note",
+    "parameters": {
+      "feature": "Grace-note entry",
+      "note": "Very high \u2014 Fingerprint #2"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_ornament_as_melody",
+    "category": "composer_melodic_voice",
+    "description": "Ornament as melody: Chromatic runs, turns, trills are not decoration \u2014 they continue the melodic line",
+    "parameters": {
+      "feature": "Ornament as melody",
+      "note": "Constant \u2014 Fingerprint #5"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_rubato_flexibility",
+    "category": "composer_melodic_voice",
+    "description": "Rubato flexibility: The melody stretches and compresses against a steady LH pulse",
+    "parameters": {
+      "feature": "Rubato flexibility",
+      "note": "Assumed in all lyrical passages"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_peak_cascade",
+    "category": "composer_melodic_voice",
+    "description": "Peak + cascade: Melody rises to a high point, then descends in a chromatic or scalar run",
+    "parameters": {
+      "feature": "Peak + cascade",
+      "note": "Very high in nocturnes, ballades"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_stepwise_motion_with_leaps_at_peaks",
+    "category": "composer_melodic_voice",
+    "description": "Stepwise motion with leaps at peaks: Most motion is by step; leaps reserved for expressive peaks (6ths, octaves)",
+    "parameters": {
+      "feature": "Stepwise motion with leaps at peaks",
+      "note": "Standard melodic contour"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_chromatic_passing_tones",
+    "category": "composer_melodic_voice",
+    "description": "Chromatic passing tones: Non-chord tones woven into stepwise lines create constant gentle dissonance",
+    "parameters": {
+      "feature": "Chromatic passing tones",
+      "note": "Pervasive"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_two_voice_soprano_dialogue",
+    "category": "composer_melodic_voice",
+    "description": "Two-voice soprano dialogue: RH contains two melodic voices that converse",
+    "parameters": {
+      "feature": "Two-voice soprano dialogue",
+      "note": "Nocturnes, ballades"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "chopin/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

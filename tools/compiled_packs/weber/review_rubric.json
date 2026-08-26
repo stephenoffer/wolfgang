@@ -1,3 +1,34 @@
 {
-  "checks": []
+  "checks": [
+    {
+      "id": "fp_operatic_melody_in_instrumental_clothing",
+      "category": "fingerprint",
+      "description": "Operatic melody in instrumental clothing",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_the_diminished_seventh_as_a_dramatic_hinge",
+      "category": "fingerprint",
+      "description": "The diminished seventh as a dramatic hinge",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_brilliant_wide_spanning_keyboard_figuration",
+      "category": "fingerprint",
+      "description": "Brilliant, wide-spanning keyboard figuration",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_abrupt_dynamic_and_registral_contrast",
+      "category": "fingerprint",
+      "description": "Abrupt dynamic and registral contrast",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_horn_call_and_folk_dance_topics",
+      "category": "fingerprint",
+      "description": "Horn-call and folk-dance topics",
+      "severity": "soft"
+    }
+  ]
 }

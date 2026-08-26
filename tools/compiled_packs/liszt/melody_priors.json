@@ -1,5 +1,101 @@
 [
   {
+    "id": "melodic_voice_thematic_transformation_seed",
+    "category": "composer_melodic_voice",
+    "description": "Thematic transformation seed: Melody designed with clear interval skeleton that survives rhythmic/dynamic change",
+    "parameters": {
+      "feature": "Thematic transformation seed",
+      "note": "Every symphonic poem; B minor Sonata"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_declamatory_octaves",
+    "category": "composer_melodic_voice",
+    "description": "Declamatory octaves: Melody in unison octaves, both hands, ff \u2014 the piano announces",
+    "parameters": {
+      "feature": "Declamatory octaves",
+      "note": "Opening themes; heroic transformations"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_hungarian_augmented_2nds",
+    "category": "composer_melodic_voice",
+    "description": "Hungarian augmented 2nds: Scale step with augmented interval (Eb-F# in A Gypsy minor)",
+    "parameters": {
+      "feature": "Hungarian augmented 2nds",
+      "note": "Hungarian Rhapsodies; secondary color everywhere"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_virtuosic_figuration_as_melody",
+    "category": "composer_melodic_voice",
+    "description": "Virtuosic figuration AS melody: Rapid arpeggios, scales, tremolos that carry the melodic line within them",
+    "parameters": {
+      "feature": "Virtuosic figuration AS melody",
+      "note": "Transcendental Etudes; Mephisto Waltz"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_wide_leaps",
+    "category": "composer_melodic_voice",
+    "description": "Wide leaps: Octave+ jumps within melody; dramatic, not vocal",
+    "parameters": {
+      "feature": "Wide leaps",
+      "note": "Separates Liszt from Chopin's stepwise bel canto"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_sequential_repetition",
+    "category": "composer_melodic_voice",
+    "description": "Sequential repetition: Melody stated, then repeated a step higher/lower with intensification",
+    "parameters": {
+      "feature": "Sequential repetition",
+      "note": "Building passages; pre-climax sequences"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_recitative_like_freedom",
+    "category": "composer_melodic_voice",
+    "description": "Recitative-like freedom: Rubato melody over sustained harmony; speech rhythm, not dance",
+    "parameters": {
+      "feature": "Recitative-like freedom",
+      "note": "Slow introductions; lassan passages"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_motto_themes",
+    "category": "composer_melodic_voice",
+    "description": "Motto themes: Short (3-5 note) motifs that can expand into full themes",
+    "parameters": {
+      "feature": "Motto themes",
+      "note": "Faust Symphony: 4 augmented triads = Faust's questioning"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "liszt/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

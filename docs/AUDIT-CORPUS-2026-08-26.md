@@ -373,3 +373,51 @@ the first run.
   `assemble` never saved. Four of twelve pieces have an `output_paths` entry
   despite all having been assembled. Now goes through `piece_graph.record_output`,
   which persists. `midi_renderer` has the identical bug.
+
+### The census at function and value granularity
+
+Two more axes worth running, both cheap:
+
+**Public tools nothing calls.** Of 33 public functions in `scales.scales`, four
+are referenced by no skill, agent, workflow or module. Two are harmless
+(`load_workspace` duplicates `get_status`; `slot_meter_for` is a helper). The
+other two are `init_work` and `plan_movement` — **the multi-movement work
+planner**. CLAUDE.md and `/wolfgang` both describe symphonies and concertos with
+"a global narrative arc and per-movement climax budget", the `WorkGraph` model
+exists, both functions work and persist correctly — and **no piece in
+`workspace/` has ever had one** (0/14). Every "symphony" this system produced was
+a single form graph with nothing planned above the movement. `/w-plan` now has a
+Step 4b that calls them, and `plan_readiness` flags a multi-movement form with no
+WorkGraph.
+
+**Fields that are populated but constant.** Across all 13,742 committed notes in
+every piece the system has ever made:
+
+| field | share that is `None` |
+|---|---|
+| `tie` | 99.9% |
+| `articulation` | 99.7% |
+| `ornament` | 99.2% |
+| `hairpin` | 99.1% |
+| `slur` | 98.0% |
+| `dynamic` | 91.3% |
+
+That is the "reads as a data export" defect, measured over the whole history
+rather than one piece. `duration` is also nearly constant: 53% of all notes are
+sixteenths, across nine distinct values in 13,742 notes.
+
+Re-measured per piece after the expression layer was wired up (see
+`QUALITY-FIXES-2026-08-26.md` §1), marks per bar against the real-corpus band of
+0.11–5.71 (median 1.58):
+
+```
+mozart-allegro-dm-20260603          0.19   <- before
+montana-seasons-sonata-dm-20260406  0.20   <- before
+mozart-andante-bb-20260826          1.27
+audit-minor-dm-20260826             2.25
+mozart-andante-fmaj-v2-20260826     2.88
+```
+
+The pieces made after the fix sit inside the band; the oldest sit an order of
+magnitude below it. `self_evaluate`'s `realism.notation_census` reports this per
+section, so it does not need a separate tool.

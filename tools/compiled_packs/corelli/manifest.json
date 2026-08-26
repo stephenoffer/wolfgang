@@ -3,7 +3,9 @@
   "genre": "",
   "support_tier": "B",
   "corpus_bar_count": 19,
-  "profile_files": [],
+  "profile_files": [
+    "composition-guide.md"
+  ],
   "corpus_files": [
     "bar_index.json",
     "gesture_bank.json",

@@ -1,5 +1,101 @@
 [
   {
+    "id": "melodic_voice_fortspinnung",
+    "category": "composer_melodic_voice",
+    "description": "Fortspinnung: Short head-motif spun into long continuous lines via sequence and development",
+    "parameters": {
+      "feature": "Fortspinnung",
+      "note": "Constant"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_motivic_saturation",
+    "category": "composer_melodic_voice",
+    "description": "Motivic saturation: A 2\u20134 note cell generates melody, bass, inner voices, countersubject",
+    "parameters": {
+      "feature": "Motivic saturation",
+      "note": "Constant"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_hidden_polyphony",
+    "category": "composer_melodic_voice",
+    "description": "Hidden polyphony: Single-line melodies imply 2\u20133 independent voices (compound melody)",
+    "parameters": {
+      "feature": "Hidden polyphony",
+      "note": "Very high"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_instrumental_character",
+    "category": "composer_melodic_voice",
+    "description": "Instrumental character: Even vocal lines embrace wide leaps, fast runs, full-range writing",
+    "parameters": {
+      "feature": "Instrumental character",
+      "note": "Very high"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_ornamental_integration",
+    "category": "composer_melodic_voice",
+    "description": "Ornamental integration: Turns, mordents, trills are structural, not decorative afterthoughts",
+    "parameters": {
+      "feature": "Ornamental integration",
+      "note": "Very high"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_chromatic_inflection",
+    "category": "composer_melodic_voice",
+    "description": "Chromatic inflection: Chromatic neighbor tones, passing tones woven into diatonic lines",
+    "parameters": {
+      "feature": "Chromatic inflection",
+      "note": "High"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_sequence_as_engine",
+    "category": "composer_melodic_voice",
+    "description": "Sequence as engine: 2\u20133 bar melodic units repeated at new pitch levels drive forward motion",
+    "parameters": {
+      "feature": "Sequence as engine",
+      "note": "Very high"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_wide_range",
+    "category": "composer_melodic_voice",
+    "description": "Wide range: Melodies frequently span 2+ octaves within a single phrase",
+    "parameters": {
+      "feature": "Wide range",
+      "note": "High"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "bach/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

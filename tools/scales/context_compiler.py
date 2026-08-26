@@ -129,7 +129,7 @@ class ContextCompiler:
         results["prompt_semantics"] = len(prompt_sem)
 
         # Pass 14: Melody priors
-        melody_pr = self._pass_melody_priors()
+        melody_pr = self._pass_melody_priors(profile_dir)
         self._write_json(output_dir / "melody_priors.json", melody_pr)
         results["melody_priors"] = len(melody_pr)
 
@@ -1184,14 +1184,73 @@ class ContextCompiler:
 
     # ─── Pass 14: Melody Priors ──────────────────────────────────────────
 
-    def _pass_melody_priors(self) -> List[Dict]:
-        """Extract melodic construction priors from general context.
+    @staticmethod
+    def _melodic_style_priors(path: Path) -> List[Dict]:
+        """Rows of a composer's melodic-character table, as priors.
+
+        Profiles head the table's third column differently — Mozart's is
+        "Artistic Function", Bach's is "Presence" — so the value is taken
+        positionally from whatever remains after Feature and Description.
+        """
+        try:
+            text = path.read_text()
+        except OSError:
+            return []
+        out: List[Dict] = []
+        rows = _parse_markdown_table(text, required_header="Feature")
+        for row in rows:
+            feature = (row.get("feature") or "").strip()
+            desc = (row.get("description") or "").strip()
+            if not feature or not desc:
+                continue
+            extra = next(
+                (
+                    str(v).strip()
+                    for k, v in row.items()
+                    if k not in ("feature", "description") and str(v).strip()
+                ),
+                "",
+            )
+            slug = re.sub(r"[^a-z0-9]+", "_", feature.lower()).strip("_")
+            out.append(
+                {
+                    "id": f"melodic_voice_{slug}",
+                    "category": "composer_melodic_voice",
+                    "description": f"{feature}: {desc}",
+                    "parameters": {"feature": feature, "note": extra},
+                    "conditions": {},
+                    "grounding": "profile",
+                    "source_file": f"{path.parent.name}/melodic-style.md",
+                }
+            )
+        return out
+
+    def _pass_melody_priors(self, profile_dir: Optional[Path] = None) -> List[Dict]:
+        """Extract melodic construction priors.
 
         Sources:
+        - the composer's own ``melodic-style.md`` (their melodic voice)
         - melodic-construction.md (phrase structure, contour, climax placement)
         - melody-craft.md (artistic intent, hook design)
+
+        The composer's file was not read at all, so `melody_priors.json` came
+        out **byte-identical for every composer** — generic phrase-structure
+        boilerplate — while a `melodic-style.md` describing that composer's
+        actual melodic voice sat unread in **44 of the profile directories**.
+        Melody is the most audible thing in the output, and the brief's melody
+        doctrine said the same thing whether it was building a Bach fugue
+        subject or a Chopin nocturne.
+
+        Composer-specific priors come FIRST so they lead the brief's doctrine
+        slice; the general ones remain as the floor beneath them.
         """
         priors: List[Dict] = []
+
+        # Source 0: the composer's own melodic voice.
+        if profile_dir:
+            ms_file = profile_dir / "melodic-style.md"
+            if ms_file.exists():
+                priors += self._melodic_style_priors(ms_file)
 
         # Source 1: melodic-construction.md
         mc_file = CONTEXT_DIR / "general" / "melodic-construction.md"

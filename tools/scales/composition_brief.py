@@ -1091,8 +1091,15 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
         if by_cat.get(cat):
             shape.append(by_cat[cat][0])
             break
-    if shape:
-        out["melody_priors"] = shape[:2]
+    # The COMPOSER's own melodic voice leads, ahead of the generic contour and
+    # climax priors. Those two generic lines were all this slice ever carried,
+    # and they are identical for every composer — so the brief's melody doctrine
+    # said the same thing whether it was building a Bach fugue subject or a
+    # Chopin nocturne, while a `melodic-style.md` describing the actual voice sat
+    # unread in 44 profile directories.
+    voice = by_cat.get("composer_melodic_voice", [])
+    if voice or shape:
+        out["melody_priors"] = voice[:4] + shape[:2]
 
     # ── Richer compiled doctrine that previously reached only the fallback
     # engine (via ContextRouter). Surfaced here, phrase-scoped, so the agent

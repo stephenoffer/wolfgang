@@ -143,3 +143,36 @@ def test_every_armed_composer_has_cadence_doctrine_for_the_common_cadences():
         "armed composer(s) with no cadence doctrine for a common cadence: "
         f"{missing}"
     )
+
+
+def test_every_armed_composer_has_real_fingerprints():
+    """"COMPOSER FINGERPRINTS — the defining traits of this composer's voice"
+    is the brief section the phrase-composer is told to make the phrase
+    *exhibit*. Four armed composers — Corelli, Monteverdi, Palestrina and Weber
+    — had no written profile at all, so the brief printed "no composer
+    fingerprints for 'corelli'" and the phrase had nothing to be recognisably
+    anyone's.
+    """
+    import json
+    import os
+    from pathlib import Path
+
+    idx = Path("tools") / "reference_index"
+    packs = Path("tools") / "compiled_packs"
+    if not idx.is_dir() or not packs.is_dir():
+        pytest.skip("corpus not present")
+
+    thin = []
+    for composer in sorted(d for d in os.listdir(idx) if (idx / d).is_dir()):
+        path = packs / composer / "fingerprint_rules.json"
+        if not path.exists():
+            thin.append(f"{composer}: no fingerprint_rules.json")
+            continue
+        data = json.loads(path.read_text())
+        items = data.get("items") if isinstance(data, dict) else data
+        if len(items or []) < 3:
+            thin.append(f"{composer}: {len(items or [])} fingerprints")
+    assert not thin, (
+        "armed composer(s) without enough fingerprints to make a phrase "
+        f"recognisably theirs: {thin}"
+    )

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
+from fractions import Fraction
 from typing import Any, Dict, List, Optional, Tuple
 
 from .cadence_bank import CadenceBank
@@ -650,14 +651,28 @@ class SurfaceComposer:
             pitches = self._interpolate_melody_pitches(
                 start_midi, effective_end, len(gesture.dur_profile), scale, key
             )
-            beat_cursor = slot.beat_start
+            # An EXACT cursor, and emit-then-advance.
+            #
+            # Two faults here, both silent. The cursor was a float advanced by
+            # durations and then rounded to two decimals, so a position of
+            # 1.5625 — a legitimate 64th-note offset — was emitted as `1.56`,
+            # which is not a position in any bar and which no notation can
+            # express. Downstream that arrived as an off-grid onset and a bar
+            # that did not sum to its meter.
+            #
+            # And the cursor advanced BEFORE the note was emitted, so every
+            # gesture started one note-value late and its last note ran past the
+            # end of the slot. A four-note figure beginning on beat 1 was written
+            # beginning on beat 1.5.
+            beat_cursor = Fraction(str(slot.beat_start)).limit_denominator(96)
+            bar_len = Fraction(str(bar_dur)).limit_denominator(96)
             bar_cursor = slot.bar_start
             for i, dur_code in enumerate(gesture.dur_profile):
-                dur_beats = DURATION_VALUES.get(dur_code, 0.5)
-                beat_cursor += dur_beats
-                # Advance bar if needed
-                while beat_cursor > bar_dur:
-                    beat_cursor -= bar_dur
+                dur_beats = DURATION_VALUES.get(dur_code, Fraction(1, 2))
+                if not isinstance(dur_beats, Fraction):
+                    dur_beats = Fraction(str(dur_beats)).limit_denominator(96)
+                while beat_cursor > bar_len:
+                    beat_cursor -= bar_len
                     bar_cursor += 1
                 if bar_cursor > slot.bar_end:
                     break
@@ -666,7 +681,7 @@ class SurfaceComposer:
                     events.append(
                         _TaggedEvent(
                             bar=bar_cursor,
-                            beat=round(beat_cursor, 2),
+                            beat=float(beat_cursor),
                             voice="soprano",
                             pitch=midi_to_pitch(midi_val, key),
                             duration=dur_code,
@@ -678,6 +693,9 @@ class SurfaceComposer:
                             ),
                         )
                     )
+                # Advance AFTER emitting, so the first note lands on the
+                # slot's own start beat rather than one value past it.
+                beat_cursor += dur_beats
         else:
             # No gesture — generate scale-walk between anchors
             bars_in_slot = max(1, slot.bar_end - slot.bar_start)

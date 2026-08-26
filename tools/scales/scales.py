@@ -13,6 +13,7 @@ import json
 import logging
 from dataclasses import fields
 from datetime import datetime, timezone
+from fractions import Fraction as _F
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -2287,11 +2288,29 @@ def slot_meter_for(graph, phrase_id: str) -> Tuple[int, int]:
     return tuple(meter) if meter else (4, 4)
 
 
-# Every metric position the shorthand can express is a multiple of 1/48 of a
-# beat: triplets are 16/48, 32nds 6/48, 64ths 3/48, sextuplets 8/48. Snapping to
-# that grid recovers a position that float drift has smeared without destroying
-# any rhythm the system can actually notate.
-_POSITION_GRID = 48
+# The finest grid every notatable duration lands on exactly. The denominators in
+# DURATION_VALUES are 1,2,3,4,5,6,7,8,12,16 and their LCM is 1680, so a position
+# snapped here can always be bracketed.
+#
+# This started at 48, which covers triplets (16/48), sextuplets (8/48), 32nds
+# (6/48) and 64ths (3/48) — and silently rounds every QUINTUPLET and SEPTUPLET,
+# because 5 and 7 do not divide 48. A five-note quintuplet came out drifting by
+# up to a 120th of a beat per note and no longer summed to its own beat. That is
+# the same failure as the 16th-note grid that once destroyed every triplet in
+# this system, so the invariant is asserted rather than trusted.
+_POSITION_GRID = 1680
+
+# Subdivisions of the beat, coarsest first, restricted to divisors of
+# _POSITION_GRID so every result is exactly notatable. A position is explained
+# by the SIMPLEST subdivision it lands on, which is why the order is by size:
+# 1/7 is reached before any fine binary grid (a 48th is within tolerance of a
+# septuplet and would otherwise swallow it), while a drifted 0.56 passes every
+# coarse candidate and resolves at a sixteenth.
+_SUBDIVISIONS = (1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 16, 20, 21, 24, 28, 30, 35, 40, 42, 48)
+# How far a stored onset may sit from a subdivision and still be read as it.
+# A 256th of a beat is far below anything anyone writes and far above float
+# noise or a value rounded to four decimals.
+_GRID_TOLERANCE = _F(1, 256)
 
 
 def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
@@ -2320,13 +2339,27 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
     counts = {"snapped": 0, "overlaps_trimmed": 0, "overflow_dropped": 0}
 
     def _on_grid(beat) -> Fraction:
-        """The nearest position ON the grid — not merely a fraction with a small
-        denominator. `limit_denominator(48)` leaves 1.56 as 39/25, because 25 is
-        already under 48; what is wanted is the nearest multiple of 1/48, which
-        is 1.5625."""
+        """The SIMPLEST subdivision that explains this position.
+
+        Two failures to avoid at once. A coarse grid (1/48) repairs float drift
+        but silently rounds every quintuplet and septuplet, because 5 and 7 do
+        not divide 48. A fine grid (1/1680, the LCM of every denominator in the
+        duration table) preserves those exactly — and stops repairing drift,
+        because 1.56 is already on it, so a smeared onset stays smeared.
+
+        So: walk the subdivisions in order of musical plausibility (binary,
+        then ternary, then quintuplet and septuplet) and take the first that
+        explains the position to within a 256th of a beat. 1.56 resolves to
+        1.5625 at a sixteenth; a quintuplet's 1.2 is nowhere near any binary or
+        ternary position and resolves exactly at a fifth. Nothing plausible ⇒
+        fall back to the finest grid, which is exact for anything notatable.
+        """
         offset = Fraction(beat) - 1
-        snapped = Fraction(round(offset * _POSITION_GRID), _POSITION_GRID) + 1
-        return max(Fraction(1), snapped)
+        for denom in _SUBDIVISIONS:
+            candidate = Fraction(round(offset * denom), denom)
+            if abs(candidate - offset) <= _GRID_TOLERANCE:
+                return max(Fraction(1), candidate + 1)
+        return max(Fraction(1), Fraction(round(offset * _POSITION_GRID), _POSITION_GRID) + 1)
 
     for events in _all_event_lists(layer):
         for e in events:

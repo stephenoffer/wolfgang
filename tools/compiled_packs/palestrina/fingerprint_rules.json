@@ -1,4 +1,45 @@
 {
-  "required_count": 0,
-  "items": []
+  "required_count": 3,
+  "items": [
+    {
+      "id": "the_line_recovers_from_every_leap",
+      "name": "The line recovers from every leap",
+      "description": "A leap is followed by stepwise motion in the opposite direction, filling the space it opened. Leaps larger than a sixth are rare, the octave is the practical limit, and two leaps in the same direction",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "dissonance_only_ever_passes_suspends_or_neighbours",
+      "name": "Dissonance only ever passes, suspends or neighbours",
+      "description": "Every dissonance is approached by step from a consonance and left by step downward. The suspension is the expressive event of the style: prepared on a weak beat, struck on a strong one, resolved down.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "arch_shaped_phrases_with_a_single_high_note",
+      "name": "Arch-shaped phrases with a single high note",
+      "description": "A phrase rises to one peak and descends from it; the peak is touched once and not returned to. The whole span is usually a ninth or less. Repeating the climax pitch inside a phrase flattens the shape ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "points_of_imitation_with_staggered_exposed_entries",
+      "name": "Points of imitation with staggered, exposed entries",
+      "description": "Each phrase of text enters imitatively in every voice, and each entry is audible because the other voices have thinned or rested to let it through. Voices drop out in order to re-enter; a texture that",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "rhythmic_independence_over_a_steady_tactus",
+      "name": "Rhythmic independence over a steady tactus",
+      "description": "The pulse is even, but each voice carries its own accent from its own text, so downbeats rarely coincide across all voices. Suspensions and syncopations are what displace them. All voices agreeing on ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

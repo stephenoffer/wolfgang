@@ -1,5 +1,89 @@
 [
   {
+    "id": "melodic_voice_vocal_origin",
+    "category": "composer_melodic_voice",
+    "description": "Vocal origin: Every melody could be sung by a competent soprano or tenor",
+    "parameters": {
+      "feature": "Vocal origin",
+      "note": "Instant physical connection \u2014 the listener's body understands the phrase"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_italianate_cantabile",
+    "category": "composer_melodic_voice",
+    "description": "Italianate cantabile: Long, lyrical lines derived from Italian opera aria tradition",
+    "parameters": {
+      "feature": "Italianate cantabile",
+      "note": "Beauty of line as primary value; the melody IS the content"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_phrase_symmetry_with_subversion",
+    "category": "composer_melodic_voice",
+    "description": "Phrase symmetry (with subversion): 4+4 bar periods as default; occasional 4+5 or 4+6 extensions",
+    "parameters": {
+      "feature": "Phrase symmetry (with subversion)",
+      "note": "Symmetry creates expectation; the subversion creates art"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_dialogue_between_voices",
+    "category": "composer_melodic_voice",
+    "description": "Dialogue between voices: Melody passed between instruments like operatic conversation",
+    "parameters": {
+      "feature": "Dialogue between voices",
+      "note": "Each instrument is a character; the music is social, not monologic"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_grace_in_ornamentation",
+    "category": "composer_melodic_voice",
+    "description": "Grace in ornamentation: Appoggiaturas, turns, trills as emotional inflection, not display",
+    "parameters": {
+      "feature": "Grace in ornamentation",
+      "note": "The ornament sighs, the ornament laughs \u2014 never merely decorates"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_peak_placement",
+    "category": "composer_melodic_voice",
+    "description": "Peak placement: Melodic climax typically at 3/4 of phrase length",
+    "parameters": {
+      "feature": "Peak placement",
+      "note": "Natural speech rhythm \u2014 the most important word comes near the end"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_stepwise_motion_with_strategic_leaps",
+    "category": "composer_melodic_voice",
+    "description": "Stepwise motion with strategic leaps: Predominantly conjunct; leaps reserved for expressive moments",
+    "parameters": {
+      "feature": "Stepwise motion with strategic leaps",
+      "note": "A leap is an event: an octave leap = surprise, a sixth = yearning"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "mozart/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

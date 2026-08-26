@@ -10,7 +10,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cad_half_cadence",
@@ -23,7 +23,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cad_phrygian",
@@ -36,7 +36,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cad_deceptive",
@@ -49,7 +49,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cad_plagal",
@@ -62,7 +62,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cad_evaded",
@@ -75,7 +75,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cad_baroque_cadence",
@@ -88,6 +88,6 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   }
 ]

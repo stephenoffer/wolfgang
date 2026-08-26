@@ -1,3 +1,34 @@
 {
-  "checks": []
+  "checks": [
+    {
+      "id": "fp_sequence_as_the_engine_of_continuation",
+      "category": "fingerprint",
+      "description": "Sequence as the engine of continuation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_the_suspension_chain",
+      "category": "fingerprint",
+      "description": "The suspension chain",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_a_walking_bass_that_is_a_real_line",
+      "category": "fingerprint",
+      "description": "A walking bass that is a real line",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_two_equal_upper_voices_crossing_and_exchanging",
+      "category": "fingerprint",
+      "description": "Two equal upper voices crossing and exchanging",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_clear_unhurried_cadential_punctuation",
+      "category": "fingerprint",
+      "description": "Clear, unhurried cadential punctuation",
+      "severity": "soft"
+    }
+  ]
 }

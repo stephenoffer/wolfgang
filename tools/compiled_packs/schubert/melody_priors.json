@@ -1,5 +1,77 @@
 [
   {
+    "id": "melodic_voice_vocal_contour",
+    "category": "composer_melodic_voice",
+    "description": "Vocal contour: Melodies move within a singer's natural range (usually an octave); stepwise motion dominates, leaps are expressive events",
+    "parameters": {
+      "feature": "Vocal contour",
+      "note": "All genres \u2014 the song origin is inescapable"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_phrase_extension",
+    "category": "composer_melodic_voice",
+    "description": "Phrase extension: Phrases do not end at bar 4 or 8 as expected; they find one more inflection, one more bar",
+    "parameters": {
+      "feature": "Phrase extension",
+      "note": "Sonata themes, song melodies, slow movements"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_melodic_abundance",
+    "category": "composer_melodic_voice",
+    "description": "Melodic abundance: Schubert generates themes prolifically \u2014 a sonata exposition may contain 3\u20134 distinct melodies where Beethoven would develop one",
+    "parameters": {
+      "feature": "Melodic abundance",
+      "note": "Expositions, song cycles, chamber works"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_syllabic_natural_rhythm",
+    "category": "composer_melodic_voice",
+    "description": "Syllabic natural rhythm: Melody rhythm follows speech patterns: short-short-long, anacrusis-to-downbeat, breathing pauses",
+    "parameters": {
+      "feature": "Syllabic natural rhythm",
+      "note": "Songs and instrumental works alike"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_the_descending_phrase",
+    "category": "composer_melodic_voice",
+    "description": "The descending phrase: Many Schubert melodies arch upward and then descend stepwise to rest \u2014 the shape of a sigh or an exhaled sentence",
+    "parameters": {
+      "feature": "The descending phrase",
+      "note": "Slow movements, Lieder, second themes"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_repetition_with_color_change",
+    "category": "composer_melodic_voice",
+    "description": "Repetition with color change: The same melody repeated in a different key, mode, or register \u2014 not varied, but recolored",
+    "parameters": {
+      "feature": "Repetition with color change",
+      "note": "Major-minor flip; third-relation restatements"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "schubert/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

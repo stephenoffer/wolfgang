@@ -7,10 +7,7 @@
       "description": "Every melody could be sung. The line breathes naturally, has an identifiable phrase shape (rise \u2192 peak \u2192 cadential fall), and never asks the instrument to do something a good singer couldn't do. The p",
       "texture_affinities": [],
       "frequency": "per_section",
-      "period": "",
-      "grounding": "hard_corroborated",
-      "evidence_confidence": 0.913,
-      "evidence_tested": 69
+      "period": ""
     },
     {
       "id": "chromatic_inflection_for_emotional_nuance",
@@ -18,10 +15,7 @@
       "description": "A single chromatic note (lowered 6th, raised 4th, Neapolitan chord) colors the emotional temperature of the phrase. Not a modulation \u2014 one note reveals everything.",
       "texture_affinities": [],
       "frequency": "per_section",
-      "period": "",
-      "grounding": "hard_corroborated",
-      "evidence_confidence": 0.9855,
-      "evidence_tested": 69
+      "period": ""
     },
     {
       "id": "transparent_chamber_like_texture",
@@ -29,10 +23,7 @@
       "description": "Each instrument's role is distinct. Mozart thins deliberately, letting single instruments emerge.",
       "texture_affinities": [],
       "frequency": "per_section",
-      "period": "",
-      "grounding": "hard_corroborated",
-      "evidence_confidence": 0.9855,
-      "evidence_tested": 69
+      "period": ""
     },
     {
       "id": "symmetrical_phrase_structure_subverted_at_one_moment",
@@ -48,10 +39,7 @@
       "description": "A sudden shift to parallel minor that passes like a cloud. The return to major feels like relief.",
       "texture_affinities": [],
       "frequency": "per_section",
-      "period": "",
-      "grounding": "hard_corroborated",
-      "evidence_confidence": 0.9855,
-      "evidence_tested": 69
+      "period": ""
     }
   ]
 }

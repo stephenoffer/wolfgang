@@ -10,7 +10,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "devotion_pleading",
@@ -23,7 +23,7 @@
     ],
     "frequency_weight": 0.04,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "joy_triumph",
@@ -35,7 +35,7 @@
     ],
     "frequency_weight": 0.05,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "fury_agitation",
@@ -47,7 +47,7 @@
     ],
     "frequency_weight": 0.07,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "wonder_awe",
@@ -59,7 +59,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "pastoral_peace",
@@ -71,7 +71,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "heroic_resolve",
@@ -84,7 +84,7 @@
     ],
     "frequency_weight": 0.03,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "chromatic_lament",
@@ -96,7 +96,7 @@
     ],
     "frequency_weight": 0.01,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "diatonic_lament",
@@ -109,7 +109,7 @@
     ],
     "frequency_weight": 0.08,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "romanesca",
@@ -121,7 +121,7 @@
     ],
     "frequency_weight": 0.03,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "folia",
@@ -133,7 +133,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "secondary_dominant",
@@ -145,7 +145,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "augmented_6th",
@@ -157,7 +157,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "neapolitan",
@@ -169,7 +169,7 @@
     ],
     "frequency_weight": 0.06,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "cross_relation",
@@ -181,7 +181,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "picardy_3rd",
@@ -193,6 +193,6 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared corelli harmony>"
+    "source_file": "corelli/harmonic-language.md"
   }
 ]

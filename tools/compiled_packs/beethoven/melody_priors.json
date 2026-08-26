@@ -1,5 +1,101 @@
 [
   {
+    "id": "melodic_voice_motivic_cell_primacy",
+    "category": "composer_melodic_voice",
+    "description": "Motivic cell primacy: 2\u20134 note rhythmic-melodic units generate everything",
+    "parameters": {
+      "feature": "Motivic cell primacy",
+      "note": "Constant \u2014 THE Beethoven trait"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_rhythmic_identity_over_pitch",
+    "category": "composer_melodic_voice",
+    "description": "Rhythmic identity over pitch: The rhythm of the motif matters more than its notes",
+    "parameters": {
+      "feature": "Rhythmic identity over pitch",
+      "note": "Very high (Symphony 5: the rhythm IS the theme)"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_development_as_melody",
+    "category": "composer_melodic_voice",
+    "description": "Development as melody: The working-out of a motif across a movement is itself the melodic content",
+    "parameters": {
+      "feature": "Development as melody",
+      "note": "Very high (middle + late)"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_two_theme_types",
+    "category": "composer_melodic_voice",
+    "description": "Two theme types: Assertive rhythmic themes (PT) vs. lyrical singing themes (ST)",
+    "parameters": {
+      "feature": "Two theme types",
+      "note": "Constant \u2014 the contrast drives sonata drama"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_wide_register",
+    "category": "composer_melodic_voice",
+    "description": "Wide register: Melodies span 2+ octaves within a phrase; extreme high and low",
+    "parameters": {
+      "feature": "Wide register",
+      "note": "Moderate (early) \u2192 Very high (late)"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_silence_within_melody",
+    "category": "composer_melodic_voice",
+    "description": "Silence within melody: Rests as structural elements \u2014 the gap IS part of the line",
+    "parameters": {
+      "feature": "Silence within melody",
+      "note": "Moderate (early) \u2192 Very high (late)"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_declamatory_character",
+    "category": "composer_melodic_voice",
+    "description": "Declamatory character: Bold leaps, rhetorical pauses \u2014 the melody speaks",
+    "parameters": {
+      "feature": "Declamatory character",
+      "note": "Present in all periods"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_motivic_saturation",
+    "category": "composer_melodic_voice",
+    "description": "Motivic saturation: The cell appears in melody, bass, inner voices simultaneously",
+    "parameters": {
+      "feature": "Motivic saturation",
+      "note": "High (middle) \u2192 Extreme (late)"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "beethoven/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

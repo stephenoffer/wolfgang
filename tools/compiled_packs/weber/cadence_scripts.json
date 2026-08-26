@@ -13,7 +13,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "cad_chromatic_plagal",
@@ -29,7 +29,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "cad_deceptive_to_bvi",
@@ -45,7 +45,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "cad_evaded",
@@ -61,7 +61,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "cad_half_cadence_on_v_with_app",
@@ -78,7 +78,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "cad_romantic_pac",
@@ -95,6 +95,6 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   }
 ]

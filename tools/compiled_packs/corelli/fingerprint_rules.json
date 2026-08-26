@@ -1,4 +1,45 @@
 {
-  "required_count": 0,
-  "items": []
+  "required_count": 3,
+  "items": [
+    {
+      "id": "sequence_as_the_engine_of_continuation",
+      "name": "Sequence as the engine of continuation",
+      "description": "A one- or two-bar figure is restated a step lower (occasionally a step higher) two or three times, usually over a circle-of-fifths bass. This is how a Corelli phrase gets from its opening to its caden",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "the_suspension_chain",
+      "name": "The suspension chain",
+      "description": "Consecutive 7\u20136 or 4\u20133 suspensions between the two upper parts, each resolution preparing the next dissonance. Often welded onto the sequence above, so harmony and dissonance drive forward together.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "a_walking_bass_that_is_a_real_line",
+      "name": "A walking bass that is a real line",
+      "description": "The bass moves in steady crotchets or quavers with its own contour and its own cadences, not as chord roots. Under the sequences it walks by fifths; under the cadences it steps.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "two_equal_upper_voices_crossing_and_exchanging",
+      "name": "Two equal upper voices crossing and exchanging",
+      "description": "The trio-sonata texture: the violins are peers, trade the leading part, cross freely, and move in parallel thirds and sixths for long stretches. Neither is an accompaniment to the other.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "clear_unhurried_cadential_punctuation",
+      "name": "Clear, unhurried cadential punctuation",
+      "description": "Phrases end in unambiguous perfect or half cadences with a 4\u20133 suspension in the penultimate chord, and the harmonic rhythm broadens as they approach. The form is audible because the cadences are.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

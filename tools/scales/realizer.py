@@ -11,6 +11,7 @@ retrieved gestures and patterns to fill in surface detail.
 
 from __future__ import annotations
 
+from fractions import Fraction
 from typing import Dict, List, Optional, Tuple
 
 from .cadence_bank import CadenceBank
@@ -402,7 +403,10 @@ class Realizer:
             events = []
             # Use the gesture's dur_profile to generate events
             if gesture.dur_profile and tones:
-                beat = 1.0
+                # Exact, because a gesture profile can contain tuplets: a float
+                # cursor advanced by 1/3 drifts, and the drift arrives
+                # downstream as an onset the notation cannot express.
+                beat = Fraction(1)
                 for j, dur_str in enumerate(gesture.dur_profile):
                     if beat > beats_per_bar:
                         break
@@ -411,7 +415,7 @@ class Realizer:
                     events.append(
                         LayerEvent(
                             bar=bar,
-                            beat=beat,
+                            beat=float(beat),
                             pitch=midi_to_pitch(tone, key),
                             duration=dur_str,
                             role=role,

@@ -467,3 +467,20 @@ Worth recording, because the method only works if the misses are counted too.
 
 Each of those took a second look at the actual data to catch, and each would
 have shipped as a confident wrong claim.
+
+## 18. Four armed composers had no written voice at all
+
+Corelli, Monteverdi, Palestrina and Weber all have corpus on disk and all
+compiled to **two generic fingerprints**, so the brief printed "no composer
+fingerprints for 'corelli'" into the section the phrase-composer is explicitly
+told to make the phrase *exhibit*. A phrase composed from that brief has nothing
+to be recognisably anyone's.
+
+Written: `composition-guide.md` for each, five fingerprints apiece — Palestrina's
+leap-recovery and arch-shaped phrase, Monteverdi's *seconda pratica* departures
+from exactly that practice, Corelli's sequence-and-suspension-chain engine and
+walking bass, Weber's operatic line and diminished-seventh hinge. All four now
+compile to five real fingerprints and carry the cadence and harmonic-device
+vocabulary of their period.
+
+A test now fails if any armed composer drops below three.

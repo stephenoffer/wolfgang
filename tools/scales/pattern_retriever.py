@@ -10,9 +10,11 @@ from __future__ import annotations
 
 import json
 import logging
+from fractions import Fraction
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+from .duration import bar_duration
 from .enums import NoteRole
 from .models import LayerEvent
 from .pitch import key_to_root_midi, midi_to_pitch, pitch_to_midi
@@ -160,14 +162,28 @@ class PatternRetriever:
         target_key: str,
         source_key: str = "C",
         dynamic: Optional[str] = None,
+        meter: Tuple[int, int] = (4, 4),
     ) -> List[LayerEvent]:
         """Convert a canonical pattern into LayerEvents for a specific bar.
 
         Transposes to target key and creates one LayerEvent per note.
+
+        The stored library is not clean and cannot be trusted note by note: of
+        its 24,615 patterns, 9,565 event durations are values the notation
+        cannot express — mostly triplets truncated to four decimals (0.3333
+        rather than 1/3, so twelve of them sum to 0.9996 instead of 1) — and
+        **360 events have a duration of zero**. A zero-duration note does not
+        advance the cursor, so everything after it stacks on the same beat.
+
+        So: quantize every duration onto the notatable table BEFORE using it,
+        advance an exact Fraction cursor, drop the zero-length events, and stop
+        at the bar's real capacity (patterns are stored as four beats and were
+        being poured unchanged into 3/4 and 6/8 phrases).
         """
         transposed = self.transpose_pattern(pattern, source_key, target_key)
         events: List[LayerEvent] = []
-        beat = 1.0
+        beat = Fraction(1)
+        capacity = bar_duration(tuple(meter))
 
         texture = pattern.get("lh_texture", "")
         arpeggiated_textures = {
@@ -184,15 +200,23 @@ class PatternRetriever:
 
         for note in transposed.get("lh_events", []):
             pitch = note.get("p", "rest")
-            dur_beats = note.get("d", 0.25)
-            dur_str = _beats_to_dur_str(dur_beats)
+            dur_beats = _quantize(note.get("d", 0.25))
+            if dur_beats <= 0:
+                continue  # a zero-length note is corruption, not a grace note
+            remaining = capacity - (beat - 1)
+            if remaining <= 0:
+                break
+            if dur_beats > remaining:
+                dur_beats = _quantize(remaining)
+                if dur_beats <= 0 or dur_beats > remaining:
+                    break
 
             events.append(
                 LayerEvent(
                     bar=bar,
-                    beat=round(beat, 4),
+                    beat=round(float(beat), 6),
                     pitch=pitch,
-                    duration=dur_str,
+                    duration=_beats_to_dur_str(dur_beats),
                     role=default_role,
                     dynamic=dynamic,
                     source_layer="response_layer",
@@ -203,7 +227,22 @@ class PatternRetriever:
         return events
 
 
-def _beats_to_dur_str(beats: float) -> str:
+def _quantize(beats) -> Fraction:
+    """Snap a stored duration onto the notatable table, exactly.
+
+    The library stores triplets as 0.3333 and 0.1667. Those resolve to the right
+    CODE, but accumulating them as floats drifts the beat cursor off the grid —
+    which is how onsets like 1.56 and 2.06 reached the score.
+    """
+    from .duration import DURATION_VALUES
+
+    target = beats if isinstance(beats, Fraction) else Fraction(beats).limit_denominator(96)
+    if target <= 0:
+        return Fraction(0)
+    return min(set(DURATION_VALUES.values()), key=lambda v: (abs(v - target), v))
+
+
+def _beats_to_dur_str(beats) -> str:
     """Duration code for a beat value — delegates to the one duration table.
 
     This was a local list of eight plain values, so every tuplet and every value

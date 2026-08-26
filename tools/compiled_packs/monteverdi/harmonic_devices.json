@@ -12,7 +12,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "passing_tone",
@@ -24,7 +24,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "neighbor_tone",
@@ -36,7 +36,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "cambiata",
@@ -49,7 +49,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "anticipation",
@@ -61,7 +61,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "escape_tone",
@@ -73,7 +73,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "points_of_imitation",
@@ -85,7 +85,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "paired_imitation",
@@ -97,7 +97,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "homorhythmic_declamation",
@@ -109,7 +109,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "voice_pairing",
@@ -121,7 +121,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "full_texture",
@@ -133,6 +133,6 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared monteverdi harmony>"
+    "source_file": "monteverdi/harmonic-language.md"
   }
 ]

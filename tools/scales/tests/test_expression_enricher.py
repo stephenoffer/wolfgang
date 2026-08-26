@@ -516,3 +516,74 @@ def test_the_closing_lift_lands_in_the_phrases_last_bar():
     assert layer.principal_line[-1].articulation != "staccato", (
         "the closing lift belongs at the end of the phrase, not the end of a voice"
     )
+
+
+# ─── The planner's articulation intent reaches the page ──────────────────────
+#
+# `ArticulationPlan.dominant_articulation` existed on the model with no reader
+# anywhere: a planner could state the phrase's touch and nothing downstream
+# honoured it, so every phrase was engraved with its period's default regardless
+# of what it was planned to be.
+
+
+class _Control:
+    def __init__(self, articulation):
+        from scales.models import ArticulationPlan
+
+        self.articulation_plan = ArticulationPlan(dominant_articulation=articulation)
+
+
+def _oom_pah(bars=4):
+    ir = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=bars)
+    for b in range(1, bars + 1):
+        for i, pitch in enumerate(["C5", "D5", "E5", "F5"]):
+            ir.principal_line.append(_ev(b, 1 + i * 0.5, pitch, "e"))
+        ir.bass_foundation.append(_ev(b, 1.0, "C3", "e"))
+        for i in (2, 3, 4):
+            ir.bass_foundation.append(_ev(b, float(i), ["E3", "G3"], "e"))
+    return ir
+
+
+def test_a_phrase_planned_legato_is_not_given_staccato_dots():
+    """The period default was overruling the plan written to override it."""
+    ir = _oom_pah()
+    enrich_layer_ir(ir, style="mozart", control=_Control("legato"))
+    assert not any(e.articulation == "staccato" for e in ir.principal_line)
+    assert not any(e.articulation == "staccato" for e in ir.bass_foundation)
+
+
+def test_a_phrase_planned_staccato_gets_dots_in_a_legato_period():
+    ir = _oom_pah()
+    enrich_layer_ir(ir, style="chopin", control=_Control("staccato"))
+    assert any(e.articulation == "staccato" for e in ir.principal_line)
+
+
+def test_a_phrase_planned_marcato_is_accented_not_dotted():
+    ir = _oom_pah()
+    enrich_layer_ir(ir, style="mozart", control=_Control("marcato"))
+    assert any(e.articulation == "marcato" for e in ir.principal_line)
+
+
+def test_a_phrase_planned_portato_is_carried():
+    ir = _oom_pah()
+    enrich_layer_ir(ir, style="mozart", control=_Control("portato"))
+    assert any(e.articulation == "tenuto" for e in ir.principal_line)
+
+
+def test_no_plan_leaves_the_period_default_in_charge():
+    ir = _oom_pah()
+    enrich_layer_ir(ir, style="mozart")
+    assert any(e.articulation == "staccato" for e in ir.bass_foundation)
+
+
+def test_an_unrecognised_touch_falls_back_to_the_period():
+    ir = _oom_pah()
+    enrich_layer_ir(ir, style="mozart", control=_Control("misterioso"))
+    assert any(e.articulation == "staccato" for e in ir.bass_foundation)
+
+
+def test_a_planned_touch_still_never_overwrites_the_composer():
+    ir = _oom_pah()
+    ir.principal_line[0].articulation = "accent"
+    enrich_layer_ir(ir, style="mozart", control=_Control("legato"))
+    assert ir.principal_line[0].articulation == "accent"

@@ -146,7 +146,7 @@ def test_engine_surfaces_are_repaired_before_they_are_committed():
     overlap at commit for months. A probe of one three-phrase section found 65
     meter errors going silently to the score."""
     from scales.models import LayerEvent, LayerIR
-    from scales.scales import _repair_engine_surface
+    from scales.scales import _POSITION_GRID, _repair_engine_surface
     from scales.validator import validate_meter
 
     layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
@@ -173,7 +173,7 @@ def test_engine_surfaces_are_repaired_before_they_are_committed():
         # Every surviving onset sits on the notatable grid (compared at the
         # precision the IR stores, since beats are JSON floats).
         offset = Fraction(e.beat).limit_denominator(10**6) - 1
-        assert (offset * 48).denominator == 1, f"beat {e.beat} is off the grid"
+        assert (offset * _POSITION_GRID).denominator == 1, f"beat {e.beat} is off the grid"
         assert e.beat >= 1.0, "a beat below 1 is not a position in any bar"
         assert e.beat < 5.0, "a surviving note starts outside its own bar"
 
@@ -202,3 +202,67 @@ def test_repair_keeps_triplets_and_32nds_on_the_grid():
     beats = [e.beat for e in layer.principal_line]
     _repair_engine_surface(layer, (4, 4))
     assert [e.beat for e in layer.principal_line] == beats, "a legal rhythm was altered"
+
+
+def test_the_repair_grid_can_express_every_notatable_duration():
+    """The one-line invariant that would have caught a grid of 48.
+
+    48 covers triplets, sextuplets, 32nds and 64ths — and silently rounds every
+    quintuplet and septuplet, because 5 and 7 do not divide it. That is the same
+    failure as the 16th-note grid that once destroyed every triplet in this
+    system, so it is asserted rather than trusted.
+    """
+    from scales.duration import DURATION_VALUES
+    from scales.scales import _POSITION_GRID
+
+    step = Fraction(1, _POSITION_GRID)
+    off_grid = {code: v for code, v in DURATION_VALUES.items() if v % step != 0}
+    assert not off_grid, f"these durations cannot land on the repair grid: {off_grid}"
+
+
+@pytest.mark.parametrize("code", ["quint_s", "quint_e", "sept_s", "trip_s", "sext_s", "x"])
+def test_repair_does_not_move_a_legal_tuplet(code):
+    """A repair that corrupts a legal rhythm is worse than the drift it fixes."""
+    from scales.duration import DURATION_VALUES
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    value = DURATION_VALUES[code]
+    count = int(Fraction(1) / value) if value <= 1 else 2
+    layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
+    beat = Fraction(1)
+    for _ in range(count):
+        layer.principal_line.append(
+            LayerEvent(bar=1, beat=round(float(beat), 6), pitch="C5", duration=code)
+        )
+        beat += value
+    before = [e.beat for e in layer.principal_line]
+    _repair_engine_surface(layer, (4, 4))
+    assert [e.beat for e in layer.principal_line] == before, f"{code} run was moved"
+
+
+def test_every_subdivision_divides_the_repair_grid():
+    """A subdivision that does not divide the grid produces a position no
+    engraver can bracket."""
+    from scales.scales import _POSITION_GRID, _SUBDIVISIONS
+
+    assert all(_POSITION_GRID % d == 0 for d in _SUBDIVISIONS)
+    assert list(_SUBDIVISIONS) == sorted(_SUBDIVISIONS), (
+        "coarsest first: a 48th is within tolerance of a septuplet and would "
+        "swallow it if the fine binary grids came first"
+    )
+
+
+@pytest.mark.parametrize(
+    "drifted,expected",
+    [(1.56, 1.5625), (2.06, 2.0625), (1.3333, 4 / 3), (1.1667, 7 / 6), (0.06, 1.0)],
+)
+def test_repair_recovers_a_smeared_onset(drifted, expected):
+    """The positions a float cursor rounded to two decimals actually produced."""
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
+    layer.principal_line = [LayerEvent(bar=1, beat=drifted, pitch="C5", duration="t")]
+    _repair_engine_surface(layer, (4, 4))
+    assert layer.principal_line[0].beat == pytest.approx(expected, abs=1e-4)

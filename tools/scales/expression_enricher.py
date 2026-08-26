@@ -642,7 +642,8 @@ def add_melodic_articulation(layer_ir, style: EngravingStyle, report: Enrichment
             # a staccato dot in the middle of a held line, for no reason a
             # player could see.
             if (
-                i == len(events) - 1
+                style.melody_detached
+                and i == len(events) - 1
                 and dur <= Fraction(1, 2)
                 and bpb >= 2
                 and int(getattr(ev, "bar", 1)) >= last_bar

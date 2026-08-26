@@ -11,7 +11,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "augmented_6th_chords",
@@ -23,7 +23,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "neapolitan_chord_bii",
@@ -36,7 +36,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "extended_dominant_chains",
@@ -48,7 +48,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "deceptive_cadences_to_bvi",
@@ -60,7 +60,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "enharmonic_modulation",
@@ -72,7 +72,7 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   },
   {
     "id": "omnibus_progression",
@@ -84,6 +84,6 @@
     ],
     "frequency_weight": 0.3,
     "emotional_color": "",
-    "source_file": "<shared weber harmony>"
+    "source_file": "weber/harmonic-language.md"
   }
 ]

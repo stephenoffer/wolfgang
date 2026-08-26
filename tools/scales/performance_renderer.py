@@ -65,6 +65,7 @@ def build_performance_ir(
     neighbor_slots: Optional[Tuple] = None,
     breath_points: Optional[Sequence[Tuple[int, float]]] = None,
     control=None,
+    style_program=None,
 ) -> PerformanceIR:
     """Derive a PerformanceIR for one phrase from its notes, slot, and the
     period's performance profile.
@@ -166,10 +167,20 @@ def build_performance_ir(
             t_norm = 0.5
         # high tension → push (faster); low → relax (slower)
         arc.append(1.0 + depth * (2.0 * t_norm - 1.0))
+    # A rubato context the PLAN named wins over the period's generic broadening:
+    # a style that says it broadens at cadences and pushes through climaxes had
+    # no way to say so, and `rubato_contexts` was read by nothing.
+    intent = _intent_of(control, style_program)
+    context_depth = rubato_depth_for_context(intent, phrase_type, is_cadential)
+
     if is_cadential or phrase_type == "cadence_approach":
         # broaden the final bar (ritardando into the cadence), on top of the arc
         if arc:
-            arc[-1] = min(arc[-1], 1.0) * 0.90
+            arc[-1] = min(arc[-1], 1.0) * (context_depth if context_depth != 1.0 else 0.90)
+    elif context_depth != 1.0 and arc:
+        # A named context that is not a cadence — a climax to push through, a
+        # transition to ease — shapes the whole phrase rather than its last bar.
+        arc = [f * context_depth for f in arc]
 
     # ── A PLANNED accelerando or ritardando ──────────────────────────────────
     #
@@ -220,7 +231,12 @@ def build_performance_ir(
     )
     breath_bars = {b for (b, _bt) in (breath_points or [])}
     harmony_plan = list(getattr(slot, "harmony_plan", []) or []) if slot else []
+    # A pedal rule the plan states overrides the period default. "none" means
+    # the plan asked for a dry texture and no pedal is written at all.
+    planned_pedal = pedal_style_from_intent(intent)
     pedal_lead_beats = (profile.pedal_lead_ms / 1000.0) * 2.0  # ms→~beats at moderate tempo
+    if planned_pedal == "none":
+        lh_bars = []
     if harmony_plan and lh_bars:
         i = 0
         while i < len(harmony_plan):
@@ -250,6 +266,9 @@ def build_performance_ir(
     #    applied per-event in the MIDI stage; this keeps the bar-level hook). ──
     for bar in range(first_bar, last_bar + 1):
         perf.voicing_emphasis.append(VoicingEmphasis(bar=bar, beat=1.0, voice="melody", boost=0.12))
+    # ...unless the plan names which voices to bring out. A plan saying the bass
+    # carries the line, or that an inner voice should sing, had no way to say so.
+    apply_voicing_priorities(perf, intent, first_bar, last_bar)
 
     # ── Microtiming: agogic lean into slurred entries; a pre-onset stretch at
     #    breath points (a performer takes a breath before resuming). ──
@@ -470,6 +489,118 @@ def agogic_stretch(event, meter: Tuple[int, int], profile: StylePerfProfile) -> 
     if getattr(event, "role", "") in ("appoggiatura", "suspension"):
         stretch += 0.025
     return stretch
+
+
+# ─── The planner's performance intent ────────────────────────────────────────
+#
+# `PerformanceIntentProfile` carries `rubato_contexts`, `pedal_rules` and
+# `voicing_priorities` — which map exactly onto the three things this module
+# produces — and **none of the three was read anywhere**. A style could state
+# that it rubatos at cadences, pedals by harmony, and voices the top line, and
+# every one of those directives was discarded. Along with
+# `PhraseControlIR.performance_intent`, that is four declared fields that shaped
+# nothing.
+
+_RUBATO_CONTEXT_DEPTH = {
+    "cadence": 0.9,       # broaden into a close
+    "cadential": 0.9,
+    "phrase_end": 0.93,
+    "climax": 1.05,       # push through a peak
+    "peak": 1.05,
+    "apex": 1.05,
+    "transition": 0.97,
+    "recitative": 0.85,   # speak, do not march
+    "none": 1.0,
+    "strict": 1.0,
+}
+
+_PEDAL_RULE_ALIASES = {
+    "harmonic": "harmonic",
+    "by_harmony": "harmonic",
+    "per_chord": "harmonic",
+    "long": "long",
+    "legato": "long",
+    "sparing": "sparing",
+    "light": "sparing",
+    "dry": "none",
+    "none": "none",
+    "senza": "none",
+}
+
+
+def _intent_of(control, style_program=None):
+    """The PerformanceIntentProfile in force, from whichever carrier has one."""
+    intent = getattr(control, "performance_intent", None) if control is not None else None
+    if intent:
+        return intent
+    if style_program is not None:
+        return getattr(style_program, "performance_intents", None)
+    return None
+
+
+def _intent_field(intent, name):
+    if intent is None:
+        return []
+    if isinstance(intent, dict):
+        return intent.get(name) or []
+    return getattr(intent, name, None) or []
+
+
+def pedal_style_from_intent(intent) -> Optional[str]:
+    """The pedal policy the plan asked for, or None to use the period default."""
+    for rule in _intent_field(intent, "pedal_rules"):
+        value = rule.get("style") or rule.get("rule") or rule.get("policy") if isinstance(
+            rule, dict
+        ) else rule
+        key = str(value or "").strip().lower()
+        if key in _PEDAL_RULE_ALIASES:
+            return _PEDAL_RULE_ALIASES[key]
+    return None
+
+
+def apply_voicing_priorities(perf: PerformanceIR, intent, first_bar: int, last_bar: int) -> int:
+    """Emphasise the voices the plan names, instead of always the melody.
+
+    The default is a flat +0.12 on "melody" in every bar. A plan that says the
+    bass carries the line, or that an inner voice should be brought out, had no
+    way to say so. Returns how many emphases were added.
+    """
+    priorities = [str(v).strip().lower() for v in _intent_field(intent, "voicing_priorities")]
+    if not priorities:
+        return 0
+    perf.voicing_emphasis = [
+        v for v in perf.voicing_emphasis if v.voice not in {p for p in priorities}
+    ]
+    added = 0
+    # The first-named voice is the one brought out; later ones get less.
+    for rank, voice in enumerate(priorities[:3]):
+        boost = 0.14 - rank * 0.05
+        if boost <= 0:
+            break
+        for bar in range(first_bar, last_bar + 1):
+            perf.voicing_emphasis.append(
+                VoicingEmphasis(bar=bar, beat=1.0, voice=voice, boost=round(boost, 3))
+            )
+            added += 1
+    return added
+
+
+def rubato_depth_for_context(intent, phrase_type: Optional[str], is_cadential: bool) -> float:
+    """Tempo multiplier the plan's rubato contexts ask for at this phrase.
+
+    1.0 means "no opinion" — the period's own arc is left in charge.
+    """
+    contexts = [str(c).strip().lower() for c in _intent_field(intent, "rubato_contexts")]
+    if not contexts:
+        return 1.0
+    here = {str(phrase_type or "").lower()}
+    if is_cadential:
+        here |= {"cadence", "cadential", "phrase_end"}
+    for context in contexts:
+        if context in here and context in _RUBATO_CONTEXT_DEPTH:
+            return _RUBATO_CONTEXT_DEPTH[context]
+    # A context the plan names but that does not apply here is not an error.
+    return 1.0
 
 
 def velocity_at(

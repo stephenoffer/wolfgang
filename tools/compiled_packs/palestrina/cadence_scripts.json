@@ -10,7 +10,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_authentic_perfect",
@@ -23,7 +23,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_phrygian",
@@ -36,7 +36,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_plagal",
@@ -49,7 +49,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_evaded",
@@ -62,7 +62,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_landini",
@@ -75,7 +75,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_double_leading_tone",
@@ -88,7 +88,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_dorian",
@@ -101,7 +101,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_phrygian",
@@ -114,7 +114,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_lydian",
@@ -127,7 +127,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_mixolydian",
@@ -140,7 +140,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_aeolian",
@@ -153,7 +153,7 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   },
   {
     "id": "cad_ionian",
@@ -166,6 +166,6 @@
     "strength": 3,
     "typical_texture": "",
     "preparation_bars": 2,
-    "source_file": "<shared palestrina harmony>"
+    "source_file": "palestrina/harmonic-language.md"
   }
 ]

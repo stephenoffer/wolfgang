@@ -386,6 +386,42 @@ reviewer can tell a deliberate extreme from an accidental one.
 
 ---
 
+## 4f. The engine emitted onsets that no bar has
+
+The fallback generator was shipping bars holding 4.875 beats of a 4/4, and
+onsets at 1.56, 2.06 and 0.06 — the last of which is below beat 1 and not a
+position in any bar. Three faults, all silent, all on the generating side:
+
+**A float cursor rounded to two decimals.** `surface_composer` advanced a float
+beat cursor by durations and emitted `round(beat_cursor, 2)`, so a legitimate
+64th-note offset of 1.5625 arrived as `1.56` — which is 39/25, and 25 is not a
+denominator any notation has. `realizer` had the same cursor over a gesture's
+duration profile, which can contain tuplets.
+
+**The cursor advanced before the note was emitted.** Every gesture in
+`surface_composer` started one note-value late and its last note ran past the end
+of its slot: a four-note figure beginning on beat 1 was written beginning on beat
+1.5. This one had not been diagnosed anywhere.
+
+Both are now exact `Fraction` arithmetic, emitted as float only at the boundary.
+A run of three triplet sixteenths followed by two sixteenths now starts on beat 1
+and ends on beat 2 exactly, where the old arithmetic started it at 1.17.
+
+**And the repair pass had the same bug one tuplet family further out.** Writing
+the regression test surfaced it: the downstream snap used a **1/48 grid**, which
+expresses triplets, sextuplets, 32nds and 64ths — and silently destroys
+quintuplets (1/5) and septuplets (1/7), because 5 and 7 do not divide 48. A
+five-note quintuplet snapped to it drifts up to 0.0083 of a beat per note and no
+longer sums to its own beat. That is precisely the 16th-note quantization that
+once destroyed every triplet in this system, moved out one family.
+
+The denominators actually present in `DURATION_VALUES` are 1,2,3,4,5,6,7,8,12,16
+and their least common multiple is **1680**. `test_generator_onsets.py` asserts
+that every value in the table is an exact `Fraction` and lands on that grid — one
+line that makes the class of bug unrepeatable.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and
@@ -484,3 +520,4 @@ Run with `pytest -m calibration` (~2 minutes):
 | `test_corpus_musicality_bands.py` | a score band real music sits outside, or a ceiling it cannot reach |
 | `test_corpus_craft_checks.py` | a craft check canonical music fails — and, in the same file, a check so loose it passes a one-note phrase |
 | `test_corpus_voicing.py` | a texture floor drifting inside the repertoire, and real music being told its hands cannot reach |
+| `test_generator_onsets.py` | a generated onset that no bar has, and a quantization grid that cannot express a duration the system supports |

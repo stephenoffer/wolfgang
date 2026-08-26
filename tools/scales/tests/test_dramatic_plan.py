@@ -151,3 +151,53 @@ def test_section_rhetoric_differs_by_role():
     goals_d, techs_d = DP.section_rhetoric([DP.CRISIS])
     assert goals_a and goals_d and goals_a != goals_d
     assert techs_a != techs_d
+
+
+# ─── Harmony follows the role ───────────────────────────────────────────────
+
+
+def test_a_statement_is_planned_diatonically():
+    """The B-flat major opening was planned as `I - iv - viio - V` while the same
+    brief told the composer "clear periodic phrasing, diatonic harmony". A
+    statement that opens on the borrowed minor subdominant does not read as a
+    statement, and the sampler had no idea what the phrase was for."""
+    from scales.progression_model import _is_chromatic, corpus_harmony_plan
+
+    for seed in range(1, 12):
+        plan = corpus_harmony_plan("mozart", "", "PAC", 6, "Bb major", seed=seed, role="establish")
+        borrowed = [r for r in plan if _is_chromatic(r, "major")]
+        assert not borrowed, f"seed {seed}: statement planned with {borrowed} in {plan}"
+
+
+def test_mode_mixture_counts_as_chromatic_in_a_major_key():
+    """`iv` and `bVI` carry no accidental in their own symbol, so a test for
+    "b"/"#" called the borrowed minor subdominant diatonic."""
+    from scales.progression_model import _is_chromatic
+
+    assert _is_chromatic("iv", "major")
+    assert _is_chromatic("VI", "major")
+    assert not _is_chromatic("IV", "major")
+    assert not _is_chromatic("vi", "major")
+    # In minor the raised leading-tone dominant is normal practice, not colour.
+    assert not _is_chromatic("V", "minor")
+    assert not _is_chromatic("iv", "minor")
+
+
+def test_an_unstable_role_may_still_reach_for_colour():
+    """The fix must not flatten the whole piece into the diatonic scale — a
+    crisis is exactly where mixture belongs."""
+    from scales.progression_model import _ROLE_ALLOWS_CHROMATIC
+
+    assert _ROLE_ALLOWS_CHROMATIC.get("crisis") is True
+    assert _ROLE_ALLOWS_CHROMATIC.get("establish") is False
+
+
+def test_planner_hands_the_role_to_the_harmony_sampler():
+    """role_for() must agree with the role the plan actually assigns, or the
+    harmony is sampled for a phrase that turns out to be doing something else."""
+    slots = _build_ternary("F major", 90, (4, 4), StyleDNA())
+    DP.build(slots)
+    counters = {}
+    for s in slots:
+        counters[s.section_id] = counters.get(s.section_id, 0) + 1
+        assert s.dramatic_role == DP.role_for(s.section_id, counters[s.section_id] - 1)

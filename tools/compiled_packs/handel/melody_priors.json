@@ -1,5 +1,125 @@
 [
   {
+    "id": "melodic_voice_vocal_orientation",
+    "category": "composer_melodic_voice",
+    "description": "Vocal orientation: Every melody sings naturally, even in instrumental works",
+    "parameters": {
+      "feature": "Vocal orientation",
+      "note": "Write it as if a voice will perform it \u2014 test by humming"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_immediate_memorability",
+    "category": "composer_melodic_voice",
+    "description": "Immediate memorability: Theme states itself completely in 4 bars",
+    "parameters": {
+      "feature": "Immediate memorability",
+      "note": "If a listener cannot recall the theme after one hearing, it is not Handelian"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_broad_arching_phrases",
+    "category": "composer_melodic_voice",
+    "description": "Broad arching phrases: Long lines (4-8 bars) with clear peak and cadence",
+    "parameters": {
+      "feature": "Broad arching phrases",
+      "note": "The phrase has a shape: rise, crest, descend, land"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_diatonic_emphasis",
+    "category": "composer_melodic_voice",
+    "description": "Diatonic emphasis: Mostly stepwise with strategic leaps",
+    "parameters": {
+      "feature": "Diatonic emphasis",
+      "note": "The leaps are events, not texture; steps are the connective tissue"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_triadic_motion",
+    "category": "composer_melodic_voice",
+    "description": "Triadic motion: Frequent chord-outlining (arpeggiated) figures",
+    "parameters": {
+      "feature": "Triadic motion",
+      "note": "The melody implies its own harmony \u2014 no ambiguity"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_syllabic_clarity",
+    "category": "composer_melodic_voice",
+    "description": "Syllabic clarity: Designed around text rhythm, even in instrumental works",
+    "parameters": {
+      "feature": "Syllabic clarity",
+      "note": "One note per syllable for declamation; melisma reserved for key words"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_repeated_notes",
+    "category": "composer_melodic_voice",
+    "description": "Repeated notes: Declamatory effect for emphasis",
+    "parameters": {
+      "feature": "Repeated notes",
+      "note": "Repetition is rhetoric: \"Hallelujah, Hallelujah, Hallelujah\""
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_sequence_as_extension",
+    "category": "composer_melodic_voice",
+    "description": "Sequence as extension: Sequences lengthen phrases without losing identity",
+    "parameters": {
+      "feature": "Sequence as extension",
+      "note": "The melody moves forward by repeating its shape at new pitch levels"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_ornamental_da_capo",
+    "category": "composer_melodic_voice",
+    "description": "Ornamental da capo: A section return expected to be elaborated",
+    "parameters": {
+      "feature": "Ornamental da capo",
+      "note": "The bones are the same; the flesh is richer"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
+    "id": "melodic_voice_text_painting",
+    "category": "composer_melodic_voice",
+    "description": "Text painting: Melodic shape mirrors word meaning",
+    "parameters": {
+      "feature": "Text painting",
+      "note": "\"Rise\" ascends, \"fall\" descends, \"run\" melismatizes \u2014 the melody IS the text"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "handel/melodic-style.md"
+  },
+  {
     "id": "phrase_structure_cell",
     "category": "phrase_structure",
     "description": "Cell: Smallest recognizable unit",

@@ -1,4 +1,45 @@
 {
-  "required_count": 0,
-  "items": []
+  "required_count": 3,
+  "items": [
+    {
+      "id": "operatic_melody_in_instrumental_clothing",
+      "name": "Operatic melody in instrumental clothing",
+      "description": "Themes are singers' lines: an arching phrase with a clear breath point, an appoggiatura leaning into the strong beat, and a cadential turn. Even a piano theme is written as though someone has to breat",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "the_diminished_seventh_as_a_dramatic_hinge",
+      "name": "The diminished seventh as a dramatic hinge",
+      "description": "Weber reaches for a fully-diminished seventh at moments of alarm or transition, often approached by a sudden dynamic drop and resolved into a remote key. It is the sound of the supernatural in *Der Fr",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "brilliant_wide_spanning_keyboard_figuration",
+      "name": "Brilliant, wide-spanning keyboard figuration",
+      "description": "Broken chords spanning a tenth or more, rapid scale flourishes, and leaps that assume a large hand. Weber's own reach was exceptional and the writing shows it; the texture is more spread out than Beet",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "abrupt_dynamic_and_registral_contrast",
+      "name": "Abrupt dynamic and registral contrast",
+      "description": "A phrase stated forte in the bass answered piano two octaves up, or a sudden subito piano at a structural arrival. The contrasts are theatrical and placed at joins, not smoothed over.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "horn_call_and_folk_dance_topics",
+      "name": "Horn-call and folk-dance topics",
+      "description": "Open fifths and thirds in a horn-fifth pattern for the outdoors, and lilting compound-metre or waltz rhythms for the vernacular. These are quotations of a sound-world, and they arrive marked.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }
