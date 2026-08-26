@@ -58,10 +58,18 @@ def test_a_thin_corpus_is_not_presented_as_a_fact_about_the_composer():
     assert "FACTS ABOUT HIM" not in text
 
 
-def test_a_broad_corpus_is_stated_plainly():
-    text = " ".join(render_rhythmic_fingerprint("mozart"))
-    assert "FACTS ABOUT HIM" in text
-    assert "THIS IS THE SAMPLE" not in text
+def test_a_narrow_corpus_never_gets_the_unqualified_wording():
+    """The heading must track `corpus_scope().narrow`, not a hardcoded list of
+    composers — a first version asserted Mozart earned the plain "FACTS ABOUT
+    HIM" wording, and broadening two corpora then falsified it for others."""
+    from scales.composition_brief import available_corpus_composers, corpus_scope
+
+    for c in available_corpus_composers():
+        if not corpus_scope(c).get("narrow"):
+            continue
+        text = " ".join(render_rhythmic_fingerprint(c))
+        assert "THIS IS THE SAMPLE, NOT THE COMPOSER" in text, c
+        assert "FACTS ABOUT HIM" not in text, c
 
 
 def test_the_fingerprint_reaches_the_brief():

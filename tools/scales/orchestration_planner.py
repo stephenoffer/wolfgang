@@ -226,7 +226,7 @@ def _transpose_diatonic(pitch, semitones: int, lo: int, hi: int, key: str):
         scale = build_scale(
             (root or 60) % 12 + 60, "minor" if is_minor_key(key or "C") else "major", octaves=8
         )
-    except Exception:  # pragma: no cover - defensive
+    except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
         scale = []
 
     def one(p):

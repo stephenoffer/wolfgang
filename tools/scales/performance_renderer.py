@@ -328,7 +328,7 @@ def metric_weight(beat: float, meter: Tuple[int, int] = (4, 4)) -> float:
     """
     try:
         key = (int(meter[0]), int(meter[1]))
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
         key = (4, 4)
     table = _METER_WEIGHTS.get(key)
     if table is None:
@@ -396,7 +396,7 @@ def phrase_arch_points(
         return []  # a flat line has no arch to follow, and faking one is worse
 
     points: List[DynamicPoint] = []
-    for e, top in zip(keep, tops):
+    for e, top in zip(keep, tops, strict=False):
         frac = (top - lo) / (hi - lo)  # 0 at the phrase's floor, 1 at its peak
         # Centred so the middle of the range is neutral: the arch lifts the
         # peak and eases the trough rather than making everything louder.
@@ -479,7 +479,7 @@ def agogic_stretch(event, meter: Tuple[int, int], profile: StylePerfProfile) -> 
 
     try:
         dur = float(dur_to_beats(getattr(event, "duration", "q")))
-    except Exception:  # pragma: no cover - defensive
+    except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
         return 0.0
     stretch = 0.0
     if dur >= 1.0 and is_strong_beat(getattr(event, "beat", 1.0), meter):

@@ -827,6 +827,70 @@ def render_corpus_scope(composer: str) -> List[str]:
         f"genre you are composing, trust what you know of the genre.",
     ]
 
+
+def corpus_fidelity(composer: str) -> Dict[str, Any]:
+    """Whether the corpus can be trusted on FINE detail — ornaments and fast notes.
+
+    Genre narrowness is one way a statistic misleads; source fidelity is another,
+    and fixing the first can hide the second. Broadening Chopin from mazurkas to
+    ballades, nocturnes and etudes dropped `corpus_scope().narrow` to False and
+    with it the warning — while his measured share of notes faster than a
+    sixteenth FELL to 0.1%, because the added works came from MIDI, which carries
+    no ornament marks and quantises filigree to sixteenths. The corpus got
+    broader and the fine-rhythm number got worse.
+
+    Measured, not declared: a source that records no ornament anywhere and
+    nothing shorter than a sixteenth is a MIDI transcription however it is named.
+    """
+    per: Dict[str, Dict[str, int]] = {}
+    for bar in _iter_corpus_bars(composer):
+        src = str(bar.get("source") or "")
+        e = per.setdefault(src, {"orn": 0, "fast": 0, "notes": 0})
+        for rec in bar.get("rh_display") or []:
+            if isinstance(rec, dict) and (rec.get("orn") or rec.get("is_grace")):
+                e["orn"] += 1
+        for note in bar.get("melody_line") or []:
+            if note.get("type") == "rest":
+                continue
+            try:
+                q = float(note.get("dur") or 0)
+            except (TypeError, ValueError):
+                continue
+            if q <= 0:
+                continue
+            e["notes"] += 1
+            if q <= 0.125:
+                e["fast"] += 1
+
+    coarse_bars = total_bars = 0
+    for src, e in per.items():
+        if e["notes"] < 40:
+            continue
+        total_bars += e["notes"]
+        if e["orn"] == 0 and e["fast"] / e["notes"] < 0.005:
+            coarse_bars += e["notes"]
+    share = (coarse_bars / total_bars) if total_bars else 0.0
+    return {
+        "composer": composer,
+        "coarse_share": round(share, 4),
+        "low_fidelity": bool(share >= 0.30),
+    }
+
+
+def render_corpus_fidelity(composer: str) -> List[str]:
+    fi = corpus_fidelity(composer)
+    if not fi.get("low_fidelity"):
+        return []
+    return [
+        f"FIDELITY WARNING — {fi['coarse_share']:.0%} of the {composer} corpus is "
+        f"sources carrying NO ornament mark and nothing shorter than a sixteenth. "
+        f"That can mean the source could not record them (MIDI transcription) or "
+        f"that the genre does not use them (chorales); either way any ornament "
+        f"rate or fast-note figure below UNDERSTATES what he writes elsewhere. A "
+        f"low number there is evidence about the source, not about his hand. "
+        f"Write the filigree the music wants.",
+    ]
+
 _ORNAMENT_SCHEMA = 1
 
 
@@ -3787,6 +3851,13 @@ def render_text(brief: CompositionBrief) -> str:
         scope_lines = []
     if scope_lines:
         lines.extend(scope_lines)
+        lines.append("")
+    try:
+        fid_lines = render_corpus_fidelity(brief.composer)
+    except Exception:
+        fid_lines = []
+    if fid_lines:
+        lines.extend(fid_lines)
         lines.append("")
     try:
         fp_lines = render_rhythmic_fingerprint(brief.composer)

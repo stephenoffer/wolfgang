@@ -14,6 +14,7 @@ Every phrase must pass before acceptance:
 
 from __future__ import annotations
 
+from itertools import pairwise
 from typing import List, Optional
 
 from .models import (
@@ -206,7 +207,7 @@ class CraftChecker:
         if len(melody) >= 3:
             midis = [m for m in (self._top_midi(e) for e in melody) if m is not None]
             # An expressive leap: a sixth or wider is a gesture, not a step.
-            if any(abs(b - a) >= 9 for a, b in zip(midis, midis[1:])):
+            if any(abs(b - a) >= 9 for a, b in pairwise(midis)):
                 return True
             durs = [float(dur_to_beats(e.duration)) for e in melody]
             if durs:

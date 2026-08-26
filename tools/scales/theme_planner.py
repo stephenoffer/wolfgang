@@ -10,6 +10,7 @@ MotifTransform algebra so the normal realization path then materializes them.
 
 from __future__ import annotations
 
+from itertools import pairwise
 from typing import Dict, List, Optional
 
 from .models import MotifObject, MotifTransform, MotifTransformOp
@@ -175,7 +176,7 @@ def _theme_span_beats(theme) -> float:
     meter = tuple(getattr(theme, "meter", (4, 4)) or (4, 4))
     try:
         bpb = float(int(meter[0]) * 4 / int(meter[1]))
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
         bpb = 4.0
     bars = {int(getattr(e, "bar", 1)) for e in evs}
     span = len(bars) * bpb
@@ -183,7 +184,7 @@ def _theme_span_beats(theme) -> float:
     for e in evs:
         try:
             written += float(dur_to_beats(getattr(e, "duration", "q")))
-        except Exception:  # pragma: no cover - defensive
+        except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
             continue
     return max(span, written)
 
@@ -195,10 +196,14 @@ def _fit_to_span(mids, durs, span_beats: float):
     if span_beats <= 0:
         return mids, durs
     out_m, out_d, total = [], [], 0.0
-    for m, d in zip(mids, durs):
+    # STRICT: `mids` and `durs` are the same theme, split into two lists and
+    # transformed in parallel. If a transform ever trims one and not the
+    # other, zip's default would silently shorten the theme instead of
+    # failing — a whole phrase quietly missing from a developed theme.
+    for m, d in zip(mids, durs, strict=True):
         try:
             b = float(dur_to_beats(d))
-        except Exception:  # pragma: no cover - defensive
+        except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
             b = 1.0
         if total + b > span_beats + 1e-6:
             break
@@ -250,7 +255,7 @@ def develop_theme_surface(theme, op: str, transpose_semitones: int = 0) -> str:
     # reading of the agent's own principal theme every time it was developed.
     key = getattr(theme, "key", None) or "C"
     return " ".join(
-        f"{midi_to_pitch(m, key)}{d}" for m, d in zip(mids, durs)
+        f"{midi_to_pitch(m, key)}{d}" for m, d in zip(mids, durs, strict=True)
     )
 
 
@@ -301,10 +306,10 @@ def analyze_theme(theme) -> Dict[str, object]:
     for e in evs:
         try:
             durs.append(float(dur_to_beats(getattr(e, "duration", "q"))))
-        except Exception:  # pragma: no cover - defensive
+        except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
             durs.append(1.0)
 
-    intervals = [b - a for a, b in zip(mids, mids[1:])]
+    intervals = [b - a for a, b in pairwise(mids)]
     steps = sum(1 for i in intervals if 0 < abs(i) <= 2)
     leaps = sum(1 for i in intervals if abs(i) > 2)
     repeats = sum(1 for i in intervals if i == 0)
@@ -319,12 +324,12 @@ def analyze_theme(theme) -> Dict[str, object]:
     # A theme whose every interval points the same way is a scale or an
     # arpeggio, not a shape.
     dirs = [(1 if i > 0 else -1) for i in intervals if i != 0]
-    changes = sum(1 for a, b in zip(dirs, dirs[1:]) if a != b)
+    changes = sum(1 for a, b in pairwise(dirs) if a != b)
     out["direction_changes"] = changes
 
     # Longest run of consecutive same-direction steps: 5+ is a scale passage.
     run = best = 1
-    for a, b in zip(dirs, dirs[1:]):
+    for a, b in pairwise(dirs):
         run = run + 1 if a == b else 1
         best = max(best, run)
     out["longest_scalar_run"] = best
@@ -509,10 +514,10 @@ def theme_recurrence(
         bars = [
             (e.get("bar") if isinstance(e, dict) else getattr(e, "bar", 1)) for e in line
         ]
-        contour = [b - a for a, b in zip(mids, mids[1:])]
+        contour = [b - a for a, b in pairwise(mids)]
         for i in range(len(contour) - len(target) + 1):
             window = contour[i : i + len(target)]
-            if all(abs(a - b) <= tolerance for a, b in zip(window, target)):
+            if all(abs(a - b) <= tolerance for a, b in zip(window, target, strict=False)):
                 hits.append(
                     {
                         "phrase_id": phrase_id,
@@ -566,4 +571,4 @@ def _midis_of(source) -> List[int]:
 def _contour_of(source) -> List[int]:
     """Interval contour of a melody, given in any of the accepted forms."""
     mids = _midis_of(source)
-    return [b - a for a, b in zip(mids, mids[1:])]
+    return [b - a for a, b in pairwise(mids)]

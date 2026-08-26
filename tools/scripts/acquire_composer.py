@@ -280,21 +280,76 @@ def _extract_bars(
     return bars, ok, bad
 
 
-def _arm_from_bars(composer: str, bars: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """Write bar_index and run the derived-index + profile + density builders."""
+def _existing_bars(composer: str):
+    """Bars already on disk for this composer, in whatever format holds them."""
+    from scales.composition_brief import _iter_corpus_bars
+
+    try:
+        yield from _iter_corpus_bars(composer)
+    except Exception:
+        return
+
+
+def _arm_from_bars(
+    composer: str, bars: List[Dict[str, Any]], augment: bool = False
+) -> Dict[str, Any]:
+    """Write the bar shards and run the derived-index + profile + density builders."""
     from scales.composition_brief import texture_density_stats
 
     from scripts import build_corpus_indexes, build_corpus_profiles
 
     cdir = REFERENCE_INDEX / composer
     cdir.mkdir(parents=True, exist_ok=True)
-    bar_index = {"composer": composer, "total_bars": len(bars), "bars": bars}
+
+    # WRITE THE FORMAT THE READER READS. This wrote the bars inline into
+    # `bar_index.json`, which `_iter_corpus_bars` consults only as a FALLBACK —
+    # sharded `bars_NN.json` wins whenever it exists. Every composer built by
+    # build_full_corpus has shards, so arming one of them appeared to succeed
+    # ("wrote N bars") while the system went on reading the old shards and never
+    # saw a single new bar. `bar_index.json` is a metadata stub now (schema 3),
+    # and overwriting it with the pre-schema-3 shape corrupted that too.
+    if augment:
+        # Dedupe on a NORMALISED source name. The raw strings differ by an
+        # optional `<composer>/` prefix depending on which loader produced them,
+        # so comparing them literally re-imported all 410 Bach chorales as
+        # "new" — 947 duplicate bars that would have skewed every statistic
+        # derived from the corpus. Only that prefix is stripped: Haydn holds
+        # both `movement4` and `opus74no1/movement4` and they are different
+        # pieces in different keys and metres.
+        def _key(b):
+            src = str(b.get("source") or "")
+            prefix = f"{composer}/"
+            if src.startswith(prefix):
+                src = src[len(prefix) :]
+            return (src, b.get("bar_num"))
+
+        existing = list(_existing_bars(composer))
+        seen = {_key(b) for b in existing}
+        fresh = [b for b in bars if _key(b) not in seen]
+        print(f"  augmenting: {len(existing)} existing + {len(fresh)} new bars")
+        bars = existing + fresh
+
+    for old in cdir.glob("bars_*.json"):
+        old.unlink()
+    shard_size = 2000
+    n_shards = max(1, (len(bars) + shard_size - 1) // shard_size)
+    for i in range(n_shards):
+        (cdir / f"bars_{i:02d}.json").write_text(
+            json.dumps(
+                bars[i * shard_size : (i + 1) * shard_size],
+                separators=(",", ":"),
+                default=_json_default,
+            )
+        )
     # MIDI-parsed bars carry music21 Fraction durations (tuplets/irregular
-    # values); store them as floats so the index matches the kern/mxl corpora.
+    # values); stored as floats so the index matches the kern/mxl corpora.
     (cdir / "bar_index.json").write_text(
-        json.dumps(bar_index, separators=(",", ":"), default=_json_default)
+        json.dumps(
+            {"composer": composer, "total_bars": len(bars), "schema": 3},
+            separators=(",", ":"),
+        )
     )
-    print(f"  wrote {len(bars)} bars → {cdir / 'bar_index.json'}")
+    print(f"  wrote {len(bars)} bars in {n_shards} shards → {cdir}")
 
     idx = build_corpus_indexes.build_composer(composer, force=True)
     print(f"  indexes: {json.dumps(idx)}")
@@ -304,7 +359,13 @@ def _arm_from_bars(composer: str, bars: List[Dict[str, Any]]) -> Dict[str, Any]:
     return idx
 
 
-def acquire(composer: str, use_web: bool = True, max_files: int = 120) -> Dict[str, Any]:
+def acquire(
+    composer: str,
+    use_web: bool = True,
+    max_files: int = 120,
+    web_always: bool = False,
+    augment: bool = False,
+) -> Dict[str, Any]:
     """Arm a composer end to end. Returns a coverage report."""
     from scales.composition_brief import composer_coverage_tier
 
@@ -317,7 +378,22 @@ def acquire(composer: str, use_web: bool = True, max_files: int = 120) -> Dict[s
     print("→ local: music21 built-in corpus")
     paths = _local_score_paths(composer)
     source = "music21-local"
-    if not paths and use_web:
+    # The web was reachable only when music21 shipped NOTHING, so this tool could
+    # arm an empty composer and could never BROADEN an existing one. That matters
+    # because every armed corpus here is a single genre: music21's bach is 100%
+    # four-part chorales and its haydn is 100% string quartets, and no amount of
+    # re-running this could add a keyboard work to either.
+    if web_always and use_web:
+        print(f"  local: {len(paths)} files; → also fetching web (--web)")
+        tmp = _TOOLS / "reference_scores" / f"_fetch_{composer}"
+        for src_name, fetcher in _WEB_SOURCES:
+            print(f"→ web: {src_name}")
+            got = fetcher(composer, tmp, max_files)
+            if got:
+                paths = list(paths) + list(got)
+                source = f"{source}+{src_name}"
+                break
+    elif not paths and use_web:
         print(f"  none locally; → web fallback (allowlist: {', '.join(_SOURCE_ALLOWLIST)})")
         tmp = _TOOLS / "reference_scores" / f"_fetch_{composer}"
         for src_name, fetcher in _WEB_SOURCES:
@@ -353,7 +429,7 @@ def acquire(composer: str, use_web: bool = True, max_files: int = 120) -> Dict[s
             "coverage": before,
         }
 
-    _arm_from_bars(composer, bars)
+    _arm_from_bars(composer, bars, augment=augment)
     after = composer_coverage_tier(composer)
     print(
         f"=== Done: tier {before['tier']} → {after['tier']} "
@@ -374,6 +450,19 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="Acquire + arm a composer corpus")
     ap.add_argument("composer", help="composer name (e.g. haydn, clementi)")
     ap.add_argument(
+        "--web",
+        action="store_true",
+        help="fetch from allowlisted web sources EVEN IF music21 ships a local "
+        "corpus — the only way to broaden a corpus that is already armed but "
+        "covers one genre (music21's bach is all chorales, its haydn all quartets)",
+    )
+    ap.add_argument(
+        "--augment",
+        action="store_true",
+        help="merge the newly extracted bars with what is already on disk "
+        "(deduplicated by source+bar) instead of replacing the corpus",
+    )
+    ap.add_argument(
         "--no-web", action="store_true", help="local music21 corpus only; do not fetch from the web"
     )
     ap.add_argument(
@@ -390,7 +479,13 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(json.dumps(composer_coverage_tier(args.composer), indent=2))
         return 0
 
-    result = acquire(args.composer, use_web=not args.no_web, max_files=args.max_files)
+    result = acquire(
+        args.composer,
+        use_web=not args.no_web,
+        max_files=args.max_files,
+        web_always=args.web,
+        augment=args.augment,
+    )
     print(json.dumps({k: v for k, v in result.items() if k != "coverage"}, indent=2))
     return 0 if result.get("ok") else 1
 

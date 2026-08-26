@@ -313,7 +313,7 @@ def _top(ev) -> Optional[int]:
 def _beats(ev) -> Fraction:
     try:
         return dur_to_beats(getattr(ev, "duration", "q"))
-    except Exception:  # pragma: no cover - defensive
+    except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
         return Fraction(1)
 
 
@@ -342,7 +342,7 @@ def _beats_per_bar(meter) -> Fraction:
     try:
         num, den = int(meter[0]), int(meter[1])
         return Fraction(num * 4, den)
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
         return Fraction(4)
 
 
@@ -350,7 +350,7 @@ def _is_compound(meter) -> bool:
     """6/8, 9/8, 12/8 — beats group in threes, which changes where accents go."""
     try:
         num, den = int(meter[0]), int(meter[1])
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
         return False
     return den == 8 and num in (6, 9, 12)
 
@@ -359,7 +359,7 @@ def _strong_beats(meter) -> List[Fraction]:
     """Beat positions (1-based) that carry metric stress in this meter."""
     try:
         num, den = int(meter[0]), int(meter[1])
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
         num, den = 4, 4
     if _is_compound(meter):
         # 6/8 stresses beats 1 and 4 (in eighth-note counting) = quarters 1, 2.5
@@ -854,7 +854,7 @@ def add_hairpins(layer_ir, style: EngravingStyle, report: EnrichmentReport) -> N
 
     tops = [_top(e) for e in sounding]
     if any(t is None for t in tops):
-        sounding = [e for e, t in zip(sounding, tops) if t is not None]
+        sounding = [e for e, t in zip(sounding, tops, strict=False) if t is not None]
         tops = [t for t in tops if t is not None]
     if len(sounding) < style.hairpin_min_notes * 2:
         return

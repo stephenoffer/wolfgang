@@ -150,7 +150,7 @@ def _metric_strength(beat: float, meter: Tuple[int, int]) -> str:
         return "downbeat"
     try:
         num, den = int(meter[0]), int(meter[1])
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # a malformed meter, not a bug here
         num, den = 4, 4
     if den == 8 and num in (6, 9, 12) and abs(b - 2.5) < 0.01:
         return "strong"
@@ -202,7 +202,7 @@ def _read_roman(pcs: Sequence[int], bass: Optional[int], tonic_pc: int, mode: st
         return ""
     try:
         from .harmony_analysis import candidates, spell_roman
-    except Exception:  # pragma: no cover - module optional at import time
+    except ImportError:  # pragma: no cover - module optional at import time
         return ""
     # ``candidates`` takes a 12-slot vector indexed by pitch class, not a dict:
     # a dict makes ``sum(weights)`` add the KEYS and ``enumerate(weights)``
@@ -211,17 +211,16 @@ def _read_roman(pcs: Sequence[int], bass: Optional[int], tonic_pc: int, mode: st
     weights = [0.0] * 12
     for pc in pcs:
         weights[pc % 12] = 1.0
-    try:
-        cands = candidates(weights, (bass % 12) if bass is not None else None, tonic_pc, mode)
-    except Exception:
-        return ""
+    # NOT a blind except. `candidates` raises TypeError on a dict and ValueError
+    # on a wrong-length vector — guards added specifically so misuse is loud —
+    # and catching Exception here silently defeated them, turning "this caller
+    # is wrong" into "this bar has no readable harmony". A programming error
+    # must reach the programmer.
+    cands = candidates(weights, (bass % 12) if bass is not None else None, tonic_pc, mode)
     if not cands:
         return ""
     _score, root, qual, inv = cands[0]
-    try:
-        return spell_roman(root, qual, inv, tonic_pc, mode)
-    except Exception:
-        return ""
+    return spell_roman(root, qual, inv, tonic_pc, mode)
 
 
 def _is_dominant(pcs: Sequence[int], tonic_pc: int, mode: str) -> bool:
@@ -375,7 +374,7 @@ def _beat_readings(spans, bar: int, meter, tonic_pc: int, mode: str):
     """
     try:
         from .harmony_analysis import analyze_bar
-    except Exception:  # pragma: no cover - module optional
+    except ImportError:  # pragma: no cover - module optional
         return []
     in_bar = [sp for sp in spans if sp.bar == bar]
     if not in_bar:
@@ -383,7 +382,7 @@ def _beat_readings(spans, bar: int, meter, tonic_pc: int, mode: str):
     origin = min(sp.start for sp in in_bar)
     try:
         num, den = int(meter[0]), int(meter[1])
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # a malformed meter, not a bug here
         num, den = 4, 4
     bar_len = float(Fraction(num * 4, den))
     beat_len = float(Fraction(4, den))
@@ -400,10 +399,10 @@ def _beat_readings(spans, bar: int, meter, tonic_pc: int, mode: str):
         triples.append((max(0.0, lo), min(bar_len, hi), [sp.midi]))
     if not triples:
         return []
-    try:
-        return analyze_bar(triples, bar_len, beat_len, tonic_pc, mode)
-    except Exception:
-        return []
+    # `analyze_bar` raises on misuse (a dict of weights, pitch classes where MIDI
+    # is required). Those are programming errors and must not be swallowed into
+    # "this bar has no harmony" — that is how a wrong call site stays invisible.
+    return analyze_bar(triples, bar_len, beat_len, tonic_pc, mode)
 
 
 def _pcs_of_roman(roman: str, tonic_pc: int, mode: str):
@@ -411,7 +410,11 @@ def _pcs_of_roman(roman: str, tonic_pc: int, mode: str):
         from .harmony_analysis import roman_pitches
 
         return list(roman_pitches(roman, tonic_pc, mode) or [])
-    except Exception:  # pragma: no cover - defensive
+    except ImportError:  # pragma: no cover - module optional
+        return []
+    except (TypeError, ValueError):
+        # An unreadable roman symbol is DATA, not a bug: the corpus contains
+        # figures no parser covers.
         return []
 
 

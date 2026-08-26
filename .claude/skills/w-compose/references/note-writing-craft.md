@@ -48,7 +48,28 @@ The brief is the whole corpus distilled for this phrase. Use every section:
   corpus patterns above the single bar.
 - **STYLE TARGETS** — this composer's measured ranges. A reality check on what
   you wrote, never a specification to write toward (§2).
+- **EXEMPLARS** — up to eight real corpus bars, transposed to this phrase's key
+  and rendered in the shorthand you write in. Adapt them (§7); never copy one
+  verbatim.
+- **NAMED GESTURES** — this composer's own idioms with the notes and the
+  expression already on them ("The Appoggiatura and Sigh" is E5 *espressivo*,
+  D5, C5 held). Not statistics: material.
+- **CORPUS GESTURES** — real shapes from the scores, selected for what this
+  phrase is DOING (a presentation gets pickups and insists; a coda gets
+  cadential releases). Rhythm and contour, not pitches — the pitches are yours.
+- **WHAT THIS CORPUS ACTUALLY IS** / **CORPUS COVERAGE** — which repertoire the
+  numbers below were measured on. When a statistic describes piano sonatas and
+  you are writing a quartet, trust what you know of the genre.
+- **RHYTHMIC FINGERPRINT** — the note values this composer actually writes.
 - **AVOID (AI tells)**, ledger items, and the continuity state.
+
+**TRANSITION IN** carries four things a phrase composed in isolation cannot
+otherwise know: how every earlier phrase closed (so this one closes
+differently), how long the current accompaniment idiom has run, where the
+melody has been sitting, and **what the previous phrase left hanging** — a
+seventh above the bass, or a dominant, is a debt this phrase owes. It also says
+how this composer typically joins a phrase like this one to a phrase like that,
+measured over the real joints in the corpus.
 
 A phrase that ignores the fingerprints and the doctrine is generic even when
 every number lands in range.
@@ -284,6 +305,10 @@ has ever used them, and their absence is audible:
 
 Durations:
 - plain: `w h q e s t x` — whole, half, quarter, eighth, 16th, 32nd, 64th
+- longer than a whole: `br` breve (8 quarters), `dbr` dotted breve, `lo` longa.
+  A note longer than its bar engraves as tied fragments across the barline; the
+  meter check still asks each bar to fill, so in a bar shorter than the value
+  write the tie yourself (`C5w~` then `C5w`).
 - dotted: `dw dh dq de ds dt`; double-dotted: `ddh ddq dde`
 - **tuplets**: `trip_q trip_e trip_s trip_t` (three in the space of two — three
   `trip_e` fill one beat exactly), plus `quint_e quint_s sext_s sept_s`. Rests
@@ -362,6 +387,7 @@ statistical floor.
 | Diagnostic | Meaning | How to read it |
 |---|---|---|
 | `meter` (**blocks** — physical) | An event overflows its bar's capacity | Real fix required: make each voice sum to the meter (a pedal under figuration = full-bar first LH event) |
+| `unwritable_tokens` (**blocks** — physical) | A token in the shorthand cannot be engraved | A typo, not a judgement. `H5q` is not a pitch; `C12q` reads as `C1`, eleven octaves down; an unclosed chord vanishes entirely. The message names each one. Fix and recommit |
 | `brief_not_fetched` (blocks, pre-gate) | Committing a phrase whose brief you never fetched | Call `get_composition_brief(piece_id, phrase_id)` first — studying the references is required |
 | `brief_insufficient` (blocks, pre-gate) | Corpus yielded no exemplars for this phrase | Arm the composer (`acquire_composer.py <composer>`) and re-fetch, or waive only if composing without corpus is intended |
 | `density_low_rh/lh` (advisory) | Skeletal vs corpus median | If you want more motion, add figuration; if the sparseness is intentional, leave it |

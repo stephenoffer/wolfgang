@@ -51,7 +51,7 @@ that.
 11. **Portamento / anticipation** — the cadential note arrived at early as a short
     note before the beat.
 
-12. **Inversion of the motif** for a later entry.
+12. **Inversion of the motif** — the same shape upside down, used for a later entry so the point of imitation stays fresh.
 
 13. **Augmentation** of the motif in the lowest voice for a final statement.
 

@@ -32,6 +32,72 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+# Parsing a numbered, bolded catalogue item: `N. **Name** — description`.
+#
+# Line-based on purpose. Three successive regexes lost content silently and each
+# fix revealed another case:
+#
+#   * requiring a dash after the bold dropped `**Name**, description` and
+#     `**Name.**` outright — six of eleven idioms in one file;
+#   * `^` could not match at a scan position sitting ON the newline that the
+#     previous item's lookahead had stopped at, so one item in every run of
+#     adjacent items vanished;
+#   * a lazy body with a lookahead still lost the item after any empty-bodied one.
+#
+# Silent loss is the worst possible failure here, because a file that parses to
+# nothing is indistinguishable from a file that does not exist — which is the
+# bug the catalogues themselves were written to fix. Walking lines cannot have
+# this class of bug, and `test_composer_craft_coverage` asserts the parsed count
+# equals the number of numbered items in the source.
+_ITEM_HEAD_RE = re.compile(r"^[ \t]*(\d+)\.\s+\*\*(?P<name>.+?)\*\*(?P<rest>.*)$")
+_SECTION_RE = re.compile(r"^##+\s+(?P<title>.+?)\s*$")
+
+
+def _parse_catalogue(text: str):
+    """Yield (section, name, body) for every numbered bolded item in a catalogue."""
+    section = ""
+    name = None
+    body_parts: list = []
+
+    def _flush():
+        if name is None:
+            return None
+        body = " ".join(" ".join(body_parts).split())
+        # An item whose whole content is its bold title is still an item.
+        return (section, name, body or name)
+
+    for line in text.splitlines():
+        sm = _SECTION_RE.match(line)
+        if sm:
+            done = _flush()
+            if done:
+                yield done
+            name, body_parts = None, []
+            section = sm.group("title")
+            continue
+        hm = _ITEM_HEAD_RE.match(line)
+        if hm:
+            done = _flush()
+            if done:
+                yield done
+            name = hm.group("name").strip()
+            rest = (hm.group("rest") or "").strip()
+            body_parts = [rest.lstrip("—:,.- ").strip()] if rest else []
+            continue
+        if name is not None:
+            if line.strip():
+                body_parts.append(line.strip())
+            else:
+                done = _flush()
+                if done:
+                    yield done
+                name, body_parts = None, []
+    done = _flush()
+    if done:
+        yield done
+
+
+
 _BASE = Path(__file__).parent.parent
 CONTEXT_DIR = _BASE.parent / ".claude" / "context"
 REFERENCE_INDEX = _BASE / "reference_index"
@@ -1133,15 +1199,7 @@ class ContextCompiler:
                 text = path.read_text()
             except OSError:
                 continue
-            for m in re.finditer(
-                r"^\s*\d+\.\s+\*\*(.+?)\*\*\s*[—:-]\s*(.+?)(?=\n\s*\n|\n\s*\d+\.\s+\*\*|\Z)",
-                text,
-                re.MULTILINE | re.DOTALL,
-            ):
-                name = m.group(1).strip()
-                body = " ".join(m.group(2).split())
-                if not name or not body:
-                    continue
+            for _section, name, body in _parse_catalogue(text):
                 slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
                 out.append(
                     {
@@ -1180,32 +1238,19 @@ class ContextCompiler:
                 text = path.read_text()
             except OSError:
                 continue
-            section = ""
-            for chunk in re.split(r"^##\s+", text, flags=re.MULTILINE):
-                head = chunk.splitlines()[0].strip() if chunk.strip() else ""
-                if head and not head.startswith(("1.", "-")):
-                    section = head
-                for m in re.finditer(
-                    r"^\s*\d+\.\s+\*\*(.+?)\*\*\s*[—:-]\s*(.+?)(?=\n\s*\n|\n\s*\d+\.\s+\*\*|\Z)",
-                    chunk,
-                    re.MULTILINE | re.DOTALL,
-                ):
-                    name = m.group(1).strip()
-                    body = " ".join(m.group(2).split())
-                    if not name or not body:
-                        continue
-                    slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
-                    out.append(
-                        {
-                            "id": f"device_{slug}",
-                            "category": "composer_device",
-                            "section": section,
-                            "name": name,
-                            "description": body[:400],
-                            "source_file": f"{profile_dir.name}/{path.name}",
-                            "grounding": "profile",
-                        }
-                    )
+            for section, name, body in _parse_catalogue(text):
+                slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
+                out.append(
+                    {
+                        "id": f"device_{slug}",
+                        "category": "composer_device",
+                        "section": section,
+                        "name": name,
+                        "description": body[:400],
+                        "source_file": f"{profile_dir.name}/{path.name}",
+                        "grounding": "profile",
+                    }
+                )
         return out
 
     def _pass_ornament_policy(self, profile_dir: Optional[Path] = None) -> List[Dict]:
@@ -1579,7 +1624,7 @@ class ContextCompiler:
                                     "id": f"melody_craft_{re.sub(r'[^a-z0-9]+', '_', vals[0].lower()).strip('_')}",
                                     "category": "interval_language",
                                     "description": " | ".join(str(v) for v in vals[:3]),
-                                    "parameters": dict(zip(keys, vals)),
+                                    "parameters": dict(zip(keys, vals, strict=False)),
                                     "conditions": {},
                                     "grounding": "interpretive",
                                     "source_file": "melody-craft.md",

@@ -34,6 +34,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from fractions import Fraction
+from itertools import pairwise
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from .duration import dur_to_beats
@@ -135,7 +136,7 @@ class _Sounding:
 def _beats_per_bar(meter) -> Fraction:
     try:
         return Fraction(int(meter[0]) * 4, int(meter[1]))
-    except Exception:  # pragma: no cover - defensive
+    except (TypeError, ValueError, IndexError):  # pragma: no cover - defensive
         return Fraction(4)
 
 
@@ -487,7 +488,7 @@ def detect_spacing_gaps(spans: Sequence[_Sounding], report: CounterpointReport) 
             continue
         pitches = sorted(s.midi for s in state.values())
         # Muddy low interval
-        for lo, hi in zip(pitches, pitches[1:]):
+        for lo, hi in pairwise(pitches):
             if hi < 48 and 1 <= hi - lo <= 4:
                 s = next(x for x in state.values() if x.midi == lo)
                 report.findings.append(
@@ -568,7 +569,7 @@ def detect_leading_tone_handling(
             )
 
     for v, seq in by_voice.items():
-        for i, (a, b) in enumerate(zip(seq, seq[1:])):
+        for i, (a, b) in enumerate(pairwise(seq)):
             if a.midi % 12 != lt_pc:
                 continue
             if b.start != a.end:
@@ -624,7 +625,7 @@ def detect_unresolved_sevenths(
     for v, seq in by_voice.items():
         if v.split("#")[0] in _BASS_LAYERS:
             continue
-        for a, b in zip(seq, seq[1:]):
+        for a, b in pairwise(seq):
             # A note that is merely passing through is not a chordal seventh,
             # whatever interval it happens to form with the momentary bass.
             if a.role in ("passing", "neighbor", "ornamental", "anticipation"):

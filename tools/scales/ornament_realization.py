@@ -74,7 +74,7 @@ def _scale_pcs(key: str) -> List[int]:
     try:
         scale = build_scale(root % 12 + 60, "minor" if minor else "major", octaves=2)
         pcs = sorted({s % 12 for s in scale})
-    except Exception:  # pragma: no cover - defensive
+    except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
         pcs = []
     if not pcs:
         base = (root or 60) % 12
@@ -381,7 +381,7 @@ def realize_event(
         return []
     try:
         dur = dur_to_beats(getattr(event, "duration", "q"))
-    except Exception:  # pragma: no cover - defensive
+    except (ValueError, KeyError, TypeError):  # pragma: no cover - defensive
         return []
     return realize(
         orn,

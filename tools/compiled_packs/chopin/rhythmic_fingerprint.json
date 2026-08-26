@@ -1,32 +1,32 @@
 {
  "composer": "chopin",
  "schema": 1,
- "bars": 4853,
- "notes": 18881,
- "rest_bar_pct": 0.3878,
- "dotted_bar_pct": 0.3678,
- "fast_note_pct": 0.0023,
- "lh_texture_change_pct": 0.3258,
+ "bars": 8013,
+ "notes": 37653,
+ "rest_bar_pct": 0.4282,
+ "dotted_bar_pct": 0.338,
+ "fast_note_pct": 0.0014,
+ "lh_texture_change_pct": 0.2844,
  "top_note_values": [
   [
    0.5,
-   0.4478
-  ],
-  [
-   1.0,
-   0.2367
+   0.3462
   ],
   [
    0.25,
-   0.0973
+   0.2341
   ],
   [
    0.3333,
-   0.0738
+   0.1497
+  ],
+  [
+   1.0,
+   0.1491
   ],
   [
    0.75,
-   0.0508
+   0.0331
   ]
  ]
 }

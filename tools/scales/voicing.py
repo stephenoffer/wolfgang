@@ -30,6 +30,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from fractions import Fraction
+from itertools import pairwise
 from statistics import mean, pstdev
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
@@ -364,7 +365,7 @@ def _thirds_and_sixths(layer_ir) -> float:
         if not rh:
             continue
         total += 1
-        for a, b in zip(rh, rh[1:]):
+        for a, b in pairwise(rh):
             if (b.midi - a.midi) in (3, 4, 8, 9):
                 harmonised += 1
                 break
@@ -384,7 +385,7 @@ def _texture_shift_pct(bars: Sequence[BarTexture]) -> float:
     if len(bars) < 2:
         return 0.0
     changes = 0
-    for a, b in zip(bars, bars[1:]):
+    for a, b in pairwise(bars):
         centre_a = (a.low + a.high) / 2
         centre_b = (b.low + b.high) / 2
         if (

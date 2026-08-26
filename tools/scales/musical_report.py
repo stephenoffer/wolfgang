@@ -264,7 +264,10 @@ def _cadence_section(rows, layers) -> Dict[str, Any]:
     from .cadence_analysis import analyze_cadences, cadence_summary_lines
 
     specs = []
-    for (pid, _state, slot), ir in zip(rows, layers):
+    # STRICT: one LayerIR per kept phrase, built together in `build_report`.
+    # A mismatch would drop phrases off the end of the report silently, so a
+    # piece would be reviewed as if it were shorter than it is.
+    for (pid, _state, slot), ir in zip(rows, layers, strict=True):
         specs.append((ir, slot.get("cadence_bar"), slot.get("key"), slot.get("cadence_target")))
     rep = analyze_cadences(specs)
     return {
@@ -294,7 +297,7 @@ def _continuity_section(kept, layers) -> Dict[str, Any]:
         return out
 
     tails = []
-    for (pid, _state, slot), ir in zip(kept, layers):
+    for (pid, _state, slot), ir in zip(kept, layers, strict=True):
         tail = phrase_tail(ir, key=slot.get("key"))
         tails.append((pid, tail))
         hint = continuation_hint(tail)
@@ -314,7 +317,7 @@ def _continuity_section(kept, layers) -> Dict[str, Any]:
     # a legitimate gesture; doing it every time is a piece of disconnected
     # fragments.
     jumps = 0
-    for ((_pid_a, tail), ir_b) in zip(tails, layers[1:]):
+    for ((_pid_a, tail), ir_b) in zip(tails, layers[1:], strict=False):
         prev = tail.get("last_soprano_midi")
         first = next(
             (
@@ -473,7 +476,7 @@ def _craft_section(kept, layers) -> Dict[str, Any]:
     out: Dict[str, Any] = {"observations": [], "concerns": [], "per_phrase": {}}
     scores = []
     counts: Dict[str, int] = {}
-    for (pid, _state, _slot), ir in zip(kept, layers):
+    for (pid, _state, _slot), ir in zip(kept, layers, strict=True):
         check, findings = check_phrase(ir)
         scores.append(craft_score(check))
         if findings:

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import math
 from collections import Counter
+from itertools import pairwise
 from typing import Any, Dict, List, Optional, Tuple
 
 from .duration import dur_to_beats
@@ -57,7 +58,7 @@ def _event_midis(event: LayerEvent) -> List[int]:
             continue
         try:
             m = pitch_to_midi(p)
-        except Exception:
+        except (ValueError, KeyError, TypeError):
             continue
         # pitch_to_midi RETURNS None for an unparseable pitch (it does not
         # always raise); a None here would later crash interval/contour math
@@ -240,7 +241,7 @@ def direction_changes_per_bar(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     """
     intervals = [i for i in _melody_intervals(layer) if i != 0]
     bars = max(1, layer.bar_count)
-    changes = sum(1 for a, b in zip(intervals, intervals[1:]) if (a > 0) != (b > 0))
+    changes = sum(1 for a, b in pairwise(intervals) if (a > 0) != (b > 0))
     rate = changes / bars
     detail = {"changes": changes, "bars": bars, "per_bar": round(rate, 2)}
     if 1.0 <= rate <= 3.5:
