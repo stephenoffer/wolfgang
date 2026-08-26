@@ -170,6 +170,24 @@ Your final message is consumed by the orchestrator. Return exactly:
    `apply_revision(piece_id, section_id, ops)`, each op:
    `{"target_phrase": "<phrase-id>", "operation": "<op>",
      "target_bars": [a, b], "params": {...}, "reason": "<musical why>"}`
+
+   The operations available, and what each is for:
+
+   | operation | params | what it does |
+   |---|---|---|
+   | `set_articulation` | `{"articulation": "staccato"}` | Marks the notes in `target_bars`. The commonest fix there is — use it instead of re-realizing a phrase to add a dot. |
+   | `set_hairpin` | `{"kind": "cresc"｜"dim"}` | Shapes a span: start on the first note in range, stop on the last. |
+   | `set_expression` | `{"text": "dolce"}` | Character text at the start of `target_bars`. |
+   | `thin_texture` | — | Drops the accompaniment's off-beat notes in range, keeping the harmony. This is what "the texture never thins" asks for. |
+   | `change_dynamic` | `{"dynamic": "pp"}` | One dynamic level over a range. |
+   | `transpose_region` | `{"interval": ±n}` | Moves every layer, chords included, spelled in the phrase's key. |
+   | `change_texture` | `{"lh_texture": "..."}` | Re-plans the accompaniment idiom; forces re-realization. |
+   | `re_realize` | — | Keeps the sketch, throws away the notes. |
+   | `re_sketch` | — | Throws away the plan too. The largest hammer. |
+
+   Reach for the smallest one that addresses what you actually heard. The first
+   four change the score without discarding a note, which matters: a phrase
+   whose only fault is a bare page should not be recomposed.
    Match the fix to the problem, not to a size limit. For a **local defect**
    (a clash, a buried note, one weak bar) propose the smallest bar-level edit.
    For a **structural weakness** (the line doesn't sing, the climax is flat,

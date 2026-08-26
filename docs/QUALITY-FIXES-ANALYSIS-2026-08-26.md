@@ -317,6 +317,45 @@ after two earlier sessions had each found one by accident.
 
 ---
 
+## 4d. Three of my own detectors were wrong, and the repertoire found all three
+
+Recorded in detail because the pattern is the most transferable thing in this
+document: **a detector's own author is the worst-placed person to spot its false
+positives.** Each of these survived my own review and died on contact with real
+music.
+
+**The hand-span check counted everything *sounding* together.** The reasoning
+seemed sound — a note sustained under a later one is the commonest way a stretch
+appears, and the existing playability check compares only identical onsets, so it
+misses them. But a low bass note held under a chord the hand plays higher up is
+the ordinary pedal-point idiom: released by the fingers, held by the pedal.
+Measured that way, real Mozart, Beethoven and Chopin produced **211 "unplayable"
+stretches across 1,027 bars**, median widest span 28 semitones. Now only
+simultaneous *attacks* count, at a threshold of 16 semitones taken from the
+distribution (real median 8, p95 12, p99 16). A test of mine had asserted the
+wrong behaviour and is now inverted, with the reasoning recorded in it.
+
+**A bug I introduced, then measured through.** Splitting overlapping notes of one
+layer into strands named them `principal_line@1`, but `_hand_of` stripped only
+the `#` suffix, not `@` — so every strand of a melody overlapping itself, which
+is most sustained melodic writing, was counted as a **left-hand** note. It skewed
+both hands' density figures and put phantom 17-semitone stretches in the left
+hand of real Chopin. The `CORPUS_TEXTURE` baselines were re-measured afterwards:
+Mozart's right-hand density 1.15 → 1.22, single-line-RH 0.79 → 0.62. The earlier
+figures — quoted to the composer as fact — had been measured through the bug.
+
+**The falsification test itself was wrong.** Its first version judged Chopin
+mazurkas against the *Classical* floor and duly complained about 5 of 16 real
+movements. That is precisely the mistake the style-aware floors exist to prevent:
+Chopin's simultaneity CV reaches 0.17 and Mozart's never drops below 0.21, so one
+floor cannot serve both. The test now judges each movement against its own
+period.
+
+Three corrections, two of which reversed a conclusion I had been confident enough
+about to build on.
+
+---
+
 ## 5. Two things I was wrong about
 
 Recorded because both were about to drive work in the wrong direction, and
@@ -414,3 +453,4 @@ Run with `pytest -m calibration` (~2 minutes):
 | `test_corpus_style_targets.py` | a gate target whose ±2σ band excludes the real median |
 | `test_corpus_musicality_bands.py` | a score band real music sits outside, or a ceiling it cannot reach |
 | `test_corpus_craft_checks.py` | a craft check canonical music fails — and, in the same file, a check so loose it passes a one-note phrase |
+| `test_corpus_voicing.py` | a texture floor drifting inside the repertoire, and real music being told its hands cannot reach |

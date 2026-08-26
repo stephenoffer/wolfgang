@@ -1,0 +1,135 @@
+"""The revision path — how a critic's finding becomes different music.
+
+Everything upstream of this is diagnosis. If a revision op cannot express the
+change the critic asked for, or applies it to the wrong bars, the analysis is
+decorative.
+"""
+
+from __future__ import annotations
+
+import pytest
+
+from scales.direct_compose import compose_phrase
+from scales.models import PhraseSlot, PhraseState, RevisionOp
+from scales.patch_engine import PatchEngine
+
+
+@pytest.fixture()
+def phrase():
+    state = PhraseState(
+        slot=PhraseSlot(
+            phrase_id="p", section_id="s", bar_start=1, bar_count=2,
+            key="Db major", meter=(4, 4), tempo_bpm=90,
+        )
+    )
+    state.realized = compose_phrase(
+        [
+            {"rh": "C5q D5q [E5,G5]q F5q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e"},
+            {"rh": "G5q A5q B5q C6q", "lh": "C3e G3e C3e G3e C3e G3e C3e G3e"},
+        ],
+        key="Db major", bar_start=1, phrase_id="p", meter=(4, 4),
+    )
+    return state
+
+
+def _op(operation, **kw):
+    return RevisionOp(target_phrase="p", operation=operation, **kw)
+
+
+def test_transpose_moves_every_layer_not_just_two(phrase):
+    """Transposing only principal_line and bass_foundation left the inner
+    voices, the figuration and the ornamental surface in the old key — an
+    instant dissonance dressed up as a revision."""
+    PatchEngine().apply_revision_op(
+        _op("transpose_region", params={"interval": 2}, target_bars=(1, 1)), phrase
+    )
+    rh = [e for e in phrase.realized.principal_line if e.bar == 1]
+    lh = [e for e in phrase.realized.bass_foundation if e.bar == 1]
+    assert rh[0].pitch != "C5" and lh[0].pitch != "C3", "both hands must move together"
+
+
+def test_transpose_moves_chords_too(phrase):
+    """Chords were skipped, so the melody moved and the harmony under it did not."""
+    PatchEngine().apply_revision_op(
+        _op("transpose_region", params={"interval": 1}, target_bars=(1, 1)), phrase
+    )
+    chords = [e for e in phrase.realized.principal_line if isinstance(e.pitch, list)]
+    assert chords, "the fixture has a chord"
+    assert chords[0].pitch != ["E5", "G5"], "the chord did not transpose"
+
+
+def test_transpose_spells_in_the_phrases_own_key(phrase):
+    """Spelling every transposition in C turned a move into D-flat major into a
+    page of sharps."""
+    PatchEngine().apply_revision_op(
+        _op("transpose_region", params={"interval": 1}, target_bars=(1, 1)), phrase
+    )
+    names = [e.pitch for e in phrase.realized.principal_line if e.bar == 1 and e.pitch != "rest"]
+    flat_spellings = [n for n in names if isinstance(n, str) and "b" in n[1:]]
+    assert flat_spellings, f"a Db-major phrase should be spelled in flats, got {names}"
+
+
+def test_transpose_leaves_bars_outside_the_target_alone(phrase):
+    before = [e.pitch for e in phrase.realized.principal_line if e.bar == 2]
+    PatchEngine().apply_revision_op(
+        _op("transpose_region", params={"interval": 5}, target_bars=(1, 1)), phrase
+    )
+    after = [e.pitch for e in phrase.realized.principal_line if e.bar == 2]
+    assert before == after
+
+
+def test_change_texture_respects_the_target_bars(phrase):
+    """`if target_bars is None or True` ignored the target entirely, so an op
+    asking to change two bars rewrote every bar of the phrase."""
+    from scales.models import BarTexturePlan
+
+    # BarTexturePlan is POSITIONAL — entry i is the phrase's bar_start + i.
+    phrase.slot.texture_plan = [
+        BarTexturePlan(lh_texture="alberti"),
+        BarTexturePlan(lh_texture="alberti"),
+    ]
+    PatchEngine().apply_revision_op(
+        _op("change_texture", params={"lh_texture": "block_chord_sparse"}, target_bars=(2, 2)),
+        phrase,
+    )
+    textures = [bp.lh_texture for bp in phrase.slot.texture_plan]
+    assert textures == ["alberti", "block_chord_sparse"], textures
+
+
+def test_set_articulation_is_reachable_without_recomposing(phrase):
+    """The critic's commonest finding is an unarticulated page; the only way to
+    act on it was `re_realize`, which throws away the notes to add a dot."""
+    PatchEngine().apply_revision_op(
+        _op("set_articulation", params={"articulation": "staccato"}, target_bars=(2, 2)), phrase
+    )
+    by_bar = {}
+    for e in phrase.realized.principal_line:
+        by_bar.setdefault(e.bar, set()).add(e.articulation)
+    assert by_bar[2] == {"staccato"}
+    assert by_bar[1] == {None}, "bar 1 was not in the target range"
+    assert phrase.realized.principal_line, "the notes must survive"
+
+
+def test_set_hairpin_shapes_a_span(phrase):
+    PatchEngine().apply_revision_op(
+        _op("set_hairpin", params={"kind": "cresc"}, target_bars=(1, 2)), phrase
+    )
+    marks = [(e.bar, e.hairpin) for e in phrase.realized.principal_line if e.hairpin]
+    assert marks[0][1] == "cresc_start" and marks[-1][1] == "stop"
+    assert len(marks) == 2, "exactly one start and one stop"
+
+
+def test_thin_texture_removes_offbeats_and_keeps_the_harmony(phrase):
+    before = len(phrase.realized.bass_foundation)
+    PatchEngine().apply_revision_op(_op("thin_texture", target_bars=(1, 1)), phrase)
+    after = phrase.realized.bass_foundation
+    assert len(after) < before, "nothing was thinned"
+    assert [e for e in after if e.bar == 1], "bar 1 must not be emptied"
+    assert all(abs(e.beat - round(e.beat)) < 0.01 for e in after if e.bar == 1)
+    assert len([e for e in after if e.bar == 2]) == 8, "bar 2 was outside the target"
+
+
+def test_an_unknown_operation_does_not_destroy_the_phrase(phrase):
+    notes = list(phrase.realized.principal_line)
+    PatchEngine().apply_revision_op(_op("no_such_operation"), phrase)
+    assert phrase.realized.principal_line == notes

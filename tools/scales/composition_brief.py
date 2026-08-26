@@ -723,6 +723,49 @@ def _normalize_cadence(label: Optional[str]) -> Optional[str]:
     return _CADENCE_NORMALIZE.get(str(label).lower(), str(label))
 
 
+# What a cadence is CALLED varies by the source that wrote it down. A composer
+# profile writes "HC (->V)"; the shared genre harmony files write "Half
+# cadence"; the Renaissance file writes "Clausula vera" and "Authentic
+# (perfect)". The doctrine lookup matched with `cad.upper() in stype`, a plain
+# substring test, so it found Mozart's "HC (->V)" and missed Bach's "Half
+# cadence" entirely — five of the twelve armed composers got **no cadence
+# script at all**, in the one place that addresses the single most reliable tell
+# that a machine wrote the piece ("every phrase ends the same way").
+_CADENCE_ALIASES: Dict[str, Tuple[str, ...]] = {
+    "PAC": (
+        "pac",
+        "perfect authentic",
+        "authentic (pac)",
+        "authentic (perfect)",
+        "perfect cadence",
+        "clausula vera",  # the Renaissance structural cadence
+    ),
+    "IAC": ("iac", "imperfect authentic", "imperfect cadence"),
+    "HC": ("hc", "half cadence", "half-cadence", "semicadence", "phrygian half"),
+    "DC": ("dc", "deceptive", "interrupted"),
+    "plagal": ("plagal", "amen"),
+    "evaded": ("evaded", "elided"),
+    "phrygian": ("phrygian",),
+}
+
+
+def _cadence_matches(cad: str, script_type: str) -> bool:
+    """True when a pack's cadence script describes the cadence this phrase wants."""
+    want = (cad or "").strip().upper()
+    have = (script_type or "").strip().lower()
+    if not want or not have:
+        return False
+    if want.lower() in have:
+        return True
+    for alias in _CADENCE_ALIASES.get(want, ()):
+        if alias in have:
+            return True
+    # A Phrygian half cadence answers a request for HC.
+    if want == "HC" and "phrygian" in have:
+        return True
+    return False
+
+
 def _phrase_shape(composer: str, slot, role: str) -> Dict[str, Any]:
     """Top corpus phrase for this slot's role/length — its arc, not just a bar."""
     try:
@@ -944,8 +987,7 @@ def _doctrine_slices(composer: str, slot, role: str) -> Dict[str, Any]:
     if cad:
         scripts = _load_pack(composer, "cadence_scripts") or []
         for s in scripts if isinstance(scripts, list) else []:
-            stype = (s.get("type", "") or "").upper()
-            if cad.upper() in stype:
+            if _cadence_matches(cad, s.get("type", "") or ""):
                 out["cadence_script"] = {
                     "type": s.get("type"),
                     "approach": s.get("approach_chords"),

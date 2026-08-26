@@ -86,3 +86,60 @@ def test_synthetic_transition_data_is_declared_in_the_brief():
     assert "provenance" in rendered, (
         "the synthetic-data warning is computed but never printed"
     )
+
+
+# ─── Cadence doctrine must reach every armed composer ────────────────────────
+
+
+def test_a_cadence_script_is_found_whatever_the_source_calls_it():
+    """The lookup was a plain substring test on the label.
+
+    A composer profile writes "HC (->V)"; the shared genre harmony files write
+    "Half cadence"; the Renaissance file writes "Clausula vera". `"HC" in
+    "HALF CADENCE"` is False, so five of the twelve armed composers got **no
+    cadence script at all** — in the one place that addresses the single most
+    reliable tell that a machine wrote the piece.
+    """
+    from scales.composition_brief import _cadence_matches
+
+    assert _cadence_matches("HC", "HC (->V)")
+    assert _cadence_matches("HC", "Half cadence")
+    assert _cadence_matches("PAC", "Authentic (PAC)")
+    assert _cadence_matches("PAC", "Authentic (perfect)")
+    assert _cadence_matches("PAC", "Clausula vera")
+    assert _cadence_matches("DC", "Deceptive")
+    assert _cadence_matches("plagal", "Plagal")
+    # and it must still discriminate
+    assert not _cadence_matches("PAC", "Half cadence")
+    assert not _cadence_matches("HC", "Plagal")
+    assert not _cadence_matches("", "Half cadence")
+    assert not _cadence_matches("HC", "")
+
+
+def test_every_armed_composer_has_cadence_doctrine_for_the_common_cadences():
+    """Five composers compiled to an empty `cadence_scripts.json` because the
+    compiler never read the genre harmony file their profile delegates to."""
+    import os
+    from pathlib import Path
+
+    from scales.composition_brief import _doctrine_slices
+    from scales.models import PhraseSlot
+
+    idx = Path("tools") / "reference_index"
+    if not idx.is_dir():
+        pytest.skip("corpus not present")
+    armed = sorted(d for d in os.listdir(idx) if (idx / d).is_dir())
+
+    missing = []
+    for composer in armed:
+        for cad in ("HC", "PAC"):
+            slot = PhraseSlot(
+                phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                key="C major", meter=(4, 4), cadence_target=cad,
+            )
+            if not _doctrine_slices(composer, slot, "opening").get("cadence_script"):
+                missing.append(f"{composer}/{cad}")
+    assert not missing, (
+        "armed composer(s) with no cadence doctrine for a common cadence: "
+        f"{missing}"
+    )
