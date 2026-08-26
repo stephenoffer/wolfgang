@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import statistics
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -39,6 +40,7 @@ _ADAPTER_CACHE: Dict[str, CorpusAdapter] = {}
 _DENSITY_CACHE: Dict[str, Dict[str, Any]] = {}
 _ORNAMENT_CACHE: Dict[str, Any] = {}
 _FINGERPRINT_CACHE: Dict[str, Any] = {}
+_SCOPE_CACHE: Dict[str, Any] = {}
 _TEXTURE_TEMPLATE_CACHE: Dict[str, Dict[str, Any]] = {}
 _PACK_CACHE: Dict[str, Any] = {}  # compiled_packs/<composer>/<name>.json
 
@@ -189,6 +191,9 @@ class CompositionBrief:
     cadence_exemplars: List[Dict[str, Any]] = field(default_factory=list)
     transition_patterns: Dict[str, Any] = field(default_factory=dict)
     lh_vocabulary: List[Dict[str, Any]] = field(default_factory=list)
+    # Named idioms from the composer's own pack, with the notes and the
+    # expression already on them. See _gestures.
+    gestures: List[Dict[str, Any]] = field(default_factory=list)
     # Written rules / doctrine (WS-C) — the composer's voice + phrase-scoped craft
     fingerprints: List[Dict[str, str]] = field(default_factory=list)
     doctrine: Dict[str, Any] = field(default_factory=dict)
@@ -285,6 +290,7 @@ def composer_coverage_tier(composer: str) -> Dict[str, Any]:
     composer = (composer or "").lower()
     cdir = _REFERENCE_INDEX / composer
     has_corpus = is_style_id(composer) or _has_corpus(cdir)
+    scope = corpus_scope(composer) if has_corpus else {}
     # One pass: bar count, distinct source movements, and a richness sample.
     n_bars = 0
     sources: set = set()
@@ -340,6 +346,14 @@ def composer_coverage_tier(composer: str) -> Dict[str, Any]:
         "melody_coverage": melody_cov,
         "records_rich": records_rich,
         "needs_reacquire": bool(has_corpus and not is_style_id(composer) and not records_rich),
+        # A corpus can be large, rich and complete and still teach only one
+        # genre. Bach reported tier A on 410 source movements — all 410 of them
+        # four-part chorales, which is why his measured ornament rate is 0.003
+        # trills per bar. `armed` says he has a corpus; `genre_narrow` says what
+        # that corpus can and cannot be asked about.
+        "dominant_genre": scope.get("dominant") if has_corpus else None,
+        "genre_share": scope.get("dominant_share") if has_corpus else None,
+        "genre_narrow": bool(has_corpus and scope.get("narrow")),
     }
 
 
@@ -685,13 +699,19 @@ def render_rhythmic_fingerprint(composer: str) -> List[str]:
     # Liszt, and actively harmful to tell a composer.
     tier = composer_coverage_tier(composer)
     sources = tier.get("distinct_sources") or 0
-    thin = tier.get("tier") != "A" or sources < 12
+    # THIN and NARROW are different failures and both make the numbers a fact
+    # about the sample. Bach's 410 sources are 410 chorales; counting sources
+    # alone called that corpus broad.
+    scope = corpus_scope(composer)
+    thin = tier.get("tier") != "A" or sources < 12 or scope.get("narrow")
     if thin:
         head = [
-            f"RHYTHMIC FINGERPRINT ({composer}) — measured over {fp['bars']} bars from only "
-            f"{sources} source movement(s). THIS IS THE SAMPLE, NOT THE COMPOSER: a narrow "
-            f"corpus under-reports whatever those particular pieces do not happen to do. "
-            f"Where it disagrees with what you know of him, trust what you know.",
+            f"RHYTHMIC FINGERPRINT ({composer}) — measured over {fp['bars']} bars from "
+            f"{sources} source movement(s)"
+            + (f", {scope['dominant_share']:.0%} of them {scope['dominant']}" if scope.get("narrow") else "")
+            + ". THIS IS THE SAMPLE, NOT THE COMPOSER: a corpus this narrow "
+            "under-reports whatever those particular pieces do not happen to do. "
+            "Where it disagrees with what you know of him, trust what you know.",
         ]
     else:
         head = [
@@ -707,6 +727,98 @@ def render_rhythmic_fingerprint(composer: str) -> List[str]:
         f"  • the LEFT HAND changes character on {fp['lh_texture_change_pct']:.0%} of barlines "
         f"— one accompaniment idiom held all the way through is not his texture.",
         f"  • note values actually written here: {vals}.",
+    ]
+
+
+# How a source name betrays its genre. Deliberately coarse: the point is to warn
+# that a corpus is narrow, not to catalogue the repertoire.
+_GENRE_PATTERNS = (
+    # music21's bundled corpora carry no genre label, only a work id, and both
+    # of the ones this project ingests are a single genre: `bach/bwv<n>` is the
+    # 371 four-part chorales, and `opusNNnoN/movementN` is the Haydn STRING
+    # QUARTETS. Matching those conventions is what makes the warning fire at
+    # all — a looser pattern read Bach as 54% chorale / 46% unclassified and
+    # concluded his corpus was broad.
+    ("four-part chorales", r"bach/bwv\d+|bwv\d+\.\d+|chorale|choral"),
+    ("string quartets", r"opus\d+no\d+/movement|quartet"),
+    ("piano sonatas", r"sonat"),
+    ("mazurkas", r"mazurka"),
+    ("nocturnes", r"nocturne"),
+    ("etudes", r"etude|\betud"),
+    ("preludes", r"prelude"),
+    ("waltzes", r"waltz|valse"),
+    ("ballades", r"ballade"),
+    ("symphonies", r"symphon|sinfon"),
+    ("masses and motets", r"mass|credo|kyrie|gloria|sanctus|agnus|benedictus|motet|magnificat"),
+    ("madrigals", r"madrigal"),
+    ("concertos", r"concerto|conc\b"),
+    ("fugues and inventions", r"fugue|invent|wtc"),
+    ("suites and partitas", r"suite|partita|allemand|courant|sarab|gigue"),
+    ("songs", r"lied|song|aria"),
+)
+
+
+def corpus_scope(composer: str, refresh: bool = False) -> Dict[str, Any]:
+    """WHAT this composer's corpus actually contains, by genre.
+
+    Every statistic in this system — density, ornament rates, texture change,
+    the rhythmic fingerprint, the discriminator z-scores — is computed over the
+    corpus and presented as a fact about the composer. Measuring the corpora
+    showed how far that can drift:
+
+      · Bach is **97% four-part chorales**. His ornament rate reads as 0.003
+        trills per bar, which is true of chorales and wildly false of the
+        keyboard music. A brief for a Bach keyboard piece was quoting vocal
+        part-writing statistics.
+      · Chopin is **100% mazurkas** — no nocturnes, no études, no ballades. His
+        measured share of notes faster than a sixteenth is 0.2%.
+
+    Neither corpus is *thin* (6,795 and 4,853 bars), so a size-based caveat
+    misses both. Narrowness is the thing to report.
+    """
+    if not refresh and composer in _SCOPE_CACHE:
+        return _SCOPE_CACHE[composer]
+
+    counts: Dict[str, int] = {}
+    total = 0
+    for bar in _iter_corpus_bars(composer):
+        total += 1
+        src = str(bar.get("source") or "").lower()
+        label = "unclassified"
+        for name, pat in _GENRE_PATTERNS:
+            if re.search(pat, src):
+                label = name
+                break
+        counts[label] = counts.get(label, 0) + 1
+
+    ranked = sorted(counts.items(), key=lambda kv: -kv[1])
+    top = ranked[0] if ranked else ("unclassified", 0)
+    share = (top[1] / total) if total else 0.0
+    out = {
+        "composer": composer,
+        "bars": total,
+        "genres": [[g, round(n / total, 4)] for g, n in ranked[:5]] if total else [],
+        "dominant": top[0],
+        "dominant_share": round(share, 4),
+        # One genre carrying three-quarters of the corpus means every statistic
+        # derived from it describes that genre, not the composer.
+        "narrow": bool(total and share >= 0.75 and top[0] != "unclassified"),
+    }
+    _SCOPE_CACHE[composer] = out
+    return out
+
+
+def render_corpus_scope(composer: str) -> List[str]:
+    """The scope warning, or nothing when the corpus is broad enough."""
+    sc = corpus_scope(composer)
+    if not sc.get("bars") or not sc.get("narrow"):
+        return []
+    return [
+        f"WHAT THIS CORPUS ACTUALLY IS — {sc['dominant_share']:.0%} of the "
+        f"{composer} bars behind every number below are {sc['dominant']}. Each "
+        f"statistic in this brief describes {sc['dominant']}, not {composer} "
+        f"entire. Where they conflict with what you know of his writing in the "
+        f"genre you are composing, trust what you know of the genre.",
     ]
 
 _ORNAMENT_SCHEMA = 1
@@ -1194,6 +1306,58 @@ def _fingerprints(composer: str) -> List[Dict[str, str]]:
         # first sentence only — keep the brief tight
         first = desc.split(". ")[0].strip()
         out.append({"name": it.get("name", it.get("id", "")), "rule": first})
+    return out
+
+
+def _gestures(composer: str, slot, n: int = 5) -> List[Dict[str, Any]]:
+    """Named gestures from the composer's own pack, written out as shorthand.
+
+    `gesture_templates.json` exists for every one of the 51 compiled packs, with
+    18-21 entries each, and **nothing in the brief ever loaded it** — so the
+    composer never saw a single one. They are not statistics: each is a named
+    idiom with real notes and the expression already on them ("The Appoggiatura
+    and Sigh": E5 espressivo, D5, C5 held), which is exactly the material a
+    phrase is built out of and exactly what the corpus exemplars cannot give,
+    because an exemplar is a bar and a gesture is a shape with a name.
+
+    Selected for the phrase where a gesture says what it is for; otherwise the
+    first few, which are the ones the doctrine lists first for a reason.
+    """
+    entries = _load_pack(composer, "gesture_templates") or []
+    if not isinstance(entries, list):
+        return []
+    role = str(getattr(slot, "function", "") or "").lower()
+    cad = str(getattr(slot, "cadence_target", "") or "").lower()
+    wanted, rest = [], []
+    for g in entries:
+        if not isinstance(g, dict) or not (g.get("voice_events") or {}):
+            continue
+        situation = f"{g.get('situation', '')} {g.get('name', '')}".lower()
+        (wanted if (role and role in situation) or (cad and cad in situation) else rest).append(g)
+    chosen = (wanted + rest)[:n]
+
+    out: List[Dict[str, Any]] = []
+    for g in chosen:
+        hands = {}
+        for hand in ("rh", "lh"):
+            events = (g.get("voice_events") or {}).get(hand) or []
+            tokens = []
+            for e in events:
+                if not isinstance(e, dict) or not e.get("p"):
+                    continue
+                tok = f"{e['p']}{e.get('d', 'q')}"
+                for key, prefix in (("expr", ":"), ("dyn", ":"), ("art", ":"), ("orn", ":")):
+                    if e.get(key):
+                        tok += f"{prefix}{str(e[key]).replace(' ', '_')}"
+                tokens.append(tok)
+            if tokens:
+                hands[hand] = " ".join(tokens)
+        if hands:
+            out.append({
+                "name": re.sub(r"^\d+\.\s*", "", str(g.get("name", "") or "")).strip(),
+                "situation": g.get("situation") or "",
+                **hands,
+            })
     return out
 
 
@@ -3064,6 +3228,7 @@ def build_brief(
         cadence_exemplars=_cadence_exemplars(resolved, slot),
         transition_patterns=_transition_patterns(resolved, slot, transition.get("exit_lh_texture")),
         lh_vocabulary=_lh_vocabulary(resolved, slot, key),
+        gestures=_gestures(resolved, slot),
         # WS-C: written rules / doctrine, scoped to this phrase
         fingerprints=_fingerprints(resolved),
         doctrine=_doctrine_slices(resolved, slot, role),
@@ -3431,11 +3596,37 @@ def render_text(brief: CompositionBrief) -> str:
                     f"the phrase short."
                 )
 
+    if brief.gestures:
+        lines.append("")
+        lines.append(
+            f"NAMED GESTURES ({brief.composer} — this composer's own idioms, "
+            f"written out; the expression is part of the gesture):"
+        )
+        for g in brief.gestures:
+            head = f"  • {g['name']}"
+            if g.get("situation"):
+                head += f" — {g['situation']}"
+            lines.append(head)
+            for hand in ("rh", "lh"):
+                if g.get(hand):
+                    lines.append(f"      {hand.upper()}: {g[hand]}")
+
     ts = brief.target_stats
     lines.append("")
     # The fingerprint goes ABOVE the per-texture medians deliberately: it is the
     # part a composer can hold in mind while writing, and the medians below are
     # the part that gets skimmed.
+    # The scope warning goes FIRST because it qualifies every number after it:
+    # Bach's corpus is 100% four-part chorales and Haydn's is 100% string
+    # quartets, and both were being quoted as facts about the composer to
+    # someone writing solo piano.
+    try:
+        scope_lines = render_corpus_scope(brief.composer)
+    except Exception:
+        scope_lines = []
+    if scope_lines:
+        lines.extend(scope_lines)
+        lines.append("")
     try:
         fp_lines = render_rhythmic_fingerprint(brief.composer)
     except Exception:

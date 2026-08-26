@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from dataclasses import fields
 from dataclasses import fields as _dataclass_fields
 from datetime import datetime, timezone
@@ -3611,6 +3612,30 @@ def review_context(
         "scope": scope,
         "evaluation": report,
     }
+    # The composer's own review rubric. `review_rubric.json` exists in 50 of the
+    # 51 compiled packs — the fingerprints this voice must exhibit and the
+    # anti-patterns that mark a pastiche of it — and **nothing had ever loaded
+    # it**, so every review judged style generically no matter whose style it
+    # was. "Mozart's music breathes; four instruments all forte simultaneously
+    # is Beethoven" is not something a generic rubric can say.
+    try:
+        from .composition_brief import _load_pack
+
+        rubric = _load_pack(report.get("composer_reference", ""), "review_rubric") or {}
+        checks = rubric.get("checks") if isinstance(rubric, dict) else None
+        if checks:
+            out["style_rubric"] = [
+                {
+                    "category": c.get("category"),
+                    "severity": c.get("severity"),
+                    "check": re.sub(r"\*\*", "", str(c.get("description", "") or "")).strip(),
+                }
+                for c in checks
+                if isinstance(c, dict) and c.get("description")
+            ]
+    except Exception:
+        pass
+
     try:
         from .musical_report import build_report, concerns_only, render_text
 

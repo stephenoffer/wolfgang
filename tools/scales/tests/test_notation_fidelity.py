@@ -1623,3 +1623,45 @@ def test_loading_a_source_says_so_when_there_is_none(tmp_path, monkeypatch):
     scales_mod.init_workspace("no-source", mode="variation", description="x")
     out = scales_mod.load_source_score("no-source")
     assert "error" in out and "hint" in out, out
+
+
+def test_the_composer_is_shown_its_own_named_gestures():
+    """`gesture_templates.json` exists for every one of the 51 compiled packs,
+    with 18-21 entries each, and nothing in the brief ever loaded it. They are
+    not statistics: each is a named idiom with real notes and the expression
+    already on them, which is what a phrase is built out of."""
+    from scales.composition_brief import _gestures
+    from scales.models import PhraseSlot
+
+    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=1, bar_count=4,
+                      key="F major", meter=(3, 4), tempo_bpm=76)
+    for composer in ("mozart", "beethoven", "chopin"):
+        gestures = _gestures(composer, slot)
+        assert gestures, f"{composer} has gesture templates that never reach the brief"
+        first = gestures[0]
+        assert first["name"] and not first["name"][0].isdigit(), first
+        assert first.get("rh") or first.get("lh"), first
+        # The expression is part of the gesture, not decoration added after.
+        assert any(":" in (g.get("rh", "") + g.get("lh", "")) for g in gestures)
+
+
+def test_the_critic_gets_this_composers_own_review_checks():
+    """`review_rubric.json` exists in 50 of 51 packs — the fingerprints a voice
+    must exhibit and the anti-patterns that mark a pastiche of it — and nothing
+    had ever loaded it, so every review judged style generically no matter
+    whose style it was."""
+    from scales.composition_brief import _load_pack
+
+    for composer in ("mozart", "chopin", "bach"):
+        rubric = _load_pack(composer, "review_rubric") or {}
+        checks = rubric.get("checks") or []
+        assert checks, f"{composer} has no review rubric"
+        assert any(c.get("category") == "fingerprint" for c in checks)
+
+
+def test_the_critic_guidance_tells_it_the_rubric_exists():
+    """A field the critic is never told about is a field it will not read."""
+    doc = Path(".claude/agents/music-critic.md")
+    if not doc.exists():
+        pytest.skip("critic guidance not present")
+    assert "style_rubric" in doc.read_text()

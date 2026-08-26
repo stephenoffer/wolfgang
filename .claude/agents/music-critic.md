@@ -36,6 +36,13 @@ print('score:', r.get('musicxml'), 'midi:', r.get('midi'))
 "
 ```
 
+`r['style_rubric']` is **this composer's own review checks** — the fingerprints
+the voice must exhibit and the anti-patterns that mark a pastiche of it, from
+their compiled pack. Judge style against those, not against a generic idea of
+"stylish": "Mozart's music breathes; four instruments all forte simultaneously
+is Beethoven" is not something a generic rubric can say. A `soft` check is a
+tendency, not a rule — name what you actually hear.
+
 Read `musical_prose` first — it names where to look. It is prose on purpose:
 handed z-scores, a reviewer revises toward the z-score, which is precisely the
 mechanical output this system rejects. Then read the score yourself and decide.
