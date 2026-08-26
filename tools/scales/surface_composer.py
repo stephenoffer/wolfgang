@@ -19,7 +19,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 from fractions import Fraction
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from .cadence_bank import CadenceBank
 from .corpus_bar_retriever import CorpusBarRetriever
@@ -83,10 +83,10 @@ class GestureSlot:
     function: str = "continuation"  # pickup, answer, sequence, insist, cadential, arrival
     rh_texture: str = "singing_melody"
     lh_texture: str = "alberti"
-    anchor_start: Optional[Anchor] = None
-    anchor_end: Optional[Anchor] = None
-    bass_anchors: List[Anchor] = field(default_factory=list)
-    harmonic_cells: List[HarmonicCell] = field(default_factory=list)
+    anchor_start: Anchor | None = None
+    anchor_end: Anchor | None = None
+    bass_anchors: list[Anchor] = field(default_factory=list)
+    harmonic_cells: list[HarmonicCell] = field(default_factory=list)
     density_target: int = 8
     is_cadence_zone: bool = False
 
@@ -95,10 +95,10 @@ class GestureSlot:
 class SlotExitState:
     """Exit state from one gesture slot, feeds into the next."""
 
-    last_melody_midi: Optional[int] = None
-    last_bass_midi: Optional[int] = None
+    last_melody_midi: int | None = None
+    last_bass_midi: int | None = None
     last_beat: float = 1.0
-    last_dynamic: Optional[str] = None
+    last_dynamic: str | None = None
     contour: str = ""  # ascending / descending / static
 
 
@@ -116,11 +116,11 @@ class SurfaceComposer:
     def __init__(
         self,
         pattern_retriever: PatternRetriever,
-        phrase_bank: Optional[PhraseBank] = None,
-        gesture_bank: Optional[GestureBank] = None,
-        corpus_bar_retriever: Optional[CorpusBarRetriever] = None,
-        cadence_bank: Optional[CadenceBank] = None,
-        motif_bank: Optional[Dict[str, Any]] = None,
+        phrase_bank: PhraseBank | None = None,
+        gesture_bank: GestureBank | None = None,
+        corpus_bar_retriever: CorpusBarRetriever | None = None,
+        cadence_bank: CadenceBank | None = None,
+        motif_bank: dict[str, Any] | None = None,
     ):
         self.pattern_retriever = pattern_retriever
         self.phrase_bank = phrase_bank
@@ -135,11 +135,11 @@ class SurfaceComposer:
         self,
         control: PhraseControlIR,
         phrase_context: PhraseContext,
-        harmonic_voicings: List[Dict],
+        harmonic_voicings: list[dict],
         style_program: StyleProgram,
-        continuation: Optional[PhraseBoundaryState] = None,
+        continuation: PhraseBoundaryState | None = None,
         variant: int = 0,
-    ) -> Tuple[List[OnsetBundle], ContextTrace]:
+    ) -> tuple[list[OnsetBundle], ContextTrace]:
         """Compose a phrase as coordinated onset bundles.
 
         Pipeline:
@@ -167,7 +167,7 @@ class SurfaceComposer:
         slots = self._plan_gesture_slots(control, voicing_map, prototype)
 
         # Stage 3: Co-composed realization per slot
-        all_bundles: List[OnsetBundle] = []
+        all_bundles: list[OnsetBundle] = []
         prev_exit = SlotExitState()
         if continuation and continuation.pitch:
             prev_exit.last_melody_midi = pitch_to_midi(continuation.pitch)
@@ -203,10 +203,10 @@ class SurfaceComposer:
 
     def bundles_to_layer_ir(
         self,
-        bundles: List[OnsetBundle],
+        bundles: list[OnsetBundle],
         phrase_id: str,
         key: str,
-        meter: Tuple[int, int],
+        meter: tuple[int, int],
         bar_count: int,
     ) -> LayerIR:
         """Convert onset bundles to LayerIR for backward compatibility."""
@@ -281,7 +281,7 @@ class SurfaceComposer:
 
     def _select_prototype(
         self, control: PhraseControlIR, ctx: PhraseContext, sp: StyleProgram, trace: ContextTrace
-    ) -> Optional[PhraseResult]:
+    ) -> PhraseResult | None:
         """Find a phrase prototype from corpus matching this phrase's role."""
         if not self.phrase_bank:
             return None
@@ -311,15 +311,15 @@ class SurfaceComposer:
     def _plan_gesture_slots(
         self,
         control: PhraseControlIR,
-        voicing_map: Dict[int, Dict],
-        prototype: Optional[PhraseResult],
-    ) -> List[GestureSlot]:
+        voicing_map: dict[int, dict],
+        prototype: PhraseResult | None,
+    ) -> list[GestureSlot]:
         """Divide the phrase into gesture slots between consecutive melody anchors."""
         anchors = sorted(control.melody_anchors, key=lambda a: (a.bar, a.beat))
         bass_anchors = sorted(control.bass_anchors, key=lambda a: (a.bar, a.beat))
         bar_dur = bar_duration(control.meter)
         cadence_bar = control.cadence_bar or (control.bar_start + control.bars - 1)
-        slots: List[GestureSlot] = []
+        slots: list[GestureSlot] = []
 
         if not anchors:
             # No melody anchors — make one slot per bar
@@ -399,7 +399,7 @@ class SurfaceComposer:
         idx: int,
         total: int,
         anchor_start: Anchor,
-        anchor_end: Optional[Anchor],
+        anchor_end: Anchor | None,
         cadence_bar: int,
         bar_dur: float,
         control: PhraseControlIR,
@@ -430,7 +430,7 @@ class SurfaceComposer:
         if start_midi and end_midi:
             if end_midi > start_midi + 2:
                 return "rising_continuation"
-            elif end_midi < start_midi - 2:
+            if end_midi < start_midi - 2:
                 return "falling_continuation"
 
         if idx < total // 2:
@@ -444,9 +444,9 @@ class SurfaceComposer:
         slot: GestureSlot,
         control: PhraseControlIR,
         ctx: PhraseContext,
-        voicing_map: Dict[int, Dict],
+        voicing_map: dict[int, dict],
         sp: StyleProgram,
-        scale: List[int],
+        scale: list[int],
         key: str,
         mode: str,
         root: int,
@@ -454,9 +454,9 @@ class SurfaceComposer:
         variant: int,
         prev_exit: SlotExitState,
         trace: ContextTrace,
-    ) -> Tuple[List[OnsetBundle], SlotExitState]:
+    ) -> tuple[list[OnsetBundle], SlotExitState]:
         """Co-compose melody + accompaniment for one gesture slot."""
-        bundles: List[OnsetBundle] = []
+        bundles: list[OnsetBundle] = []
 
         # 3a: Resolve melody anchor pitches
         start_midi = (
@@ -518,7 +518,7 @@ class SurfaceComposer:
         all_events = deduped
 
         # Group by (bar, beat)
-        time_groups: Dict[Tuple[int, float], List[OnsetEvent]] = {}
+        time_groups: dict[tuple[int, float], list[OnsetEvent]] = {}
         for evt in all_events:
             k = (evt._bar, round(evt._beat, 2))
             time_groups.setdefault(k, []).append(evt)
@@ -561,22 +561,22 @@ class SurfaceComposer:
     def _construct_melody(
         self,
         slot: GestureSlot,
-        start_midi: Optional[int],
-        end_midi: Optional[int],
-        gesture: Optional[GestureResult],
-        scale: List[int],
+        start_midi: int | None,
+        end_midi: int | None,
+        gesture: GestureResult | None,
+        scale: list[int],
         key: str,
         bar_dur: float,
         trace: ContextTrace,
         control: PhraseControlIR,
-    ) -> List["_TaggedEvent"]:
+    ) -> list[_TaggedEvent]:
         """Build melody events for a gesture slot using anchor interpolation.
 
         Uses gesture dur_profile for rhythm and scale-walking for pitch.
         When motif_slots + motif_bank supply material for a bar in this slot,
         emits motif rhythm/intervals instead of generic interpolation.
         """
-        events: List[_TaggedEvent] = []
+        events: list[_TaggedEvent] = []
         if start_midi is None:
             return events
 
@@ -584,7 +584,7 @@ class SurfaceComposer:
 
         # Motif-driven realization for any bar in this slot with a MotifSlot
         if self.motif_bank and getattr(control, "motif_slots", None):
-            motif_events: List[_TaggedEvent] = []
+            motif_events: list[_TaggedEvent] = []
             for bar in range(int(slot.bar_start), int(slot.bar_end) + 1):
                 ms = pick_motif_slot_for_bar(control.motif_slots, bar)
                 if not ms:
@@ -743,8 +743,8 @@ class SurfaceComposer:
         return events
 
     def _interpolate_melody_pitches(
-        self, start_midi: int, end_midi: int, n_steps: int, scale: List[int], key: str
-    ) -> List[int]:
+        self, start_midi: int, end_midi: int, n_steps: int, scale: list[int], key: str
+    ) -> list[int]:
         """Generate n_steps pitches walking from start_midi toward end_midi through the scale."""
         if n_steps <= 0:
             return []
@@ -770,19 +770,19 @@ class SurfaceComposer:
     def _construct_accompaniment(
         self,
         slot: GestureSlot,
-        melody_events: List["_TaggedEvent"],
-        voicing_map: Dict[int, Dict],
+        melody_events: list[_TaggedEvent],
+        voicing_map: dict[int, dict],
         control: PhraseControlIR,
         ctx: PhraseContext,
         sp: StyleProgram,
         key: str,
         mode: str,
         root: int,
-        scale: List[int],
+        scale: list[int],
         bar_dur: float,
         variant: int,
         trace: ContextTrace,
-    ) -> List["_TaggedEvent"]:
+    ) -> list[_TaggedEvent]:
         """Generate accompaniment events aware of melody occupancy.
 
         Retrieval hierarchy:
@@ -790,10 +790,10 @@ class SurfaceComposer:
         2. Corpus bar retrieval
         3. Style-specific constructive fallback
         """
-        events: List[_TaggedEvent] = []
+        events: list[_TaggedEvent] = []
 
         # Melody occupancy map: which beats have melody?
-        mel_beats: Dict[int, List[float]] = {}
+        mel_beats: dict[int, list[float]] = {}
         for me in melody_events:
             mel_beats.setdefault(me._bar, []).append(me._beat)
 
@@ -878,16 +878,16 @@ class SurfaceComposer:
 
     def _adapt_pattern_to_harmony(
         self,
-        pattern: Dict,
+        pattern: dict,
         bar: int,
-        chord_tones_midi: List[int],
+        chord_tones_midi: list[int],
         bass_midi: int,
         key: str,
         mode: str,
-        scale: List[int],
-        mel_active: List[float],
+        scale: list[int],
+        mel_active: list[float],
         trace: ContextTrace,
-    ) -> Optional[List["_TaggedEvent"]]:
+    ) -> list[_TaggedEvent] | None:
         """Adapt a retrieved pattern to the current harmony by re-mapping chord slots."""
         try:
             lh_events = self.pattern_retriever.pattern_to_events(
@@ -901,7 +901,7 @@ class SurfaceComposer:
         if not lh_events:
             return None
 
-        events: List[_TaggedEvent] = []
+        events: list[_TaggedEvent] = []
         for evt in lh_events:
             # Snap each pattern pitch to nearest chord tone
             evt_midi = pitch_to_midi(evt.pitch)
@@ -941,7 +941,7 @@ class SurfaceComposer:
         mode: str,
         key: str,
         trace: ContextTrace,
-    ) -> Optional[List["_TaggedEvent"]]:
+    ) -> list[_TaggedEvent] | None:
         """Retrieve a corpus bar and convert to tagged events."""
         try:
             corpus_bar = self.corpus_bar_retriever.retrieve_bar(
@@ -984,9 +984,9 @@ class SurfaceComposer:
         control: PhraseControlIR,
         key: str,
         mode: str,
-        voicing: Optional[Dict],
+        voicing: dict | None,
         trace: ContextTrace,
-    ) -> Optional[List["_TaggedEvent"]]:
+    ) -> list[_TaggedEvent] | None:
         """Generate cadence-specialized accompaniment."""
         try:
             query = CadenceQuery(
@@ -1050,21 +1050,21 @@ class SurfaceComposer:
         bar: int,
         lh_texture: str,
         bass_midi: int,
-        chord_tones_midi: List[int],
+        chord_tones_midi: list[int],
         key: str,
         mode: str,
-        scale: List[int],
-        mel_active: List[float],
+        scale: list[int],
+        mel_active: list[float],
         bar_dur: float,
         sp: StyleProgram,
         trace: ContextTrace,
-    ) -> List["_TaggedEvent"]:
+    ) -> list[_TaggedEvent]:
         """Style-specific constructive fallback — never dead silence.
 
         Generates idiomatic LH patterns from chord tones based on
         the requested texture type. Every bar sounds musical.
         """
-        events: List[_TaggedEvent] = []
+        events: list[_TaggedEvent] = []
         bass_pitch = midi_to_pitch(clamp_to_range(bass_midi, 36, 55), key)
 
         # Ensure we have chord tones in LH range
@@ -1117,8 +1117,8 @@ class SurfaceComposer:
 
         elif lh_texture in ("broken_chord_wave", AccompType.BROKEN_CHORD_WAVE.value):
             # Broken chord ascending then descending
-            up = [bass_pitch] + ct_pitches[:2]
-            down = list(reversed(ct_pitches[:2])) + [bass_pitch]
+            up = [bass_pitch, *ct_pitches[:2]]
+            down = [*list(reversed(ct_pitches[:2])), bass_pitch]
             seq = up + down
             beats = [1.0, 1.5, 2.0, 2.5, 3.0, 3.5]
             for i, beat in enumerate(beats):
@@ -1162,7 +1162,7 @@ class SurfaceComposer:
 
         elif lh_texture in ("bass_melody", AccompType.BASS_MELODY.value):
             # Contrapuntal bass: quarters on chord tones
-            all_tones = [bass_midi] + ct[:2]
+            all_tones = [bass_midi, *ct[:2]]
             for i, beat in enumerate([1.0, 2.0, 3.0, 4.0]):
                 if beat > bar_dur:
                     break
@@ -1280,7 +1280,7 @@ class SurfaceComposer:
 
     def _retrieve_gesture(
         self, slot: GestureSlot, ctx: PhraseContext, key: str, mode: str, trace: ContextTrace
-    ) -> Optional[GestureResult]:
+    ) -> GestureResult | None:
         """Retrieve a gesture from GestureBank matching the slot's function."""
         if not self.gesture_bank:
             return None
@@ -1306,8 +1306,8 @@ class SurfaceComposer:
     # ─── Pitch Resolution Helpers ─────────────────────────────────────────
 
     def _resolve_pitch(
-        self, anchor: Optional[Anchor], key: str, mode: str, root: int, prev_midi: Optional[int]
-    ) -> Optional[int]:
+        self, anchor: Anchor | None, key: str, mode: str, root: int, prev_midi: int | None
+    ) -> int | None:
         """Resolve an anchor's pitch_or_degree to a MIDI value."""
         if anchor is None:
             return None
@@ -1335,7 +1335,7 @@ class SurfaceComposer:
         return clamp_to_range(midi, 60, 84)
 
     def _resolve_bass_pitch(
-        self, bass_anchor: Optional[Anchor], voicing: Optional[Dict], key: str, mode: str, root: int
+        self, bass_anchor: Anchor | None, voicing: dict | None, key: str, mode: str, root: int
     ) -> int:
         """Resolve bass pitch from anchor or voicing."""
         if bass_anchor:
@@ -1360,8 +1360,8 @@ class SurfaceComposer:
         return clamp_to_range(root + 36, 36, 55)
 
     def _get_chord_tones_for_bar(
-        self, cell: Optional[HarmonicCell], voicing: Optional[Dict], root: int, mode: str
-    ) -> List[int]:
+        self, cell: HarmonicCell | None, voicing: dict | None, root: int, mode: str
+    ) -> list[int]:
         """Get MIDI chord tones for a bar from voicing or harmonic cell."""
         tones = []
         if voicing:
@@ -1374,7 +1374,7 @@ class SurfaceComposer:
             tones = chord_tones(root + 48, quality)
         return tones
 
-    def _last_bass_midi(self, events: List["_TaggedEvent"]) -> Optional[int]:
+    def _last_bass_midi(self, events: list[_TaggedEvent]) -> int | None:
         """Get the last bass MIDI from accompaniment events."""
         for e in reversed(events):
             if e.voice == "bass" and e.pitch != "rest":
@@ -1387,7 +1387,7 @@ class SurfaceComposer:
 
     def _get_texture_for_bar(
         self, control: PhraseControlIR, bar_offset: int
-    ) -> Tuple[str, str, int]:
+    ) -> tuple[str, str, int]:
         """Get (rh_texture, lh_texture, density_target) for a bar offset."""
         if control.texture_program.bars and bar_offset < len(control.texture_program.bars):
             tp = control.texture_program.bars[bar_offset]
@@ -1396,7 +1396,7 @@ class SurfaceComposer:
 
     def _cells_for_range(
         self, control: PhraseControlIR, bar_s: int, beat_s: float, bar_e: int, beat_e: float
-    ) -> List[HarmonicCell]:
+    ) -> list[HarmonicCell]:
         """Get harmonic cells active in a bar range."""
         result = []
         for cell in control.harmonic_cells:
@@ -1404,11 +1404,11 @@ class SurfaceComposer:
                 result.append(cell)
         return result
 
-    def _apply_dynamics(self, bundles: List[OnsetBundle], control: PhraseControlIR) -> None:
+    def _apply_dynamics(self, bundles: list[OnsetBundle], control: PhraseControlIR) -> None:
         """Apply dynamics from dynamic_shape DynamicEvent list."""
         if not control.dynamic_shape:
             return
-        bar_dynamics: Dict[int, str] = {}
+        bar_dynamics: dict[int, str] = {}
         for de in control.dynamic_shape:
             if hasattr(de, "bar") and hasattr(de, "level"):
                 bar_dynamics[de.bar] = de.level
@@ -1421,8 +1421,8 @@ class SurfaceComposer:
 
     def _apply_breathing(
         self,
-        bundles: List[OnsetBundle],
-        breathing_rules: List,
+        bundles: list[OnsetBundle],
+        breathing_rules: list,
         control: PhraseControlIR,
         trace: ContextTrace,
     ) -> None:
@@ -1453,9 +1453,9 @@ class SurfaceComposer:
             bundles.append(rest_bundle)
             trace.breathing_rules_applied.append(getattr(rule, "type", ""))
 
-    def _index_voicings(self, voicings: List[Dict]) -> Dict[int, Dict]:
+    def _index_voicings(self, voicings: list[dict]) -> dict[int, dict]:
         """Index voicings by bar number."""
-        result: Dict[int, Dict] = {}
+        result: dict[int, dict] = {}
         for v in voicings:
             bar = v.get("bar", 0)
             if bar not in result:
@@ -1476,11 +1476,11 @@ class _TaggedEvent:
     pitch: str = "C4"
     duration: str = "q"
     role: str = NoteRole.STRUCTURAL.value
-    dynamic: Optional[str] = None
-    articulation: Optional[str] = None
-    ornament: Optional[str] = None
-    tie: Optional[str] = None
-    expression: Optional[str] = None
+    dynamic: str | None = None
+    articulation: str | None = None
+    ornament: str | None = None
+    tie: str | None = None
+    expression: str | None = None
     justification: OnsetJustification = field(default_factory=OnsetJustification)
 
     def __init__(self, bar: int = 1, beat: float = 1.0, **kwargs):

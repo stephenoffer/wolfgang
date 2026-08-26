@@ -30,7 +30,7 @@ import json
 import logging
 import re
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 # Parsing a numbered, bolded catalogue item: `N. **Name** — description`.
 #
@@ -112,7 +112,7 @@ _LOG = logging.getLogger(__name__)
 class ContextCompiler:
     """Compiles markdown profiles + corpus data into ComposerPacks."""
 
-    def compile(self, composer: str, genre: str = "", force: bool = False) -> Dict[str, Any]:
+    def compile(self, composer: str, genre: str = "", force: bool = False) -> dict[str, Any]:
         """Run all 19 compiler passes for a composer.
 
         Returns a summary of what was compiled.
@@ -242,7 +242,7 @@ class ContextCompiler:
         return results
 
     @staticmethod
-    def _shared_harmony_text(profile_dir: Optional[Path], composer: str = "") -> str:
+    def _shared_harmony_text(profile_dir: Path | None, composer: str = "") -> str:
         """The genre-level harmony file a composer profile delegates to.
 
         Composer profiles say so explicitly — Bach's `harmonic-language.md`
@@ -283,7 +283,7 @@ class ContextCompiler:
                 continue
         return "\n\n".join(out)
 
-    def _find_profile_dir(self, composer: str, genre: str = "") -> Optional[Path]:
+    def _find_profile_dir(self, composer: str, genre: str = "") -> Path | None:
         """Find the composer profile directory.
 
         This took a ``genre`` argument and ignored it, returning whichever
@@ -324,7 +324,7 @@ class ContextCompiler:
 
     # ─── Pass 1: Manifest ─────────────────────────────────────────────────
 
-    def _pass_manifest(self, composer: str, genre: str, profile_dir: Optional[Path]) -> Dict:
+    def _pass_manifest(self, composer: str, genre: str, profile_dir: Path | None) -> dict:
         """Enumerate available files and classify support tier."""
         profile_files = []
         if profile_dir and profile_dir.exists():
@@ -372,7 +372,7 @@ class ContextCompiler:
 
     # ─── Pass 2: Fingerprints ─────────────────────────────────────────────
 
-    def _pass_fingerprints(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_fingerprints(self, profile_dir: Path | None) -> dict:
         """Extract fingerprint rules from composition-guide.md.
 
         Handles both flat fingerprint lists and multi-period composers
@@ -424,7 +424,7 @@ class ContextCompiler:
         return {"required_count": required, "items": items}
 
     def _extract_fingerprints_from_text(
-        self, text: str, items: List[Dict], period: str = ""
+        self, text: str, items: list[dict], period: str = ""
     ) -> None:
         """Extract numbered fingerprint items from a text block."""
         pattern = r"\d+\.\s+\*\*([^*]+)\*\*\s*[—–-]?\s*(.*?)(?=\n\d+\.|\Z)"
@@ -449,9 +449,9 @@ class ContextCompiler:
 
     # ─── Pass 3: Statistics ───────────────────────────────────────────────
 
-    def _pass_statistics(self, composer: str, profile_dir: Optional[Path]) -> Dict:
+    def _pass_statistics(self, composer: str, profile_dir: Path | None) -> dict:
         """Compile statistics from corpus + texture templates + markdown."""
-        stats: Dict[str, Any] = {"total_bars": 0, "lh_distribution": {}, "rh_distribution": {}}
+        stats: dict[str, Any] = {"total_bars": 0, "lh_distribution": {}, "rh_distribution": {}}
 
         # Source 1: the corpus profile — measured from the bar records this
         # composer was actually extracted from.
@@ -521,7 +521,7 @@ class ContextCompiler:
 
         return stats
 
-    def _normalize_matrix(self, counts: Dict) -> Dict:
+    def _normalize_matrix(self, counts: dict) -> dict:
         """Normalize count matrix to probabilities."""
         result = {}
         for from_tex, to_counts in counts.items():
@@ -534,7 +534,7 @@ class ContextCompiler:
 
     # ─── Pass 4: Formal Grammar ──────────────────────────────────────────
 
-    def _pass_formal_grammar(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_formal_grammar(self, profile_dir: Path | None) -> dict:
         """Extract form templates from formal-approach.md.
 
         This used to ask ``if "sonata" in text.lower()``, which cannot tell a
@@ -578,7 +578,7 @@ class ContextCompiler:
 
     # ─── Pass 5: Harmonic Rules ──────────────────────────────────────────
 
-    def _pass_harmonic_rules(self, profile_dir: Optional[Path], composer: str = "") -> Dict:
+    def _pass_harmonic_rules(self, profile_dir: Path | None, composer: str = "") -> dict:
         """Extract harmonic vocabulary from harmonic-language.md."""
         harmonic = (profile_dir / "harmonic-language.md") if profile_dir else None
         own = harmonic.read_text() if (harmonic and harmonic.exists()) else ""
@@ -616,7 +616,7 @@ class ContextCompiler:
 
     # ─── Pass 6: Orchestration + Periods ──────────────────────────────────
 
-    def _pass_orchestration(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_orchestration(self, profile_dir: Path | None) -> dict:
         """Extract orchestration roles."""
         if not profile_dir:
             return {"instruments": {}}
@@ -628,7 +628,7 @@ class ContextCompiler:
         # Basic extraction — would be more sophisticated in production
         return {"instruments": {}, "source_file": "orchestration.md"}
 
-    def _pass_periods(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_periods(self, profile_dir: Path | None) -> dict:
         """Extract period overlays from stylistic-evolution.md."""
         if not profile_dir:
             return {"periods": []}
@@ -649,7 +649,7 @@ class ContextCompiler:
 
     # ─── Pass 7: Cross-References + Prototypes + Rubric ───────────────────
 
-    def _pass_cross_references(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_cross_references(self, profile_dir: Path | None) -> dict:
         """Extract influence axes from cross-references.md."""
         if not profile_dir:
             return {"influenced_by": [], "comparative_axes": {}}
@@ -669,7 +669,7 @@ class ContextCompiler:
 
         return {"influenced_by": influenced_by, "comparative_axes": {}}
 
-    def _pass_prototypes(self, profile_dir: Optional[Path]) -> Dict:
+    def _pass_prototypes(self, profile_dir: Path | None) -> dict:
         """Extract JSON code examples from composition-guide.md."""
         if not profile_dir:
             return {"prototypes": []}
@@ -696,7 +696,7 @@ class ContextCompiler:
 
         return {"prototypes": prototypes}
 
-    def _pass_review_rubric(self, profile_dir: Optional[Path], fingerprints: Dict) -> Dict:
+    def _pass_review_rubric(self, profile_dir: Path | None, fingerprints: dict) -> dict:
         """Build review rubric from fingerprints + anti-patterns."""
         checks = []
 
@@ -737,14 +737,14 @@ class ContextCompiler:
 
     # ─── Pass 8: Executable Gestures ─────────────────────────────────────
 
-    def _pass_executable_gestures(self, profile_dir: Optional[Path]) -> List[Dict]:
+    def _pass_executable_gestures(self, profile_dir: Path | None) -> list[dict]:
         """Extract note-level gesture templates from context files.
 
         Sources:
         - .claude/context/general/phrase-construction.md (18 techniques with JSON)
         - Per-composer composition-guide.md (technique examples with JSON)
         """
-        gestures: List[Dict] = []
+        gestures: list[dict] = []
 
         # Source 1: General phrase-construction.md
         pc_file = CONTEXT_DIR / "general" / "phrase-construction.md"
@@ -759,7 +759,7 @@ class ContextCompiler:
                 gesture_id = re.sub(r"[^a-z0-9]+", "_", heading.lower()).strip("_")
 
                 # Extract JSON blocks
-                voice_events: Dict[str, List[Dict]] = {}
+                voice_events: dict[str, list[dict]] = {}
                 situation = ""
                 for jmatch in re.finditer(r"```json\s*\n(.*?)\n```", body, re.DOTALL):
                     try:
@@ -847,7 +847,7 @@ class ContextCompiler:
 
     # ─── Pass 9: Anti-Pattern Rules ───────────────────────────────────────
 
-    def _pass_anti_patterns(self, profile_dir: Optional[Path]) -> List[Dict]:
+    def _pass_anti_patterns(self, profile_dir: Path | None) -> list[dict]:
         """Extract anti-pattern rules from context files.
 
         Sources:
@@ -855,7 +855,7 @@ class ContextCompiler:
         - .claude/context/general/ai-music-self-critique.md (~30 AI tells)
         - .claude/context/general/human-sounding-music.md (quantitative checklist)
         """
-        rules: List[Dict] = []
+        rules: list[dict] = []
 
         # Detector name mapping from known anti-pattern categories
         detector_map = {
@@ -954,14 +954,14 @@ class ContextCompiler:
 
     # ─── Pass 10: Harmonic Devices + Cadence Scripts ──────────────────────
 
-    def _pass_harmonic_devices(self, profile_dir: Optional[Path], composer: str = "") -> Dict:
+    def _pass_harmonic_devices(self, profile_dir: Path | None, composer: str = "") -> dict:
         """Extract harmonic devices and cadence scripts from harmonic-language.md.
 
         Richer than pass 5 — extracts actual chord sequences, voice-leading
         hints, usage contexts, and emotional color.
         """
-        devices: List[Dict] = []
-        cadence_scripts: List[Dict] = []
+        devices: list[dict] = []
+        cadence_scripts: list[dict] = []
 
         hl_file = (profile_dir / "harmonic-language.md") if profile_dir else None
         own = hl_file.read_text() if (hl_file and hl_file.exists()) else ""
@@ -1053,13 +1053,13 @@ class ContextCompiler:
 
     # ─── Pass 11: Breathing Rules ─────────────────────────────────────────
 
-    def _pass_breathing_rules(self) -> List[Dict]:
+    def _pass_breathing_rules(self) -> list[dict]:
         """Extract silence/breathing doctrine from dramatic-pacing-silence.md.
 
         Parses the "Silence as Dramatic Device" table (7 rows) and
         other timing/tension tables.
         """
-        rules: List[Dict] = []
+        rules: list[dict] = []
 
         dp_file = CONTEXT_DIR / "general" / "dramatic-pacing-silence.md"
         if not dp_file.exists():
@@ -1085,7 +1085,7 @@ class ContextCompiler:
                     if len(cols) < 2:
                         continue
 
-                    rule: Dict[str, Any] = {
+                    rule: dict[str, Any] = {
                         "source_file": "dramatic-pacing-silence.md",
                     }
                     for i, header in enumerate(headers):
@@ -1119,7 +1119,7 @@ class ContextCompiler:
     # ─── Pass 12: Ornament Intents ────────────────────────────────────────
 
     @staticmethod
-    def _composer_ornament_intents(profile_dir: Optional[Path]) -> List[Dict]:
+    def _composer_ornament_intents(profile_dir: Path | None) -> list[dict]:
         """This composer's own ornament usage, from their profile.
 
         Ornament choice is one of the most composer-specific things there is —
@@ -1135,7 +1135,7 @@ class ContextCompiler:
         """
         if not profile_dir:
             return []
-        out: List[Dict] = []
+        out: list[dict] = []
         seen: set = set()
         for name in ("melodic-style.md", "composition-guide.md", "harmonic-language.md"):
             path = profile_dir / name
@@ -1175,7 +1175,7 @@ class ContextCompiler:
         return out
 
     @staticmethod
-    def _composer_hand_idioms(profile_dir: Optional[Path]) -> List[Dict]:
+    def _composer_hand_idioms(profile_dir: Path | None) -> list[dict]:
         """A composer's catalogue of hand idioms, from `<name>-lh-vocabulary.md`.
 
         `mozart-lh-vocabulary.md` was written specifically against the failure
@@ -1193,7 +1193,7 @@ class ContextCompiler:
         """
         if not profile_dir:
             return []
-        out: List[Dict] = []
+        out: list[dict] = []
         for path in sorted(profile_dir.glob("*-lh-vocabulary.md")):
             try:
                 text = path.read_text()
@@ -1215,7 +1215,7 @@ class ContextCompiler:
         return out
 
     @staticmethod
-    def _composer_devices(profile_dir: Optional[Path]) -> List[Dict]:
+    def _composer_devices(profile_dir: Path | None) -> list[dict]:
         """A composer's catalogue of idiomatic devices, from `<name>-devices.md`.
 
         The companion to `*-lh-vocabulary.md`: where that names accompaniment
@@ -1232,7 +1232,7 @@ class ContextCompiler:
         """
         if not profile_dir:
             return []
-        out: List[Dict] = []
+        out: list[dict] = []
         for path in sorted(profile_dir.glob("*-devices.md")):
             try:
                 text = path.read_text()
@@ -1253,13 +1253,13 @@ class ContextCompiler:
                 )
         return out
 
-    def _pass_ornament_policy(self, profile_dir: Optional[Path] = None) -> List[Dict]:
+    def _pass_ornament_policy(self, profile_dir: Path | None = None) -> list[dict]:
         """Extract ornament intent rules.
 
         The composer's own usage leads; the general `ornament-intent.md`
         decision framework follows as the floor beneath it.
         """
-        intents: List[Dict] = self._composer_ornament_intents(profile_dir)
+        intents: list[dict] = self._composer_ornament_intents(profile_dir)
 
         oi_file = CONTEXT_DIR / "general" / "ornament-intent.md"
         if not oi_file.exists():
@@ -1318,7 +1318,7 @@ class ContextCompiler:
 
     # ─── Pass 13: Prompt Semantics ──────────────────────────────────────
 
-    def _pass_prompt_semantics(self) -> List[Dict]:
+    def _pass_prompt_semantics(self) -> list[dict]:
         """Extract emotion-to-music parameter mappings from general context.
 
         Sources:
@@ -1326,7 +1326,7 @@ class ContextCompiler:
         - character-theme-design.md (archetype → intervals/rhythm/timbre/etc.)
         - musical-semiotics.md (interval/chord affect tables)
         """
-        semantics: List[Dict] = []
+        semantics: list[dict] = []
 
         # Source 1: emotional-vocabulary.md — main emotion table
         ev_file = CONTEXT_DIR / "general" / "emotional-vocabulary.md"
@@ -1446,7 +1446,7 @@ class ContextCompiler:
     # ─── Pass 14: Melody Priors ──────────────────────────────────────────
 
     @staticmethod
-    def _melodic_style_priors(path: Path) -> List[Dict]:
+    def _melodic_style_priors(path: Path) -> list[dict]:
         """Rows of a composer's melodic-character table, as priors.
 
         Profiles head the table's third column differently — Mozart's is
@@ -1457,7 +1457,7 @@ class ContextCompiler:
             text = path.read_text()
         except OSError:
             return []
-        out: List[Dict] = []
+        out: list[dict] = []
         rows = _parse_markdown_table(text, required_header="Feature")
         for row in rows:
             feature = (row.get("feature") or "").strip()
@@ -1486,7 +1486,7 @@ class ContextCompiler:
             )
         return out
 
-    def _pass_melody_priors(self, profile_dir: Optional[Path] = None) -> List[Dict]:
+    def _pass_melody_priors(self, profile_dir: Path | None = None) -> list[dict]:
         """Extract melodic construction priors.
 
         Sources:
@@ -1505,7 +1505,7 @@ class ContextCompiler:
         Composer-specific priors come FIRST so they lead the brief's doctrine
         slice; the general ones remain as the floor beneath them.
         """
-        priors: List[Dict] = []
+        priors: list[dict] = []
 
         # Source 0: the composer's own melodic voice.
         if profile_dir:
@@ -1635,9 +1635,9 @@ class ContextCompiler:
 
     # ─── Pass 15: Figuration Templates ───────────────────────────────────
 
-    def _pass_figuration_templates(self) -> List[Dict]:
+    def _pass_figuration_templates(self) -> list[dict]:
         """Extract figuration catalog from figuration-patterns.md."""
-        templates: List[Dict] = []
+        templates: list[dict] = []
 
         fp_file = CONTEXT_DIR / "general" / "figuration-patterns.md"
         if not fp_file.exists():
@@ -1717,9 +1717,9 @@ class ContextCompiler:
 
     # ─── Pass 16: Modulation Scripts ─────────────────────────────────────
 
-    def _pass_modulation_scripts(self) -> List[Dict]:
+    def _pass_modulation_scripts(self) -> list[dict]:
         """Extract modulation procedures from modulation-techniques.md."""
-        scripts: List[Dict] = []
+        scripts: list[dict] = []
 
         mt_file = CONTEXT_DIR / "general" / "modulation-techniques.md"
         if not mt_file.exists():
@@ -1788,9 +1788,9 @@ class ContextCompiler:
 
     # ─── Pass 17: Counterpoint Rules ─────────────────────────────────────
 
-    def _pass_counterpoint_rules(self) -> List[Dict]:
+    def _pass_counterpoint_rules(self) -> list[dict]:
         """Extract contrapuntal rules from counterpoint-essentials.md."""
-        rules: List[Dict] = []
+        rules: list[dict] = []
 
         ce_file = CONTEXT_DIR / "general" / "counterpoint-essentials.md"
         if not ce_file.exists():
@@ -1894,9 +1894,9 @@ class ContextCompiler:
 
     # ─── Pass 18: Harmonic Temperature ───────────────────────────────────
 
-    def _pass_harmonic_temperature(self) -> List[Dict]:
+    def _pass_harmonic_temperature(self) -> list[dict]:
         """Extract tension/temperature mappings from harmonic-expression.md."""
-        entries: List[Dict] = []
+        entries: list[dict] = []
 
         he_file = CONTEXT_DIR / "general" / "harmonic-expression.md"
         if not he_file.exists():
@@ -2033,8 +2033,8 @@ class ContextCompiler:
     # ─── Pass 19: Grounding ──────────────────────────────────────────────
 
     def _pass_grounding(
-        self, output_dir: Path, statistics: Dict, composer: str = ""
-    ) -> Dict[str, Any]:
+        self, output_dir: Path, statistics: dict, composer: str = ""
+    ) -> dict[str, Any]:
         """Cross-reference prose claims against corpus statistics.
 
         Labels each entry's grounding field:
@@ -2046,7 +2046,7 @@ class ContextCompiler:
         If corpus feedback evidence exists (tools/context_evidence/{composer}/),
         claims with strong evidence confidence are upgraded.
         """
-        report: Dict[str, Any] = {
+        report: dict[str, Any] = {
             "files_processed": 0,
             "entries_grounded": 0,
             "evidence_upgrades": 0,
@@ -2107,7 +2107,7 @@ class ContextCompiler:
                     claims_list = evidence_data.get("claims", [])
 
                     # Build claim lookup by source_entry_id
-                    claim_lookup: Dict[str, Dict] = {}
+                    claim_lookup: dict[str, dict] = {}
                     for claim in claims_list:
                         entry_id = claim.get("source_entry_id", "")
                         if entry_id:
@@ -2180,7 +2180,7 @@ class ContextCompiler:
 # ─── Module Helpers ──────────────────────────────────────────────────────────
 
 
-def _extract_texture_refs(text: str) -> List[str]:
+def _extract_texture_refs(text: str) -> list[str]:
     """Extract texture type references from description text."""
     textures = []
     keywords = {
@@ -2233,7 +2233,7 @@ def _form_is_asserted(text: str, form: str) -> bool:
                 return True
     return False
 
-def _extract_section_proportions(text: str, form_type: str) -> List[Dict]:
+def _extract_section_proportions(text: str, form_type: str) -> list[dict]:
     """Extract section proportion data from text."""
     sections = []
     # Look for percentage patterns like "Exposition (35-40%)"
@@ -2247,7 +2247,7 @@ def _extract_section_proportions(text: str, form_type: str) -> List[Dict]:
     return sections
 
 
-def _parse_markdown_table(text: str, required_header: str = "") -> List[Dict]:
+def _parse_markdown_table(text: str, required_header: str = "") -> list[dict]:
     """Parse the first markdown table in text whose header row contains
     required_header. Returns list of dicts with normalized keys.
 
@@ -2286,10 +2286,10 @@ def _parse_markdown_table(text: str, required_header: str = "") -> List[Dict]:
     return []
 
 
-def _parse_all_markdown_tables(text: str) -> List[List[Dict]]:
+def _parse_all_markdown_tables(text: str) -> list[list[dict]]:
     """Parse ALL markdown tables in text. Returns list of tables,
     each table is a list of row dicts."""
-    tables: List[List[Dict]] = []
+    tables: list[list[dict]] = []
     table_pattern = re.compile(
         r"^(\|[^\n]+\|)\s*\n(\|[-\s|:]+\|)\s*\n((?:\|[^\n]+\|\s*\n?)*)",
         re.MULTILINE,
@@ -2313,7 +2313,7 @@ def _parse_all_markdown_tables(text: str) -> List[List[Dict]]:
     return tables
 
 
-def _parse_range(text: str) -> Optional[tuple]:
+def _parse_range(text: str) -> tuple | None:
     """Parse a range like '120-152' or '60-100 BPM' into (int, int) or None."""
     if not text:
         return None
@@ -2338,7 +2338,7 @@ _ROMAN_TOKEN = re.compile(r"^(?:cad\s*)?[b#]?[ivIV]+[°ø+o]?(?:64|65|43|42|6|7|
 _ROMAN_BASS_DEGREE = {"i": 1, "ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7}
 
 
-def _chord_chain(cells: List[str]) -> List[str]:
+def _chord_chain(cells: list[str]) -> list[str]:
     """Roman-numeral chain from the first table cell that spells one out.
 
     Cells are prose with a chain embedded: "ii6 -> cad 6/4 -> V7 -> I",
@@ -2349,7 +2349,7 @@ def _chord_chain(cells: List[str]) -> List[str]:
     for cell in cells:
         if not cell or not _ARROW.search(cell):
             continue
-        chain: List[str] = []
+        chain: list[str] = []
         for seg in _ARROW.split(cell):
             tok = _roman_in(seg)
             if tok:
@@ -2378,7 +2378,7 @@ def _roman_in(segment: str) -> str:
     return found
 
 
-def _bass_motion(chords: List[str]) -> str:
+def _bass_motion(chords: list[str]) -> str:
     """Scale-degree bass motion for a chord chain ("2-5-1"), or ""."""
     degrees = []
     for c in chords:
@@ -2392,14 +2392,14 @@ def _bass_motion(chords: List[str]) -> str:
     return "-".join(degrees) if len(degrees) >= 2 else ""
 
 
-def _cadence_table_blocks(text: str) -> List[List[str]]:
+def _cadence_table_blocks(text: str) -> list[list[str]]:
     """Markdown table row-blocks that describe cadences.
 
     Matched EITHER by "cadence"/"cadential" in the section heading above the
     table, OR by the word appearing in the header row itself. Requiring it in
     the header row alone missed every profile that heads the column "Strategy".
     """
-    blocks: List[List[str]] = []
+    blocks: list[list[str]] = []
     for sec in re.split(r"\n(?=#{2,4}\s)", text):
         heading = sec.split("\n", 1)[0]
         heading_hit = re.search(r"cadenc|cadential", heading, re.IGNORECASE)

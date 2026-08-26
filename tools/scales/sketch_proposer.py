@@ -12,7 +12,6 @@ generates the "engine-side" candidates that Claude adjudicates.
 from __future__ import annotations
 
 import random
-from typing import Dict, List, Optional, Tuple
 
 from .cadence_bank import CadenceBank
 from .enums import (
@@ -58,7 +57,7 @@ class SketchProposer:
         self.gesture_bank = gesture_bank
         self.cadence_bank = cadence_bank
 
-    def propose(self, slot: PhraseSlot, style_dna: StyleDNA, k: int = 3) -> List[SketchIR]:
+    def propose(self, slot: PhraseSlot, style_dna: StyleDNA, k: int = 3) -> list[SketchIR]:
         """Generate K sketch candidates for a phrase slot."""
         # Retrieve a phrase prototype to bias variant 0
         phrase_prototype = self._retrieve_phrase_prototype(slot)
@@ -83,8 +82,8 @@ class SketchProposer:
         slot: PhraseSlot,
         style_dna: StyleDNA,
         variant_idx: int,
-        phrase_prototype: Optional[PhraseResult] = None,
-        gesture_sequence: Optional[List[GestureResult]] = None,
+        phrase_prototype: PhraseResult | None = None,
+        gesture_sequence: list[GestureResult] | None = None,
     ) -> SketchIR:
         """Generate one sketch variant."""
         sketch = SketchIR(phrase_id=slot.phrase_id)
@@ -128,7 +127,7 @@ class SketchProposer:
 
     # ─── Harmonic Rhythm ──────────────────────────────────────────────────
 
-    def _build_harmonic_rhythm(self, slot: PhraseSlot) -> List[HarmonyEvent]:
+    def _build_harmonic_rhythm(self, slot: PhraseSlot) -> list[HarmonyEvent]:
         """Build harmonic rhythm from the slot's harmony plan."""
         events = []
         for i, roman in enumerate(slot.harmony_plan):
@@ -152,8 +151,8 @@ class SketchProposer:
         slot: PhraseSlot,
         style_dna: StyleDNA,
         variant_idx: int,
-        phrase_prototype: Optional[PhraseResult] = None,
-    ) -> List[Anchor]:
+        phrase_prototype: PhraseResult | None = None,
+    ) -> list[Anchor]:
         """Build melody anchors — structural pitches at key moments.
 
         Generates anchors on every bar (beat 1 and often beat 3) to ensure
@@ -292,7 +291,7 @@ class SketchProposer:
 
     # ─── Bass Anchors ─────────────────────────────────────────────────────
 
-    def _build_bass_anchors(self, slot: PhraseSlot) -> List[Anchor]:
+    def _build_bass_anchors(self, slot: PhraseSlot) -> list[Anchor]:
         """Build bass anchors from the harmony plan."""
         anchors = []
         for i, roman in enumerate(slot.harmony_plan):
@@ -313,7 +312,7 @@ class SketchProposer:
 
     def _build_texture_plan(
         self, slot: PhraseSlot, style_dna: StyleDNA, variant_idx: int
-    ) -> List[TextureIntent]:
+    ) -> list[TextureIntent]:
         """Build per-bar texture intent."""
         plan = []
 
@@ -359,7 +358,7 @@ class SketchProposer:
 
     # ─── Dynamic Shape ────────────────────────────────────────────────────
 
-    def _build_dynamic_shape(self, slot: PhraseSlot, variant_idx: int) -> List[DynamicEvent]:
+    def _build_dynamic_shape(self, slot: PhraseSlot, variant_idx: int) -> list[DynamicEvent]:
         """Build dynamic events."""
         events = []
         curves = slot.curves.energy or [0.5] * slot.bar_count
@@ -386,7 +385,7 @@ class SketchProposer:
 
     # ─── Motif Placements ─────────────────────────────────────────────────
 
-    def _build_motif_placements(self, slot: PhraseSlot) -> List[MotifPlacement]:
+    def _build_motif_placements(self, slot: PhraseSlot) -> list[MotifPlacement]:
         """Build motif placements from obligations."""
         placements = []
         for mt in slot.motif_transforms:
@@ -404,7 +403,7 @@ class SketchProposer:
 
     # ─── Breath Points ────────────────────────────────────────────────────
 
-    def _build_breath_points(self, slot: PhraseSlot, variant_idx: int) -> List[BreathPoint]:
+    def _build_breath_points(self, slot: PhraseSlot, variant_idx: int) -> list[BreathPoint]:
         """Place breath/rest points."""
         points = []
         # Breath at phrase midpoint
@@ -448,7 +447,7 @@ class SketchProposer:
 
     # ─── Retrieval Helpers ───────────────────────────────────────────────
 
-    def _retrieve_phrase_prototype(self, slot: PhraseSlot) -> Optional[PhraseResult]:
+    def _retrieve_phrase_prototype(self, slot: PhraseSlot) -> PhraseResult | None:
         """Retrieve a phrase prototype from PhraseBank to ground variant 0.
 
         Builds a PhraseQuery from the PhraseSlot's structural properties
@@ -470,7 +469,7 @@ class SketchProposer:
             pass
         return None
 
-    def _plan_gesture_sequence(self, slot: PhraseSlot, variant_idx: int) -> List[GestureResult]:
+    def _plan_gesture_sequence(self, slot: PhraseSlot, variant_idx: int) -> list[GestureResult]:
         """Plan a sequence of gestures for a phrase based on its function.
 
         Maps phrase function to an ordered sequence of gesture functions,
@@ -493,7 +492,7 @@ class SketchProposer:
 
         gesture_functions = _FUNCTION_TO_GESTURES.get(slot.function, ["pickup", "answer"])
 
-        results: List[GestureResult] = []
+        results: list[GestureResult] = []
         try:
             for gfn in gesture_functions:
                 if len(results) >= 3:
@@ -596,7 +595,7 @@ def _energy_to_dynamic(energy: float) -> str:
     return "ff"
 
 
-def _breath_beat(meter: Tuple[int, int], variant_idx: int) -> float:
+def _breath_beat(meter: tuple[int, int], variant_idx: int) -> float:
     """Choose a beat position for a breath."""
     num, denom = meter
     if num == 4 and denom == 4:
@@ -606,7 +605,7 @@ def _breath_beat(meter: Tuple[int, int], variant_idx: int) -> float:
     return float(num)
 
 
-def _weighted_choice(distribution: Dict[str, float], default: str) -> str:
+def _weighted_choice(distribution: dict[str, float], default: str) -> str:
     """Choose from a weighted distribution."""
     if not distribution:
         return default

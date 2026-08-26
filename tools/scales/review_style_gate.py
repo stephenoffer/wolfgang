@@ -10,7 +10,7 @@ from __future__ import annotations
 import tempfile
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .assembler import assemble
 from .models import RevisionOp, RevisionScript
@@ -20,9 +20,9 @@ from .style_comparator import compare
 
 
 def build_style_targets_from_dna(
-    density_targets: Dict[str, Any],
+    density_targets: dict[str, Any],
     tempo_bpm: int,
-) -> Dict[str, Dict[str, float]]:
+) -> dict[str, dict[str, float]]:
     """Build comparator-style targets {metric: {mean, stdev}} from StyleDNA density."""
     cls = "slow" if tempo_bpm < 76 else ("fast" if tempo_bpm > 138 else "moderate")
     dt = density_targets.get(cls) or density_targets.get("moderate")
@@ -106,7 +106,7 @@ def run_style_review_section(
     section_id: str,
     threshold: float = 0.35,
     persist: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Assemble section → analyze metrics → compare to StyleDNA-derived targets.
 
     Returns:
@@ -152,9 +152,9 @@ def run_style_review_section(
 
     report = compare(composed_metrics, targets, threshold=threshold)
 
-    revision_script: Optional[Dict[str, Any]] = None
+    revision_script: dict[str, Any] | None = None
     if report.get("failing", 0) > 0:
-        fixes: List[str] = []
+        fixes: list[str] = []
         for _k, info in sorted(
             report.get("metrics", {}).items(),
             key=lambda x: -x[1].get("divergence_pct", 0),
@@ -163,7 +163,7 @@ def run_style_review_section(
                 fixes.append(str(info["fix_instruction"]))
 
         # Never auto-target re_realize at an agent-authored phrase (would erase notes)
-        target_pid: Optional[str] = None
+        target_pid: str | None = None
         for pid in phrase_order:
             ps = graph.phrases.get(pid)
             if ps and not getattr(ps, "agent_authored", False):
@@ -214,7 +214,7 @@ def run_style_review_section(
                 ],
             }
 
-    out: Dict[str, Any] = {
+    out: dict[str, Any] = {
         "section_id": section_id,
         "musicxml_path": mxml_path,
         "phrase_ids": phrase_order,

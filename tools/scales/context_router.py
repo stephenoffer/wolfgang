@@ -14,7 +14,7 @@ cadential phrase. A development section gets more chromatic devices.
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .corpus_bar_retriever import CorpusBarRetriever
 from .enums import CadenceTarget, PhraseFunction
@@ -53,7 +53,7 @@ class ContextRouter:
     def __init__(
         self,
         pattern_retriever: PatternRetriever,
-        corpus_bar_retriever: Optional[CorpusBarRetriever] = None,
+        corpus_bar_retriever: CorpusBarRetriever | None = None,
     ):
         self.pattern_retriever = pattern_retriever
         self.corpus_bar_retriever = corpus_bar_retriever
@@ -62,15 +62,15 @@ class ContextRouter:
         self,
         program: StyleProgram,
         slot: PhraseSlot,
-        section_contract: Optional[SectionContract] = None,
+        section_contract: SectionContract | None = None,
         phrase_index: int = 0,
         total_phrases: int = 1,
-        movement_contract: Optional[MovementContract] = None,
-        work_graph: Optional[WorkGraph] = None,
+        movement_contract: MovementContract | None = None,
+        work_graph: WorkGraph | None = None,
         narrative_energy: float = 0.5,
         is_near_climax: bool = False,
-        control: Optional[PhraseControlIR] = None,
-        ledger: Optional[Any] = None,
+        control: PhraseControlIR | None = None,
+        ledger: Any | None = None,
     ) -> PhraseContext:
         """Resolve active context for one phrase.
 
@@ -153,10 +153,10 @@ class ContextRouter:
         return ctx
 
     def _resolve_gestures(
-        self, gestures: List[ExecutableGesture], slot: PhraseSlot, section_role: str
-    ) -> List[ExecutableGesture]:
+        self, gestures: list[ExecutableGesture], slot: PhraseSlot, section_role: str
+    ) -> list[ExecutableGesture]:
         """Filter gestures by phrase function and harmonic context."""
-        scored: List[tuple] = []
+        scored: list[tuple] = []
 
         for g in gestures:
             score = 0.0
@@ -190,9 +190,9 @@ class ContextRouter:
         scored.sort(key=lambda x: x[0], reverse=True)
         return [g for _, g in scored[:5]]
 
-    def _resolve_patterns(self, slot: PhraseSlot, program: StyleProgram) -> Dict[str, List[Any]]:
+    def _resolve_patterns(self, slot: PhraseSlot, program: StyleProgram) -> dict[str, list[Any]]:
         """Retrieve LH patterns for each texture in the phrase's texture plan."""
-        result: Dict[str, List[Any]] = {}
+        result: dict[str, list[Any]] = {}
         seen_textures: set = set()
 
         for bar_plan in slot.texture_plan:
@@ -223,15 +223,15 @@ class ContextRouter:
 
     def _resolve_breathing(
         self,
-        rules: List[BreathingRule],
+        rules: list[BreathingRule],
         slot: PhraseSlot,
         phrase_index: int,
         total_phrases: int,
         is_near_climax: bool,
         energy: float,
-    ) -> List[BreathingRule]:
+    ) -> list[BreathingRule]:
         """Match breathing rules by phrase position."""
-        active: List[BreathingRule] = []
+        active: list[BreathingRule] = []
 
         for rule in rules:
             rule.placement.lower() if rule.placement else ""
@@ -265,8 +265,8 @@ class ContextRouter:
         return active[:3]  # max 3 breathing rules per phrase
 
     def _resolve_ornaments(
-        self, intents: List[OrnamentIntent], slot: PhraseSlot, energy: float
-    ) -> List[OrnamentIntent]:
+        self, intents: list[OrnamentIntent], slot: PhraseSlot, energy: float
+    ) -> list[OrnamentIntent]:
         """Map phrase function to ornament contexts."""
         fn = slot.function
         context_map = {
@@ -289,7 +289,7 @@ class ContextRouter:
             energy_contexts.add("dying_away")
             energy_contexts.add("silence_after_intensity")
 
-        active: List[OrnamentIntent] = []
+        active: list[OrnamentIntent] = []
         for intent in intents:
             ctx = intent.context.lower()
             if target_context and target_context in ctx:
@@ -300,10 +300,10 @@ class ContextRouter:
         return active[:4]  # max 4 ornament intents per phrase
 
     def _resolve_devices(
-        self, devices: List[HarmonicDevice], slot: PhraseSlot, section_role: str
-    ) -> List[HarmonicDevice]:
+        self, devices: list[HarmonicDevice], slot: PhraseSlot, section_role: str
+    ) -> list[HarmonicDevice]:
         """Filter harmonic devices by section role and phrase function."""
-        active: List[HarmonicDevice] = []
+        active: list[HarmonicDevice] = []
 
         for device in devices:
             # Development sections get all devices
@@ -338,13 +338,13 @@ class ContextRouter:
         return active
 
     def _resolve_cadence_scripts(
-        self, scripts: List[CadenceScript], slot: PhraseSlot
-    ) -> List[CadenceScript]:
+        self, scripts: list[CadenceScript], slot: PhraseSlot
+    ) -> list[CadenceScript]:
         """Find cadence scripts matching the phrase's cadence target."""
         if slot.cadence_target == CadenceTarget.NONE.value:
             return []
 
-        matching: List[CadenceScript] = []
+        matching: list[CadenceScript] = []
         for script in scripts:
             if script.type and slot.cadence_target.lower() in script.type.lower():
                 matching.append(script)
@@ -352,8 +352,8 @@ class ContextRouter:
         return matching
 
     def _resolve_fingerprints(
-        self, fingerprints: List[FingerprintRule], phrase_index: int, total_phrases: int
-    ) -> List[FingerprintRule]:
+        self, fingerprints: list[FingerprintRule], phrase_index: int, total_phrases: int
+    ) -> list[FingerprintRule]:
         """Distribute fingerprint obligations across phrases.
 
         Each phrase gets 1-2 fingerprint targets. The first phrase gets
@@ -381,13 +381,13 @@ class ContextRouter:
     # ─── Pass 13-18 Resolution Methods ───────────────────────────────────
 
     def _resolve_melody_priors(
-        self, priors: List[MelodyPrior], slot: PhraseSlot
-    ) -> List[MelodyPrior]:
+        self, priors: list[MelodyPrior], slot: PhraseSlot
+    ) -> list[MelodyPrior]:
         """Filter melody priors by phrase function and conditions."""
         if not priors:
             return []
 
-        active: List[MelodyPrior] = []
+        active: list[MelodyPrior] = []
         fn = slot.function
 
         for prior in priors:
@@ -421,13 +421,13 @@ class ContextRouter:
         return active
 
     def _resolve_figuration_templates(
-        self, templates: List[FigurationTemplate], slot: PhraseSlot, style_dna: Any
-    ) -> List[FigurationTemplate]:
+        self, templates: list[FigurationTemplate], slot: PhraseSlot, style_dna: Any
+    ) -> list[FigurationTemplate]:
         """Filter figuration templates by tempo, style period, and texture needs."""
         if not templates:
             return []
 
-        active: List[FigurationTemplate] = []
+        active: list[FigurationTemplate] = []
         for tmpl in templates:
             # Check tempo range
             if tmpl.tempo_range:
@@ -441,10 +441,10 @@ class ContextRouter:
 
     def _resolve_modulation_scripts(
         self,
-        scripts: List[ModulationScript],
+        scripts: list[ModulationScript],
         slot: PhraseSlot,
-        section: Optional[SectionContract] = None,
-    ) -> List[ModulationScript]:
+        section: SectionContract | None = None,
+    ) -> list[ModulationScript]:
         """Only include modulation scripts at key change boundaries."""
         if not scripts:
             return []
@@ -463,13 +463,13 @@ class ContextRouter:
         return scripts  # all modulation types available during transitions
 
     def _resolve_counterpoint_rules(
-        self, rules: List[CounterpointRule], program: StyleProgram
-    ) -> List[CounterpointRule]:
+        self, rules: list[CounterpointRule], program: StyleProgram
+    ) -> list[CounterpointRule]:
         """Filter counterpoint rules by style period permissions."""
         if not rules:
             return []
 
-        active: List[CounterpointRule] = []
+        active: list[CounterpointRule] = []
         for rule in rules:
             # If no style permissions specified, include by default
             if not rule.style_permissions:
@@ -483,13 +483,13 @@ class ContextRouter:
         return active
 
     def _resolve_harmonic_temperatures(
-        self, temps: List[HarmonicTemperature], slot: PhraseSlot, narrative_energy: float
-    ) -> List[HarmonicTemperature]:
+        self, temps: list[HarmonicTemperature], slot: PhraseSlot, narrative_energy: float
+    ) -> list[HarmonicTemperature]:
         """Filter harmonic temperature entries by narrative position."""
         if not temps:
             return []
 
-        active: List[HarmonicTemperature] = []
+        active: list[HarmonicTemperature] = []
 
         for temp in temps:
             # Tension curve entries: always relevant

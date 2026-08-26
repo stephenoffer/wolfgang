@@ -13,7 +13,7 @@ Extends ExpectationLedger with:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .enums import (
     ExpectationStatus,
@@ -37,8 +37,8 @@ class CrossScaleLedger:
     """
 
     def __init__(self):
-        self.expectations: List[CrossScaleExpectation] = []
-        self.theme_genealogy: Dict[str, ThemeGenealogy] = {}
+        self.expectations: list[CrossScaleExpectation] = []
+        self.theme_genealogy: dict[str, ThemeGenealogy] = {}
         self.orchestration_memory: OrchestrationMemory = OrchestrationMemory()
         self._phrase_ledger: ExpectationLedger = ExpectationLedger()
         self._next_id: int = 1
@@ -61,10 +61,10 @@ class CrossScaleLedger:
         domain: str,
         object_ref: str,
         introduced_at: str,
-        must_resolve_by: Optional[str] = None,
-        expected_form: Optional[str] = None,
+        must_resolve_by: str | None = None,
+        expected_form: str | None = None,
         urgency: float = 0.5,
-        details: Optional[Dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
     ) -> str:
         """Add a work-level expectation (e.g., finale payoff, cyclic return)."""
         return self._add(
@@ -85,10 +85,10 @@ class CrossScaleLedger:
         domain: str,
         object_ref: str,
         introduced_at: str,
-        must_resolve_by: Optional[str] = None,
-        expected_form: Optional[str] = None,
+        must_resolve_by: str | None = None,
+        expected_form: str | None = None,
         urgency: float = 0.5,
-        details: Optional[Dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
     ) -> str:
         """Add a movement-level expectation (e.g., development promise, recap obligation)."""
         return self._add(
@@ -109,10 +109,10 @@ class CrossScaleLedger:
         domain: str,
         object_ref: str,
         introduced_at: str,
-        must_resolve_by: Optional[str] = None,
-        expected_form: Optional[str] = None,
+        must_resolve_by: str | None = None,
+        expected_form: str | None = None,
         urgency: float = 0.5,
-        details: Optional[Dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
     ) -> str:
         """Add a section-level expectation (e.g., cadence path, thematic completion)."""
         return self._add(
@@ -131,9 +131,9 @@ class CrossScaleLedger:
         self,
         object_ref: str,
         introduced_at: str,
-        must_resolve_by: Optional[str] = None,
+        must_resolve_by: str | None = None,
         urgency: float = 0.5,
-        details: Optional[Dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
     ) -> str:
         """Delegate to the phrase-level ledger."""
         return self._phrase_ledger.add_promise(
@@ -147,10 +147,10 @@ class CrossScaleLedger:
         domain: str,
         object_ref: str,
         introduced_at: str,
-        must_resolve_by: Optional[str],
-        expected_form: Optional[str],
+        must_resolve_by: str | None,
+        expected_form: str | None,
         urgency: float,
-        details: Optional[Dict[str, Any]],
+        details: dict[str, Any] | None,
     ) -> str:
         eid = self._gen_id()
         self.expectations.append(
@@ -172,7 +172,7 @@ class CrossScaleLedger:
 
     # ─── Querying ──────────────────────────────────────────────────────
 
-    def get_active_at_scale(self, scale: str) -> List[CrossScaleExpectation]:
+    def get_active_at_scale(self, scale: str) -> list[CrossScaleExpectation]:
         """Get all open expectations at a specific scale."""
         return [
             e
@@ -180,14 +180,14 @@ class CrossScaleLedger:
             if e.scale == scale and e.status == ExpectationStatus.OPEN.value
         ]
 
-    def get_all_open(self) -> List[CrossScaleExpectation]:
+    def get_all_open(self) -> list[CrossScaleExpectation]:
         return [e for e in self.expectations if e.status == ExpectationStatus.OPEN.value]
 
     def get_overdue(
-        self, current_position: str, position_order: List[str]
-    ) -> List[CrossScaleExpectation]:
+        self, current_position: str, position_order: list[str]
+    ) -> list[CrossScaleExpectation]:
         """Get expectations that are past their deadline."""
-        overdue: List[CrossScaleExpectation] = []
+        overdue: list[CrossScaleExpectation] = []
         if current_position not in position_order:
             return overdue
 
@@ -202,10 +202,10 @@ class CrossScaleLedger:
         return overdue
 
     def get_due_soon(
-        self, current_position: str, position_order: List[str], horizon: int = 2
-    ) -> List[CrossScaleExpectation]:
+        self, current_position: str, position_order: list[str], horizon: int = 2
+    ) -> list[CrossScaleExpectation]:
         """Get expectations due within `horizon` positions."""
-        due: List[CrossScaleExpectation] = []
+        due: list[CrossScaleExpectation] = []
         if current_position not in position_order:
             return due
 
@@ -240,7 +240,7 @@ class CrossScaleLedger:
     # ─── Scoring ───────────────────────────────────────────────────────
 
     def score_resolution(
-        self, current_position: str, position_order: List[str], scale: Optional[str] = None
+        self, current_position: str, position_order: list[str], scale: str | None = None
     ) -> float:
         """Score how well obligations are being met.
 
@@ -267,7 +267,7 @@ class CrossScaleLedger:
 
     # ─── Future Value ──────────────────────────────────────────────────
 
-    def future_value_penalty(self, current_position: str, position_order: List[str]) -> float:
+    def future_value_penalty(self, current_position: str, position_order: list[str]) -> float:
         """Compute penalty for actions that would deplete future resources.
 
         A locally pretty choice is bad if it exhausts a climax too early
@@ -329,7 +329,7 @@ class CrossScaleLedger:
             if transform in ("fragment", "liquidate", "invert"):
                 genealogy.recognition_score *= 0.9
 
-    def get_theme_genealogy(self, theme_id: str) -> Optional[ThemeGenealogy]:
+    def get_theme_genealogy(self, theme_id: str) -> ThemeGenealogy | None:
         return self.theme_genealogy.get(theme_id)
 
     def get_theme_appearance_count(self, theme_id: str) -> int:
@@ -340,7 +340,7 @@ class CrossScaleLedger:
 
     # ─── Serialization ─────────────────────────────────────────────────
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         from .piece_graph import _deep_serialize
 
         return {
@@ -354,7 +354,7 @@ class CrossScaleLedger:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "CrossScaleLedger":
+    def from_dict(cls, data: dict[str, Any]) -> CrossScaleLedger:
         """Restore a persisted ledger. Defensive: unknown fields ignored,
         malformed entries skipped — an old graph must never fail to load."""
         from dataclasses import fields as dc_fields
@@ -428,7 +428,7 @@ class CrossScaleLedger:
 # expectation can, without needing to know how the graph was constructed.
 
 
-def ensure_ledger(graph) -> "CrossScaleLedger":
+def ensure_ledger(graph) -> CrossScaleLedger:
     """Return a live CrossScaleLedger for this graph, creating one if absent.
 
     ``PieceGraph.cross_scale_ledger`` is typed as a **dict** — the serialized
@@ -466,7 +466,7 @@ def ensure_ledger(graph) -> "CrossScaleLedger":
     return live
 
 
-def persist_ledger(graph, ledger: Optional["CrossScaleLedger"] = None) -> Dict[str, Any]:
+def persist_ledger(graph, ledger: CrossScaleLedger | None = None) -> dict[str, Any]:
     """Write the live ledger back to the graph's serialized field.
 
     Call before ``graph.save()``. Without this the ledger exists only in memory
@@ -495,7 +495,7 @@ def ledger_is_empty(graph) -> bool:
     return _open_expectations(graph) == []
 
 
-def _open_expectations(graph) -> List[Any]:
+def _open_expectations(graph) -> list[Any]:
     """Open expectations from the live ledger or the serialized field.
 
     Reading only the live object reported "no ledger" on a graph freshly loaded
@@ -523,18 +523,18 @@ def _open_expectations(graph) -> List[Any]:
     return []
 
 
-def ledger_summary(graph) -> Dict[str, Any]:
+def ledger_summary(graph) -> dict[str, Any]:
     """What the ledger is holding, for a review or a status line."""
     open_exps = _open_expectations(graph)
     attached = bool(
         getattr(graph, "_live_cross_ledger", None) is not None
         or getattr(graph, "cross_scale_ledger", None)
     )
-    by_scale: Dict[str, int] = {}
+    by_scale: dict[str, int] = {}
     for e in open_exps:
         scale = getattr(e, "scale", "?")
         by_scale[scale] = by_scale.get(scale, 0) + 1
-    out: Dict[str, Any] = {
+    out: dict[str, Any] = {
         "attached": attached,
         "open": len(open_exps),
         "by_scale": by_scale,

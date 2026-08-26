@@ -15,7 +15,6 @@ Every phrase must pass before acceptance:
 from __future__ import annotations
 
 from itertools import pairwise
-from typing import List, Optional
 
 from .models import (
     LayerIR,
@@ -32,8 +31,8 @@ class CraftChecker:
     def check(
         self,
         layer_ir: LayerIR,
-        control: Optional[PhraseControlIR] = None,
-        bundles: Optional[List[OnsetBundle]] = None,
+        control: PhraseControlIR | None = None,
+        bundles: list[OnsetBundle] | None = None,
     ) -> PhraseCraftCheck:
         """Run all craft checks on a realized phrase."""
         return PhraseCraftCheck(
@@ -86,7 +85,7 @@ class CraftChecker:
             return False
 
         # Bass should have at least one note per 2 bars
-        bars_with_bass = set(evt.bar for evt in bass if evt.pitch != "rest")
+        bars_with_bass = {evt.bar for evt in bass if evt.pitch != "rest"}
         expected_bars = max(1, layer.bar_count // 2)
         return len(bars_with_bass) >= expected_bars
 
@@ -143,7 +142,7 @@ class CraftChecker:
         bars = {e.bar for e in accomp}
         return len(accomp) >= max(3, len(bars) + 1)
 
-    def _check_entry_exit(self, layer: LayerIR, control: Optional[PhraseControlIR]) -> bool:
+    def _check_entry_exit(self, layer: LayerIR, control: PhraseControlIR | None) -> bool:
         """The phrase begins and ends with sound, not with a hole.
 
         Two faults in the old version. It indexed ``principal_line`` in LIST
@@ -220,7 +219,7 @@ class CraftChecker:
         return bool(interior)
 
     @staticmethod
-    def _top_midi(event) -> Optional[int]:
+    def _top_midi(event) -> int | None:
         """Top sounding MIDI of an event, or None."""
         pitch = getattr(event, "pitch", None)
         if not pitch or pitch == "rest":
@@ -235,7 +234,7 @@ class CraftChecker:
         vals = [v for v in vals if v is not None]
         return max(vals) if vals else None
 
-    def _check_justifications(self, bundles: Optional[List[OnsetBundle]]) -> bool:
+    def _check_justifications(self, bundles: list[OnsetBundle] | None) -> bool:
         """Every note has at least one structural + one local reason."""
         if not bundles:
             return True  # skip if no bundles (backward compat)
@@ -320,7 +319,7 @@ _SEVERITY = {
 }
 
 
-def craft_findings(check) -> List[str]:
+def craft_findings(check) -> list[str]:
     """Failed checks as sentences a composer can act on, worst first.
 
     Takes a ``PhraseCraftCheck`` (or anything with the same boolean attributes)

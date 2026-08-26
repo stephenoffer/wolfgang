@@ -470,6 +470,24 @@
     "grounding": "hard_corroborated"
   },
   {
+    "id": "device_inversion_of_the_motif",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Inversion of the motif",
+    "description": "the same shape upside down, used for a later entry so the point of imitation stays fresh.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_augmentation",
+    "category": "composer_device",
+    "section": "Contrapuntal devices",
+    "name": "Augmentation",
+    "description": "of the motif in the lowest voice for a final statement.",
+    "source_file": "palestrina/palestrina-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "device_the_arch",
     "category": "composer_device",
     "section": "Melodic devices",

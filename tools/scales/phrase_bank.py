@@ -15,7 +15,6 @@ from __future__ import annotations
 import json
 import math
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 
 from .models import PhraseQuery, PhraseResult
 
@@ -26,7 +25,7 @@ REFERENCE_INDEX = _BASE / "reference_index"
 PATTERN_LIBRARY = _BASE / "pattern_library"
 
 
-def _cosine_similarity(a: List[float], b: List[float]) -> float:
+def _cosine_similarity(a: list[float], b: list[float]) -> float:
     """Cosine similarity between two vectors. Returns 0 if either is empty."""
     if not a or not b:
         return 0.0
@@ -49,11 +48,11 @@ class PhraseBank:
 
     def __init__(self, composer: str = "mozart"):
         self.composer = composer
-        self._phrase_catalog: Optional[Dict] = None
-        self._window_shards: Dict[int, List[Dict]] = {}
-        self._transition_matrix: Optional[Dict] = None
+        self._phrase_catalog: dict | None = None
+        self._window_shards: dict[int, list[dict]] = {}
+        self._transition_matrix: dict | None = None
 
-    def _load_phrase_catalog(self) -> Dict:
+    def _load_phrase_catalog(self) -> dict:
         if self._phrase_catalog is not None:
             return self._phrase_catalog
 
@@ -66,7 +65,7 @@ class PhraseBank:
             self._phrase_catalog = json.load(f)
         return self._phrase_catalog
 
-    def _load_window_shard(self, shard_idx: int) -> List[Dict]:
+    def _load_window_shard(self, shard_idx: int) -> list[dict]:
         if shard_idx in self._window_shards:
             return self._window_shards[shard_idx]
 
@@ -81,7 +80,7 @@ class PhraseBank:
         self._window_shards[shard_idx] = windows
         return windows
 
-    def _load_transition_matrix(self) -> Dict:
+    def _load_transition_matrix(self) -> dict:
         """Delegates to the single canonical loader.
 
         This method existed twice, byte-identical, in this class and in
@@ -98,7 +97,7 @@ class PhraseBank:
 
     # ─── Scoring ──────────────────────────────────────────────────────────
 
-    def _score_phrase(self, phrase: Dict, query: PhraseQuery) -> Tuple[float, Dict[str, float]]:
+    def _score_phrase(self, phrase: dict, query: PhraseQuery) -> tuple[float, dict[str, float]]:
         """Score a phrase against a query. Returns (total, breakdown)."""
         breakdown = {}
 
@@ -207,7 +206,7 @@ class PhraseBank:
 
     # ─── Retrieval ────────────────────────────────────────────────────────
 
-    def retrieve(self, query: PhraseQuery) -> List[PhraseResult]:
+    def retrieve(self, query: PhraseQuery) -> list[PhraseResult]:
         """Retrieve phrases matching the query, ranked by score."""
         catalog = self._load_phrase_catalog()
         phrases = catalog.get("phrases", [])
@@ -271,14 +270,14 @@ class PhraseBank:
             return 0.0
         return from_counts.get(to_texture, 0) / total
 
-    def get_texture_distribution(self) -> Dict[str, float]:
+    def get_texture_distribution(self) -> dict[str, float]:
         """Get the overall texture distribution for this composer."""
         catalog = self._load_phrase_catalog()
         phrases = catalog.get("phrases", [])
         if not phrases:
             return {}
 
-        counts: Dict[str, int] = {}
+        counts: dict[str, int] = {}
         total = 0
         for phrase in phrases:
             for tex in phrase.get("rh_textures", []):

@@ -23,7 +23,7 @@ Split of responsibilities (by design):
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Sequence, Tuple
+from collections.abc import Sequence
 
 from .models import (
     DynamicPoint,
@@ -52,18 +52,18 @@ _DYN_VELOCITY = {
 _DEFAULT_VELOCITY = 80
 
 
-def _beats_per_bar(meter: Tuple[int, int]) -> float:
+def _beats_per_bar(meter: tuple[int, int]) -> float:
     return meter[0] * 4.0 / meter[1]
 
 
 def build_performance_ir(
     layer,
     slot=None,
-    phrase_type: Optional[str] = None,
-    profile: Optional[StylePerfProfile] = None,
+    phrase_type: str | None = None,
+    profile: StylePerfProfile | None = None,
     narrative_section=None,
-    neighbor_slots: Optional[Tuple] = None,
-    breath_points: Optional[Sequence[Tuple[int, float]]] = None,
+    neighbor_slots: tuple | None = None,
+    breath_points: Sequence[tuple[int, float]] | None = None,
     control=None,
     style_program=None,
 ) -> PerformanceIR:
@@ -111,7 +111,7 @@ def build_performance_ir(
             seen_points.add((e.bar, round(e.beat, 2)))
     # Hairpins refine the curve: a cresc/dim start with no explicit end
     # dynamic gets a +/-12 velocity target at the stop point
-    open_hp: Optional[Tuple[str, int, float]] = None
+    open_hp: tuple[str, int, float] | None = None
     for e in all_events:
         hp = getattr(e, "hairpin", None) or ""
         if hp.startswith("cresc") and hp != "cresc_stop":
@@ -135,7 +135,7 @@ def build_performance_ir(
                 mbeat = 1.0 + ((beat0 - 1.0 + frac * span_beats) % bpb)
                 if (mb, round(mbeat, 2)) in seen_points:
                     continue
-                vel = max(20, min(127, int(round(base + delta * shaped))))
+                vel = max(20, min(127, round(base + delta * shaped)))
                 perf.dynamic_curve.append(DynamicPoint(bar=mb, beat=mbeat, velocity=vel))
                 seen_points.add((mb, round(mbeat, 2)))
             open_hp = None
@@ -156,12 +156,12 @@ def build_performance_ir(
     if narrative_section is not None and getattr(narrative_section, "tension_curve", None):
         tension = list(narrative_section.tension_curve)
     depth = profile.tempo_arc_depth
-    arc: List[float] = []
+    arc: list[float] = []
     for i in range(n_bars):
         if tension:
             # sample the (possibly differently-sized) curve across the phrase
             frac = i / max(1, n_bars - 1)
-            idx = min(len(tension) - 1, int(round(frac * (len(tension) - 1))))
+            idx = min(len(tension) - 1, round(frac * (len(tension) - 1)))
             t_norm = max(0.0, min(1.0, float(tension[idx])))
         else:
             t_norm = 0.5
@@ -298,7 +298,7 @@ def build_performance_ir(
 # this system sound like a sequencer: the metre is inaudible, so the listener has
 # nothing to hang the rhythm on.
 
-_METER_WEIGHTS: Dict[Tuple[int, int], Dict[float, float]] = {
+_METER_WEIGHTS: dict[tuple[int, int], dict[float, float]] = {
     (4, 4): {1.0: 1.00, 3.0: 0.94, 2.0: 0.88, 4.0: 0.88},
     (2, 4): {1.0: 1.00, 2.0: 0.89},
     (2, 2): {1.0: 1.00, 3.0: 0.92},
@@ -319,7 +319,7 @@ _SUB_WEIGHT_HALF = 0.83
 _SUB_WEIGHT_OTHER = 0.79
 
 
-def metric_weight(beat: float, meter: Tuple[int, int] = (4, 4)) -> float:
+def metric_weight(beat: float, meter: tuple[int, int] = (4, 4)) -> float:
     """Velocity multiplier for a beat position, from the metre's own hierarchy.
 
     Returns 1.0 on the downbeat and progressively less on weaker positions.
@@ -345,7 +345,7 @@ def metric_weight(beat: float, meter: Tuple[int, int] = (4, 4)) -> float:
     return _SUB_WEIGHT_OTHER
 
 
-def is_strong_beat(beat: float, meter: Tuple[int, int] = (4, 4)) -> bool:
+def is_strong_beat(beat: float, meter: tuple[int, int] = (4, 4)) -> bool:
     """True on a beat the metre stresses — used for agogic and pedal decisions."""
     return metric_weight(beat, meter) >= 0.93
 
@@ -357,7 +357,7 @@ def phrase_arch_points(
     layer,
     depth: float = 0.10,
     min_notes: int = 6,
-) -> List[DynamicPoint]:
+) -> list[DynamicPoint]:
     """Velocity anchors following the melody's own rise and fall.
 
     A performer shapes every phrase toward its high point and away again, whether
@@ -379,7 +379,7 @@ def phrase_arch_points(
     ]
     if len(mel) < min_notes:
         return []
-    tops: List[int] = []
+    tops: list[int] = []
     keep = []
     for e in mel:
         names = e.pitch if isinstance(e.pitch, list) else [e.pitch]
@@ -395,7 +395,7 @@ def phrase_arch_points(
     if hi - lo < 3:
         return []  # a flat line has no arch to follow, and faking one is worse
 
-    points: List[DynamicPoint] = []
+    points: list[DynamicPoint] = []
     for e, top in zip(keep, tops, strict=False):
         frac = (top - lo) / (hi - lo)  # 0 at the phrase's floor, 1 at its peak
         # Centred so the middle of the range is neutral: the arch lifts the
@@ -404,7 +404,7 @@ def phrase_arch_points(
             DynamicPoint(
                 bar=e.bar,
                 beat=e.beat,
-                velocity=int(round(_DEFAULT_VELOCITY * (1.0 + depth * (2.0 * frac - 1.0)))),
+                velocity=round(_DEFAULT_VELOCITY * (1.0 + depth * (2.0 * frac - 1.0))),
             )
         )
     return points
@@ -467,7 +467,7 @@ def melodic_lead_beats(
     return -lead_ms / max(ms_per_beat, 1e-6)
 
 
-def agogic_stretch(event, meter: Tuple[int, int], profile: StylePerfProfile) -> float:
+def agogic_stretch(event, meter: tuple[int, int], profile: StylePerfProfile) -> float:
     """Extra time a player takes over a note that matters, in beats.
 
     A long note on a strong beat, a note carrying an accent, and the note at the
@@ -546,7 +546,7 @@ def _intent_field(intent, name):
     return getattr(intent, name, None) or []
 
 
-def pedal_style_from_intent(intent) -> Optional[str]:
+def pedal_style_from_intent(intent) -> str | None:
     """The pedal policy the plan asked for, or None to use the period default."""
     for rule in _intent_field(intent, "pedal_rules"):
         value = rule.get("style") or rule.get("rule") or rule.get("policy") if isinstance(
@@ -569,7 +569,7 @@ def apply_voicing_priorities(perf: PerformanceIR, intent, first_bar: int, last_b
     if not priorities:
         return 0
     perf.voicing_emphasis = [
-        v for v in perf.voicing_emphasis if v.voice not in {p for p in priorities}
+        v for v in perf.voicing_emphasis if v.voice not in set(priorities)
     ]
     added = 0
     # The first-named voice is the one brought out; later ones get less.
@@ -585,7 +585,7 @@ def apply_voicing_priorities(perf: PerformanceIR, intent, first_bar: int, last_b
     return added
 
 
-def rubato_depth_for_context(intent, phrase_type: Optional[str], is_cadential: bool) -> float:
+def rubato_depth_for_context(intent, phrase_type: str | None, is_cadential: bool) -> float:
     """Tempo multiplier the plan's rubato contexts ask for at this phrase.
 
     1.0 means "no opinion" — the period's own arc is left in charge.
@@ -637,7 +637,7 @@ def velocity_at(
     frac = (t - prev[0]) / (nxt[0] - prev[0])
     if curve_kind != "linear":
         frac = shape(frac, curve_kind)
-    return int(round(prev[1] + frac * (nxt[1] - prev[1])))
+    return round(prev[1] + frac * (nxt[1] - prev[1]))
 
 
 def tempo_factor_at(perf: PerformanceIR, bar: int, beat: float, beats_per_bar: float) -> float:
@@ -666,6 +666,6 @@ def microtiming_at(perf: PerformanceIR, bar: int, beat: float) -> float:
     return 0.0
 
 
-def pedal_bars(perf: PerformanceIR) -> List[int]:
+def pedal_bars(perf: PerformanceIR) -> list[int]:
     """Bars with sustain-pedal down events."""
     return sorted({p.bar for p in perf.pedal_events if p.action == "down"})

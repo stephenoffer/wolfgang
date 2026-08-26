@@ -9,8 +9,6 @@ penalized heavily.
 
 from __future__ import annotations
 
-from typing import Dict, List
-
 from .enums import NoteRole
 from .models import (
     Anchor,
@@ -81,7 +79,7 @@ class Reducer:
 
     # ─── Extraction ───────────────────────────────────────────────────────
 
-    def _extract_melody_anchors(self, events: List[LayerEvent]) -> List[Anchor]:
+    def _extract_melody_anchors(self, events: list[LayerEvent]) -> list[Anchor]:
         """Extract structural melody anchors from principal line."""
         anchors = []
         for event in events:
@@ -108,7 +106,7 @@ class Reducer:
                 )
         return anchors
 
-    def _extract_bass_anchors(self, events: List[LayerEvent]) -> List[Anchor]:
+    def _extract_bass_anchors(self, events: list[LayerEvent]) -> list[Anchor]:
         """Extract structural bass anchors."""
         anchors = []
         seen_bars = set()
@@ -134,11 +132,11 @@ class Reducer:
                 )
         return anchors
 
-    def _infer_harmony(self, surface: LayerIR) -> List[HarmonyEvent]:
+    def _infer_harmony(self, surface: LayerIR) -> list[HarmonyEvent]:
         """Infer harmonic rhythm from all structural tones."""
         events = []
         # Group all structural tones by bar
-        bar_tones: Dict[int, List[int]] = {}
+        bar_tones: dict[int, list[int]] = {}
         for layer_events in [
             surface.principal_line,
             surface.bass_foundation,
@@ -165,11 +163,11 @@ class Reducer:
                 )
         return events
 
-    def _extract_texture_plan(self, surface: LayerIR) -> List[TextureIntent]:
+    def _extract_texture_plan(self, surface: LayerIR) -> list[TextureIntent]:
         """Infer texture type from response layer density."""
         plan = []
         # Group response events by bar and count
-        bar_counts: Dict[int, int] = {}
+        bar_counts: dict[int, int] = {}
         for event in surface.response_layer:
             bar_counts[event.bar] = bar_counts.get(event.bar, 0) + 1
 
@@ -216,7 +214,7 @@ class Reducer:
 
     # ─── Comparison ───────────────────────────────────────────────────────
 
-    def _anchor_similarity(self, original: List[Anchor], reduced: List[Anchor]) -> float:
+    def _anchor_similarity(self, original: list[Anchor], reduced: list[Anchor]) -> float:
         """Compare two sets of anchors. Returns 0-1."""
         if not original:
             return 1.0 if not reduced else 0.5
@@ -253,7 +251,7 @@ class Reducer:
         return matched / len(original)
 
     def _harmony_similarity(
-        self, original: List[HarmonyEvent], reduced: List[HarmonyEvent]
+        self, original: list[HarmonyEvent], reduced: list[HarmonyEvent]
     ) -> float:
         """Compare harmonic grids by attack count alignment."""
         if not original:

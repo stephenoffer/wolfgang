@@ -497,10 +497,19 @@
     "grounding": "hard_corroborated"
   },
   {
-    "id": "device_whole_tone_and_other_symmetrical_scales_especially_in_the_late_works_used_as_transitional_colour_17_bare_open_fifths",
+    "id": "device_whole_tone_and_other_symmetrical_scales",
     "category": "composer_device",
     "section": "Harmonic devices",
-    "name": "Whole-tone and other symmetrical scales**, especially in the late works,\n    used as transitional colour.\n\n17. **Bare open fifths",
+    "name": "Whole-tone and other symmetrical scales",
+    "description": "especially in the late works, used as transitional colour.",
+    "source_file": "liszt/liszt-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bare_open_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bare open fifths",
     "description": "for archaism, for the religious works, and for emptiness.",
     "source_file": "liszt/liszt-devices.md",
     "grounding": "hard_corroborated"

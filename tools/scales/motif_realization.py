@@ -7,7 +7,7 @@ locations, with basic transform algebra (state, sequence, fragment, invert).
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from .duration import DURATION_VALUES
 from .enums import MotifTransformOp, NoteRole
@@ -16,11 +16,11 @@ from .pitch import clamp_to_range, midi_to_pitch, snap_to_scale
 
 
 def _apply_transform(
-    intervals: List[int],
-    rhythms: List[str],
+    intervals: list[int],
+    rhythms: list[str],
     op: str,
     params: dict,
-) -> Tuple[List[int], List[str]]:
+) -> tuple[list[int], list[str]]:
     """Return transformed (intervals, rhythms) lists."""
     op_l = (op or MotifTransformOp.STATE.value).lower()
     ints = list(intervals)
@@ -45,9 +45,9 @@ def _apply_transform(
     return ints, rhys
 
 
-def _motif_note_midis(start_midi: int, intervals: List[int], scale: List[int]) -> List[int]:
+def _motif_note_midis(start_midi: int, intervals: list[int], scale: list[int]) -> list[int]:
     cur = clamp_to_range(start_midi, 55, 90)
-    out: List[int] = [cur]
+    out: list[int] = [cur]
     for step in intervals:
         cur = snap_to_scale(cur + int(step), scale)
         out.append(clamp_to_range(cur, 55, 90))
@@ -58,10 +58,10 @@ def emit_motif_melody_events(
     motif: MotifObject,
     placement: MotifPlacement,
     key: str,
-    scale: List[int],
+    scale: list[int],
     start_midi: int,
     beats_per_bar: float = 4.0,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Return list of {bar, beat, pitch, duration, role} for RH melody."""
     rhythms = list(motif.rhythm_cell or [])
     intervals = list(motif.interval_contour or [])
@@ -84,7 +84,7 @@ def emit_motif_melody_events(
         midis.append(midis[-1])
     midis = midis[:n_notes]
 
-    events: List[Dict[str, Any]] = []
+    events: list[dict[str, Any]] = []
     bar = placement.bar
     beat = float(placement.beat)
     for j in range(n_notes):
@@ -108,9 +108,9 @@ def emit_motif_melody_events(
 
 
 def pick_motif_slot_for_bar(
-    motif_slots: List[MotifSlot],
+    motif_slots: list[MotifSlot],
     bar: int,
-) -> Optional[MotifSlot]:
+) -> MotifSlot | None:
     for ms in motif_slots:
         if ms.bar == bar and ms.voice in ("melody", "soprano", ""):
             return ms
@@ -118,16 +118,16 @@ def pick_motif_slot_for_bar(
 
 
 def pick_motif_placement_for_bar(
-    placements: List[MotifPlacement],
+    placements: list[MotifPlacement],
     bar: int,
-) -> Optional[MotifPlacement]:
+) -> MotifPlacement | None:
     for mp in placements:
         if mp.bar == bar and mp.voice in ("melody", "soprano", ""):
             return mp
     return None
 
 
-def first_scale_degree_midi(motif: MotifObject, scale: List[int]) -> Optional[int]:
+def first_scale_degree_midi(motif: MotifObject, scale: list[int]) -> int | None:
     """If motif has scale_degree_contour, return MIDI for first degree (^1 = 1)."""
     degs = motif.scale_degree_contour
     if not degs:

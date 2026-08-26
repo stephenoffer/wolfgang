@@ -12,7 +12,6 @@ retrieved gestures and patterns to fill in surface detail.
 from __future__ import annotations
 
 from fractions import Fraction
-from typing import Dict, List, Optional, Tuple
 
 from .cadence_bank import CadenceBank
 from .duration import bar_duration, dur_to_beats
@@ -57,7 +56,7 @@ class Realizer:
         self,
         gesture_bank: GestureBank,
         cadence_bank: CadenceBank,
-        motif_bank: Optional[Dict[str, MotifObject]] = None,
+        motif_bank: dict[str, MotifObject] | None = None,
     ):
         self.gesture_bank = gesture_bank
         self.cadence_bank = cadence_bank
@@ -69,8 +68,8 @@ class Realizer:
         slot: PhraseSlot,
         style_dna: StyleDNA,
         n: int = 4,
-        motif_bank: Optional[Dict[str, MotifObject]] = None,
-    ) -> List[LayerIR]:
+        motif_bank: dict[str, MotifObject] | None = None,
+    ) -> list[LayerIR]:
         """Generate N realization candidates from a sketch."""
         candidates = []
         mb = motif_bank if motif_bank is not None else self.motif_bank
@@ -85,7 +84,7 @@ class Realizer:
         slot: PhraseSlot,
         style_dna: StyleDNA,
         realization_idx: int,
-        motif_bank: Dict[str, MotifObject],
+        motif_bank: dict[str, MotifObject],
     ) -> LayerIR:
         """Generate one realization variant."""
         layer = LayerIR(
@@ -133,10 +132,10 @@ class Realizer:
         self,
         sketch: SketchIR,
         slot: PhraseSlot,
-        scale: List[int],
+        scale: list[int],
         variant: int,
-        motif_bank: Dict[str, MotifObject],
-    ) -> List[LayerEvent]:
+        motif_bank: dict[str, MotifObject],
+    ) -> list[LayerEvent]:
         """Realize melody from anchors into a full melodic line."""
         events = []
         anchors = sorted(sketch.melody_anchors, key=lambda a: (a.bar, a.beat))
@@ -206,11 +205,11 @@ class Realizer:
         self,
         sketch: SketchIR,
         slot: PhraseSlot,
-        scale: List[int],
-        motif_bank: Dict[str, MotifObject],
-    ) -> List[LayerEvent]:
+        scale: list[int],
+        motif_bank: dict[str, MotifObject],
+    ) -> list[LayerEvent]:
         """When there are no anchors, still realize motif placements if any."""
-        out: List[LayerEvent] = []
+        out: list[LayerEvent] = []
         bpb = bar_duration(slot.meter)
         for mp in sketch.motif_placements or []:
             if mp.voice not in ("melody", "soprano", ""):
@@ -245,13 +244,13 @@ class Realizer:
 
     def _inject_motif_placements(
         self,
-        events: List[LayerEvent],
+        events: list[LayerEvent],
         sketch: SketchIR,
         slot: PhraseSlot,
-        scale: List[int],
-        motif_bank: Dict[str, MotifObject],
+        scale: list[int],
+        motif_bank: dict[str, MotifObject],
         beats_per_bar: float,
-        anchors: List[Anchor],
+        anchors: list[Anchor],
     ) -> None:
         """Append LayerEvents from motif_placements (mutates events)."""
         for mp in sketch.motif_placements or []:
@@ -290,8 +289,8 @@ class Realizer:
     # ─── Bass Foundation ──────────────────────────────────────────────────
 
     def _realize_bass_foundation(
-        self, sketch: SketchIR, slot: PhraseSlot, scale: List[int], variant: int
-    ) -> List[LayerEvent]:
+        self, sketch: SketchIR, slot: PhraseSlot, scale: list[int], variant: int
+    ) -> list[LayerEvent]:
         """Realize bass from anchors and harmony."""
         events = []
         bass_register = scale[: len(scale) // 3]  # lower third of scale
@@ -324,10 +323,10 @@ class Realizer:
         self,
         sketch: SketchIR,
         slot: PhraseSlot,
-        scale: List[int],
+        scale: list[int],
         style_dna: StyleDNA,
         variant: int,
-    ) -> List[LayerEvent]:
+    ) -> list[LayerEvent]:
         """Realize accompaniment pattern from texture intent.
 
         Tries gesture-based accompaniment first via GestureBank; falls
@@ -379,10 +378,10 @@ class Realizer:
         tex_intent: TextureIntent,
         bar: int,
         beats_per_bar: float,
-        tones: List[int],
+        tones: list[int],
         key: str,
         variant: int,
-    ) -> List[LayerEvent]:
+    ) -> list[LayerEvent]:
         """Try to retrieve a gesture for this bar's texture and convert to events.
 
         Returns events if a gesture is found, empty list otherwise.
@@ -428,8 +427,8 @@ class Realizer:
             return []
 
     def _apply_cadence_bank(
-        self, sketch: SketchIR, slot: PhraseSlot, scale: List[int]
-    ) -> List[LayerEvent]:
+        self, sketch: SketchIR, slot: PhraseSlot, scale: list[int]
+    ) -> list[LayerEvent]:
         """If the phrase has a cadence target, query CadenceBank and override
         the last 1-2 bars of the response layer with the cadence chord sequence.
         """
@@ -487,8 +486,8 @@ class Realizer:
     # ─── Counter Reply ────────────────────────────────────────────────────
 
     def _realize_counter_reply(
-        self, sketch: SketchIR, slot: PhraseSlot, scale: List[int], variant: int
-    ) -> List[LayerEvent]:
+        self, sketch: SketchIR, slot: PhraseSlot, scale: list[int], variant: int
+    ) -> list[LayerEvent]:
         """Inner counter-melody — chord tones in middle register, every bar."""
         events = []
         for bar_offset in range(slot.bar_count):
@@ -549,8 +548,8 @@ class Realizer:
     # ─── Ornamental Surface ──────────────────────────────────────────────
 
     def _realize_ornamental(
-        self, sketch: SketchIR, slot: PhraseSlot, scale: List[int]
-    ) -> List[LayerEvent]:
+        self, sketch: SketchIR, slot: PhraseSlot, scale: list[int]
+    ) -> list[LayerEvent]:
         """Ornamental figuration — turns, neighbor tones, arpeggiated fills."""
         events = []
         bar_duration(slot.meter)
@@ -614,13 +613,13 @@ class Realizer:
     def _generate_lh_pattern(
         self,
         lh_type: str,
-        tones: List[int],
+        tones: list[int],
         bar: int,
         beats: float,
-        scale: List[int],
+        scale: list[int],
         key: str,
         variant: int,
-    ) -> List[LayerEvent]:
+    ) -> list[LayerEvent]:
         """Generate LH accompaniment events for one bar."""
         events = []
 
@@ -755,10 +754,10 @@ class Realizer:
         bar: int,
         beat: float,
         beats_available: float,
-        scale: List[int],
+        scale: list[int],
         key: str,
-        meter: Tuple[int, int],
-    ) -> List[LayerEvent]:
+        meter: tuple[int, int],
+    ) -> list[LayerEvent]:
         """Generate passing tones between two melody anchors."""
         events = []
         direction = 1 if to_midi > from_midi else -1
@@ -793,7 +792,7 @@ class Realizer:
 
     # ─── Helpers ──────────────────────────────────────────────────────────
 
-    def _resolve_anchor_pitch(self, anchor: Anchor, key: str, scale: List[int]) -> Optional[int]:
+    def _resolve_anchor_pitch(self, anchor: Anchor, key: str, scale: list[int]) -> int | None:
         """Resolve an anchor's pitch_or_degree to a MIDI value."""
         p = anchor.pitch_or_degree
         if not p:
@@ -826,8 +825,8 @@ class Realizer:
         return None
 
     def _harmony_to_bass(
-        self, harmony: HarmonyEvent, bass_register: List[int], key: str
-    ) -> Optional[int]:
+        self, harmony: HarmonyEvent, bass_register: list[int], key: str
+    ) -> int | None:
         """Convert a harmony event to a bass pitch."""
         root_offset = key_to_root_midi(key)
         roman = harmony.roman.strip()
@@ -861,7 +860,7 @@ class Realizer:
             return snap_to_scale(target + 36, bass_register)
         return target + 36
 
-    def _get_harmony_at(self, sketch: SketchIR, bar: int) -> Optional[HarmonyEvent]:
+    def _get_harmony_at(self, sketch: SketchIR, bar: int) -> HarmonyEvent | None:
         """Get the harmony event at or before a given bar."""
         result = None
         for h in sketch.harmonic_rhythm:
@@ -871,7 +870,7 @@ class Realizer:
                 break
         return result
 
-    def _dynamic_at(self, sketch: SketchIR, bar: int, beat: float) -> Optional[str]:
+    def _dynamic_at(self, sketch: SketchIR, bar: int, beat: float) -> str | None:
         """Get dynamic level at a position."""
         for d in reversed(sketch.dynamic_shape):
             if d.bar < bar or (d.bar == bar and d.beat <= beat):

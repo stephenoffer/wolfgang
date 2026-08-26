@@ -32,9 +32,10 @@ music, only how the music is played.
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 from fractions import Fraction
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any
 
 from .duration import dur_to_beats
 from .pitch import pitch_to_midi
@@ -76,7 +77,7 @@ class EngravingStyle:
     uses_character_words: bool = True
 
 
-ENGRAVING_STYLES: Dict[str, EngravingStyle] = {
+ENGRAVING_STYLES: dict[str, EngravingStyle] = {
     "renaissance": EngravingStyle(
         name="renaissance",
         slur_min_notes=4,
@@ -185,7 +186,7 @@ _COMPOSER_PERIOD = {
 }
 
 
-def resolve_style(name: Optional[str]) -> EngravingStyle:
+def resolve_style(name: str | None) -> EngravingStyle:
     """Accept a composer name, a style id (``style__classical``) or a period."""
     if not name:
         return ENGRAVING_STYLES["classical"]
@@ -227,7 +228,7 @@ class EnrichmentReport:
     notes_seen: int = 0
     author_marks_kept: int = 0
     style: str = "classical"
-    detail: List[str] = field(default_factory=list)
+    detail: list[str] = field(default_factory=list)
 
     @property
     def total_added(self) -> int:
@@ -243,7 +244,7 @@ class EnrichmentReport:
             + self.ties_added
         )
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return {
             "style": self.style,
             "notes_seen": self.notes_seen,
@@ -290,7 +291,7 @@ def _is_rest(ev) -> bool:
     return getattr(ev, "pitch", None) == "rest"
 
 
-def _midis(ev) -> List[int]:
+def _midis(ev) -> list[int]:
     """Every sounding MIDI number in an event (a chord yields several)."""
     p = getattr(ev, "pitch", None)
     if not p or p == "rest":
@@ -305,7 +306,7 @@ def _midis(ev) -> List[int]:
     return out
 
 
-def _top(ev) -> Optional[int]:
+def _top(ev) -> int | None:
     m = _midis(ev)
     return max(m) if m else None
 
@@ -317,17 +318,17 @@ def _beats(ev) -> Fraction:
         return Fraction(1)
 
 
-def _sorted(events: Iterable) -> List:
+def _sorted(events: Iterable) -> list:
     return sorted(events, key=lambda e: (getattr(e, "bar", 0), float(getattr(e, "beat", 1.0))))
 
 
-def _all_layers(layer_ir) -> List[Tuple[str, List]]:
+def _all_layers(layer_ir) -> list[tuple[str, list]]:
     """Every populated note list on a LayerIR, including extra inner voices.
 
     Naive ``vars(layer_ir).items()`` iteration treats ``meter=(3,4)`` as a note
     list — a real trap in this codebase, and the reason this helper exists.
     """
-    out: List[Tuple[str, List]] = []
+    out: list[tuple[str, list]] = []
     for name in _PIANO_LAYERS + _ORCH_LAYERS:
         evs = getattr(layer_ir, name, None)
         if evs:
@@ -355,7 +356,7 @@ def _is_compound(meter) -> bool:
     return den == 8 and num in (6, 9, 12)
 
 
-def _strong_beats(meter) -> List[Fraction]:
+def _strong_beats(meter) -> list[Fraction]:
     """Beat positions (1-based) that carry metric stress in this meter."""
     try:
         num, den = int(meter[0]), int(meter[1])
@@ -411,7 +412,7 @@ def dynamic_for_energy(energy: float) -> str:
 # ─── Gesture segmentation ────────────────────────────────────────────────────
 
 
-def segment_gestures(events: Sequence, style: EngravingStyle, meter=(4, 4)) -> List[List[int]]:
+def segment_gestures(events: Sequence, style: EngravingStyle, meter=(4, 4)) -> list[list[int]]:
     """Split a single voice into slur-able gestures, as index runs.
 
     A gesture ends at a rest, at a note long enough to be its own event, at a
@@ -420,10 +421,10 @@ def segment_gestures(events: Sequence, style: EngravingStyle, meter=(4, 4)) -> L
     fixed window is worse than no slur at all, because it tells the player to
     connect notes that do not belong together.
     """
-    gestures: List[List[int]] = []
-    current: List[int] = []
+    gestures: list[list[int]] = []
+    current: list[int] = []
     long_note = max(_beats_per_bar(meter) / 2, Fraction(1))
-    prev_top: Optional[int] = None
+    prev_top: int | None = None
 
     def flush():
         nonlocal current
@@ -517,7 +518,7 @@ _PLANNED_TOUCH = {
 }
 
 
-def planned_touch(control) -> Dict[str, bool]:
+def planned_touch(control) -> dict[str, bool]:
     """The phrase's planned articulation character, as engraving decisions."""
     plan = getattr(control, "articulation_plan", None) if control is not None else None
     name = str(getattr(plan, "dominant_articulation", "") or "").strip().lower()
@@ -525,7 +526,7 @@ def planned_touch(control) -> Dict[str, bool]:
 
 
 def apply_planned_articulation(
-    layer_ir, style: EngravingStyle, report: EnrichmentReport, touch: Dict[str, bool]
+    layer_ir, style: EngravingStyle, report: EnrichmentReport, touch: dict[str, bool]
 ) -> None:
     """Mark the melody with the touch the plan asked for.
 
@@ -705,8 +706,8 @@ def add_dynamics(
     layer_ir,
     style: EngravingStyle,
     report: EnrichmentReport,
-    energy_curve: Optional[Sequence[float]] = None,
-    base_dynamic: Optional[str] = None,
+    energy_curve: Sequence[float] | None = None,
+    base_dynamic: str | None = None,
 ) -> None:
     """Put a written dynamic where a player needs one.
 
@@ -732,7 +733,7 @@ def add_dynamics(
     first_bar = bars[0]
 
     # Bar -> the dynamic the energy curve asks for.
-    wanted: Dict[int, str] = {}
+    wanted: dict[int, str] = {}
     if energy_curve:
         for i, bar in enumerate(bars):
             e = energy_curve[min(i, len(energy_curve) - 1)]
@@ -748,8 +749,8 @@ def add_dynamics(
     if existing_bars:
         report.author_marks_kept += len(existing_bars)
 
-    last_written: Optional[str] = None
-    last_bar: Optional[int] = None
+    last_written: str | None = None
+    last_bar: int | None = None
     for bar in bars:
         if bar in existing_bars:
             last_written = None  # composer took over; re-baseline
@@ -793,14 +794,14 @@ def add_echo_terracing(layer_ir, style: EngravingStyle, report: EnrichmentReport
     melody = _sorted(getattr(layer_ir, "principal_line", None) or [])
     if len(melody) < 8:
         return
-    by_bar: Dict[int, List] = {}
+    by_bar: dict[int, list] = {}
     for e in melody:
         by_bar.setdefault(int(getattr(e, "bar", 1)), []).append(e)
     bars = sorted(by_bar)
     if len(bars) < 4:
         return
 
-    def sig(bar: int) -> Tuple:
+    def sig(bar: int) -> tuple:
         return tuple(
             (getattr(e, "pitch", None) if not isinstance(getattr(e, "pitch", None), list)
              else tuple(getattr(e, "pitch")), getattr(e, "duration", "q"))
@@ -892,7 +893,7 @@ def add_hairpins(layer_ir, style: EngravingStyle, report: EnrichmentReport) -> N
 
 
 def add_cadential_diminuendo(
-    layer_ir, style: EngravingStyle, report: EnrichmentReport, cadence_bar: Optional[int] = None
+    layer_ir, style: EngravingStyle, report: EnrichmentReport, cadence_bar: int | None = None
 ) -> None:
     """A soft landing on a closing cadence, unless the cadence is a climax.
 
@@ -926,7 +927,7 @@ def add_pedal(
     layer_ir,
     style: EngravingStyle,
     report: EnrichmentReport,
-    harmony_plan: Optional[Sequence[str]] = None,
+    harmony_plan: Sequence[str] | None = None,
 ) -> None:
     """Notate the sustain pedal where the harmony asks for it.
 
@@ -1050,7 +1051,7 @@ def add_closing_marks(
     style: EngravingStyle,
     report: EnrichmentReport,
     is_final_phrase: bool = False,
-    character: Optional[str] = None,
+    character: str | None = None,
 ) -> None:
     """A fermata on the last chord of the piece; a character word at the head.
 
@@ -1088,15 +1089,15 @@ def add_closing_marks(
 def enrich_layer_ir(
     layer_ir,
     *,
-    style: Optional[str] = None,
-    energy_curve: Optional[Sequence[float]] = None,
-    harmony_plan: Optional[Sequence[str]] = None,
-    cadence_bar: Optional[int] = None,
-    base_dynamic: Optional[str] = None,
-    character: Optional[str] = None,
+    style: str | None = None,
+    energy_curve: Sequence[float] | None = None,
+    harmony_plan: Sequence[str] | None = None,
+    cadence_bar: int | None = None,
+    base_dynamic: str | None = None,
+    character: str | None = None,
     is_final_phrase: bool = False,
     control=None,
-    enable: Optional[Dict[str, bool]] = None,
+    enable: dict[str, bool] | None = None,
 ) -> EnrichmentReport:
     """Fill in the engraver's marks the composer left blank.
 
@@ -1169,7 +1170,7 @@ def enrich_layer_ir(
     return report
 
 
-def expression_density(layer_ir) -> Dict[str, float]:
+def expression_density(layer_ir) -> dict[str, float]:
     """Marks per bar, by kind — the measurement that exposed the empty page.
 
     A real Classical piano score runs roughly 1.5-4 articulations per bar and

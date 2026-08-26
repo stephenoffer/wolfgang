@@ -567,5 +567,14 @@
     "description": "declamation for narrative, lyrical measured writing for reflection. The structural invention that makes opera possible.",
     "source_file": "monteverdi/monteverdi-devices.md",
     "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_a_phrase_length_set_by_the_line_of_text",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "A phrase length set by the line of text",
+    "description": "not by four-bar symmetry.",
+    "source_file": "monteverdi/monteverdi-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

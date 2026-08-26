@@ -7,8 +7,6 @@ assigned to piano hands with playability constraints.
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Tuple
-
 from .enums import NoteRole, OrchestraRole, ReductionMode
 from .models import LayerEvent, LayerIR, PhysicalConstraints
 from .pitch import midi_to_pitch, pitch_to_midi
@@ -28,7 +26,7 @@ class BimanualPacker:
       - playability at tempo
     """
 
-    def __init__(self, constraints: Optional[PhysicalConstraints] = None):
+    def __init__(self, constraints: PhysicalConstraints | None = None):
         self.constraints = constraints or PhysicalConstraints()
 
     def pack(
@@ -36,7 +34,7 @@ class BimanualPacker:
         role_graph: RoleGraph,
         mode: str = ReductionMode.PLAYABLE.value,
         key: str = "C",
-        meter: Tuple[int, int] = (4, 4),
+        meter: tuple[int, int] = (4, 4),
     ) -> LayerIR:
         """Pack a role graph into a piano LayerIR.
 
@@ -58,7 +56,7 @@ class BimanualPacker:
         )
 
         # Group events by bar
-        bars: Dict[int, List[RoleEvent]] = {}
+        bars: dict[int, list[RoleEvent]] = {}
         for event in role_graph.events:
             bars.setdefault(event.bar, []).append(event)
 
@@ -75,11 +73,11 @@ class BimanualPacker:
         return layer
 
     def _pack_bar(
-        self, events: List[RoleEvent], mode: str, key: str
-    ) -> Tuple[List[LayerEvent], List[LayerEvent]]:
+        self, events: list[RoleEvent], mode: str, key: str
+    ) -> tuple[list[LayerEvent], list[LayerEvent]]:
         """Pack one bar of events into RH and LH."""
-        rh: List[LayerEvent] = []
-        lh: List[LayerEvent] = []
+        rh: list[LayerEvent] = []
+        lh: list[LayerEvent] = []
 
         # Sort by salience (most important first)
         events_sorted = sorted(events, key=lambda e: e.salience, reverse=True)
@@ -99,14 +97,14 @@ class BimanualPacker:
         }.get(mode, 3)
 
         # Group by beat
-        by_beat: Dict[float, List[RoleEvent]] = {}
+        by_beat: dict[float, list[RoleEvent]] = {}
         for event in events_sorted:
             if event.salience >= threshold:
                 by_beat.setdefault(event.beat, []).append(event)
 
-        for beat, beat_events in sorted(by_beat.items()):
-            rh_beat: List[RoleEvent] = []
-            lh_beat: List[RoleEvent] = []
+        for _beat, beat_events in sorted(by_beat.items()):
+            rh_beat: list[RoleEvent] = []
+            lh_beat: list[RoleEvent] = []
 
             for event in beat_events:
                 midi = pitch_to_midi(event.pitch)
@@ -121,7 +119,7 @@ class BimanualPacker:
                 ):
                     if len(rh_beat) < max_per_hand:
                         rh_beat.append(event)
-                elif event.role in (OrchestraRole.BASS_FOUNDATION.value,):
+                elif event.role == OrchestraRole.BASS_FOUNDATION.value:
                     if len(lh_beat) < max_per_hand:
                         lh_beat.append(event)
                 elif event.role in (
@@ -172,7 +170,7 @@ class BimanualPacker:
 
         return rh, lh
 
-    def _enforce_span(self, events: List[RoleEvent]) -> List[RoleEvent]:
+    def _enforce_span(self, events: list[RoleEvent]) -> list[RoleEvent]:
         """Remove events that exceed hand span."""
         if len(events) <= 1:
             return events

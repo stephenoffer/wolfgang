@@ -1,1018 +1,198 @@
 [
- {
-  "id": "1",
-  "name": "1",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Bass moves by semitone for 3-6 steps"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "2",
-  "name": "2",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Penultimate chord has 4th resolving to 3rd"
-  ],
-  "frequency_weight": 0.04,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "3",
-  "name": "3",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Each chord's 7th becomes the next chord's preparation"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "4",
-  "name": "4",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Subject mutated to keep tonic-dominant relationship"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "5",
-  "name": "5",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "bII6 chord before V"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "6",
-  "name": "6",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "It+6",
-   "Fr+6",
-   "Ger+6 approaching V"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "7",
-  "name": "7",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Major I ending a minor-key piece"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "8",
-  "name": "8",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Simultaneous natural and sharp/flat in different voices"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "9",
-  "name": "9",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Bass holds V while upper voices create dissonance"
-  ],
-  "frequency_weight": 0.08,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "10",
-  "name": "10",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Expected resolution denied"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "11",
-  "name": "11",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Key changes via descending-5ths or ascending-step sequence"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "12",
-  "name": "12",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Same dim7 chord reinterpreted in new key"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "13",
-  "name": "13",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Two voices suspend at once"
-  ],
-  "frequency_weight": 0.04,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "14",
-  "name": "14",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Outer voices swap chromatic notes"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "15",
-  "name": "15",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sequence broken at unexpected point"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "16",
-  "name": "16",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Picardy chord becomes new tonic for following section"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "melody_harmonization_in_context",
-  "name": "Melody harmonization in context",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Harmony responds to meaning",
-   "not formula"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "inner_voice_independence",
-  "name": "Inner voice independence",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "No voice is filler \u2014 every line rewards attention"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "fermata_as_harmonic_reset",
-  "name": "Fermata as harmonic reset",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Modulatory freedom between phrases; each line is a fresh harmonic world"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "bass_leaps_to_avoid_parallels",
-  "name": "Bass leaps to avoid parallels",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Physical constraint generates musical invention"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "chromatic_passing_tones_in_inner_voices",
-  "name": "Chromatic passing tones in inner voices",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Adds warmth and motion without changing the harmonic structure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "chromatic_bass_descent",
-  "name": "Chromatic bass descent",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "secondary_dominants",
-  "name": "Secondary dominants",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "diminished_7th_pivots",
-  "name": "Diminished 7th pivots",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Low-moderate"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "augmented_6th_chords",
-  "name": "Augmented 6th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Rare"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "cross_relations",
-  "name": "Cross-relations",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Rare"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "chromatic_inner_voices",
-  "name": "Chromatic inner voices",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Low"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "grief_lament",
-  "name": "Grief / Lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Stepwise chromatic descent feels like slow",
-   "inevitable falling \u2014 the body sinking under sorrow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "devotion_pleading",
-  "name": "Devotion / Pleading",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Each suspension creates a moment of yearning; resolution brings brief peace",
-   "then yearning returns"
-  ],
-  "frequency_weight": 0.04,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "joy_triumph",
-  "name": "Joy / Triumph",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Functional momentum creates forward-flowing energy; the arrival IS the triumph"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "fury_agitation",
-  "name": "Fury / Agitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "wonder_awe",
-  "name": "Wonder / Awe",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "pastoral_peace",
-  "name": "Pastoral peace",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The drone beneath creates unchanging ground; time itself seems to slow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "heroic_resolve",
-  "name": "Heroic resolve",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The longer the preparation",
-   "the greater the sense of overcoming"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "chromatic_lament",
-  "name": "Chromatic lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Minor keys"
-  ],
-  "frequency_weight": 0.01,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "diatonic_lament",
-  "name": "Diatonic lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "D min",
-   "G min"
-  ],
-  "frequency_weight": 0.08,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "romanesca",
-  "name": "Romanesca",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Major keys"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "folia",
-  "name": "Folia",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "D minor"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "secondary_dominant",
-  "name": "Secondary dominant",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Tonicizing modulation targets"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "augmented_6th",
-  "name": "Augmented 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pre-dominant chromatic"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "neapolitan",
-  "name": "Neapolitan",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dramatic cadences (minor keys)"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "cross_relation",
-  "name": "Cross-relation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "English baroque (Purcell)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "picardy_3rd",
-  "name": "Picardy 3rd",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Final cadence convention"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "bach/harmonic-language.md"
- },
- {
-  "id": "secondary_dominants",
-  "name": "Secondary dominants",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "V/V most common",
-   "V/vi for deceptive turns"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "diminished_7th_chords",
-  "name": "Diminished 7th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Text-painting moments: fear",
-   "wrath",
-   "darkness"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "neapolitan_bii6",
-  "name": "Neapolitan (bII6)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Minor-key arias at cadential moments"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "augmented_6th",
-  "name": "Augmented 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dramatic climaxes in late oratorios"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "chromatic_passing_tones",
-  "name": "Chromatic passing tones",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Text-painting",
-   "lament bass patterns"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "suspensions_4_3_7_6",
-  "name": "Suspensions (4-3, 7-6)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Cadences primarily; chains in slow movements"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "cross_relations",
-  "name": "Cross-relations",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Less than Purcell; occasional for shock"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "deceptive_cadences_v_vi",
-  "name": "Deceptive cadences (V-vi)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Extending phrases",
-   "delaying expected resolution"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "grief_lament",
-  "name": "Grief / Lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Stepwise chromatic descent feels like slow",
-   "inevitable falling \u2014 the body sinking under sorrow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "devotion_pleading",
-  "name": "Devotion / Pleading",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Each suspension creates a moment of yearning; resolution brings brief peace",
-   "then yearning returns"
-  ],
-  "frequency_weight": 0.04,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "joy_triumph",
-  "name": "Joy / Triumph",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Functional momentum creates forward-flowing energy; the arrival IS the triumph"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "fury_agitation",
-  "name": "Fury / Agitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "wonder_awe",
-  "name": "Wonder / Awe",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "pastoral_peace",
-  "name": "Pastoral peace",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The drone beneath creates unchanging ground; time itself seems to slow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "heroic_resolve",
-  "name": "Heroic resolve",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The longer the preparation",
-   "the greater the sense of overcoming"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "chromatic_lament",
-  "name": "Chromatic lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Minor keys"
-  ],
-  "frequency_weight": 0.01,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "diatonic_lament",
-  "name": "Diatonic lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "D min",
-   "G min"
-  ],
-  "frequency_weight": 0.08,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "romanesca",
-  "name": "Romanesca",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Major keys"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "folia",
-  "name": "Folia",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "D minor"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "secondary_dominant",
-  "name": "Secondary dominant",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Tonicizing modulation targets"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "augmented_6th",
-  "name": "Augmented 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pre-dominant chromatic"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "neapolitan",
-  "name": "Neapolitan",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dramatic cadences (minor keys)"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "cross_relation",
-  "name": "Cross-relation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "English baroque (Purcell)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "picardy_3rd",
-  "name": "Picardy 3rd",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Final cadence convention"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "handel/harmonic-language.md"
- },
- {
-  "id": "grief_lament",
-  "name": "Grief / Lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Stepwise chromatic descent feels like slow",
-   "inevitable falling \u2014 the body sinking under sorrow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "devotion_pleading",
-  "name": "Devotion / Pleading",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Each suspension creates a moment of yearning; resolution brings brief peace",
-   "then yearning returns"
-  ],
-  "frequency_weight": 0.04,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "joy_triumph",
-  "name": "Joy / Triumph",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Functional momentum creates forward-flowing energy; the arrival IS the triumph"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "fury_agitation",
-  "name": "Fury / Agitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "wonder_awe",
-  "name": "Wonder / Awe",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "pastoral_peace",
-  "name": "Pastoral peace",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The drone beneath creates unchanging ground; time itself seems to slow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "heroic_resolve",
-  "name": "Heroic resolve",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The longer the preparation",
-   "the greater the sense of overcoming"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "chromatic_lament",
-  "name": "Chromatic lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Minor keys"
-  ],
-  "frequency_weight": 0.01,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "diatonic_lament",
-  "name": "Diatonic lament",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "D min",
-   "G min"
-  ],
-  "frequency_weight": 0.08,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "romanesca",
-  "name": "Romanesca",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Major keys"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "folia",
-  "name": "Folia",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "D minor"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "secondary_dominant",
-  "name": "Secondary dominant",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Tonicizing modulation targets"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "augmented_6th",
-  "name": "Augmented 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pre-dominant chromatic"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "neapolitan",
-  "name": "Neapolitan",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dramatic cadences (minor keys)"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "cross_relation",
-  "name": "Cross-relation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "English baroque (Purcell)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- },
- {
-  "id": "picardy_3rd",
-  "name": "Picardy 3rd",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Final cadence convention"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "corelli/harmonic-language.md"
- }
+  {
+    "id": "grief_lament",
+    "name": "Grief / Lament",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Stepwise chromatic descent feels like slow",
+      "inevitable falling \u2014 the body sinking under sorrow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "devotion_pleading",
+    "name": "Devotion / Pleading",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Each suspension creates a moment of yearning; resolution brings brief peace",
+      "then yearning returns"
+    ],
+    "frequency_weight": 0.04,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "joy_triumph",
+    "name": "Joy / Triumph",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Functional momentum creates forward-flowing energy; the arrival IS the triumph"
+    ],
+    "frequency_weight": 0.05,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "fury_agitation",
+    "name": "Fury / Agitation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "wonder_awe",
+    "name": "Wonder / Awe",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "pastoral_peace",
+    "name": "Pastoral peace",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The drone beneath creates unchanging ground; time itself seems to slow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "heroic_resolve",
+    "name": "Heroic resolve",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The longer the preparation",
+      "the greater the sense of overcoming"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "chromatic_lament",
+    "name": "Chromatic lament",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Minor keys"
+    ],
+    "frequency_weight": 0.01,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "diatonic_lament",
+    "name": "Diatonic lament",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "D min",
+      "G min"
+    ],
+    "frequency_weight": 0.08,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "romanesca",
+    "name": "Romanesca",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Major keys"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "folia",
+    "name": "Folia",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "D minor"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "secondary_dominant",
+    "name": "Secondary dominant",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Tonicizing modulation targets"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "augmented_6th",
+    "name": "Augmented 6th",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Pre-dominant chromatic"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "neapolitan",
+    "name": "Neapolitan",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dramatic cadences (minor keys)"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "cross_relation",
+    "name": "Cross-relation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "English baroque (Purcell)"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  },
+  {
+    "id": "picardy_3rd",
+    "name": "Picardy 3rd",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Final cadence convention"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "<shared style__baroque harmony>"
+  }
 ]

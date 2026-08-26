@@ -7,8 +7,6 @@ proving that context was actually used and anti-patterns are absent.
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-
 from .models import ContextTrace, ContextUtilizationReport, FingerprintContract
 
 # Fallback budget per tier — max fraction of bars using hardcoded fallback
@@ -21,9 +19,9 @@ FALLBACK_BUDGETS = {
 
 
 def compute_utilization(
-    traces: Dict[str, ContextTrace],
-    fingerprint_contract: Optional[FingerprintContract] = None,
-    anti_pattern_results: Optional[List[Dict]] = None,
+    traces: dict[str, ContextTrace],
+    fingerprint_contract: FingerprintContract | None = None,
+    anti_pattern_results: list[dict] | None = None,
     tier: str = "D",
 ) -> ContextUtilizationReport:
     """Compute Context Utilization Score for a section or piece.
@@ -67,11 +65,11 @@ def compute_utilization(
 
 def compute_section_coverage(
     section_id: str,
-    traces: Dict[str, ContextTrace],
-    fingerprint_contract: Optional[FingerprintContract] = None,
-    anti_results: Optional[List[Dict]] = None,
+    traces: dict[str, ContextTrace],
+    fingerprint_contract: FingerprintContract | None = None,
+    anti_results: list[dict] | None = None,
     tier: str = "D",
-) -> Dict:
+) -> dict:
     """Compute a section-level coverage report.
 
     Wraps ``compute_utilization()`` and returns a flat dict suitable

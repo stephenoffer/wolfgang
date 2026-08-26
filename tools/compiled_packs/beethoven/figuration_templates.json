@@ -558,5 +558,14 @@
     "description": "the same cell appears in a later movement in a different character. In a multi-movement work this is what makes it one work.",
     "source_file": "beethoven/beethoven-devices.md",
     "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_written_out_accelerando_by_note_value",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Written-out accelerando by note value",
+    "description": "into a final cadence.",
+    "source_file": "beethoven/beethoven-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

@@ -7,7 +7,7 @@ section works together, not just individual phrases.
 
 from __future__ import annotations
 
-from typing import Callable, Dict, List, Optional
+from collections.abc import Callable
 
 from .models import CandidateNode, SectionPath
 
@@ -17,12 +17,12 @@ class SectionSearch:
 
     def beam_search(
         self,
-        candidates_by_phrase: Dict[str, List[CandidateNode]],
-        phrase_order: List[str],
+        candidates_by_phrase: dict[str, list[CandidateNode]],
+        phrase_order: list[str],
         mode: str = "compose_from_text",
         beam_width: int = 5,
-        transition_scorer: Optional[Callable] = None,
-        ledger_scorer: Optional[Callable] = None,
+        transition_scorer: Callable | None = None,
+        ledger_scorer: Callable | None = None,
     ) -> SectionPath:
         """Find the best path through phrase candidates.
 
@@ -46,7 +46,7 @@ class SectionSearch:
 
         # Initialize beam with first phrase candidates
         first_phrase = active_phrases[0]
-        beam: List[SectionPath] = []
+        beam: list[SectionPath] = []
         for cand in candidates_by_phrase[first_phrase]:
             path = SectionPath(
                 section_id="",
@@ -61,7 +61,7 @@ class SectionSearch:
 
         # Extend beam phrase by phrase
         for phrase_id in active_phrases[1:]:
-            new_beam: List[SectionPath] = []
+            new_beam: list[SectionPath] = []
             phrase_candidates = candidates_by_phrase[phrase_id]
 
             for path in beam:
@@ -90,9 +90,9 @@ class SectionSearch:
 
                     new_path = SectionPath(
                         section_id=path.section_id,
-                        nodes=path.nodes + [cand],
+                        nodes=[*path.nodes, cand],
                         total_score=extended_score,
-                        transition_scores=path.transition_scores + [transition_score],
+                        transition_scores=[*path.transition_scores, transition_score],
                     )
                     new_beam.append(new_path)
 
@@ -109,8 +109,8 @@ class SectionSearch:
 
     def greedy_search(
         self,
-        candidates_by_phrase: Dict[str, List[CandidateNode]],
-        phrase_order: List[str],
+        candidates_by_phrase: dict[str, list[CandidateNode]],
+        phrase_order: list[str],
         mode: str = "compose_from_text",
     ) -> SectionPath:
         """Simple greedy selection: pick best candidate per phrase.
@@ -139,7 +139,7 @@ class SectionSearch:
         )
 
 
-def _prune_beam(beam: List[SectionPath], width: int) -> List[SectionPath]:
+def _prune_beam(beam: list[SectionPath], width: int) -> list[SectionPath]:
     """Sort by score descending and keep top `width` paths."""
     beam.sort(key=lambda p: p.total_score, reverse=True)
     return beam[:width]

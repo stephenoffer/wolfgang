@@ -9,7 +9,7 @@ salience scores.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .enums import OrchestraRole
 from .pitch import pitch_to_midi
@@ -24,7 +24,7 @@ class RoleEvent:
     beat: float = 1.0
     pitch: str = ""
     duration: str = "q"
-    dynamic: Optional[str] = None
+    dynamic: str | None = None
     role: str = OrchestraRole.HARMONIC_PAD.value
     salience: float = 0.5
 
@@ -39,17 +39,17 @@ class RoleEvent:
 class RoleGraph:
     """Complete role-annotated score."""
 
-    events: List[RoleEvent] = field(default_factory=list)
+    events: list[RoleEvent] = field(default_factory=list)
     bars: int = 0
-    instruments: List[str] = field(default_factory=list)
+    instruments: list[str] = field(default_factory=list)
 
-    def get_by_role(self, role: str) -> List[RoleEvent]:
+    def get_by_role(self, role: str) -> list[RoleEvent]:
         return [e for e in self.events if e.role == role]
 
-    def get_by_instrument(self, instrument: str) -> List[RoleEvent]:
+    def get_by_instrument(self, instrument: str) -> list[RoleEvent]:
         return [e for e in self.events if e.instrument == instrument]
 
-    def get_top_salience(self, n: int = 10) -> List[RoleEvent]:
+    def get_top_salience(self, n: int = 10) -> list[RoleEvent]:
         return sorted(self.events, key=lambda e: e.salience, reverse=True)[:n]
 
 
@@ -87,7 +87,7 @@ class RoleDecomposer:
     }
 
     def decompose(
-        self, events: List[Dict[str, Any]], instruments: Optional[List[str]] = None
+        self, events: list[dict[str, Any]], instruments: list[str] | None = None
     ) -> RoleGraph:
         """Decompose raw events into a role graph.
 
@@ -135,9 +135,8 @@ class RoleDecomposer:
 
         # Adjust based on dynamics
         dyn = (event.dynamic or "").lower()
-        if dyn in ("ff", "fff", "sfz"):
-            if role == OrchestraRole.HARMONIC_PAD.value:
-                role = OrchestraRole.CLIMACTIC_HIT.value
+        if dyn in ("ff", "fff", "sfz") and role == OrchestraRole.HARMONIC_PAD.value:
+            role = OrchestraRole.CLIMACTIC_HIT.value
 
         return role
 

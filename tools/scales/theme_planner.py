@@ -11,7 +11,6 @@ MotifTransform algebra so the normal realization path then materializes them.
 from __future__ import annotations
 
 from itertools import pairwise
-from typing import Dict, List, Optional
 
 from .models import MotifObject, MotifTransform, MotifTransformOp
 from .pitch import midi_to_pitch
@@ -20,7 +19,7 @@ _DEV_ROLES = ("development", "contrasting", "episode")
 _RECAP_ROLES = ("recap", "return", "reprise", "a2", "a_return", "coda")
 
 
-def elect_principal_theme(motif_bank: Dict[str, MotifObject]) -> Optional[str]:
+def elect_principal_theme(motif_bank: dict[str, MotifObject]) -> str | None:
     """Pick the most theme-like motif: a real contour + recognition anchor +
     a non-trivial rhythm cell. Returns its id, or None for an empty bank."""
     if not motif_bank:
@@ -36,7 +35,7 @@ def elect_principal_theme(motif_bank: Dict[str, MotifObject]) -> Optional[str]:
     return max(motif_bank.values(), key=score).motif_id
 
 
-def plan_section_opening_placements(role: str, theme_id: str) -> List[MotifTransform]:
+def plan_section_opening_placements(role: str, theme_id: str) -> list[MotifTransform]:
     """MotifTransform(s) for a section's opening phrase, by section role:
     development → fragment, recap/coda → augment (transformed restatement),
     everything else → state (clear statement)."""
@@ -57,14 +56,14 @@ def plan_section_opening_placements(role: str, theme_id: str) -> List[MotifTrans
 # double-dotted values came back UNCHANGED from "augment" — the transform
 # silently did nothing and the brief told the agent it was an augmentation.
 # Deriving both directions from the real duration values covers every code.
-_DUR_HALVE: Dict[str, str] = {}
-_DUR_DOUBLE: Dict[str, str] = {}
+_DUR_HALVE: dict[str, str] = {}
+_DUR_DOUBLE: dict[str, str] = {}
 
 
 def _build_duration_tables() -> None:
     from .duration import DURATION_VALUES
 
-    by_value: Dict[object, str] = {}
+    by_value: dict[object, str] = {}
     for code, val in DURATION_VALUES.items():
         # Prefer the canonical spelling over an alias ("s" over "16").
         if val not in by_value or len(code) < len(by_value[val]):
@@ -81,7 +80,7 @@ def _build_duration_tables() -> None:
 _build_duration_tables()
 
 
-def _ev_top_midi(ev) -> Optional[int]:
+def _ev_top_midi(ev) -> int | None:
     """Top MIDI of a LayerEvent pitch (note name or chord-name list)."""
     import music21
     p = ev.pitch
@@ -275,7 +274,7 @@ def develop_theme_surface(theme, op: str, transpose_semitones: int = 0) -> str:
 # was measuring.
 
 
-def analyze_theme(theme) -> Dict[str, object]:
+def analyze_theme(theme) -> dict[str, object]:
     """Memorability properties of a captured theme surface.
 
     Returns measurements plus plain-language observations. ``None`` fields mean
@@ -288,7 +287,7 @@ def analyze_theme(theme) -> Dict[str, object]:
          if getattr(e, "pitch", None) and e.pitch != "rest"),
         key=lambda e: (getattr(e, "bar", 1), getattr(e, "beat", 1.0)),
     )
-    out: Dict[str, object] = {
+    out: dict[str, object] = {
         "notes": len(evs),
         "observations": [],
         "concerns": [],
@@ -413,7 +412,7 @@ _RECURRENCE_RECALL = 0.67
 _RECURRENCE_FALSE_RATE = 0.33
 
 
-def planned_theme_placements(graph) -> Dict[str, object]:
+def planned_theme_placements(graph) -> dict[str, object]:
     """Sections whose plan places the principal theme. Exact, not inferred.
 
     Reads `slot.motif_transforms`, which is where the planner records that a
@@ -422,7 +421,7 @@ def planned_theme_placements(graph) -> Dict[str, object]:
     whether the composer honoured it.
     """
     principal = getattr(graph, "principal_theme_id", "") or ""
-    sections: Dict[str, List[str]] = {}
+    sections: dict[str, list[str]] = {}
     for pid, state in (getattr(graph, "phrases", None) or {}).items():
         slot = getattr(state, "slot", None)
         transforms = getattr(slot, "motif_transforms", None) or []
@@ -445,7 +444,7 @@ def planned_theme_placements(graph) -> Dict[str, object]:
     }
 
 
-def theme_return_evidence(graph, theme_surface) -> Dict[str, object]:
+def theme_return_evidence(graph, theme_surface) -> dict[str, object]:
     """Does the theme come back? Answered from the plan when possible.
 
     Returns ``source`` = "plan" when the planner recorded placements (exact) or
@@ -475,7 +474,7 @@ def theme_return_evidence(graph, theme_surface) -> Dict[str, object]:
 
 def theme_recurrence(
     graph, theme_surface, tolerance: int = 1, head: int = _HEAD_INTERVALS
-) -> Dict[str, object]:
+) -> dict[str, object]:
     """Where the principal theme's shape comes back across the piece.
 
     Matching is on the INTERVAL contour of the theme's HEAD, not on absolute
@@ -492,7 +491,7 @@ def theme_recurrence(
     """
     full = _contour_of(theme_surface)
     target = full[:head] if len(full) > head else full
-    hits: List[Dict[str, object]] = []
+    hits: list[dict[str, object]] = []
     if len(target) < 3:
         return {
             "theme_length": len(full),
@@ -534,7 +533,7 @@ def theme_recurrence(
     }
 
 
-def _midis_of(source) -> List[int]:
+def _midis_of(source) -> list[int]:
     """Top MIDI per note from a shorthand string, a LayerIR, or an event list.
 
     Accepting only a shorthand string forced every caller to re-serialize its
@@ -568,7 +567,7 @@ def _midis_of(source) -> List[int]:
     return out
 
 
-def _contour_of(source) -> List[int]:
+def _contour_of(source) -> list[int]:
     """Interval contour of a melody, given in any of the accepted forms."""
     mids = _midis_of(source)
     return [b - a for a, b in pairwise(mids)]

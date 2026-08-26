@@ -31,9 +31,10 @@ Roman numerals go through ``harmony_analysis`` rather than music21 — its
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from fractions import Fraction
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any
 
 from .counterpoint import extract_voices, sounding_at
 from .pitch import is_minor_key, key_to_root_midi
@@ -64,14 +65,14 @@ class Cadence:
     kind: str = "NONE"
     approach_roman: str = ""
     goal_roman: str = ""
-    bass_motion: Optional[int] = None  # semitones, approach -> goal
-    soprano_degree: Optional[int] = None  # scale degree the melody lands on
+    bass_motion: int | None = None  # semitones, approach -> goal
+    soprano_degree: int | None = None  # scale degree the melody lands on
     root_position: bool = True
     metric_strength: str = "downbeat"  # downbeat | strong | weak
     formula: str = ""  # fingerprint for repetition detection
     confidence: float = 0.0
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return {
             "bar": self.bar,
             "beat": round(float(self.beat), 3),
@@ -106,15 +107,15 @@ class Cadence:
 
 @dataclass
 class CadenceReport:
-    cadences: List[Cadence] = field(default_factory=list)
-    planned: Optional[str] = None
-    matches_plan: Optional[bool] = None
+    cadences: list[Cadence] = field(default_factory=list)
+    planned: str | None = None
+    matches_plan: bool | None = None
     variety: float = 0.0  # distinct formulas / total
-    repeated_formulas: List[Tuple[str, int]] = field(default_factory=list)
-    observations: List[str] = field(default_factory=list)
-    suggestions: List[str] = field(default_factory=list)
+    repeated_formulas: list[tuple[str, int]] = field(default_factory=list)
+    observations: list[str] = field(default_factory=list)
+    suggestions: list[str] = field(default_factory=list)
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return {
             "cadences": [c.as_dict() for c in self.cadences],
             "planned": self.planned,
@@ -129,7 +130,7 @@ class CadenceReport:
 # ─── Reading the notes ───────────────────────────────────────────────────────
 
 
-def _tonic_and_mode(key: str) -> Tuple[int, str]:
+def _tonic_and_mode(key: str) -> tuple[int, str]:
     root = key_to_root_midi(key or "C")
     tonic = (root or 60) % 12
     return tonic, ("minor" if is_minor_key(key or "C") else "major")
@@ -139,12 +140,12 @@ _DEGREE_OF_SEMITONE_MAJOR = {0: 1, 2: 2, 4: 3, 5: 4, 7: 5, 9: 6, 11: 7}
 _DEGREE_OF_SEMITONE_MINOR = {0: 1, 2: 2, 3: 3, 5: 4, 7: 5, 8: 6, 10: 7, 11: 7}
 
 
-def scale_degree(midi: int, tonic_pc: int, mode: str) -> Optional[int]:
+def scale_degree(midi: int, tonic_pc: int, mode: str) -> int | None:
     table = _DEGREE_OF_SEMITONE_MINOR if mode == "minor" else _DEGREE_OF_SEMITONE_MAJOR
     return table.get((midi - tonic_pc) % 12)
 
 
-def _metric_strength(beat: float, meter: Tuple[int, int]) -> str:
+def _metric_strength(beat: float, meter: tuple[int, int]) -> str:
     b = round(float(beat), 3)
     if abs(b - 1.0) < 0.01:
         return "downbeat"
@@ -159,7 +160,7 @@ def _metric_strength(beat: float, meter: Tuple[int, int]) -> str:
     return "weak"
 
 
-def _sonority_at(spans, t) -> Tuple[Optional[int], List[int]]:
+def _sonority_at(spans, t) -> tuple[int | None, list[int]]:
     """(bass midi, all sounding pitch classes) at one moment."""
     state = sounding_at(spans, t)
     if not state:
@@ -168,7 +169,7 @@ def _sonority_at(spans, t) -> Tuple[Optional[int], List[int]]:
     return min(mids), sorted({m % 12 for m in mids})
 
 
-def _sonority_over(spans, start, end) -> Tuple[Optional[int], List[int]]:
+def _sonority_over(spans, start, end) -> tuple[int | None, list[int]]:
     """(lowest midi, pitch classes) over a SPAN rather than an instant.
 
     A cadence is not an instant. Read at a single point, the arrival of a
@@ -184,7 +185,7 @@ def _sonority_over(spans, start, end) -> Tuple[Optional[int], List[int]]:
     return min(s.midi for s in hits), sorted({s.midi % 12 for s in hits})
 
 
-def _melody_at(spans, t) -> Optional[int]:
+def _melody_at(spans, t) -> int | None:
     state = sounding_at(spans, t)
     mel = [
         s
@@ -196,7 +197,7 @@ def _melody_at(spans, t) -> Optional[int]:
     return max((s.midi for s in state.values()), default=None)
 
 
-def _read_roman(pcs: Sequence[int], bass: Optional[int], tonic_pc: int, mode: str) -> str:
+def _read_roman(pcs: Sequence[int], bass: int | None, tonic_pc: int, mode: str) -> str:
     """Name the sonority through the shared analyzer, or "" if unreadable."""
     if not pcs:
         return ""
@@ -248,18 +249,18 @@ def _is_subdominant(pcs: Sequence[int], tonic_pc: int, mode: str) -> bool:
 
 def classify_cadence(
     approach_pcs: Sequence[int],
-    approach_bass: Optional[int],
+    approach_bass: int | None,
     goal_pcs: Sequence[int],
-    goal_bass: Optional[int],
-    soprano_midi: Optional[int],
+    goal_bass: int | None,
+    soprano_midi: int | None,
     tonic_pc: int,
     mode: str,
     is_final: bool,
-    approach_degree: Optional[int] = None,
-    goal_degree: Optional[int] = None,
+    approach_degree: int | None = None,
+    goal_degree: int | None = None,
     approach_quality: str = "",
     goal_quality: str = "",
-) -> Tuple[str, bool, Optional[int]]:
+) -> tuple[str, bool, int | None]:
     """(kind, root_position, soprano_degree) from the two chords.
 
     When the caller knows each chord's ROOT (``*_degree``, semitones above the
@@ -420,10 +421,10 @@ def _pcs_of_roman(roman: str, tonic_pc: int, mode: str):
 
 def read_cadence(
     layer_ir,
-    cadence_bar: Optional[int] = None,
-    key: Optional[str] = None,
+    cadence_bar: int | None = None,
+    key: str | None = None,
     is_final: bool = False,
-) -> Optional[Cadence]:
+) -> Cadence | None:
     """Read the cadence at ``cadence_bar`` (default: the phrase's last bar).
 
     The reading is taken from the notes, beat by beat, and the plan's label is
@@ -588,7 +589,7 @@ def read_cadence(
     return cad
 
 
-def check_against_plan(cadence: Optional[Cadence], planned: Optional[str]) -> Optional[bool]:
+def check_against_plan(cadence: Cadence | None, planned: str | None) -> bool | None:
     """Does the written cadence match the planned one?
 
     ``None`` when there is nothing to compare. A mismatch is reported, never
@@ -615,7 +616,7 @@ def check_against_plan(cadence: Optional[Cadence], planned: Optional[str]) -> Op
 
 
 def analyze_cadences(
-    phrases: Sequence[Tuple[Any, Optional[int], Optional[str], Optional[str]]],
+    phrases: Sequence[tuple[Any, int | None, str | None, str | None]],
 ) -> CadenceReport:
     """Cadences across a whole piece.
 
@@ -643,7 +644,7 @@ def analyze_cadences(
         report.observations.append("no cadences readable")
         return report
 
-    formulas: Dict[str, int] = {}
+    formulas: dict[str, int] = {}
     for c in report.cadences:
         formulas[c.formula] = formulas.get(c.formula, 0) + 1
     report.variety = len(formulas) / len(report.cadences)
@@ -673,7 +674,7 @@ def _suggest_cadences(r: CadenceReport) -> None:
             )
     if n >= 4 and r.variety < 0.4:
         r.suggestions.append(
-            f"Only {len(set(c.formula for c in r.cadences))} distinct cadence "
+            f"Only {len({c.formula for c in r.cadences})} distinct cadence "
             f"gestures across {n} phrases. Interior phrases usually close weakly "
             f"(half or imperfect) so the final one can close strongly."
         )
@@ -683,7 +684,7 @@ def _suggest_cadences(r: CadenceReport) -> None:
             "final and the piece has no forward momentum. A half cadence at the end "
             "of an antecedent is what makes the consequent feel answered."
         )
-    if n >= 2 and kinds[-1] not in ("PAC",):
+    if n >= 2 and kinds[-1] != "PAC":
         r.suggestions.append(
             f"The piece ends with a {kinds[-1]} rather than a perfect authentic "
             f"cadence — deliberate for an open ending, but if closure was intended "
@@ -697,6 +698,6 @@ def _suggest_cadences(r: CadenceReport) -> None:
         )
 
 
-def cadence_summary_lines(report: CadenceReport, limit: int = 10) -> List[str]:
+def cadence_summary_lines(report: CadenceReport, limit: int = 10) -> list[str]:
     """Reviewer-facing lines: what closes each phrase, in order."""
     return [f"bar {c.bar}: {c.describe()}" for c in report.cadences[:limit]]

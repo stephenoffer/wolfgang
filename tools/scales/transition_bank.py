@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
 
 from .models import TransitionQuery, TransitionResult
 from .pitch import pitch_to_midi
@@ -32,10 +31,10 @@ class TransitionBank:
 
     def __init__(self, composer: str = "mozart"):
         self.composer = composer
-        self._adjacency_pairs: Optional[List[Dict]] = None
-        self._transition_matrix: Optional[Dict] = None
+        self._adjacency_pairs: list[dict] | None = None
+        self._transition_matrix: dict | None = None
 
-    def _load_adjacency_pairs(self) -> List[Dict]:
+    def _load_adjacency_pairs(self) -> list[dict]:
         """Build adjacency index from phrase catalog."""
         if self._adjacency_pairs is not None:
             return self._adjacency_pairs
@@ -51,7 +50,7 @@ class TransitionBank:
         phrases = catalog.get("phrases", [])
 
         # Group by source movement
-        by_source: Dict[str, List[Dict]] = {}
+        by_source: dict[str, list[dict]] = {}
         for p in phrases:
             src = p.get("source", "")
             by_source.setdefault(src, []).append(p)
@@ -72,7 +71,7 @@ class TransitionBank:
         self._adjacency_pairs = pairs
         return pairs
 
-    def _load_transition_matrix(self) -> Dict:
+    def _load_transition_matrix(self) -> dict:
         """Delegates to the single canonical loader.
 
         This method existed twice, byte-identical, in this class and in
@@ -88,7 +87,7 @@ class TransitionBank:
         return self._transition_matrix
 
     def score_transition(
-        self, from_state: Dict, to_state: Dict, query: TransitionQuery
+        self, from_state: dict, to_state: dict, query: TransitionQuery
     ) -> TransitionResult:
         """Score a transition between two phrase states."""
         # Register continuity
@@ -142,7 +141,7 @@ class TransitionBank:
             entry_state=to_state,
         )
 
-    def retrieve(self, query: TransitionQuery) -> List[TransitionResult]:
+    def retrieve(self, query: TransitionQuery) -> list[TransitionResult]:
         """Retrieve transition examples matching the query."""
         pairs = self._load_adjacency_pairs()
         results = []
@@ -213,7 +212,7 @@ def _harmonic_plausibility_score(from_cadence: str, to_function: str) -> float:
     return strong.get((from_cadence, to_function), 0.5)
 
 
-def _extract_exit_state(surface) -> Dict:
+def _extract_exit_state(surface) -> dict:
     """Extract exit state from a LayerIR."""
     if surface is None:
         return {}
@@ -226,7 +225,7 @@ def _extract_exit_state(surface) -> Dict:
     }
 
 
-def _extract_entry_state(surface) -> Dict:
+def _extract_entry_state(surface) -> dict:
     """Extract entry state from a LayerIR."""
     if surface is None:
         return {}

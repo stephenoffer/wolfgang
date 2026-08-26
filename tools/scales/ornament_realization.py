@@ -36,9 +36,10 @@ whether to use it. Nothing here mutates the score: a realization is a
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from fractions import Fraction
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any
 
 from .pitch import build_scale, is_minor_key, key_to_root_midi
 
@@ -54,7 +55,7 @@ class PlayedNote:
     midi: int
     velocity_scale: float = 1.0  # multiplier on the principal's velocity
 
-    def as_tuple(self) -> Tuple[float, float, int, float]:
+    def as_tuple(self) -> tuple[float, float, int, float]:
         return (
             float(self.offset_beats),
             float(self.duration_beats),
@@ -66,7 +67,7 @@ class PlayedNote:
 # ─── Scale neighbours ────────────────────────────────────────────────────────
 
 
-def _scale_pcs(key: str) -> List[int]:
+def _scale_pcs(key: str) -> list[int]:
     root = key_to_root_midi(key or "C")
     if root is None:
         root = 60
@@ -130,7 +131,7 @@ def realize_trill(
     tempo_bpm: float = 90.0,
     start_upper: bool = True,
     termination: bool = True,
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """A trill: alternating principal and upper neighbour, on the beat.
 
     ``start_upper`` is the Baroque and Classical norm and the default. The
@@ -154,7 +155,7 @@ def realize_trill(
     if n < 3:
         return []
 
-    notes: List[PlayedNote] = []
+    notes: list[PlayedNote] = []
     tail = 3 if (termination and n >= 6) else 0
     body = n - tail
     for i in range(body):
@@ -179,7 +180,7 @@ def realize_trill(
 
 def realize_mordent(
     midi: int, duration_beats: Fraction, key: str, inverted: bool = False
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """Principal, neighbour, principal — fast, on the beat.
 
     ``inverted=True`` is the upper mordent (the Classical "prall"), which was
@@ -200,7 +201,7 @@ def realize_mordent(
 
 def realize_turn(
     midi: int, duration_beats: Fraction, key: str, inverted: bool = False, after: bool = False
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """Upper, principal, lower, principal (reversed when inverted).
 
     ``after=True`` places the figure in the *second half* of the note — a turn
@@ -235,7 +236,7 @@ def realize_turn(
 
 def realize_appoggiatura(
     grace_midi: int, principal_midi: int, duration_beats: Fraction, dotted: bool = False
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """A leaning note that TAKES TIME from its principal and is accented.
 
     Half the principal's value, or two thirds of a dotted one. This is what
@@ -256,7 +257,7 @@ def realize_appoggiatura(
 
 def realize_acciaccatura(
     grace_midi: int, principal_midi: int, duration_beats: Fraction, tempo_bpm: float = 90.0
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """A crushed note BEFORE the beat, taking no time from the principal."""
     if duration_beats <= 0:
         return []
@@ -269,7 +270,7 @@ def realize_acciaccatura(
 
 def realize_schleifer(
     midi: int, duration_beats: Fraction, key: str
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """A slide: two scale steps below, filled up into the principal."""
     if duration_beats <= 0:
         return []
@@ -302,21 +303,21 @@ _HANDLED = {
 }
 
 
-def realizes(ornament: Optional[str]) -> bool:
+def realizes(ornament: str | None) -> bool:
     """True when this ornament has an audible realization."""
     return bool(ornament) and str(ornament).lower() in _HANDLED
 
 
 def realize(
-    ornament: Optional[str],
+    ornament: str | None,
     midi: int,
     duration_beats,
     key: str = "C",
     tempo_bpm: float = 90.0,
     *,
-    grace_midi: Optional[int] = None,
+    grace_midi: int | None = None,
     period: str = "classical",
-) -> List[PlayedNote]:
+) -> list[PlayedNote]:
     """Realize one ornament into sounding notes, or ``[]`` if there is nothing
     to realize (an unknown ornament, a fermata, a zero-length note).
 
@@ -359,8 +360,8 @@ def realize_event(
     key: str = "C",
     tempo_bpm: float = 90.0,
     period: str = "classical",
-    principal_midi: Optional[int] = None,
-) -> List[PlayedNote]:
+    principal_midi: int | None = None,
+) -> list[PlayedNote]:
     """Convenience wrapper reading an EventIR/LayerEvent's own fields.
 
     Returns ``[]`` when the event carries no realizable ornament, so a caller
@@ -394,14 +395,14 @@ def realize_event(
     )
 
 
-def ornament_summary(events: Sequence, key: str = "C") -> Dict[str, Any]:
+def ornament_summary(events: Sequence, key: str = "C") -> dict[str, Any]:
     """How ornamented is this music, and is any of it audible?
 
     ``ornaments_per_bar`` against ``audible_per_bar`` is the measurement that
     exposed the problem: they were 0.29 and 0.00 on the piece under test.
     """
     bars, total, audible = set(), 0, 0
-    kinds: Dict[str, int] = {}
+    kinds: dict[str, int] = {}
     for e in events:
         bars.add(int(getattr(e, "bar", 1)))
         orn = getattr(e, "ornament", None)

@@ -479,11 +479,29 @@
     "grounding": "hard_corroborated"
   },
   {
-    "id": "device_neapolitan_sixth_and_the_diminished_seventh_at_moments_of_intensity_usually_approaching_a_cadence_in_a_minor_key_15_picardy_third",
+    "id": "device_neapolitan_sixth_and_the_diminished_seventh",
     "category": "composer_device",
     "section": "Melodic and harmonic devices",
-    "name": "Neapolitan sixth and the diminished seventh** at moments of intensity,\n    usually approaching a cadence in a minor key.\n\n15. **Picardy third",
+    "name": "Neapolitan sixth and the diminished seventh",
+    "description": "at moments of intensity, usually approaching a cadence in a minor key.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_picardy_third",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Picardy third",
     "description": "a minor-key piece ending on a major tonic chord. The period default for a final cadence.",
+    "source_file": "bach/bach-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modulation_through_the_relative_and_dominant_keys",
+    "category": "composer_device",
+    "section": "Melodic and harmonic devices",
+    "name": "Modulation through the relative and dominant keys",
+    "description": "returning through the subdominant. Bach's tonal plan is systematic, not exploratory.",
     "source_file": "bach/bach-devices.md",
     "grounding": "hard_corroborated"
   },

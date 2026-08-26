@@ -32,10 +32,11 @@ say, it misses counterpoint.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from fractions import Fraction
 from itertools import pairwise
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any
 
 from .duration import dur_to_beats
 from .pitch import is_minor_key, key_to_root_midi, pitch_to_midi
@@ -49,10 +50,10 @@ class PartWritingFinding:
     bar: int
     beat: float
     severity: str = "warn"  # "error" | "warn" | "info"
-    voices: Tuple[str, str] = ("", "")
+    voices: tuple[str, str] = ("", "")
     detail: str = ""
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return {
             "kind": self.kind,
             "bar": self.bar,
@@ -65,11 +66,11 @@ class PartWritingFinding:
 
 @dataclass
 class CounterpointReport:
-    findings: List[PartWritingFinding] = field(default_factory=list)
+    findings: list[PartWritingFinding] = field(default_factory=list)
     attack_points: int = 0
     voice_count: int = 0
     independence: float = 0.0  # 0-1: how independently the voices move
-    notes: List[str] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
 
     @property
     def error_count(self) -> int:
@@ -79,13 +80,13 @@ class CounterpointReport:
     def warn_count(self) -> int:
         return sum(1 for f in self.findings if f.severity == "warn")
 
-    def by_kind(self) -> Dict[str, int]:
-        out: Dict[str, int] = {}
+    def by_kind(self) -> dict[str, int]:
+        out: dict[str, int] = {}
         for f in self.findings:
             out[f.kind] = out.get(f.kind, 0) + 1
         return out
 
-    def as_dict(self, limit: int = 40) -> Dict[str, Any]:
+    def as_dict(self, limit: int = 40) -> dict[str, Any]:
         return {
             "attack_points": self.attack_points,
             "voice_count": self.voice_count,
@@ -145,21 +146,21 @@ def _abs_time(bar: int, beat: float, bpb: Fraction, first_bar: int) -> Fraction:
     return (bar - first_bar) * bpb + (b - 1)
 
 
-def _layer_names(layer_ir) -> List[str]:
+def _layer_names(layer_ir) -> list[str]:
     names = [n for n in _PIANO_LAYERS if getattr(layer_ir, n, None)]
     names += [n for n in _ORCH_LAYERS if getattr(layer_ir, n, None)]
     names += list((getattr(layer_ir, "inner_voices", None) or {}).keys())
     return names
 
 
-def _layer_events(layer_ir, name: str) -> List:
+def _layer_events(layer_ir, name: str) -> list:
     evs = getattr(layer_ir, name, None)
     if evs is None:
         evs = (getattr(layer_ir, "inner_voices", None) or {}).get(name)
     return evs or []
 
 
-def extract_voices(layer_ir, ignore_ornamental: bool = True) -> List[_Sounding]:
+def extract_voices(layer_ir, ignore_ornamental: bool = True) -> list[_Sounding]:
     """Flatten a LayerIR into sounding spans, one per pitch per voice.
 
     A chord in one layer becomes several voices (``response_layer#0``,
@@ -168,7 +169,7 @@ def extract_voices(layer_ir, ignore_ornamental: bool = True) -> List[_Sounding]:
     bottom of the next is what makes naive parallel detection useless.
     """
     bpb = _beats_per_bar(getattr(layer_ir, "meter", (4, 4)))
-    all_events: List[Tuple[str, Any]] = []
+    all_events: list[tuple[str, Any]] = []
     for name in _layer_names(layer_ir):
         for ev in _layer_events(layer_ir, name):
             all_events.append((name, ev))
@@ -176,7 +177,7 @@ def extract_voices(layer_ir, ignore_ornamental: bool = True) -> List[_Sounding]:
         return []
     first_bar = min(int(getattr(ev, "bar", 1)) for _, ev in all_events)
 
-    out: List[_Sounding] = []
+    out: list[_Sounding] = []
     for name, ev in all_events:
         pitch = getattr(ev, "pitch", None)
         if not pitch or pitch == "rest":
@@ -218,7 +219,7 @@ def extract_voices(layer_ir, ignore_ornamental: bool = True) -> List[_Sounding]:
     return _split_overlaps(out)
 
 
-def _split_overlaps(spans: List[_Sounding]) -> List[_Sounding]:
+def _split_overlaps(spans: list[_Sounding]) -> list[_Sounding]:
     """Give overlapping notes of one layer their own voice names.
 
     Two notes of the same layer that sound at the same time ARE two voices —
@@ -232,14 +233,14 @@ def _split_overlaps(spans: List[_Sounding]) -> List[_Sounding]:
     Notes are assigned to the lowest-numbered strand that is free, so a voice
     stays the same strand for as long as it keeps sounding.
     """
-    by_layer: Dict[str, List[_Sounding]] = {}
+    by_layer: dict[str, list[_Sounding]] = {}
     for sp in spans:
         by_layer.setdefault(sp.voice, []).append(sp)
 
-    out: List[_Sounding] = []
+    out: list[_Sounding] = []
     for name, group in by_layer.items():
         group.sort(key=lambda s: (s.start, s.midi))
-        strand_free_at: List[Fraction] = []
+        strand_free_at: list[Fraction] = []
         for sp in group:
             slot = next(
                 (i for i, free in enumerate(strand_free_at) if free <= sp.start), None
@@ -256,9 +257,9 @@ def _split_overlaps(spans: List[_Sounding]) -> List[_Sounding]:
     return out
 
 
-def sounding_at(spans: Sequence[_Sounding], t: Fraction) -> Dict[str, _Sounding]:
+def sounding_at(spans: Sequence[_Sounding], t: Fraction) -> dict[str, _Sounding]:
     """Which voice sounds which pitch at time ``t``."""
-    out: Dict[str, _Sounding] = {}
+    out: dict[str, _Sounding] = {}
     for s in spans:
         if s.start <= t < s.end:
             prev = out.get(s.voice)
@@ -269,7 +270,7 @@ def sounding_at(spans: Sequence[_Sounding], t: Fraction) -> Dict[str, _Sounding]
     return out
 
 
-def attack_times(spans: Sequence[_Sounding]) -> List[Fraction]:
+def attack_times(spans: Sequence[_Sounding]) -> list[Fraction]:
     return sorted({s.start for s in spans})
 
 
@@ -293,9 +294,9 @@ def find_doubled_pairs(spans: Sequence[_Sounding]) -> set:
     point, not a mistake.
     """
     times = attack_times(spans)
-    run: Dict[frozenset, int] = {}
+    run: dict[frozenset, int] = {}
     doubled: set = set()
-    prev: Optional[Dict[str, _Sounding]] = None
+    prev: dict[str, _Sounding] | None = None
     for t in times:
         state = sounding_at(spans, t)
         voices = sorted(state)
@@ -318,7 +319,7 @@ def find_doubled_pairs(spans: Sequence[_Sounding]) -> set:
 
 
 
-def _perfect_kind(a: int, b: int) -> Optional[str]:
+def _perfect_kind(a: int, b: int) -> str | None:
     return _PERFECT.get(abs(a - b) % 12)
 
 
@@ -343,8 +344,8 @@ def detect_parallel_perfects(
     """
     times = attack_times(spans)
     doubled = find_doubled_pairs(spans)
-    prev_state: Optional[Dict[str, _Sounding]] = None
-    prev_t: Optional[Fraction] = None
+    prev_state: dict[str, _Sounding] | None = None
+    prev_t: Fraction | None = None
     for t in times:
         state = sounding_at(spans, t)
         if prev_state is not None:
@@ -409,7 +410,7 @@ def detect_hidden_perfects(
     it is unremarkable and is not reported at all.
     """
     times = attack_times(spans)
-    prev_state: Optional[Dict[str, _Sounding]] = None
+    prev_state: dict[str, _Sounding] | None = None
     for t in times:
         state = sounding_at(spans, t)
         if prev_state is not None:
@@ -541,7 +542,7 @@ def detect_leading_tone_handling(
     lt_pc = (root - 1) % 12
     tonic_pc = root % 12
     times = attack_times(spans)
-    by_voice: Dict[str, List[_Sounding]] = {}
+    by_voice: dict[str, list[_Sounding]] = {}
     for s in spans:
         by_voice.setdefault(s.voice, []).append(s)
     for v in by_voice:
@@ -616,7 +617,7 @@ def detect_unresolved_sevenths(
     music sounds. Only sevenths against a *sounding* bass count, and only when
     the voice actually continues.
     """
-    by_voice: Dict[str, List[_Sounding]] = {}
+    by_voice: dict[str, list[_Sounding]] = {}
     for s in spans:
         by_voice.setdefault(s.voice, []).append(s)
     for v in by_voice:
@@ -680,7 +681,7 @@ def detect_melodic_tritone(
     Only the melodic layers are checked — an accompaniment figure outlining a
     diminished seventh is idiomatic.
     """
-    by_voice: Dict[str, List[_Sounding]] = {}
+    by_voice: dict[str, list[_Sounding]] = {}
     for s in spans:
         if s.voice.split("#")[0] not in _MELODIC_LAYERS:
             continue
@@ -727,7 +728,7 @@ def detect_static_inner_voice(
     decided where it should go is filler, and it is the texture equivalent of a
     flat line.
     """
-    by_voice: Dict[str, List[_Sounding]] = {}
+    by_voice: dict[str, list[_Sounding]] = {}
     for s in spans:
         by_voice.setdefault(s.voice, []).append(s)
     for v, seq in by_voice.items():
@@ -766,7 +767,7 @@ def voice_independence(spans: Sequence[_Sounding]) -> float:
         return 0.0
     scored = 0
     independent = 0
-    prev: Optional[Dict[str, _Sounding]] = None
+    prev: dict[str, _Sounding] | None = None
     for t in times:
         state = sounding_at(spans, t)
         if prev is not None:
@@ -788,9 +789,9 @@ def voice_independence(spans: Sequence[_Sounding]) -> float:
 
 def analyze_counterpoint(
     layer_ir,
-    key: Optional[str] = None,
+    key: str | None = None,
     *,
-    enable: Optional[Dict[str, bool]] = None,
+    enable: dict[str, bool] | None = None,
 ) -> CounterpointReport:
     """Full part-writing pass over a phrase or a whole assembled piece."""
     report = CounterpointReport()
@@ -838,7 +839,7 @@ def analyze_counterpoint(
     return report
 
 
-def summarize_for_critic(report: CounterpointReport, limit: int = 12) -> List[str]:
+def summarize_for_critic(report: CounterpointReport, limit: int = 12) -> list[str]:
     """Plain lines a reviewer can read, worst first, without the noise.
 
     ``info`` findings are deliberately excluded: they describe the texture, they
@@ -869,14 +870,14 @@ def summarize_for_critic(report: CounterpointReport, limit: int = 12) -> List[st
 # rather than continues.
 
 
-def phrase_tail(layer_ir, key: Optional[str] = None) -> Dict[str, Any]:
+def phrase_tail(layer_ir, key: str | None = None) -> dict[str, Any]:
     """Where this phrase leaves the music, for the next one to continue from.
 
     Returns the melody's final pitch and direction, the bass's final pitch, the
     closing sonority, and any dissonance still unresolved at the double bar.
     """
     spans = extract_voices(layer_ir)
-    out: Dict[str, Any] = {
+    out: dict[str, Any] = {
         "last_soprano_pitch": None,
         "last_soprano_midi": None,
         "last_soprano_contour": None,
@@ -961,7 +962,7 @@ def phrase_tail(layer_ir, key: Optional[str] = None) -> Dict[str, Any]:
     return out
 
 
-def continuation_hint(tail: Dict[str, Any]) -> str:
+def continuation_hint(tail: dict[str, Any]) -> str:
     """One sentence telling the next phrase what it is continuing from."""
     if not tail or tail.get("last_soprano_pitch") is None:
         return ""

@@ -20,7 +20,7 @@ Plan shape (per layer → instruments):
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from .duration import beats_to_dur
 from .models import LayerEvent, LayerIR
@@ -68,7 +68,7 @@ _BASS_PREFERENCE = ["cello", "bassoon", "trombone", "tuba", "double_bass", "cont
 # entry the range is used unmodified rather than guessed at — an unknown
 # instrument gets no false confidence.
 
-_PRACTICAL_TRIM: Dict[str, Tuple[int, int]] = {
+_PRACTICAL_TRIM: dict[str, tuple[int, int]] = {
     # (semitones off the bottom, semitones off the top)
     "flute": (2, 4),          # the low octave is weak; the top is shrill and hard
     "piccolo": (3, 3),
@@ -125,12 +125,12 @@ def _canonical(instrument: str) -> str:
     return _RANGE_ALIASES.get(instrument.lower(), instrument.lower())
 
 
-def _range_of(instrument: str) -> Tuple[int, int]:
+def _range_of(instrument: str) -> tuple[int, int]:
     """The full playable range — every note the instrument can produce."""
     return INSTRUMENT_RANGES.get(_canonical(instrument), (21, 108))
 
 
-def practical_range(instrument: str, dynamic: Optional[str] = None) -> Tuple[int, int]:
+def practical_range(instrument: str, dynamic: str | None = None) -> tuple[int, int]:
     """The range this instrument sounds GOOD in, optionally at a given dynamic.
 
     Writing at the edge of the playable range is what makes an orchestration read
@@ -153,7 +153,7 @@ def practical_range(instrument: str, dynamic: Optional[str] = None) -> Tuple[int
     return lo, hi
 
 
-def range_warnings(instrument: str, midis, dynamic: Optional[str] = None):
+def range_warnings(instrument: str, midis, dynamic: str | None = None):
     """Notes outside what this instrument does well, as readable lines.
 
     Advisory. Writing at an extreme is a legitimate effect — a shrieking piccolo
@@ -280,9 +280,9 @@ _EVENT_CARRIED_FIELDS = tuple(
 )
 
 
-def _event_dict(e: LayerEvent, pitch=None) -> Dict[str, Any]:
+def _event_dict(e: LayerEvent, pitch=None) -> dict[str, Any]:
     """Serialize one event for an orchestral part, carrying every mark it has."""
-    out: Dict[str, Any] = {
+    out: dict[str, Any] = {
         "bar": e.bar,
         "beat": e.beat,
         "pitch": pitch if pitch is not None else e.pitch,
@@ -294,16 +294,16 @@ def _event_dict(e: LayerEvent, pitch=None) -> Dict[str, Any]:
     return out
 
 
-def _bar_dynamics(layer: LayerIR) -> Dict[int, int]:
+def _bar_dynamics(layer: LayerIR) -> dict[int, int]:
     """Per-bar loudness rank, carried forward from the last marking."""
-    marks: Dict[int, int] = {}
+    marks: dict[int, int] = {}
     events = sorted(
         (e for e in layer.principal_line + layer.bass_foundation if e.dynamic),
         key=lambda e: (e.bar, e.beat),
     )
     for e in events:
         marks[e.bar] = _DYN_RANK.get(e.dynamic, 4)
-    out: Dict[int, int] = {}
+    out: dict[int, int] = {}
     current = 4  # mf default
     last_bar = max((e.bar for e in layer.principal_line + layer.bass_foundation), default=1)
     first_bar = min((e.bar for e in layer.principal_line + layer.bass_foundation), default=1)
@@ -314,7 +314,7 @@ def _bar_dynamics(layer: LayerIR) -> Dict[int, int]:
     return out
 
 
-def _pick(preferences: List[str], ensemble: List[str], taken: set) -> Optional[str]:
+def _pick(preferences: list[str], ensemble: list[str], taken: set) -> str | None:
     lower = {i.lower(): i for i in ensemble}
     for pref in preferences:
         inst = lower.get(pref)
@@ -328,17 +328,17 @@ def _pick(preferences: List[str], ensemble: List[str], taken: set) -> Optional[s
 
 def plan_orchestration(
     layer: LayerIR,
-    ensemble: List[str],
+    ensemble: list[str],
     key: str = "C",
-    style_roles: Optional[Dict[str, Any]] = None,
-) -> Dict[str, List[Dict]]:
+    style_roles: dict[str, Any] | None = None,
+) -> dict[str, list[dict]]:
     """Voice a piano-core LayerIR across an ensemble, idiomatically.
 
     ``style_roles`` (compiled_packs orchestration_roles.json, when
     populated) can override the lead/bass choice via entries like
     {"melody": "clarinet"}.
     """
-    parts: Dict[str, List[Dict]] = {inst: [] for inst in ensemble}
+    parts: dict[str, list[dict]] = {inst: [] for inst in ensemble}
     loudness = _bar_dynamics(layer)
     taken: set = set()
     style_roles = style_roles or {}
@@ -350,7 +350,7 @@ def plan_orchestration(
     response_events = list(layer.response_layer)
     bar_count = max(1, layer.bar_count)
     if not response_events and len(bass_events) > bar_count * 1.5:
-        by_bar: Dict[int, List[LayerEvent]] = defaultdict(list)
+        by_bar: dict[int, list[LayerEvent]] = defaultdict(list)
         for e in sorted(bass_events, key=lambda e: (e.bar, e.beat)):
             by_bar[e.bar].append(e)
         bass_events, response_events = [], []
@@ -389,8 +389,8 @@ def plan_orchestration(
     lower_ens = {i.lower(): i for i in ensemble}
     flute = lower_ens.get("flute")
     oboe = lower_ens.get("oboe") if lower_ens.get("oboe") != lead else None
-    clarinet = lower_ens.get("clarinet") if lower_ens.get("clarinet") not in (lead,) else None
-    bassoon = lower_ens.get("bassoon") if lower_ens.get("bassoon") not in (bass,) else None
+    clarinet = lower_ens.get("clarinet") if lower_ens.get("clarinet") != lead else None
+    bassoon = lower_ens.get("bassoon") if lower_ens.get("bassoon") != bass else None
     horn = lower_ens.get("horn")
     violin_2 = lower_ens.get("violin_2")
     viola = lower_ens.get("viola")
@@ -488,7 +488,7 @@ def plan_orchestration(
     # invented, only heard.
     pads = [i for i in (clarinet, bassoon, horn) if i and i not in (lead, bass)]
     if pads:
-        by_bar: Dict[int, List[int]] = defaultdict(list)
+        by_bar: dict[int, list[int]] = defaultdict(list)
         pad_source = layer.response_layer + layer.counter_reply
         if not pad_source:
             pad_source = layer.principal_line + layer.bass_foundation
@@ -677,7 +677,7 @@ def _add_doublings(parts, layer, ensemble, lead, bass, key, loudness) -> None:
                 parts[inst].append(ev)
 
 
-def audit_orchestration(parts: Dict[str, List[Dict]]) -> List[str]:
+def audit_orchestration(parts: dict[str, list[dict]]) -> list[str]:
     """Range problems across a finished orchestration, as readable lines.
 
     Reads each part's own written dynamics, so the verdict accounts for the fact
@@ -687,12 +687,12 @@ def audit_orchestration(parts: Dict[str, List[Dict]]) -> List[str]:
     """
     from .pitch import pitch_to_midi
 
-    out: List[str] = []
+    out: list[str] = []
     for instrument, events in (parts or {}).items():
         # Group the part's notes by the dynamic in force when they sound, since
         # that is what decides whether an extreme is reachable.
-        in_force: Optional[str] = None
-        by_dynamic: Dict[Optional[str], List[int]] = {}
+        in_force: str | None = None
+        by_dynamic: dict[str | None, list[int]] = {}
         for e in events:
             if not isinstance(e, dict):
                 continue

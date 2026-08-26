@@ -34,7 +34,7 @@ condemned.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 # ─── Report ──────────────────────────────────────────────────────────────────
 
@@ -45,16 +45,16 @@ class MusicalReport:
     bars: int = 0
     phrases: int = 0
 
-    theme: Dict[str, Any] = field(default_factory=dict)
-    cadences: Dict[str, Any] = field(default_factory=dict)
-    texture: Dict[str, Any] = field(default_factory=dict)
-    part_writing: Dict[str, Any] = field(default_factory=dict)
-    page: Dict[str, Any] = field(default_factory=dict)
-    craft: Dict[str, Any] = field(default_factory=dict)
-    orchestration: Dict[str, Any] = field(default_factory=dict)
-    continuity: Dict[str, Any] = field(default_factory=dict)
+    theme: dict[str, Any] = field(default_factory=dict)
+    cadences: dict[str, Any] = field(default_factory=dict)
+    texture: dict[str, Any] = field(default_factory=dict)
+    part_writing: dict[str, Any] = field(default_factory=dict)
+    page: dict[str, Any] = field(default_factory=dict)
+    craft: dict[str, Any] = field(default_factory=dict)
+    orchestration: dict[str, Any] = field(default_factory=dict)
+    continuity: dict[str, Any] = field(default_factory=dict)
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return {
             "piece_id": self.piece_id,
             "bars": self.bars,
@@ -73,7 +73,7 @@ class MusicalReport:
 # ─── Loading ─────────────────────────────────────────────────────────────────
 
 
-def _phrase_layer(phrase_state, slot: Dict[str, Any]):
+def _phrase_layer(phrase_state, slot: dict[str, Any]):
     """Rebuild a LayerIR from a phrase's realized material.
 
     Accepts the dict form (a loaded PieceGraph) and the object form
@@ -129,7 +129,7 @@ def _phrase_layer(phrase_state, slot: Dict[str, Any]):
     return ir
 
 
-def _slot_of(phrase_state) -> Dict[str, Any]:
+def _slot_of(phrase_state) -> dict[str, Any]:
     slot = getattr(phrase_state, "slot", None)
     if slot is None and isinstance(phrase_state, dict):
         slot = phrase_state.get("slot")
@@ -153,7 +153,7 @@ def _slot_of(phrase_state) -> Dict[str, Any]:
     }
 
 
-def _ordered_phrases(graph) -> List[Tuple[str, Any, Dict[str, Any]]]:
+def _ordered_phrases(graph) -> list[tuple[str, Any, dict[str, Any]]]:
     phrases = getattr(graph, "phrases", None) or {}
     rows = []
     for pid, state in phrases.items():
@@ -193,10 +193,10 @@ def _merge(layers):
 # ─── Sections of the report ──────────────────────────────────────────────────
 
 
-def _theme_section(graph, layers, rows) -> Dict[str, Any]:
+def _theme_section(graph, layers, rows) -> dict[str, Any]:
     from .theme_planner import analyze_theme
 
-    out: Dict[str, Any] = {"observations": [], "concerns": []}
+    out: dict[str, Any] = {"observations": [], "concerns": []}
     surface = getattr(graph, "principal_theme_surface", None)
     if not surface:
         out["observations"].append(
@@ -260,14 +260,14 @@ def _theme_section(graph, layers, rows) -> Dict[str, Any]:
     return out
 
 
-def _cadence_section(rows, layers) -> Dict[str, Any]:
+def _cadence_section(rows, layers) -> dict[str, Any]:
     from .cadence_analysis import analyze_cadences, cadence_summary_lines
 
     specs = []
     # STRICT: one LayerIR per kept phrase, built together in `build_report`.
     # A mismatch would drop phrases off the end of the report silently, so a
     # piece would be reviewed as if it were shorter than it is.
-    for (pid, _state, slot), ir in zip(rows, layers, strict=True):
+    for (_pid, _state, slot), ir in zip(rows, layers, strict=True):
         specs.append((ir, slot.get("cadence_bar"), slot.get("key"), slot.get("cadence_target")))
     rep = analyze_cadences(specs)
     return {
@@ -279,7 +279,7 @@ def _cadence_section(rows, layers) -> Dict[str, Any]:
     }
 
 
-def _continuity_section(kept, layers) -> Dict[str, Any]:
+def _continuity_section(kept, layers) -> dict[str, Any]:
     """Whether each phrase continues from the last, or restarts.
 
     Reports where each phrase's melody came to rest and any dissonance it left
@@ -292,7 +292,7 @@ def _continuity_section(kept, layers) -> Dict[str, Any]:
     from .counterpoint import continuation_hint, phrase_tail
     from .pitch import pitch_to_midi
 
-    out: Dict[str, Any] = {"observations": [], "concerns": [], "tails": {}}
+    out: dict[str, Any] = {"observations": [], "concerns": [], "tails": {}}
     if len(layers) < 2:
         return out
 
@@ -344,12 +344,12 @@ def _continuity_section(kept, layers) -> Dict[str, Any]:
     return out
 
 
-def _texture_section(merged, style: Optional[str]) -> Dict[str, Any]:
+def _texture_section(merged, style: str | None) -> dict[str, Any]:
     from .voicing import analyze_voicing, texture_runs
 
     rep = analyze_voicing(merged, style=style)
     runs = texture_runs(merged)
-    out: Dict[str, Any] = {
+    out: dict[str, Any] = {
         "observations": list(rep.observations),
         "concerns": list(rep.suggestions),
         "measurements": rep.as_dict(),
@@ -366,7 +366,7 @@ def _texture_section(merged, style: Optional[str]) -> Dict[str, Any]:
     return out
 
 
-def _part_writing_section(merged, key: str) -> Dict[str, Any]:
+def _part_writing_section(merged, key: str) -> dict[str, Any]:
     from .counterpoint import analyze_counterpoint, summarize_for_critic
 
     rep = analyze_counterpoint(merged, key=key)
@@ -379,14 +379,14 @@ def _part_writing_section(merged, key: str) -> Dict[str, Any]:
     }
 
 
-def _orchestration_section(kept) -> Dict[str, Any]:
+def _orchestration_section(kept) -> dict[str, Any]:
     """Range and dynamic problems in an orchestrated section.
 
     Only says anything when a piece has actually been orchestrated. A part
     written at the outer edge of what an instrument can produce is legal and
     miserable to play, and until now nothing looked.
     """
-    out: Dict[str, Any] = {"observations": [], "concerns": []}
+    out: dict[str, Any] = {"observations": [], "concerns": []}
     from .orchestration_planner import audit_orchestration
 
     seen = set()
@@ -410,7 +410,7 @@ def _orchestration_section(kept) -> Dict[str, Any]:
     return out
 
 
-def _page_section(merged, style: Optional[str]) -> Dict[str, Any]:
+def _page_section(merged, style: str | None) -> dict[str, Any]:
     from .expression_enricher import expression_density
     from .ornament_realization import ornament_summary
 
@@ -425,7 +425,7 @@ def _page_section(merged, style: Optional[str]) -> Dict[str, Any]:
         events.extend(getattr(merged, name) or [])
     density = expression_density(merged)
     orn = ornament_summary(events)
-    out: Dict[str, Any] = {
+    out: dict[str, Any] = {
         "marks_per_bar": density.get("marks_per_bar", 0.0),
         "detail": density,
         "ornaments": orn,
@@ -463,7 +463,7 @@ def _page_section(merged, style: Optional[str]) -> Dict[str, Any]:
     return out
 
 
-def _craft_section(kept, layers) -> Dict[str, Any]:
+def _craft_section(kept, layers) -> dict[str, Any]:
     """The phrase-sanctity checklist, per phrase.
 
     The checklist has existed all along and has run on **no phrase the system
@@ -473,9 +473,9 @@ def _craft_section(kept, layers) -> Dict[str, Any]:
     """
     from .craft_checker import check_phrase, craft_score
 
-    out: Dict[str, Any] = {"observations": [], "concerns": [], "per_phrase": {}}
+    out: dict[str, Any] = {"observations": [], "concerns": [], "per_phrase": {}}
     scores = []
-    counts: Dict[str, int] = {}
+    counts: dict[str, int] = {}
     for (pid, _state, _slot), ir in zip(kept, layers, strict=True):
         check, findings = check_phrase(ir)
         scores.append(craft_score(check))
@@ -500,7 +500,7 @@ def _craft_section(kept, layers) -> Dict[str, Any]:
 # ─── Entry point ─────────────────────────────────────────────────────────────
 
 
-def build_report(graph, style: Optional[str] = None, scope: str = "full") -> MusicalReport:
+def build_report(graph, style: str | None = None, scope: str = "full") -> MusicalReport:
     """Analyze a whole PieceGraph and return the musician's-eye report."""
     rows = _ordered_phrases(graph)
     if scope.startswith("section-"):
@@ -549,11 +549,11 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
     brings it back, how it punctuates, what its texture does, whether the page
     is playable, and only last the part-writing detail.
     """
-    out: List[str] = []
+    out: list[str] = []
     out.append(f"MUSICAL REPORT — {report.piece_id or 'piece'}")
     out.append(f"{report.bars} bars across {report.phrases} realized phrases")
 
-    def block(title: str, section: Dict[str, Any], extra_key: Optional[str] = None):
+    def block(title: str, section: dict[str, Any], extra_key: str | None = None):
         obs = section.get("observations") or []
         con = section.get("concerns") or []
         if not (obs or con or section.get(extra_key or "")):
@@ -588,13 +588,13 @@ def render_text(report: MusicalReport, max_lines: int = 60) -> str:
             out.append(f"  ! {line}")
 
     if len(out) > max_lines:
-        out = out[:max_lines] + [f"  … {len(out) - max_lines} more lines"]
+        out = [*out[:max_lines], f"  … {len(out) - max_lines} more lines"]
     return "\n".join(out)
 
 
-def concerns_only(report: MusicalReport) -> List[str]:
+def concerns_only(report: MusicalReport) -> list[str]:
     """Just the things worth a second look, worst-first-ish, for a short review."""
-    out: List[str] = []
+    out: list[str] = []
     for section in (
         report.theme,
         report.cadences,

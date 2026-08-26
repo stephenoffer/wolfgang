@@ -531,5 +531,14 @@
     "description": "in a variation set, one variation in the parallel minor, usually more chromatic and more serious than its neighbours.",
     "source_file": "haydn/haydn-devices.md",
     "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sudden_chromatic_side_step",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Sudden chromatic side-step",
+    "description": "in an otherwise diatonic passage, held for one bar, then corrected.",
+    "source_file": "haydn/haydn-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

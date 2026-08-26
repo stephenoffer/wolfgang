@@ -1,8 +1,8 @@
 {
   "composer": "haydn",
-  "genre": "classical",
+  "genre": "",
   "support_tier": "A",
-  "corpus_bar_count": 1013,
+  "corpus_bar_count": 3022,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -19,10 +19,12 @@
   "corpus_files": [
     "bar_index.json",
     "bars_00.json",
+    "bars_01.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",
-    "window_index_00.json"
+    "window_index_00.json",
+    "window_index_01.json"
   ],
   "pattern_count": 981
 }

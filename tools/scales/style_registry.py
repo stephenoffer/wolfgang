@@ -19,7 +19,7 @@ message rather than a silent substitution.
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 STYLE_PREFIX = "style__"
 
@@ -34,7 +34,7 @@ STYLE_PREFIX = "style__"
 # one of only twelve armed composers, so "compose in a romantic style" drew on
 # Chopin, Schubert and Weber and quietly ignored the Liszt corpus entirely.
 # `test_style_registry.py` fails if a compiled pack has no style.
-_STYLE_MEMBERS: Dict[str, List[str]] = {
+_STYLE_MEMBERS: dict[str, list[str]] = {
     "renaissance": ["palestrina", "monteverdi"],
     "baroque": ["bach", "handel", "corelli", "vivaldi", "scarlatti"],
     "classical": ["mozart", "haydn", "beethoven", "clementi"],
@@ -82,7 +82,7 @@ _STYLE_MEMBERS: Dict[str, List[str]] = {
 }
 
 # Request synonyms → canonical style name.
-_SYNONYMS: Dict[str, str] = {
+_SYNONYMS: dict[str, str] = {
     "galant": "classical",
     "viennese": "classical",
     "classical-era": "classical",
@@ -109,7 +109,7 @@ _SYNONYMS: Dict[str, str] = {
 }
 
 
-def normalize_style(name: Optional[str]) -> Optional[str]:
+def normalize_style(name: str | None) -> str | None:
     """Map a free-text style/genre request to a canonical style name, or None.
 
     The ``style__`` prefix has to come off BEFORE separators are normalized.
@@ -131,7 +131,7 @@ def normalize_style(name: Optional[str]) -> Optional[str]:
     return _SYNONYMS.get(n)
 
 
-def is_style_id(ref: Optional[str]) -> bool:
+def is_style_id(ref: str | None) -> bool:
     return bool(ref) and str(ref).startswith(STYLE_PREFIX)
 
 
@@ -144,12 +144,12 @@ def make_style_id(name: str) -> str:
     return f"{STYLE_PREFIX}{canon}"
 
 
-def all_style_members(style: str) -> List[str]:
+def all_style_members(style: str) -> list[str]:
     """Full membership superset for a canonical style (ignores arming)."""
     return list(_STYLE_MEMBERS.get(normalize_style(style) or style, []))
 
 
-def style_members(style: str, armed_only: bool = True) -> List[str]:
+def style_members(style: str, armed_only: bool = True) -> list[str]:
     """Members of a style. When armed_only, keep only composers with corpus."""
     members = all_style_members(style)
     if not armed_only:
@@ -160,7 +160,7 @@ def style_members(style: str, armed_only: bool = True) -> List[str]:
     return [m for m in members if m in armed]
 
 
-def styles_for_composer(composer: str) -> List[str]:
+def styles_for_composer(composer: str) -> list[str]:
     """Which styles a composer belongs to (used for unknown-composer fallback)."""
     c = (composer or "").lower().split("-")[0].split("_")[0]
     out = []
@@ -170,7 +170,7 @@ def styles_for_composer(composer: str) -> List[str]:
     return out
 
 
-def resolve_reference(request: Optional[str]) -> Dict[str, Any]:
+def resolve_reference(request: str | None) -> dict[str, Any]:
     """Resolve a free-text request to a reference.
 
     Returns a dict with:
@@ -251,7 +251,7 @@ def resolve_reference(request: Optional[str]) -> Dict[str, Any]:
     }
 
 
-def available_styles() -> List[Dict[str, Any]]:
+def available_styles() -> list[dict[str, Any]]:
     """Styles that currently have ≥1 armed composer (for status/UX)."""
     out = []
     for style in _STYLE_MEMBERS:
@@ -297,7 +297,7 @@ def pack_dir_name(composer_id: str) -> str:
 
 # ─── Texture-transition matrices ─────────────────────────────────────────────
 
-_MATRIX_CACHE: Dict[str, Dict[str, Any]] = {}
+_MATRIX_CACHE: dict[str, dict[str, Any]] = {}
 
 
 def genre_for(composer: str) -> str:
@@ -324,7 +324,7 @@ def genre_for(composer: str) -> str:
     return styles[0] if styles else "classical"
 
 
-def load_transition_matrix(composer: str, pattern_library: Any) -> Dict[str, Any]:
+def load_transition_matrix(composer: str, pattern_library: Any) -> dict[str, Any]:
     """Load a composer's LH texture-transition matrix, or its genre's.
 
     The single implementation. `pattern_library` is the ``pattern_library/``

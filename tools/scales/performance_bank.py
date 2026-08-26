@@ -8,8 +8,6 @@ corpus data (grace notes, rest patterns, density changes).
 
 from __future__ import annotations
 
-from typing import Dict, List
-
 from .models import PerformanceQuery, PerformanceResult
 
 # ─── Built-in performance patterns ───────────────────────────────────────────
@@ -118,7 +116,7 @@ class PerformanceBank:
     def __init__(self, composer: str = "mozart"):
         self.composer = composer
 
-    def retrieve(self, query: PerformanceQuery) -> List[PerformanceResult]:
+    def retrieve(self, query: PerformanceQuery) -> list[PerformanceResult]:
         """Retrieve performance patterns matching the query."""
         results = []
 
@@ -140,7 +138,7 @@ class PerformanceBank:
         results.sort(key=lambda r: r.match_score, reverse=True)
         return results[: query.n]
 
-    def _score_pattern(self, pattern: Dict, query: PerformanceQuery) -> float:
+    def _score_pattern(self, pattern: dict, query: PerformanceQuery) -> float:
         """Score a pattern against a query."""
         score = 0.0
 

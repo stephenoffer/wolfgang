@@ -12,7 +12,6 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import List, Tuple
 
 from .models import DonorPlan, StyleProgram
 
@@ -59,7 +58,7 @@ class DonorStrategy:
             # Tier A/B don't need donors
             return DonorPlan(donors=[], max_donor_weight=0.0)
 
-        donors: List[Tuple[str, float]] = []
+        donors: list[tuple[str, float]] = []
 
         # Try influence-based selection first
         influence_donors = self._find_by_influence(target_composer)
@@ -157,7 +156,7 @@ class DonorStrategy:
 
         return target_program
 
-    def _find_by_influence(self, composer: str) -> List[Tuple[str, float]]:
+    def _find_by_influence(self, composer: str) -> list[tuple[str, float]]:
         """Find donors using influence_axes.json."""
         from .style_registry import pack_dir_name
 
@@ -173,7 +172,7 @@ class DonorStrategy:
         except (json.JSONDecodeError, OSError):
             return []
 
-        donors: List[Tuple[str, float]] = []
+        donors: list[tuple[str, float]] = []
         for entry in axes.get("influenced_by", []):
             inf_composer = entry.get("composer", "").lower()
             if inf_composer in _TIER_AB_COMPOSERS:

@@ -10,7 +10,7 @@ Handles three reduction modes:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from .bimanual_packer import BimanualPacker
 from .enums import ReductionMode
@@ -26,17 +26,17 @@ class SABRE:
         layer_ir = sabre.reduce_to_piano(events, instruments, mode="playable_reduction")
     """
 
-    def __init__(self, constraints: Optional[PhysicalConstraints] = None):
+    def __init__(self, constraints: PhysicalConstraints | None = None):
         self.decomposer = RoleDecomposer()
         self.packer = BimanualPacker(constraints)
 
     def reduce_to_piano(
         self,
-        events: List[Dict[str, Any]],
-        instruments: Optional[List[str]] = None,
+        events: list[dict[str, Any]],
+        instruments: list[str] | None = None,
         mode: str = ReductionMode.PLAYABLE.value,
         key: str = "C",
-        meter: Tuple[int, int] = (4, 4),
+        meter: tuple[int, int] = (4, 4),
     ) -> LayerIR:
         """Full reduction pipeline: decompose → pack → LayerIR.
 
@@ -60,14 +60,14 @@ class SABRE:
         return layer_ir
 
     def orchestrate_from_piano(
-        self, layer_ir: LayerIR, target_ensemble: List[str], key: str = "C"
-    ) -> Dict[str, List[Dict]]:
+        self, layer_ir: LayerIR, target_ensemble: list[str], key: str = "C"
+    ) -> dict[str, list[dict]]:
         """Expand piano LayerIR into orchestral parts.
 
         This is the inverse of reduction: assign piano layers to
         orchestral instruments by role.
         """
-        parts: Dict[str, List[Dict]] = {inst: [] for inst in target_ensemble}
+        parts: dict[str, list[dict]] = {inst: [] for inst in target_ensemble}
 
         # Simple role-based assignment
         role_to_instruments = self._plan_orchestration(target_ensemble)
@@ -118,7 +118,7 @@ class SABRE:
 
         return parts
 
-    def _plan_orchestration(self, instruments: List[str]) -> Dict[str, str]:
+    def _plan_orchestration(self, instruments: list[str]) -> dict[str, str]:
         """Plan which instruments get which roles."""
         plan = {}
 

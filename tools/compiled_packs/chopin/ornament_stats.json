@@ -1,47 +1,47 @@
 {
  "composer": "chopin",
  "schema": 1,
- "total_bars": 4853,
+ "total_bars": 8013,
  "textures": {
   "chordal": {
-   "grace": 0.0517,
+   "grace": 0.027,
    "trill": 0.0,
-   "mordent": 0.0016,
+   "mordent": 0.0009,
    "turn": 0.0,
-   "dotted": 0.361,
-   "n": 1219
+   "dotted": 0.3573,
+   "n": 2334
   },
   "singing_melody": {
-   "grace": 0.0568,
-   "trill": 0.0245,
-   "mordent": 0.0178,
+   "grace": 0.0409,
+   "trill": 0.0176,
+   "mordent": 0.0128,
    "turn": 0.0,
-   "dotted": 0.3688,
-   "n": 2535
+   "dotted": 0.3627,
+   "n": 3518
   },
   "zigzag_figuration": {
-   "grace": 0.1091,
-   "trill": 0.0085,
-   "mordent": 0.0113,
+   "grace": 0.0591,
+   "trill": 0.0046,
+   "mordent": 0.0061,
    "turn": 0.0,
-   "dotted": 0.3839,
-   "n": 706
+   "dotted": 0.2717,
+   "n": 1303
   },
   "held_note": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.6939,
-   "n": 147
+   "dotted": 0.6565,
+   "n": 262
   },
   "scalar_run": {
-   "grace": 0.319,
-   "trill": 0.0123,
-   "mordent": 0.0123,
+   "grace": 0.1118,
+   "trill": 0.0043,
+   "mordent": 0.0043,
    "turn": 0.0,
-   "dotted": 0.227,
-   "n": 163
+   "dotted": 0.1548,
+   "n": 465
   },
   "silence": {
    "grace": 0.0,
@@ -49,7 +49,7 @@
    "mordent": 0.0,
    "turn": 0.0,
    "dotted": 0.0,
-   "n": 83
+   "n": 131
   }
  }
 }

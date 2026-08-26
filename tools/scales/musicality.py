@@ -16,7 +16,7 @@ from __future__ import annotations
 import math
 from collections import Counter
 from itertools import pairwise
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from .duration import dur_to_beats
 from .models import LayerEvent, LayerIR
@@ -36,8 +36,8 @@ _RH_LAYERS = ("principal_line", "ornamental_surface", "counter_reply")
 _LH_LAYERS = ("bass_foundation", "response_layer")
 
 
-def _events(layer: LayerIR, layer_names=_PIANO_LAYERS) -> List[LayerEvent]:
-    out: List[LayerEvent] = []
+def _events(layer: LayerIR, layer_names=_PIANO_LAYERS) -> list[LayerEvent]:
+    out: list[LayerEvent] = []
     for name in layer_names:
         out.extend(getattr(layer, name, None) or [])
     return out
@@ -47,7 +47,7 @@ def _is_rest(event: LayerEvent) -> bool:
     return event.pitch == "rest" or event.pitch is None
 
 
-def _event_midis(event: LayerEvent) -> List[int]:
+def _event_midis(event: LayerEvent) -> list[int]:
     """MIDI pitches for an event; chords yield all members."""
     if _is_rest(event):
         return []
@@ -68,7 +68,7 @@ def _event_midis(event: LayerEvent) -> List[int]:
     return midis
 
 
-def _melody_line(layer: LayerIR) -> List[int]:
+def _melody_line(layer: LayerIR) -> list[int]:
     """Top-note melodic line from principal_line, in time order."""
     events = sorted(layer.principal_line, key=lambda e: (e.bar, e.beat))
     line = []
@@ -79,7 +79,7 @@ def _melody_line(layer: LayerIR) -> List[int]:
     return line
 
 
-def _melody_intervals(layer: LayerIR) -> List[int]:
+def _melody_intervals(layer: LayerIR) -> list[int]:
     line = _melody_line(layer)
     return [line[i + 1] - line[i] for i in range(len(line) - 1)]
 
@@ -100,14 +100,14 @@ def events_per_bar(layer: LayerIR, hand: str = "rh") -> float:
 # ─── Metrics ─────────────────────────────────────────────────────────────────
 
 
-def rhythmic_variety(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
+def rhythmic_variety(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     """Normalized entropy of the duration multiset across all layers.
 
     A phrase written entirely in quarters scores ~0; a phrase mixing
     8 distinct duration values with reasonable balance scores ~1.
     """
     durs = [e.duration for e in _events(layer) if not _is_rest(e)]
-    detail: Dict[str, Any] = {"counts": dict(Counter(durs)), "distinct": 0}
+    detail: dict[str, Any] = {"counts": dict(Counter(durs)), "distinct": 0}
     if not durs:
         return 0.0, detail
     counts = Counter(durs)
@@ -124,10 +124,10 @@ def rhythmic_variety(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     return round(score, 3), detail
 
 
-def melodic_smoothness(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
+def melodic_smoothness(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     """Stepwise ratio of the principal line (|interval| <= 2 semitones)."""
     intervals = _melody_intervals(layer)
-    detail: Dict[str, Any] = {"interval_count": len(intervals)}
+    detail: dict[str, Any] = {"interval_count": len(intervals)}
     if not intervals:
         return 0.0, detail
     stepwise = sum(1 for i in intervals if abs(i) <= 2)
@@ -138,8 +138,8 @@ def melodic_smoothness(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
 
 def melodic_interval_profile(
     layer: LayerIR,
-    priors: Optional[Dict[str, float]] = None,
-) -> Tuple[float, Dict[str, Any]]:
+    priors: dict[str, float] | None = None,
+) -> tuple[float, dict[str, Any]]:
     """Distance between the phrase's interval distribution and composer priors.
 
     ``priors`` maps category → proportion, categories: stepwise (<=2 st),
@@ -149,7 +149,7 @@ def melodic_interval_profile(
     if priors is None:
         priors = {"stepwise": 0.65, "small_leap": 0.25, "large_leap": 0.10}
     intervals = _melody_intervals(layer)
-    detail: Dict[str, Any] = {"priors": priors, "interval_count": len(intervals)}
+    detail: dict[str, Any] = {"priors": priors, "interval_count": len(intervals)}
     if not intervals:
         return 0.0, detail
     n = len(intervals)
@@ -167,10 +167,10 @@ def melodic_interval_profile(
 
 def figuration_richness(
     layer: LayerIR,
-    density_stats: Optional[Dict[str, Any]] = None,
-    texture: Optional[str] = None,
+    density_stats: dict[str, Any] | None = None,
+    texture: str | None = None,
     hand: str = "rh",
-) -> Tuple[float, Dict[str, Any]]:
+) -> tuple[float, dict[str, Any]]:
     """Events/bar for one hand vs the corpus median for the target texture.
 
     ``density_stats`` is the per-texture stats dict produced by
@@ -182,7 +182,7 @@ def figuration_richness(
     scored as under-figured.
     """
     actual = events_per_bar(layer, hand=hand)
-    detail: Dict[str, Any] = {"events_per_bar": round(actual, 2), "hand": hand}
+    detail: dict[str, Any] = {"events_per_bar": round(actual, 2), "hand": hand}
 
     median = None
     p25 = None
@@ -204,14 +204,14 @@ def figuration_richness(
     return round(score, 3), detail
 
 
-def voice_leading_smoothness(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
+def voice_leading_smoothness(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     """Mean melodic motion of the principal line, penalizing leap chains.
 
     Mean |interval| of ~2 semitones is singable; consecutive runs of
     leaps > P5 read as instrumental fragmentation.
     """
     intervals = _melody_intervals(layer)
-    detail: Dict[str, Any] = {"interval_count": len(intervals)}
+    detail: dict[str, Any] = {"interval_count": len(intervals)}
     if not intervals:
         return 0.0, detail
     mean_abs = sum(abs(i) for i in intervals) / len(intervals)
@@ -229,7 +229,7 @@ def voice_leading_smoothness(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     return round(score, 3), detail
 
 
-def direction_changes_per_bar(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
+def direction_changes_per_bar(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     """Melodic contour direction changes per bar.
 
     MEASURED on 20 real movements (Mozart, Beethoven, Chopin sonatas and
@@ -254,7 +254,7 @@ def direction_changes_per_bar(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     return round(score, 3), detail
 
 
-def rest_ratio(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
+def rest_ratio(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     """Fraction of total event time that is rests — does the music breathe?
 
     MEASURED on 20 real movements: median **16.3%** of event time is rest,
@@ -269,7 +269,7 @@ def rest_ratio(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
         total_beats += beats
         if _is_rest(e):
             rest_beats += beats
-    detail: Dict[str, Any] = {
+    detail: dict[str, Any] = {
         "rest_beats": round(rest_beats, 2),
         "total_beats": round(total_beats, 2),
     }
@@ -286,7 +286,7 @@ def rest_ratio(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     return round(score, 3), detail
 
 
-def density_cv(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
+def density_cv(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     """Per-bar density coefficient of variation (RH+LH events per bar),
     mirroring corpus_metrics.density_cv exactly so piece-vs-corpus is
     apples-to-apples.
@@ -297,14 +297,14 @@ def density_cv(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
     """
     import statistics
 
-    counts: Dict[int, int] = {}
+    counts: dict[int, int] = {}
     bars_seen = set()
     for e in _events(layer):
         bars_seen.add(e.bar)
         if _is_rest(e):
             continue
         counts[e.bar] = counts.get(e.bar, 0) + 1
-    detail: Dict[str, Any] = {"per_bar": [], "bar_count": 0}
+    detail: dict[str, Any] = {"per_bar": [], "bar_count": 0}
     if not bars_seen:
         return 0.0, detail
     b0, b1 = min(bars_seen), max(bars_seen)
@@ -323,11 +323,11 @@ def density_cv(layer: LayerIR) -> Tuple[float, Dict[str, Any]]:
 
 def summarize(
     layer: LayerIR,
-    density_stats: Optional[Dict[str, Any]] = None,
-    rh_texture: Optional[str] = None,
-    lh_texture: Optional[str] = None,
-    priors: Optional[Dict[str, float]] = None,
-) -> Dict[str, Any]:
+    density_stats: dict[str, Any] | None = None,
+    rh_texture: str | None = None,
+    lh_texture: str | None = None,
+    priors: dict[str, float] | None = None,
+) -> dict[str, Any]:
     """Run all metrics; returns {metric: {score, detail}} for gate/review use."""
     results = {
         "rhythmic_variety": rhythmic_variety(layer),

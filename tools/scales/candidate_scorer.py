@@ -15,8 +15,6 @@ Scores candidates on:
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-
 from .enums import NoteRole
 from .expectation_ledger import ExpectationLedger
 from .models import (
@@ -40,7 +38,7 @@ _FALLBACK_BUDGETS = {"A": 0.10, "B": 0.20, "C": 0.35, "D": 1.00}
 class CandidateScorer:
     """Scores realization candidates across multiple dimensions."""
 
-    def __init__(self, reducer: Optional[Reducer] = None):
+    def __init__(self, reducer: Reducer | None = None):
         self.reducer = reducer or Reducer()
 
     def score(
@@ -49,12 +47,12 @@ class CandidateScorer:
         slot: PhraseSlot,
         style_dna: StyleDNA,
         ledger: ExpectationLedger,
-        phrase_order: List[str],
-        prev_surface: Optional[LayerIR] = None,
-        locks: Optional[LockPolicy] = None,
+        phrase_order: list[str],
+        prev_surface: LayerIR | None = None,
+        locks: LockPolicy | None = None,
         mode: str = "compose_from_text",
-        context_trace: Optional[ContextTrace] = None,
-        anti_patterns: Optional[List[AntiPatternRule]] = None,
+        context_trace: ContextTrace | None = None,
+        anti_patterns: list[AntiPatternRule] | None = None,
         tier: str = "D",
     ) -> CandidateScores:
         """Score a single candidate across all dimensions."""
@@ -99,18 +97,18 @@ class CandidateScorer:
 
     def score_all(
         self,
-        candidates: List[CandidateNode],
+        candidates: list[CandidateNode],
         slot: PhraseSlot,
         style_dna: StyleDNA,
         ledger: ExpectationLedger,
-        phrase_order: List[str],
-        prev_surface: Optional[LayerIR] = None,
-        locks: Optional[LockPolicy] = None,
+        phrase_order: list[str],
+        prev_surface: LayerIR | None = None,
+        locks: LockPolicy | None = None,
         mode: str = "compose_from_text",
-        context_traces: Optional[Dict[int, ContextTrace]] = None,
-        anti_patterns: Optional[List[AntiPatternRule]] = None,
+        context_traces: dict[int, ContextTrace] | None = None,
+        anti_patterns: list[AntiPatternRule] | None = None,
         tier: str = "D",
-    ) -> List[CandidateNode]:
+    ) -> list[CandidateNode]:
         """Score all candidates and attach scores."""
         for i, cand in enumerate(candidates):
             trace = context_traces.get(i) if context_traces else None
@@ -179,7 +177,7 @@ class CandidateScorer:
 
     # ─── Novelty ─────────────────────────────────────────────────────────
 
-    def _score_novelty(self, surface: LayerIR, prev_surface: Optional[LayerIR]) -> float:
+    def _score_novelty(self, surface: LayerIR, prev_surface: LayerIR | None) -> float:
         """Score novelty — not too repetitive of previous phrase."""
         if prev_surface is None:
             return 0.8  # No comparison available
@@ -211,14 +209,13 @@ class CandidateScorer:
         # Sweet spot: 0.3-0.6 similarity
         if 0.3 <= similarity <= 0.6:
             return 1.0
-        elif similarity < 0.3:
+        if similarity < 0.3:
             return 0.6  # Too different — might break coherence
-        else:
-            return max(0, 1.0 - (similarity - 0.6) * 2.5)  # Too similar
+        return max(0, 1.0 - (similarity - 0.6) * 2.5)  # Too similar
 
     # ─── Continuity ──────────────────────────────────────────────────────
 
-    def _score_continuity(self, surface: LayerIR, prev_surface: Optional[LayerIR]) -> float:
+    def _score_continuity(self, surface: LayerIR, prev_surface: LayerIR | None) -> float:
         """Score transition smoothness from previous phrase."""
         if prev_surface is None:
             return 0.8
@@ -252,7 +249,7 @@ class CandidateScorer:
 
     # ─── Lock Compliance ─────────────────────────────────────────────────
 
-    def _score_locks(self, surface: LayerIR, locks: Optional[LockPolicy]) -> float:
+    def _score_locks(self, surface: LayerIR, locks: LockPolicy | None) -> float:
         """Score preservation of locked source elements."""
         if locks is None:
             return 1.0  # No locks — everything compliant
@@ -278,7 +275,7 @@ class CandidateScorer:
 
     # ─── Context Fidelity (v6) ──────────────────────────────────────────
 
-    def _score_context(self, trace: Optional[ContextTrace], tier: str) -> float:
+    def _score_context(self, trace: ContextTrace | None, tier: str) -> float:
         """Score based on how much context was actually used.
 
         Higher for candidates that used corpus patterns, gesture templates,
@@ -309,8 +306,8 @@ class CandidateScorer:
     def _score_anti_patterns(
         self,
         surface: LayerIR,
-        anti_patterns: Optional[List[AntiPatternRule]],
-        prev_surface: Optional[LayerIR],
+        anti_patterns: list[AntiPatternRule] | None,
+        prev_surface: LayerIR | None,
     ) -> float:
         """Score anti-pattern risk. 0.0 = clean, 1.0 = many violations.
 
@@ -333,7 +330,7 @@ class CandidateScorer:
 # ─── Helpers ─────────────────────────────────────────────────────────────────
 
 
-def _to_contour(midis: List[int]) -> List[int]:
+def _to_contour(midis: list[int]) -> list[int]:
     """Convert pitch sequence to contour (up/down/same)."""
     if len(midis) < 2:
         return []
@@ -349,7 +346,7 @@ def _to_contour(midis: List[int]) -> List[int]:
     return contour
 
 
-def _contour_similarity(a: List[int], b: List[int]) -> float:
+def _contour_similarity(a: list[int], b: list[int]) -> float:
     """Compare two contour sequences. Returns 0-1."""
     if not a or not b:
         return 0.0

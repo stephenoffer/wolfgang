@@ -17,10 +17,10 @@ Pure functions (dicts in, scalars/bools out) so the workflow and tests share the
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 
-def corpus_distance(divergence: Dict[str, Any]) -> float:
+def corpus_distance(divergence: dict[str, Any]) -> float:
     """Σ max(0, |z|-2) over the composer-divergence metrics. In-band metrics
     contribute 0, so gaming a metric to its mean earns nothing; only being
     OUTSIDE the corpus's real spread is penalized."""
@@ -41,7 +41,7 @@ def corpus_distance(divergence: Dict[str, Any]) -> float:
 _ADVISORY_DETECTORS = frozenset({"vertical_clash", "melody_buried", "unresolved_nct"})
 
 
-def actionable_warn_count(cand: Dict[str, Any]) -> int:
+def actionable_warn_count(cand: dict[str, Any]) -> int:
     """Warnings that describe a defect rather than an idiom.
 
     Falls back to the raw ``warn_count`` when no per-detector breakdown is
@@ -53,7 +53,7 @@ def actionable_warn_count(cand: Dict[str, Any]) -> int:
     return sum(n for det, n in counts.items() if det not in _ADVISORY_DETECTORS)
 
 
-def composite_score(cand: Dict[str, Any]) -> tuple:
+def composite_score(cand: dict[str, Any]) -> tuple:
     """Lexicographic tuple (higher is better), compared field-by-field:
       (-errors, -actionable_warns, critic_quality, -critic_rank)
     Audible errors dominate; after that the fresh-ears CRITIC is the judge.
@@ -72,7 +72,7 @@ def composite_score(cand: Dict[str, Any]) -> tuple:
     )
 
 
-def dominates(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
+def dominates(a: dict[str, Any], b: dict[str, Any]) -> bool:
     """True if candidate `a` is STRICTLY better than `b` AND never has more
     errors (belt-and-suspenders over the lexicographic order)."""
     if int(a.get("error_count", 0)) > int(b.get("error_count", 0)):
@@ -80,7 +80,7 @@ def dominates(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
     return composite_score(a) > composite_score(b)
 
 
-def pareto_improves(after: Dict[str, int], before: Dict[str, int]) -> bool:
+def pareto_improves(after: dict[str, int], before: dict[str, int]) -> bool:
     """Is a targeted revision an improvement, without trading one defect for another?
 
     A revision is accepted when at least one detector improves and no ACTIONABLE
@@ -108,7 +108,7 @@ def converged(
     section_gate_passed: bool,
     critic_approved: bool = True,
     quality_threshold: float = 4.0,
-    corpus_divergence: Dict[str, Any] = None,
+    corpus_divergence: dict[str, Any] = None,
 ) -> bool:
     """A section is done when the fresh-ears critic approves at/above the quality
     bar, the section gate (physical + grounding only) passes, and there are no
@@ -125,9 +125,9 @@ def converged(
     return critic_quality >= quality_threshold
 
 
-def detector_counts(findings) -> Dict[str, int]:
+def detector_counts(findings) -> dict[str, int]:
     """Per-detector finding counts from an ear_report's findings list."""
-    out: Dict[str, int] = {}
+    out: dict[str, int] = {}
     for f in findings or []:
         out[f.get("detector", "?")] = out.get(f.get("detector", "?"), 0) + 1
     return out

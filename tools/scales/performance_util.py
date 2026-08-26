@@ -19,12 +19,11 @@ from __future__ import annotations
 
 import hashlib
 import math
-from typing import Tuple
 
 # ─── Deterministic jitter ────────────────────────────────────────────────────
 
 
-def _unit_hash(seed_parts: Tuple) -> float:
+def _unit_hash(seed_parts: tuple) -> float:
     """Map any tuple to a stable float in [0, 1) via md5 (process-independent —
     Python's hash() is salted per process and would break determinism)."""
     h = hashlib.md5(repr(seed_parts).encode("utf-8")).digest()
@@ -33,7 +32,7 @@ def _unit_hash(seed_parts: Tuple) -> float:
     return n / float(1 << 64)
 
 
-def jitter(seed_parts: Tuple, amplitude: float) -> float:
+def jitter(seed_parts: tuple, amplitude: float) -> float:
     """Deterministic value in [-amplitude, +amplitude] keyed on seed_parts.
 
     Use a seed that uniquely identifies the event being humanized, e.g.

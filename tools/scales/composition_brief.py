@@ -1418,18 +1418,22 @@ def _transition_habits(composer: str, slot, incoming: Dict[str, Any]) -> Dict[st
         from .transition_bank import TransitionBank, TransitionQuery
     except ImportError:
         return {}
-    try:
-        bank = TransitionBank(composer)
-        hits = bank.retrieve(
-            TransitionQuery(
-                target_function=str(getattr(slot, "function", "") or "") or None,
-                exit_texture_lh=(incoming.get("last_lh_texture") or None),
-                exit_dynamic=(incoming.get("last_dynamic") or None),
-                n=12,
+    hits = []
+    for member in _bank_composers(composer):
+        try:
+            bank = TransitionBank(member)
+            hits.extend(
+                bank.retrieve(
+                    TransitionQuery(
+                        target_function=str(getattr(slot, "function", "") or "") or None,
+                        exit_texture_lh=(incoming.get("last_lh_texture") or None),
+                        exit_dynamic=(incoming.get("last_dynamic") or None),
+                        n=12,
+                    )
+                )
             )
-        )
-    except Exception:
-        return {}
+        except Exception:
+            continue
     if not hits:
         return {}
 
@@ -1445,6 +1449,24 @@ def _transition_habits(composer: str, slot, incoming: Dict[str, Any]) -> Dict[st
         "dynamic_continuity": _mean("dynamic_continuity"),
         "motivic_logic": _mean("motivic_logic"),
     }
+
+
+def _bank_composers(reference: str) -> List[str]:
+    """Which composer indexes a retrieval bank should read for this reference.
+
+    A style has no `reference_index/<name>/` directory of its own — it
+    aggregates over its members at read time — so a bank constructed with
+    `style__baroque` finds no file and silently returns nothing. That is the
+    same failure that left every style with no progression model and hard-coded
+    I-IV-V harmony: a style id is not a directory name.
+    """
+    try:
+        from .style_registry import is_style_id, style_members
+    except ImportError:
+        return [reference]
+    if not is_style_id(reference):
+        return [reference]
+    return style_members(reference, armed_only=True) or []
 
 
 def _corpus_gestures(composer: str, slot, n: int = 4) -> List[Dict[str, Any]]:
@@ -1466,23 +1488,29 @@ def _corpus_gestures(composer: str, slot, n: int = 4) -> List[Dict[str, Any]]:
         return []
     function = str(getattr(slot, "function", "") or "").lower()
     wanted = _FUNCTION_GESTURES.get(function) or ("answer", "insist")
-    try:
-        bank = GestureBank(composer)
-    except Exception:
+    members = _bank_composers(composer)
+    if not members:
         return []
     out: List[Dict[str, Any]] = []
     per = max(1, n // max(1, len(wanted)))
-    for fn_name in wanted:
+    hits = []
+    for member in members:
         try:
-            hits = bank.retrieve(GestureQuery(function=fn_name, n=per))
+            bank = GestureBank(member)
         except Exception:
             continue
+        for fn_name in wanted:
+            try:
+                hits.extend(bank.retrieve(GestureQuery(function=fn_name, n=per)))
+            except Exception:
+                continue
+    for fn_name in [""]:
         for h in hits:
             durs = list(getattr(h, "dur_profile", None) or [])
             if not durs:
                 continue
             out.append({
-                "does": fn_name.replace("_", " "),
+                "does": str(getattr(h, "function", "") or "").replace("_", " "),
                 "rhythm": " ".join(durs),
                 "contour": getattr(h, "contour", "") or "",
                 "enters": getattr(h, "entry_state", "") or "",

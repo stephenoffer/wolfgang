@@ -13,7 +13,6 @@ Deterministic and dependency-light: no music21, no RNG.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Optional
 
 
 @dataclass
@@ -53,7 +52,7 @@ class StylePerfProfile:
     hand_offset_ms: float = 6.0  # bass-vs-treble onset offset
 
     # Per-layer voicing balance (velocity multipliers by source_layer)
-    voicing_balance: Dict[str, float] = field(
+    voicing_balance: dict[str, float] = field(
         default_factory=lambda: {
             "principal_line": 1.12,
             "counter_reply": 1.04,
@@ -127,7 +126,7 @@ _ROMANTIC = StylePerfProfile(
 )
 
 # A few later periods lean romantic for performance practice.
-_PERIOD_PROFILES: Dict[str, StylePerfProfile] = {
+_PERIOD_PROFILES: dict[str, StylePerfProfile] = {
     "renaissance": _BAROQUE,
     "baroque": _BAROQUE,
     "classical": _CLASSICAL,
@@ -141,7 +140,7 @@ _PERIOD_PROFILES: Dict[str, StylePerfProfile] = {
 }
 
 
-def profile_for_period(period: Optional[str]) -> StylePerfProfile:
+def profile_for_period(period: str | None) -> StylePerfProfile:
     """Profile for a period name (synonyms resolved). Defaults to classical."""
     if not period:
         return _CLASSICAL
@@ -149,7 +148,7 @@ def profile_for_period(period: Optional[str]) -> StylePerfProfile:
     return _PERIOD_PROFILES.get(p, _CLASSICAL)
 
 
-def profile_for_composer(composer_or_style: Optional[str]) -> StylePerfProfile:
+def profile_for_composer(composer_or_style: str | None) -> StylePerfProfile:
     """Resolve a composer or style reference to its period's performance profile.
 
     Uses style_registry so 'mozart'/'classical'/'galant' all map to classical,

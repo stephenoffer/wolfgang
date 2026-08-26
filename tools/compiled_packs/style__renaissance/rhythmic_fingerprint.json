@@ -1,0 +1,32 @@
+{
+ "composer": "style__renaissance",
+ "schema": 1,
+ "bars": 64562,
+ "notes": 167009,
+ "rest_bar_pct": 0.2854,
+ "dotted_bar_pct": 0.3141,
+ "fast_note_pct": 0.0,
+ "lh_texture_change_pct": 0.4742,
+ "top_note_values": [
+  [
+   2.0,
+   0.4315
+  ],
+  [
+   1.0,
+   0.2269
+  ],
+  [
+   4.0,
+   0.215
+  ],
+  [
+   3.0,
+   0.0511
+  ],
+  [
+   8.0,
+   0.036
+  ]
+ ]
+}

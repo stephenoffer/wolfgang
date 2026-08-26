@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, Optional, Tuple
 
 from .models import (
     AntiPatternRule,
@@ -47,7 +46,7 @@ class StyleResolver:
     """Resolves style specifications into usable StyleDNA objects."""
 
     def resolve_single(
-        self, composer: str, era: str = "", period: Optional[str] = None
+        self, composer: str, era: str = "", period: str | None = None
     ) -> StyleDNA:
         """Load StyleDNA for a single composer."""
         pack = self._load_pack(composer)
@@ -123,7 +122,7 @@ class StyleResolver:
 
         return dna
 
-    def resolve_blend(self, composers: Dict[str, float], era: str = "") -> StyleDNA:
+    def resolve_blend(self, composers: dict[str, float], era: str = "") -> StyleDNA:
         """Resolve a blended StyleDNA from multiple composers.
 
         Args:
@@ -164,7 +163,7 @@ class StyleResolver:
 
         # Step 5: Merge cadence vocabulary (union)
         all_cadences = []
-        for _, (d, w) in dnas.items():
+        for (d, w) in dnas.values():
             for c in d.cadence_vocabulary:
                 c.frequency_weight *= w
                 all_cadences.append(c)
@@ -172,7 +171,7 @@ class StyleResolver:
 
         # Step 6: Merge chromatic techniques (union)
         all_chromatics = []
-        for _, (d, w) in dnas.items():
+        for (d, w) in dnas.values():
             for c in d.chromatic_techniques:
                 c.frequency_weight *= w
                 all_chromatics.append(c)
@@ -187,7 +186,7 @@ class StyleResolver:
 
     # ─── Axis Ownership ───────────────────────────────────────────────────
 
-    def _resolve_axis_ownership(self, dnas: Dict[str, Tuple[StyleDNA, float]]) -> Dict[str, str]:
+    def _resolve_axis_ownership(self, dnas: dict[str, tuple[StyleDNA, float]]) -> dict[str, str]:
         """Determine which composer owns each style axis."""
         axes = [
             "texture_density",
@@ -232,10 +231,10 @@ class StyleResolver:
 
     # ─── Merge Functions ──────────────────────────────────────────────────
 
-    def _merge_fingerprints(self, dnas: Dict[str, Tuple[StyleDNA, float]]) -> FingerprintRuleSet:
+    def _merge_fingerprints(self, dnas: dict[str, tuple[StyleDNA, float]]) -> FingerprintRuleSet:
         """Merge fingerprints proportional to weight."""
         merged = []
-        for composer, (dna, weight) in sorted(dnas.items(), key=lambda x: -x[1][1]):
+        for _composer, (dna, weight) in sorted(dnas.items(), key=lambda x: -x[1][1]):
             n_to_take = max(1, round(len(dna.fingerprints.items) * weight))
             for fp in dna.fingerprints.items[:n_to_take]:
                 merged.append(fp)
@@ -246,11 +245,11 @@ class StyleResolver:
         )
 
     def _merge_distributions(
-        self, distributions: Dict[str, Tuple[Dict[str, float], float]]
-    ) -> Dict[str, float]:
+        self, distributions: dict[str, tuple[dict[str, float], float]]
+    ) -> dict[str, float]:
         """Merge texture distributions using weighted average."""
-        merged: Dict[str, float] = {}
-        for composer, (dist, weight) in distributions.items():
+        merged: dict[str, float] = {}
+        for (dist, weight) in distributions.values():
             for tex, pct in dist.items():
                 merged[tex] = merged.get(tex, 0) + pct * weight
 
@@ -261,13 +260,13 @@ class StyleResolver:
         return merged
 
     def _merge_density_targets(
-        self, dnas: Dict[str, Tuple[StyleDNA, float]]
-    ) -> Dict[str, DensityTarget]:
+        self, dnas: dict[str, tuple[StyleDNA, float]]
+    ) -> dict[str, DensityTarget]:
         """Merge density targets using weighted interpolation."""
         result = {}
         for tempo_class in ["slow", "moderate", "fast"]:
             rh_sum, lh_sum, weight_sum = 0.0, 0.0, 0.0
-            for _, (dna, weight) in dnas.items():
+            for (dna, weight) in dnas.values():
                 target = dna.density_targets.get(tempo_class)
                 if target:
                     rh_sum += target.rh_mean * weight
@@ -282,7 +281,7 @@ class StyleResolver:
 
     # ─── Loading ──────────────────────────────────────────────────────────
 
-    def _load_pack(self, composer: str) -> Dict:
+    def _load_pack(self, composer: str) -> dict:
         """Load a compiled ComposerPack."""
         from .style_registry import pack_dir_name
 
@@ -344,7 +343,7 @@ class StyleResolver:
     # ─── StyleProgram Resolution ────────────────────────────────────────
 
     def resolve_program(
-        self, composer: str, era: str = "", period: Optional[str] = None
+        self, composer: str, era: str = "", period: str | None = None
     ) -> StyleProgram:
         """Resolve full StyleProgram from compiled packs.
 
@@ -559,7 +558,7 @@ class StyleResolver:
         return program
 
     def resolve_blend_program(
-        self, composers_weights: Dict[str, float], era: str = ""
+        self, composers_weights: dict[str, float], era: str = ""
     ) -> StyleProgram:
         """Resolve blended StyleProgram from multiple composers.
 
@@ -639,7 +638,7 @@ class StyleResolver:
 
     # ─── Data Loading ─────────────────────────────────────────────────────
 
-    def _load_texture_stats(self, composer: str) -> Tuple[Dict[str, float], Dict[str, float]]:
+    def _load_texture_stats(self, composer: str) -> tuple[dict[str, float], dict[str, float]]:
         """Load texture distributions directly from texture templates."""
         lh, rh = {}, {}
         template_path = TEXTURE_TEMPLATES / f"{composer}.json"

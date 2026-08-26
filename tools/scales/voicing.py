@@ -28,11 +28,12 @@ suggestions at the end are written for a composer to read and disagree with.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from fractions import Fraction
 from itertools import pairwise
 from statistics import mean, pstdev
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any
 
 from .counterpoint import attack_times, extract_voices, sounding_at
 
@@ -41,7 +42,7 @@ from .counterpoint import attack_times, extract_voices, sounding_at
 # Named by how they sound at the piano, not by octave number, because that is
 # how a composer thinks about them.
 
-_REGISTERS: List[Tuple[str, int, int]] = [
+_REGISTERS: list[tuple[str, int, int]] = [
     ("sub_bass", 21, 40),  # A0-E2
     ("bass", 41, 52),  # F2-E3
     ("tenor", 53, 60),  # F3-C4
@@ -145,7 +146,7 @@ _STYLE_FLOOR = {
 
 # Composer -> period, so a caller can pass either. Kept in sync with
 # expression_enricher._COMPOSER_PERIOD by way of the shared helper below.
-def _period_of(style: Optional[str]) -> Optional[str]:
+def _period_of(style: str | None) -> str | None:
     """Resolve a composer/style/period name to a period key, or None."""
     if not style:
         return None
@@ -155,7 +156,7 @@ def _period_of(style: Optional[str]) -> Optional[str]:
     return name if name in ("classical", "baroque", "romantic", "impressionist") else None
 
 
-def floors_for(style: Optional[str] = None) -> Dict[str, float]:
+def floors_for(style: str | None = None) -> dict[str, float]:
     """The suggestion floors in force, with any per-style tightening applied."""
     out = dict(_FLOOR)
     period = _period_of(style)
@@ -179,11 +180,11 @@ class BarTexture:
     span: int = 0  # semitones, lowest to highest
     low: int = 0
     high: int = 0
-    registers: Tuple[str, ...] = ()
+    registers: tuple[str, ...] = ()
     rh_is_single_line: bool = True
     has_rest: bool = False
 
-    def as_dict(self) -> Dict[str, Any]:
+    def as_dict(self) -> dict[str, Any]:
         return {
             "bar": self.bar,
             "attacks": self.attacks,
@@ -200,25 +201,25 @@ class BarTexture:
 
 @dataclass
 class VoicingReport:
-    bars: List[BarTexture] = field(default_factory=list)
+    bars: list[BarTexture] = field(default_factory=list)
     # Whole-piece summary
     mean_simultaneity: float = 0.0
     rh_notes_per_attack: float = 0.0
     lh_notes_per_attack: float = 0.0
     single_line_rh_pct: float = 0.0
     register_span: int = 0
-    registers_used: Tuple[str, ...] = ()
-    span_range: Tuple[int, int] = (0, 0)
+    registers_used: tuple[str, ...] = ()
+    span_range: tuple[int, int] = (0, 0)
     texture_shift_pct: float = 0.0
     simultaneity_cv: float = 0.0
     widest_hand_span: int = 0
-    unplayable_spans: List[Tuple[int, float, int]] = field(default_factory=list)
+    unplayable_spans: list[tuple[int, float, int]] = field(default_factory=list)
     thirds_sixths_pct: float = 0.0
     style: str = ""
-    suggestions: List[str] = field(default_factory=list)
-    observations: List[str] = field(default_factory=list)
+    suggestions: list[str] = field(default_factory=list)
+    observations: list[str] = field(default_factory=list)
 
-    def as_dict(self, per_bar: bool = False) -> Dict[str, Any]:
+    def as_dict(self, per_bar: bool = False) -> dict[str, Any]:
         out = {
             "mean_simultaneity": round(self.mean_simultaneity, 2),
             "rh_notes_per_attack": round(self.rh_notes_per_attack, 2),
@@ -264,17 +265,17 @@ def _hand_of(voice: str) -> str:
     return "lh"
 
 
-def measure_bars(layer_ir) -> List[BarTexture]:
+def measure_bars(layer_ir) -> list[BarTexture]:
     """Per-bar texture measurements taken from what actually sounds."""
     spans = extract_voices(layer_ir, ignore_ornamental=True)
     if not spans:
         return []
     times = attack_times(spans)
-    per_bar: Dict[int, BarTexture] = {}
-    sim_by_bar: Dict[int, List[int]] = {}
-    rh_by_bar: Dict[int, List[int]] = {}
-    lh_by_bar: Dict[int, List[int]] = {}
-    pitches_by_bar: Dict[int, List[int]] = {}
+    per_bar: dict[int, BarTexture] = {}
+    sim_by_bar: dict[int, list[int]] = {}
+    rh_by_bar: dict[int, list[int]] = {}
+    lh_by_bar: dict[int, list[int]] = {}
+    pitches_by_bar: dict[int, list[int]] = {}
 
     for t in times:
         state = sounding_at(spans, t)
@@ -295,7 +296,7 @@ def measure_bars(layer_ir) -> List[BarTexture]:
             lh_by_bar.setdefault(bar, []).append(len(lh))
         pitches_by_bar.setdefault(bar, []).extend(s.midi for s in state.values())
 
-    out: List[BarTexture] = []
+    out: list[BarTexture] = []
     for bar in sorted(per_bar):
         bt = per_bar[bar]
         sims = sim_by_bar.get(bar) or [0]
@@ -314,7 +315,7 @@ def measure_bars(layer_ir) -> List[BarTexture]:
     return out
 
 
-def _hand_spans(layer_ir) -> List[Tuple[int, float, int]]:
+def _hand_spans(layer_ir) -> list[tuple[int, float, int]]:
     """Widest reach a hand is actually asked to make: (bar, beat, semitones).
 
     Only notes **struck together** count. An earlier version counted everything
@@ -331,7 +332,7 @@ def _hand_spans(layer_ir) -> List[Tuple[int, float, int]]:
     fingers at the same instant, and a tenth is already a stretch.
     """
     spans = extract_voices(layer_ir)
-    out: List[Tuple[int, float, int]] = []
+    out: list[tuple[int, float, int]] = []
     for t in attack_times(spans):
         for hand in ("rh", "lh"):
             struck = [
@@ -411,7 +412,7 @@ _DEFAULT_MAX_HAND_SPAN = 16
 
 
 def analyze_voicing(
-    layer_ir, max_hand_span: int = _DEFAULT_MAX_HAND_SPAN, style: Optional[str] = None
+    layer_ir, max_hand_span: int = _DEFAULT_MAX_HAND_SPAN, style: str | None = None
 ) -> VoicingReport:
     """Texture, register and voicing over a phrase, a section or a whole piece.
 
@@ -470,7 +471,7 @@ def _observe(r: VoicingReport) -> None:
     )
 
 
-def _suggest(r: VoicingReport, floor: Optional[Dict[str, float]] = None) -> None:
+def _suggest(r: VoicingReport, floor: dict[str, float] | None = None) -> None:
     """Composer-facing prompts, phrased as questions, never as targets.
 
     Every threshold is a floor set outside the range measured on 22 real
@@ -551,8 +552,8 @@ def _suggest(r: VoicingReport, floor: Optional[Dict[str, float]] = None) -> None
 
 
 def compare_to_corpus_texture(
-    report: VoicingReport, corpus: Optional[Dict[str, float]] = None
-) -> List[str]:
+    report: VoicingReport, corpus: dict[str, float] | None = None
+) -> list[str]:
     """Lines comparing this texture to a corpus profile, when one is available.
 
     Deliberately returns prose, not z-scores: this project has already learned
@@ -577,7 +578,7 @@ def compare_to_corpus_texture(
     return out
 
 
-def suggest_thickening_points(layer_ir, limit: int = 6) -> List[Dict[str, Any]]:
+def suggest_thickening_points(layer_ir, limit: int = 6) -> list[dict[str, Any]]:
     """Bars where adding a voice would do the most good.
 
     Ranked by how exposed the moment is: a long melody note, high in the phrase's
@@ -617,7 +618,7 @@ def suggest_thickening_points(layer_ir, limit: int = 6) -> List[Dict[str, Any]]:
     return out[:limit]
 
 
-def hand_span_at(layer_ir, bar: int, beat: float) -> Dict[str, int]:
+def hand_span_at(layer_ir, bar: int, beat: float) -> dict[str, int]:
     """Reach required in each hand at one moment — for a targeted revision."""
     spans = extract_voices(layer_ir)
     bpb = Fraction(int(getattr(layer_ir, "meter", (4, 4))[0]) * 4,
@@ -653,12 +654,12 @@ def texture_label(bt: BarTexture) -> str:
     return "mixed"
 
 
-def texture_timeline(layer_ir) -> List[Tuple[int, str]]:
+def texture_timeline(layer_ir) -> list[tuple[int, str]]:
     """(bar, texture label) — the shape of the piece at a glance."""
     return [(b.bar, texture_label(b)) for b in measure_bars(layer_ir)]
 
 
-def texture_runs(layer_ir) -> List[Tuple[str, int, int]]:
+def texture_runs(layer_ir) -> list[tuple[str, int, int]]:
     """(label, first_bar, last_bar) runs — where the texture actually holds.
 
     Twelve bars of one label is the "12 bars of identical LH triplet arpeggios"
@@ -667,7 +668,7 @@ def texture_runs(layer_ir) -> List[Tuple[str, int, int]]:
     timeline = texture_timeline(layer_ir)
     if not timeline:
         return []
-    runs: List[Tuple[str, int, int]] = []
+    runs: list[tuple[str, int, int]] = []
     label, start, prev = timeline[0][1], timeline[0][0], timeline[0][0]
     for bar, lab in timeline[1:]:
         if lab != label:

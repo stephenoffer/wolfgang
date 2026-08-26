@@ -1810,3 +1810,29 @@ def test_a_commit_with_an_unwritable_token_is_rejected(tmp_path, monkeypatch):
     assert out.get("error") == "unwritable_tokens", out
     assert any("H5q" in t for t in out["tokens"])
     assert "hint" in out
+
+
+@pytest.mark.parametrize(
+    "style", ["style__baroque", "style__classical", "style__romantic", "style__renaissance"]
+)
+def test_a_style_reaches_the_retrieval_banks_of_its_members(style):
+    """A style has no `reference_index/<name>/` directory of its own — it
+    aggregates over its members at read time — so a bank constructed with
+    `style__baroque` found no file and silently returned nothing. Same failure
+    that left every style with no progression model and hard-coded I-IV-V."""
+    from scales.composition_brief import _bank_composers, _corpus_gestures, _transition_habits
+    from scales.models import PhraseSlot
+
+    members = _bank_composers(style)
+    assert members and style not in members, f"{style} resolved to {members}"
+
+    slot = PhraseSlot(phrase_id="p", section_id="s", bar_start=5, bar_count=4,
+                      key="G minor", meter=(4, 4), tempo_bpm=90, function="continuation")
+    assert _corpus_gestures(style, slot), f"{style} gets no corpus gestures"
+    assert _transition_habits(style, slot, {}).get("samples", 0) > 0
+
+
+def test_a_plain_composer_still_reads_its_own_bank():
+    from scales.composition_brief import _bank_composers
+
+    assert _bank_composers("mozart") == ["mozart"]

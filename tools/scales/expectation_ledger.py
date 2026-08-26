@@ -8,7 +8,7 @@ unfinished musical intentions the way a human composer tracks them.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .enums import ExpectationStatus, ExpectationType
 
@@ -29,17 +29,17 @@ class Expectation:
     type: str = ExpectationType.PROMISE.value
     object_ref: str = ""  # what this is about (motif_id, chord, texture, etc.)
     introduced_at: str = ""  # phrase_id where created
-    must_resolve_by: Optional[str] = None  # phrase_id deadline; None = open-ended
-    expected_form: Optional[str] = None  # how it should resolve
+    must_resolve_by: str | None = None  # phrase_id deadline; None = open-ended
+    expected_form: str | None = None  # how it should resolve
     urgency: float = 0.5  # 0-1, increases as deadline approaches
     status: str = ExpectationStatus.OPEN.value
-    resolved_at: Optional[str] = None
-    details: Dict[str, Any] = field(default_factory=dict)
+    resolved_at: str | None = None
+    details: dict[str, Any] = field(default_factory=dict)
 
     def is_open(self) -> bool:
         return self.status == ExpectationStatus.OPEN.value
 
-    def is_overdue(self, current_phrase: str, phrase_order: List[str]) -> bool:
+    def is_overdue(self, current_phrase: str, phrase_order: list[str]) -> bool:
         """Check if this expectation is past its deadline."""
         if self.must_resolve_by is None:
             return False
@@ -68,7 +68,7 @@ class ExpectationLedger:
     """
 
     def __init__(self):
-        self.entries: List[Expectation] = []
+        self.entries: list[Expectation] = []
         self._id_counter = 0
 
     def _next_id(self) -> str:
@@ -81,10 +81,10 @@ class ExpectationLedger:
         self,
         object_ref: str,
         introduced_at: str,
-        must_return_by: Optional[str] = None,
-        expected_form: Optional[str] = None,
+        must_return_by: str | None = None,
+        expected_form: str | None = None,
         urgency: float = 0.5,
-        details: Optional[Dict] = None,
+        details: dict | None = None,
     ) -> str:
         """A motif/theme/idea must return or be developed."""
         exp = Expectation(
@@ -104,9 +104,9 @@ class ExpectationLedger:
         self,
         object_ref: str,
         opened_at: str,
-        must_resolve_by: Optional[str] = None,
+        must_resolve_by: str | None = None,
         urgency: float = 0.7,
-        details: Optional[Dict] = None,
+        details: dict | None = None,
     ) -> str:
         """A harmonic/tonal obligation that needs resolution."""
         exp = Expectation(
@@ -126,7 +126,7 @@ class ExpectationLedger:
         object_ref: str,
         introduced_at: str,
         duration_phrases: int = 2,
-        details: Optional[Dict] = None,
+        details: dict | None = None,
     ) -> str:
         """A recently used element needs a rest period."""
         exp = Expectation(
@@ -144,9 +144,9 @@ class ExpectationLedger:
         self,
         object_ref: str,
         introduced_at: str,
-        must_resolve_by: Optional[str] = None,
+        must_resolve_by: str | None = None,
         reason: str = "",
-        details: Optional[Dict] = None,
+        details: dict | None = None,
     ) -> str:
         """Something must NOT happen until a condition is met."""
         exp = Expectation(
@@ -166,8 +166,8 @@ class ExpectationLedger:
         self,
         object_ref: str,
         introduced_at: str,
-        preserve_aspects: Optional[List[str]] = None,
-        details: Optional[Dict] = None,
+        preserve_aspects: list[str] | None = None,
+        details: dict | None = None,
     ) -> str:
         """A structural element must be preserved."""
         exp = Expectation(
@@ -183,20 +183,20 @@ class ExpectationLedger:
 
     # ─── Query expectations ───────────────────────────────────────────────
 
-    def get_open(self, type_filter: Optional[str] = None) -> List[Expectation]:
+    def get_open(self, type_filter: str | None = None) -> list[Expectation]:
         """Get all open expectations, optionally filtered by type."""
         result = [e for e in self.entries if e.is_open()]
         if type_filter:
             result = [e for e in result if e.type == type_filter]
         return result
 
-    def get_overdue(self, current_phrase: str, phrase_order: List[str]) -> List[Expectation]:
+    def get_overdue(self, current_phrase: str, phrase_order: list[str]) -> list[Expectation]:
         """Get all expectations that are past their deadline."""
         return [e for e in self.entries if e.is_overdue(current_phrase, phrase_order)]
 
     def get_due_soon(
-        self, current_phrase: str, phrase_order: List[str], horizon: int = 2
-    ) -> List[Expectation]:
+        self, current_phrase: str, phrase_order: list[str], horizon: int = 2
+    ) -> list[Expectation]:
         """Get expectations due within `horizon` phrases."""
         try:
             current_idx = phrase_order.index(current_phrase)
@@ -215,8 +215,8 @@ class ExpectationLedger:
         return result
 
     def get_active_cooldowns(
-        self, current_phrase: str, phrase_order: List[str]
-    ) -> List[Expectation]:
+        self, current_phrase: str, phrase_order: list[str]
+    ) -> list[Expectation]:
         """Get active cooldowns at the current phrase."""
         try:
             current_idx = phrase_order.index(current_phrase)
@@ -236,8 +236,8 @@ class ExpectationLedger:
         return result
 
     def get_active_prohibitions(
-        self, current_phrase: str, phrase_order: List[str]
-    ) -> List[Expectation]:
+        self, current_phrase: str, phrase_order: list[str]
+    ) -> list[Expectation]:
         """Get active prohibitions at the current phrase."""
         try:
             current_idx = phrase_order.index(current_phrase)
@@ -258,7 +258,7 @@ class ExpectationLedger:
                 result.append(e)
         return result
 
-    def get_locks(self) -> List[Expectation]:
+    def get_locks(self) -> list[Expectation]:
         """Get all active identity locks."""
         return [
             e for e in self.entries if e.type == ExpectationType.IDENTITY_LOCK.value and e.is_open()
@@ -284,7 +284,7 @@ class ExpectationLedger:
                 return True
         return False
 
-    def expire_cooldowns(self, current_phrase: str, phrase_order: List[str]) -> int:
+    def expire_cooldowns(self, current_phrase: str, phrase_order: list[str]) -> int:
         """Expire cooldowns that have passed their duration. Returns count."""
         try:
             current_idx = phrase_order.index(current_phrase)
@@ -307,7 +307,7 @@ class ExpectationLedger:
 
     # ─── Scoring ──────────────────────────────────────────────────────────
 
-    def score_phrase_resolution(self, phrase_id: str, phrase_order: List[str]) -> float:
+    def score_phrase_resolution(self, phrase_id: str, phrase_order: list[str]) -> float:
         """Score how well expectations are being managed at this phrase.
 
         Returns 0.0-1.0:
@@ -333,7 +333,7 @@ class ExpectationLedger:
 
     # ─── Serialization ────────────────────────────────────────────────────
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "entries": [
                 {
@@ -353,7 +353,7 @@ class ExpectationLedger:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "ExpectationLedger":
+    def from_dict(cls, data: dict[str, Any]) -> ExpectationLedger:
         ledger = cls()
         for entry_data in data.get("entries", []):
             exp = Expectation(

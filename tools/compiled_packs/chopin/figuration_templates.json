@@ -461,10 +461,19 @@
     "grounding": "hard_corroborated"
   },
   {
-    "id": "device_neapolitan_and_augmented_sixth_colour_at_moments_of_pathos_especially_in_the_mazurkas_and_nocturnes_13_modal_inflection_from_polish_folk_music",
+    "id": "device_neapolitan_and_augmented_sixth_colour",
     "category": "composer_device",
     "section": "Harmonic devices",
-    "name": "Neapolitan and augmented-sixth colour** at moments of pathos, especially in\n    the mazurkas and nocturnes.\n\n13. **Modal inflection from Polish folk music",
+    "name": "Neapolitan and augmented-sixth colour",
+    "description": "at moments of pathos, especially in the mazurkas and nocturnes.",
+    "source_file": "chopin/chopin-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_inflection_from_polish_folk_music",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal inflection from Polish folk music",
     "description": "a raised fourth (Lydian) or a flattened seventh in the mazurkas, and drone fifths in the bass. This is what separates a mazurka from a waltz.",
     "source_file": "chopin/chopin-devices.md",
     "grounding": "hard_corroborated"

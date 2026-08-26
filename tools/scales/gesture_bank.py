@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
 
 from .models import GestureQuery, GestureResult
 
@@ -57,10 +56,10 @@ class GestureBank:
 
     def __init__(self, composer: str = "mozart"):
         self.composer = composer
-        self._index: Optional[Dict] = None
-        self._shards: Dict[int, List[Dict]] = {}
+        self._index: dict | None = None
+        self._shards: dict[int, list[dict]] = {}
 
-    def _load_index(self) -> Dict:
+    def _load_index(self) -> dict:
         if self._index is not None:
             return self._index
 
@@ -73,7 +72,7 @@ class GestureBank:
             self._index = json.load(f)
         return self._index
 
-    def _load_shard(self, shard_idx: int) -> List[Dict]:
+    def _load_shard(self, shard_idx: int) -> list[dict]:
         if shard_idx in self._shards:
             return self._shards[shard_idx]
 
@@ -88,7 +87,7 @@ class GestureBank:
         self._shards[shard_idx] = cells
         return cells
 
-    def _load_all_cells(self) -> List[Dict]:
+    def _load_all_cells(self) -> list[dict]:
         """Load all gesture cells — inline or sharded."""
         index = self._load_index()
 
@@ -100,7 +99,7 @@ class GestureBank:
         # Fall back to sharded files
         all_cells = []
         shards = index.get("shards", [])
-        for i, shard_info in enumerate(shards):
+        for i, _shard_info in enumerate(shards):
             cells = self._load_shard(i)
             all_cells.extend(cells)
         # If no shard info but files exist, try loading sequentially
@@ -112,7 +111,7 @@ class GestureBank:
                 all_cells.extend(cells)
         return all_cells
 
-    def _score_cell(self, cell: Dict, query: GestureQuery) -> float:
+    def _score_cell(self, cell: dict, query: GestureQuery) -> float:
         """Score a gesture cell against a query."""
         score = 0.0
         weights_total = 0.0
@@ -192,7 +191,7 @@ class GestureBank:
             return score / weights_total
         return 0.5
 
-    def retrieve(self, query: GestureQuery) -> List[GestureResult]:
+    def retrieve(self, query: GestureQuery) -> list[GestureResult]:
         """Retrieve gestures matching the query, ranked by score."""
         # Decompose target_role if provided
         if query.target_role and query.target_role in _ROLE_DECOMPOSITIONS:
@@ -242,10 +241,10 @@ class GestureBank:
 
         return results
 
-    def get_function_distribution(self) -> Dict[str, int]:
+    def get_function_distribution(self) -> dict[str, int]:
         """Get the distribution of gesture functions in this corpus."""
         cells = self._load_all_cells()
-        counts: Dict[str, int] = {}
+        counts: dict[str, int] = {}
         for cell in cells:
             fn = cell.get("function", "unknown")
             counts[fn] = counts.get(fn, 0) + 1

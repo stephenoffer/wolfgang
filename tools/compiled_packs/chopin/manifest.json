@@ -1,8 +1,8 @@
 {
   "composer": "chopin",
-  "genre": "romantic",
+  "genre": "",
   "support_tier": "A",
-  "corpus_bar_count": 4853,
+  "corpus_bar_count": 8013,
   "profile_files": [
     "biography.md",
     "chopin-devices.md",
@@ -21,12 +21,16 @@
     "bars_00.json",
     "bars_01.json",
     "bars_02.json",
+    "bars_03.json",
+    "bars_04.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",
     "window_index_00.json",
     "window_index_01.json",
-    "window_index_02.json"
+    "window_index_02.json",
+    "window_index_03.json",
+    "window_index_04.json"
   ],
   "pattern_count": 2163
 }

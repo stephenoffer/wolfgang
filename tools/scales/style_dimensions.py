@@ -14,8 +14,9 @@ scored against a composer's per-feature mean/sd (see build_corpus_profiles).
 
 from __future__ import annotations
 
+import itertools
 import statistics
-from typing import Any, Dict, List
+from typing import Any
 
 # Diatonic scale-degree sets as semitone offsets from the tonic.
 _MAJOR = frozenset({0, 2, 4, 5, 7, 9, 11})
@@ -50,11 +51,11 @@ def _note_to_midi(name: str) -> int | None:
     return pc + 12 * (octave + 1)
 
 
-def _rh_notes(bar: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _rh_notes(bar: dict[str, Any]) -> list[dict[str, Any]]:
     return [e for e in bar.get("rh_display", []) if e.get("type") == "note"]
 
 
-def _melody_notes(bar: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _melody_notes(bar: dict[str, Any]) -> list[dict[str, Any]]:
     """The real top-voice melody (P1 `melody_line`); fall back to rh_display
     notes for un-reingested shards. Melodic metrics must measure the LINE, not
     the chord-soup of the whole staff."""
@@ -64,23 +65,23 @@ def _melody_notes(bar: Dict[str, Any]) -> List[Dict[str, Any]]:
     return _rh_notes(bar)
 
 
-def _all_events(bar: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _all_events(bar: dict[str, Any]) -> list[dict[str, Any]]:
     return list(bar.get("rh_display", [])) + list(bar.get("lh_display", []))
 
 
-def _scale_for(bar: Dict[str, Any]) -> frozenset:
+def _scale_for(bar: dict[str, Any]) -> frozenset:
     return _MINOR if bar.get("key_mode") == "minor" else _MAJOR
 
 
 # ─── Harmony ─────────────────────────────────────────────────────────────────
 
 
-def harmonic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
+def harmonic_metrics(bars: list[dict[str, Any]]) -> dict[str, float]:
     """Chromaticism, chord vocabulary, vertical density, harmonic rhythm."""
     total_notes = chromatic_notes = 0
     chord_count = maj = minr = dim = aug = sevenths = 0
-    chord_sizes: List[int] = []
-    bass_changes: List[int] = []  # distinct LH bass pitch-classes per bar ≈ harmonic rhythm
+    chord_sizes: list[int] = []
+    bass_changes: list[int] = []  # distinct LH bass pitch-classes per bar ≈ harmonic rhythm
 
     for bar in bars:
         scale = _scale_for(bar)
@@ -137,7 +138,7 @@ def harmonic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
     }
 
 
-def _classify_chord(pcs: List[int]) -> str:
+def _classify_chord(pcs: list[int]) -> str:
     """Crude chord-quality label from pitch-class set (relative to its own root)."""
     if len(pcs) < 2:
         return "other"
@@ -159,10 +160,10 @@ def _classify_chord(pcs: List[int]) -> str:
 # ─── Melody ──────────────────────────────────────────────────────────────────
 
 
-def melodic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
+def melodic_metrics(bars: list[dict[str, Any]]) -> dict[str, float]:
     """Interval distribution, leap ratio, range, contour smoothness of the real
     top-voice melody line."""
-    midis: List[int] = []
+    midis: list[int] = []
     for bar in bars:
         for e in _melody_notes(bar):
             m = e.get("midi")
@@ -182,7 +183,7 @@ def melodic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
             "repeat_ratio": 0.0,
         }
 
-    intervals = [abs(b - a) for a, b in zip(midis, midis[1:])]
+    intervals = [abs(b - a) for a, b in itertools.pairwise(midis)]
     n = len(intervals)
     step = sum(1 for i in intervals if _STEP[0] <= i <= _STEP[1])
     third = sum(1 for i in intervals if _THIRD[0] <= i <= _THIRD[1])
@@ -213,9 +214,9 @@ _DUR_BUCKETS = {
 }
 
 
-def rhythmic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
+def rhythmic_metrics(bars: list[dict[str, Any]]) -> dict[str, float]:
     """Distribution of note durations + triplet/syncopation proxies."""
-    durs: List[float] = []
+    durs: list[float] = []
     triplet = 0
     for bar in bars:
         for e in _all_events(bar):
@@ -227,9 +228,9 @@ def rhythmic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
             if 0.1 < frac < 0.23 or 0.27 < frac < 0.4:  # ~triplet subdivisions
                 triplet += 1
     if not durs:
-        return {k: 0.0 for k in list(_DUR_BUCKETS) + ["triplet_ratio", "dur_variety"]}
+        return dict.fromkeys([*list(_DUR_BUCKETS), "triplet_ratio", "dur_variety"], 0.0)
     n = len(durs)
-    out: Dict[str, float] = {}
+    out: dict[str, float] = {}
     for name, (lo, hi) in _DUR_BUCKETS.items():
         out[f"{name}_ratio"] = round(sum(1 for d in durs if lo <= d <= hi) / n, 4)
     out["triplet_ratio"] = round(triplet / n, 4)
@@ -240,9 +241,9 @@ def rhythmic_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
 # ─── Combined fingerprint ────────────────────────────────────────────────────
 
 
-def style_fingerprint(bars: List[Dict[str, Any]]) -> Dict[str, float]:
+def style_fingerprint(bars: list[dict[str, Any]]) -> dict[str, float]:
     """All dimensions in one flat dict of scalar features."""
-    fp: Dict[str, float] = {}
+    fp: dict[str, float] = {}
     fp.update(harmonic_metrics(bars))
     fp.update(melodic_metrics(bars))
     fp.update(rhythmic_metrics(bars))
