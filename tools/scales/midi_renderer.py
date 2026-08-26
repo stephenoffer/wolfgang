@@ -21,6 +21,7 @@ performance_renderer — deterministic, nothing persisted.
 
 from __future__ import annotations
 
+from fractions import Fraction
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -124,6 +125,25 @@ def _ramped_tempo_marks(bar_tempo: Dict[float, float], beats_per_bar: float):
     return out
 
 
+def _emit_meters(stream, music21, phrase_renders) -> None:
+    """Insert a TimeSignature wherever the metre starts or changes."""
+    offset = 0.0
+    current: Optional[Tuple[int, int]] = None
+    for events, _perf, meter, _key in phrase_renders:
+        try:
+            num, den = int(meter[0] or 4), int(meter[1] or 4)
+        except (TypeError, ValueError, IndexError):
+            num, den = 4, 4
+        if (num, den) != current:
+            try:
+                stream.insert(offset, music21.meter.TimeSignature(f"{num}/{den}"))
+            except Exception:
+                pass  # a metre music21 cannot spell must not lose the preview
+            current = (num, den)
+        bars = len({e.bar for e in events}) or 1
+        offset += bars * float(Fraction(num * 4, den))
+
+
 def render_midi(
     piece_graph: PieceGraph,
     scope: str = "full",
@@ -197,6 +217,18 @@ def render_midi(
 
     stream = music21.stream.Stream()
     stream.insert(0, music21.tempo.MetronomeMark(number=tempo_bpm))
+    # Declare the METRE. Nothing did, so every preview shipped with MIDI's 4/4
+    # default no matter what the piece was in — a 3/4 andante was written out
+    # declaring 4/4. Note timing is absolute, so it still SOUNDS right; what is
+    # wrong is the barring, and that reaches anything that reads the file as
+    # music: a DAW or notation import puts the barlines in the wrong place, a
+    # metronome click lands off the beat, and analysing the preview (which is
+    # how this was found) mis-assigns every note to a measure.
+    #
+    # Each phrase's own metre is declared at the bar it starts on, so a piece
+    # that changes metre is barred correctly the whole way through rather than
+    # only at the top.
+    _emit_meters(stream, music21, phrase_renders)
     # Notes are collected first and emitted after a pass that clips same-pitch
     # overlaps (see _clip_same_pitch_overlaps): the legato/sustain humanization
     # below lengthens notes, and a lengthened note that runs into the NEXT attack

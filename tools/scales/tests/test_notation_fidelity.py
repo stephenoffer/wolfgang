@@ -2154,3 +2154,51 @@ def test_the_midi_preview_uses_the_same_scope_matcher_as_the_assembler():
     src = inspect.getsource(midi_renderer.render_midi)
     assert "_in_scope" in src, "the renderer must share the assembler's scope matcher"
     assert 'scope.replace("section-"' not in src, "a second scope convention has come back"
+
+
+def test_the_midi_preview_declares_its_metre():
+    """Nothing declared one, so every preview shipped with MIDI's 4/4 default.
+
+    A 3/4 andante was written out saying 4/4. Note timing is absolute, so it
+    still SOUNDS right — what is wrong is the barring, and that reaches
+    everything that reads the file as music: a notation or DAW import puts the
+    barlines in the wrong place, a metronome click lands off the beat, and
+    analysing the preview mis-assigns every note to a measure (which is how this
+    was found — a 3/4 bar 1 held four beats of notes).
+    """
+    import music21
+
+    from scales.midi_renderer import _emit_meters
+
+    class _Ev:
+        def __init__(self, bar):
+            self.bar = bar
+
+    stream = music21.stream.Stream()
+    renders = [
+        ([_Ev(1), _Ev(2)], None, (3, 4), "C"),  # two bars of 3/4
+        ([_Ev(3)], None, (3, 4), "C"),  # same metre — no second mark
+        ([_Ev(4)], None, (6, 8), "C"),  # a change
+    ]
+    _emit_meters(stream, music21, renders)
+    marks = [(float(t.offset), t.ratioString) for t in stream.getElementsByClass("TimeSignature")]
+    assert marks[0] == (0.0, "3/4"), marks
+    # One mark for the run of 3/4, then the change where it happens: two bars
+    # plus one more, three quarters each, is offset 9.
+    assert len(marks) == 2, marks
+    assert marks[1] == (9.0, "6/8"), marks
+
+
+def test_a_malformed_metre_does_not_lose_the_preview():
+    """The preview is what the critic hears; a metre music21 cannot spell must
+    degrade to 4/4, never to an exception."""
+    import music21
+
+    from scales.midi_renderer import _emit_meters
+
+    class _Ev:
+        bar = 1
+
+    stream = music21.stream.Stream()
+    _emit_meters(stream, music21, [([_Ev()], None, (0, 0), "C"), ([_Ev()], None, None, "C")])
+    assert [t.ratioString for t in stream.getElementsByClass("TimeSignature")] == ["4/4"]
