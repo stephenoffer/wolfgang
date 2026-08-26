@@ -445,3 +445,42 @@ def test_rescaling_maps_bar_length_not_denominator():
                 beats = _shorthand_beats(voice.strip())
                 if beats is not None:
                     assert abs(beats - 4.0) < 0.01, f"{composer} {exemplar.source}: {beats}"
+
+
+def test_simple_and_compound_metres_never_borrow_from_each_other():
+    """3/4 and 6/8 are both three quarters long, so a length test alone calls
+    them equivalent.
+
+    They are not: 6/8 is two dotted beats subdividing in threes, 3/4 is three
+    plain ones, and renotating either as the other by a duration factor teaches
+    exactly the wrong rhythm. This is the same objection that keeps 2/4 away
+    from 4/4 — it just survives the arithmetic, which is what made it easy to
+    miss when writing the length rule.
+    """
+    from scales.composition_brief import _equivalent_meters
+
+    available = [(4, 4), (3, 4), (6, 8), (2, 4), (4, 2), (2, 2), (9, 8), (12, 8), (3, 8), (6, 4)]
+
+    assert (6, 8) not in _equivalent_meters((3, 4), available)
+    assert (3, 4) not in _equivalent_meters((6, 8), available)
+    assert (6, 4) not in _equivalent_meters((12, 8), available)  # compound vs simple
+
+    # Within a class, another notation level is still fine.
+    assert (3, 8) in _equivalent_meters((3, 4), available)
+    assert (4, 2) in _equivalent_meters((4, 4), available)
+
+
+def test_a_composer_with_no_compound_metre_teaches_none():
+    """Bach's corpus is chorales — 4/4, 3/4, 3/2 and no 6/8 at all. Yielding
+    nothing for a 6/8 phrase is the honest answer; borrowing his 3/4 bars and
+    presenting them as compound is not.
+    """
+    from scales.composition_brief import _corpus_meters, _retrieve_exemplars
+    from scales.models import PhraseSlot
+
+    assert not any(m == (6, 8) for m in _corpus_meters("bach"))
+    slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(6, 8))
+    assert _retrieve_exemplars("bach", slot, 4, []) == []
+    # And a composer who DID write compound metre still teaches it.
+    slot_c = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(6, 8))
+    assert _retrieve_exemplars("chopin", slot_c, 4, [])

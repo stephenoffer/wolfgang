@@ -2193,6 +2193,11 @@ def _corpus_meters(composer: str) -> List[Tuple[int, int]]:
     return out
 
 
+def _is_compound(num: int, den: int) -> bool:
+    """Compound metre: the beat divides into three (6/8, 9/8, 12/8, 6/16...)."""
+    return den in (8, 16) and num in (6, 9, 12)
+
+
 def _equivalent_meters(meter: Tuple[int, int], available) -> List[Tuple[int, int]]:
     """Corpus meters that are the SAME metrical structure as ``meter``, best first.
 
@@ -2213,6 +2218,7 @@ def _equivalent_meters(meter: Tuple[int, int], available) -> List[Tuple[int, int
     # means. The guard that used to follow this could never fire — `or 4` had
     # already replaced the zero.
     num, den = int(meter[0] or 4), int(meter[1] or 4)
+    target_compound = _is_compound(num, den)
     same_count, same_length = [], []
     target_len = Fraction(num * 4, den)
     for cand in available:
@@ -2220,6 +2226,14 @@ def _equivalent_meters(meter: Tuple[int, int], available) -> List[Tuple[int, int
             continue
         c_num, c_den = int(cand[0] or 0), int(cand[1] or 0)
         if c_num <= 0 or c_den <= 0:
+            continue
+        # Simple and compound never borrow from each other. 3/4 and 6/8 are both
+        # three quarters long, so a length test alone calls them equivalent —
+        # but 6/8 is two dotted beats subdividing in threes and 3/4 is three
+        # plain ones. Renotating either as the other by a duration factor
+        # teaches exactly the wrong rhythm, which is the same objection that
+        # keeps 2/4 away from 4/4.
+        if _is_compound(c_num, c_den) != target_compound:
             continue
         if c_num == num:
             same_count.append((c_num, c_den))
