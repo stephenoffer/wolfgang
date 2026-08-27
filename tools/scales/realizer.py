@@ -827,38 +827,49 @@ class Realizer:
     def _harmony_to_bass(
         self, harmony: HarmonyEvent, bass_register: list[int], key: str
     ) -> int | None:
-        """Convert a harmony event to a bass pitch."""
-        root_offset = key_to_root_midi(key)
+        """The bass note of this harmony — the chord tone the INVERSION puts there.
+
+        This kept its own Roman-numeral table: nineteen entries mapping a symbol
+        to a scale degree, with everything unlisted falling through to `0`, the
+        root. So every first and second inversion was silently played in root
+        position — `i6` in G minor put G in the bass where the notation says B
+        flat, and then a scale snap moved it to B NATURAL, a note outside the
+        key, sounding against the melody's B flat.
+
+        `harmony_analysis` is this project's one Roman parser and already covers
+        every degree, quality and inversion; `roman_pitches` returns the pitch
+        classes BASS FIRST. There is no second table to maintain.
+        """
+        from .harmony_analysis import roman_pitches
+        from .pitch import is_minor_key
+
         roman = harmony.roman.strip()
+        tonic_pc = key_to_root_midi(key) % 12
+        mode = "minor" if is_minor_key(key) else "major"
+        pcs = roman_pitches(roman, tonic_pc, mode)
+        if not pcs:
+            # An unparseable symbol is the tonic, as before — but now that is a
+            # deliberate fallback rather than the answer for two thirds of the
+            # inversions in common use.
+            pcs = [tonic_pc]
 
-        # Map Roman numeral to scale degree offset
-        degree_offsets = {
-            "I": 0,
-            "i": 0,
-            "II": 2,
-            "ii": 2,
-            "ii6": 5,
-            "III": 4,
-            "iii": 4,
-            "IV": 5,
-            "iv": 5,
-            "V": 7,
-            "v": 7,
-            "V7": 7,
-            "VI": 9,
-            "vi": 9,
-            "VII": 11,
-            "vii": 11,
-            "viio": 11,
-            "I64": 7,
-        }
-        offset = degree_offsets.get(roman, 0)
-        target = root_offset + offset
-
-        # Find in bass register
+        # Place that pitch class in the bass octave, then keep it: snapping a
+        # chord tone to a scale is what turned the B flat into a B natural.
+        #
+        # The floor is the tonic in the octave this always used (`root + 36`, so
+        # G2 in G minor), and the chord tone is taken AT OR ABOVE it — a bass
+        # that drops below the tonic for an inversion is a different register,
+        # not a different note.
+        bass_pc = pcs[0]
+        octave_floor = key_to_root_midi(key) + 36
+        target = octave_floor + ((bass_pc - octave_floor) % 12)
         if bass_register:
-            return snap_to_scale(target + 36, bass_register)
-        return target + 36
+            lo, hi = min(bass_register), max(bass_register)
+            while target < lo - 12:
+                target += 12
+            while target > hi + 12:
+                target -= 12
+        return target
 
     def _get_harmony_at(self, sketch: SketchIR, bar: int) -> HarmonyEvent | None:
         """Get the harmony event at or before a given bar."""
