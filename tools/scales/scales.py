@@ -2829,7 +2829,12 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
     from .duration import bar_duration, dur_to_beats, is_grace
 
     capacity = bar_duration(meter)
-    counts = {"snapped": 0, "overlaps_trimmed": 0, "overflow_dropped": 0}
+    counts = {
+        "snapped": 0,
+        "duplicates_removed": 0,
+        "overlaps_trimmed": 0,
+        "overflow_dropped": 0,
+    }
 
     def _on_grid(beat) -> Fraction:
         """The SIMPLEST subdivision that explains this position.
@@ -2885,7 +2890,16 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
             if nxt is not None:
                 room = min(room, _on_grid(nxt.beat) - 1 - start)
             if room <= 0:
-                counts["overlaps_trimmed"] += 1
+                # An EXACT DUPLICATE is a different diagnosis from an overlap,
+                # and counting them together hides which. A generator writing
+                # the same note twice is noise the repair absorbs completely; a
+                # generator writing two DIFFERENT notes into one voice has
+                # written something a player cannot play, and one of them is
+                # about to be lost. Both looked like "overlaps_trimmed: 67",
+                # which reads as 67 notes shortened when it was mostly a
+                # doubled accompaniment being de-duplicated.
+                same = nxt is not None and nxt.pitch == e.pitch and nxt.duration == e.duration
+                counts["duplicates_removed" if same else "overlaps_trimmed"] += 1
                 continue
             if length > room:
                 from .duration import largest_dur_at_most
@@ -3215,7 +3229,7 @@ def get_composition_brief(
         graph.save(str(workspace / "piece_graph.json"))
     if fmt == "json":
         return asdict(brief)
-    return render_text(brief)
+    return render_text(brief, graph)
 
 
 def _persist_brief_receipt(graph, phrase_id: str, brief) -> bool:
@@ -3344,7 +3358,7 @@ def run_agent_section_briefs(
         try:
             brief = build_brief(graph, pid, n_exemplars=n_exemplars, composer=composer)
             dirty = _persist_brief_receipt(graph, pid, brief) or dirty
-            out[pid] = asdict(brief) if fmt == "json" else render_text(brief)
+            out[pid] = asdict(brief) if fmt == "json" else render_text(brief, graph)
         except KeyError as exc:
             out[pid] = {"error": str(exc)}
     if dirty:

@@ -2304,3 +2304,52 @@ def test_orchestral_note_accounting_is_exact_when_nothing_is_dropped():
     written = sum(len(n.pitches) for n in music21.converter.parse(str(score_path)).recurse().notes)
     # Never MORE than planned: that would mean the assembler invented notes.
     assert written <= planned, f"{written} notes written from {planned} planned"
+
+
+def test_the_repair_distinguishes_a_duplicate_from_an_overlap():
+    """A generator writing the same note twice is noise the repair absorbs
+    completely. A generator writing two DIFFERENT notes into one voice has
+    written something a player cannot play, and one of them is about to be lost.
+
+    Both were counted as `overlaps_trimmed`, so a fallback realization reported
+    67 of them — reading as 67 notes shortened when it was mostly a doubled
+    left hand being de-duplicated. The number is the signal that the generator
+    upstream needs fixing, so it has to say WHICH thing it is.
+    """
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    def surface(second_pitch, second_duration):
+        layer = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+        layer.principal_line = [
+            LayerEvent(
+                bar=1,
+                beat=1.0,
+                pitch="C5",
+                duration="q",
+                role="structural",
+                source_layer="principal_line",
+            ),
+            LayerEvent(
+                bar=1,
+                beat=1.0,
+                pitch=second_pitch,
+                duration=second_duration,
+                role="structural",
+                source_layer="principal_line",
+            ),
+        ]
+        return layer
+
+    exact = _repair_engine_surface(surface("C5", "q"), (4, 4))
+    assert exact.get("duplicates_removed") == 1, exact
+    assert not exact.get("overlaps_trimmed"), exact
+
+    # Two different notes at one instant in one voice: a real collision.
+    collision = _repair_engine_surface(surface("E5", "q"), (4, 4))
+    assert collision.get("overlaps_trimmed") == 1, collision
+    assert not collision.get("duplicates_removed"), collision
+
+    # Same pitch, different length, is not the same note written twice.
+    relength = _repair_engine_surface(surface("C5", "h"), (4, 4))
+    assert relength.get("overlaps_trimmed") == 1, relength
