@@ -947,7 +947,9 @@ def movement_profile(composer: str, min_bars: int = 24) -> Optional[Dict[str, An
 _IDIOM_RUN_CACHE: Dict[str, Any] = {}
 
 
-def movement_idiom_runs(composer: str, min_bars: int = 24) -> Optional[Dict[str, Any]]:
+def movement_idiom_runs(
+    composer: str, min_bars: int = 24, bars_like: Optional[int] = None
+) -> Optional[Dict[str, Any]]:
     """How long a movement stays on its dominant accompaniment before leaving it.
 
     `movement_idiom_mix` says WHICH idioms a movement uses and in what
@@ -973,13 +975,29 @@ def movement_idiom_runs(composer: str, min_bars: int = 24) -> Optional[Dict[str,
     runs `broken_chord_wave` for 6 bars, 2, then TWELVE, with single bars of
     `alberti` between.
 
+    `bars_like` restricts the answer to movements of COMPARABLE LENGTH, and it
+    matters more than it looks. The longest run scales with the movement:
+
+        chopin     24-50 bars   median longest 14   (32% of the piece)
+                   51-100                      23   (30%)
+                   101+                        20   (15%)
+        beethoven  24-50 bars                   6   (23%)
+                   101+                        13   (6%)
+
+    So "Chopin's median longest run is 20" is an answer about his long
+    movements, and handing it to a generator writing 41 bars sets a target from
+    a different population — the aggregate-versus-member error one axis further
+    out, and this function committed it. For a 41-bar piece the honest figures
+    are Chopin 14 and Beethoven 6, which changes "we are at a quarter of real"
+    into "Beethoven is at half and Mozart is already there".
+
     A first version of this measurement reported a median run of 1 bar for every
     composer and would have said real movements never settle at all. It was
     counting runs of EVERY label, where the one-bar departures outnumber the
     long stretches and swamp them. Reading one score bar by bar is what caught
     it; no aggregate would have.
     """
-    key = f"{(composer or '').strip().lower()}|{min_bars}"
+    key = f"{(composer or '').strip().lower()}|{min_bars}|{bars_like}"
     if key in _IDIOM_RUN_CACHE:
         return _IDIOM_RUN_CACHE[key]
 
@@ -991,9 +1009,17 @@ def movement_idiom_runs(composer: str, min_bars: int = 24) -> Optional[Dict[str,
 
         longest: List[int] = []
         runs: List[int] = []
+        shares: List[float] = []
         one_bar_departures = departures = 0
+        # Comparable length: within a factor of two either way, which keeps the
+        # bands wide enough to have members and narrow enough to mean something.
+        low = high = None
+        if bars_like:
+            low, high = max(min_bars, bars_like // 2), bars_like * 2
         for _source, bars in group_by_source(load_bars(composer)).items():
             if len(bars) < min_bars:
+                continue
+            if low is not None and not (low <= len(bars) <= high):
                 continue
             order = sorted(bars, key=lambda b: b.get("bar_num", 0))
             sequence = [b.get("lh_texture") for b in order if b.get("lh_texture")]
@@ -1022,6 +1048,7 @@ def movement_idiom_runs(composer: str, min_bars: int = 24) -> Optional[Dict[str,
             if here:
                 runs.extend(here)
                 longest.append(max(here))
+                shares.append(max(here) / len(sequence))
         if len(longest) >= 4:
             longest.sort()
             runs.sort()
@@ -1038,6 +1065,14 @@ def movement_idiom_runs(composer: str, min_bars: int = 24) -> Optional[Dict[str,
                 "one_bar_departure_share": round(
                     one_bar_departures / departures if departures else 0.0, 4
                 ),
+                # Length-independent, and the better target of the two: the
+                # longest run is about 30% of a short Chopin movement and 15%
+                # of a long one, so a share transfers across forms where a bar
+                # count does not.
+                "longest_run_share_median": round(sorted(shares)[len(shares) // 2], 4)
+                if shares
+                else 0.0,
+                "bars_like": bars_like,
             }
     except Exception:
         result = None

@@ -245,3 +245,53 @@ def test_the_profile_agrees_with_the_mix_it_replaces():
             continue
         assert profile["source"] == mix["source"], composer
         assert profile["idioms"] == mix["idioms"], composer
+
+
+def test_the_run_target_is_taken_from_movements_of_comparable_length():
+    """The longest run scales with the movement, so an all-lengths median is a
+    target from a different population.
+
+        chopin     24-50 bars   median longest 14   (32% of the piece)
+                   101+                         20   (15%)
+
+    Handing "Chopin's median longest run is 20" to a generator writing 41 bars
+    is the aggregate-versus-member error one axis further out — comparing a
+    short piece against a distribution over every length — and this function
+    committed it until `bars_like` existed. For 41 bars the honest figures are
+    Chopin 17 and Beethoven 7, which turns "we are at a quarter of real" into
+    "Beethoven is at half and Mozart is already there".
+    """
+    from scales.composition_brief import movement_idiom_runs
+
+    short = movement_idiom_runs("chopin", bars_like=41)
+    everything = movement_idiom_runs("chopin")
+    if short is None or everything is None:
+        pytest.skip("corpus not available")
+    assert short["longest_run_median"] < everything["longest_run_median"], (
+        "length-matching changed nothing for Chopin, which would make the parameter ceremony"
+    )
+    assert short["movements"] < everything["movements"]
+    assert short["bars_like"] == 41
+
+
+def test_the_share_transfers_across_forms_where_a_bar_count_does_not():
+    """The longest run is ~30% of a short Chopin movement and ~15% of a long
+    one, so the share is the figure that survives a change of form."""
+    from scales.composition_brief import movement_idiom_runs
+
+    for composer in ("chopin", "beethoven", "mozart"):
+        stats = movement_idiom_runs(composer, bars_like=41)
+        if stats is None:
+            continue
+        assert 0.0 < stats["longest_run_share_median"] < 1.0, composer
+
+
+def test_length_matching_still_leaves_enough_movements_to_answer():
+    """A band narrow enough to be meaningless returns None, not a guess."""
+    from scales.composition_brief import movement_idiom_runs
+
+    for composer in ("chopin", "beethoven"):
+        stats = movement_idiom_runs(composer, bars_like=41)
+        if stats is None:
+            continue
+        assert stats["movements"] >= 4, composer
