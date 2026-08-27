@@ -551,6 +551,54 @@ def compile_style(
     return result
 
 
+def _movement_of_phrase(graph, phrase_id: str, slot) -> str:
+    """Which movement a slot belongs to — the field if set, else `m<N>_`."""
+    mv = str(getattr(slot, "movement_id", "") or "")
+    if mv:
+        return mv
+    sid = str(getattr(slot, "section_id", "") or phrase_id or "")
+    m = re.match(r"^(m\d+)_", sid)
+    return m.group(1) if m else "m1"
+
+
+def _movement_ordinal(movement_id: str) -> int:
+    m = re.match(r"^m(\d+)$", str(movement_id or ""))
+    return int(m.group(1)) if m else 1
+
+
+def _bars_before_movement(graph, movement_id: str) -> Tuple[int, Dict[str, int]]:
+    """(last bar of the movements BEFORE this one, {later movement: its first bar}).
+
+    Ordered by movement number rather than by "everything else already in the
+    graph", so REBUILDING a middle movement puts it back where it was instead of
+    appending it after the finale. The two rules agree while movements are built
+    in order and disagree exactly when one is revised, which is when it matters.
+
+    A rebuild that changes a movement's LENGTH leaves the movements after it in
+    the wrong place, and nothing downstream can tell — so they are named here
+    and the caller reports them. Silently overlapping bars is how three
+    movements ended up stacked on one another in the first place.
+    """
+    mid = str(movement_id or "m1")
+    ordinal = _movement_ordinal(mid)
+    before = 0
+    after: Dict[str, int] = {}
+    for pid, ps in getattr(graph, "phrases", {}).items():
+        slot = getattr(ps, "slot", None)
+        if slot is None:
+            continue
+        other = _movement_of_phrase(graph, pid, slot)
+        if other == mid:
+            continue
+        end = int(slot.bar_start or 1) + int(slot.bar_count or 0) - 1
+        start = int(slot.bar_start or 1)
+        if _movement_ordinal(other) < ordinal:
+            before = max(before, end)
+        else:
+            after[other] = min(after.get(other, start), start)
+    return before, after
+
+
 @_tool
 def build_form_graph(
     piece_id: str,
@@ -598,15 +646,38 @@ def build_form_graph(
     phrase_summaries = []
     form_substituted = ""
 
+    # This movement begins after every bar already spoken for by ANOTHER
+    # movement — its own earlier phrases are excluded so rebuilding a movement
+    # replaces it in place instead of pushing it further down the score each
+    # time. Bars are the assembler's layout coordinate and must be unique
+    # across the whole work; see `_build_from_spec`.
+    bar_offset, later_movements = _bars_before_movement(graph, movement_id)
+    prior_phrase_ids = {
+        pid
+        for pid, ps in graph.phrases.items()
+        if getattr(ps, "slot", None) is not None
+        and _movement_of_phrase(graph, pid, ps.slot) == movement_id
+    }
+    if bar_offset:
+        _LOG.info("%s: movement %r starts at bar %d", piece_id, movement_id, bar_offset + 1)
+
     if form == "ternary":
-        phrases = _build_ternary(key, tempo_bpm, meter, graph.style_dna, movement_id)
+        phrases = _build_ternary(key, tempo_bpm, meter, graph.style_dna, movement_id, bar_offset)
     elif form == "sonata":
-        phrases = _build_sonata(key, tempo_bpm, meter, graph.style_dna, movement_id)
+        phrases = _build_sonata(key, tempo_bpm, meter, graph.style_dna, movement_id, bar_offset)
     elif form == "theme_variations":
-        phrases = _build_theme_variations(key, tempo_bpm, meter, graph.style_dna, movement_id)
+        phrases = _build_theme_variations(
+            key, tempo_bpm, meter, graph.style_dna, movement_id, bar_offset
+        )
     elif form in ("binary", "rounded_binary"):
         phrases = _build_binary(
-            key, tempo_bpm, meter, graph.style_dna, movement_id, rounded=form == "rounded_binary"
+            key,
+            tempo_bpm,
+            meter,
+            graph.style_dna,
+            movement_id,
+            rounded=form == "rounded_binary",
+            bar_offset=bar_offset,
         )
     else:
         # SAY SO. `_build_simple` is a reasonable default for a form this system
@@ -615,7 +686,9 @@ def build_form_graph(
         # with no trio, and a `fugue` and a `binary` were the same song form
         # under a different name. Nothing in the result said the form asked for
         # was not the form built.
-        phrases = _build_simple(key, tempo_bpm, meter, form, graph.style_dna, movement_id)
+        phrases = _build_simple(
+            key, tempo_bpm, meter, form, graph.style_dna, movement_id, bar_offset
+        )
         form_substituted = form
 
     # Create movement
@@ -659,7 +732,19 @@ def build_form_graph(
             }
         )
 
-    form_graph.movements.append(movement)
+    # REPLACE a movement of the same id rather than appending a second copy.
+    # Rebuilding a movement appended a duplicate MovementSpec, so `form.movements`
+    # grew each replan and every consumer that iterates it — the assembler's
+    # movement headings among them — saw the movement twice.
+    _existing = [
+        i for i, m in enumerate(form_graph.movements) if getattr(m, "id", "") == movement_id
+    ]
+    if _existing:
+        form_graph.movements[_existing[0]] = movement
+        for _dup in reversed(_existing[1:]):
+            del form_graph.movements[_dup]
+    else:
+        form_graph.movements.append(movement)
     graph.form = form_graph
 
     # The dramatic plan: what each phrase is FOR. Without this, planning produced
@@ -824,6 +909,50 @@ def build_form_graph(
                 ),
             }
         )
+    # A REBUILD leaves the old layout's debris behind, and nothing downstream
+    # can tell the difference between a phrase this form asked for and one the
+    # previous form did. Rebuilding a ternary movement as a sonata keeps the
+    # ternary's `_retr` and `_coda` phrases — realized, in scope, and assembled
+    # into the score alongside the sonata. They are named rather than deleted:
+    # some of them may hold composed music, and dropping that uninvited is not
+    # this function's call to make.
+    built_ids = {p.phrase_id for p in phrases}
+    orphans = sorted(prior_phrase_ids - built_ids)
+    if orphans:
+        phrase_summaries.append(
+            {
+                "warning": "stale_phrases_from_previous_layout",
+                "movement": movement_id,
+                "phrase_ids": orphans,
+                "note": (
+                    "these phrases belong to this movement's PREVIOUS form and are "
+                    "still in the graph — they will be assembled into the score. "
+                    "Remove them if the rebuild was intentional."
+                ),
+            }
+        )
+
+    # A rebuild that changed this movement's LENGTH moves its last bar into the
+    # movement after it. The bars would silently overlap, which is the same
+    # failure as the one `bar_offset` exists to prevent, arriving from the other
+    # direction.
+    if later_movements and phrases:
+        movement_end = max(p.bar_start + p.bar_count - 1 for p in phrases)
+        clash = sorted(mv for mv, start in later_movements.items() if start <= movement_end)
+        if clash:
+            phrase_summaries.append(
+                {
+                    "warning": "later_movements_now_overlap",
+                    "movement": movement_id,
+                    "ends_at_bar": movement_end,
+                    "overlapping": clash,
+                    "note": (
+                        "this movement changed length and now runs into the "
+                        "movement(s) after it — rebuild them so their bars follow."
+                    ),
+                }
+            )
+
     return phrase_summaries
 
 
@@ -1452,7 +1581,12 @@ def run_scales_section(
             # a doubling shares its principal's onset and the repair measures
             # each note's room against the next later one — thickening first
             # made it re-measure spans it had already settled.
-            from .surface_composer import _hold_over_barline, _thicken_principal_line
+            from .surface_composer import (
+                _hold_over_barline,
+                _shape_the_cadence,
+                _thicken_bass_foundation,
+                _thicken_principal_line,
+            )
 
             # NEVER on a phrase the agent wrote. The engine is the fallback;
             # adding so much as a doubling to the agent's own notes breaks the
@@ -1465,6 +1599,22 @@ def run_scales_section(
                     or getattr(getattr(_existing, "slot", None), "key", "")
                     or "C major",
                 )
+                _thicken_bass_foundation(
+                    node.surface,
+                    node.surface.key
+                    or getattr(getattr(_existing, "slot", None), "key", "")
+                    or "C major",
+                )
+                # Before the tie pass, which must not find a note it is about
+                # to bind already rewritten underneath it.
+                _slot = getattr(_existing, "slot", None)
+                if _slot is not None:
+                    _shape_the_cadence(
+                        node.surface,
+                        tuple(slot_meter_for(graph, node.phrase_id)),
+                        getattr(_slot, "cadence_target", "none"),
+                        _slot.bar_start + _slot.bar_count - 1,
+                    )
                 _hold_over_barline(node.surface, tuple(slot_meter_for(graph, node.phrase_id)))
                 # REPAIR AGAIN. Thickening and holding both rewrite the surface
                 # the repair had just settled, and nothing re-checked it before
@@ -1850,8 +2000,20 @@ def _key_for_role(key: str, role: str) -> str:
     return fns.get(role, lambda k: k)(key)
 
 
-def _build_from_spec(spec, key, tempo, meter, style, movement_id: str = "m1") -> List[PhraseSlot]:
+def _build_from_spec(
+    spec, key, tempo, meter, style, movement_id: str = "m1", bar_offset: int = 0
+) -> List[PhraseSlot]:
     """Materialize a form spec into PhraseSlots with running bar numbers.
+
+    ``bar_offset`` places this movement AFTER the ones already built. The cursor
+    started at 1 for every movement, so a three-movement work laid all three on
+    top of each other: the assembler collects events by absolute bar, and bar 1
+    held movement I's, II's and III's opening bars at once. In a real run that
+    was 34 of 41 bars overfull — a 2/4 bar carrying 8 beats — with the metre
+    flip-flopping 2/4, 3/4, 4/4, 2/4 down the page and three final barlines
+    inside the score. The movement-heading and movement-barline machinery was
+    written assuming bar numbers are globally unique, which they were, right up
+    until a second movement existed.
 
     Every form spec hardcodes an ``m1_`` prefix, so a second movement built into
     the same piece produced phrase ids that COLLIDED with the first and silently
@@ -1860,7 +2022,7 @@ def _build_from_spec(spec, key, tempo, meter, style, movement_id: str = "m1") ->
     so each movement gets its own namespace.
     """
     phrases: List[PhraseSlot] = []
-    bar = 1
+    bar = 1 + max(0, int(bar_offset or 0))
     counters: Dict[str, int] = {}
     from .dramatic_plan import role_for
 
@@ -1893,17 +2055,27 @@ def _build_from_spec(spec, key, tempo, meter, style, movement_id: str = "m1") ->
 
 
 def _build_ternary(
-    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA, movement_id: str = "m1"
+    key: str,
+    tempo: int,
+    meter: Tuple[int, int],
+    style: StyleDNA,
+    movement_id: str = "m1",
+    bar_offset: int = 0,
 ) -> List[PhraseSlot]:
     """ABA' ternary with a retransition and a coda, and asymmetric phrases."""
-    return _build_from_spec(_TERNARY_SPEC, key, tempo, meter, style, movement_id)
+    return _build_from_spec(_TERNARY_SPEC, key, tempo, meter, style, movement_id, bar_offset)
 
 
 def _build_sonata(
-    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA, movement_id: str = "m1"
+    key: str,
+    tempo: int,
+    meter: Tuple[int, int],
+    style: StyleDNA,
+    movement_id: str = "m1",
+    bar_offset: int = 0,
 ) -> List[PhraseSlot]:
     """A complete sonata-allegro: exposition, development, recapitulation, coda."""
-    return _build_from_spec(_SONATA_SPEC, key, tempo, meter, style, movement_id)
+    return _build_from_spec(_SONATA_SPEC, key, tempo, meter, style, movement_id, bar_offset)
 
 
 def _build_binary(
@@ -1913,6 +2085,7 @@ def _build_binary(
     style: StyleDNA,
     movement_id: str = "m1",
     rounded: bool = False,
+    bar_offset: int = 0,
 ) -> List[PhraseSlot]:
     """Binary or rounded binary, with the second key area chosen by mode.
 
@@ -1928,21 +2101,33 @@ def _build_binary(
         spec = _ROUNDED_BINARY_SPEC_MINOR if minor else _ROUNDED_BINARY_SPEC_MAJOR
     else:
         spec = _BINARY_SPEC_MINOR if minor else _BINARY_SPEC_MAJOR
-    return _build_from_spec(spec, key, tempo, meter, style, movement_id)
+    return _build_from_spec(spec, key, tempo, meter, style, movement_id, bar_offset)
 
 
 def _build_theme_variations(
-    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA, movement_id: str = "m1"
+    key: str,
+    tempo: int,
+    meter: Tuple[int, int],
+    style: StyleDNA,
+    movement_id: str = "m1",
+    bar_offset: int = 0,
 ) -> List[PhraseSlot]:
-    """Theme + four variations, each with its own key role, phrase rhythm and tempo."""
+    """Theme + four variations, each with its own key role, phrase rhythm and tempo.
+
+    This alone among the builders never passed ``movement_id`` down, so a
+    variations movement placed second in a work built ``m1_theme`` / ``m1_var1``
+    section ids — colliding with movement I's namespace, which is the exact
+    collision `_build_from_spec`'s prefix rewrite exists to prevent.
+    """
+    mid = str(movement_id or "m1")
     spec = [
         ("m1_theme", 4, _PF.PRESENTATION.value, _CT.HC.value, "tonic"),
         ("m1_theme", 4, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
     ]
-    phrases = _build_from_spec(spec, key, tempo, meter, style)
-    bar = sum(p.bar_count for p in phrases) + 1
+    phrases = _build_from_spec(spec, key, tempo, meter, style, mid, bar_offset)
+    bar = max((p.bar_start + p.bar_count for p in phrases), default=1 + bar_offset)
     for i, character in enumerate(_VARIATION_CHARACTERS, start=1):
-        section = f"m1_var{i}"
+        section = f"{mid}_var{i}"
         var_key = _key_for_role(key, character["key_role"])
         var_tempo = max(30, int(round(tempo * character["tempo_scale"])))
         for j, (bars, fn, cad) in enumerate(
@@ -1968,9 +2153,10 @@ def _build_simple(
     form: str,
     style: StyleDNA,
     movement_id: str = "m1",
+    bar_offset: int = 0,
 ) -> List[PhraseSlot]:
     """A short song-form default for unrecognized form names."""
-    return _build_from_spec(_SIMPLE_SPEC, key, tempo, meter, style, movement_id)
+    return _build_from_spec(_SIMPLE_SPEC, key, tempo, meter, style, movement_id, bar_offset)
 
 
 def _make_slot(
@@ -4340,6 +4526,19 @@ def self_evaluate(
     # Anti-skip: how much of the scope Claude actually authored, and any
     # phrases flagged as composed-blind (resembling no briefed exemplar).
     report["authoring"] = _authoring_summary(graph, section_id)
+    # An unfinished piece must SAY it is unfinished. A score assembled from 3 of
+    # 9 phrases is simply shorter, with nothing in any report explaining why:
+    # `warnings` came back EMPTY for exactly that piece, while `authoring` called
+    # its six empty phrases "engine_realized". Everything else in this report
+    # describes only the phrases that exist, which is misleading unsaid.
+    _unrealized = report["authoring"].get("unrealized") or 0
+    if _unrealized:
+        _named = ", ".join(report["authoring"].get("unrealized_phrases", [])[:8])
+        warnings.append(
+            f"INCOMPLETE: {_unrealized} of {report['authoring'].get('phrases', 0)} "
+            f"phrases have no notes at all ({_named}). Every measurement in this "
+            f"report describes only the phrases that exist."
+        )
 
     # The craft checklist runs on every commit and is stored on the phrase —
     # and the reviewer, whose whole input is this report, never saw it. Advisory
@@ -4797,6 +4996,7 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
     from .corpus_metrics import (
         bar_metrics,
         l1_distance,
+        sonority_metrics,
         texture_distribution,
         zscore,
     )
@@ -4816,11 +5016,26 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
     if not bars:
         return {"error": "no bars extracted from assembled score"}
 
-    # Score on EVERY profiled dimension — texture/rhythm (bar_metrics) plus
-    # harmony/melody/rhythm-value (style_fingerprint) — not just texture.
-    gen = {**bar_metrics(bars), **style_fingerprint(bars)}
+    # Score on EVERY profiled dimension — texture/rhythm (bar_metrics), plus
+    # harmony/melody/rhythm-value (style_fingerprint), plus how many notes sound
+    # together (sonority_metrics).
+    #
+    # `build_corpus_profiles` merges all THREE for the corpus side; this merged
+    # only two. `chorded_attack_pct` and `mean_sonority` were therefore compared
+    # against a real distribution and never computed for the piece, so
+    # `gen.get(name, 0.0)` below handed them 0.0 every time. A nocturne whose
+    # attacks are 100% chorded and whose mean sonority is 3.06 was reported as
+    #
+    #     chorded_attack_pct  value 0.0  z -15.78
+    #     mean_sonority       value 0.0  z  -5.10
+    #
+    # the two largest deviations in the report, in every report, fabricated. The
+    # module docstring calls bar_metrics "the shared yardstick run on BOTH corpus
+    # bars and a generated piece"; it was shared for 37 of the 39 metrics.
+    gen = {**bar_metrics(bars), **style_fingerprint(bars), **sonority_metrics(bars)}
     metrics: Dict[str, Any] = {}
     flags: List[Dict[str, Any]] = []
+    uncomputed: List[str] = []
     for name in pm:
         stat = pm.get(name)
         if not stat:
@@ -4831,7 +5046,17 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
         # the generated music diverges, so it must not count toward the gate.
         if not stat.get("stdev") or stat["stdev"] <= 0:
             continue
-        value = gen.get(name, 0.0)
+        if name not in gen:
+            # NEVER default to 0.0. A metric the corpus profile carries and the
+            # piece side cannot compute is not "the piece scores zero" — it is a
+            # measurement that did not happen, and scoring it produced the two
+            # largest deviations in every report (chorded_attack_pct z=-15.78 on
+            # a piece whose attacks are 100% chorded). Skip it and SAY so, so a
+            # stale profile or a renamed metric surfaces as a gap rather than as
+            # evidence about the music.
+            uncomputed.append(name)
+            continue
+        value = gen[name]
         z = zscore(value, stat["mean"], stat["stdev"])
         # A |z| this large cannot come from a well-sampled distribution over a
         # bounded metric; it means the corpus barely varies on this measure and
@@ -4888,6 +5113,10 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
         "corpus_movements": profile.get("movements_used"),
         "metrics": metrics,
         "flags": flags,
+        # Metrics the profile carries that this piece could not be measured on —
+        # a stale profile key or a renamed metric. Reported so the gap is
+        # visible; previously each became a 0.0 and a large fabricated z.
+        "uncomputed_metrics": sorted(uncomputed),
         "texture_divergence": {
             "lh_l1": lh_l1,
             "rh_l1": rh_l1,
@@ -4911,16 +5140,48 @@ def _authoring_summary(graph, section_id: Optional[str]) -> Dict[str, Any]:
         pids = graph.get_section_phrases(section_id)
     else:
         pids = list(graph.phrases.keys())
-    authored = blind = engine = 0
+    authored = blind = engine = unrealized = 0
     blind_phrases: List[str] = []
+    unrealized_phrases: List[str] = []
+
+    def _has_notes(state) -> bool:
+        layer = getattr(state, "realized", None)
+        if layer is None:
+            return False
+        for name in (
+            "principal_line",
+            "bass_foundation",
+            "counter_reply",
+            "response_layer",
+            "ornamental_surface",
+            "foreground",
+            "harmonic_mass",
+            "rhythmic_motor",
+            "color_layer",
+            "punctuation",
+            "countermelody",
+        ):
+            if getattr(layer, name, None):
+                return True
+        return bool(getattr(layer, "inner_voices", None))
+
     for pid in pids:
         st = graph.phrases.get(pid)
         if st is None:
             continue
         if getattr(st, "agent_authored", False):
             authored += 1
-        else:
+        elif _has_notes(st):
             engine += 1
+        else:
+            # NOT engine-realized: never composed at all. `else: engine += 1`
+            # counted an empty phrase as one the engine had written, so a piece
+            # with 3 of 9 phrases composed reported "9 phrases: 3 agent, 6
+            # engine" — which reads as finished. Nothing else anywhere says a
+            # section is missing, and the assembled score is simply shorter with
+            # no indication of why.
+            unrealized += 1
+            unrealized_phrases.append(pid)
         trace = getattr(st, "context_trace", None) or {}
         if isinstance(trace, dict) and trace.get("composed_blind"):
             blind += 1
@@ -4929,6 +5190,8 @@ def _authoring_summary(graph, section_id: Optional[str]) -> Dict[str, Any]:
         "phrases": len(pids),
         "agent_authored": authored,
         "engine_realized": engine,
+        "unrealized": unrealized,
+        "unrealized_phrases": unrealized_phrases,
         "composed_blind": blind,
         "composed_blind_phrases": blind_phrases,
     }
@@ -4968,6 +5231,20 @@ def compare_to_corpus(
     report["assembled_path"] = path
     report["warnings"] = warnings
     report["authoring"] = _authoring_summary(graph, section_id)
+    # An unfinished piece must SAY it is unfinished. A score assembled from 3 of
+    # 9 phrases is simply shorter, with nothing in any report explaining why —
+    # `warnings` came back EMPTY for exactly that piece, while `authoring` called
+    # the six empty phrases "engine_realized". Everything measured below is a
+    # description of the part that exists, which is misleading on its own.
+    unrealized = report["authoring"].get("unrealized") or 0
+    if unrealized:
+        total = report["authoring"].get("phrases") or 0
+        named = ", ".join(report["authoring"].get("unrealized_phrases", [])[:8])
+        warnings.append(
+            f"INCOMPLETE: {unrealized} of {total} phrases have no notes at all "
+            f"({named}). Every measurement in this report describes only the "
+            f"phrases that exist."
+        )
     return report
 
 
@@ -5743,8 +6020,25 @@ def orchestrate_section(
             ],
             "string_quartet": ["violin_1", "violin_2", "viola", "cello"],
             "string_orchestra": ["violin_1", "violin_2", "viola", "cello", "contrabass"],
+            # A choir was not in this table at all, so a choral piece was
+            # orchestrated onto flute, oboe, clarinet, bassoon and horn.
+            "choir": ["soprano", "alto", "tenor", "bass"],
+            "string_quintet": ["violin_1", "violin_2", "viola", "cello", "contrabass"],
+            "string_trio": ["violin_1", "viola", "cello"],
         }
-        target_ensemble = default_ensembles.get(instrumentation, default_ensembles["orchestra"])
+        # The keys are `string_quartet`; a contract carries "string quartet",
+        # with a space, and this fell through to the ORCHESTRA roster — the same
+        # two-spelling miss as the pedal and hand-span whitelists, with a
+        # plausible-looking result that is simply the wrong ensemble.
+        from .models import is_string_ensemble, is_vocal
+
+        normalized = str(instrumentation or "").strip().lower().replace("-", "_").replace(" ", "_")
+        if normalized not in default_ensembles:
+            if is_vocal(normalized):
+                normalized = "choir"
+            elif is_string_ensemble(normalized):
+                normalized = "string_quartet" if "quartet" in normalized else "string_orchestra"
+        target_ensemble = default_ensembles.get(normalized, default_ensembles["orchestra"])
 
     merged = merge_phrases(realized, key=key, meter=meter, piece_id=f"{piece_id}:{section_id}")
     merged.meter = meter
