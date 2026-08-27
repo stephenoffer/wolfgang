@@ -103,3 +103,48 @@ def test_the_contrapuntal_composers_measure_as_polyphony(composer, floor):
         f"{composer} measures {result['mean_sonority']} voices — the old "
         f"`avg_chord_size` read {composer} as ~0 by looking at two staves only"
     )
+
+
+# ─── The other half: a chord must not vanish from the line it is part of ────
+
+
+def test_a_thickened_melody_is_still_a_melody():
+    """The TOP of a chord is the melodic line.
+
+    `craft_checker._check_melodic_claim` and `candidate_scorer`'s novelty
+    comparison both built their contour with
+    `not isinstance(e.pitch, list)` — dropping every chord. That was harmless
+    while melodies were 100% single notes and became wrong the moment they were
+    deliberately thickened to a tenth of their attacks, which is what real
+    keyboard writing does. A phrase whose line was fine could fail for having
+    taken weight at its arrivals.
+    """
+    from scales.craft_checker import CraftChecker
+    from scales.models import LayerEvent, LayerIR
+
+    def melody(pitches):
+        layer = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+        layer.principal_line = [
+            LayerEvent(bar=1, beat=1.0 + i, pitch=p, duration="q", source_layer="principal_line")
+            for i, p in enumerate(pitches)
+        ]
+        return layer
+
+    checker = CraftChecker()
+    plain = melody(["C5", "E5", "G5", "F5"])
+    thick = melody([["C5", "E5"], ["E5", "G5"], ["G5", "C6"], ["F5", "A5"]])
+
+    assert checker._check_melodic_claim(plain), "a plain line must pass"
+    assert checker._check_melodic_claim(thick), (
+        "a thickened line lost its contour — the chord tops ARE the melody"
+    )
+
+
+def test_the_contour_reads_the_top_of_a_chord_not_the_bottom():
+    """A melody chorded downward still rises if its top voice does."""
+    from scales.anti_pattern_detector import _voice_midi
+
+    assert _voice_midi(["C5", "E5", "G5"], "top") == _voice_midi("G5", "top")
+    assert _voice_midi(["C5", "E5", "G5"], "bottom") == _voice_midi("C5", "top")
+    assert _voice_midi("rest", "top") is None
+    assert _voice_midi(None, "top") is None

@@ -53,13 +53,14 @@ class CraftChecker:
         if len(melody) < 3:
             return False
 
-        midis = []
-        for evt in melody:
-            if evt.pitch != "rest" and not isinstance(evt.pitch, list):
-                try:
-                    midis.append(pitch_to_midi(evt.pitch))
-                except (ValueError, KeyError):
-                    pass
+        # The TOP of a chord is the melodic line. Skipping chords outright made
+        # a thickened melody partly invisible here — and the melody is thickened
+        # deliberately now, at around a tenth of its attacks, because that is
+        # what real keyboard writing does. A phrase whose line was fine could
+        # fail this check for having taken weight at its arrivals.
+        from .anti_pattern_detector import _voice_midi
+
+        midis = [m for m in (_voice_midi(evt.pitch, "top") for evt in melody) if m is not None]
 
         if len(midis) < 3:
             return False
@@ -314,7 +315,19 @@ def craft_findings(check) -> list[str]:
 
     Takes a ``PhraseCraftCheck`` (or anything with the same boolean attributes)
     and returns only what failed. An empty list means the phrase passed.
+
+    It ALSO takes the ``(check, findings)`` tuple that `check_phrase` returns,
+    because `craft_findings(check_phrase(ir))` is the obvious way to compose the
+    two and it silently returned `[]` — a tuple has none of the named attributes,
+    so every one of them read as "not False" and the phrase passed. I wrote both
+    functions and still made that call while falsifying these very checks: it
+    reported **zero findings across 133 real phrases**, which looked like a clean
+    bill of health and was a broken harness. The real rates are 2-13%.
+
+    An empty list has to mean "nothing failed", never "I could not tell".
     """
+    if isinstance(check, tuple):
+        check = check[0] if check else None
     failed = [name for name in _FINDINGS if hasattr(check, name) and getattr(check, name) is False]
     failed.sort(key=lambda n: _SEVERITY.get(n, 9))
     return [_FINDINGS[n] for n in failed]

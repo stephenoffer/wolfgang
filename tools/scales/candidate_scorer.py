@@ -183,16 +183,13 @@ class CandidateScorer:
             return 0.8  # No comparison available
 
         # Check if melody contour is different from previous
-        curr_midis = [
-            pitch_to_midi(e.pitch)
-            for e in surface.principal_line
-            if e.pitch != "rest" and not isinstance(e.pitch, list)
-        ]
-        prev_midis = [
-            pitch_to_midi(e.pitch)
-            for e in prev_surface.principal_line
-            if e.pitch != "rest" and not isinstance(e.pitch, list)
-        ]
+        # The TOP of a chord is the melodic line; dropping chords compared two
+        # contours with their thickened notes missing, which is precisely where
+        # a melody takes its shape.
+        from .anti_pattern_detector import _voice_midi
+
+        curr_midis = [_voice_midi(e.pitch, "top") for e in surface.principal_line]
+        prev_midis = [_voice_midi(e.pitch, "top") for e in prev_surface.principal_line]
 
         curr_midis = [m for m in curr_midis if m is not None]
         prev_midis = [m for m in prev_midis if m is not None]
