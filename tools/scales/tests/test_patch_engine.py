@@ -268,18 +268,53 @@ def test_every_subdivision_divides_the_repair_grid():
 
 
 @pytest.mark.parametrize(
-    "drifted,expected",
-    [(1.56, 1.5625), (2.06, 2.0625), (1.3333, 4 / 3), (1.1667, 7 / 6), (0.06, 1.0)],
+    "drifted,duration,expected",
+    [
+        (1.56, "t", 1.5625),
+        (2.06, "t", 2.0625),
+        # A POSITION AND ITS DURATION SHARE A GRID. A triplet position is only
+        # read as one when the note's own length comes from that family — a
+        # 32nd at 4/3 is a drifted binary onset that happened to land near a
+        # third, and reading it as a genuine triplet leaves a bar that cannot
+        # tile. These cases originally passed a binary "t" and expected the
+        # tuplet position, which is the incoherent combination the rule exists
+        # to reject; they carry a tuplet duration now.
+        (1.3333, "trip_e", 4 / 3),
+        (1.1667, "trip_s", 7 / 6),
+        (0.06, "t", 1.0),
+    ],
 )
-def test_repair_recovers_a_smeared_onset(drifted, expected):
+def test_repair_recovers_a_smeared_onset(drifted, duration, expected):
     """The positions a float cursor rounded to two decimals actually produced."""
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
+    layer.principal_line = [LayerEvent(bar=1, beat=drifted, pitch="C5", duration=duration)]
+    _repair_engine_surface(layer, (4, 4))
+    assert layer.principal_line[0].beat == pytest.approx(expected, abs=1e-4)
+
+
+@pytest.mark.parametrize("drifted", [1.3333, 1.1667])
+def test_a_binary_note_near_a_triplet_position_is_drift_not_a_tuplet(drifted):
+    """The other half of the same rule, stated as its own claim.
+
+    A 32nd sitting within a 256th of a third is a smeared binary onset. Read as
+    a genuine triplet it leaves a remainder no notatable value fills — a 3/8 bar
+    exported holding 85/56, with a MusicXML warning as the only witness.
+    """
+    from fractions import Fraction
+
     from scales.models import LayerEvent, LayerIR
     from scales.scales import _repair_engine_surface
 
     layer = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1)
     layer.principal_line = [LayerEvent(bar=1, beat=drifted, pitch="C5", duration="t")]
     _repair_engine_surface(layer, (4, 4))
-    assert layer.principal_line[0].beat == pytest.approx(expected, abs=1e-4)
+    resolved = Fraction(str(layer.principal_line[0].beat)).limit_denominator(1680)
+    assert (resolved - 1).denominator % 3 != 0, (
+        f"{drifted} with a binary duration resolved to the tuplet position {resolved}"
+    )
 
 
 def test_repair_never_deletes_a_grace_note():

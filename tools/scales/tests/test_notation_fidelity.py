@@ -2430,14 +2430,14 @@ def test_a_triplet_onset_is_not_counted_as_drift_repaired():
     from scales.models import LayerEvent, LayerIR
     from scales.scales import _repair_engine_surface
 
-    def snapped(beat):
+    def snapped(beat, duration="s"):
         layer = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
         layer.principal_line = [
             LayerEvent(
                 bar=1,
                 beat=beat,
                 pitch="C5",
-                duration="s",
+                duration=duration,
                 role="structural",
                 source_layer="principal_line",
             )
@@ -2445,10 +2445,19 @@ def test_a_triplet_onset_is_not_counted_as_drift_repaired():
         counts = _repair_engine_surface(layer, (4, 4))
         return counts.get("snapped", 0), layer.principal_line[0].beat
 
-    # Exact positions, tuplets included: nothing moved, nothing counted.
-    for beat in (1.166667, 1.3333333, 1.25, 1.5625, 1.2):
-        count, after = snapped(beat)
-        assert count == 0, f"{beat} counted as a snap but resolved to {after}"
+    # Exact positions: nothing moved, nothing counted. A tuplet position is
+    # paired with a tuplet DURATION — a position and its length must come from
+    # the same grid, so a 16th at 7/6 is a drifted binary onset rather than a
+    # sextuplet, and reading it as one leaves a bar that cannot tile.
+    for beat, duration in (
+        (1.25, "s"),
+        (1.5625, "s"),
+        (1.166667, "trip_s"),
+        (1.3333333, "trip_e"),
+        (1.2, "quint_s"),
+    ):
+        count, after = snapped(beat, duration)
+        assert count == 0, f"{beat} ({duration}) counted as a snap but resolved to {after}"
 
     # Real float drift still moves and still counts.
     for beat, resolved in ((1.56, 1.5625), (2.06, 2.0625)):
@@ -2548,12 +2557,18 @@ def test_a_chord_written_as_separate_events_survives_to_the_score():
     from scales.scales import _render_layer_preview, _repair_engine_surface
 
     def layer(spec):
-        ir = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1, instrumentation="solo_piano")
+        ir = LayerIR(
+            phrase_id="p", key="C", meter=(4, 4), bar_count=1, instrumentation="solo_piano"
+        )
         for beat, pitch, dur in spec:
             ir.principal_line.append(
                 LayerEvent(
-                    bar=1, beat=beat, pitch=pitch, duration=dur,
-                    role="structural", source_layer="principal_line",
+                    bar=1,
+                    beat=beat,
+                    pitch=pitch,
+                    duration=dur,
+                    role="structural",
+                    source_layer="principal_line",
                 )
             )
         return ir
