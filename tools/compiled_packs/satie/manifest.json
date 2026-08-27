@@ -1,6 +1,6 @@
 {
   "composer": "satie",
-  "genre": "impressionist",
+  "genre": "",
   "support_tier": "B",
   "corpus_bar_count": 913,
   "profile_files": [
@@ -12,6 +12,8 @@
     "index.md",
     "melodic-style.md",
     "orchestration.md",
+    "satie-devices.md",
+    "satie-lh-vocabulary.md",
     "stylistic-evolution.md"
   ],
   "corpus_files": [

@@ -1,3 +1,28 @@
 {
-  "forms": {}
+  "forms": {
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "mass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "arch": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "additive process": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "tintinnabuli": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

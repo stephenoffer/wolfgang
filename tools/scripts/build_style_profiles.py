@@ -24,6 +24,7 @@ from collections import OrderedDict
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from scales.atomic_io import write_json_atomic
 from scales.composition_brief import _iter_corpus_bars, texture_density_stats
 from scales.corpus_metrics import (
     SCALAR_METRICS,
@@ -121,8 +122,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         style_id = make_style_id(style)
         out_dir = COMPILED_PACKS / style_id
         out_dir.mkdir(parents=True, exist_ok=True)
-        with open(out_dir / "corpus_profile.json", "w") as f:
-            json.dump(profile, f, indent=1)
+        write_json_atomic(out_dir / "corpus_profile.json", profile, indent=1)
         # density stats (gate floors) for the style, via style-aware iterator
         texture_density_stats(style_id, refresh=True)
         print(

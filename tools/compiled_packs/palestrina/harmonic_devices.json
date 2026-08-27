@@ -3,7 +3,9 @@
     "id": "suspension",
     "name": "Suspension",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "The principal expressive device \u2014 4-3",
       "7-6",
@@ -11,7 +13,7 @@
       "and 2-3 in the bass"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The principal expressive device \u2014 4-3",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -23,7 +25,7 @@
       "Everywhere"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Everywhere",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -35,7 +37,7 @@
       "Everywhere"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Everywhere",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -48,7 +50,7 @@
       "not a free choice"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A stock melodic formula",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -60,7 +62,7 @@
       "At cadences"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "At cadences",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -72,7 +74,7 @@
       "Sparing"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sparing",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -84,7 +86,7 @@
       "The structural unit of a motet or mass movement"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The structural unit of a motet or mass movement",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -96,7 +98,7 @@
       "Gives a large texture internal articulation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Gives a large texture internal articulation",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -108,7 +110,7 @@
       "For emphasis \u2014 a sudden clarity after polyphony"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "For emphasis \u2014 a sudden clarity after polyphony",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -120,7 +122,7 @@
       "Colour and relief within a full texture"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Colour and relief within a full texture",
     "source_file": "palestrina/harmonic-language.md"
   },
   {
@@ -132,7 +134,7 @@
       "Reserve it; constant tutti has nowhere to grow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Reserve it; constant tutti has nowhere to grow",
     "source_file": "palestrina/harmonic-language.md"
   }
 ]

@@ -1,4 +1,33 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Harry Gregson-Williams"
+    },
+    {
+      "composer": "Klaus Badelt"
+    },
+    {
+      "composer": "Ramin Djawadi"
+    },
+    {
+      "composer": "Tom Holkenborg (Junkie XL)"
+    },
+    {
+      "composer": "Lorne Balfe"
+    },
+    {
+      "composer": "Benjamin Wallfisch"
+    }
+  ],
+  "influenced": [],
+  "comparative_axes": {
+    "Remote Control Alumni \u2014 The Zimmer Tree": [
+      "Harry Gregson-Williams",
+      "Klaus Badelt",
+      "Ramin Djawadi",
+      "Tom Holkenborg (Junkie XL)",
+      "Lorne Balfe",
+      "Benjamin Wallfisch"
+    ]
+  }
 }

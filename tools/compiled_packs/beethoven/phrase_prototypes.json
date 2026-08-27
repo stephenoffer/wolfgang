@@ -1,3 +1,455 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Cell statement \u2014 full size, 2 bars",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "e",
+              "dyn": "ff",
+              "art": "staccato"
+            },
+            {
+              "p": "G4",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "G4",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "Eb4",
+              "d": "dh",
+              "dyn": "ff"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "e"
+            },
+            {
+              "p": "G2",
+              "d": "e"
+            },
+            {
+              "p": "G2",
+              "d": "e"
+            },
+            {
+              "p": "Eb2",
+              "d": "dh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "_feel": "Answering statement \u2014 cell repeated a 4th lower",
+        "voices": {
+          "soprano": [
+            {
+              "p": "F4",
+              "d": "e"
+            },
+            {
+              "p": "F4",
+              "d": "e"
+            },
+            {
+              "p": "F4",
+              "d": "e"
+            },
+            {
+              "p": "D4",
+              "d": "dh"
+            }
+          ],
+          "bass": [
+            {
+              "p": "F2",
+              "d": "e"
+            },
+            {
+              "p": "F2",
+              "d": "e"
+            },
+            {
+              "p": "F2",
+              "d": "e"
+            },
+            {
+              "p": "D2",
+              "d": "dh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 3,
+        "_feel": "Compression to 1 bar \u2014 cell accelerates",
+        "voices": {
+          "soprano": [
+            {
+              "p": "E4",
+              "d": "e",
+              "dyn": "f"
+            },
+            {
+              "p": "E4",
+              "d": "e"
+            },
+            {
+              "p": "E4",
+              "d": "e"
+            },
+            {
+              "p": "C4",
+              "d": "q",
+              "dyn": "ff"
+            }
+          ],
+          "bass": [
+            {
+              "p": "E2",
+              "d": "e"
+            },
+            {
+              "p": "E2",
+              "d": "e"
+            },
+            {
+              "p": "E2",
+              "d": "e"
+            },
+            {
+              "p": "C2",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 4,
+        "_feel": "Cell again immediately \u2014 no gap, no breath. The pressure increases.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "F4",
+              "d": "e",
+              "dyn": "ff"
+            },
+            {
+              "p": "F4",
+              "d": "e"
+            },
+            {
+              "p": "F4",
+              "d": "e"
+            },
+            {
+              "p": "D4",
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "F2",
+              "d": "e"
+            },
+            {
+              "p": "F2",
+              "d": "e"
+            },
+            {
+              "p": "F2",
+              "d": "e"
+            },
+            {
+              "p": "D2",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 5,
+        "_feel": "Fragment \u2014 only the first two notes of the cell. Maximum compression.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "e",
+              "dyn": "ff",
+              "art": "sfz"
+            },
+            {
+              "p": "G4",
+              "d": "e"
+            },
+            {
+              "p": "Ab4",
+              "d": "e",
+              "art": "sfz"
+            },
+            {
+              "p": "Ab4",
+              "d": "e"
+            }
+          ],
+          "bass": [
+            {
+              "p": "Eb2",
+              "d": "q"
+            },
+            {
+              "p": "Eb2",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 10,
+        "_feel": "The accents shift the floor \u2014 where is beat 1?",
+        "voices": {
+          "soprano": [
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "Eb5",
+              "d": "q",
+              "dyn": "sfz"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "Eb5",
+              "d": "q",
+              "dyn": "sfz"
+            }
+          ],
+          "bass": [
+            {
+              "p": "C2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "C2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 11,
+        "_feel": "Sfz lands on beat 2 \u2014 the downbeat is destabilized for 2 bars",
+        "voices": {
+          "soprano": [
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q",
+              "dyn": "sfz"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q",
+              "dyn": "sfz"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 12,
+        "_feel": "Sfz on beat 1 \u2014 the downbeat returns with violence",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "w",
+              "dyn": "sfz"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "w",
+              "dyn": "sfz"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 55,
+        "_feel": "False recapitulation \u2014 the theme is back, but wrong. Ab major, not C minor.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "Eb5",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            },
+            {
+              "p": "Ab5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "Ab2",
+            "chord_tones": [
+              "Eb3",
+              "C4",
+              "Ab3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 56,
+        "voices": {
+          "soprano": [
+            {
+              "p": "Bb5",
+              "d": "h"
+            },
+            {
+              "p": "Ab5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "Ab2",
+            "chord_tones": [
+              "Eb3",
+              "C4",
+              "Ab3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_10",
+      "data": {
+        "bar_num": 57,
+        "_feel": "The wrong key reveals itself \u2014 Ab harmonies are not the home. Development resumes.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G5",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            },
+            {
+              "p": "Eb5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q",
+              "dyn": "f"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "G2",
+            "chord_tones": [
+              "D3",
+              "B3",
+              "G3"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

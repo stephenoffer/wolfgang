@@ -1,4 +1,66 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Strings",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Woodwinds",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Brass",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Percussion",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Harp",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Voice/Choir",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Bell texture",
+      "section": "Texture Types",
+      "function": "Open 5th bass drone + slow chord movement + folk melody above",
+      "genre": "Coronation, Great Gate of Kiev"
+    },
+    {
+      "name": "Bare declamation",
+      "section": "Texture Types",
+      "function": "Voice with minimal accompaniment (single bass notes, silence)",
+      "genre": "Boris monologues, Songs and Dances of Death"
+    },
+    {
+      "name": "Block orchestral",
+      "section": "Texture Types",
+      "function": "Full orchestra in homophonic block chords, parallel motion",
+      "genre": "Crowd scenes, ceremonial passages"
+    },
+    {
+      "name": "Atmospheric tremolo",
+      "section": "Texture Types",
+      "function": "String tremolo + isolated wind notes; creating unease",
+      "genre": "Supernatural scenes, hallucinations"
+    },
+    {
+      "name": "Piano-orchestral",
+      "section": "Texture Types",
+      "function": "Piano writing that implies specific orchestral colors",
+      "genre": "All of Pictures at an Exhibition"
+    },
+    {
+      "name": "Choral mass",
+      "section": "Texture Types",
+      "function": "Choir as primary sound; orchestra supports, does not lead",
+      "genre": "Boris crowd scenes, Khovanshchina"
+    }
+  ],
   "source_file": "orchestration.md"
 }

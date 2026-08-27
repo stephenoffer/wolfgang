@@ -1,5 +1,73 @@
 [
   {
+    "id": "lh_idiom_the_broken_chord_wave_wide_and_even",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The broken-chord wave, wide and even",
+    "description": "a rolling arpeggio spanning a tenth or more in continuous sixteenths, the harp or the divided strings. `E-2s B-2s E-3s G3s B-3s G3s E-3s B-2s`",
+    "shorthand": "E-2s B-2s E-3s G3s B-3s G3s E-3s B-2s",
+    "events": 8,
+    "register": [
+      39,
+      58
+    ],
+    "span_semitones": 19,
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_offbeat_chordal_punctuation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Offbeat chordal punctuation",
+    "description": "a bass note on the beat, chords on the offbeats. The pizzicato-and-winds accompaniment, 22% of his bars. `C2e [E-3,G3,C4]e rest_e [E-3,G3,C4]e`",
+    "shorthand": "C2e [E-3,G3,C4]e rest_e [E-3,G3,C4]e",
+    "events": 4,
+    "register": [
+      36,
+      60
+    ],
+    "span_semitones": 24,
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_alberti",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Alberti",
+    "description": "genuinely present at 14%, inherited rather than fashionable, and used for the lighter, more diatonic passages.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_block_chords_in_the_middle_register",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated block chords in the middle register",
+    "description": "the brass chorale, struck evenly, close position.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_bass_with_tremolo_above",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held bass with tremolo above",
+    "description": "the string tremolo for the fantastical scenes and the sea music.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octave_doublings_of_the_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octave doublings of the melody",
+    "description": "in the bass, for a unison statement of a theme.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +85,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +103,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +121,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +144,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +191,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +213,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +235,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +278,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +301,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +325,171 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_theme_transformed_by_re_scoring",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Theme transformed by re-scoring",
+    "description": "the same tune returns in a new register, at a new thickness, against new figuration. The development is in the dressing.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_narrative_solo",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The narrative solo",
+    "description": "an unaccompanied melodic line, freely rhythmic, returning between sections as a storyteller (Scheherazade's violin).",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ostinato_under_a_long_melody",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ostinato under a long melody",
+    "description": "one figure repeated for many bars while the tune plays out above it.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_themes",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic themes",
+    "description": "a few motifs recurring across every movement, each time re-costumed.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_processional_build",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The processional build",
+    "description": "a theme stated quietly, then repeated with each restatement thicker and higher until the full texture.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_octatonic_scale",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The octatonic scale",
+    "description": "alternating tone and semitone, his signature for the magical and the supernatural, and largely his invention as a systematic device.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_passages",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone passages",
+    "description": "for the same purpose.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediant_motion",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediant motion",
+    "description": "chords a third apart with no pivot, the commonest way his harmony travels.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_static_harmony_with_moving_colour",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Static harmony with moving colour",
+    "description": "one chord for eight bars while the figuration changes around it. The harmony is not the interest.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_folk_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal folk harmony",
+    "description": "flat sevenths, plagal cadences, and melodies harmonised by their own mode rather than by tonic-dominant.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pedal_points_long_and_low",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Pedal points, long and low",
+    "description": "under chromatic upper voices.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_oriental_melisma",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "The oriental melisma",
+    "description": "a decorated, sinuous line with augmented seconds, turning around itself. Used for every eastern subject.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dance_rhythms",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "Dance rhythms",
+    "description": "the tarantella, the trepak, the fandango, driving and absolutely square.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fanfare_openings",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "Fanfare openings",
+    "description": "a rising arpeggio in dotted rhythm, brass in origin.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_figures",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "Repeated-note figures",
+    "description": "in fast even values, imitating the snare or the tambourine.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_continuous_sixteenth_arpeggiation_spanning_wide_intervals",
+    "category": "composer_device",
+    "section": "Figuration",
+    "name": "Continuous sixteenth arpeggiation spanning wide intervals",
+    "description": "the harp gesture, and his commonest accompaniment at 30% of bars.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_rapid_scalar_runs",
+    "category": "composer_device",
+    "section": "Figuration",
+    "name": "Rapid scalar runs",
+    "description": "as decoration between phrases, not as melody.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_trills_and_tremolos_as_colour",
+    "category": "composer_device",
+    "section": "Figuration",
+    "name": "Trills and tremolos as colour",
+    "description": "sustained under a melody rather than ornamenting a note.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

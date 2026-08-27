@@ -1,4 +1,118 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Warm foundation; melody and accompaniment; tremolo for excitement"
+    },
+    {
+      "name": "2 Fl (+Picc), 2 Ob (+C.A.), 2 Cl, 2 Bsn",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Primary melodic soloists; folk-song carriers"
+    },
+    {
+      "name": "4 Hn, 2 Tpt, 3 Tbn, Tuba",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Celebratory weight; horn calls; chorale in codas"
+    },
+    {
+      "name": "Timpani, Triangle, Cymbals",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Timpani pedal points; triangle in dance movements"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (2)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Solo wind + strings",
+      "section": "Orchestral Texture Types",
+      "function": "Single woodwind carries folk melody; strings sustain or tremolo",
+      "genre": "Slow movements, theme statements"
+    },
+    {
+      "name": "Full warm tutti",
+      "section": "Orchestral Texture Types",
+      "function": "All sections playing; melody in winds and Vln I; horns prominent",
+      "genre": "Exposition main themes, triumphant codas"
+    },
+    {
+      "name": "String cantabile",
+      "section": "Orchestral Texture Types",
+      "function": "Strings alone, singing in octaves or 3rds; no winds",
+      "genre": "Lyrical second themes, slow movement episodes"
+    },
+    {
+      "name": "Folk-band",
+      "section": "Orchestral Texture Types",
+      "function": "Pizzicato bass, rhythmic violas, melody in upper winds",
+      "genre": "Dance movements, Slavonic Dance character"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Horns and trombones in hymn-like homophony",
+      "genre": "Codas, ceremonial passages"
+    },
+    {
+      "name": "Tremolo excitement",
+      "section": "Orchestral Texture Types",
+      "function": "String tremolo under brass and wind melody",
+      "genre": "Climactic passages, fast movement development"
+    }
+  ],
   "source_file": "orchestration.md"
 }

@@ -1,129 +1,129 @@
 {
- "required_count": 3,
- "items": [
-  {
-   "id": "the_bruckner_rhythm",
-   "name": "The Bruckner rhythm",
-   "description": "A specific syncopated figure that appears constantly: quarter note + triplet-half note (\u2669 \u2669. = 2+3 against a 2/4 measure) or, in 4/4, a pattern of 2+3+2 eighth notes against the meter. It is not a rhy",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "blocks_of_sound_tutti_vs_silence",
-   "name": "Blocks of sound \u2014 tutti vs. silence",
-   "description": "Bruckner's orchestral texture alternates between two states: (1) full orchestra, fff or ff, all instruments playing simultaneously, every register saturated \u2014 and (2) complete or near-complete silence",
-   "texture_affinities": [
-    "silence"
-   ],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "chorale_like_brass_writing_the_bruckner_brass",
-   "name": "Chorale-like brass writing \u2014 the Bruckner brass",
-   "description": "The brass section functions as a cathedral organ: sustained, rich, slow-moving harmonies in the horns and trombones, with the trumpets providing rhythmic punctuation above. The brass texture is always",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "very_slow_harmonic_rhythm_in_long_passages",
-   "name": "Very slow harmonic rhythm in long passages",
-   "description": "Bruckner sustains single harmonies for 8\u201316 bars without change, particularly in slow movements. The sustained chord is not static \u2014 it is breathing, accumulating weight. The harmonic change, when it ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "massive_symphonic_architecture_cathedral_scale",
-   "name": "Massive symphonic architecture \u2014 cathedral scale",
-   "description": "Bruckner's movements are very long (20\u201335 minutes). This is not prolixity \u2014 it is scale. A Bruckner first movement has a proportional architecture (exposition \u2192 development \u2192 recapitulation) where eac",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "long_arching_melodic_line",
-   "name": "Long arching melodic line",
-   "description": "The primary melody spans 8\u201316 bars in a single long breath before reaching a breathing point. It rises toward a peak on the 6th or 7th scale degree (the most expressive interval in minor), then descen",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "wide_range_piano_texture",
-   "name": "Wide-range piano texture",
-   "description": "The piano spans its entire range simultaneously: LH can reach as low as A1, while RH melody sits at C5\u2013G6. Inner voices fill the middle register. A Rachmaninoff piano chord often spans more than two o",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "subdominant_approach_to_climax",
-   "name": "Subdominant approach to climax",
-   "description": "The emotional peak is often approached through the subdominant (IV) rather than the dominant (V). Specifically: bVI \u2192 IV \u2192 I (the flat-sixth to subdominant to tonic), creating a \"dark triumph\" quality",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "bell_like_resonance_tonic_pedal_under_chromatic_harmony",
-   "name": "Bell-like resonance \u2014 tonic pedal under chromatic harmony",
-   "description": "The tonic is sustained in the bass as a pedal point while harmonies above it move through chromaticism, creating a sense of resonance (like a church bell that keeps ringing while the overtones change)",
-   "texture_affinities": [
-    "pedal_point"
-   ],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "sequence_in_long_ascending_sweeps",
-   "name": "Sequence in long ascending sweeps",
-   "description": "Ascending sequences that build for 8\u201316 bars toward a climax. Each sequence repetition is louder, higher, and more harmonically intense. The sweep IS the climax architecture \u2014 not a single moment but ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "modal_harmony_within_tonal_framework_the_slipping_tonic",
-   "name": "Modal harmony within tonal framework \u2014 the slipping tonic",
-   "description": "Faur\u00e9 uses Dorian, Mixolydian, and Lydian modal inflections constantly, creating a harmonic language that is tonal (has a clear tonic and harmonic motion) but never quite \"Classical\" \u2014 the flat-7th ap",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "gentle_rhythmic_displacement_the_nocturne_pulse",
-   "name": "Gentle rhythmic displacement \u2014 the nocturne pulse",
-   "description": "Faur\u00e9's accompaniment is almost always a gentle, flowing triplet or eighth-note figure that creates a rhythmic haze: the beat is present but soft, cushioned. This is the \"night music\" of French romant",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "long_melodic_line_with_subtle_modal_inflection",
-   "name": "Long melodic line with subtle modal inflection",
-   "description": "Faur\u00e9's melodies are long (12\u201316 bars), stepwise, and have one moment of unexpected modal color (a Dorian raised 6th, a Phrygian fall) that gives the otherwise conventional melody its distinctive char",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "harmonic_non_resolution_the_elided_cadence",
-   "name": "Harmonic non-resolution \u2014 the elided cadence",
-   "description": "Faur\u00e9 systematically avoids full V\u2192I cadences at phrase endings. His phrases end on half cadences, deceptive cadences (V\u2192VI), or simply continue without closing. The music flows without punctuation \u2014 ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "intimacy_as_primary_aesthetic_chamber_scale",
-   "name": "Intimacy as primary aesthetic \u2014 chamber scale",
-   "description": "Even when writing for orchestra (Pell\u00e9as et M\u00e9lisande, Requiem), Faur\u00e9 maintains a chamber-music intimacy: the dynamic range rarely exceeds mf, the textures are transparent, the emotional language is ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  }
- ]
+  "required_count": 3,
+  "items": [
+    {
+      "id": "the_bruckner_rhythm",
+      "name": "The Bruckner rhythm",
+      "description": "A specific syncopated figure that appears constantly: quarter note + triplet-half note (\u2669 \u2669. = 2+3 against a 2/4 measure) or, in 4/4, a pattern of 2+3+2 eighth notes against the meter. It is not a rhy",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "blocks_of_sound_tutti_vs_silence",
+      "name": "Blocks of sound \u2014 tutti vs. silence",
+      "description": "Bruckner's orchestral texture alternates between two states: (1) full orchestra, fff or ff, all instruments playing simultaneously, every register saturated \u2014 and (2) complete or near-complete silence",
+      "texture_affinities": [
+        "silence"
+      ],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "chorale_like_brass_writing_the_bruckner_brass",
+      "name": "Chorale-like brass writing \u2014 the Bruckner brass",
+      "description": "The brass section functions as a cathedral organ: sustained, rich, slow-moving harmonies in the horns and trombones, with the trumpets providing rhythmic punctuation above. The brass texture is always",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "very_slow_harmonic_rhythm_in_long_passages",
+      "name": "Very slow harmonic rhythm in long passages",
+      "description": "Bruckner sustains single harmonies for 8\u201316 bars without change, particularly in slow movements. The sustained chord is not static \u2014 it is breathing, accumulating weight. The harmonic change, when it ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "massive_symphonic_architecture_cathedral_scale",
+      "name": "Massive symphonic architecture \u2014 cathedral scale",
+      "description": "Bruckner's movements are very long (20\u201335 minutes). This is not prolixity \u2014 it is scale. A Bruckner first movement has a proportional architecture (exposition \u2192 development \u2192 recapitulation) where eac",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "long_arching_melodic_line",
+      "name": "Long arching melodic line",
+      "description": "The primary melody spans 8\u201316 bars in a single long breath before reaching a breathing point. It rises toward a peak on the 6th or 7th scale degree (the most expressive interval in minor), then descen",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "wide_range_piano_texture",
+      "name": "Wide-range piano texture",
+      "description": "The piano spans its entire range simultaneously: LH can reach as low as A1, while RH melody sits at C5\u2013G6. Inner voices fill the middle register. A Rachmaninoff piano chord often spans more than two o",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "subdominant_approach_to_climax",
+      "name": "Subdominant approach to climax",
+      "description": "The emotional peak is often approached through the subdominant (IV) rather than the dominant (V). Specifically: bVI \u2192 IV \u2192 I (the flat-sixth to subdominant to tonic), creating a \"dark triumph\" quality",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "bell_like_resonance_tonic_pedal_under_chromatic_harmony",
+      "name": "Bell-like resonance \u2014 tonic pedal under chromatic harmony",
+      "description": "The tonic is sustained in the bass as a pedal point while harmonies above it move through chromaticism, creating a sense of resonance (like a church bell that keeps ringing while the overtones change)",
+      "texture_affinities": [
+        "pedal_point"
+      ],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "sequence_in_long_ascending_sweeps",
+      "name": "Sequence in long ascending sweeps",
+      "description": "Ascending sequences that build for 8\u201316 bars toward a climax. Each sequence repetition is louder, higher, and more harmonically intense. The sweep IS the climax architecture \u2014 not a single moment but ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "modal_harmony_within_tonal_framework_the_slipping_tonic",
+      "name": "Modal harmony within tonal framework \u2014 the slipping tonic",
+      "description": "Faur\u00e9 uses Dorian, Mixolydian, and Lydian modal inflections constantly, creating a harmonic language that is tonal (has a clear tonic and harmonic motion) but never quite \"Classical\" \u2014 the flat-7th ap",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "gentle_rhythmic_displacement_the_nocturne_pulse",
+      "name": "Gentle rhythmic displacement \u2014 the nocturne pulse",
+      "description": "Faur\u00e9's accompaniment is almost always a gentle, flowing triplet or eighth-note figure that creates a rhythmic haze: the beat is present but soft, cushioned. This is the \"night music\" of French romant",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "long_melodic_line_with_subtle_modal_inflection",
+      "name": "Long melodic line with subtle modal inflection",
+      "description": "Faur\u00e9's melodies are long (12\u201316 bars), stepwise, and have one moment of unexpected modal color (a Dorian raised 6th, a Phrygian fall) that gives the otherwise conventional melody its distinctive char",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "harmonic_non_resolution_the_elided_cadence",
+      "name": "Harmonic non-resolution \u2014 the elided cadence",
+      "description": "Faur\u00e9 systematically avoids full V\u2192I cadences at phrase endings. His phrases end on half cadences, deceptive cadences (V\u2192VI), or simply continue without closing. The music flows without punctuation \u2014 ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "intimacy_as_primary_aesthetic_chamber_scale",
+      "name": "Intimacy as primary aesthetic \u2014 chamber scale",
+      "description": "Even when writing for orchestra (Pell\u00e9as et M\u00e9lisande, Requiem), Faur\u00e9 maintains a chamber-music intimacy: the dynamic range rarely exceeds mf, the textures are transparent, the emotional language is ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

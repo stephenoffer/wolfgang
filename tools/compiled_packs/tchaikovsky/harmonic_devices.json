@@ -8,19 +8,22 @@
       "Dark warmth"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dark warmth",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
     "id": "phrygian_bii_i",
     "name": "Phrygian bII\u2192I",
-    "chord_sequence": [],
+    "chord_sequence": [
+      "bII",
+      "I"
+    ],
     "voice_leading_hints": [],
     "contexts": [
       "Solemn finality"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Solemn finality",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -32,7 +35,7 @@
       "Bittersweet brightness"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Bittersweet brightness",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -45,20 +48,23 @@
       "archaic"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Modal",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
     "id": "aeolian_cadence_bvii_i",
     "name": "Aeolian cadence (bVII\u2192i)",
-    "chord_sequence": [],
+    "chord_sequence": [
+      "bVII",
+      "i"
+    ],
     "voice_leading_hints": [],
     "contexts": [
       "Resigned",
       "folk-like"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Resigned",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -72,7 +78,7 @@
       "or shadow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A door opens to another world \u2014 wonder",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -84,7 +90,7 @@
       "The harmony leans harder into the dominant \u2014 the ache deepens"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The harmony leans harder into the dominant \u2014 the ache deepens",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -97,7 +103,7 @@
       "inevitability"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The bass drops to an alien note \u2014 solemnity",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -109,7 +115,7 @@
       "Each resolution becomes a new question \u2014 the heart cannot rest"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Each resolution becomes a new question \u2014 the heart cannot rest",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -121,7 +127,7 @@
       "The expected home is replaced by something vast and unexpected"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The expected home is replaced by something vast and unexpected",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -133,7 +139,7 @@
       "The same sound acquires new meaning \u2014 the world shifts underfoot"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The same sound acquires new meaning \u2014 the world shifts underfoot",
     "source_file": "tchaikovsky/harmonic-language.md"
   },
   {
@@ -145,7 +151,7 @@
       "Contrary chromatic motion creates the feeling of forces converging"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Contrary chromatic motion creates the feeling of forces converging",
     "source_file": "tchaikovsky/harmonic-language.md"
   }
 ]

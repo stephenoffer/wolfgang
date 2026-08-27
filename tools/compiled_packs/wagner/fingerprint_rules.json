@@ -1,4 +1,45 @@
 {
-  "required_count": 0,
-  "items": []
+  "required_count": 3,
+  "items": [
+    {
+      "id": "leitmotif_as_structural_dna",
+      "name": "Leitmotif as structural DNA",
+      "description": "Wagner's music is built from Leitmotifs: short musical tags (3\u20138 notes, specific rhythm, specific harmony) associated with characters, objects, emotions, or ideas. These aren't themes \u2014 they're symbol",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "endless_melody_no_cadences_no_phrases",
+      "name": "Endless melody \u2014 no cadences, no phrases",
+      "description": "Wagner abolished the Baroque/Classical phrase structure. His melodies don't end \u2014 they elide into the next phrase, which elides into the next. A Wagnerian \"phrase\" may run for 32 bars without a clear ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "chromatic_harmony_as_emotional_coloring",
+      "name": "Chromatic harmony as emotional coloring",
+      "description": "The Tristan chord (half-diminished 7th resolving by half-step motion to another half-diminished 7th) is the paradigm: chromatic harmony that doesn't resolve but intensifies. Augmented chords, Neapolit",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "orchestral_texture_as_psychological_interior",
+      "name": "Orchestral texture as psychological interior",
+      "description": "Wagner's orchestra doesn't accompany the voice or describe action \u2014 it represents the unconscious: what the character feels but cannot say. The strings may play the character's longing while the chara",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "transformation_and_intensification_the_long_wave",
+      "name": "Transformation and intensification \u2014 the long wave",
+      "description": "Wagner builds very slowly over long spans (10\u201330 minutes) toward a single climactic moment. The entire preceding structure is preparation. His music only makes sense across enormous time spans.",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

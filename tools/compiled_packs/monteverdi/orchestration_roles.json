@@ -1,4 +1,85 @@
 {
-  "instruments": {},
+  "instruments": {
+    "soprano": {
+      "name": "Soprano",
+      "section": "Voices",
+      "function": "Solo laments; the highest expressive register",
+      "register": "C4\u2013G5"
+    },
+    "alto": {
+      "name": "Alto",
+      "section": "Voices",
+      "function": "Inner parts; duets with soprano",
+      "register": "G3\u2013D5"
+    },
+    "tenor": {
+      "name": "Tenor",
+      "section": "Voices",
+      "function": "His favourite solo voice \u2014 Orfeo himself",
+      "register": "C3\u2013G4"
+    },
+    "bass": {
+      "name": "Bass",
+      "section": "Voices",
+      "function": "Foundation; also underworld characters",
+      "register": "F2\u2013D4"
+    },
+    "violins_(2)": {
+      "name": "Violins (2)",
+      "section": "Instruments and what they mean",
+      "register": "G3\u2013D6"
+    },
+    "viole_da_braccio": {
+      "name": "Viole da braccio",
+      "section": "Instruments and what they mean",
+      "register": "G2\u2013C5"
+    },
+    "violone_/_contrabasso": {
+      "name": "Violone / contrabasso",
+      "section": "Instruments and what they mean",
+      "register": "E1\u2013G3"
+    },
+    "chitarrone_/_theorbo": {
+      "name": "Chitarrone / theorbo",
+      "section": "Instruments and what they mean",
+      "register": "Continuo"
+    },
+    "harpsichord": {
+      "name": "Harpsichord",
+      "section": "Instruments and what they mean",
+      "register": "Continuo"
+    },
+    "organo_di_legno": {
+      "name": "Organo di legno",
+      "section": "Instruments and what they mean",
+      "register": "Continuo"
+    },
+    "regal": {
+      "name": "Regal",
+      "section": "Instruments and what they mean",
+      "register": "Continuo"
+    },
+    "cornetti": {
+      "name": "Cornetti",
+      "section": "Instruments and what they mean",
+      "register": "A3\u2013A5"
+    },
+    "trombones_(4)": {
+      "name": "Trombones (4)",
+      "section": "Instruments and what they mean",
+      "register": "E2\u2013C5"
+    },
+    "recorders": {
+      "name": "Recorders",
+      "section": "Instruments and what they mean",
+      "register": "F4\u2013G6"
+    },
+    "trumpets": {
+      "name": "Trumpets",
+      "section": "Instruments and what they mean",
+      "register": "C4\u2013C6"
+    }
+  },
+  "textures": [],
   "source_file": "orchestration.md"
 }

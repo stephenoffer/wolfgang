@@ -1,4 +1,92 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Contrapuntal thinking; the 48 Preludes as model",
+      "heard_in": "24 Preludes (one per key); canonic writing in late Mazurkas; constant inner-voice independence"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Clarity of line; balanced phrasing; piano concerto form",
+      "heard_in": "Concerto slow movements; Classical proportion in early works"
+    },
+    {
+      "composer": "Hummel",
+      "absorbed": "Virtuoso piano technique; ornamental passagework",
+      "heard_in": "Brilliant passagework; passage technique; early concertos"
+    },
+    {
+      "composer": "John Field",
+      "absorbed": "Nocturne form (ABA, singing melody over arpeggiated bass)",
+      "heard_in": "All 21 Nocturnes \u2014 but Chopin deepened the form immeasurably"
+    },
+    {
+      "composer": "Bellini (bel canto)",
+      "absorbed": "Long melodic line; vocal ornamentation; portamento effect",
+      "heard_in": "The entire concept of melody on piano; grace notes as breath; rubato"
+    },
+    {
+      "composer": "Polish folk music",
+      "absorbed": "Mazurka and polonaise rhythms; modal scales (Lydian, Mixolydian)",
+      "heard_in": "58 Mazurkas, 16 Polonaises; modal inflections throughout"
+    },
+    {
+      "composer": "Elsner (teacher)",
+      "absorbed": "Rigorous counterpoint training; respect for tradition",
+      "heard_in": "Structural discipline beneath the surface freedom"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-form architecture; harmonic wandering; mode mixture",
+      "heard_in": "Moments of Schubertian harmonic surprise (major/minor alternation)"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Liszt",
+      "absorbed": "Pianistic virtuosity; concert etude concept; harmonic daring",
+      "heard_in": "Transcendental Etudes; Sonata in B minor; but Liszt's approach is orchestral where Chopin's is vocal"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Poetic miniature concept; character pieces; emotional intimacy",
+      "heard_in": "Kreisleriana, Carnaval \u2014 but Schumann's rhythm is more eccentric, his forms more literary"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "LH figuration patterns; inner-voice chromaticism; variation technique",
+      "heard_in": "Intermezzi; Piano Concerto No. 2 slow movement; late piano works"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Non-functional harmony; pedal-point structures; piano resonance",
+      "heard_in": "Preludes, Arabesques; Debussy called Chopin \"the greatest of all\""
+    },
+    {
+      "composer": "Scriabin",
+      "absorbed": "Chromatic harmony pushed toward atonality; nocturne texture; left-hand patterns",
+      "heard_in": "Early Preludes and Etudes are pure Chopin; later works extend Chopin's chromaticism to its breaking point"
+    },
+    {
+      "composer": "Rachmaninoff",
+      "absorbed": "Bel canto melody on piano; wide LH arpeggios; emotional directness",
+      "heard_in": "Piano Concertos 2-3; Preludes; but Rachmaninoff's scale is orchestral, Chopin's is intimate"
+    },
+    {
+      "composer": "Faure",
+      "absorbed": "Harmonic subtlety; voice-leading over function; nocturne concept",
+      "heard_in": "13 Nocturnes; Barcarolles; the French piano tradition flows directly from Chopin's Paris teaching"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Lyric miniature; national folk elements in art music; piano poem",
+      "heard_in": "Lyric Pieces \u2014 Grieg's Norway = Chopin's Poland in miniature form"
+    },
+    {
+      "composer": "Szymanowski",
+      "absorbed": "Polish identity + advanced chromaticism; piano as expressive instrument",
+      "heard_in": "Mazurkas Op. 50; the Polish tradition from Chopin to Szymanowski is a direct line"
+    }
+  ],
   "comparative_axes": {}
 }

@@ -1,0 +1,21 @@
+{
+  "composer": "style__modern",
+  "genre": "",
+  "support_tier": "C",
+  "corpus_bar_count": 0,
+  "profile_files": [
+    "bartok-devices.md",
+    "bartok-lh-vocabulary.md",
+    "biography.md",
+    "composition-guide.md",
+    "cross-references.md",
+    "formal-approach.md",
+    "harmonic-language.md",
+    "index.md",
+    "melodic-style.md",
+    "orchestration.md",
+    "stylistic-evolution.md"
+  ],
+  "corpus_files": [],
+  "pattern_count": 0
+}

@@ -1,55 +1,6 @@
 {
- "composer": "blend:beethoven+liszt",
+ "composer": "blend__beethoven-liszt",
  "schema": 1,
- "total_bars": 18194,
- "textures": {
-  "held_note": {
-   "grace": 0.0,
-   "trill": 0.0608,
-   "mordent": 0.0,
-   "turn": 0.0074,
-   "dotted": 0.2118,
-   "n": 543
-  },
-  "singing_melody": {
-   "grace": 0.0383,
-   "trill": 0.0234,
-   "mordent": 0.0111,
-   "turn": 0.012,
-   "dotted": 0.249,
-   "n": 5844
-  },
-  "silence": {
-   "grace": 0.0,
-   "trill": 0.0,
-   "mordent": 0.0,
-   "turn": 0.0,
-   "dotted": 0.0,
-   "n": 378
-  },
-  "chordal": {
-   "grace": 0.0047,
-   "trill": 0.003,
-   "mordent": 0.0,
-   "turn": 0.0021,
-   "dotted": 0.2154,
-   "n": 5590
-  },
-  "zigzag_figuration": {
-   "grace": 0.0258,
-   "trill": 0.0107,
-   "mordent": 0.0,
-   "turn": 0.0089,
-   "dotted": 0.1854,
-   "n": 3834
-  },
-  "scalar_run": {
-   "grace": 0.1431,
-   "trill": 0.0324,
-   "mordent": 0.003,
-   "turn": 0.0145,
-   "dotted": 0.1367,
-   "n": 2005
-  }
- }
+ "total_bars": 0,
+ "textures": {}
 }

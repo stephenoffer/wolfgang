@@ -13,6 +13,46 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "binary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "fugue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "da capo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "toccata": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "mass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cantus firmus": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "character piece": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

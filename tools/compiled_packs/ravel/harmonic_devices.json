@@ -8,7 +8,7 @@
       "Dreamlike friction \u2014 \"wrong\" but beautiful"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dreamlike friction \u2014 \"wrong\" but beautiful",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Shimmering maximum tension"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shimmering maximum tension",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -32,7 +32,7 @@
       "The listener hears both; neither resolves"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The listener hears both; neither resolves",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -44,13 +44,16 @@
       "Spanish color without full modulation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Spanish color without full modulation",
     "source_file": "ravel/harmonic-language.md"
   },
   {
     "id": "phrygian_cadence",
     "name": "Phrygian cadence",
-    "chord_sequence": [],
+    "chord_sequence": [
+      "bII",
+      "I"
+    ],
     "voice_leading_hints": [],
     "contexts": [
       "Dark",
@@ -58,7 +61,7 @@
       "final"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dark",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -72,7 +75,7 @@
       "Spanish"
     ],
     "frequency_weight": 0.09,
-    "emotional_color": "",
+    "emotional_color": "Exotic",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -85,7 +88,7 @@
       "dance-like"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sensuous",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -97,7 +100,7 @@
       "Percussive warmth"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Percussive warmth",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -109,7 +112,7 @@
       "\"Gypsy\" color"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "\"Gypsy\" color",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -122,7 +125,7 @@
       "never changing"
     ],
     "frequency_weight": 0.09,
-    "emotional_color": "",
+    "emotional_color": "Alternation between two chords creates the effect of light on moving water \u2014 never still",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -135,7 +138,7 @@
       "directionless"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Voices moving together in the same direction feel like a gust \u2014 effortless",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -148,7 +151,7 @@
       "but luminous"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -161,7 +164,7 @@
       "harmony floats without gravity \u2014 edges dissolve"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Without half-step pulls",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -173,19 +176,22 @@
       "Pentatonic intervals carry no tension; the listener relaxes into the sound"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Pentatonic intervals carry no tension; the listener relaxes into the sound",
     "source_file": "ravel/harmonic-language.md"
   },
   {
     "id": "distance_memory",
     "name": "Distance / Memory",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension",
+      "pedal point"
+    ],
     "contexts": [
       "A chord that never resolves feels like a thought that trails off \u2014 present but receding"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A chord that never resolves feels like a thought that trails off \u2014 present but receding",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -197,7 +203,7 @@
       "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -210,20 +216,22 @@
       "non-directional"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Floating",
     "source_file": "ravel/harmonic-language.md"
   },
   {
     "id": "common_tone_linking",
     "name": "Common-tone linking",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "common tone held"
+    ],
     "contexts": [
       "Smooth",
       "connected"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Smooth",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -235,7 +243,7 @@
       "Grounded yet colorful"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grounded yet colorful",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -247,7 +255,7 @@
       "Sudden color shift"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sudden color shift",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -259,7 +267,7 @@
       "Expanded palette"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Expanded palette",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -271,7 +279,7 @@
       "Smooth chromatic motion"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Smooth chromatic motion",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -284,7 +292,7 @@
       "static"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shimmering",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -296,7 +304,7 @@
       "Elegant slide"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Elegant slide",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -358,7 +366,7 @@
       "Shimmering tension"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shimmering tension",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -370,7 +378,7 @@
       "Dreamlike disconnect"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dreamlike disconnect",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -382,7 +390,7 @@
       "Piano color effect"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Piano color effect",
     "source_file": "ravel/harmonic-language.md"
   },
   {
@@ -394,7 +402,7 @@
       "Grounded dissonance"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grounded dissonance",
     "source_file": "ravel/harmonic-language.md"
   }
 ]

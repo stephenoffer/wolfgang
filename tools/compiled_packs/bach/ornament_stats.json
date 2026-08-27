@@ -1,39 +1,55 @@
 {
  "composer": "bach",
  "schema": 1,
- "total_bars": 6795,
+ "total_bars": 8699,
  "textures": {
   "singing_melody": {
    "grace": 0.0,
+   "trill": 0.0028,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2044,
+   "n": 3249
+  },
+  "zigzag_figuration": {
+   "grace": 0.0005,
    "trill": 0.0032,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.1945,
-   "n": 2828
-  },
-  "zigzag_figuration": {
-   "grace": 0.0006,
-   "trill": 0.004,
-   "mordent": 0.0,
-   "turn": 0.0,
-   "dotted": 0.2051,
-   "n": 3228
+   "dotted": 0.255,
+   "n": 4118
   },
   "scalar_run": {
-   "grace": 0.0064,
+   "grace": 0.0031,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.2548,
-   "n": 157
+   "dotted": 0.1881,
+   "n": 319
   },
   "held_note": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.2296,
-   "n": 575
+   "dotted": 0.2389,
+   "n": 628
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 41
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2529,
+   "n": 344
   }
  }
 }

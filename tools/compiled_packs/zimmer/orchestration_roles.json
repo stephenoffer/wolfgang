@@ -1,4 +1,100 @@
 {
-  "instruments": {},
+  "instruments": {
+    "6\u20138_horns_(unison)": {
+      "name": "6\u20138 horns (unison)",
+      "section": "BRAAAM Scoring",
+      "register": "Bb1\u2013Bb2"
+    },
+    "3_trombones_(unison)": {
+      "name": "3 trombones (unison)",
+      "section": "BRAAAM Scoring",
+      "register": "Bb1"
+    },
+    "tuba": {
+      "name": "Tuba",
+      "section": "BRAAAM Scoring",
+      "register": "Bb0"
+    },
+    "synth_sub-bass": {
+      "name": "Synth sub-bass",
+      "section": "BRAAAM Scoring",
+      "register": "Bb0 (processed)"
+    },
+    "electronic_impact": {
+      "name": "Electronic impact",
+      "section": "BRAAAM Scoring",
+      "register": "Transient burst"
+    },
+    "single_massive_low-frequency_event": {
+      "name": "Single massive low-frequency event",
+      "section": "BRAAAM Scoring",
+      "register": ""
+    }
+  },
+  "textures": [
+    {
+      "name": "Taiko drums",
+      "section": "Percussion"
+    },
+    {
+      "name": "Bass drum (orchestral)",
+      "section": "Percussion"
+    },
+    {
+      "name": "Tom-toms",
+      "section": "Percussion"
+    },
+    {
+      "name": "Cymbals (crash)",
+      "section": "Percussion"
+    },
+    {
+      "name": "Timpani",
+      "section": "Percussion"
+    },
+    {
+      "name": "Electronic percussion",
+      "section": "Percussion"
+    },
+    {
+      "name": "Found percussion",
+      "section": "Percussion"
+    },
+    {
+      "name": "Solo cello",
+      "section": "Solo Instruments",
+      "function": "Deep emotion, grief, heroism"
+    },
+    {
+      "name": "Solo piano",
+      "section": "Solo Instruments",
+      "function": "Intimacy, memory"
+    },
+    {
+      "name": "Pipe organ",
+      "section": "Solo Instruments",
+      "function": "Cosmic scale, transcendence"
+    },
+    {
+      "name": "Solo voice (female)",
+      "section": "Solo Instruments",
+      "function": "Floating humanity above machinery"
+    },
+    {
+      "name": "Electric guitar",
+      "section": "Solo Instruments",
+      "function": "Modern energy, rock influence"
+    },
+    {
+      "name": "Duduk / ethnic winds",
+      "section": "Solo Instruments",
+      "function": "Cultural specificity"
+    },
+    {
+      "name": "Invented instruments",
+      "section": "Solo Instruments",
+      "function": "Sonic world-building"
+    }
+  ],
   "source_file": "orchestration.md"
 }

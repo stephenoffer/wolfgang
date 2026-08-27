@@ -1,7 +1,91 @@
 {
   "influenced_by": [
     {
-      "composer": "Beethoven"
+      "composer": "Haydn",
+      "absorbed": "Sonata form architecture, motivic development, humor",
+      "heard_in": "Early symphonies, quartets; Beethoven's development technique is Haydn's amplified tenfold"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Lyrical melody, operatic drama in instruments, chromatic depth",
+      "heard_in": "Second themes; piano concerto drama; slow movement expressiveness"
+    },
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil: sudden mood shifts, rhetorical pauses",
+      "heard_in": "Dramatic recitative passages in sonatas (Op. 31/2); emotional volatility"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Fugal technique, counterpoint as structure",
+      "heard_in": "Late-period fugues; WTC was his daily bread from Neefe onward"
+    },
+    {
+      "composer": "Clementi",
+      "absorbed": "Virtuoso piano technique, brilliant passagework",
+      "heard_in": "Piano sonata bravura; octave passages; hand-crossing"
+    },
+    {
+      "composer": "French Revolution ideals",
+      "absorbed": "Freedom, individual will, heroic struggle",
+      "heard_in": "Eroica dedication (then withdrawal); Fidelio; Ninth Symphony"
+    },
+    {
+      "composer": "Handel",
+      "absorbed": "Choral grandeur, oratorio drama",
+      "heard_in": "Missa Solemnis; Beethoven reportedly said \"Handel is the greatest composer that ever lived\""
+    },
+    {
+      "composer": "Folk music (Rhineland)",
+      "absorbed": "Popular melody, dance rhythms",
+      "heard_in": "Pastoral Symphony; simple themes for variation; scherzo trio sections"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-form slow movements, modal mixture, orchestral drama",
+      "heard_in": "Symphony in C major; late piano sonatas; \"Wanderer\" Fantasy"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Programmatic symphonic ambition, orchestral extremes",
+      "heard_in": "Symphonie fantastique \u2014 Beethoven's drama + literary program"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Motivic development, symphonic weight, variation technique",
+      "heard_in": "All 4 symphonies; his First is \"Beethoven's Tenth\" (von Bulow)"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Symphony 9 as model for total art-work; leitmotif from motivic cells",
+      "heard_in": "Tristan derives from late Beethoven harmonic radicalism"
+    },
+    {
+      "composer": "Bruckner",
+      "absorbed": "Symphonic scale, brass chorale writing, monumental architecture",
+      "heard_in": "Symphonies 4\u20139: Bruckner = Beethoven's scale + Wagner's harmony"
+    },
+    {
+      "composer": "Mahler",
+      "absorbed": "Symphony as world; extreme dynamic range; the voice enters the symphony",
+      "heard_in": "Das Lied von der Erde; Symphony 2 (choral finale after Beethoven 9)"
+    },
+    {
+      "composer": "Schoenberg",
+      "absorbed": "Late-period harmonic radicalism; continuous development",
+      "heard_in": "\"Developing variation\" concept traced directly to Beethoven"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "String quartet as laboratory; motivic obsession",
+      "heard_in": "6 String Quartets = 20th-century equivalent of Beethoven's quartets"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "String quartet as personal confession; symphonic struggle",
+      "heard_in": "Quartets 8, 15; Symphonies 5, 10 \u2014 the heroic narrative reinterpreted"
     }
   ],
   "comparative_axes": {}

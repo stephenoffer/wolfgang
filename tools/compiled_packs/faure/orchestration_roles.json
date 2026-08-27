@@ -1,4 +1,80 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Arpeggiated accompaniment",
+      "section": "Piano Writing",
+      "function": "Flowing broken chords in LH, 6/8 or 9/8, under melody in RH"
+    },
+    {
+      "name": "Triplet carpet",
+      "section": "Piano Writing",
+      "function": "Continuous triplet eighths creating rhythmic haze"
+    },
+    {
+      "name": "Chordal song accompaniment",
+      "section": "Piano Writing",
+      "function": "Simple block or broken chords supporting vocal melody"
+    },
+    {
+      "name": "Late sparse texture",
+      "section": "Piano Writing",
+      "function": "Bare two-voice writing, widely spaced, few chords"
+    },
+    {
+      "name": "Contrapuntal piano",
+      "section": "Piano Writing",
+      "function": "Two or three independent lines, no \"accompaniment\""
+    },
+    {
+      "name": "Strings",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Flute",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Oboe",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Horns",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Harp",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Full tutti",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Monophonic unison",
+      "section": "String Quartet Op.121",
+      "function": "All four strings on the same line \u2014 extreme austerity"
+    },
+    {
+      "name": "Two-part counterpoint",
+      "section": "String Quartet Op.121",
+      "function": "First violin + cello; inner voices silent"
+    },
+    {
+      "name": "Homophonic chorale",
+      "section": "String Quartet Op.121",
+      "function": "Four-part chords, hymn-like"
+    },
+    {
+      "name": "Free counterpoint",
+      "section": "String Quartet Op.121",
+      "function": "Four independent lines, no \"accompaniment\" layer"
+    },
+    {
+      "name": "Accompanied melody",
+      "section": "String Quartet Op.121",
+      "function": "One voice sings, three accompany \u2014 but the accompaniment is lean"
+    }
+  ],
   "source_file": "orchestration.md"
 }

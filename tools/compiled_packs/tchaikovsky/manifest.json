@@ -12,7 +12,9 @@
     "index.md",
     "melodic-style.md",
     "orchestration.md",
-    "stylistic-evolution.md"
+    "stylistic-evolution.md",
+    "tchaikovsky-devices.md",
+    "tchaikovsky-lh-vocabulary.md"
   ],
   "corpus_files": [
     "bar_index.json",

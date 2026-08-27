@@ -1,265 +1,1040 @@
 [
- {
-  "id": "fig_1_alberti",
-  "name": "Alberti bass",
-  "pattern_keyword": "alberti",
-  "period_style": [
-   "Classical (Mozart",
-   "Haydn)"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Graceful, flowing, elegant",
-  "when_to_use": [
-   "Grace and elegance",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_2_broken_chord_asc",
-  "name": "Ascending arpeggio",
-  "pattern_keyword": "broken_chord_asc",
-  "period_style": [
-   "All periods; Romantic esp."
-  ],
-  "tempo_range": null,
-  "character": "Rising energy, openness, aspiration",
-  "when_to_use": [
-   "Building energy"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_3_broken_chord_desc",
-  "name": "Descending arpeggio",
-  "pattern_keyword": "broken_chord_desc",
-  "period_style": [
-   "All periods; Romantic esp."
-  ],
-  "tempo_range": null,
-  "character": "Falling, sighing, resolution, descent",
-  "when_to_use": [
-   "Winding down"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_4_murky_bass",
-  "name": "Murky bass (octave alternation)",
-  "pattern_keyword": "murky_bass",
-  "period_style": [
-   "Early Classical",
-   "Galant"
-  ],
-  "tempo_range": [
-   80,
-   120
-  ],
-  "character": "Solid, grounded, simple support",
-  "when_to_use": [
-   "Rhythmic drive",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_5_waltz_bass",
-  "name": "Waltz bass (3/4, L:1/8)",
-  "pattern_keyword": "waltz_bass",
-  "period_style": [
-   "Romantic (Chopin",
-   "Strauss)"
-  ],
-  "tempo_range": [
-   120,
-   180
-  ],
-  "character": "Dance-like, lilting, elegant",
-  "when_to_use": [
-   "Grace and elegance",
-   "Lyrical expansion",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_6_wide_span_arpeggio",
-  "name": "Rachmaninoff wide-span",
-  "pattern_keyword": "wide_span_arpeggio",
-  "period_style": [
-   "Late Romantic"
-  ],
-  "tempo_range": [
-   60,
-   100
-  ],
-  "character": "Expansive, passionate, sweeping",
-  "when_to_use": [
-   "Lyrical expansion",
-   "Virtuosic display",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_7_turn_based",
-  "name": "Turn-based",
-  "pattern_keyword": "turn_based",
-  "period_style": [
-   "Classical",
-   "Baroque"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Ornamental, playful, decorative",
-  "when_to_use": [
-   "Grace and elegance"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_8_scalar_asc",
-  "name": "Scalar fill ascending",
-  "pattern_keyword": "scalar_asc",
-  "period_style": [
-   "All periods"
-  ],
-  "tempo_range": [
-   100,
-   160
-  ],
-  "character": "Building, forward motion, urgency",
-  "when_to_use": [
-   "Building energy",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_9_scalar_desc",
-  "name": "Scalar fill descending",
-  "pattern_keyword": "scalar_desc",
-  "period_style": [
-   "All periods"
-  ],
-  "tempo_range": [
-   100,
-   160
-  ],
-  "character": "Releasing, calming, closing",
-  "when_to_use": [
-   "Winding down",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_10_tremolo",
-  "name": "Tremolo",
-  "pattern_keyword": "tremolo",
-  "period_style": [
-   "Romantic",
-   "orchestral"
-  ],
-  "tempo_range": null,
-  "character": "Tension, suspense, sustained energy",
-  "when_to_use": [
-   "Building energy",
-   "Rhythmic drive",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_11_broken_octave",
-  "name": "Broken octave with fill",
-  "pattern_keyword": "broken_octave",
-  "period_style": [
-   "Classical",
-   "early Romantic"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Busy, perpetual motion, industrious",
-  "when_to_use": [
-   "Rhythmic drive",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_12_chordal_passing",
-  "name": "Chordal with passing tones",
-  "pattern_keyword": "chordal_passing",
-  "period_style": [
-   "Romantic",
-   "choral style"
-  ],
-  "tempo_range": [
-   60,
-   110
-  ],
-  "character": "Hymn-like, rich, warm, broadening",
-  "when_to_use": [
-   "Winding down",
-   "Lyrical expansion",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- }
+  {
+    "id": "lh_idiom_the_long_pedal_point",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The long pedal point",
+    "description": "a bass note held for eight, sixteen or thirty-two bars while everything above it changes. Forty-one percent of the armed bars, and the single most Brucknerian device. `C2w | C2w | C2w | C2w`",
+    "shorthand": "C2w | C2w | C2w | C2w",
+    "events": 7,
+    "register": [
+      36,
+      36
+    ],
+    "span_semitones": 0,
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_bass_as_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The bass as melody",
+    "description": "the lowest voice carrying the tune while the upper parts sustain. A third of his bars. This is the organ pedal division playing a chorale.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_full_block_chords_organ_registration_thick",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full block chords, organ-registration thick",
+    "description": "five to eight notes, struck and held, changing on the bar rather than within it.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_in_unison",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves in unison",
+    "description": "the whole texture reduced to one line at the octave, for a theme's first statement. The contrast with the block chords is the drama.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_string_carpet",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo string carpet",
+    "description": "a sustained shimmer under a brass melody. In a piano reduction this is a repeated chord.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_total_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Total silence",
+    "description": "the general pause. Bruckner stops the entire orchestra before a new paragraph, and the silence is a structural device, not a rest.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_wide_spaced_arpeggio_spanning_two_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide-spaced arpeggio spanning two octaves",
+    "description": "`C1e G1e Eb2e G2e C3e Eb3e`, pedalled into a wash.",
+    "shorthand": "C1e G1e Eb2e G2e C3e Eb3e",
+    "events": 6,
+    "register": [
+      24,
+      51
+    ],
+    "span_semitones": 27,
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_deep_bass_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Deep bass octaves",
+    "description": "`[C1,C2]h`, the bottom of the instrument used constantly.",
+    "shorthand": "[C1,C2]h",
+    "events": 1,
+    "register": [
+      24,
+      36
+    ],
+    "span_semitones": 12,
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_full_chords_in_both_hands",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full chords in both hands",
+    "description": "six to eight notes sounding, the \"orchestral\" piano texture.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_throbbing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, throbbing",
+    "description": "under a long melody.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_inner_voice_descent",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic inner-voice descent",
+    "description": "over a held bass \u2014 his standard intensifier.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_counter_melody_in_the_tenor",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Counter-melody in the tenor",
+    "description": "played by the left hand's thumb.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_bell_texture",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The bell texture",
+    "description": "low octaves struck and pedalled, tolling.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rippling_figuration_under_a_sustained_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rippling figuration under a sustained melody",
+    "description": "wide and even.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rolled_chords_too_wide_to_strike",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rolled chords too wide to strike",
+    "description": "written with an arpeggio sign.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_for_a_dies_irae_statement",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves for a Dies Irae statement.",
+    "description": "Bare octaves for a Dies Irae statement.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_low_and_dark",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo, low and dark",
+    "description": "orchestral in intent.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_flowing_broken_chords_unbroken",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Flowing broken chords, unbroken",
+    "description": "`C3e G3e E4e G3e` continuously, even and quiet, for whole sections.",
+    "shorthand": "C3e G3e E4e G3e",
+    "events": 4,
+    "register": [
+      48,
+      64
+    ],
+    "span_semitones": 16,
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_gently_syncopated_accompaniment",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Gently syncopated accompaniment",
+    "description": "the chord entering just off the beat.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggio_spanning_an_octave_and_a_half",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggio spanning an octave and a half",
+    "description": "smooth and unhurried.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_chords_with_a_moving_inner_voice",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained chords with a moving inner voice",
+    "description": "the harmony shifting underneath a still surface.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_soft",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, soft",
+    "description": "under a vocal line.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_contrapuntal_inner_voice",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Contrapuntal inner voice",
+    "description": "Faur\u00e9's textures are more linear than they sound.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_walking_bass_in_slow_harmonic_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Walking bass in slow harmonic rhythm.",
+    "description": "Walking bass in slow harmonic rhythm.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_pedal_note_with_the_harmony_changing_above_it",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held pedal note with the harmony changing above it.",
+    "description": "Held pedal note with the harmony changing above it.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_wide_spacing_without_weight",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide spacing without weight",
+    "description": "open, but never heavy.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_barcarolle_lilt",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The barcarolle lilt",
+    "description": "a rocking 6/8 accompaniment.",
+    "source_file": "faure/faure-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "fig_1_alberti",
+    "name": "Alberti bass",
+    "pattern_keyword": "alberti",
+    "period_style": [
+      "Classical (Mozart",
+      "Haydn)"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Graceful, flowing, elegant",
+    "when_to_use": [
+      "Grace and elegance",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_2_broken_chord_asc",
+    "name": "Ascending arpeggio",
+    "pattern_keyword": "broken_chord_asc",
+    "period_style": [
+      "All periods; Romantic esp."
+    ],
+    "tempo_range": null,
+    "character": "Rising energy, openness, aspiration",
+    "when_to_use": [
+      "Building energy"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_3_broken_chord_desc",
+    "name": "Descending arpeggio",
+    "pattern_keyword": "broken_chord_desc",
+    "period_style": [
+      "All periods; Romantic esp."
+    ],
+    "tempo_range": null,
+    "character": "Falling, sighing, resolution, descent",
+    "when_to_use": [
+      "Winding down"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_4_murky_bass",
+    "name": "Murky bass (octave alternation)",
+    "pattern_keyword": "murky_bass",
+    "period_style": [
+      "Early Classical",
+      "Galant"
+    ],
+    "tempo_range": [
+      80,
+      120
+    ],
+    "character": "Solid, grounded, simple support",
+    "when_to_use": [
+      "Rhythmic drive",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_5_waltz_bass",
+    "name": "Waltz bass (3/4, L:1/8)",
+    "pattern_keyword": "waltz_bass",
+    "period_style": [
+      "Romantic (Chopin",
+      "Strauss)"
+    ],
+    "tempo_range": [
+      120,
+      180
+    ],
+    "character": "Dance-like, lilting, elegant",
+    "when_to_use": [
+      "Grace and elegance",
+      "Lyrical expansion",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": null,
+    "register_suggestion": "",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_6_wide_span_arpeggio",
+    "name": "Rachmaninoff wide-span",
+    "pattern_keyword": "wide_span_arpeggio",
+    "period_style": [
+      "Late Romantic"
+    ],
+    "tempo_range": [
+      60,
+      100
+    ],
+    "character": "Expansive, passionate, sweeping",
+    "when_to_use": [
+      "Lyrical expansion",
+      "Virtuosic display",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_7_turn_based",
+    "name": "Turn-based",
+    "pattern_keyword": "turn_based",
+    "period_style": [
+      "Classical",
+      "Baroque"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Ornamental, playful, decorative",
+    "when_to_use": [
+      "Grace and elegance"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_8_scalar_asc",
+    "name": "Scalar fill ascending",
+    "pattern_keyword": "scalar_asc",
+    "period_style": [
+      "All periods"
+    ],
+    "tempo_range": [
+      100,
+      160
+    ],
+    "character": "Building, forward motion, urgency",
+    "when_to_use": [
+      "Building energy",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_9_scalar_desc",
+    "name": "Scalar fill descending",
+    "pattern_keyword": "scalar_desc",
+    "period_style": [
+      "All periods"
+    ],
+    "tempo_range": [
+      100,
+      160
+    ],
+    "character": "Releasing, calming, closing",
+    "when_to_use": [
+      "Winding down",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": null,
+    "register_suggestion": "",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_10_tremolo",
+    "name": "Tremolo",
+    "pattern_keyword": "tremolo",
+    "period_style": [
+      "Romantic",
+      "orchestral"
+    ],
+    "tempo_range": null,
+    "character": "Tension, suspense, sustained energy",
+    "when_to_use": [
+      "Building energy",
+      "Rhythmic drive",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_11_broken_octave",
+    "name": "Broken octave with fill",
+    "pattern_keyword": "broken_octave",
+    "period_style": [
+      "Classical",
+      "early Romantic"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Busy, perpetual motion, industrious",
+    "when_to_use": [
+      "Rhythmic drive",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_12_chordal_passing",
+    "name": "Chordal with passing tones",
+    "pattern_keyword": "chordal_passing",
+    "period_style": [
+      "Romantic",
+      "choral style"
+    ],
+    "tempo_range": [
+      60,
+      110
+    ],
+    "character": "Hymn-like, rich, warm, broadening",
+    "when_to_use": [
+      "Winding down",
+      "Lyrical expansion",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_three_theme_exposition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The three-theme exposition",
+    "description": "not two but three theme groups, the second a lyrical \"song period\" in a distant key, the third a unison or chorale.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_general_pause",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The general pause",
+    "description": "everything stops for a full bar or more before a new paragraph begins. Structural punctuation, and it must not be filled.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_block_build",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The block build",
+    "description": "a theme stated quietly, restated louder and thicker, restated again at full weight. Terraced like organ registration rather than graded.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_steigerung",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The Steigerung",
+    "description": "a long crescendo over a pedal point, accumulating voices and rhythmic activity across twenty or more bars to a brass climax.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_chorale",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The chorale",
+    "description": "a slow, homophonic, hymn-like passage in the brass, usually crowning a movement.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_coda_as_apotheosis",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Coda as apotheosis",
+    "description": "the movement's main theme returned over a tonic pedal at full volume, which is where the symphony actually ends emotionally.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_bruckner_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "The Bruckner rhythm",
+    "description": "two-plus-three (a duplet followed by a triplet) or its inverse, laid over the bar. His fingerprint, and it appears in nearly every symphony.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cross_rhythm_between_sections",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Cross-rhythm between sections",
+    "description": "triplets against duplets sustained for long stretches.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_slow_even_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Slow, even harmonic rhythm.",
+    "description": "One chord per bar or per several bars.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_third_relation_modulation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Third-relation modulation",
+    "description": "moving to a key a third away, abruptly, with no pivot. The commonest way his music travels.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_neapolitan_and_the_flat_submediant",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The Neapolitan and the flat submediant",
+    "description": "used as structural keys, not as passing colour.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_inflection_from_plainchant",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal inflection from plainchant",
+    "description": "flat sevenths, plagal cadences, and the church modes he played daily.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_unison_passage",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The unison passage",
+    "description": "the entire texture on one line, harmonically ambiguous, before a resolution.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_dominant_pedals",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Long dominant pedals",
+    "description": "under chromatic upper voices, preparing an arrival for many bars.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_themes_built_from_a_rising_interval_a_fifth_or_an_octave_then_a_slow_stepwise_descent",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Themes built from a rising interval \u2014 a fifth or an octave \u2014 then a slow stepwise descent.",
+    "description": "Spacious, singable, and slow to unfold.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unison_octave_statements",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Unison octave statements",
+    "description": "of the theme, bare, at the start of a movement.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_note_values",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long note values.",
+    "description": "The tune moves in halves and wholes far more than his contemporaries.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_breathed_theme",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The long-breathed theme",
+    "description": "sixteen to thirty-two bars, mostly stepwise, arching once. Write the tune first and make it long.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stepwise_melodic_motion_with_occasional_expressive_leaps",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Stepwise melodic motion with occasional expressive leaps.",
+    "description": "Stepwise melodic motion with occasional expressive leaps.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_doubled_in_octaves",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody doubled in octaves",
+    "description": "at the climax.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequential_rise_to_a_peak",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Sequential rise to a peak",
+    "description": "the same phrase a step higher, three times.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_falling_sequence_after_the_peak",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The falling sequence after the peak",
+    "description": "sighs descending.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_the_tenor_register",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody in the tenor register",
+    "description": "under the accompaniment.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_inner_voice_motion",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic inner-voice motion",
+    "description": "over a slow-moving bass.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture",
+    "description": "constant borrowing from the parallel minor.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_extended_dominants",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Extended dominants",
+    "description": "ninths and elevenths held and unresolved.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_augmented_sixth_at_the_emotional_peak",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The augmented sixth at the emotional peak.",
+    "description": "The augmented sixth at the emotional peak.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_dominant_pedal_under_a_rising_sequence",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Long dominant pedal under a rising sequence",
+    "description": "the standard build.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_deceptive_resolution_to_delay_the_tonic",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Deceptive resolution to delay the tonic.",
+    "description": "Deceptive resolution to delay the tonic.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dies_irae_quotation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Dies Irae quotation",
+    "description": "the four-note plainchant, used as a fate motif across many works.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_build",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The long build",
+    "description": "twenty or more bars of continuous intensification.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_collapse",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The collapse",
+    "description": "full texture to a single line immediately after a climax.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_climax_at_the_golden_section",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The climax at the golden section.",
+    "description": "The climax at the golden section.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_theme_across_movements",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic theme across movements.",
+    "description": "Cyclic theme across movements.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_dark_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The quiet dark ending",
+    "description": "low, `ppp`, after everything.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bell_sonorities",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Bell sonorities",
+    "description": "as structural punctuation.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_variation_form_on_a_borrowed_theme",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Variation form on a borrowed theme.",
+    "description": "Variation form on a borrowed theme.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_constant_gentle_modulation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Constant, gentle modulation",
+    "description": "moving through several keys in a phrase without any of them being announced.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_writing",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal writing",
+    "description": "Lydian and Aeolian inflections inside a tonal frame.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_seventh_and_ninth_chords_as_stable_sonorities",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Seventh and ninth chords as stable sonorities",
+    "description": "not as tensions.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediant_shifts",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediant shifts",
+    "description": "made smooth by common tones.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_unresolved_appoggiatura",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The unresolved appoggiatura",
+    "description": "left as colour.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_enharmonic_reinterpretation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Enharmonic reinterpretation",
+    "description": "used quietly rather than dramatically.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_avoided_cadences",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Avoided cadences",
+    "description": "the expected resolution sidestepped repeatedly so the phrase extends.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_plagal_colour",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Plagal colour",
+    "description": "at closes.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_calm_vocal_line",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The long, calm vocal line",
+    "description": "Faur\u00e9 is a song composer above all.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stepwise_melody_with_a_narrow_range",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Stepwise melody with a narrow range.",
+    "description": "Stepwise melody with a narrow range.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melodic_sequence_rising_gently",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melodic sequence rising gently",
+    "description": "without a dramatic peak.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_line_that_begins_mid_phrase",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The line that begins mid-phrase",
+    "description": "as though already in progress.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_elided_phrase_endings",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Elided phrase endings",
+    "description": "one phrase begins before the last has closed.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_continuous_flow",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Continuous flow",
+    "description": "very few full stops.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_gentle_syncopation",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Gentle syncopation",
+    "description": "as a constant, not as an effect.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_barcarolle_and_nocturne_forms",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Barcarolle and nocturne forms.",
+    "description": "Barcarolle and nocturne forms.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ternary_with_a_subtly_varied_return",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Ternary with a subtly varied return.",
+    "description": "Ternary with a subtly varied return.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_ending",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "The quiet ending",
+    "description": "almost always.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_restrained_climax",
+    "category": "composer_device",
+    "section": "Structural and rhythmic devices",
+    "name": "Restrained climax",
+    "description": "the peak of a Faur\u00e9 piece may be `mf`.",
+    "source_file": "faure/faure-devices.md",
+    "grounding": "hard_corroborated"
+  }
 ]

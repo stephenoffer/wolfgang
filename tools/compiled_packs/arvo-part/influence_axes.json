@@ -1,4 +1,104 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Gregorian chant",
+      "absorbed": "Stepwise monophonic melody, modal scales"
+    },
+    {
+      "composer": "P\u00e9rotin (Notre Dame)",
+      "absorbed": "Sustained tone + moving voice above"
+    },
+    {
+      "composer": "Ockeghem",
+      "absorbed": "Strict intervallic rules between voices"
+    },
+    {
+      "composer": "Machaut (Ars Nova)",
+      "absorbed": "Isorhythm: fixed rhythm + fixed pitch series"
+    },
+    {
+      "composer": "Orthodox znamenny chant",
+      "absorbed": "Spiritual function of repetition"
+    },
+    {
+      "composer": "G\u00f3recki"
+    },
+    {
+      "composer": "Tavener"
+    },
+    {
+      "composer": "Messiaen"
+    },
+    {
+      "composer": "Hildegard von Bingen"
+    },
+    {
+      "composer": "G\u00f3recki (*Symphony No. 3*)"
+    },
+    {
+      "composer": "Tavener (*The Protecting Veil*)"
+    },
+    {
+      "composer": "P\u00e4rt"
+    },
+    {
+      "composer": "Tintinnabuli pieces used in 100+ films; spawned \"contemplative\" scoring style"
+    },
+    {
+      "composer": "Brian Eno, Stars of the Lid cite P\u00e4rt; drone + simplicity aesthetic"
+    },
+    {
+      "composer": "Max Richter, \u00d3lafur Arnalds, Nils Frahm echo P\u00e4rt's reductive approach"
+    },
+    {
+      "composer": "Revived interest in liturgical composition among contemporary composers"
+    },
+    {
+      "composer": "Concept of silence-as-music influenced installation art"
+    },
+    {
+      "composer": "Glass"
+    },
+    {
+      "composer": "Reich"
+    },
+    {
+      "composer": "Young"
+    },
+    {
+      "composer": "Riley"
+    },
+    {
+      "composer": "Adams"
+    }
+  ],
+  "influenced": [],
+  "comparative_axes": {
+    "Sacred Music Context": [
+      "G\u00f3recki",
+      "Tavener",
+      "Messiaen",
+      "Hildegard von Bingen"
+    ],
+    "The \"Holy Minimalist\" Group": [
+      "G\u00f3recki (*Symphony No. 3*)",
+      "Tavener (*The Protecting Veil*)",
+      "P\u00e4rt"
+    ],
+    "Influence on Later Music": [
+      "Tintinnabuli pieces used in 100+ films; spawned \"contemplative\" scoring style",
+      "Brian Eno, Stars of the Lid cite P\u00e4rt; drone + simplicity aesthetic",
+      "Max Richter, \u00d3lafur Arnalds, Nils Frahm echo P\u00e4rt's reductive approach",
+      "Revived interest in liturgical composition among contemporary composers",
+      "Concept of silence-as-music influenced installation art"
+    ],
+    "Comparative Harmonic Language": [
+      "P\u00e4rt",
+      "Glass",
+      "Reich",
+      "Young",
+      "Riley",
+      "Adams"
+    ]
+  }
 }

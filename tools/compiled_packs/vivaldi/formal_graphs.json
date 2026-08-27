@@ -42,6 +42,105 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "binary": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {}
     }
   }
 }

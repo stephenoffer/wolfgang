@@ -1,10 +1,86 @@
 {
   "influenced_by": [
     {
-      "composer": "it"
+      "composer": "Balakirev",
+      "absorbed": "Nationalist orientation; informal composition teaching; exotic subjects",
+      "heard_in": "Symphony No. 1; Antar; the entire Mighty Five aesthetic"
     },
     {
-      "composer": "Borodin"
+      "composer": "Glinka",
+      "absorbed": "Russian opera tradition; orchestral color; A Life for the Tsar and Ruslan as models",
+      "heard_in": "Fairy-tale operas inherit Ruslan's magic scenes"
+    },
+    {
+      "composer": "Mussorgsky",
+      "absorbed": "Raw Russian color; speech-melody; the power of \"crude\" harmony",
+      "heard_in": "Rimsky absorbed it, then smoothed it \u2014 both in his own works and in revisions"
+    },
+    {
+      "composer": "Borodin",
+      "absorbed": "Exotic oriental color; Central Asian melody; orchestral pictures",
+      "heard_in": "Scheherazade's exotic color owes debt to Borodin's Polovtsian world"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Orchestral treatise; programmatic orchestration; the orchestra as storyteller",
+      "heard_in": "Rimsky's Principles directly continues Berlioz's Treatise on Instrumentation"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Symphonic poem form; thematic transformation; orchestral brilliance",
+      "heard_in": "Symphonic works; the idea of orchestral narrative"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Late influence: continuous operatic texture; chromaticism; leitmotif",
+      "heard_in": "Kashchei, Kitezh, Golden Cockerel \u2014 the late chromatic period"
+    },
+    {
+      "composer": "Russian folk song",
+      "absorbed": "Modal scales; arched contour; seasonal ritual subject matter",
+      "heard_in": "All \"real world\" scenes in the fairy-tale operas"
+    },
+    {
+      "composer": "Russian Orthodox liturgy",
+      "absorbed": "Chant melody; bell texture; plagal cadences",
+      "heard_in": "Russian Easter Overture; church scenes in operas"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Octatonic harmony; orchestral color as primary parameter; block scoring",
+      "heard_in": "The Firebird is pure Rimsky; Petrushka and Rite extend his octatonic language"
+    },
+    {
+      "composer": "Glazunov",
+      "absorbed": "Orchestral craft; symphonic form; conservatory professionalism",
+      "heard_in": "Glazunov's 8 symphonies and ballets; Rimsky's most faithful student"
+    },
+    {
+      "composer": "Respighi",
+      "absorbed": "Orchestral brilliance; color as structure; the Principles as textbook",
+      "heard_in": "Pines of Rome, Fountains of Rome \u2014 the Italian Rimsky"
+    },
+    {
+      "composer": "Prokofiev",
+      "absorbed": "Orchestral clarity; fairy-tale subject matter; brilliant scoring",
+      "heard_in": "Love for Three Oranges (fairy-tale opera); orchestral suites"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Orchestral color; Spanish exoticism; transparency of scoring",
+      "heard_in": "Ravel studied Rimsky's scores; Rapsodie espagnole echoes Capriccio"
+    },
+    {
+      "composer": "Dukas",
+      "absorbed": "Orchestral brilliance; the Sorcerer's Apprentice owes to Rimsky's orchestral narrative",
+      "heard_in": "Programmatic orchestral clarity"
+    },
+    {
+      "composer": "Film composers",
+      "absorbed": "The entire tradition of narrative orchestration: image-specific instrumentation",
+      "heard_in": "Williams, Korngold \u2014 the sea sounds like the sea, danger sounds like danger"
     }
   ],
   "comparative_axes": {}

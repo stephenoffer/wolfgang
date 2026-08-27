@@ -1,5 +1,104 @@
 [
   {
+    "id": "lh_idiom_polka_oom_pah",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Polka oom-pah",
+    "description": "bright, square, duple. The national dance and his default energy.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_furiant_cross_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Furiant cross-rhythm",
+    "description": "duple accents across 3/4.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_full_sustained_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full sustained chords",
+    "description": "under a lyrical melody, orchestral in weight.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_rippling_arpeggio_depicting_water",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rippling arpeggio depicting water",
+    "description": "the Vltava figure, even and continuous.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_tremolo",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo",
+    "description": "for tension and for orchestral transcription.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_insistent",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, insistent",
+    "description": "driving a narrative passage.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_for_a_fate_or_fanfare_motif",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves for a fate or fanfare motif.",
+    "description": "Bare octaves for a fate or fanfare motif.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_drone_fifths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Drone fifths",
+    "description": "for a rustic scene.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_counter_melody_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Counter-melody in the bass",
+    "description": "in the lyrical passages.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_march_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "March rhythm",
+    "description": "dotted, firm, for the heroic material.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_silence_before_a_narrative_turn",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence before a narrative turn.",
+    "description": "Silence before a narrative turn.",
+    "source_file": "smetana/smetana-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +116,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +134,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +152,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +175,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +222,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +244,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +266,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +309,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +332,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +356,198 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_depiction",
+    "category": "composer_device",
+    "section": "Programmatic devices",
+    "name": "Depiction",
+    "description": "water, forest, hunt, dance, castle. Literal and unembarrassed.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_recurring_theme_as_a_character_or_place",
+    "category": "composer_device",
+    "section": "Programmatic devices",
+    "name": "The recurring theme as a character or place",
+    "description": "returning transformed as the narrative requires.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_scene_change_by_abrupt_texture_change",
+    "category": "composer_device",
+    "section": "Programmatic devices",
+    "name": "Scene change by abrupt texture change",
+    "description": "rather than by transition.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_rippling_water_figure",
+    "category": "composer_device",
+    "section": "Programmatic devices",
+    "name": "The rippling water figure",
+    "description": "continuous even semiquavers, rising and falling.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_hunting_horns",
+    "category": "composer_device",
+    "section": "Programmatic devices",
+    "name": "Hunting horns",
+    "description": "open fifths and triadic fanfares.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_village_dance_episode",
+    "category": "composer_device",
+    "section": "Programmatic devices",
+    "name": "The village dance episode",
+    "description": "polka or furiant interrupting the narrative.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_polka",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Polka",
+    "description": "duple, bright, square.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_furiant",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Furiant",
+    "description": "duple accents across triple metre.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_sko_n",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Sko\u010dn\u00e1",
+    "description": "a fast leaping duple dance.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_march_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "March rhythm",
+    "description": "for heroic material.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_syncopation_for_excitement",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Syncopation for excitement.",
+    "description": "Syncopation for excitement.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_modal_folk_inflection",
+    "category": "composer_device",
+    "section": "Harmonic and melodic devices",
+    "name": "Modal folk inflection",
+    "description": "flat sevenths, Lydian fourths.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_third_related_modulation",
+    "category": "composer_device",
+    "section": "Harmonic and melodic devices",
+    "name": "Third-related modulation",
+    "description": "for a scene change.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_long_pedal_under_a_rising_sequence",
+    "category": "composer_device",
+    "section": "Harmonic and melodic devices",
+    "name": "Long pedal under a rising sequence",
+    "description": "to build to a climax.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_broad_hymnic_theme",
+    "category": "composer_device",
+    "section": "Harmonic and melodic devices",
+    "name": "The broad hymnic theme",
+    "description": "for a patriotic or landscape climax.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_melody_in_octaves_at_a_full_statement",
+    "category": "composer_device",
+    "section": "Harmonic and melodic devices",
+    "name": "Melody in octaves at a full statement.",
+    "description": "Melody in octaves at a full statement.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_diatonic_clarity",
+    "category": "composer_device",
+    "section": "Harmonic and melodic devices",
+    "name": "Diatonic clarity",
+    "description": "the harmony serves the picture.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_symphonic_poem",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Symphonic poem",
+    "description": "one movement, the form dictated by the programme.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_cyclic_theme_across_a_set_of_movements",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic theme across a set of movements.",
+    "description": "Cyclic theme across a set of movements.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_apotheosis",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The apotheosis",
+    "description": "the main theme returning grandly at the end.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_sectional_construction",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sectional construction",
+    "description": "with sharp contrasts.",
+    "source_file": "smetana/smetana-devices.md",
+    "grounding": "profile"
   }
 ]

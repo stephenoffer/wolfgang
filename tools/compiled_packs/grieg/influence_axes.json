@@ -1,10 +1,76 @@
 {
   "influenced_by": [
     {
-      "composer": "the"
+      "composer": "Schumann",
+      "absorbed": "Lyrical Romanticism, character piece form, piano as expressive medium",
+      "heard_in": "Early works, Lyric Pieces concept, rhythmic sensitivity"
     },
     {
-      "composer": "techniques"
+      "composer": "Mendelssohn",
+      "absorbed": "Clarity, elegance, lightness of orchestral touch",
+      "heard_in": "Morning Mood; Holberg Suite; transparent textures"
+    },
+    {
+      "composer": "Rikard Nordraak",
+      "absorbed": "Norwegian national consciousness as artistic mission; \"our music must be Norwegian\"",
+      "heard_in": "The decision to make folk material central \u2014 Nordraak was the catalyst"
+    },
+    {
+      "composer": "Hardanger fiddle tradition",
+      "absorbed": "Open-5th drone, raised 4th, Halling/Springar rhythms, sympathetic resonance",
+      "heard_in": "Throughout \u2014 the primary folk source"
+    },
+    {
+      "composer": "Norwegian folk song",
+      "absorbed": "Pentatonic and modal melodies, strophic form, narrative ballads",
+      "heard_in": "Song settings (Haugtussa), melodic construction everywhere"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Encouragement; pianistic brilliance; the concept of the piano rhapsody",
+      "heard_in": "Piano Concerto cadenza; confidence to pursue a national path"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Piano as miniature form; the nocturne as atmospheric piece; rubato",
+      "heard_in": "Lyric Pieces: the piano miniature tradition"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Debussy",
+      "absorbed": "Chromatic mediant juxtaposition; parallel motion; modal harmony; atmospheric stasis",
+      "heard_in": "Debussy acknowledged studying Grieg carefully; the harmonic freshness of the Preludes has Grieg DNA"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Open-5th drones; modal color; atmospheric piano writing",
+      "heard_in": "Ravel's folk-influenced works; Jeux d'eau has parallels to Grieg's resonant piano texture"
+    },
+    {
+      "composer": "Sibelius",
+      "absorbed": "Nordic identity in concert music; the precedent that Scandinavian music matters",
+      "heard_in": "Sibelius took a different path (symphonic) but Grieg opened the door for Nordic music internationally"
+    },
+    {
+      "composer": "Nielsen",
+      "absorbed": "Danish counterpart; national identity through music",
+      "heard_in": "Less direct influence; but Grieg's success validated the Nordic national project"
+    },
+    {
+      "composer": "Percy Grainger",
+      "absorbed": "Folk melody as art music; direct transcription of folk sources",
+      "heard_in": "Grainger studied with Grieg; absorbed the folk-to-concert principle directly"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Slatter Op. 72's dissonant folk transcription approach",
+      "heard_in": "Bartok's ethnomusicological method parallels Grieg's late Hardanger fiddle work"
+    },
+    {
+      "composer": "British pastoralists",
+      "absorbed": "Folk-based nationalism; atmospheric miniature",
+      "heard_in": "Delius (who lived in Norway), Vaughan Williams (indirect)"
     }
   ],
   "comparative_axes": {}

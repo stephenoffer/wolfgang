@@ -2,7 +2,7 @@
   "composer": "bach",
   "genre": "",
   "support_tier": "A",
-  "corpus_bar_count": 6795,
+  "corpus_bar_count": 8699,
   "profile_files": [
     "bach-devices.md",
     "bach-lh-vocabulary.md",
@@ -22,13 +22,15 @@
     "bars_01.json",
     "bars_02.json",
     "bars_03.json",
+    "bars_04.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",
     "window_index_00.json",
     "window_index_01.json",
     "window_index_02.json",
-    "window_index_03.json"
+    "window_index_03.json",
+    "window_index_04.json"
   ],
   "pattern_count": 1609
 }

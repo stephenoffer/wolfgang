@@ -1,3 +1,282 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Breathe in \u2014 the harmony is ambiguous, suspended, yearning",
+        "voices": {
+          "vln1": [
+            {
+              "p": "G#5",
+              "d": "w",
+              "dyn": "p"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "D#5",
+              "d": "w"
+            }
+          ],
+          "vla": [
+            {
+              "p": "B4",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "F3",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "_feel": "Each voice moves by half-step \u2014 still no arrival",
+        "voices": {
+          "vln1": [
+            {
+              "p": "A5",
+              "d": "w",
+              "dyn": "mp"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "E5",
+              "d": "w"
+            }
+          ],
+          "vla": [
+            {
+              "p": "C5",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "F#3",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 3,
+        "_feel": "The harmonic 'resolution' reveals another unresolved chord \u2014 the yearning intensifies",
+        "voices": {
+          "vln1": [
+            {
+              "p": "Bb5",
+              "d": "w",
+              "dyn": "mf"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "F5",
+              "d": "w"
+            }
+          ],
+          "vla": [
+            {
+              "p": "Db5",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "G3",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 7,
+        "voices": {
+          "vln1": [
+            {
+              "p": "A5",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "G#5",
+              "d": "q"
+            },
+            {
+              "p": "F#5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "h"
+            },
+            {
+              "p": "E3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 8,
+        "_feel": "Deceptive cadence \u2014 phrase 1 should end here but the VI chord arrives instead. The melody keeps going without pause.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "F#2",
+              "d": "h"
+            },
+            {
+              "p": "D3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 9,
+        "voices": {
+          "vln1": [
+            {
+              "p": "A5",
+              "d": "dh",
+              "dyn": "mf"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "B2",
+              "d": "h"
+            },
+            {
+              "p": "F#3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 12,
+        "_feel": "The orchestra knows what the character does not \u2014 Longing and Fate sound simultaneously below the melody.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "C#5",
+              "d": "h",
+              "dyn": "mf",
+              "expr": "sehr ausdrucksvoll"
+            },
+            {
+              "p": "D5",
+              "d": "h"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "E4",
+              "d": "q"
+            },
+            {
+              "p": "F4",
+              "d": "q"
+            },
+            {
+              "p": "D#4",
+              "d": "h"
+            }
+          ],
+          "vla": [
+            {
+              "p": "D4",
+              "d": "q"
+            },
+            {
+              "p": "D4",
+              "d": "q"
+            },
+            {
+              "p": "D4",
+              "d": "q"
+            },
+            {
+              "p": "A3",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "w",
+              "dyn": "p"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "p": [
+          "F3",
+          "B4",
+          "D#5",
+          "G#5"
+        ],
+        "d": "w"
+      }
+    }
+  ]
 }

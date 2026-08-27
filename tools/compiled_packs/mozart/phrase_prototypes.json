@@ -1,3 +1,283 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "G2",
+            "chord_tones": [
+              "D3",
+              "B3",
+              "G3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "soprano": [
+            {
+              "p": "D5",
+              "d": "h"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "G2",
+            "chord_tones": [
+              "D3",
+              "B3",
+              "G3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 3,
+        "voices": {
+          "soprano": [
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "F#5",
+              "d": "q",
+              "orn": "grace:G5"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "D2",
+            "chord_tones": [
+              "F#3",
+              "A3",
+              "D4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 4,
+        "_feel": "Half cadence \u2014 open, asking, not yet home.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G5",
+              "d": "h",
+              "dyn": "mf"
+            },
+            {
+              "p": "F#5",
+              "d": "q",
+              "orn": "trill"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "D2",
+            "chord_tones": [
+              "A3",
+              "F#3",
+              "D3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 5,
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "G2",
+            "chord_tones": [
+              "D3",
+              "B3",
+              "G3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 6,
+        "voices": {
+          "soprano": [
+            {
+              "p": "D5",
+              "d": "h"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "G2",
+            "chord_tones": [
+              "D3",
+              "B3",
+              "G3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 7,
+        "_feel": "Now the phrase goes somewhere different \u2014 toward the PAC instead of the HC.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "Eb5",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "C2",
+            "chord_tones": [
+              "G3",
+              "E3",
+              "C3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 8,
+        "_feel": "PAC \u2014 home, complete, resolved.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q",
+              "orn": "grace:C5"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "G4",
+              "d": "q",
+              "orn": "trill"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "D2",
+            "chord_tones": [
+              "A3",
+              "F#3",
+              "D3"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

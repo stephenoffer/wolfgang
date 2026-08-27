@@ -1,265 +1,795 @@
 [
- {
-  "id": "fig_1_alberti",
-  "name": "Alberti bass",
-  "pattern_keyword": "alberti",
-  "period_style": [
-   "Classical (Mozart",
-   "Haydn)"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Graceful, flowing, elegant",
-  "when_to_use": [
-   "Grace and elegance",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_2_broken_chord_asc",
-  "name": "Ascending arpeggio",
-  "pattern_keyword": "broken_chord_asc",
-  "period_style": [
-   "All periods; Romantic esp."
-  ],
-  "tempo_range": null,
-  "character": "Rising energy, openness, aspiration",
-  "when_to_use": [
-   "Building energy"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_3_broken_chord_desc",
-  "name": "Descending arpeggio",
-  "pattern_keyword": "broken_chord_desc",
-  "period_style": [
-   "All periods; Romantic esp."
-  ],
-  "tempo_range": null,
-  "character": "Falling, sighing, resolution, descent",
-  "when_to_use": [
-   "Winding down"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_4_murky_bass",
-  "name": "Murky bass (octave alternation)",
-  "pattern_keyword": "murky_bass",
-  "period_style": [
-   "Early Classical",
-   "Galant"
-  ],
-  "tempo_range": [
-   80,
-   120
-  ],
-  "character": "Solid, grounded, simple support",
-  "when_to_use": [
-   "Rhythmic drive",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_5_waltz_bass",
-  "name": "Waltz bass (3/4, L:1/8)",
-  "pattern_keyword": "waltz_bass",
-  "period_style": [
-   "Romantic (Chopin",
-   "Strauss)"
-  ],
-  "tempo_range": [
-   120,
-   180
-  ],
-  "character": "Dance-like, lilting, elegant",
-  "when_to_use": [
-   "Grace and elegance",
-   "Lyrical expansion",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_6_wide_span_arpeggio",
-  "name": "Rachmaninoff wide-span",
-  "pattern_keyword": "wide_span_arpeggio",
-  "period_style": [
-   "Late Romantic"
-  ],
-  "tempo_range": [
-   60,
-   100
-  ],
-  "character": "Expansive, passionate, sweeping",
-  "when_to_use": [
-   "Lyrical expansion",
-   "Virtuosic display",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_7_turn_based",
-  "name": "Turn-based",
-  "pattern_keyword": "turn_based",
-  "period_style": [
-   "Classical",
-   "Baroque"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Ornamental, playful, decorative",
-  "when_to_use": [
-   "Grace and elegance"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_8_scalar_asc",
-  "name": "Scalar fill ascending",
-  "pattern_keyword": "scalar_asc",
-  "period_style": [
-   "All periods"
-  ],
-  "tempo_range": [
-   100,
-   160
-  ],
-  "character": "Building, forward motion, urgency",
-  "when_to_use": [
-   "Building energy",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_9_scalar_desc",
-  "name": "Scalar fill descending",
-  "pattern_keyword": "scalar_desc",
-  "period_style": [
-   "All periods"
-  ],
-  "tempo_range": [
-   100,
-   160
-  ],
-  "character": "Releasing, calming, closing",
-  "when_to_use": [
-   "Winding down",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_10_tremolo",
-  "name": "Tremolo",
-  "pattern_keyword": "tremolo",
-  "period_style": [
-   "Romantic",
-   "orchestral"
-  ],
-  "tempo_range": null,
-  "character": "Tension, suspense, sustained energy",
-  "when_to_use": [
-   "Building energy",
-   "Rhythmic drive",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_11_broken_octave",
-  "name": "Broken octave with fill",
-  "pattern_keyword": "broken_octave",
-  "period_style": [
-   "Classical",
-   "early Romantic"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Busy, perpetual motion, industrious",
-  "when_to_use": [
-   "Rhythmic drive",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_12_chordal_passing",
-  "name": "Chordal with passing tones",
-  "pattern_keyword": "chordal_passing",
-  "period_style": [
-   "Romantic",
-   "choral style"
-  ],
-  "tempo_range": [
-   60,
-   110
-  ],
-  "character": "Hymn-like, rich, warm, broadening",
-  "when_to_use": [
-   "Winding down",
-   "Lyrical expansion",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- }
+  {
+    "id": "lh_idiom_wide_low_sustained_fifths_and_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide, low, sustained fifths and octaves",
+    "description": "`[C1,G1]w`, pedalled, as a resonant floor rather than a bass line.",
+    "shorthand": "[C1,G1]w",
+    "events": 1,
+    "register": [
+      24,
+      31
+    ],
+    "span_semitones": 7,
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_parallel_chords_moving_in_blocks",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Parallel chords moving in blocks",
+    "description": "the whole chord shape sliding by step or third, `[C3,E3,G3]q [D3,F3,A3]q`. Planing; the defining Impressionist texture.",
+    "shorthand": "[C3,E3,G3]q [D3,F3,A3]q",
+    "events": 2,
+    "register": [
+      48,
+      57
+    ],
+    "span_semitones": 9,
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rippling_wide_arpeggios",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rippling wide arpeggios",
+    "description": "spanning two or more octaves, pedalled into a wash.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_ostinato_figure_repeated_unchanged",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Ostinato figure repeated unchanged",
+    "description": "under changing upper harmony.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pentatonic_figuration",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pentatonic figuration",
+    "description": "black-key patterns, no leading tone.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_whole_tone_arpeggio",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Whole-tone arpeggio",
+    "description": "symmetrical, keyless, floating.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_fifths_in_the_deep_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare fifths in the deep bass",
+    "description": "for archaism and openness.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chord_with_an_added_second_or_sixth",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chord with an added second or sixth",
+    "description": "`[C3,D3,G3,A3]` \u2014 resonance rather than function.",
+    "shorthand": "[C3,D3,G3,A3]",
+    "events": 1,
+    "register": [
+      48,
+      57
+    ],
+    "span_semitones": 9,
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_silence_between_gestures",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The silence between gestures",
+    "description": "Debussy's textures are episodic and the gaps are part of them.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_quiet_and_blurred",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo, quiet and blurred",
+    "description": "under a sustained upper line.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cross_hand_arpeggio_covering_four_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cross-hand arpeggio covering four octaves",
+    "description": "as a single sweeping gesture.",
+    "source_file": "debussy/debussy-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_gymnop_die_bass_and_chord",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The Gymnop\u00e9die bass-and-chord",
+    "description": "a single low bass note on beat 1, a mid-register chord on beat 2, nothing on beat 3. In 3/4 forever. `G2h. // rest_q [B3,D4,F#4]q rest_q` The rest on three is the whole gesture. Filling it destroys the piece.",
+    "shorthand": "G2h. // rest_q [B3,D4,F#4]q rest_q",
+    "events": 5,
+    "register": [
+      43,
+      66
+    ],
+    "span_semitones": 23,
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_in_the_low_register",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves in the low register",
+    "description": "the bass alone, doubled at the octave, under a slow melody. Used for the Gnossiennes' opening. `[D2,D3]w`",
+    "shorthand": "[D2,D3]w",
+    "events": 1,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_unchanging_ostinato",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The unchanging ostinato",
+    "description": "one figure repeated exactly while the right hand moves through unrelated harmony. Change the ostinato only at a section.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pedal_point_under_everything",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pedal point under everything",
+    "description": "a held bass for eight or sixteen bars while the upper chords shift over it. 18% of his bars.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_slow_walking_bass_in_even_quarters",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Slow walking bass in even quarters",
+    "description": "the cabaret inheritance, used in the more popular pieces. Even, unhurried, never syncopated.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence",
+    "description": "the left hand stops for a bar or a phrase. 16% of his bars. In any other composer this is a gap; here it is a texture, and it is why the returning bass has weight.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "fig_1_alberti",
+    "name": "Alberti bass",
+    "pattern_keyword": "alberti",
+    "period_style": [
+      "Classical (Mozart",
+      "Haydn)"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Graceful, flowing, elegant",
+    "when_to_use": [
+      "Grace and elegance",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_2_broken_chord_asc",
+    "name": "Ascending arpeggio",
+    "pattern_keyword": "broken_chord_asc",
+    "period_style": [
+      "All periods; Romantic esp."
+    ],
+    "tempo_range": null,
+    "character": "Rising energy, openness, aspiration",
+    "when_to_use": [
+      "Building energy"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_3_broken_chord_desc",
+    "name": "Descending arpeggio",
+    "pattern_keyword": "broken_chord_desc",
+    "period_style": [
+      "All periods; Romantic esp."
+    ],
+    "tempo_range": null,
+    "character": "Falling, sighing, resolution, descent",
+    "when_to_use": [
+      "Winding down"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_4_murky_bass",
+    "name": "Murky bass (octave alternation)",
+    "pattern_keyword": "murky_bass",
+    "period_style": [
+      "Early Classical",
+      "Galant"
+    ],
+    "tempo_range": [
+      80,
+      120
+    ],
+    "character": "Solid, grounded, simple support",
+    "when_to_use": [
+      "Rhythmic drive",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_5_waltz_bass",
+    "name": "Waltz bass (3/4, L:1/8)",
+    "pattern_keyword": "waltz_bass",
+    "period_style": [
+      "Romantic (Chopin",
+      "Strauss)"
+    ],
+    "tempo_range": [
+      120,
+      180
+    ],
+    "character": "Dance-like, lilting, elegant",
+    "when_to_use": [
+      "Grace and elegance",
+      "Lyrical expansion",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": null,
+    "register_suggestion": "",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_6_wide_span_arpeggio",
+    "name": "Rachmaninoff wide-span",
+    "pattern_keyword": "wide_span_arpeggio",
+    "period_style": [
+      "Late Romantic"
+    ],
+    "tempo_range": [
+      60,
+      100
+    ],
+    "character": "Expansive, passionate, sweeping",
+    "when_to_use": [
+      "Lyrical expansion",
+      "Virtuosic display",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_7_turn_based",
+    "name": "Turn-based",
+    "pattern_keyword": "turn_based",
+    "period_style": [
+      "Classical",
+      "Baroque"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Ornamental, playful, decorative",
+    "when_to_use": [
+      "Grace and elegance"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_8_scalar_asc",
+    "name": "Scalar fill ascending",
+    "pattern_keyword": "scalar_asc",
+    "period_style": [
+      "All periods"
+    ],
+    "tempo_range": [
+      100,
+      160
+    ],
+    "character": "Building, forward motion, urgency",
+    "when_to_use": [
+      "Building energy",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_9_scalar_desc",
+    "name": "Scalar fill descending",
+    "pattern_keyword": "scalar_desc",
+    "period_style": [
+      "All periods"
+    ],
+    "tempo_range": [
+      100,
+      160
+    ],
+    "character": "Releasing, calming, closing",
+    "when_to_use": [
+      "Winding down",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": null,
+    "register_suggestion": "",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_10_tremolo",
+    "name": "Tremolo",
+    "pattern_keyword": "tremolo",
+    "period_style": [
+      "Romantic",
+      "orchestral"
+    ],
+    "tempo_range": null,
+    "character": "Tension, suspense, sustained energy",
+    "when_to_use": [
+      "Building energy",
+      "Rhythmic drive",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_11_broken_octave",
+    "name": "Broken octave with fill",
+    "pattern_keyword": "broken_octave",
+    "period_style": [
+      "Classical",
+      "early Romantic"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Busy, perpetual motion, industrious",
+    "when_to_use": [
+      "Rhythmic drive",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_12_chordal_passing",
+    "name": "Chordal with passing tones",
+    "pattern_keyword": "chordal_passing",
+    "period_style": [
+      "Romantic",
+      "choral style"
+    ],
+    "tempo_range": [
+      60,
+      110
+    ],
+    "character": "Hymn-like, rich, warm, broadening",
+    "when_to_use": [
+      "Winding down",
+      "Lyrical expansion",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_planing",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Planing",
+    "description": "a chord shape moved in parallel, all voices in the same direction by the same interval. Parallel fifths and ninths are the point, not an error.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_scale",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone scale",
+    "description": "symmetrical, no leading tone, no tonic. Used for suspension and unreality.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pentatonic_collections",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Pentatonic collections",
+    "description": "five notes, no semitones, no tendency.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modes",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modes",
+    "description": "Dorian, Lydian, Mixolydian, chosen for colour.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_added_note_chords",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Added-note chords",
+    "description": "sixths, seconds and ninths added to triads for resonance.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_dominant_sevenths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved dominant sevenths",
+    "description": "used as stable sonorities.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bitonal_or_ambiguous_bass",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bitonal or ambiguous bass",
+    "description": "the bass and the upper harmony implying different centres.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chord_streams_over_a_pedal",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chord streams over a pedal",
+    "description": "the harmony moving while the bass does not.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_tritone_as_a_structural_interval",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The tritone as a structural interval",
+    "description": "rather than a dissonance to resolve.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_avoiding_the_leading_tone",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Avoiding the leading tone",
+    "description": "almost entirely.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_veiled_pulse",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Veiled pulse",
+    "description": "the metre deliberately obscured by ties, irregular groupings and rests on strong beats.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_irregular_groupings",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Irregular groupings",
+    "description": "5, 7 and 11 against the beat.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_register_as_colour",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Register as colour",
+    "description": "the same material moved octaves for a different quality.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_extreme_dynamic_range_at_the_quiet_end",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Extreme dynamic range at the quiet end",
+    "description": "`pppp` markings, and most of the music below `mf`.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_silence_as_material",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Silence as material",
+    "description": "gaps between gestures rather than continuous flow.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_layered_ostinati",
+    "category": "composer_device",
+    "section": "Textural and rhythmic devices",
+    "name": "Layered ostinati",
+    "description": "two or three repeating figures at different lengths.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_episodic_image_based_form",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Episodic, image-based form",
+    "description": "sections defined by texture and colour rather than by key.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_arch_shape",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Arch shape",
+    "description": "building to one climax and receding.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_a_title_that_names_an_image",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "A title that names an image",
+    "description": "with the music depicting it directly.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_gesture_that_does_not_return",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The gesture that does not return",
+    "description": "material used once and abandoned.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ending_by_evaporation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ending by evaporation",
+    "description": "thinning to nothing rather than cadencing.",
+    "source_file": "debussy/debussy-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_strophic_repetition_without_development",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Strophic repetition without development",
+    "description": "the same music three times, with tiny changes or none. There is no development section because there is no argument.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sectional_blocks_that_simply_stop",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sectional blocks that simply stop",
+    "description": "a section ends and another begins with no transition and no modulation joining them.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_three_piece_set",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The three-piece set",
+    "description": "Gymnop\u00e9dies, Gnossiennes: variations on one mood rather than one theme, each piece nearly the same as the last.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_no_climax",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "No climax.",
+    "description": "The dynamic level barely moves. The piece has no highest point, which is why it feels suspended rather than shaped.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_absence_of_a_double_bar_s_worth_of_preparation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Absence of a double bar's worth of preparation",
+    "description": "no retransition, no dominant build. Arrivals are not prepared.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_seventh_and_ninth_chords",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel seventh and ninth chords",
+    "description": "the whole chord moving in parallel, which the period forbade. The Gymnop\u00e9dies open on a major seventh.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_sevenths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved sevenths",
+    "description": "a seventh chord that simply moves to another seventh chord. Nothing resolves in the textbook sense.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_rather_than_functional_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal rather than functional harmony",
+    "description": "Dorian and Lydian inflections, a flat seventh instead of a leading tone, cadences on degrees that are not the dominant.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediants",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediants",
+    "description": "a shift from a chord to one a third away with no pivot. The commonest way his harmony moves.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_static_harmony_under_a_moving_line",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Static harmony under a moving line",
+    "description": "one chord held for four or eight bars while the melody wanders. See `pedal_point` in the vocabulary.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bare_fourths_and_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bare fourths and fifths",
+    "description": "open intervals with the third omitted, giving the medieval colour of the Gnossiennes.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_even_note_values",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long even note values",
+    "description": "the melody in half and quarter notes, unhurried, with no ornament.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_small_range",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Small range",
+    "description": "a fifth or a sixth for a whole phrase. The tune does not reach.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repetition_of_a_short_cell",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repetition of a short cell",
+    "description": "three or four notes turned over several times before moving on.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_phrase_lengths_that_are_not_four_bars",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Phrase lengths that are not four bars",
+    "description": "five, seven, eleven. He does not square his phrases.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_prose_directions_instead_of_italian",
+    "category": "composer_device",
+    "section": "Notation",
+    "name": "Prose directions instead of Italian",
+    "description": "*\"Lent et douloureux\"*, and the famous absurd ones. Written above the staff as text expressions.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_no_barlines_no_key_signature_no_time_signature",
+    "category": "composer_device",
+    "section": "Notation",
+    "name": "No barlines, no key signature, no time signature",
+    "description": "in some pieces. Where the engine requires them, keep the accidentals local and the metre simple.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  }
 ]

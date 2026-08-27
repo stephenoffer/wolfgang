@@ -1,4 +1,101 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Winds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Winds"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Winds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Winds"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Winds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Winds"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Full nobilmente",
+      "section": "Orchestral Texture Types",
+      "function": "Strings melody f, brass sustain, winds countermelody"
+    },
+    {
+      "name": "String choir alone",
+      "section": "Orchestral Texture Types",
+      "function": "Strings only; rich divisi; warm, intimate"
+    },
+    {
+      "name": "Solo + orchestral cushion",
+      "section": "Orchestral Texture Types",
+      "function": "Solo instrument over sustained orchestral chords"
+    },
+    {
+      "name": "Processional",
+      "section": "Orchestral Texture Types",
+      "function": "Full orchestra in march rhythm; brass prominent but warm"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Types",
+      "function": "2\u20134 instruments; sudden intimacy"
+    },
+    {
+      "name": "Organ-like sustain",
+      "section": "Orchestral Texture Types",
+      "function": "Winds + brass hold chords like organ stops; strings move above"
+    },
+    {
+      "name": "Sequential crescendo",
+      "section": "Orchestral Texture Types",
+      "function": "Same passage repeated at higher level with added instruments each time"
+    }
+  ],
   "source_file": "orchestration.md"
 }

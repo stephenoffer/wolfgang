@@ -1,4 +1,237 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "J.C. Bach",
+      "absorbed": "Singing allegro, galant keyboard style, concerto form",
+      "heard_in": "Piano concertos \u2014 the entire genre's DNA comes from the London meeting (1764)"
+    },
+    {
+      "composer": "Haydn",
+      "absorbed": "Sonata-form development, motivic work, quartet texture",
+      "heard_in": "\"Haydn\" Quartets K.387-465; symphonic development sections"
+    },
+    {
+      "composer": "Italian opera (Jommelli, Piccini, Sarti)",
+      "absorbed": "Vocal melody as supreme value; aria forms; buffa pacing",
+      "heard_in": "Every melody Mozart wrote \u2014 instrumental music IS vocal music"
+    },
+    {
+      "composer": "Mannheim School (Stamitz, Cannabich)",
+      "absorbed": "Orchestral crescendo, dynamic contrast, wind independence",
+      "heard_in": "Paris Symphony K.297 onward; wind writing in concertos"
+    },
+    {
+      "composer": "Bach & Handel (via van Swieten, 1782)",
+      "absorbed": "Fugal technique, contrapuntal density, choral grandeur",
+      "heard_in": "Jupiter Symphony finale, Requiem, late keyboard fugues"
+    },
+    {
+      "composer": "Padre Martini",
+      "absorbed": "Strict counterpoint, church style (stile antico)",
+      "heard_in": "Mass settings, Requiem fugues, K.387 fugal finale"
+    },
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil \u2014 sudden dynamic changes, recitative-like passages",
+      "heard_in": "Fantasy in C minor K.475; development section surprises"
+    },
+    {
+      "composer": "French culture",
+      "absorbed": "Elegance, dance forms, orchestral refinement",
+      "heard_in": "Minuets, serenades, ballet music in operas"
+    },
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil \u2014 sudden contrasts, rhetorical pauses, emotional intensity",
+      "heard_in": "Sturm und Drang symphonies; surprise dynamics throughout"
+    },
+    {
+      "composer": "Fux (*Gradus ad Parnassum*)",
+      "absorbed": "Strict counterpoint fundamentals",
+      "heard_in": "Fugal finales in Op. 20 quartets; contrapuntal development"
+    },
+    {
+      "composer": "Viennese galant style",
+      "absorbed": "Light entertainment idiom; balanced phrases; charm",
+      "heard_in": "Early symphonies and divertimenti"
+    },
+    {
+      "composer": "Italian opera (Porpora)",
+      "absorbed": "Vocal melody, dramatic pacing, theatrical gesture",
+      "heard_in": "Haydn studied with Porpora; operatic timing in instrumental music"
+    },
+    {
+      "composer": "Folk music (Austrian/Hungarian)",
+      "absorbed": "Dance rhythms, pentatonic inflections, rustic character",
+      "heard_in": "Minuet character; finale themes; rondo refrains"
+    },
+    {
+      "composer": "Baroque trio sonata",
+      "absorbed": "Three-voice texture; bass as structural voice",
+      "heard_in": "Early quartets; piano trio balance"
+    },
+    {
+      "composer": "Haydn",
+      "absorbed": "Sonata form architecture, motivic development, humor",
+      "heard_in": "Early symphonies, quartets; Beethoven's development technique is Haydn's amplified tenfold"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Lyrical melody, operatic drama in instruments, chromatic depth",
+      "heard_in": "Second themes; piano concerto drama; slow movement expressiveness"
+    },
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil: sudden mood shifts, rhetorical pauses",
+      "heard_in": "Dramatic recitative passages in sonatas (Op. 31/2); emotional volatility"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Fugal technique, counterpoint as structure",
+      "heard_in": "Late-period fugues; WTC was his daily bread from Neefe onward"
+    },
+    {
+      "composer": "Clementi",
+      "absorbed": "Virtuoso piano technique, brilliant passagework",
+      "heard_in": "Piano sonata bravura; octave passages; hand-crossing"
+    },
+    {
+      "composer": "French Revolution ideals",
+      "absorbed": "Freedom, individual will, heroic struggle",
+      "heard_in": "Eroica dedication (then withdrawal); Fidelio; Ninth Symphony"
+    },
+    {
+      "composer": "Handel",
+      "absorbed": "Choral grandeur, oratorio drama",
+      "heard_in": "Missa Solemnis; Beethoven reportedly said \"Handel is the greatest composer that ever lived\""
+    },
+    {
+      "composer": "Folk music (Rhineland)",
+      "absorbed": "Popular melody, dance rhythms",
+      "heard_in": "Pastoral Symphony; simple themes for variation; scherzo trio sections"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Beethoven",
+      "absorbed": "Sonata-form drama, piano concerto model, motivic integration",
+      "heard_in": "Piano Concerto No. 3 (modeled on K.491); sonata development"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Lyric melody, harmonic coloring, song-like instrumental themes",
+      "heard_in": "Schubert's Bb Sonata D.960 echoes K.595's farewell tone"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Classical clarity, elegant orchestration, chamber transparency",
+      "heard_in": "Octet, Violin Concerto \u2014 Mozartian balance updated"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Formal proportion, thematic economy, motivic development",
+      "heard_in": "Piano concertos inherit Mozart's dialogue principle"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Operatic melody in orchestral music, emotional directness",
+      "heard_in": "Tchaikovsky adored Mozart; echoes in Romeo and Juliet's lyricism"
+    },
+    {
+      "composer": "Richard Strauss",
+      "absorbed": "Operatic vocal writing, wind orchestration",
+      "heard_in": "Der Rosenkavalier \u2014 explicitly Mozartian opera"
+    },
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Neoclassical works directly channel Mozart's clarity",
+      "heard_in": "The Rake's Progress \u2014 20th-century opera in Mozartian form"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Quartet conversation; development technique; monothematic ideas",
+      "heard_in": "\"Haydn\" Quartets K. 387-465; Jupiter Symphony development"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Motivic development; formal subversion; scherzo from minuet",
+      "heard_in": "Eroica development; all scherzi; structural drama"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Lyrical slow movements; variation form; song-like themes",
+      "heard_in": "\"Death and the Maiden\" quartet variations"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Orchestral clarity; formal balance; scherzo lightness",
+      "heard_in": "Midsummer Night's Dream scherzo"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Thematic economy; developmental variation; quartet textures",
+      "heard_in": "Symphony No. 1 (Haydn's legacy made Romantic)"
+    },
+    {
+      "composer": "Dvorak",
+      "absorbed": "Folk elements within Classical form; rondo finales",
+      "heard_in": "\"New World\" Symphony scherzo"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Quartet as medium of innovation; folk integration",
+      "heard_in": "String Quartets Nos. 1-6 (the quartet as laboratory continues)"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Quartet as intimate confession; formal wit with dark undertones",
+      "heard_in": "15 string quartets \u2014 Haydn's conversational ideal in Soviet shadow"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-form slow movements, modal mixture, orchestral drama",
+      "heard_in": "Symphony in C major; late piano sonatas; \"Wanderer\" Fantasy"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Programmatic symphonic ambition, orchestral extremes",
+      "heard_in": "Symphonie fantastique \u2014 Beethoven's drama + literary program"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Motivic development, symphonic weight, variation technique",
+      "heard_in": "All 4 symphonies; his First is \"Beethoven's Tenth\" (von Bulow)"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Symphony 9 as model for total art-work; leitmotif from motivic cells",
+      "heard_in": "Tristan derives from late Beethoven harmonic radicalism"
+    },
+    {
+      "composer": "Bruckner",
+      "absorbed": "Symphonic scale, brass chorale writing, monumental architecture",
+      "heard_in": "Symphonies 4\u20139: Bruckner = Beethoven's scale + Wagner's harmony"
+    },
+    {
+      "composer": "Mahler",
+      "absorbed": "Symphony as world; extreme dynamic range; the voice enters the symphony",
+      "heard_in": "Das Lied von der Erde; Symphony 2 (choral finale after Beethoven 9)"
+    },
+    {
+      "composer": "Schoenberg",
+      "absorbed": "Late-period harmonic radicalism; continuous development",
+      "heard_in": "\"Developing variation\" concept traced directly to Beethoven"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "String quartet as laboratory; motivic obsession",
+      "heard_in": "6 String Quartets = 20th-century equivalent of Beethoven's quartets"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "String quartet as personal confession; symphonic struggle",
+      "heard_in": "Quartets 8, 15; Symphonies 5, 10 \u2014 the heroic narrative reinterpreted"
+    }
+  ],
   "comparative_axes": {}
 }

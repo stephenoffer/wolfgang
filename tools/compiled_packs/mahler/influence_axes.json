@@ -1,4 +1,82 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony, orchestral color, leitmotif principle, through-composition",
+      "heard_in": "Symphonies 2, 8; the continuous flow of development sections; harmonic wandering"
+    },
+    {
+      "composer": "Bruckner",
+      "absorbed": "Monumental scale, brass chorale climaxes, adagio as spiritual form, block orchestration",
+      "heard_in": "Sym 2 finale, Sym 3 mvt 1, Sym 8; the chorale apotheosis; cathedral-scale brass writing"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Sonata form as argument, Symphony 9 (voices enter the symphony), Pastoral (nature), heroic narrative",
+      "heard_in": "All symphonies use sonata form; Sym 2/3/4/8 add voices; Sym 6 \"Tragic\" = Beethoven's 5th inverted"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-form melody, major-minor alternation, Wanderer quality, the death-and-the-maiden emotional world",
+      "heard_in": "Song-symphony fusion; the walking melodies; major/minor flicker as emotional weather"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Counterpoint, chorale, passacaglia",
+      "heard_in": "Sym 5 Rondo-Finale fugal writing; Sym 8 Veni Creator counterpoint; chorale idiom throughout"
+    },
+    {
+      "composer": "Des Knaben Wunderhorn (folk poetry)",
+      "absorbed": "Folk melody, naivete, genre collision (soldiers/children/death/animals in one world)",
+      "heard_in": "Symphonies 1\u20134 directly; the folk element never fully disappears"
+    },
+    {
+      "composer": "Bohemian/Austrian folk music",
+      "absorbed": "L\u00e4ndler, military march, birdsong, Alpine pastoral",
+      "heard_in": "Every symphony contains at least one dance, one march, one nature passage"
+    },
+    {
+      "composer": "Chinese poetry (Hans Bethge)",
+      "absorbed": "Pentatonic melody, image-driven narrative, farewell as philosophy",
+      "heard_in": "Das Lied von der Erde exclusively; influences late-period pentatonic rarefaction"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Schoenberg",
+      "absorbed": "Orchestral color as structure; tonal dissolution; chamber-within-orchestra",
+      "heard_in": "Schoenberg's Five Orchestral Pieces (1909); Klangfarbenmelodie; the path from extended tonality to atonality"
+    },
+    {
+      "composer": "Berg",
+      "absorbed": "Emotional extremism, operatic symphonism, farewell music, late-Romantic intensity pushed past the breaking point",
+      "heard_in": "Wozzeck, Violin Concerto \u2014 Berg = Mahler's emotional language with 12-tone technique"
+    },
+    {
+      "composer": "Webern",
+      "absorbed": "Klangfarbenmelodie, orchestral transparency, silence as structure",
+      "heard_in": "Webern's pointillism = Mahler's late-period transparency taken to its logical end"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Symphonic irony, march distortion, the grotesque scherzo, tragedy within bureaucratic form",
+      "heard_in": "Shostakovich's middle symphonies (4, 5, 7, 8, 10) = Mahler's ironic distance applied to Soviet reality"
+    },
+    {
+      "composer": "Britten",
+      "absorbed": "Song-symphony integration, orchestral chamber writing, the child's voice in adult contexts",
+      "heard_in": "War Requiem, Spring Symphony, Serenade \u2014 Britten's orchestral song-worlds descend from Mahler"
+    },
+    {
+      "composer": "Film score tradition",
+      "absorbed": "Leitmotif deployment, orchestral narrative, emotional extremes, the orchestra as storyteller",
+      "heard_in": "Williams, Korngold, Herrmann all inherit Mahler's orchestral dramatic language"
+    },
+    {
+      "composer": "Bernstein (as composer)",
+      "absorbed": "Eclectic genre mixing, Broadway/classical collision, Jewish identity in symphonic form",
+      "heard_in": "Bernstein's Kaddish Symphony, Chichester Psalms \u2014 and Bernstein-as-conductor revived Mahler for the 20th century"
+    }
+  ],
   "comparative_axes": {}
 }

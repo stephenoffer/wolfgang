@@ -1,5 +1,73 @@
 [
   {
+    "id": "lh_idiom_the_wide_spanning_broken_chord",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The wide-spanning broken chord",
+    "description": "a tenth or more between the bass and the top of the figure, rolling in even values. The gesture Liszt inherited. `C2e G2e C3e E3e G3e E3e C3e G2e`",
+    "shorthand": "C2e G2e C3e E3e G3e E3e C3e G2e",
+    "events": 8,
+    "register": [
+      36,
+      55
+    ],
+    "span_semitones": 19,
+    "source_file": "weber/weber-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rapid_repeated_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rapid repeated chords",
+    "description": "the same chord struck in even eighths or sixteenths under a melody, driving and orchestral.",
+    "source_file": "weber/weber-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_horn_fifths_accompaniment",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The horn-fifths accompaniment",
+    "description": "parallel thirds and sixths in the left hand imitating a horn pair. His signature, and the sound of *Der Freisch\u00fctz*. `[C3,E3]q [B2,D3]q [C3,E3]h`",
+    "shorthand": "[C3,E3]q [B2,D3]q [C3,E3]h",
+    "events": 3,
+    "register": [
+      47,
+      52
+    ],
+    "span_semitones": 5,
+    "source_file": "weber/weber-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_offbeat_chords_over_a_marked_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Offbeat chords over a marked bass",
+    "description": "the waltz and the polonaise inheritance, 15% of the armed bars.",
+    "source_file": "weber/weber-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_long_pedal_point_under_a_build",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Long pedal point under a build",
+    "description": "12% of bars; used for the operatic crescendos.",
+    "source_file": "weber/weber-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_octave_tremolo_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Octave tremolo in the bass",
+    "description": "for storm and supernatural scenes.",
+    "source_file": "weber/weber-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +85,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +103,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +121,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +144,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +191,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +213,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +235,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,9 +278,9 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -233,8 +301,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +325,153 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_reminiscence_motif",
+    "category": "composer_device",
+    "section": "Dramatic devices",
+    "name": "The reminiscence motif",
+    "description": "a theme attached to a character or an idea, returning transformed when that idea returns. Wagner's leitmotif in embryo.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_slow_dark_introduction",
+    "category": "composer_device",
+    "section": "Dramatic devices",
+    "name": "The slow, dark introduction",
+    "description": "before a fast movement \u2014 diminished harmony, low register, tremolo, resolving into the main allegro.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_storm_scene",
+    "category": "composer_device",
+    "section": "Dramatic devices",
+    "name": "The storm scene",
+    "description": "chromatic scales, diminished sevenths, tremolo, sforzandi. The Wolf's Glen is the model for a century of them.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_horn_call",
+    "category": "composer_device",
+    "section": "Dramatic devices",
+    "name": "The horn call",
+    "description": "an open fifth-and-third fanfare in the natural-horn register, standing for the forest. His single most identifiable gesture.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sudden_dynamic_and_textural_contrast",
+    "category": "composer_device",
+    "section": "Dramatic devices",
+    "name": "Sudden dynamic and textural contrast",
+    "description": "for theatrical effect: full texture to bare octaves in one bar.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_diminished_seventh_as_the_engine_of_drama",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The diminished seventh as the engine of drama",
+    "description": "used for suspense, for modulation, and for the supernatural. He leans on it far harder than Beethoven.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_applied_dominants_everywhere",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Applied dominants everywhere",
+    "description": "`V7/IV` is among the commonest harmonies in the armed corpus.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediant_shifts",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediant shifts",
+    "description": "for a change of scene.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_enharmonic_reinterpretation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Enharmonic reinterpretation",
+    "description": "of a diminished seventh to jump keys instantly.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_dominant_preparation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Long dominant preparation",
+    "description": "before an aria or a theme's return.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_wide_singing_leap",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The wide singing leap",
+    "description": "a sixth or an octave upward into a sustained note, vocal in origin.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_arpeggiated_melody_outlining_the_triad",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Arpeggiated melody outlining the triad",
+    "description": "the horn and clarinet inheritance, so the tune often moves by chord tones rather than by step.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dotted_rhythms_in_march_and_polonaise_character",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Dotted rhythms in march and polonaise character.",
+    "description": "Dotted rhythms in march and polonaise character.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_brilliant_closing_flourish",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The brilliant closing flourish",
+    "description": "a rapid scale or arpeggio to end a section, written out.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_concert_piece_in_linked_sections",
+    "category": "composer_device",
+    "section": "Form",
+    "name": "The concert piece in linked sections",
+    "description": "(Konzertst\u00fcck) rather than separate movements \u2014 a form he effectively created.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_dance_movement_as_a_character_piece",
+    "category": "composer_device",
+    "section": "Form",
+    "name": "The dance movement as a character piece",
+    "description": "most famously the waltz treated as concert music.",
+    "source_file": "weber/weber-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

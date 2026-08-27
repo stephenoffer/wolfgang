@@ -3,26 +3,30 @@
     "id": "grief_lament",
     "name": "Grief / Lament",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice"
+    ],
     "contexts": [
       "Stepwise chromatic descent feels like slow",
       "inevitable falling \u2014 the body sinking under sorrow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stepwise chromatic descent feels like slow",
     "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "devotion_pleading",
     "name": "Devotion / Pleading",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Each suspension creates a moment of yearning; resolution brings brief peace",
       "then yearning returns"
     ],
     "frequency_weight": 0.04,
-    "emotional_color": "",
+    "emotional_color": "Each suspension creates a moment of yearning; resolution brings brief peace",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -34,7 +38,7 @@
       "Functional momentum creates forward-flowing energy; the arrival IS the triumph"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Functional momentum creates forward-flowing energy; the arrival IS the triumph",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -46,7 +50,7 @@
       "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -58,19 +62,21 @@
       "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder",
     "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "pastoral_peace",
     "name": "Pastoral peace",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "pedal point"
+    ],
     "contexts": [
       "The drone beneath creates unchanging ground; time itself seems to slow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The drone beneath creates unchanging ground; time itself seems to slow",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -83,32 +89,36 @@
       "the greater the sense of overcoming"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "The longer the preparation",
     "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "chromatic_lament",
     "name": "Chromatic lament",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Minor keys"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Minor keys",
     "source_file": "corelli/harmonic-language.md"
   },
   {
     "id": "diatonic_lament",
     "name": "Diatonic lament",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "D min",
       "G min"
     ],
     "frequency_weight": 0.08,
-    "emotional_color": "",
+    "emotional_color": "D min",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -120,7 +130,7 @@
       "Major keys"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Major keys",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -132,7 +142,7 @@
       "D minor"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "D minor",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -144,7 +154,7 @@
       "Tonicizing modulation targets"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tonicizing modulation targets",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -156,7 +166,7 @@
       "Pre-dominant chromatic"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Pre-dominant chromatic",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -168,7 +178,7 @@
       "Dramatic cadences (minor keys)"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Dramatic cadences (minor keys)",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -180,7 +190,7 @@
       "English baroque (Purcell)"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "English baroque (Purcell)",
     "source_file": "corelli/harmonic-language.md"
   },
   {
@@ -192,7 +202,7 @@
       "Final cadence convention"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Final cadence convention",
     "source_file": "corelli/harmonic-language.md"
   }
 ]

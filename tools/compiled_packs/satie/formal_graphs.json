@@ -13,6 +13,22 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "fugue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "strophic": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

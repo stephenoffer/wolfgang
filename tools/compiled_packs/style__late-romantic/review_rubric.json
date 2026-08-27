@@ -1,196 +1,130 @@
 {
- "checks": [
-  {
-   "id": "fp_the_bruckner_rhythm",
-   "category": "fingerprint",
-   "description": "The Bruckner rhythm",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_blocks_of_sound_tutti_vs_silence",
-   "category": "fingerprint",
-   "description": "Blocks of sound \u2014 tutti vs. silence",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_chorale_like_brass_writing_the_bruckner_brass",
-   "category": "fingerprint",
-   "description": "Chorale-like brass writing \u2014 the Bruckner brass",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_very_slow_harmonic_rhythm_in_long_passages",
-   "category": "fingerprint",
-   "description": "Very slow harmonic rhythm in long passages",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_massive_symphonic_architecture_cathedral_scale",
-   "category": "fingerprint",
-   "description": "Massive symphonic architecture \u2014 cathedral scale",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_5",
-   "category": "anti_pattern",
-   "description": "s (what sounds wrong)",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Constant texture change.** Bruckner holds textures. A Bruckner passage that changes texture every ",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Gradual dynamics.** Bruckner's dynamics are not gradual \u2014 they are sudden. The jump from pp to ff ",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Short time scale.** A 16-bar \"Bruckner passage\" is not Bruckner \u2014 it's a sketch. His textures need",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Complex rhythm.** Bruckner's rhythm is either the specific Bruckner rhythm or it is simple and ste",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Small orchestration.** Bruckner writes for large orchestra as his default. Chamber or transparent ",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_long_arching_melodic_line",
-   "category": "fingerprint",
-   "description": "Long arching melodic line",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_wide_range_piano_texture",
-   "category": "fingerprint",
-   "description": "Wide-range piano texture",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_subdominant_approach_to_climax",
-   "category": "fingerprint",
-   "description": "Subdominant approach to climax",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_bell_like_resonance_tonic_pedal_under_chromatic_harmony",
-   "category": "fingerprint",
-   "description": "Bell-like resonance \u2014 tonic pedal under chromatic harmony",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_sequence_in_long_ascending_sweeps",
-   "category": "fingerprint",
-   "description": "Sequence in long ascending sweeps",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Short, fragmented melody.** Rachmaninoff does not do short motifs. His melodies unfold. A 4-bar th",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Light, transparent texture.** Rachmaninoff's piano writing is thick and resonant. A Debussy-like t",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Major mode throughout.** Rachmaninoff's natural habitat is minor. A section in the pure major mode",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Climax by volume alone.** The climax must arrive through the ascending sequence buildup AND the ha",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Moderate tempo.** Rachmaninoff's slow movements are extremely slow (Adagio, not Andante). His fast",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_11",
-   "category": "anti_pattern",
-   "description": "**Formula references for the melody.** Never. The long arching Rachmaninoff melody must be written n",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_modal_harmony_within_tonal_framework_the_slipping_tonic",
-   "category": "fingerprint",
-   "description": "Modal harmony within tonal framework \u2014 the slipping tonic",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_gentle_rhythmic_displacement_the_nocturne_pulse",
-   "category": "fingerprint",
-   "description": "Gentle rhythmic displacement \u2014 the nocturne pulse",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_long_melodic_line_with_subtle_modal_inflection",
-   "category": "fingerprint",
-   "description": "Long melodic line with subtle modal inflection",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_harmonic_non_resolution_the_elided_cadence",
-   "category": "fingerprint",
-   "description": "Harmonic non-resolution \u2014 the elided cadence",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_intimacy_as_primary_aesthetic_chamber_scale",
-   "category": "fingerprint",
-   "description": "Intimacy as primary aesthetic \u2014 chamber scale",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Emotional excess.** Faur\u00e9 is not Tchaikovsky. His music does not weep or thunder. The emotional te",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Loud dynamics.** Faur\u00e9's music rarely exceeds mf. A fortissimo in Faur\u00e9 is reserved for extraordin",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Clear cadential resolution.** If the phrase ends with a full V\u2192I cadence that sounds closed and sa",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Germanic density.** Faur\u00e9's textures are light. The French quality is transparency, airiness, clar",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Programmatic drama.** Faur\u00e9 doesn't tell stories or depict events. His music is atmospheric, emoti",
-   "severity": "soft"
-  }
- ]
+  "checks": [
+    {
+      "id": "fp_the_bruckner_rhythm",
+      "category": "fingerprint",
+      "description": "The Bruckner rhythm",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_blocks_of_sound_tutti_vs_silence",
+      "category": "fingerprint",
+      "description": "Blocks of sound \u2014 tutti vs. silence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chorale_like_brass_writing_the_bruckner_brass",
+      "category": "fingerprint",
+      "description": "Chorale-like brass writing \u2014 the Bruckner brass",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_very_slow_harmonic_rhythm_in_long_passages",
+      "category": "fingerprint",
+      "description": "Very slow harmonic rhythm in long passages",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_massive_symphonic_architecture_cathedral_scale",
+      "category": "fingerprint",
+      "description": "Massive symphonic architecture \u2014 cathedral scale",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_long_arching_melodic_line",
+      "category": "fingerprint",
+      "description": "Long arching melodic line",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_wide_range_piano_texture",
+      "category": "fingerprint",
+      "description": "Wide-range piano texture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_subdominant_approach_to_climax",
+      "category": "fingerprint",
+      "description": "Subdominant approach to climax",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_bell_like_resonance_tonic_pedal_under_chromatic_harmony",
+      "category": "fingerprint",
+      "description": "Bell-like resonance \u2014 tonic pedal under chromatic harmony",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequence_in_long_ascending_sweeps",
+      "category": "fingerprint",
+      "description": "Sequence in long ascending sweeps",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_modal_harmony_within_tonal_framework_the_slipping_tonic",
+      "category": "fingerprint",
+      "description": "Modal harmony within tonal framework \u2014 the slipping tonic",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_gentle_rhythmic_displacement_the_nocturne_pulse",
+      "category": "fingerprint",
+      "description": "Gentle rhythmic displacement \u2014 the nocturne pulse",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_long_melodic_line_with_subtle_modal_inflection",
+      "category": "fingerprint",
+      "description": "Long melodic line with subtle modal inflection",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_harmonic_non_resolution_the_elided_cadence",
+      "category": "fingerprint",
+      "description": "Harmonic non-resolution \u2014 the elided cadence",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_intimacy_as_primary_aesthetic_chamber_scale",
+      "category": "fingerprint",
+      "description": "Intimacy as primary aesthetic \u2014 chamber scale",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_15",
+      "category": "anti_pattern",
+      "description": "s (what sounds wrong)",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_16",
+      "category": "anti_pattern",
+      "description": "**Constant texture change.** Bruckner holds textures. A Bruckner passage that changes texture every ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_17",
+      "category": "anti_pattern",
+      "description": "**Gradual dynamics.** Bruckner's dynamics are not gradual \u2014 they are sudden. The jump from pp to ff ",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_18",
+      "category": "anti_pattern",
+      "description": "**Short time scale.** A 16-bar \"Bruckner passage\" is not Bruckner \u2014 it's a sketch. His textures need",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_19",
+      "category": "anti_pattern",
+      "description": "**Complex rhythm.** Bruckner's rhythm is either the specific Bruckner rhythm or it is simple and ste",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_20",
+      "category": "anti_pattern",
+      "description": "**Small orchestration.** Bruckner writes for large orchestra as his default. Chamber or transparent ",
+      "severity": "soft"
+    }
+  ]
 }

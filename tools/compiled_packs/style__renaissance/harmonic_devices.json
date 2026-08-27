@@ -1,351 +1,140 @@
 [
- {
-  "id": "suspension",
-  "name": "Suspension",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The principal expressive device \u2014 4-3",
-   "7-6",
-   "9-8",
-   "and 2-3 in the bass"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "passing_tone",
-  "name": "Passing tone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Everywhere"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "neighbor_tone",
-  "name": "Neighbor tone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Everywhere"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "cambiata",
-  "name": "Cambiata",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "A stock melodic formula",
-   "not a free choice"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "anticipation",
-  "name": "Anticipation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "At cadences"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "escape_tone",
-  "name": "Escape tone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sparing"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "points_of_imitation",
-  "name": "Points of imitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The structural unit of a motet or mass movement"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "paired_imitation",
-  "name": "Paired imitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Gives a large texture internal articulation"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "homorhythmic_declamation",
-  "name": "Homorhythmic declamation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "For emphasis \u2014 a sudden clarity after polyphony"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "voice_pairing",
-  "name": "Voice pairing",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Colour and relief within a full texture"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "full_texture",
-  "name": "Full texture",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Reserve it; constant tutti has nowhere to grow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "palestrina/harmonic-language.md"
- },
- {
-  "id": "unprepared_dissonance",
-  "name": "Unprepared dissonance",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "A word of pain lands on the dissonance directly"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "seventh_taken_by_leap",
-  "name": "Seventh taken by leap",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Shock at a specific syllable"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "cross_relation",
-  "name": "Cross-relation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Bitterness",
-   "contradiction in the text"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "chromatic_inflection",
-  "name": "Chromatic inflection",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Weeping",
-   "sighing",
-   "the *durezze* of the lament"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "stile_concitato",
-  "name": "Stile concitato",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Warfare",
-   "anger \u2014 rapid repeated notes on one chord"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "descending_tetrachord_ostinato",
-  "name": "Descending tetrachord ostinato",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The lament: a bass falling a fourth",
-   "over and over"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "suspension",
-  "name": "Suspension",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The principal expressive device \u2014 4-3",
-   "7-6",
-   "9-8",
-   "and 2-3 in the bass"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "passing_tone",
-  "name": "Passing tone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Everywhere"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "neighbor_tone",
-  "name": "Neighbor tone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Everywhere"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "cambiata",
-  "name": "Cambiata",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "A stock melodic formula",
-   "not a free choice"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "anticipation",
-  "name": "Anticipation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "At cadences"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "escape_tone",
-  "name": "Escape tone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sparing"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "points_of_imitation",
-  "name": "Points of imitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The structural unit of a motet or mass movement"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "paired_imitation",
-  "name": "Paired imitation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Gives a large texture internal articulation"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "homorhythmic_declamation",
-  "name": "Homorhythmic declamation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "For emphasis \u2014 a sudden clarity after polyphony"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "voice_pairing",
-  "name": "Voice pairing",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Colour and relief within a full texture"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- },
- {
-  "id": "full_texture",
-  "name": "Full texture",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Reserve it; constant tutti has nowhere to grow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "monteverdi/harmonic-language.md"
- }
+  {
+    "id": "suspension",
+    "name": "Suspension",
+    "chord_sequence": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
+    "contexts": [
+      "The principal expressive device \u2014 4-3",
+      "7-6",
+      "9-8",
+      "and 2-3 in the bass"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The principal expressive device \u2014 4-3",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "passing_tone",
+    "name": "Passing tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Everywhere"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Everywhere",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "neighbor_tone",
+    "name": "Neighbor tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Everywhere"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Everywhere",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "cambiata",
+    "name": "Cambiata",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "A stock melodic formula",
+      "not a free choice"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "A stock melodic formula",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "anticipation",
+    "name": "Anticipation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "At cadences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "At cadences",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "escape_tone",
+    "name": "Escape tone",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sparing"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Sparing",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "points_of_imitation",
+    "name": "Points of imitation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The structural unit of a motet or mass movement"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The structural unit of a motet or mass movement",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "paired_imitation",
+    "name": "Paired imitation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Gives a large texture internal articulation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Gives a large texture internal articulation",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "homorhythmic_declamation",
+    "name": "Homorhythmic declamation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "For emphasis \u2014 a sudden clarity after polyphony"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "For emphasis \u2014 a sudden clarity after polyphony",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "voice_pairing",
+    "name": "Voice pairing",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Colour and relief within a full texture"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Colour and relief within a full texture",
+    "source_file": "palestrina/harmonic-language.md"
+  },
+  {
+    "id": "full_texture",
+    "name": "Full texture",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Reserve it; constant tutti has nowhere to grow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Reserve it; constant tutti has nowhere to grow",
+    "source_file": "palestrina/harmonic-language.md"
+  }
 ]

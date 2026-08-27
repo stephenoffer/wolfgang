@@ -1,3 +1,507 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 5,
+        "_feel": "Normal 3/4 \u2014 three equal quarter-note beats per bar",
+        "voices": {
+          "soprano": [
+            {
+              "p": "D5",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "q"
+            },
+            {
+              "p": "D3",
+              "d": "q"
+            },
+            {
+              "p": "B3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 6,
+        "voices": {
+          "soprano": [
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "G4",
+              "d": "q"
+            },
+            {
+              "p": "F#4",
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "A3",
+              "d": "q"
+            },
+            {
+              "p": "F#3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 7,
+        "_feel": "Hemiola begins \u2014 accent on beat 1 AND beat 3. The bar has two downbeats.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "q",
+              "dyn": "f",
+              "art": "sfz"
+            },
+            {
+              "p": "F#4",
+              "d": "q"
+            },
+            {
+              "p": "E4",
+              "d": "q",
+              "art": "sfz"
+            }
+          ],
+          "bass": [
+            {
+              "p": "C2",
+              "d": "h"
+            },
+            {
+              "p": "G3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 8,
+        "_feel": "Hemiola continues \u2014 accent on beat 2, not beat 1. The metric ground has shifted.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "D4",
+              "d": "q"
+            },
+            {
+              "p": "C4",
+              "d": "q",
+              "art": "sfz"
+            },
+            {
+              "p": "B3",
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "h"
+            },
+            {
+              "p": "D3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 9,
+        "_feel": "Cadential arrival \u2014 the 3/4 reasserts itself. The hemiola tension resolves.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G3",
+              "d": "dh",
+              "dyn": "mp"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "dh",
+              "dyn": "mp"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Parallel thirds \u2014 both voices written. The warmth is the chord, not the single note.",
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "D5",
+                "B4"
+              ],
+              "d": "q",
+              "dyn": "mp",
+              "art": "legato"
+            },
+            {
+              "p": [
+                "C5",
+                "A4"
+              ],
+              "d": "q"
+            },
+            {
+              "p": [
+                "B4",
+                "G4"
+              ],
+              "d": "q"
+            },
+            {
+              "p": [
+                "A4",
+                "F#4"
+              ],
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "h"
+            },
+            {
+              "p": "D3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "G4",
+                "E4"
+              ],
+              "d": "h",
+              "dyn": "mf"
+            },
+            {
+              "p": [
+                "F#4",
+                "D4"
+              ],
+              "d": "q"
+            },
+            {
+              "p": [
+                "E4",
+                "C#4"
+              ],
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "h"
+            },
+            {
+              "p": "A3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 3,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "D4",
+                "B3"
+              ],
+              "d": "q"
+            },
+            {
+              "p": [
+                "E4",
+                "C4"
+              ],
+              "d": "q"
+            },
+            {
+              "p": [
+                "F#4",
+                "D4"
+              ],
+              "d": "q"
+            },
+            {
+              "p": [
+                "G4",
+                "E4"
+              ],
+              "d": "q",
+              "dyn": "f"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "h"
+            },
+            {
+              "p": "B2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "A4",
+                "F#4"
+              ],
+              "d": "dh",
+              "dyn": "mf"
+            },
+            {
+              "p": [
+                "G4",
+                "E4"
+              ],
+              "d": "q",
+              "art": "legato"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "h"
+            },
+            {
+              "p": "A3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 1,
+        "_feel": "LH: bass voice low, inner harmony mid-register. Two independent voices.",
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "D5",
+                "Bb4"
+              ],
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": [
+                "C5",
+                "A4"
+              ],
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": "G2",
+              "d": "q"
+            },
+            {
+              "p": "G3",
+              "d": "q"
+            },
+            {
+              "p": "Bb3",
+              "d": "q"
+            },
+            {
+              "p": "D4",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_10",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "Bb4",
+                "G4"
+              ],
+              "d": "h",
+              "dyn": "mf"
+            },
+            {
+              "p": [
+                "A4",
+                "F#4"
+              ],
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "A3",
+              "d": "q"
+            },
+            {
+              "p": "F#3",
+              "d": "q"
+            },
+            {
+              "p": "D4",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_11",
+      "data": {
+        "bar_num": 3,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "G4",
+                "Eb4"
+              ],
+              "d": "h",
+              "dyn": "f"
+            },
+            {
+              "p": [
+                "F4",
+                "D4"
+              ],
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": "Eb2",
+              "d": "q"
+            },
+            {
+              "p": "Bb3",
+              "d": "q"
+            },
+            {
+              "p": "G3",
+              "d": "q"
+            },
+            {
+              "p": "Eb4",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_12",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "D4",
+                "Bb3"
+              ],
+              "d": "dh",
+              "dyn": "mf"
+            }
+          ],
+          "bass": [
+            {
+              "p": "D2",
+              "d": "h"
+            },
+            {
+              "p": "D3",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

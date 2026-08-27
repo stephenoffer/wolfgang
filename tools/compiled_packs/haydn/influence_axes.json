@@ -1,7 +1,76 @@
 {
   "influenced_by": [
     {
-      "composer": "each"
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil \u2014 sudden contrasts, rhetorical pauses, emotional intensity",
+      "heard_in": "Sturm und Drang symphonies; surprise dynamics throughout"
+    },
+    {
+      "composer": "Fux (*Gradus ad Parnassum*)",
+      "absorbed": "Strict counterpoint fundamentals",
+      "heard_in": "Fugal finales in Op. 20 quartets; contrapuntal development"
+    },
+    {
+      "composer": "Viennese galant style",
+      "absorbed": "Light entertainment idiom; balanced phrases; charm",
+      "heard_in": "Early symphonies and divertimenti"
+    },
+    {
+      "composer": "Italian opera (Porpora)",
+      "absorbed": "Vocal melody, dramatic pacing, theatrical gesture",
+      "heard_in": "Haydn studied with Porpora; operatic timing in instrumental music"
+    },
+    {
+      "composer": "Folk music (Austrian/Hungarian)",
+      "absorbed": "Dance rhythms, pentatonic inflections, rustic character",
+      "heard_in": "Minuet character; finale themes; rondo refrains"
+    },
+    {
+      "composer": "Baroque trio sonata",
+      "absorbed": "Three-voice texture; bass as structural voice",
+      "heard_in": "Early quartets; piano trio balance"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Mozart",
+      "absorbed": "Quartet conversation; development technique; monothematic ideas",
+      "heard_in": "\"Haydn\" Quartets K. 387-465; Jupiter Symphony development"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Motivic development; formal subversion; scherzo from minuet",
+      "heard_in": "Eroica development; all scherzi; structural drama"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Lyrical slow movements; variation form; song-like themes",
+      "heard_in": "\"Death and the Maiden\" quartet variations"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Orchestral clarity; formal balance; scherzo lightness",
+      "heard_in": "Midsummer Night's Dream scherzo"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Thematic economy; developmental variation; quartet textures",
+      "heard_in": "Symphony No. 1 (Haydn's legacy made Romantic)"
+    },
+    {
+      "composer": "Dvorak",
+      "absorbed": "Folk elements within Classical form; rondo finales",
+      "heard_in": "\"New World\" Symphony scherzo"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Quartet as medium of innovation; folk integration",
+      "heard_in": "String Quartets Nos. 1-6 (the quartet as laboratory continues)"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Quartet as intimate confession; formal wit with dark undertones",
+      "heard_in": "15 string quartets \u2014 Haydn's conversational ideal in Soviet shadow"
     }
   ],
   "comparative_axes": {}

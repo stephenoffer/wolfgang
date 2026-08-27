@@ -1,458 +1,432 @@
 [
- {
-  "id": "ap_1_single_phrase_covering_entire_section",
-  "name": "1. Single Phrase Covering Entire Section",
-  "description": "1. Single Phrase Covering Entire Section",
-  "detector": "single_phrase_section",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_2_same_accompaniment_pattern_throughout",
-  "name": "2. Same Accompaniment Pattern Throughout",
-  "description": "2. Same Accompaniment Pattern Throughout",
-  "detector": "same_accompaniment",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md",
-  "grounding": "hard_corroborated",
-  "evidence_confidence": 1.0,
-  "evidence_tested": 69
- },
- {
-  "id": "ap_3_theme_stated_identically_every_time",
-  "name": "3. Theme Stated Identically Every Time",
-  "description": "3. Theme Stated Identically Every Time",
-  "detector": "identical_restatement",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_4_flat_dynamics",
-  "name": "4. Flat Dynamics",
-  "description": "4. Flat Dynamics",
-  "detector": "flat_dynamics",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md",
-  "grounding": "hard_corroborated",
-  "evidence_confidence": 1.0,
-  "evidence_tested": 69
- },
- {
-  "id": "ap_5_no_ornaments",
-  "name": "5. No Ornaments",
-  "description": "5. No Ornaments",
-  "detector": "missing_ornaments",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_6_all_instruments_playing_all_the_time",
-  "name": "6. All Instruments Playing All the Time",
-  "description": "6. All Instruments Playing All the Time",
-  "detector": "no_rests_between_instruments",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_7_all_voices_in_rhythmic_unison",
-  "name": "7. All Voices in Rhythmic Unison",
-  "description": "7. All Voices in Rhythmic Unison",
-  "detector": "rhythmic_unison",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_8_block_chords_for_accompaniment",
-  "name": "8. Block Chords for Accompaniment",
-  "description": "8. Block Chords for Accompaniment",
-  "detector": "block_chord_overuse",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_9_theme_melody_sounds_like_arpeggiated_chords",
-  "name": "9. Theme Melody Sounds Like Arpeggiated Chords",
-  "description": "9. Theme Melody Sounds Like Arpeggiated Chords",
-  "detector": "melody_is_arpeggio",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_10_generic_transition_scales",
-  "name": "10. Generic Transition (Scales)",
-  "description": "10. Generic Transition (Scales)",
-  "detector": "generic_transition",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "critique_perfectly_balanced_phrase",
-  "name": "Perfectly Balanced Phrase",
-  "description": "Perfectly Balanced Phrase",
-  "detector": "perfectly_balanced_phrase",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_democracy_of_instruments",
-  "name": "Democracy of Instruments",
-  "description": "Democracy of Instruments",
-  "detector": "democracy_of_instruments",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_texture_slot_machine",
-  "name": "Texture Slot Machine",
-  "description": "Texture Slot Machine",
-  "detector": "texture_slot_machine",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_ornament_wallpaper",
-  "name": "Ornament Wallpaper",
-  "description": "Ornament Wallpaper",
-  "detector": "ornament_wallpaper",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_register_monotony",
-  "name": "Register Monotony",
-  "description": "Register Monotony",
-  "detector": "register_monotony",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_missing_silence",
-  "name": "Missing Silence",
-  "description": "Missing Silence",
-  "detector": "missing_silence",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_development_that_doesn_t_develop",
-  "name": "Development That Doesn't Develop",
-  "description": "Development That Doesn't Develop",
-  "detector": "development_that_doesn_t_develop",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_climax_that_arrives_by_volume_alone",
-  "name": "Climax That Arrives By Volume Alone",
-  "description": "Climax That Arrives By Volume Alone",
-  "detector": "climax_that_arrives_by_volume_alone",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_phrase_level_thinking_only",
-  "name": "Phrase-Level Thinking Only",
-  "description": "Phrase-Level Thinking Only",
-  "detector": "phrase_level_thinking_only",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_recapitulation_that_s_just_a_transpose",
-  "name": "Recapitulation That's Just a Transpose",
-  "description": "Recapitulation That's Just a Transpose",
-  "detector": "recapitulation_that_s_just_a_transpose",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_coda_that_summarizes",
-  "name": "Coda That Summarizes",
-  "description": "Coda That Summarizes",
-  "detector": "coda_that_summarizes",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_everything_arrives_on_schedule",
-  "name": "Everything Arrives On Schedule",
-  "description": "Everything Arrives On Schedule",
-  "detector": "everything_arrives_on_schedule",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_safe_harmonic_palette",
-  "name": "Safe Harmonic Palette",
-  "description": "Safe Harmonic Palette",
-  "detector": "safe_harmonic_palette",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_every_dissonance_resolves_immediately",
-  "name": "Every Dissonance Resolves Immediately",
-  "description": "Every Dissonance Resolves Immediately",
-  "detector": "every_dissonance_resolves_immediately",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_harmonic_rhythm_that_s_too_regular",
-  "name": "Harmonic Rhythm That's Too Regular",
-  "description": "Harmonic Rhythm That's Too Regular",
-  "detector": "harmonic_rhythm_that_s_too_regular",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_key_change_that_feels_like_a_scene_change",
-  "name": "Key Change That Feels Like a Scene Change",
-  "description": "Key Change That Feels Like a Scene Change",
-  "detector": "key_change_that_feels_like_a_scene_change",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_metronomic_regularity",
-  "name": "Metronomic Regularity",
-  "description": "Metronomic Regularity",
-  "detector": "metronomic_regularity",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_build_that_s_just_adding_layers",
-  "name": "Build That's Just Adding Layers",
-  "description": "Build That's Just Adding Layers",
-  "detector": "build_that_s_just_adding_layers",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_accompaniment_that_ignores_the_melody",
-  "name": "Accompaniment That Ignores the Melody",
-  "description": "Accompaniment That Ignores the Melody",
-  "detector": "accompaniment_that_ignores_the_melody",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_rhythmic_variation_that_s_just_note_values",
-  "name": "Rhythmic Variation That's Just Note Values",
-  "description": "Rhythmic Variation That's Just Note Values",
-  "detector": "rhythmic_variation_that_s_just_note_values",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_theme_that_s_obviously_designed",
-  "name": "Theme That's Obviously Designed",
-  "description": "Theme That's Obviously Designed",
-  "detector": "theme_that_s_obviously_designed",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_every_phrase_ends_with_a_clean_cadence",
-  "name": "Every Phrase Ends With a Clean Cadence",
-  "description": "Every Phrase Ends With a Clean Cadence",
-  "detector": "every_phrase_ends_with_a_clean_cadence",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_melody_that_never_leaves_its_comfort_zone",
-  "name": "Melody That Never Leaves Its Comfort Zone",
-  "description": "Melody That Never Leaves Its Comfort Zone",
-  "detector": "melody_that_never_leaves_its_comfort_zone",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_counter_melodies_that_are_just_harmony",
-  "name": "Counter-Melodies That Are Just Harmony",
-  "description": "Counter-Melodies That Are Just Harmony",
-  "detector": "counter_melodies_that_are_just_harmony",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_emotion_by_parameter",
-  "name": "Emotion-By-Parameter",
-  "description": "Emotion-By-Parameter",
-  "detector": "emotion_by_parameter",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_no_sense_of_struggle_or_discovery",
-  "name": "No Sense of Struggle or Discovery",
-  "description": "No Sense of Struggle or Discovery",
-  "detector": "no_sense_of_struggle_or_discovery",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_emotional_arc_that_s_too_clean",
-  "name": "Emotional Arc That's Too Clean",
-  "description": "Emotional Arc That's Too Clean",
-  "detector": "emotional_arc_that_s_too_clean",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_no_humor_wit_or_playfulness",
-  "name": "No Humor, Wit, or Playfulness",
-  "description": "No Humor, Wit, or Playfulness",
-  "detector": "no_humor_wit_or_playfulness",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_no_ugliness_or_roughness",
-  "name": "No Ugliness or Roughness",
-  "description": "No Ugliness or Roughness",
-  "detector": "no_ugliness_or_roughness",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_assembly_instead_of_composition",
-  "name": "Assembly Instead of Composition",
-  "description": "Assembly Instead of Composition",
-  "detector": "assembly_instead_of_composition",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_following_the_plan_too_faithfully",
-  "name": "Following the Plan Too Faithfully",
-  "description": "Following the Plan Too Faithfully",
-  "detector": "following_the_plan_too_faithfully",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_defaulting_instead_of_choosing",
-  "name": "Defaulting Instead of Choosing",
-  "description": "Defaulting Instead of Choosing",
-  "detector": "defaulting_instead_of_choosing",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "critique_section_that_could_be_anywhere",
-  "name": "Section That Could Be Anywhere",
-  "description": "Section That Could Be Anywhere",
-  "detector": "section_that_could_be_anywhere",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "ai-music-self-critique.md"
- },
- {
-  "id": "ap_2_same_accompaniment_pattern_throughout",
-  "name": "2. Same Accompaniment Pattern Throughout",
-  "description": "2. Same Accompaniment Pattern Throughout",
-  "detector": "same_accompaniment",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- },
- {
-  "id": "ap_4_flat_dynamics",
-  "name": "4. Flat Dynamics",
-  "description": "4. Flat Dynamics",
-  "detector": "flat_dynamics",
-  "severity": "warning",
-  "params": {},
-  "style_scope": "",
-  "source_file": "anti-patterns.md"
- }
+  {
+    "id": "ap_1_single_phrase_covering_entire_section",
+    "name": "1. Single Phrase Covering Entire Section",
+    "description": "1. Single Phrase Covering Entire Section",
+    "detector": "single_phrase_section",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_2_same_accompaniment_pattern_throughout",
+    "name": "2. Same Accompaniment Pattern Throughout",
+    "description": "2. Same Accompaniment Pattern Throughout",
+    "detector": "same_accompaniment",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_3_theme_stated_identically_every_time",
+    "name": "3. Theme Stated Identically Every Time",
+    "description": "3. Theme Stated Identically Every Time",
+    "detector": "identical_restatement",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_4_flat_dynamics",
+    "name": "4. Flat Dynamics",
+    "description": "4. Flat Dynamics",
+    "detector": "flat_dynamics",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_5_no_ornaments",
+    "name": "5. No Ornaments",
+    "description": "5. No Ornaments",
+    "detector": "missing_ornaments",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_6_all_instruments_playing_all_the_time",
+    "name": "6. All Instruments Playing All the Time",
+    "description": "6. All Instruments Playing All the Time",
+    "detector": "no_rests_between_instruments",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_7_all_voices_in_rhythmic_unison",
+    "name": "7. All Voices in Rhythmic Unison",
+    "description": "7. All Voices in Rhythmic Unison",
+    "detector": "rhythmic_unison",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_8_block_chords_for_accompaniment",
+    "name": "8. Block Chords for Accompaniment",
+    "description": "8. Block Chords for Accompaniment",
+    "detector": "block_chord_overuse",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_9_theme_melody_sounds_like_arpeggiated_chords",
+    "name": "9. Theme Melody Sounds Like Arpeggiated Chords",
+    "description": "9. Theme Melody Sounds Like Arpeggiated Chords",
+    "detector": "melody_is_arpeggio",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "ap_10_generic_transition_scales",
+    "name": "10. Generic Transition (Scales)",
+    "description": "10. Generic Transition (Scales)",
+    "detector": "generic_transition",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "anti-patterns.md"
+  },
+  {
+    "id": "critique_perfectly_balanced_phrase",
+    "name": "Perfectly Balanced Phrase",
+    "description": "Perfectly Balanced Phrase",
+    "detector": "perfectly_balanced_phrase",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_democracy_of_instruments",
+    "name": "Democracy of Instruments",
+    "description": "Democracy of Instruments",
+    "detector": "democracy_of_instruments",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_texture_slot_machine",
+    "name": "Texture Slot Machine",
+    "description": "Texture Slot Machine",
+    "detector": "texture_slot_machine",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_ornament_wallpaper",
+    "name": "Ornament Wallpaper",
+    "description": "Ornament Wallpaper",
+    "detector": "ornament_wallpaper",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_register_monotony",
+    "name": "Register Monotony",
+    "description": "Register Monotony",
+    "detector": "register_monotony",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_missing_silence",
+    "name": "Missing Silence",
+    "description": "Missing Silence",
+    "detector": "missing_silence",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_development_that_doesn_t_develop",
+    "name": "Development That Doesn't Develop",
+    "description": "Development That Doesn't Develop",
+    "detector": "development_that_doesn_t_develop",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_climax_that_arrives_by_volume_alone",
+    "name": "Climax That Arrives By Volume Alone",
+    "description": "Climax That Arrives By Volume Alone",
+    "detector": "climax_that_arrives_by_volume_alone",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_phrase_level_thinking_only",
+    "name": "Phrase-Level Thinking Only",
+    "description": "Phrase-Level Thinking Only",
+    "detector": "phrase_level_thinking_only",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_recapitulation_that_s_just_a_transpose",
+    "name": "Recapitulation That's Just a Transpose",
+    "description": "Recapitulation That's Just a Transpose",
+    "detector": "recapitulation_that_s_just_a_transpose",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_coda_that_summarizes",
+    "name": "Coda That Summarizes",
+    "description": "Coda That Summarizes",
+    "detector": "coda_that_summarizes",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_everything_arrives_on_schedule",
+    "name": "Everything Arrives On Schedule",
+    "description": "Everything Arrives On Schedule",
+    "detector": "everything_arrives_on_schedule",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_safe_harmonic_palette",
+    "name": "Safe Harmonic Palette",
+    "description": "Safe Harmonic Palette",
+    "detector": "safe_harmonic_palette",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_every_dissonance_resolves_immediately",
+    "name": "Every Dissonance Resolves Immediately",
+    "description": "Every Dissonance Resolves Immediately",
+    "detector": "every_dissonance_resolves_immediately",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_harmonic_rhythm_that_s_too_regular",
+    "name": "Harmonic Rhythm That's Too Regular",
+    "description": "Harmonic Rhythm That's Too Regular",
+    "detector": "harmonic_rhythm_that_s_too_regular",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_key_change_that_feels_like_a_scene_change",
+    "name": "Key Change That Feels Like a Scene Change",
+    "description": "Key Change That Feels Like a Scene Change",
+    "detector": "key_change_that_feels_like_a_scene_change",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_metronomic_regularity",
+    "name": "Metronomic Regularity",
+    "description": "Metronomic Regularity",
+    "detector": "metronomic_regularity",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_build_that_s_just_adding_layers",
+    "name": "Build That's Just Adding Layers",
+    "description": "Build That's Just Adding Layers",
+    "detector": "build_that_s_just_adding_layers",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_accompaniment_that_ignores_the_melody",
+    "name": "Accompaniment That Ignores the Melody",
+    "description": "Accompaniment That Ignores the Melody",
+    "detector": "accompaniment_that_ignores_the_melody",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_rhythmic_variation_that_s_just_note_values",
+    "name": "Rhythmic Variation That's Just Note Values",
+    "description": "Rhythmic Variation That's Just Note Values",
+    "detector": "rhythmic_variation_that_s_just_note_values",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_theme_that_s_obviously_designed",
+    "name": "Theme That's Obviously Designed",
+    "description": "Theme That's Obviously Designed",
+    "detector": "theme_that_s_obviously_designed",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_every_phrase_ends_with_a_clean_cadence",
+    "name": "Every Phrase Ends With a Clean Cadence",
+    "description": "Every Phrase Ends With a Clean Cadence",
+    "detector": "every_phrase_ends_with_a_clean_cadence",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_melody_that_never_leaves_its_comfort_zone",
+    "name": "Melody That Never Leaves Its Comfort Zone",
+    "description": "Melody That Never Leaves Its Comfort Zone",
+    "detector": "melody_that_never_leaves_its_comfort_zone",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_counter_melodies_that_are_just_harmony",
+    "name": "Counter-Melodies That Are Just Harmony",
+    "description": "Counter-Melodies That Are Just Harmony",
+    "detector": "counter_melodies_that_are_just_harmony",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_emotion_by_parameter",
+    "name": "Emotion-By-Parameter",
+    "description": "Emotion-By-Parameter",
+    "detector": "emotion_by_parameter",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_no_sense_of_struggle_or_discovery",
+    "name": "No Sense of Struggle or Discovery",
+    "description": "No Sense of Struggle or Discovery",
+    "detector": "no_sense_of_struggle_or_discovery",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_emotional_arc_that_s_too_clean",
+    "name": "Emotional Arc That's Too Clean",
+    "description": "Emotional Arc That's Too Clean",
+    "detector": "emotional_arc_that_s_too_clean",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_no_humor_wit_or_playfulness",
+    "name": "No Humor, Wit, or Playfulness",
+    "description": "No Humor, Wit, or Playfulness",
+    "detector": "no_humor_wit_or_playfulness",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_no_ugliness_or_roughness",
+    "name": "No Ugliness or Roughness",
+    "description": "No Ugliness or Roughness",
+    "detector": "no_ugliness_or_roughness",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_assembly_instead_of_composition",
+    "name": "Assembly Instead of Composition",
+    "description": "Assembly Instead of Composition",
+    "detector": "assembly_instead_of_composition",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_following_the_plan_too_faithfully",
+    "name": "Following the Plan Too Faithfully",
+    "description": "Following the Plan Too Faithfully",
+    "detector": "following_the_plan_too_faithfully",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_defaulting_instead_of_choosing",
+    "name": "Defaulting Instead of Choosing",
+    "description": "Defaulting Instead of Choosing",
+    "detector": "defaulting_instead_of_choosing",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  },
+  {
+    "id": "critique_section_that_could_be_anywhere",
+    "name": "Section That Could Be Anywhere",
+    "description": "Section That Could Be Anywhere",
+    "detector": "section_that_could_be_anywhere",
+    "severity": "warning",
+    "params": {},
+    "style_scope": "",
+    "source_file": "ai-music-self-critique.md"
+  }
 ]

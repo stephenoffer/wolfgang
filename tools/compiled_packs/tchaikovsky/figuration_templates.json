@@ -1,5 +1,118 @@
 [
   {
+    "id": "lh_idiom_full_sustained_chords_under_a_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full sustained chords under a melody",
+    "description": "`[C2,G2,C3,E3]h`. Rich, spread wide, the string-section sound.",
+    "shorthand": "[C2,G2,C3,E3]h",
+    "events": 1,
+    "register": [
+      36,
+      52
+    ],
+    "span_semitones": 16,
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_throbbing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, throbbing",
+    "description": "`[C3,E3,G3]e \u00d78`, an insistent pulse under an intense melody.",
+    "shorthand": "[C3,E3,G3]e \u00d78",
+    "events": 2,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggiated_harp_like_figure",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggiated harp-like figure",
+    "description": "even, wide, from the ballet textures.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_waltz_oom_pah_pah_warm_and_full",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Waltz oom-pah-pah, warm and full",
+    "description": "bass then two full chords, not the thin Chopin version.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_descending_chromatic_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Descending chromatic bass",
+    "description": "under a sustained melody \u2014 his standard intensifier.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_octave_doubling_of_a_melodic_bass_line",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Octave doubling of a melodic bass line",
+    "description": "for weight.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo",
+    "description": "under a sustained chordal melody, transcribing strings.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pizzicato_style_staccato_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pizzicato-style staccato bass",
+    "description": "short, detached, from the ballet.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_counter_melody_in_the_left_hand",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Counter-melody in the left hand",
+    "description": "answering the right.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pedal_point_under_rising_sequences",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pedal point under rising sequences",
+    "description": "the standard build to a climax.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_unison_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare unison octaves",
+    "description": "for a fate-motif statement.",
+    "source_file": "tchaikovsky/tchaikovsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +130,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +148,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +166,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +189,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +236,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +258,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +280,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +323,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +346,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +370,180 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_long_singing_theme",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The long singing theme",
+    "description": "sixteen bars or more, arching once, immediately memorable. Write the tune first.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequential_intensification",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Sequential intensification",
+    "description": "the theme repeated a step higher, louder, fuller, two or three times to a climax.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_descending_scale_as_a_melodic_idea",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The descending scale as a melodic idea",
+    "description": "simple and direct.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_doubled_in_octaves",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody doubled in octaves",
+    "description": "at the climax.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_falling_sequence_of_sighs",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The falling sequence of sighs",
+    "description": "after a peak.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_anticipation",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repeated-note anticipation",
+    "description": "before a long melodic note.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_descending_chromatic_bass",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Descending chromatic bass",
+    "description": "under a static or rising melody. His most reliable intensifier.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture",
+    "description": "major and minor of the same tonic alternating, often within a phrase.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_augmented_sixth_at_an_emotional_peak",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The augmented sixth at an emotional peak.",
+    "description": "The augmented sixth at an emotional peak.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_dominant_pedal",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Long dominant pedal",
+    "description": "under a rising sequence.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_abrupt_shift_to_a_remote_key",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Abrupt shift to a remote key",
+    "description": "for a new emotional region.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_full_diatonic_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Full diatonic harmony",
+    "description": "the vocabulary is not complex; the intensity comes from register, dynamics and repetition.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sonata_form_organised_by_emotional_contrast",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sonata form organised by emotional contrast",
+    "description": "rather than by tonal argument.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_fate_motif",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The fate motif",
+    "description": "a short, stark idea returning across movements to interrupt.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ballet_derived_dance_forms",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ballet-derived dance forms",
+    "description": "waltz, march, characteristic dance.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_climax_placed_at_the_golden_section",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The climax placed at the golden section",
+    "description": "prepared by a long build.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sudden_collapse_after_a_climax",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sudden collapse after a climax",
+    "description": "full texture to a single line.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_dark_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The quiet, dark ending",
+    "description": "a movement ending `ppp` in the low register.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_extended_repetitive_coda",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Extended, repetitive coda",
+    "description": "driving a final assertion home.",
+    "source_file": "tchaikovsky/tchaikovsky-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

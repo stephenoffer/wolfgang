@@ -8,7 +8,7 @@
       "Any major-key phrase \u2014 the signature shadow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Any major-key phrase \u2014 the signature shadow",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -21,7 +21,7 @@
       "minor-key cadences"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Slow movements",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -34,7 +34,7 @@
       "operatic transitions"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Development sections",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -47,7 +47,7 @@
       "late works"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dramatic cadential moments",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -61,7 +61,7 @@
       "slow introductions"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Lament",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -74,7 +74,7 @@
       "development sections"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Late works",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -87,7 +87,7 @@
       "sequences"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Transitions",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -99,7 +99,7 @@
       "Broadens phrase"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Broadens phrase",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -111,7 +111,7 @@
       "Delays closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Delays closure",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -123,7 +123,7 @@
       "Sets up phrase"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sets up phrase",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -135,7 +135,7 @@
       "Confirms closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Confirms closure",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -147,7 +147,7 @@
       "Restarts phrase"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Restarts phrase",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -159,7 +159,7 @@
       "Emphasis"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Emphasis",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -171,7 +171,7 @@
       "Very common"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Very common",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -183,7 +183,7 @@
       "Moderate (more in late Classical)"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Moderate (more in late Classical)",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -196,7 +196,7 @@
       "dramatic cadences"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Moderate",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -208,7 +208,7 @@
       "Common in inner voices"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Common in inner voices",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -220,7 +220,7 @@
       "Increasingly common"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Increasingly common",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -233,7 +233,7 @@
       "esp. in development"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Common",
     "source_file": "mozart/harmonic-language.md"
   },
   {
@@ -245,7 +245,7 @@
       "Rare in early Classical; Beethoven"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Rare in early Classical; Beethoven",
     "source_file": "mozart/harmonic-language.md"
   }
 ]

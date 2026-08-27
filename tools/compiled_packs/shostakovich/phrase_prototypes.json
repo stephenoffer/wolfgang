@@ -1,3 +1,303 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "March \u2014 cheerful, bright, staccato. The smile is plastered on.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "q",
+              "dyn": "f",
+              "art": "staccato"
+            },
+            {
+              "p": "E5",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "F#5",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D5",
+              "d": "q",
+              "art": "staccato"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D3",
+              "d": "q",
+              "dyn": "f",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "D3",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G5",
+              "d": "h",
+              "art": "staccato"
+            },
+            {
+              "p": "F#5",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "E5",
+              "d": "q",
+              "art": "staccato"
+            }
+          ],
+          "vc": [
+            {
+              "p": "G3",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "G3",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 3,
+        "_feel": "Bar 3: the wrong note. Eb instead of E natural. The march continues \u2014 nothing stops.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "Eb5",
+              "d": "q",
+              "art": "staccato",
+              "_feel": "The wrong note \u2014 grotesque, threatening. The march doesn't break stride."
+            },
+            {
+              "p": "F#5",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "A5",
+              "d": "q",
+              "dyn": "ff",
+              "art": "staccato"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D3",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "A2",
+              "d": "q",
+              "dyn": "ff",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 4,
+        "_feel": "Normal march resumes \u2014 as if nothing happened",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "w",
+              "dyn": "f"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D3",
+              "d": "h",
+              "dyn": "f"
+            },
+            {
+              "p": "A2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 1,
+        "_feel": "DSCH \u2014 Shostakovich's initials as music. 4 notes, one cell.",
+        "voices": {
+          "vla": [
+            {
+              "p": "D4",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "Eb4",
+              "d": "q"
+            },
+            {
+              "p": "C4",
+              "d": "q"
+            },
+            {
+              "p": "B3",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "w",
+              "dyn": "p"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 2,
+        "_feel": "Inversion: each interval flipped. D\u2192C# (half step down), C#\u2192E (minor 3rd up), E\u2192F (half step up)",
+        "voices": {
+          "vla": [
+            {
+              "p": "D4",
+              "d": "q"
+            },
+            {
+              "p": "C#4",
+              "d": "q"
+            },
+            {
+              "p": "E4",
+              "d": "q"
+            },
+            {
+              "p": "F4",
+              "d": "q",
+              "dyn": "f"
+            }
+          ],
+          "vc": [
+            {
+              "p": "G1",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 3,
+        "_feel": "Augmentation \u2014 same intervals, double duration. DSCH stretched across 2 bars.",
+        "voices": {
+          "vla": [
+            {
+              "p": "D4",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "Eb4",
+              "d": "h"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "vla": [
+            {
+              "p": "C4",
+              "d": "h"
+            },
+            {
+              "p": "B3",
+              "d": "h",
+              "dyn": "p"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

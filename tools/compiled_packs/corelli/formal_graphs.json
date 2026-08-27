@@ -13,6 +13,14 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "binary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

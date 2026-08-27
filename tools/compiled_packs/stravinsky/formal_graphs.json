@@ -13,6 +13,38 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "fugue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "passacaglia": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "song form": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cyclic": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

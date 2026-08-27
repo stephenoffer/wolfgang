@@ -1,8 +1,8 @@
 {
   "composer": "corelli",
-  "genre": "baroque",
+  "genre": "",
   "support_tier": "B",
-  "corpus_bar_count": 19,
+  "corpus_bar_count": 143,
   "profile_files": [
     "composition-guide.md",
     "corelli-devices.md",
@@ -14,6 +14,7 @@
   ],
   "corpus_files": [
     "bar_index.json",
+    "bars_00.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",

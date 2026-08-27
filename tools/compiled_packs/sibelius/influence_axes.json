@@ -1,4 +1,67 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Broad orchestral melody, minor-key drama, emotional directness",
+      "heard_in": "Symphonies 1\u20132; the early Romantic Sibelius is deeply Tchaikovskian"
+    },
+    {
+      "composer": "Bruckner",
+      "absorbed": "Sustained pedal points, brass chorale, monumental scale",
+      "heard_in": "Brass writing throughout; pedal technique (though Sibelius uses it differently)"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Orchestral color, continuous development, the idea of music as total expression",
+      "heard_in": "Lemmink\u00e4inen Suite; then progressively rejected"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Nordic modal harmony, landscape as musical subject, national identity through music",
+      "heard_in": "Early tone poems; shared Nordic modal vocabulary"
+    },
+    {
+      "composer": "Kalevala epic",
+      "absorbed": "Trochaic rhythm, mythological subjects, the Finnish landscape as artistic material",
+      "heard_in": "Kullervo, Lemmink\u00e4inen, Tapiola \u2014 the foundational source"
+    },
+    {
+      "composer": "Finnish folk music",
+      "absorbed": "Pentatonic melody, modal scales, runo-song rhythm",
+      "heard_in": "Melodic contour throughout; most directly in Kullervo"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Motivic development, symphonic form, the idea of organic growth",
+      "heard_in": "Symphony 3 onward; Beethoven as formal model, not emotional model"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Ralph Vaughan Williams",
+      "absorbed": "Modal harmony, landscape-as-form, folk material in symphonic context",
+      "heard_in": "English Pastoral Symphony, Sinfonia Antartica \u2014 Nordic translated to English"
+    },
+    {
+      "composer": "Malcolm Arnold",
+      "absorbed": "Symphonic compression, dark humor, orchestral economy",
+      "heard_in": "British symphonic tradition after Sibelius"
+    },
+    {
+      "composer": "John Adams",
+      "absorbed": "Rotational form, gradual process, accumulation technique",
+      "heard_in": "Harmonielehre \u2014 American minimalism meets Sibelian form"
+    },
+    {
+      "composer": "Finnish school (Rautavaara, Salonen, Lindberg)",
+      "absorbed": "Nordic orchestral tradition, nature-music, modal language",
+      "heard_in": "Continuation of Finnish symphonic voice"
+    },
+    {
+      "composer": "Film music tradition",
+      "absorbed": "Nature-painting through orchestral texture, pedal-based atmosphere",
+      "heard_in": "Howard Shore (Lord of the Rings), many atmospheric film scores"
+    }
+  ],
   "comparative_axes": {}
 }

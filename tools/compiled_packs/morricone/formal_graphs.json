@@ -1,3 +1,24 @@
 {
-  "forms": {}
+  "forms": {
+    "binary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "theme and variations": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cue": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

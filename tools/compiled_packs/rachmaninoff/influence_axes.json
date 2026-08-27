@@ -1,4 +1,77 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Emotional directness; orchestral warmth; sequence as drama",
+      "heard_in": "Early works especially; Symphony No. 1; orchestral palette throughout"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Bel canto piano melody; wide LH arpeggio; rubato",
+      "heard_in": "Piano Concerto slow movements; Preludes; the singing RH line"
+    },
+    {
+      "composer": "Russian Orthodox liturgy",
+      "absorbed": "Znamenny chant; bell resonance; basso profondo register",
+      "heard_in": "Vespers; bell-chord opening of Concerto No. 2; tonic pedal technique"
+    },
+    {
+      "composer": "Arensky (teacher)",
+      "absorbed": "Lyrical melody; elegant harmony",
+      "heard_in": "Early works; the gift for tunefulness"
+    },
+    {
+      "composer": "Taneyev (teacher)",
+      "absorbed": "Contrapuntal rigor; structural discipline",
+      "heard_in": "Development sections; fugal passages in Vespers"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Virtuoso piano technique; thematic transformation",
+      "heard_in": "Piano concerto cadenzas; Concerto No. 3 virtuosity"
+    },
+    {
+      "composer": "Borodin",
+      "absorbed": "Russian harmonic color; modal progressions",
+      "heard_in": "Symphonic passages; nationalistic harmonic flavor"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Lyrical concerto model; Nordic/Slavic emotional kinship",
+      "heard_in": "Piano Concerto No. 2 structure echoes Grieg A minor"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Film composers (broadly)",
+      "absorbed": "Long melody over lush orchestration; emotional directness",
+      "heard_in": "Hollywood golden age scoring; the \"Rachmaninoff sound\" in cinema"
+    },
+    {
+      "composer": "Popular music",
+      "absorbed": "Variation 18 (Paganini) as template for romantic melody",
+      "heard_in": "Eric Carmen's \"All By Myself\" (direct quotation); countless ballads"
+    },
+    {
+      "composer": "Russian piano school",
+      "absorbed": "Technical approach; wide-range texture; singing tone",
+      "heard_in": "Horowitz, Gilels, Ashkenazy \u2014 performance tradition"
+    },
+    {
+      "composer": "Medtner",
+      "absorbed": "Shared aesthetic; late-Romantic piano language",
+      "heard_in": "Medtner's Fairy Tales; the Russian emigre circle"
+    },
+    {
+      "composer": "Barber",
+      "absorbed": "Lyrical Romanticism in 20th century; orchestral warmth",
+      "heard_in": "Barber's Piano Concerto; Adagio for Strings shares emotional directness"
+    },
+    {
+      "composer": "John Williams",
+      "absorbed": "Lush orchestral textures; long melody; emotional arc",
+      "heard_in": "Williams cites Rachmaninoff as influence; similar orchestral warmth"
+    }
+  ],
   "comparative_axes": {}
 }

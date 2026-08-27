@@ -1,4 +1,147 @@
 {
-  "instruments": {},
+  "instruments": {
+    "horn": {
+      "name": "Horn",
+      "section": "Brass Register Map",
+      "register": "Bb2\u2013F5"
+    },
+    "trumpet": {
+      "name": "Trumpet",
+      "section": "Brass Register Map",
+      "register": "F#3\u2013C6"
+    },
+    "trombone": {
+      "name": "Trombone",
+      "section": "Brass Register Map",
+      "register": "E2\u2013Bb4"
+    },
+    "tuba": {
+      "name": "Tuba",
+      "section": "Brass Register Map",
+      "register": "D1\u2013F3"
+    }
+  },
+  "textures": [
+    {
+      "name": "4 hn, 3 tpt, 3 tbn, tba",
+      "section": "Standard Williams Orchestra",
+      "function": "Heroism, power, threat, fanfare"
+    },
+    {
+      "name": "Vln 1+2, Vla, Vc, Cb",
+      "section": "Standard Williams Orchestra",
+      "function": "Emotion, warmth, sweeping themes"
+    },
+    {
+      "name": "2 fl (+ picc), 2 ob (+ EH), 2 cl (+ bcl), 2 bsn (+ cbsn)",
+      "section": "Standard Williams Orchestra",
+      "function": "Character, nature, color, melody"
+    },
+    {
+      "name": "Timp, cymbals, snare, bass drum, glock, celesta, harp",
+      "section": "Standard Williams Orchestra",
+      "function": "Rhythm, impact, magic, color"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwind Writing",
+      "function": "Magic, flight, nature, innocence"
+    },
+    {
+      "name": "Piccolo",
+      "section": "Woodwind Writing",
+      "function": "Brilliance in climaxes; bird calls"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwind Writing",
+      "function": "Pastoral, poignant, lonely"
+    },
+    {
+      "name": "English horn",
+      "section": "Woodwind Writing",
+      "function": "Deep emotion, solemnity"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwind Writing",
+      "function": "Warmth, mystery, character"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Woodwind Writing",
+      "function": "Dark mystery, low-register color"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwind Writing",
+      "function": "Character, humor, weight"
+    },
+    {
+      "name": "Contrabassoon",
+      "section": "Woodwind Writing",
+      "function": "Extreme low-register power"
+    },
+    {
+      "name": "Timpani",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Snare drum",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Bass drum",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Cymbals (crash)",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Glockenspiel",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Celesta",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Harp",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Vibraphone",
+      "section": "Percussion and Color"
+    },
+    {
+      "name": "Horn",
+      "section": "Solo Instrument Assignments by Character"
+    },
+    {
+      "name": "Solo violin",
+      "section": "Solo Instrument Assignments by Character"
+    },
+    {
+      "name": "Celesta or flute",
+      "section": "Solo Instrument Assignments by Character"
+    },
+    {
+      "name": "Oboe or horn",
+      "section": "Solo Instrument Assignments by Character"
+    },
+    {
+      "name": "Low brass (tbn, tuba)",
+      "section": "Solo Instrument Assignments by Character"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Solo Instrument Assignments by Character"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Solo Instrument Assignments by Character"
+    }
+  ],
   "source_file": "orchestration.md"
 }

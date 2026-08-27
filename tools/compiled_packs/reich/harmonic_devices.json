@@ -8,7 +8,7 @@
       "End of a phase piece"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "End of a phase piece",
     "source_file": "reich/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Section ends"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Section ends",
     "source_file": "reich/harmonic-language.md"
   },
   {
@@ -32,7 +32,7 @@
       "Build sections"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Build sections",
     "source_file": "reich/harmonic-language.md"
   },
   {
@@ -44,7 +44,7 @@
       "Ends of movements"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Ends of movements",
     "source_file": "reich/harmonic-language.md"
   },
   {
@@ -56,7 +56,7 @@
       "Large-scale form"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Large-scale form",
     "source_file": "reich/harmonic-language.md"
   },
   {
@@ -68,7 +68,7 @@
       "Final bar"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Final bar",
     "source_file": "reich/harmonic-language.md"
   }
 ]

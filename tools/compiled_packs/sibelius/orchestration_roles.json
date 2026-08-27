@@ -1,4 +1,122 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Sibelius Orchestra",
+      "function": "Sustained textures (tremolo, pedal, divisi); melody in accumulation passages"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Sibelius Orchestra",
+      "function": "Solo melodic fragments; atmospheric color; rarely in full choir"
+    },
+    {
+      "name": "4 Hn, 3 Tpt, 3 Tbn",
+      "section": "Standard Sibelius Orchestra",
+      "function": "Sustained pedals, chorale, climactic theme statements"
+    },
+    {
+      "name": "Timpani (primarily)",
+      "section": "Standard Sibelius Orchestra",
+      "function": "Pedal reinforcement; structural pulse"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Divisi strings",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Frozen pedal",
+      "section": "Orchestral Texture Types",
+      "function": "Bass sustains; upper strings tremolo pp; solo wind fragment",
+      "genre": "Opening of movements; atmospheric transitions"
+    },
+    {
+      "name": "String tremolo shimmer",
+      "section": "Orchestral Texture Types",
+      "function": "Divided strings sustain shifting chords, ppp-pp",
+      "genre": "Mist, water, atmospheric passages"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Orchestral Texture Types",
+      "function": "4 horns + 3 trombones in hymn-like sustained chords",
+      "genre": "Climactic arrivals; structural pillars"
+    },
+    {
+      "name": "Solo over void",
+      "section": "Orchestral Texture Types",
+      "function": "Single instrument (flute, oboe, cor anglais) with minimal or no accompaniment",
+      "genre": "Fragment-seed passages; the melody alone in space"
+    },
+    {
+      "name": "Accumulative tutti",
+      "section": "Orchestral Texture Types",
+      "function": "Instruments enter one by one over 16\u201332 bars; texture builds from ppp to ff",
+      "genre": "The gathering storm; theme coalescence"
+    },
+    {
+      "name": "Rhythmic unison",
+      "section": "Orchestral Texture Types",
+      "function": "Full orchestra on a single rhythmic figure, often repeated",
+      "genre": "Symphony 5 finale \u2014 the \"hammer blows\""
+    }
+  ],
   "source_file": "orchestration.md"
 }

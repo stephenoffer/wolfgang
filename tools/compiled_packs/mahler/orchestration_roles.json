@@ -1,4 +1,108 @@
 {
-  "instruments": {},
+  "instruments": {
+    "vln_1,_oboe,_or_horn": {
+      "name": "Vln 1, oboe, or horn",
+      "section": "Orchestral Layering \u2014 The Mahler Multi-Voice Texture",
+      "function": "The \"singing\" voice",
+      "register": "High-mid"
+    },
+    "vla,_eng_horn,_or_cello": {
+      "name": "Vla, Eng horn, or cello",
+      "section": "Orchestral Layering \u2014 The Mahler Multi-Voice Texture",
+      "function": "A second \"singing\" voice, different character",
+      "register": "Mid"
+    },
+    "timpani,_harp,_pizz_strings": {
+      "name": "Timpani, harp, pizz strings",
+      "section": "Orchestral Layering \u2014 The Mahler Multi-Voice Texture",
+      "function": "Pulse, but independent of melody rhythm",
+      "register": "Low-mid"
+    },
+    "horns,_low_clarinets": {
+      "name": "Horns, low clarinets",
+      "section": "Orchestral Layering \u2014 The Mahler Multi-Voice Texture",
+      "function": "Sustained color, often in unexpected key",
+      "register": "Low-mid"
+    },
+    "cello_+_bass,_contrabassoon": {
+      "name": "Cello + bass, contrabassoon",
+      "section": "Orchestral Layering \u2014 The Mahler Multi-Voice Texture",
+      "function": "Grounding \u2014 but sometimes absent entirely",
+      "register": "Low"
+    }
+  },
+  "textures": [
+    {
+      "name": "Solo violin",
+      "section": "Preferred Solo Instruments After Tutti Collapse"
+    },
+    {
+      "name": "Solo oboe",
+      "section": "Preferred Solo Instruments After Tutti Collapse"
+    },
+    {
+      "name": "Solo horn",
+      "section": "Preferred Solo Instruments After Tutti Collapse"
+    },
+    {
+      "name": "Solo trumpet (off-stage)",
+      "section": "Preferred Solo Instruments After Tutti Collapse"
+    },
+    {
+      "name": "Solo cello",
+      "section": "Preferred Solo Instruments After Tutti Collapse"
+    },
+    {
+      "name": "Cowbells",
+      "section": "Exotic / Special Instruments",
+      "function": "Symphony 6, Symphony 7 \u2014 the sound of a world untouched by human drama"
+    },
+    {
+      "name": "Hammer (Symphony 6)",
+      "section": "Exotic / Special Instruments",
+      "function": "Fate striking; the most literal programmatic gesture"
+    },
+    {
+      "name": "Mandolin + guitar",
+      "section": "Exotic / Special Instruments",
+      "function": "Intimacy, nocturnal romance, Viennese nostalgia"
+    },
+    {
+      "name": "Celesta",
+      "section": "Exotic / Special Instruments",
+      "function": "Symphony 4 (heavenly vision), Symphony 8"
+    },
+    {
+      "name": "Tam-tam",
+      "section": "Exotic / Special Instruments",
+      "function": "Symphony 1 funeral march, Symphony 6, Symphony 9"
+    },
+    {
+      "name": "Sleigh bells",
+      "section": "Exotic / Special Instruments",
+      "function": "Symphony 4 mvt 1"
+    },
+    {
+      "name": "Harmonium",
+      "section": "Exotic / Special Instruments",
+      "function": "Symphony 8 Part II"
+    },
+    {
+      "name": "Oboe",
+      "section": "Klangfarbenmelodie Precursor \u2014 Melody Passed Between Timbres"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Klangfarbenmelodie Precursor \u2014 Melody Passed Between Timbres"
+    },
+    {
+      "name": "Flute",
+      "section": "Klangfarbenmelodie Precursor \u2014 Melody Passed Between Timbres"
+    },
+    {
+      "name": "Solo violin",
+      "section": "Klangfarbenmelodie Precursor \u2014 Melody Passed Between Timbres"
+    }
+  ],
   "source_file": "orchestration.md"
 }

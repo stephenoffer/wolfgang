@@ -1,3 +1,106 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "long_arch": [
+          {
+            "p": "Ab4",
+            "d": "q",
+            "dyn": "p",
+            "art": "legato"
+          },
+          {
+            "p": "Bb4",
+            "d": "q"
+          },
+          {
+            "p": "C5",
+            "d": "h"
+          },
+          {
+            "p": "Db5",
+            "d": "q"
+          },
+          {
+            "p": "C5",
+            "d": "q"
+          },
+          {
+            "p": "Bb4",
+            "d": "h"
+          },
+          {
+            "p": "Ab4",
+            "d": "w"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "harmony_shifts_under": [
+          {
+            "p": [
+              "Ab2",
+              "Eb3",
+              "Ab3",
+              "C4"
+            ],
+            "d": "h"
+          },
+          {
+            "p": [
+              "F2",
+              "Db3",
+              "Ab3",
+              "C4"
+            ],
+            "d": "h"
+          },
+          {
+            "p": [
+              "Db2",
+              "Ab2",
+              "F3",
+              "C4"
+            ],
+            "d": "w"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "flowing_accompaniment": [
+          {
+            "p": "Ab2",
+            "d": "e"
+          },
+          {
+            "p": "Eb3",
+            "d": "e"
+          },
+          {
+            "p": "Ab3",
+            "d": "e"
+          },
+          {
+            "p": "C4",
+            "d": "e"
+          },
+          {
+            "p": "Ab3",
+            "d": "e"
+          },
+          {
+            "p": "Eb3",
+            "d": "e"
+          }
+        ]
+      }
+    }
+  ]
 }

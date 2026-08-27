@@ -1,10 +1,86 @@
 {
   "influenced_by": [
     {
-      "composer": "every"
+      "composer": "Buxtehude",
+      "absorbed": "Free organ fantasy, dramatic toccata style",
+      "heard_in": "Toccata & Fugue in D minor BWV 565"
     },
     {
-      "composer": "Vivaldi"
+      "composer": "Vivaldi",
+      "absorbed": "Ritornello form, driving rhythm, concerto structure",
+      "heard_in": "Brandenburg Concertos; transcriptions BWV 972\u2013987"
+    },
+    {
+      "composer": "Corelli",
+      "absorbed": "Trio sonata texture, walking bass, sequential harmony",
+      "heard_in": "Sonatas for violin & continuo"
+    },
+    {
+      "composer": "Frescobaldi",
+      "absorbed": "Chromatic ricercar, toccata figuration",
+      "heard_in": "Chromatic Fantasy BWV 903"
+    },
+    {
+      "composer": "Pachelbel",
+      "absorbed": "Chorale-based organ writing, clear diatonic harmony",
+      "heard_in": "Organ chorales, early cantatas"
+    },
+    {
+      "composer": "Couperin/French clavecinistes",
+      "absorbed": "Suite dance forms, ornament vocabulary, style galant",
+      "heard_in": "French Suites, English Suites, Overture BWV 831"
+    },
+    {
+      "composer": "Palestrina (via Fux)",
+      "absorbed": "Strict voice-leading, species counterpoint",
+      "heard_in": "Art of Fugue, Mass in B minor stile antico"
+    },
+    {
+      "composer": "Lully",
+      "absorbed": "French overture (slow\u2013fast), dotted rhythms",
+      "heard_in": "Orchestral Suite openings BWV 1066\u20131069"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil grew from father's chromaticism",
+      "heard_in": "Hamburg symphonies \u2014 chromatic surprises within clear form"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Fugal technique after studying Bach scores (1782)",
+      "heard_in": "Jupiter Symphony finale, Requiem Kyrie fugue"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Fugue as developmental climax; WTC as daily bread",
+      "heard_in": "Grosse Fuge Op. 133, Hammerklavier fugue"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Revived Bach (1829 St Matthew Passion); choral writing",
+      "heard_in": "Elijah oratorio, organ sonatas"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Motivic saturation, contrapuntal inner voices",
+      "heard_in": "Symphony No. 4 passacaglia finale"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Polyphonic piano texture, fugal studies",
+      "heard_in": "Studies after Paganini, BACH fugues Op. 60"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "24 Preludes & Fugues directly modeled on WTC",
+      "heard_in": "Op. 87 \u2014 modern chromaticism in Bachian form"
+    },
+    {
+      "composer": "Webern",
+      "absorbed": "Contrapuntal density, motivic economy",
+      "heard_in": "Serial works \u2014 every note serving multiple roles"
     }
   ],
   "comparative_axes": {}

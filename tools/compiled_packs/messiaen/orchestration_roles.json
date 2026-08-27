@@ -1,4 +1,112 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Flute / piccolo",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Eb clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Massed brass unison",
+      "section": "Brass"
+    },
+    {
+      "name": "Glockenspiel",
+      "section": "Percussion"
+    },
+    {
+      "name": "Vibraphone",
+      "section": "Percussion"
+    },
+    {
+      "name": "Xylophone",
+      "section": "Percussion"
+    },
+    {
+      "name": "Crotales",
+      "section": "Percussion"
+    },
+    {
+      "name": "Tam-tam",
+      "section": "Percussion"
+    },
+    {
+      "name": "Maracas",
+      "section": "Percussion"
+    },
+    {
+      "name": "Wind machine",
+      "section": "Percussion"
+    },
+    {
+      "name": "Geophones",
+      "section": "Percussion"
+    },
+    {
+      "name": "Color chord sustained",
+      "section": "Texture Types",
+      "function": "Full orchestra on one massive chord, held"
+    },
+    {
+      "name": "Birdsong polyphony",
+      "section": "Texture Types",
+      "function": "5\u201318 birds simultaneously, each instrument = one bird"
+    },
+    {
+      "name": "Plainchant monophony",
+      "section": "Texture Types",
+      "function": "Single melodic line, unaccompanied or with pedal"
+    },
+    {
+      "name": "Rhythmic canon",
+      "section": "Texture Types",
+      "function": "2\u20134 layers in independent rhythmic patterns"
+    },
+    {
+      "name": "Landscape painting",
+      "section": "Texture Types",
+      "function": "Sparse: isolated sounds representing rocks, wind, water"
+    },
+    {
+      "name": "Stained-glass block",
+      "section": "Texture Types",
+      "function": "Successive color chords, each a \"panel\""
+    }
+  ],
   "source_file": "orchestration.md"
 }

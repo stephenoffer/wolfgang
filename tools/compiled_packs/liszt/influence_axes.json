@@ -1,7 +1,96 @@
 {
   "influenced_by": [
     {
-      "composer": "Beethoven"
+      "composer": "Beethoven (via Czerny)",
+      "absorbed": "Motivic development; structural ambition; heroic drama",
+      "heard_in": "B minor Sonata; Faust Symphony; the idea that music IS argument"
+    },
+    {
+      "composer": "Paganini",
+      "absorbed": "Transcendental virtuosity; showmanship as art; one instrument = orchestra",
+      "heard_in": "Transcendental Etudes; Paganini Etudes; all bravura writing"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Idee fixe; programmatic narrative; orchestral color",
+      "heard_in": "Symphonic poems; Faust Symphony; the concept of thematic transformation"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Chromatic harmony; piano poetry; intimate expression",
+      "heard_in": "Harmonic vocabulary; lyrical transformations; Liebestraum"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song melody; harmonic wandering; mode mixture",
+      "heard_in": "Schubert song transcriptions; lyrical passages"
+    },
+    {
+      "composer": "Weber",
+      "absorbed": "Brilliant piano writing; operatic piano style",
+      "heard_in": "Early virtuoso works; operatic fantasies"
+    },
+    {
+      "composer": "Hungarian folk music",
+      "absorbed": "Verbunkos rhythm; Gypsy scale; improvisatory character",
+      "heard_in": "19 Hungarian Rhapsodies; Hungarian Fantasia; pervasive accent"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Harmonic audacity; leitmotif principle; Gesamtkunstwerk ambition",
+      "heard_in": "Late harmony; mutual influence (hard to separate who influenced whom)"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "R. Strauss",
+      "absorbed": "Symphonic poem form; thematic transformation; orchestral virtuosity",
+      "heard_in": "Don Juan, Ein Heldenleben, Also sprach Zarathustra \u2014 all descended from Les Preludes"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Augmented triads as color; whole-tone scale; non-functional harmony",
+      "heard_in": "Prelude a l'apres-midi; whole-tone passages; Jeux de vagues"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Hungarian modality; augmented intervals; late experimental spirit",
+      "heard_in": "Romanian Dances; Piano Sonata; the idea that Hungarian music is serious art"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Virtuoso piano technique; orchestral brilliance; Gypsy/Hungarian color",
+      "heard_in": "Tzigane; Piano Concerto in G; Gaspard de la nuit (virtuosity lineage)"
+    },
+    {
+      "composer": "Scriabin",
+      "absorbed": "Augmented harmonies pushed to dissolution; mystic-religious aspiration",
+      "heard_in": "Mystic chord; late sonatas; the spiritual ambition"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Liszt championed him directly; chromatic mediant usage; national pride",
+      "heard_in": "Grieg's Piano Concerto (Liszt sight-read the MS and praised it)"
+    },
+    {
+      "composer": "Smetana",
+      "absorbed": "National symphonic poem; Liszt as personal mentor",
+      "heard_in": "Ma Vlast modeled on Liszt's symphonic poems"
+    },
+    {
+      "composer": "Franck",
+      "absorbed": "Cyclic form (themes recurring across movements); chromatic harmony",
+      "heard_in": "Symphony in D minor; cyclic principle = Liszt's thematic transformation"
+    },
+    {
+      "composer": "Saint-Saens",
+      "absorbed": "Symphonic poem form; virtuoso concerto writing",
+      "heard_in": "Danse macabre; Piano Concertos"
+    },
+    {
+      "composer": "Early Schoenberg",
+      "absorbed": "Late Liszt's tonal dissolution; atonality as expressive resource",
+      "heard_in": "Verklarte Nacht chromaticism; the step from Liszt's late works to free atonality is short"
     }
   ],
   "comparative_axes": {}

@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Steady continuo quarters",
     "description": "`D2q A2q D3q A2q`. Root and fifth alternating, one chord per bar or per half bar. The default, and it should sound unhurried.",
+    "shorthand": "D2q A2q D3q A2q",
+    "events": 4,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -14,6 +21,13 @@
     "hand": "lh",
     "name": "Walking eighths",
     "description": "`D2e E2e F#2e G2e A2e B2e C#3e D3e`. Drives an aria or a fast movement; mostly stepwise with an occasional leap to the next harmony.",
+    "shorthand": "D2e E2e F#2e G2e A2e B2e C#3e D3e",
+    "events": 8,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -23,6 +37,13 @@
     "hand": "lh",
     "name": "Repeated notes on one pitch",
     "description": "`D2e \u00d78`. Insistent, and used under a sequence where the harmony above is doing the moving.",
+    "shorthand": "D2e \u00d78",
+    "events": 2,
+    "register": [
+      38,
+      38
+    ],
+    "span_semitones": 0,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -32,6 +53,13 @@
     "hand": "lh",
     "name": "Dotted-rhythm bass (the French overture)",
     "description": "`D2dq D2e A2dq A2e`. Stately and ceremonial. Paired with a dotted upper part; this is the single most recognisable Handel gesture and it belongs at openings.",
+    "shorthand": "D2dq D2e A2dq A2e",
+    "events": 4,
+    "register": [
+      38,
+      45
+    ],
+    "span_semitones": 7,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +69,13 @@
     "hand": "lh",
     "name": "Descending tetrachord / ground bass",
     "description": "`D2h C2h Bb1h A1h`, repeated as an ostinato under changing upper material. The lament bass. Handel builds whole movements on one.",
+    "shorthand": "D2h C2h Bb1h A1h",
+    "events": 4,
+    "register": [
+      33,
+      38
+    ],
+    "span_semitones": 5,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -50,6 +85,13 @@
     "hand": "lh",
     "name": "Octave leaps between root and its octave",
     "description": "`D2q D3q D2q D3q`. Solid and plain; gives weight without motion.",
+    "shorthand": "D2q D3q D2q D3q",
+    "events": 4,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -59,6 +101,13 @@
     "hand": "lh",
     "name": "Sustained pedal on the dominant",
     "description": "`A1w` held for four or eight bars while the upper parts intensify. Handel's standard preparation for a final cadence and for a chorus entry.",
+    "shorthand": "A1w",
+    "events": 1,
+    "register": [
+      33,
+      33
+    ],
+    "span_semitones": 0,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -68,6 +117,13 @@
     "hand": "lh",
     "name": "Sequential descent by fifths",
     "description": "the bass falling a fourth and rising a second: `D2q G1q E2q A1q F#2q B1q`. The circle-of-fifths engine, and Handel uses it plainly and often.",
+    "shorthand": "D2q G1q E2q A1q F#2q B1q",
+    "events": 6,
+    "register": [
+      31,
+      42
+    ],
+    "span_semitones": 11,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -95,6 +151,13 @@
     "hand": "lh",
     "name": "Broken octaves for agitation",
     "description": "`D2e D3e D2e D3e`. The storm and rage idiom; heavier and slower than a Classical tremolo.",
+    "shorthand": "D2e D3e D2e D3e",
+    "events": 4,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
     "source_file": "handel/handel-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -116,9 +179,9 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -134,9 +197,9 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -152,9 +215,9 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -175,8 +238,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -222,8 +285,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -244,8 +307,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -266,8 +329,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -309,9 +372,9 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -332,8 +395,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -356,8 +419,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -461,10 +524,19 @@
     "grounding": "hard_corroborated"
   },
   {
-    "id": "device_the_written_out_cadenza_before_the_final_cadence_of_an_aria_13_melodic_sequence_over_a_walking_bass",
+    "id": "device_the_written_out_cadenza_before_the_final_cadence",
     "category": "composer_device",
     "section": "Melodic and structural devices",
-    "name": "The written-out cadenza before the final cadence** of an aria.\n\n13. **Melodic sequence over a walking bass",
+    "name": "The written-out cadenza before the final cadence",
+    "description": "of an aria.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melodic_sequence_over_a_walking_bass",
+    "category": "composer_device",
+    "section": "Melodic and structural devices",
+    "name": "Melodic sequence over a walking bass",
     "description": "the two most common ingredients, combined; it will fill any transitional passage idiomatically.",
     "source_file": "handel/handel-devices.md",
     "grounding": "hard_corroborated"
@@ -506,10 +578,28 @@
     "grounding": "hard_corroborated"
   },
   {
-    "id": "device_the_neapolitan_sixth_at_a_moment_of_pathos_in_a_minor_key_aria_19_picardy_third_to_end_a_minor_key_movement_20_slow_harmonic_rhythm",
+    "id": "device_the_neapolitan_sixth",
     "category": "composer_device",
     "section": "Harmonic devices",
-    "name": "The Neapolitan sixth** at a moment of pathos in a minor-key aria.\n\n19. **Picardy third** to end a minor-key movement.\n\n20. **Slow harmonic rhythm",
+    "name": "The Neapolitan sixth",
+    "description": "at a moment of pathos in a minor-key aria.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_picardy_third",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Picardy third",
+    "description": "to end a minor-key movement.",
+    "source_file": "handel/handel-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_slow_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Slow harmonic rhythm",
     "description": "one chord per bar or per two bars, especially in the grand choruses. Handel prolongs where Bach moves.",
     "source_file": "handel/handel-devices.md",
     "grounding": "hard_corroborated"

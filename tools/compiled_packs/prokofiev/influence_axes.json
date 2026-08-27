@@ -1,4 +1,70 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Prokofiev"
+    },
+    {
+      "composer": "Shostakovich"
+    },
+    {
+      "composer": "Myaskovsky"
+    },
+    {
+      "composer": "Khachaturian"
+    },
+    {
+      "composer": "Kabalevsky"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Lyrical melody, ballet instinct, emotional directness"
+    },
+    {
+      "composer": "Rimsky-Korsakov",
+      "absorbed": "Orchestral brilliance, Russian color"
+    },
+    {
+      "composer": "Haydn",
+      "absorbed": "Classical formal clarity (Classical Symphony)"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Piano virtuosity, percussive technique"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Orchestral transparency, wit"
+    },
+    {
+      "composer": "Mussorgsky",
+      "absorbed": "Russian speech rhythms, grotesque character"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Shostakovich (early)",
+      "absorbed": "Motoric drive, grotesque marches; then diverged sharply"
+    },
+    {
+      "composer": "Soviet film composers",
+      "absorbed": "Patriotic orchestral writing; *Nevsky* as template"
+    },
+    {
+      "composer": "John Williams",
+      "absorbed": "Prokofiev's fairy-tale orchestration influenced *E.T.*, *Harry Potter*"
+    },
+    {
+      "composer": "Prokofiev's own late style",
+      "absorbed": "The simplification demanded by Soviet pressure anticipated some minimalist clarity"
+    }
+  ],
+  "comparative_axes": {
+    "The Soviet Context": [
+      "Prokofiev",
+      "Shostakovich",
+      "Myaskovsky",
+      "Khachaturian",
+      "Kabalevsky"
+    ]
+  }
 }

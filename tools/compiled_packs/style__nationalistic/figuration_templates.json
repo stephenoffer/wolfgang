@@ -1,265 +1,1284 @@
 [
- {
-  "id": "fig_1_alberti",
-  "name": "Alberti bass",
-  "pattern_keyword": "alberti",
-  "period_style": [
-   "Classical (Mozart",
-   "Haydn)"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Graceful, flowing, elegant",
-  "when_to_use": [
-   "Grace and elegance",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_2_broken_chord_asc",
-  "name": "Ascending arpeggio",
-  "pattern_keyword": "broken_chord_asc",
-  "period_style": [
-   "All periods; Romantic esp."
-  ],
-  "tempo_range": null,
-  "character": "Rising energy, openness, aspiration",
-  "when_to_use": [
-   "Building energy"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_3_broken_chord_desc",
-  "name": "Descending arpeggio",
-  "pattern_keyword": "broken_chord_desc",
-  "period_style": [
-   "All periods; Romantic esp."
-  ],
-  "tempo_range": null,
-  "character": "Falling, sighing, resolution, descent",
-  "when_to_use": [
-   "Winding down"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_4_murky_bass",
-  "name": "Murky bass (octave alternation)",
-  "pattern_keyword": "murky_bass",
-  "period_style": [
-   "Early Classical",
-   "Galant"
-  ],
-  "tempo_range": [
-   80,
-   120
-  ],
-  "character": "Solid, grounded, simple support",
-  "when_to_use": [
-   "Rhythmic drive",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_5_waltz_bass",
-  "name": "Waltz bass (3/4, L:1/8)",
-  "pattern_keyword": "waltz_bass",
-  "period_style": [
-   "Romantic (Chopin",
-   "Strauss)"
-  ],
-  "tempo_range": [
-   120,
-   180
-  ],
-  "character": "Dance-like, lilting, elegant",
-  "when_to_use": [
-   "Grace and elegance",
-   "Lyrical expansion",
-   "Simple support (stay out of melody's way)"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_6_wide_span_arpeggio",
-  "name": "Rachmaninoff wide-span",
-  "pattern_keyword": "wide_span_arpeggio",
-  "period_style": [
-   "Late Romantic"
-  ],
-  "tempo_range": [
-   60,
-   100
-  ],
-  "character": "Expansive, passionate, sweeping",
-  "when_to_use": [
-   "Lyrical expansion",
-   "Virtuosic display",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_7_turn_based",
-  "name": "Turn-based",
-  "pattern_keyword": "turn_based",
-  "period_style": [
-   "Classical",
-   "Baroque"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Ornamental, playful, decorative",
-  "when_to_use": [
-   "Grace and elegance"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_8_scalar_asc",
-  "name": "Scalar fill ascending",
-  "pattern_keyword": "scalar_asc",
-  "period_style": [
-   "All periods"
-  ],
-  "tempo_range": [
-   100,
-   160
-  ],
-  "character": "Building, forward motion, urgency",
-  "when_to_use": [
-   "Building energy",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_9_scalar_desc",
-  "name": "Scalar fill descending",
-  "pattern_keyword": "scalar_desc",
-  "period_style": [
-   "All periods"
-  ],
-  "tempo_range": [
-   100,
-   160
-  ],
-  "character": "Releasing, calming, closing",
-  "when_to_use": [
-   "Winding down",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_10_tremolo",
-  "name": "Tremolo",
-  "pattern_keyword": "tremolo",
-  "period_style": [
-   "Romantic",
-   "orchestral"
-  ],
-  "tempo_range": null,
-  "character": "Tension, suspense, sustained energy",
-  "when_to_use": [
-   "Building energy",
-   "Rhythmic drive",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_11_broken_octave",
-  "name": "Broken octave with fill",
-  "pattern_keyword": "broken_octave",
-  "period_style": [
-   "Classical",
-   "early Romantic"
-  ],
-  "tempo_range": [
-   100,
-   140
-  ],
-  "character": "Busy, perpetual motion, industrious",
-  "when_to_use": [
-   "Rhythmic drive",
-   "Virtuosic display"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- },
- {
-  "id": "fig_12_chordal_passing",
-  "name": "Chordal with passing tones",
-  "pattern_keyword": "chordal_passing",
-  "period_style": [
-   "Romantic",
-   "choral style"
-  ],
-  "tempo_range": [
-   60,
-   110
-  ],
-  "character": "Hymn-like, rich, warm, broadening",
-  "when_to_use": [
-   "Winding down",
-   "Lyrical expansion",
-   "Climactic density"
-  ],
-  "variation_operators": [],
-  "density_suggestion": null,
-  "register_suggestion": "",
-  "grounding": "interpretive",
-  "source_file": "figuration-patterns.md"
- }
+  {
+    "id": "lh_idiom_full_warm_chords_under_a_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full warm chords under a melody",
+    "description": "`[C2,G2,C3,E3]h`, spread and sonorous.",
+    "shorthand": "[C2,G2,C3,E3]h",
+    "events": 1,
+    "register": [
+      36,
+      52
+    ],
+    "span_semitones": 16,
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_dumka_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Dumka rhythm",
+    "description": "alternating slow lament and fast dance, with the accompaniment changing character completely between them.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_furiant_cross_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Furiant cross-rhythm",
+    "description": "duple accents across a 3/4 bar, two bars at a time.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_polka_oom_pah",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Polka oom-pah",
+    "description": "bass and chord, bright and square.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_drone_fifths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Drone fifths",
+    "description": "`[C2,G2]w` under a modal melody, from folk practice.",
+    "shorthand": "[C2,G2]w",
+    "events": 1,
+    "register": [
+      36,
+      43
+    ],
+    "span_semitones": 7,
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_throbbing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, throbbing",
+    "description": "under an intense lyrical melody.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_counter_melody_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Counter-melody in the bass",
+    "description": "answering the tune \u2014 Dvo\u0159\u00e1k's basses sing.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggiated_accompaniment_wide_and_warm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggiated accompaniment, wide and warm.",
+    "description": "Arpeggiated accompaniment, wide and warm.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pizzicato_style_detached_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pizzicato-style detached bass",
+    "description": "for the lighter dances.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_octave_doubling_of_a_folk_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Octave doubling of a folk melody",
+    "description": "for a full statement.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_syncopated_off_beat_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Syncopated off-beat chords",
+    "description": "for dance energy.",
+    "source_file": "dvorak/dvorak-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_open_fifths_moving_in_parallel",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Open fifths moving in parallel",
+    "description": "`[D2,A2]h [E2,B2]h`, bare and archaic.",
+    "shorthand": "[D2,A2]h [E2,B2]h",
+    "events": 2,
+    "register": [
+      38,
+      47
+    ],
+    "span_semitones": 9,
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_springar_halling_dance_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Springar / halling dance rhythm",
+    "description": "a lilting 3/4 with an uneven second beat.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_inner_voice_over_a_static_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic inner voice over a static bass",
+    "description": "his standard intensifier in the lyric pieces.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_arpeggiated_wide_chords",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Arpeggiated wide chords",
+    "description": "warm, in the Romantic manner.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_quiet",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, quiet",
+    "description": "under a simple melody.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves",
+    "description": "for a stark or heroic statement.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sustained_chord_with_a_moving_top_voice",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sustained chord with a moving top voice",
+    "description": "the accompaniment carries a counter-melody.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bass_in_octaves_for_weight",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bass in octaves for weight",
+    "description": "at a climax of a short piece.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence",
+    "description": "the miniatures use rests generously.",
+    "source_file": "grieg/grieg-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_doubled_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare doubled octaves",
+    "description": "the bass line in octaves, no chord, marching. The Promenade and the Great Gate open this way. `[G2,G3]q [F2,F3]q [E-2,E-3]h`",
+    "shorthand": "[G2,G3]q [F2,F3]q [E-2,E-3]h",
+    "events": 3,
+    "register": [
+      39,
+      55
+    ],
+    "span_semitones": 16,
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_block_chords_on_the_beat_thick_and_low",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Block chords on the beat, thick and low",
+    "description": "five and six notes struck together in the bass register. Not spread, not rolled. `[C2,G2,C3,E-3,G3]h [C2,G2,C3,E-3,G3]h`",
+    "shorthand": "[C2,G2,C3,E-3,G3]h [C2,G2,C3,E-3,G3]h",
+    "events": 2,
+    "register": [
+      36,
+      55
+    ],
+    "span_semitones": 19,
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_off_beat_chordal_stabs",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Off-beat chordal stabs",
+    "description": "a rest on the beat and the chord after it, giving the lurching gait of *Byd\u0142o* and *Gnomus*. 28% of his bars. `rest_e [C3,E-3,G3]e rest_e [C3,E-3,G3]e`",
+    "shorthand": "rest_e [C3,E-3,G3]e rest_e [C3,E-3,G3]e",
+    "events": 4,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_or_repeated_chord_under_a_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo or repeated chord under a melody",
+    "description": "a chord repeated in even values for tension, usually growing.",
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_pedal_bass_with_chords_above",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The pedal bass with chords above",
+    "description": "a low held note while the harmony moves over it. Used for the ominous pictures.",
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sudden_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sudden silence",
+    "description": "the hand stops dead for a beat. He uses rests as punctuation, and they are often the loudest moment.",
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_broken_chord_wave_wide_and_even",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The broken-chord wave, wide and even",
+    "description": "a rolling arpeggio spanning a tenth or more in continuous sixteenths, the harp or the divided strings. `E-2s B-2s E-3s G3s B-3s G3s E-3s B-2s`",
+    "shorthand": "E-2s B-2s E-3s G3s B-3s G3s E-3s B-2s",
+    "events": 8,
+    "register": [
+      39,
+      58
+    ],
+    "span_semitones": 19,
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_offbeat_chordal_punctuation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Offbeat chordal punctuation",
+    "description": "a bass note on the beat, chords on the offbeats. The pizzicato-and-winds accompaniment, 22% of his bars. `C2e [E-3,G3,C4]e rest_e [E-3,G3,C4]e`",
+    "shorthand": "C2e [E-3,G3,C4]e rest_e [E-3,G3,C4]e",
+    "events": 4,
+    "register": [
+      36,
+      60
+    ],
+    "span_semitones": 24,
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_alberti",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Alberti",
+    "description": "genuinely present at 14%, inherited rather than fashionable, and used for the lighter, more diatonic passages.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_block_chords_in_the_middle_register",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated block chords in the middle register",
+    "description": "the brass chorale, struck evenly, close position.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_held_bass_with_tremolo_above",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Held bass with tremolo above",
+    "description": "the string tremolo for the fantastical scenes and the sea music.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octave_doublings_of_the_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octave doublings of the melody",
+    "description": "in the bass, for a unison statement of a theme.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "fig_1_alberti",
+    "name": "Alberti bass",
+    "pattern_keyword": "alberti",
+    "period_style": [
+      "Classical (Mozart",
+      "Haydn)"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Graceful, flowing, elegant",
+    "when_to_use": [
+      "Grace and elegance",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_2_broken_chord_asc",
+    "name": "Ascending arpeggio",
+    "pattern_keyword": "broken_chord_asc",
+    "period_style": [
+      "All periods; Romantic esp."
+    ],
+    "tempo_range": null,
+    "character": "Rising energy, openness, aspiration",
+    "when_to_use": [
+      "Building energy"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_3_broken_chord_desc",
+    "name": "Descending arpeggio",
+    "pattern_keyword": "broken_chord_desc",
+    "period_style": [
+      "All periods; Romantic esp."
+    ],
+    "tempo_range": null,
+    "character": "Falling, sighing, resolution, descent",
+    "when_to_use": [
+      "Winding down"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
+    "grounding": "hard_corroborated",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_4_murky_bass",
+    "name": "Murky bass (octave alternation)",
+    "pattern_keyword": "murky_bass",
+    "period_style": [
+      "Early Classical",
+      "Galant"
+    ],
+    "tempo_range": [
+      80,
+      120
+    ],
+    "character": "Solid, grounded, simple support",
+    "when_to_use": [
+      "Rhythmic drive",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_5_waltz_bass",
+    "name": "Waltz bass (3/4, L:1/8)",
+    "pattern_keyword": "waltz_bass",
+    "period_style": [
+      "Romantic (Chopin",
+      "Strauss)"
+    ],
+    "tempo_range": [
+      120,
+      180
+    ],
+    "character": "Dance-like, lilting, elegant",
+    "when_to_use": [
+      "Grace and elegance",
+      "Lyrical expansion",
+      "Simple support (stay out of melody's way)"
+    ],
+    "variation_operators": [],
+    "density_suggestion": null,
+    "register_suggestion": "",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_6_wide_span_arpeggio",
+    "name": "Rachmaninoff wide-span",
+    "pattern_keyword": "wide_span_arpeggio",
+    "period_style": [
+      "Late Romantic"
+    ],
+    "tempo_range": [
+      60,
+      100
+    ],
+    "character": "Expansive, passionate, sweeping",
+    "when_to_use": [
+      "Lyrical expansion",
+      "Virtuosic display",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_7_turn_based",
+    "name": "Turn-based",
+    "pattern_keyword": "turn_based",
+    "period_style": [
+      "Classical",
+      "Baroque"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Ornamental, playful, decorative",
+    "when_to_use": [
+      "Grace and elegance"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_8_scalar_asc",
+    "name": "Scalar fill ascending",
+    "pattern_keyword": "scalar_asc",
+    "period_style": [
+      "All periods"
+    ],
+    "tempo_range": [
+      100,
+      160
+    ],
+    "character": "Building, forward motion, urgency",
+    "when_to_use": [
+      "Building energy",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_9_scalar_desc",
+    "name": "Scalar fill descending",
+    "pattern_keyword": "scalar_desc",
+    "period_style": [
+      "All periods"
+    ],
+    "tempo_range": [
+      100,
+      160
+    ],
+    "character": "Releasing, calming, closing",
+    "when_to_use": [
+      "Winding down",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": null,
+    "register_suggestion": "",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_10_tremolo",
+    "name": "Tremolo",
+    "pattern_keyword": "tremolo",
+    "period_style": [
+      "Romantic",
+      "orchestral"
+    ],
+    "tempo_range": null,
+    "character": "Tension, suspense, sustained energy",
+    "when_to_use": [
+      "Building energy",
+      "Rhythmic drive",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_11_broken_octave",
+    "name": "Broken octave with fill",
+    "pattern_keyword": "broken_octave",
+    "period_style": [
+      "Classical",
+      "early Romantic"
+    ],
+    "tempo_range": [
+      100,
+      140
+    ],
+    "character": "Busy, perpetual motion, industrious",
+    "when_to_use": [
+      "Rhythmic drive",
+      "Virtuosic display"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "fig_12_chordal_passing",
+    "name": "Chordal with passing tones",
+    "pattern_keyword": "chordal_passing",
+    "period_style": [
+      "Romantic",
+      "choral style"
+    ],
+    "tempo_range": [
+      60,
+      110
+    ],
+    "character": "Hymn-like, rich, warm, broadening",
+    "when_to_use": [
+      "Winding down",
+      "Lyrical expansion",
+      "Climactic density"
+    ],
+    "variation_operators": [],
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
+    "grounding": "interpretive",
+    "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_pentatonic_melody",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Pentatonic melody",
+    "description": "five notes, no semitones. The most recognisable Dvo\u0159\u00e1k sound and the basis of the American works.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_flattened_seventh",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The flattened seventh",
+    "description": "in a major-key tune \u2014 modal, folk-derived.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_built_on_a_repeated_short_phrase",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody built on a repeated short phrase",
+    "description": "the folk-song manner.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_lyrical_line_over_a_simple_accompaniment",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long lyrical line over a simple accompaniment.",
+    "description": "Long lyrical line over a simple accompaniment.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_thirds_and_sixths",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody in thirds and sixths",
+    "description": "for warmth.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_rising_fourth_as_a_melodic_signature",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The rising fourth as a melodic signature.",
+    "description": "The rising fourth as a melodic signature.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_furiant",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Furiant",
+    "description": "duple accents across triple metre, hemiola as a dance.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dumka",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Dumka",
+    "description": "slow lament alternating with fast dance, within one movement.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_polka_and_sko_n_rhythms",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Polka and sko\u010dn\u00e1 rhythms",
+    "description": "bright, square, duple.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_syncopation_as_folk_energy",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Syncopation as folk energy",
+    "description": "rather than as metrical disruption.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_scotch_snap",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "The Scotch snap",
+    "description": "short-long on the beat.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_inflection",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal inflection",
+    "description": "Mixolydian and Dorian colouring in a tonal frame.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_third_related_key_relationships",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Third-related key relationships",
+    "description": "Schubertian in feel.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_drone_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Drone fifths",
+    "description": "under a modal melody.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_plagal_cadences",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Plagal cadences",
+    "description": "for folk-like closure.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture",
+    "description": "for warmth rather than for shadow.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_classical_forms",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Classical forms",
+    "description": "sonata, rondo, variation \u2014 carrying folk material.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_slavonic_dance_as_a_movement_type",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Slavonic dance as a movement type.",
+    "description": "Slavonic dance as a movement type.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_return",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic return",
+    "description": "of a theme across movements.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_lyrical_slow_movement_as_the_emotional_centre",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The lyrical slow movement as the emotional centre.",
+    "description": "The lyrical slow movement as the emotional centre.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_full_orchestral_thinking",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Full-orchestral thinking",
+    "description": "even in chamber and keyboard textures.",
+    "source_file": "dvorak/dvorak-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_grieg_motif",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The Grieg motif",
+    "description": "a falling second then a falling third, used as a signature.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal harmony",
+    "description": "Lydian raised fourth, Mixolydian flat seventh, Aeolian.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_descending_inner_voice",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic descending inner voice",
+    "description": "over a held bass.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_fifths_and_open_sonorities",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel fifths and open sonorities",
+    "description": "deliberately archaic.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sudden_modal_shift",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Sudden modal shift",
+    "description": "major to minor of the same tonic, folk-style.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_sevenths_and_added_seconds",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved sevenths and added seconds",
+    "description": "as folk colour.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_third_related_keys",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Third-related keys",
+    "description": "for section contrast.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_springar_lilt",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Springar lilt",
+    "description": "an uneven 3/4 with a lengthened second beat.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_halling_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Halling rhythm",
+    "description": "a duple dance, angular and accented.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pentatonic_melodic_fragments",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Pentatonic melodic fragments.",
+    "description": "Pentatonic melodic fragments.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_short_repeated_melodic_cell",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "The short repeated melodic cell",
+    "description": "folk-song construction.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ornamental_grace_notes",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Ornamental grace notes",
+    "description": "imitating fiddle playing.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_octaves",
+    "category": "composer_device",
+    "section": "Rhythmic and melodic devices",
+    "name": "Melody in octaves",
+    "description": "for a full statement in a short piece.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ternary_lyric_piece",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ternary lyric piece",
+    "description": "A, contrasting B, varied A. The default form.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_character_piece_with_a_title",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The character piece with a title",
+    "description": "naming a scene or mood.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_suite_of_short_movements",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Suite of short movements",
+    "description": "rather than a single long argument.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_motif_across_a_suite",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic motif across a suite.",
+    "description": "Cyclic motif across a suite.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The quiet ending",
+    "description": "most of the lyric pieces end softly.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sharp_sectional_contrast",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sharp sectional contrast",
+    "description": "rather than transition.",
+    "source_file": "grieg/grieg-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_promenade_principle",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The Promenade principle",
+    "description": "a recurring theme between sections, each time in a different key, metre and mood, reflecting what has just been seen.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_irregular_and_changing_metre",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Irregular and changing metre",
+    "description": "5/4 and 6/4 alternating, or a bar of 7 dropped into a march. The metre follows the phrase, not the other way round.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_phrase_lengths_of_five_and_seven_bars",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Phrase lengths of five and seven bars",
+    "description": "the tune ends when the sentence ends.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_abrupt_sectional_juxtaposition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Abrupt sectional juxtaposition",
+    "description": "one picture stops, the next starts, with no transition.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_cumulative_final_statement",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The cumulative final statement",
+    "description": "the last return is thicker, lower and slower than every previous one, in full chords (the Great Gate).",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_harmony_from_russian_folk_song",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal harmony from Russian folk song",
+    "description": "Dorian and Aeolian, a flat seventh instead of a leading tone, and cadences that avoid the dominant.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bare_open_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bare open fifths",
+    "description": "the third omitted entirely, giving the archaic, bell-like sound.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_colouring",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone colouring",
+    "description": "for the supernatural and grotesque pictures.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_triads_moving_in_blocks",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel triads moving in blocks",
+    "description": "the whole chord shifted, parallel fifths and all, which the conservatory forbade and he used deliberately.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_static_harmony_over_a_long_pedal",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Static harmony over a long pedal",
+    "description": "with the melody carrying all the motion.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_bell_effect",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The bell effect",
+    "description": "a low octave struck against a mid-register chord, repeated with the harmony changing above it, imitating Russian church bells. Both hands wide apart; the 16-semitone gap in his own bars is this.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_speech_rhythm",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Speech rhythm",
+    "description": "the tune follows the stresses of a Russian phrase, so repeated notes and irregular groupings dominate. He described this as his method.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_narrow_range_recitative",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Narrow-range recitative",
+    "description": "the melody circles a few notes, declaimed rather than sung.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_notes_as_emphasis",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repeated notes as emphasis",
+    "description": "often the same pitch four or five times.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_sudden_leap_of_a_seventh_or_an_octave",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The sudden leap of a seventh or an octave",
+    "description": "at a moment of shock, into an otherwise stepwise line.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_extreme_registers_used_bare",
+    "category": "composer_device",
+    "section": "Colour",
+    "name": "The extreme registers used bare",
+    "description": "the very bottom and the very top, with nothing between.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_abrupt_dynamic_contrast",
+    "category": "composer_device",
+    "section": "Colour",
+    "name": "Abrupt dynamic contrast",
+    "description": "`ff` beside `pp` with no hairpin.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_theme_transformed_by_re_scoring",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Theme transformed by re-scoring",
+    "description": "the same tune returns in a new register, at a new thickness, against new figuration. The development is in the dressing.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_narrative_solo",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The narrative solo",
+    "description": "an unaccompanied melodic line, freely rhythmic, returning between sections as a storyteller (Scheherazade's violin).",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ostinato_under_a_long_melody",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Ostinato under a long melody",
+    "description": "one figure repeated for many bars while the tune plays out above it.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_themes",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic themes",
+    "description": "a few motifs recurring across every movement, each time re-costumed.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_processional_build",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The processional build",
+    "description": "a theme stated quietly, then repeated with each restatement thicker and higher until the full texture.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_octatonic_scale",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The octatonic scale",
+    "description": "alternating tone and semitone, his signature for the magical and the supernatural, and largely his invention as a systematic device.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_passages",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone passages",
+    "description": "for the same purpose.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediant_motion",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediant motion",
+    "description": "chords a third apart with no pivot, the commonest way his harmony travels.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_static_harmony_with_moving_colour",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Static harmony with moving colour",
+    "description": "one chord for eight bars while the figuration changes around it. The harmony is not the interest.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_folk_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal folk harmony",
+    "description": "flat sevenths, plagal cadences, and melodies harmonised by their own mode rather than by tonic-dominant.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_pedal_points_long_and_low",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Pedal points, long and low",
+    "description": "under chromatic upper voices.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_oriental_melisma",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "The oriental melisma",
+    "description": "a decorated, sinuous line with augmented seconds, turning around itself. Used for every eastern subject.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dance_rhythms",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "Dance rhythms",
+    "description": "the tarantella, the trepak, the fandango, driving and absolutely square.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fanfare_openings",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "Fanfare openings",
+    "description": "a rising arpeggio in dotted rhythm, brass in origin.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_note_figures",
+    "category": "composer_device",
+    "section": "Melodic and rhythmic devices",
+    "name": "Repeated-note figures",
+    "description": "in fast even values, imitating the snare or the tambourine.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_continuous_sixteenth_arpeggiation_spanning_wide_intervals",
+    "category": "composer_device",
+    "section": "Figuration",
+    "name": "Continuous sixteenth arpeggiation spanning wide intervals",
+    "description": "the harp gesture, and his commonest accompaniment at 30% of bars.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_rapid_scalar_runs",
+    "category": "composer_device",
+    "section": "Figuration",
+    "name": "Rapid scalar runs",
+    "description": "as decoration between phrases, not as melody.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_trills_and_tremolos_as_colour",
+    "category": "composer_device",
+    "section": "Figuration",
+    "name": "Trills and tremolos as colour",
+    "description": "sustained under a melody rather than ornamenting a note.",
+    "source_file": "rimsky-korsakov/rimsky-korsakov-devices.md",
+    "grounding": "hard_corroborated"
+  }
 ]

@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Walking quarters through the harmony",
     "description": "`D3q A2q Bb2q F2q G2q D2q Eb2q A2q`. Steady, mostly by step or by fourth, one note per chord. The default and the sound of the style.",
+    "shorthand": "D3q A2q Bb2q F2q G2q D2q Eb2q A2q",
+    "events": 8,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -14,6 +21,13 @@
     "hand": "lh",
     "name": "Circle of fifths, exact",
     "description": "the bass falling a fifth and rising a fourth, four to eight chords in a row: `D3q G2q C3q F2q Bb2q E2q A2q D2q`. Corelli uses longer circles than anyone before him, and the exactness is the point.",
+    "shorthand": "D3q G2q C3q F2q Bb2q E2q A2q D2q",
+    "events": 8,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -23,6 +37,13 @@
     "hand": "lh",
     "name": "Suspension chain (the 7-6 or 4-3 chain)",
     "description": "the upper voices suspend in alternation while the bass walks down by step. `D3q C3q Bb2q A2q` under suspending violins. This is the single most Corellian texture there is.",
+    "shorthand": "D3q C3q Bb2q A2q",
+    "events": 4,
+    "register": [
+      45,
+      50
+    ],
+    "span_semitones": 5,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -32,6 +53,13 @@
     "hand": "lh",
     "name": "Pedal on the dominant",
     "description": "`A2w` held for four to eight bars before a final cadence, with the violins intensifying above.",
+    "shorthand": "A2w",
+    "events": 1,
+    "register": [
+      45,
+      45
+    ],
+    "span_semitones": 0,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +69,13 @@
     "hand": "lh",
     "name": "Repeated notes for insistence",
     "description": "`D3e \u00d78` under a sequential passage.",
+    "shorthand": "D3e \u00d78",
+    "events": 2,
+    "register": [
+      50,
+      50
+    ],
+    "span_semitones": 0,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -59,6 +94,13 @@
     "hand": "lh",
     "name": "Descending tetrachord ground",
     "description": "`D3h C3h Bb2h A2h`, repeated. Used for the slow movements and the chaconne-like finales.",
+    "shorthand": "D3h C3h Bb2h A2h",
+    "events": 4,
+    "register": [
+      45,
+      50
+    ],
+    "span_semitones": 5,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -77,6 +119,13 @@
     "hand": "lh",
     "name": "Cadential 4-3 with the bass falling a fifth",
     "description": "`A2h D2h` under a suspended fourth resolving. Every phrase ends this way; that is not monotony, it is the period's punctuation.",
+    "shorthand": "A2h D2h",
+    "events": 2,
+    "register": [
+      38,
+      45
+    ],
+    "span_semitones": 7,
     "source_file": "corelli/corelli-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -116,9 +165,9 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
-    "grounding": "interpretive",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
+    "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
   {
@@ -134,8 +183,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -152,8 +201,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -175,8 +224,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -222,8 +271,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -244,8 +293,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -266,8 +315,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -309,8 +358,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -332,8 +381,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -356,8 +405,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -443,10 +492,28 @@
     "grounding": "hard_corroborated"
   },
   {
-    "id": "device_the_pedal_on_the_dominant_before_a_final_cadence_four_to_eight_bars_11_picardy_third_to_end_a_minor_key_movement_12_even_harmonic_rhythm",
+    "id": "device_the_pedal_on_the_dominant",
     "category": "composer_device",
     "section": "Harmonic devices",
-    "name": "The pedal on the dominant** before a final cadence, four to eight bars.\n\n11. **Picardy third** to end a minor-key movement.\n\n12. **Even harmonic rhythm",
+    "name": "The pedal on the dominant",
+    "description": "before a final cadence, four to eight bars.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_picardy_third",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Picardy third",
+    "description": "to end a minor-key movement.",
+    "source_file": "corelli/corelli-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_even_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Even harmonic rhythm",
     "description": "one chord per beat or per bar, held for a whole section. Irregular harmonic rhythm sounds later than this style.",
     "source_file": "corelli/corelli-devices.md",
     "grounding": "hard_corroborated"

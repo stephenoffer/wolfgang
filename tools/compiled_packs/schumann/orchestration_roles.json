@@ -1,4 +1,99 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Schumann Orchestra",
+      "function": "Core texture; violins often doubled in octaves or thirds"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Schumann Orchestra",
+      "function": "Doubling strings; occasional solo (oboe theme, clarinet lyric)"
+    },
+    {
+      "name": "2-4 Hn, 2 Tpt, 3 Tbn",
+      "section": "Standard Schumann Orchestra",
+      "function": "Horns: thematic + harmonic; Tbn: weight, chorale; Tpt: punctuation"
+    },
+    {
+      "name": "Timpani (triangle in Symphony 3)",
+      "section": "Standard Schumann Orchestra",
+      "function": "Structural downbeats, pedal reinforcement"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Contrabass",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Interior monologue",
+      "section": "Piano Texture Types",
+      "function": "4+ simultaneous layers: melody, countermelody, accompaniment, bass"
+    },
+    {
+      "name": "Character-piece simplicity",
+      "section": "Piano Texture Types",
+      "function": "Deceptively simple melody + accompaniment; the simplicity IS the expression"
+    },
+    {
+      "name": "Arpeggiated density",
+      "section": "Piano Texture Types",
+      "function": "Rapid broken chords with melody notes accented within the figuration"
+    },
+    {
+      "name": "March/chorale",
+      "section": "Piano Texture Types",
+      "function": "Chordal, rhythmically square, forte \u2014 Florestan speaks"
+    },
+    {
+      "name": "Tremolo/tremolando",
+      "section": "Piano Texture Types",
+      "function": "Sustained atmosphere through repeated notes or rapid alternation"
+    }
+  ],
   "source_file": "orchestration.md"
 }

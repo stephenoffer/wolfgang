@@ -1,4 +1,219 @@
 {
-  "instruments": {},
+  "instruments": {
+    "trumpet_in_d": {
+      "name": "Trumpet in D",
+      "section": "Brass and Timpani \u2014 The Climax Instruments",
+      "register": "D4-D6 (natural)"
+    },
+    "trumpet_in_c": {
+      "name": "Trumpet in C",
+      "section": "Brass and Timpani \u2014 The Climax Instruments",
+      "register": "C4-C6"
+    },
+    "horn_in_f": {
+      "name": "Horn in F",
+      "section": "Brass and Timpani \u2014 The Climax Instruments",
+      "register": "F3-F5"
+    },
+    "timpani": {
+      "name": "Timpani",
+      "section": "Brass and Timpani \u2014 The Climax Instruments",
+      "register": "D2, A2 (typically)"
+    }
+  },
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles",
+      "function": "Melody carrier, virtuosic display"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Harmonic support, occasional dialogue"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Harmonic filler, rhythmic anchor"
+    },
+    {
+      "name": "Cello/Bass",
+      "section": "Instrument Roles",
+      "function": "Foundation, continuo bass line"
+    },
+    {
+      "name": "Oboe I/II",
+      "section": "Instrument Roles",
+      "function": "Doubles violins in tutti; solos in pastoral scenes"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Doubles bass line; occasional independent color"
+    },
+    {
+      "name": "Recorder (Fl. dolce)",
+      "section": "Instrument Roles",
+      "function": "Pastoral color, supernatural scenes"
+    },
+    {
+      "name": "Transverse flute",
+      "section": "Instrument Roles",
+      "function": "Lighter alternative to oboe"
+    },
+    {
+      "name": "Trumpet I/II",
+      "section": "Instrument Roles",
+      "function": "Festive brilliance, heroic fanfare"
+    },
+    {
+      "name": "Horn I/II",
+      "section": "Instrument Roles",
+      "function": "Outdoor nobility, hunting character"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic weight at climaxes"
+    },
+    {
+      "name": "Organ",
+      "section": "Instrument Roles",
+      "function": "Continuo + solo concerto instrument"
+    },
+    {
+      "name": "Harpsichord",
+      "section": "Instrument Roles",
+      "function": "Continuo realization"
+    },
+    {
+      "name": "Harp/Theorbo",
+      "section": "Instrument Roles",
+      "function": "Special color"
+    },
+    {
+      "name": "Full tutti",
+      "section": "Texture Strategies",
+      "function": "Grand statement, climax, opening"
+    },
+    {
+      "name": "Reduced tutti",
+      "section": "Texture Strategies",
+      "function": "Standard narrative, recitative accompagnato"
+    },
+    {
+      "name": "Solo + continuo",
+      "section": "Texture Strategies",
+      "function": "Intimate expression, aria A section"
+    },
+    {
+      "name": "Concertino episode",
+      "section": "Texture Strategies",
+      "function": "Contrast within concerto; chamber intimacy"
+    },
+    {
+      "name": "Unison/octave",
+      "section": "Texture Strategies",
+      "function": "Maximum melodic power, theme announcement"
+    },
+    {
+      "name": "Antiphonal",
+      "section": "Texture Strategies",
+      "function": "Spatial drama, dialogue between forces"
+    },
+    {
+      "name": "Colla parte choral",
+      "section": "Texture Strategies",
+      "function": "Standard oratorio chorus texture"
+    },
+    {
+      "name": "Obbligato aria",
+      "section": "Texture Strategies",
+      "function": "Display, dialogue between voice and instrument"
+    },
+    {
+      "name": "Oboe",
+      "section": "Winds \u2014 Color and Doubling"
+    },
+    {
+      "name": "Recorder",
+      "section": "Winds \u2014 Color and Doubling"
+    },
+    {
+      "name": "Transverse flute",
+      "section": "Winds \u2014 Color and Doubling"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Winds \u2014 Color and Doubling"
+    },
+    {
+      "name": "Fugal buildup",
+      "section": "Choral-Orchestral Texture",
+      "function": "Strings colla parte; bass reinforces entries"
+    },
+    {
+      "name": "Homophonic climax",
+      "section": "Choral-Orchestral Texture",
+      "function": "Full tutti doubles voices; trumpets/timpani add weight"
+    },
+    {
+      "name": "Antiphonal chorus",
+      "section": "Choral-Orchestral Texture",
+      "function": "Orchestra punctuates between choral blocks"
+    },
+    {
+      "name": "Quiet devotional",
+      "section": "Choral-Orchestral Texture",
+      "function": "Strings only, no winds; reduced dynamics"
+    },
+    {
+      "name": "Plague/storm",
+      "section": "Choral-Orchestral Texture",
+      "function": "Measured tremolo strings; diminished harmonies"
+    },
+    {
+      "name": "March/procession",
+      "section": "Choral-Orchestral Texture",
+      "function": "Full orchestra with dotted rhythms, brass fanfare"
+    },
+    {
+      "name": "Homophonic, double-dotted",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Imitative entries",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Driving unisons, tremolo",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Sustained, chromatic bass",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Lilting compound meter",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Homophonic block chords",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Building polyphonic layers",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Sustained or tremolo chords",
+      "section": "Scoring by Dramatic Context"
+    },
+    {
+      "name": "Chordal punctuation",
+      "section": "Scoring by Dramatic Context"
+    }
+  ],
   "source_file": "orchestration.md"
 }

@@ -9,7 +9,7 @@
       "the uncanny; any of four resolutions"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Terror",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -22,7 +22,7 @@
       "motivated key shift"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Sudden",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -35,7 +35,7 @@
       "the distant"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The magical",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -47,7 +47,7 @@
       "Intensifying a dominant arrival"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Intensifying a dominant arrival",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -59,7 +59,7 @@
       "Pathos in minor-key arias"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Pathos in minor-key arias",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -71,7 +71,7 @@
       "Shadow across a major-key phrase"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Shadow across a major-key phrase",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -83,7 +83,7 @@
       "Atmosphere; the operatic storm"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Atmosphere; the operatic storm",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -97,7 +97,7 @@
       "or shadow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A door opens to another world \u2014 wonder",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -109,7 +109,7 @@
       "The harmony leans harder into the dominant \u2014 the ache deepens"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The harmony leans harder into the dominant \u2014 the ache deepens",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -122,7 +122,7 @@
       "inevitability"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The bass drops to an alien note \u2014 solemnity",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -134,7 +134,7 @@
       "Each resolution becomes a new question \u2014 the heart cannot rest"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Each resolution becomes a new question \u2014 the heart cannot rest",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -146,7 +146,7 @@
       "The expected home is replaced by something vast and unexpected"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The expected home is replaced by something vast and unexpected",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -158,7 +158,7 @@
       "The same sound acquires new meaning \u2014 the world shifts underfoot"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The same sound acquires new meaning \u2014 the world shifts underfoot",
     "source_file": "weber/harmonic-language.md"
   },
   {
@@ -170,7 +170,7 @@
       "Contrary chromatic motion creates the feeling of forces converging"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Contrary chromatic motion creates the feeling of forces converging",
     "source_file": "weber/harmonic-language.md"
   }
 ]

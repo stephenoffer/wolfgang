@@ -1,4 +1,138 @@
 {
-  "instruments": {},
+  "instruments": {
+    "strings_(full_section)": {
+      "name": "Strings (full section)",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "Middle"
+    },
+    "flute": {
+      "name": "Flute",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "High"
+    },
+    "oboe": {
+      "name": "Oboe",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "Middle"
+    },
+    "clarinet": {
+      "name": "Clarinet",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "Low-middle"
+    },
+    "bassoon": {
+      "name": "Bassoon",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "Low"
+    },
+    "3_horns": {
+      "name": "3 Horns",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "Low-middle"
+    },
+    "timpani_+_bass_drum": {
+      "name": "Timpani + bass drum",
+      "section": "Peter and the Wolf \u2014 Orchestration as Character",
+      "register": "Low"
+    }
+  },
+  "textures": [
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Piccolo",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Timpani",
+      "section": "Percussion"
+    },
+    {
+      "name": "Snare drum",
+      "section": "Percussion"
+    },
+    {
+      "name": "Bass drum",
+      "section": "Percussion"
+    },
+    {
+      "name": "Xylophone",
+      "section": "Percussion"
+    },
+    {
+      "name": "Tambourine",
+      "section": "Percussion"
+    },
+    {
+      "name": "Castanets",
+      "section": "Percussion"
+    },
+    {
+      "name": "Melody + motoric bass",
+      "section": "Texture Types",
+      "function": "Solo melody over mechanical repeated-note bass",
+      "genre": "Fast sonata movements"
+    },
+    {
+      "name": "Antiphonal dialogue",
+      "section": "Texture Types",
+      "function": "Two instruments or groups alternate",
+      "genre": "Ballet: character conversations"
+    },
+    {
+      "name": "Tutti unison",
+      "section": "Texture Types",
+      "function": "Full orchestra on same melody, octave doublings",
+      "genre": "Climactic moments; Symphony No. 5"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Texture Types",
+      "function": "2-3 solo instruments exposed",
+      "genre": "Slow movements; intimate scenes"
+    },
+    {
+      "name": "Percussive tutti",
+      "section": "Texture Types",
+      "function": "Full orchestra playing staccato, rhythmic chords",
+      "genre": "Motoric passages; battle music"
+    },
+    {
+      "name": "Solo + sustained strings",
+      "section": "Texture Types",
+      "function": "Wind solo over held string chords",
+      "genre": "Lyrical second themes"
+    }
+  ],
   "source_file": "orchestration.md"
 }

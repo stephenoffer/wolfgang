@@ -9,7 +9,7 @@
       "variation set"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Theme statement",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -21,7 +21,7 @@
       "Primary themes"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Primary themes",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -33,7 +33,7 @@
       "Sustaining folk flavor"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sustaining folk flavor",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -45,7 +45,7 @@
       "Russian choral style"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Russian choral style",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -57,7 +57,7 @@
       "Dance movements"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dance movements",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -69,7 +69,7 @@
       "Bagpipe/hurdy-gurdy imitation"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Bagpipe/hurdy-gurdy imitation",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -81,7 +81,7 @@
       "Major theme returns in minor"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Major theme returns in minor",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -93,7 +93,7 @@
       "Dramatic color change"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Dramatic color change",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -105,7 +105,7 @@
       "Building energy in dance"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Building energy in dance",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -117,7 +117,7 @@
       "Slow movements"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Slow movements",
     "source_file": "dvorak/harmonic-language.md"
   },
   {
@@ -129,7 +129,7 @@
       "Mussorgsky block form"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mussorgsky block form",
     "source_file": "dvorak/harmonic-language.md"
   }
 ]

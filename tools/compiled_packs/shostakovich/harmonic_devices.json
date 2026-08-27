@@ -8,7 +8,7 @@
       "Personal signature woven into harmonic fabric"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Personal signature woven into harmonic fabric",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Emotional uncertainty; nothing is purely bright or dark"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Emotional uncertainty; nothing is purely bright or dark",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -32,7 +32,7 @@
       "Irony; the cheerfulness is a mask"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Irony; the cheerfulness is a mask",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -44,7 +44,7 @@
       "Obsessive; the harmonic ground will not release"
     ],
     "frequency_weight": 0.08,
-    "emotional_color": "",
+    "emotional_color": "Obsessive; the harmonic ground will not release",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -56,7 +56,7 @@
       "Klezmer-adjacent lament; Songs from Jewish Poetry"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Klezmer-adjacent lament; Songs from Jewish Poetry",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -68,7 +68,7 @@
       "Perpetual tension; no release; no comfort"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Perpetual tension; no release; no comfort",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -80,7 +80,7 @@
       "Emotional whiplash; forced reinterpretation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Emotional whiplash; forced reinterpretation",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -92,7 +92,7 @@
       "Mechanical ostinato bass"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mechanical ostinato bass",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -104,7 +104,7 @@
       "Increasing upper-voice chromaticism"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Increasing upper-voice chromaticism",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -116,7 +116,7 @@
       "Solo instrument over sustained chords"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Solo instrument over sustained chords",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -128,7 +128,7 @@
       "Rapid chromatic shifts"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Rapid chromatic shifts",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -140,7 +140,7 @@
       "Modal cadence on lowered 2nd"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "Modal cadence on lowered 2nd",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -152,7 +152,7 @@
       "Whole-orchestra unison or cluster"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Whole-orchestra unison or cluster",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -165,7 +165,7 @@
       "Stravinsky Petrushka chord"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Milhaud",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -178,7 +178,7 @@
       "Milhaud"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Ives",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -190,7 +190,7 @@
       "Iconic bitonal sonority"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Iconic bitonal sonority",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -202,7 +202,7 @@
       "Independence of strata"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Independence of strata",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -214,7 +214,7 @@
       "Tension without atonality"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tension without atonality",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -226,7 +226,7 @@
       "Stravinsky Pulcinella"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky Pulcinella",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -238,7 +238,7 @@
       "Prokofiev"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Prokofiev",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -251,7 +251,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Copland",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -263,7 +263,47 @@
       "Mixolydian bVII-I"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mixolydian bVII-I",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "pac_authentic_close",
+    "name": "PAC (authentic close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+      "not from a dominant: the bass lands on the tonic",
+      "the texture stops moving",
+      "and that is the close. V7-I in this idiom reads as quotation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "hc_half_close",
+    "name": "HC (half close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+      "not from a chord that demands resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+    "source_file": "shostakovich/harmonic-language.md"
+  },
+  {
+    "id": "iac_weak_close",
+    "name": "IAC (weak close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "An arrival that does not fully close"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "An arrival that does not fully close",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -275,7 +315,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -288,7 +328,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Ravel",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -300,7 +340,7 @@
       "Low-Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Low-Medium",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -312,7 +352,7 @@
       "High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "High",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -324,7 +364,7 @@
       "Very High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Very High",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -336,7 +376,7 @@
       "Medium-Low"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Medium-Low",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -348,7 +388,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -360,7 +400,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "shostakovich/harmonic-language.md"
   },
   {
@@ -372,7 +412,7 @@
       "Variable"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Variable",
     "source_file": "shostakovich/harmonic-language.md"
   }
 ]

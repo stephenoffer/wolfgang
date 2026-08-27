@@ -1,840 +1,505 @@
 [
- {
-  "id": "melody_over_rich_bass",
-  "name": "Melody over rich bass",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "La fille aux cheveux de lin"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "quartal_stacking",
-  "name": "Quartal stacking",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pagodes",
-   "gamelan-influenced passages"
-  ],
-  "frequency_weight": 0.05,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "layered_pentatonics",
-  "name": "Layered pentatonics",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Creates gentle bitonality without harshness"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "ostinato",
-  "name": "Ostinato",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pagodes bell-patterns"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "cadential_settling",
-  "name": "Cadential settling",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Natural rest without dominant-tonic closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "tritone_juxtaposition",
-  "name": "Tritone juxtaposition",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sudden color shift \u2014 like walking from one room into different light"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "chromatic_mediant",
-  "name": "Chromatic mediant",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Rich",
-   "unexpected warmth or coolness"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "common_tone_pivot",
-  "name": "Common-tone pivot",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Smooth connection between unrelated harmonies"
-  ],
-  "frequency_weight": 0.01,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "oscillation",
-  "name": "Oscillation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Shimmering",
-   "static \u2014 light on water"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "sideslip",
-  "name": "Sideslip",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Elegant arrival without dominant preparation"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "pedal_color",
-  "name": "Pedal + color",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grounded freedom \u2014 the bass anchors; everything else floats"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "fadeout",
-  "name": "Fadeout",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Evaporation \u2014 the sound dissolves"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "pentatonic_settling",
-  "name": "Pentatonic settling",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Natural rest without closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "pedal_arrival",
-  "name": "Pedal arrival",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grounding \u2014 but not resolution"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "modal_cadence",
-  "name": "Modal cadence",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Archaic",
-   "non-tonal closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "silence",
-  "name": "Silence",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Mallarm\u00e9's white space"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "whole_tone_exit",
-  "name": "Whole-tone exit",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Awakening \u2014 gravity returns"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "water_shimmering_flowing",
-  "name": "Water (shimmering, flowing)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Alternation between two chords creates the effect of light on moving water \u2014 never still",
-   "never changing"
-  ],
-  "frequency_weight": 0.09,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "wind_movement_without_weight",
-  "name": "Wind (movement without weight)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Voices moving together in the same direction feel like a gust \u2014 effortless",
-   "directionless"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "light_filtered_dappled",
-  "name": "Light (filtered, dappled)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
-   "but luminous"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "mist_fog",
-  "name": "Mist / Fog",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Without half-step pulls",
-   "harmony floats without gravity \u2014 edges dissolve"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "warmth_sunlight_nostalgia",
-  "name": "Warmth (sunlight, nostalgia)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pentatonic intervals carry no tension; the listener relaxes into the sound"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "distance_memory",
-  "name": "Distance / Memory",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "A chord that never resolves feels like a thought that trails off \u2014 present but receding"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "awakening",
-  "name": "Awakening",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "color_chord_succession",
-  "name": "Color chord succession",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Floating",
-   "non-directional"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "common_tone_linking",
-  "name": "Common-tone linking",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Smooth",
-   "connected"
-  ],
-  "frequency_weight": 0.01,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "bass_pedal_with_moving_chords",
-  "name": "Bass pedal with moving chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grounded yet colorful"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "chromatic_mediant",
-  "name": "Chromatic mediant",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sudden color shift"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "modal_interchange",
-  "name": "Modal interchange",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Expanded palette"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "tritone_substitution",
-  "name": "Tritone substitution",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Smooth chromatic motion"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "oscillation",
-  "name": "Oscillation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Shimmering",
-   "static"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "sideslip",
-  "name": "Sideslip",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Elegant slide"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "melody",
-  "name": "Melody",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "chord_construction",
-  "name": "Chord construction",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "ostinato",
-  "name": "Ostinato",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "layered_pentatonics",
-  "name": "Layered pentatonics",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "gamelan_effect",
-  "name": "Gamelan effect",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "superimposed_triads",
-  "name": "Superimposed triads",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Shimmering tension"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "melody_in_one_key_harmony_in_another",
-  "name": "Melody in one key, harmony in another",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dreamlike disconnect"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "left_hand_right_hand_split",
-  "name": "Left hand / right hand split",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Piano color effect"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "pedal_in_foreign_key",
-  "name": "Pedal in foreign key",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grounded dissonance"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "debussy/harmonic-language.md"
- },
- {
-  "id": "single_chord_drone",
-  "name": "Single-chord drone",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Entire sections (Vexations: 840 repetitions)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "two_chord_oscillation",
-  "name": "Two-chord oscillation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Entire piece (Gymnopedies)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "pedal_point",
-  "name": "Pedal point",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Extended passages (Gnossiennes)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "chord_loop",
-  "name": "Chord loop",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Furniture music pieces"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "melodic_stasis",
-  "name": "Melodic stasis",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Gnossienne melodies"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "water_shimmering_flowing",
-  "name": "Water (shimmering, flowing)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Alternation between two chords creates the effect of light on moving water \u2014 never still",
-   "never changing"
-  ],
-  "frequency_weight": 0.09,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "wind_movement_without_weight",
-  "name": "Wind (movement without weight)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Voices moving together in the same direction feel like a gust \u2014 effortless",
-   "directionless"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "light_filtered_dappled",
-  "name": "Light (filtered, dappled)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
-   "but luminous"
-  ],
-  "frequency_weight": 0.03,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "mist_fog",
-  "name": "Mist / Fog",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Without half-step pulls",
-   "harmony floats without gravity \u2014 edges dissolve"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "warmth_sunlight_nostalgia",
-  "name": "Warmth (sunlight, nostalgia)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Pentatonic intervals carry no tension; the listener relaxes into the sound"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "distance_memory",
-  "name": "Distance / Memory",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "A chord that never resolves feels like a thought that trails off \u2014 present but receding"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "awakening",
-  "name": "Awakening",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "color_chord_succession",
-  "name": "Color chord succession",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Floating",
-   "non-directional"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "common_tone_linking",
-  "name": "Common-tone linking",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Smooth",
-   "connected"
-  ],
-  "frequency_weight": 0.01,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "bass_pedal_with_moving_chords",
-  "name": "Bass pedal with moving chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grounded yet colorful"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "chromatic_mediant",
-  "name": "Chromatic mediant",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sudden color shift"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "modal_interchange",
-  "name": "Modal interchange",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Expanded palette"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "tritone_substitution",
-  "name": "Tritone substitution",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Smooth chromatic motion"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "oscillation",
-  "name": "Oscillation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Shimmering",
-   "static"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "sideslip",
-  "name": "Sideslip",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Elegant slide"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "melody",
-  "name": "Melody",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "chord_construction",
-  "name": "Chord construction",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "ostinato",
-  "name": "Ostinato",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "layered_pentatonics",
-  "name": "Layered pentatonics",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "gamelan_effect",
-  "name": "Gamelan effect",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "superimposed_triads",
-  "name": "Superimposed triads",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Shimmering tension"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "melody_in_one_key_harmony_in_another",
-  "name": "Melody in one key, harmony in another",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dreamlike disconnect"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "left_hand_right_hand_split",
-  "name": "Left hand / right hand split",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Piano color effect"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- },
- {
-  "id": "pedal_in_foreign_key",
-  "name": "Pedal in foreign key",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grounded dissonance"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "satie/harmonic-language.md"
- }
+  {
+    "id": "melody_over_rich_bass",
+    "name": "Melody over rich bass",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "La fille aux cheveux de lin"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "La fille aux cheveux de lin",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "quartal_stacking",
+    "name": "Quartal stacking",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Pagodes",
+      "gamelan-influenced passages"
+    ],
+    "frequency_weight": 0.05,
+    "emotional_color": "Pagodes",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "layered_pentatonics",
+    "name": "Layered pentatonics",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Creates gentle bitonality without harshness"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Creates gentle bitonality without harshness",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "ostinato",
+    "name": "Ostinato",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Pagodes bell-patterns"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Pagodes bell-patterns",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "cadential_settling",
+    "name": "Cadential settling",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Natural rest without dominant-tonic closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Natural rest without dominant-tonic closure",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "tritone_juxtaposition",
+    "name": "Tritone juxtaposition",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sudden color shift \u2014 like walking from one room into different light"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "Sudden color shift \u2014 like walking from one room into different light",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_mediant",
+    "name": "Chromatic mediant",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Rich",
+      "unexpected warmth or coolness"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Rich",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "common_tone_pivot",
+    "name": "Common-tone pivot",
+    "chord_sequence": [],
+    "voice_leading_hints": [
+      "common tone held"
+    ],
+    "contexts": [
+      "Smooth connection between unrelated harmonies"
+    ],
+    "frequency_weight": 0.01,
+    "emotional_color": "Smooth connection between unrelated harmonies",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "oscillation",
+    "name": "Oscillation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Shimmering",
+      "static \u2014 light on water"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Shimmering",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "sideslip",
+    "name": "Sideslip",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Elegant arrival without dominant preparation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Elegant arrival without dominant preparation",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "pedal_color",
+    "name": "Pedal + color",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Grounded freedom \u2014 the bass anchors; everything else floats"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Grounded freedom \u2014 the bass anchors; everything else floats",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "fadeout",
+    "name": "Fadeout",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Evaporation \u2014 the sound dissolves"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Evaporation \u2014 the sound dissolves",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "pentatonic_settling",
+    "name": "Pentatonic settling",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Natural rest without closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Natural rest without closure",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "pedal_arrival",
+    "name": "Pedal arrival",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Grounding \u2014 but not resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Grounding \u2014 but not resolution",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "modal_cadence",
+    "name": "Modal cadence",
+    "chord_sequence": [
+      "bVII",
+      "I"
+    ],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Archaic",
+      "non-tonal closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Archaic",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "silence",
+    "name": "Silence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Mallarm\u00e9's white space"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Mallarm\u00e9's white space",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "whole_tone_exit",
+    "name": "Whole-tone exit",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Awakening \u2014 gravity returns"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Awakening \u2014 gravity returns",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "water_shimmering_flowing",
+    "name": "Water (shimmering, flowing)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Alternation between two chords creates the effect of light on moving water \u2014 never still",
+      "never changing"
+    ],
+    "frequency_weight": 0.09,
+    "emotional_color": "Alternation between two chords creates the effect of light on moving water \u2014 never still",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "wind_movement_without_weight",
+    "name": "Wind (movement without weight)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Voices moving together in the same direction feel like a gust \u2014 effortless",
+      "directionless"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Voices moving together in the same direction feel like a gust \u2014 effortless",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "light_filtered_dappled",
+    "name": "Light (filtered, dappled)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
+      "but luminous"
+    ],
+    "frequency_weight": 0.03,
+    "emotional_color": "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "mist_fog",
+    "name": "Mist / Fog",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Without half-step pulls",
+      "harmony floats without gravity \u2014 edges dissolve"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Without half-step pulls",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "warmth_sunlight_nostalgia",
+    "name": "Warmth (sunlight, nostalgia)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Pentatonic intervals carry no tension; the listener relaxes into the sound"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "Pentatonic intervals carry no tension; the listener relaxes into the sound",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "distance_memory",
+    "name": "Distance / Memory",
+    "chord_sequence": [],
+    "voice_leading_hints": [
+      "suspension",
+      "pedal point"
+    ],
+    "contexts": [
+      "A chord that never resolves feels like a thought that trails off \u2014 present but receding"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "A chord that never resolves feels like a thought that trails off \u2014 present but receding",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "awakening",
+    "name": "Awakening",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "color_chord_succession",
+    "name": "Color chord succession",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Floating",
+      "non-directional"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Floating",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "common_tone_linking",
+    "name": "Common-tone linking",
+    "chord_sequence": [],
+    "voice_leading_hints": [
+      "common tone held"
+    ],
+    "contexts": [
+      "Smooth",
+      "connected"
+    ],
+    "frequency_weight": 0.01,
+    "emotional_color": "Smooth",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "bass_pedal_with_moving_chords",
+    "name": "Bass pedal with moving chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Grounded yet colorful"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Grounded yet colorful",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_mediant",
+    "name": "Chromatic mediant",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sudden color shift"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Sudden color shift",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "modal_interchange",
+    "name": "Modal interchange",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Expanded palette"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Expanded palette",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "tritone_substitution",
+    "name": "Tritone substitution",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Smooth chromatic motion"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Smooth chromatic motion",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "oscillation",
+    "name": "Oscillation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Shimmering",
+      "static"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Shimmering",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "sideslip",
+    "name": "Sideslip",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Elegant slide"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Elegant slide",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "melody",
+    "name": "Melody",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "chord_construction",
+    "name": "Chord construction",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "ostinato",
+    "name": "Ostinato",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "layered_pentatonics",
+    "name": "Layered pentatonics",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "gamelan_effect",
+    "name": "Gamelan effect",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [],
+    "frequency_weight": 0.3,
+    "emotional_color": "",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "superimposed_triads",
+    "name": "Superimposed triads",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Shimmering tension"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Shimmering tension",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "melody_in_one_key_harmony_in_another",
+    "name": "Melody in one key, harmony in another",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dreamlike disconnect"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Dreamlike disconnect",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "left_hand_right_hand_split",
+    "name": "Left hand / right hand split",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Piano color effect"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Piano color effect",
+    "source_file": "debussy/harmonic-language.md"
+  },
+  {
+    "id": "pedal_in_foreign_key",
+    "name": "Pedal in foreign key",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Grounded dissonance"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Grounded dissonance",
+    "source_file": "debussy/harmonic-language.md"
+  }
 ]

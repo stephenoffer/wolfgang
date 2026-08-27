@@ -8,19 +8,21 @@
       "More systematic than Schubert's abrupt shifts"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "More systematic than Schubert's abrupt shifts",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
     "id": "chromatic_voice_leading",
     "name": "Chromatic voice-leading",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice"
+    ],
     "contexts": [
       "Less pervasive than Chopin; more purposeful"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Less pervasive than Chopin; more purposeful",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -32,7 +34,7 @@
       "Closer to Mozart than to Schumann"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Closer to Mozart than to Schumann",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -44,7 +46,7 @@
       "Less radical than Schubert's mediant adventures"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Less radical than Schubert's mediant adventures",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -56,7 +58,7 @@
       "Used in development; always returns home cleanly"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Used in development; always returns home cleanly",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -70,7 +72,7 @@
       "or shadow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A door opens to another world \u2014 wonder",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -82,7 +84,7 @@
       "The harmony leans harder into the dominant \u2014 the ache deepens"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The harmony leans harder into the dominant \u2014 the ache deepens",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -95,7 +97,7 @@
       "inevitability"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The bass drops to an alien note \u2014 solemnity",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -107,7 +109,7 @@
       "Each resolution becomes a new question \u2014 the heart cannot rest"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Each resolution becomes a new question \u2014 the heart cannot rest",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -119,7 +121,7 @@
       "The expected home is replaced by something vast and unexpected"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The expected home is replaced by something vast and unexpected",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -131,7 +133,7 @@
       "The same sound acquires new meaning \u2014 the world shifts underfoot"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The same sound acquires new meaning \u2014 the world shifts underfoot",
     "source_file": "mendelssohn/harmonic-language.md"
   },
   {
@@ -143,7 +145,7 @@
       "Contrary chromatic motion creates the feeling of forces converging"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Contrary chromatic motion creates the feeling of forces converging",
     "source_file": "mendelssohn/harmonic-language.md"
   }
 ]

@@ -1,11 +1,26 @@
 {
   "influenced_by": [
     {
-      "composer": "into"
+      "composer": "Film composers (Williams, Goldsmith)",
+      "absorbed": "Open 5ths = \"American landscape\" in film scoring"
     },
     {
-      "composer": "into"
+      "composer": "John Adams",
+      "absorbed": "Copland's diatonic brightness \u2192 Adams's tonal minimalism"
+    },
+    {
+      "composer": "Aaron Jay Kernis",
+      "absorbed": "Neo-tonal Americana in 1990s"
+    },
+    {
+      "composer": "American band music",
+      "absorbed": "Fanfare for the Common Man defines American concert band writing"
+    },
+    {
+      "composer": "Cultural shorthand",
+      "absorbed": "Open 5ths + brass = \"America\" in any context (advertising, film, ceremony)"
     }
   ],
+  "influenced": [],
   "comparative_axes": {}
 }

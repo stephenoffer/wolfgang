@@ -1,23 +1,55 @@
 {
  "composer": "schubert",
  "schema": 1,
- "total_bars": 82,
+ "total_bars": 3753,
  "textures": {
-  "held_note": {
+  "zigzag_figuration": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.0,
-   "n": 39
+   "dotted": 0.4273,
+   "n": 1624
   },
   "singing_melody": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.7674,
-   "n": 43
+   "dotted": 0.6138,
+   "n": 448
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.3423,
+   "n": 1294
+  },
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.3636,
+   "n": 286
+  },
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1923,
+   "n": 26
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 75
   }
  }
 }

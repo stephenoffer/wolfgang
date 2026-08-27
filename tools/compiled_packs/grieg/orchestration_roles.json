@@ -1,4 +1,124 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Flute, Oboe (melody in canon), muted strings",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Muted Vln I, Vln II, Vla, Vc \u2014 quartet texture",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Solo violin, pizzicato strings, triangle",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Bassoon/cello start \u2192 full orchestra; the additive build",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Voice (or solo instrument), strings pp",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Open-5th drone",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Hardanger fiddle imitation"
+    },
+    {
+      "name": "Folk melody over drone",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Single line in RH, pedal in LH"
+    },
+    {
+      "name": "Wide-spaced chords",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Chords spanning 2+ octaves"
+    },
+    {
+      "name": "Waltz bass (not Alberti)",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Bass note - chord - chord in 3/4"
+    },
+    {
+      "name": "Tremolo atmosphere",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Rapid repeated notes or octaves"
+    },
+    {
+      "name": "Bell-like resonance",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Open intervals ringing with pedal"
+    },
+    {
+      "name": "Full strings, allegro, arpeggiated",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Sustained, grave, homophonic",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Dance + drone",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Lyrical, legato, singing",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Fast, rhythmic, festive",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    }
+  ],
   "source_file": "orchestration.md"
 }

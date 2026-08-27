@@ -1,386 +1,302 @@
 [
- {
-  "id": "melodic_voice_singable_at_sight",
-  "category": "composer_melodic_voice",
-  "description": "Singable at sight: Every interval is one a chorister can pitch from the previous note; no augmented or diminished intervals melodically",
-  "parameters": {
-   "feature": "Singable at sight",
-   "note": "The line can be *performed*, which is the constraint the whole idiom is built on"
+  {
+    "id": "melodic_voice_singable_at_sight",
+    "category": "composer_melodic_voice",
+    "description": "Singable at sight: Every interval is one a chorister can pitch from the previous note; no augmented or diminished intervals melodically",
+    "parameters": {
+      "feature": "Singable at sight",
+      "note": "The line can be *performed*, which is the constraint the whole idiom is built on"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "melodic_voice_leap_recovery",
-  "category": "composer_melodic_voice",
-  "description": "Leap recovery: A leap is answered by stepwise motion in the opposite direction, filling the gap it opened",
-  "parameters": {
-   "feature": "Leap recovery",
-   "note": "Keeps the line balanced and the tessitura stable; the single most recognisable habit of the style"
+  {
+    "id": "melodic_voice_leap_recovery",
+    "category": "composer_melodic_voice",
+    "description": "Leap recovery: A leap is answered by stepwise motion in the opposite direction, filling the gap it opened",
+    "parameters": {
+      "feature": "Leap recovery",
+      "note": "Keeps the line balanced and the tessitura stable; the single most recognisable habit of the style"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "melodic_voice_predominantly_conjunct",
-  "category": "composer_melodic_voice",
-  "description": "Predominantly conjunct: Steps far outnumber leaps; leaps beyond a sixth are rare and the octave is the limit",
-  "parameters": {
-   "feature": "Predominantly conjunct",
-   "note": "Smoothness is the default, so a leap becomes an event"
+  {
+    "id": "melodic_voice_predominantly_conjunct",
+    "category": "composer_melodic_voice",
+    "description": "Predominantly conjunct: Steps far outnumber leaps; leaps beyond a sixth are rare and the octave is the limit",
+    "parameters": {
+      "feature": "Predominantly conjunct",
+      "note": "Smoothness is the default, so a leap becomes an event"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "melodic_voice_single_arched_climax",
-  "category": "composer_melodic_voice",
-  "description": "Single arched climax: The line rises to one high note, touches it once, and descends",
-  "parameters": {
-   "feature": "Single arched climax",
-   "note": "Gives a phrase of otherwise even motion an audible shape"
+  {
+    "id": "melodic_voice_single_arched_climax",
+    "category": "composer_melodic_voice",
+    "description": "Single arched climax: The line rises to one high note, touches it once, and descends",
+    "parameters": {
+      "feature": "Single arched climax",
+      "note": "Gives a phrase of otherwise even motion an audible shape"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "melodic_voice_narrow_compass",
-  "category": "composer_melodic_voice",
-  "description": "Narrow compass: A phrase usually spans a ninth or less; a whole voice part rarely exceeds a twelfth",
-  "parameters": {
-   "feature": "Narrow compass",
-   "note": "Keeps every note in the comfortable part of the voice"
+  {
+    "id": "melodic_voice_narrow_compass",
+    "category": "composer_melodic_voice",
+    "description": "Narrow compass: A phrase usually spans a ninth or less; a whole voice part rarely exceeds a twelfth",
+    "parameters": {
+      "feature": "Narrow compass",
+      "note": "Keeps every note in the comfortable part of the voice"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "melodic_voice_rhythmic_evenness_with_syncopation",
-  "category": "composer_melodic_voice",
-  "description": "Rhythmic evenness with syncopation: Mostly equal note values, displaced by suspensions and ties",
-  "parameters": {
-   "feature": "Rhythmic evenness with syncopation",
-   "note": "The tension comes from where notes *land*, not from how long they are"
+  {
+    "id": "melodic_voice_rhythmic_evenness_with_syncopation",
+    "category": "composer_melodic_voice",
+    "description": "Rhythmic evenness with syncopation: Mostly equal note values, displaced by suspensions and ties",
+    "parameters": {
+      "feature": "Rhythmic evenness with syncopation",
+      "note": "The tension comes from where notes *land*, not from how long they are"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "melodic_voice_text_governed_length",
-  "category": "composer_melodic_voice",
-  "description": "Text-governed length: The phrase is as long as its line of text, and breathes at its punctuation",
-  "parameters": {
-   "feature": "Text-governed length",
-   "note": "Musical and verbal sense coincide"
+  {
+    "id": "melodic_voice_text_governed_length",
+    "category": "composer_melodic_voice",
+    "description": "Text-governed length: The phrase is as long as its line of text, and breathes at its punctuation",
+    "parameters": {
+      "feature": "Text-governed length",
+      "note": "Musical and verbal sense coincide"
+    },
+    "conditions": {},
+    "grounding": "profile",
+    "source_file": "palestrina/melodic-style.md"
   },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "palestrina/melodic-style.md"
- },
- {
-  "id": "phrase_structure_cell",
-  "category": "phrase_structure",
-  "description": "Cell: Smallest recognizable unit",
-  "parameters": {
-   "unit": "Cell",
-   "typical_length": "2-3 notes",
-   "function": "Smallest recognizable unit"
+  {
+    "id": "phrase_structure_cell",
+    "category": "phrase_structure",
+    "description": "Cell: Smallest recognizable unit",
+    "parameters": {
+      "unit": "Cell",
+      "typical_length": "2-3 notes",
+      "function": "Smallest recognizable unit"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {},
-  "grounding": "hard_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "phrase_structure_motif",
-  "category": "phrase_structure",
-  "description": "Motif: Characteristic rhythm + interval pattern",
-  "parameters": {
-   "unit": "Motif",
-   "typical_length": "1-2 bars",
-   "function": "Characteristic rhythm + interval pattern"
+  {
+    "id": "phrase_structure_motif",
+    "category": "phrase_structure",
+    "description": "Motif: Characteristic rhythm + interval pattern",
+    "parameters": {
+      "unit": "Motif",
+      "typical_length": "1-2 bars",
+      "function": "Characteristic rhythm + interval pattern"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {},
-  "grounding": "hard_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "phrase_structure_phrase",
-  "category": "phrase_structure",
-  "description": "Phrase: Complete musical thought, ends with cadence",
-  "parameters": {
-   "unit": "Phrase",
-   "typical_length": "4 bars",
-   "function": "Complete musical thought, ends with cadence"
+  {
+    "id": "phrase_structure_phrase",
+    "category": "phrase_structure",
+    "description": "Phrase: Complete musical thought, ends with cadence",
+    "parameters": {
+      "unit": "Phrase",
+      "typical_length": "4 bars",
+      "function": "Complete musical thought, ends with cadence"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {},
-  "grounding": "hard_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "phrase_structure_period",
-  "category": "phrase_structure",
-  "description": "Period: Two complementary phrases",
-  "parameters": {
-   "unit": "Period",
-   "typical_length": "8 bars (4+4)",
-   "function": "Two complementary phrases"
+  {
+    "id": "phrase_structure_period",
+    "category": "phrase_structure",
+    "description": "Period: Two complementary phrases",
+    "parameters": {
+      "unit": "Period",
+      "typical_length": "8 bars (4+4)",
+      "function": "Two complementary phrases"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {},
-  "grounding": "hard_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "phrase_structure_double period",
-  "category": "phrase_structure",
-  "description": "Double period: Extended period structure",
-  "parameters": {
-   "unit": "Double period",
-   "typical_length": "16 bars (4+4+4+4)",
-   "function": "Extended period structure"
+  {
+    "id": "phrase_structure_double period",
+    "category": "phrase_structure",
+    "description": "Double period: Extended period structure",
+    "parameters": {
+      "unit": "Double period",
+      "typical_length": "16 bars (4+4+4+4)",
+      "function": "Extended period structure"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {},
-  "grounding": "hard_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "phrase_structure_section",
-  "category": "phrase_structure",
-  "description": "Section: Structural unit (exposition, development, etc.)",
-  "parameters": {
-   "unit": "Section",
-   "typical_length": "Multiple periods",
-   "function": "Structural unit (exposition, development, etc.)"
+  {
+    "id": "phrase_structure_section",
+    "category": "phrase_structure",
+    "description": "Section: Structural unit (exposition, development, etc.)",
+    "parameters": {
+      "unit": "Section",
+      "typical_length": "Multiple periods",
+      "function": "Structural unit (exposition, development, etc.)"
+    },
+    "conditions": {},
+    "grounding": "hard_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {},
-  "grounding": "hard_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "contour_arch_(rise-fall)",
-  "category": "contour",
-  "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
-  "parameters": {
-   "contour": "Arch (rise-fall)",
-   "shape": "\u2227",
-   "association": "Completion, singing quality"
+  {
+    "id": "contour_arch_(rise-fall)",
+    "category": "contour",
+    "description": "Arch (rise-fall) (\u2227): Completion, singing quality",
+    "parameters": {
+      "contour": "Arch (rise-fall)",
+      "shape": "\u2227",
+      "association": "Completion, singing quality"
+    },
+    "conditions": {
+      "best_for": "Lyrical themes"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {
-   "best_for": "Lyrical themes"
+  {
+    "id": "contour_ascending",
+    "category": "contour",
+    "description": "Ascending (/): Aspiration, tension, hope",
+    "parameters": {
+      "contour": "Ascending",
+      "shape": "/",
+      "association": "Aspiration, tension, hope"
+    },
+    "conditions": {
+      "best_for": "Building passages"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
   },
-  "grounding": "interpretive",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "contour_ascending",
-  "category": "contour",
-  "description": "Ascending (/): Aspiration, tension, hope",
-  "parameters": {
-   "contour": "Ascending",
-   "shape": "/",
-   "association": "Aspiration, tension, hope"
+  {
+    "id": "contour_descending",
+    "category": "contour",
+    "description": "Descending (\\): Resolution, grief, relaxation",
+    "parameters": {
+      "contour": "Descending",
+      "shape": "\\",
+      "association": "Resolution, grief, relaxation"
+    },
+    "conditions": {
+      "best_for": "Closing phrases"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {
-   "best_for": "Building passages"
+  {
+    "id": "contour_wave",
+    "category": "contour",
+    "description": "Wave (\u223c): Lyrical, flowing",
+    "parameters": {
+      "contour": "Wave",
+      "shape": "\u223c",
+      "association": "Lyrical, flowing"
+    },
+    "conditions": {
+      "best_for": "Sustained melodies"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
   },
-  "grounding": "interpretive",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "contour_descending",
-  "category": "contour",
-  "description": "Descending (\\): Resolution, grief, relaxation",
-  "parameters": {
-   "contour": "Descending",
-   "shape": "\\",
-   "association": "Resolution, grief, relaxation"
+  {
+    "id": "contour_static/plateau",
+    "category": "contour",
+    "description": "Static/plateau (\u2014): Contemplation, suspense",
+    "parameters": {
+      "contour": "Static/plateau",
+      "shape": "\u2014",
+      "association": "Contemplation, suspense"
+    },
+    "conditions": {
+      "best_for": "Recitative, tension"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {
-   "best_for": "Closing phrases"
+  {
+    "id": "contour_inverted_arch",
+    "category": "contour",
+    "description": "Inverted arch (\u2228): Settling then rising",
+    "parameters": {
+      "contour": "Inverted arch",
+      "shape": "\u2228",
+      "association": "Settling then rising"
+    },
+    "conditions": {
+      "best_for": "Surprise, rebound"
+    },
+    "grounding": "interpretive",
+    "source_file": "melodic-construction.md"
   },
-  "grounding": "interpretive",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "contour_wave",
-  "category": "contour",
-  "description": "Wave (\u223c): Lyrical, flowing",
-  "parameters": {
-   "contour": "Wave",
-   "shape": "\u223c",
-   "association": "Lyrical, flowing"
+  {
+    "id": "peak_timing_within_a_phrase",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
+    "parameters": {
+      "scale": "Within a phrase",
+      "placement": "Near the end (~bar 3 of 4)"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {
-   "best_for": "Sustained melodies"
+  {
+    "id": "peak_timing_within_a_melody",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a melody level: ~60-75% through",
+    "parameters": {
+      "scale": "Within a melody",
+      "placement": "~60-75% through"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "grounding": "interpretive",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "contour_static/plateau",
-  "category": "contour",
-  "description": "Static/plateau (\u2014): Contemplation, suspense",
-  "parameters": {
-   "contour": "Static/plateau",
-   "shape": "\u2014",
-   "association": "Contemplation, suspense"
+  {
+    "id": "peak_timing_within_a_section",
+    "category": "peak_timing",
+    "description": "Climax placement at Within a section level: After development/buildup",
+    "parameters": {
+      "scale": "Within a section",
+      "placement": "After development/buildup"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
   },
-  "conditions": {
-   "best_for": "Recitative, tension"
-  },
-  "grounding": "interpretive",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "contour_inverted_arch",
-  "category": "contour",
-  "description": "Inverted arch (\u2228): Settling then rising",
-  "parameters": {
-   "contour": "Inverted arch",
-   "shape": "\u2228",
-   "association": "Settling then rising"
-  },
-  "conditions": {
-   "best_for": "Surprise, rebound"
-  },
-  "grounding": "interpretive",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "peak_timing_within_a_phrase",
-  "category": "peak_timing",
-  "description": "Climax placement at Within a phrase level: Near the end (~bar 3 of 4)",
-  "parameters": {
-   "scale": "Within a phrase",
-   "placement": "Near the end (~bar 3 of 4)"
-  },
-  "conditions": {},
-  "grounding": "soft_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "peak_timing_within_a_melody",
-  "category": "peak_timing",
-  "description": "Climax placement at Within a melody level: ~60-75% through",
-  "parameters": {
-   "scale": "Within a melody",
-   "placement": "~60-75% through"
-  },
-  "conditions": {},
-  "grounding": "soft_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "peak_timing_within_a_section",
-  "category": "peak_timing",
-  "description": "Climax placement at Within a section level: After development/buildup",
-  "parameters": {
-   "scale": "Within a section",
-   "placement": "After development/buildup"
-  },
-  "conditions": {},
-  "grounding": "soft_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "peak_timing_multiple_levels",
-  "category": "peak_timing",
-  "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
-  "parameters": {
-   "scale": "Multiple levels",
-   "placement": "Local (phrase), regional (period), global (section)"
-  },
-  "conditions": {},
-  "grounding": "soft_corroborated",
-  "source_file": "melodic-construction.md"
- },
- {
-  "id": "melodic_voice_declamatory_repetition",
-  "category": "composer_melodic_voice",
-  "description": "Declamatory repetition: Several notes on one pitch following the natural stresses of the line",
-  "parameters": {
-   "feature": "Declamatory repetition",
-   "note": "The music delivers the words at speaking speed before it sings them"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- },
- {
-  "id": "melodic_voice_sudden_melisma_on_one_word",
-  "category": "composer_melodic_voice",
-  "description": "Sudden melisma on one word: An otherwise syllabic line opens into a run at a single charged word",
-  "parameters": {
-   "feature": "Sudden melisma on one word",
-   "note": "The listener's attention is thrown exactly where the poet wanted it"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- },
- {
-  "id": "melodic_voice_expressive_leap",
-  "category": "composer_melodic_voice",
-  "description": "Expressive leap: A seventh, a diminished fourth, an unprepared leap where the sense turns",
-  "parameters": {
-   "feature": "Expressive leap",
-   "note": "Discomfort as meaning, not as error"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- },
- {
-  "id": "melodic_voice_chromatic_inflection_at_the_turn",
-  "category": "composer_melodic_voice",
-  "description": "Chromatic inflection at the turn: A raised or lowered degree at the moment of feeling, often against another voice",
-  "parameters": {
-   "feature": "Chromatic inflection at the turn",
-   "note": "Colour applied to a word, never to a passage"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- },
- {
-  "id": "melodic_voice_broken_line",
-  "category": "composer_melodic_voice",
-  "description": "Broken line: A rest interrupts a word or phrase \u2014 the musical sigh, gasp, or hesitation",
-  "parameters": {
-   "feature": "Broken line",
-   "note": "The body's response to the text made audible"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- },
- {
-  "id": "melodic_voice_narrow_then_suddenly_wide",
-  "category": "composer_melodic_voice",
-  "description": "Narrow then suddenly wide: The line sits in a small compass and then breaks out of it",
-  "parameters": {
-   "feature": "Narrow then suddenly wide",
-   "note": "The range itself becomes an expressive event"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- },
- {
-  "id": "melodic_voice_cadential_formula_deferred",
-  "category": "composer_melodic_voice",
-  "description": "Cadential formula deferred: The expected cadence is evaded so the sense can continue",
-  "parameters": {
-   "feature": "Cadential formula deferred",
-   "note": "Keeps the text moving through the music's punctuation"
-  },
-  "conditions": {},
-  "grounding": "profile",
-  "source_file": "monteverdi/melodic-style.md"
- }
+  {
+    "id": "peak_timing_multiple_levels",
+    "category": "peak_timing",
+    "description": "Climax placement at Multiple levels level: Local (phrase), regional (period), global (section)",
+    "parameters": {
+      "scale": "Multiple levels",
+      "placement": "Local (phrase), regional (period), global (section)"
+    },
+    "conditions": {},
+    "grounding": "soft_corroborated",
+    "source_file": "melodic-construction.md"
+  }
 ]

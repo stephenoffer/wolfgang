@@ -8,7 +8,7 @@
       "A word of pain lands on the dissonance directly"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A word of pain lands on the dissonance directly",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Shock at a specific syllable"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shock at a specific syllable",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -33,7 +33,7 @@
       "contradiction in the text"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Bitterness",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -47,7 +47,7 @@
       "the *durezze* of the lament"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Weeping",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -60,7 +60,7 @@
       "anger \u2014 rapid repeated notes on one chord"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Warfare",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -73,14 +73,16 @@
       "over and over"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The lament: a bass falling a fourth",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
     "id": "suspension",
     "name": "Suspension",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "The principal expressive device \u2014 4-3",
       "7-6",
@@ -88,7 +90,7 @@
       "and 2-3 in the bass"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The principal expressive device \u2014 4-3",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -100,7 +102,7 @@
       "Everywhere"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Everywhere",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -112,7 +114,7 @@
       "Everywhere"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Everywhere",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -125,7 +127,7 @@
       "not a free choice"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A stock melodic formula",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -137,7 +139,7 @@
       "At cadences"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "At cadences",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -149,7 +151,7 @@
       "Sparing"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sparing",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -161,7 +163,7 @@
       "The structural unit of a motet or mass movement"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The structural unit of a motet or mass movement",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -173,7 +175,7 @@
       "Gives a large texture internal articulation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Gives a large texture internal articulation",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -185,7 +187,7 @@
       "For emphasis \u2014 a sudden clarity after polyphony"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "For emphasis \u2014 a sudden clarity after polyphony",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -197,7 +199,7 @@
       "Colour and relief within a full texture"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Colour and relief within a full texture",
     "source_file": "monteverdi/harmonic-language.md"
   },
   {
@@ -209,7 +211,7 @@
       "Reserve it; constant tutti has nowhere to grow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Reserve it; constant tutti has nowhere to grow",
     "source_file": "monteverdi/harmonic-language.md"
   }
 ]

@@ -1,47 +1,47 @@
 {
- "required_count": 3,
- "items": [
-  {
-   "id": "folk_derived_melodic_cells",
-   "name": "Folk-derived melodic cells",
-   "description": "Melody fragments derived from Hungarian, Romanian, or Bulgarian folk music: pentatonic patterns (no semitones), specific folk scales (Lydian with raised 4th, Phrygian with lowered 2nd), and asymmetric",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "axis_system_tonality",
-   "name": "Axis system tonality",
-   "description": "Tonal organization where tritone-related keys function as equivalents (C and F# are interchangeable tonal centers in Bart\u00f3k's system). Movement from C to F# feels like a \"tonic\" arrival, not a distant",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "night_music_texture",
-   "name": "Night music texture",
-   "description": "Mysterious, static passages with sustained chromatic clusters, flutter-tongue flutes, harmonics in strings, irregular ppp pizzicato \u2014 evoking nocturnal sounds (insects, distant calls). No clear melody",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "bulgarian_balkan_asymmetric_rhythms",
-   "name": "Bulgarian/Balkan asymmetric rhythms",
-   "description": "Time signatures like 5/8 (2+3 or 3+2), 7/8 (2+2+3 or 3+2+2), 8/8 (3+2+3). These are not counted as \"five beats\" \u2014 they are felt as patterns of long and short. The Mikrokosmos and Music for Strings use",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "percussive_motoric_piano_writing",
-   "name": "Percussive, motoric piano writing",
-   "description": "The piano as percussion instrument, not singing instrument. Hammered repeated notes, staccato octaves, cluster-chord rhythms. The melody is sometimes inside the texture (as interior voices) rather tha",
-   "texture_affinities": [
-    "singing_melody"
-   ],
-   "frequency": "per_section",
-   "period": ""
-  }
- ]
+  "required_count": 3,
+  "items": [
+    {
+      "id": "folk_derived_melodic_cells",
+      "name": "Folk-derived melodic cells",
+      "description": "Melody fragments derived from Hungarian, Romanian, or Bulgarian folk music: pentatonic patterns (no semitones), specific folk scales (Lydian with raised 4th, Phrygian with lowered 2nd), and asymmetric",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "axis_system_tonality",
+      "name": "Axis system tonality",
+      "description": "Tonal organization where tritone-related keys function as equivalents (C and F# are interchangeable tonal centers in Bart\u00f3k's system). Movement from C to F# feels like a \"tonic\" arrival, not a distant",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "night_music_texture",
+      "name": "Night music texture",
+      "description": "Mysterious, static passages with sustained chromatic clusters, flutter-tongue flutes, harmonics in strings, irregular ppp pizzicato \u2014 evoking nocturnal sounds (insects, distant calls). No clear melody",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "bulgarian_balkan_asymmetric_rhythms",
+      "name": "Bulgarian/Balkan asymmetric rhythms",
+      "description": "Time signatures like 5/8 (2+3 or 3+2), 7/8 (2+2+3 or 3+2+2), 8/8 (3+2+3). These are not counted as \"five beats\" \u2014 they are felt as patterns of long and short. The Mikrokosmos and Music for Strings use",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "percussive_motoric_piano_writing",
+      "name": "Percussive, motoric piano writing",
+      "description": "The piano as percussion instrument, not singing instrument. Hammered repeated notes, staccato octaves, cluster-chord rhythms. The melody is sometimes inside the texture (as interior voices) rather tha",
+      "texture_affinities": [
+        "singing_melody"
+      ],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

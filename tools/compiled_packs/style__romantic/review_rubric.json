@@ -1,436 +1,250 @@
 {
- "checks": [
-  {
-   "id": "fp_nocturne_bass",
-   "category": "fingerprint",
-   "description": "Nocturne bass",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_grace_note_entry",
-   "category": "fingerprint",
-   "description": "Grace-note entry",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_chromatic_inner_voice",
-   "category": "fingerprint",
-   "description": "Chromatic inner voice",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_enharmonic_modulation",
-   "category": "fingerprint",
-   "description": "Enharmonic modulation",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_ornamental_passagework_as_melody",
-   "category": "fingerprint",
-   "description": "Ornamental passagework as melody",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_5",
-   "category": "anti_pattern",
-   "description": "**: A smooth pp\u2192p\u2192mp\u2192mf\u2192f\u2192ff\u2192p\u2192pp arc over 100 bars. Real Chopin dynamics are *volatile* \u2014 they chan",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_parallel_major_minor_shift_the_schubertian_flip",
-   "category": "fingerprint",
-   "description": "Parallel major-minor shift (the Schubertian flip)",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_third_relation_harmony_mediant_motion",
-   "category": "fingerprint",
-   "description": "Third-relation harmony (mediant motion)",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_celestial_prolongation_the_moment_that_stops_time",
-   "category": "fingerprint",
-   "description": "Celestial prolongation \u2014 the moment that stops time",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_song_melody_in_instrumental_writing",
-   "category": "fingerprint",
-   "description": "Song melody in instrumental writing",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_wandering_harmonic_language_never_quite_settling",
-   "category": "fingerprint",
-   "description": "Wandering harmonic language \u2014 never quite settling",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_5",
-   "category": "anti_pattern",
-   "description": "s (what sounds wrong)",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Stable, goal-directed harmony.** Schubert doesn't drive toward cadences \u2014 he wanders. A Schubert p",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Absence of major-minor contrast.** The tonic major/minor oscillation is Schubert's most personal f",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Short, decisive phrases.** Schubert's phrases extend \u2014 they don't end where you expect. A phrase t",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Virtuosity as goal.** Schubert is not a showman. His piano writing can be technically demanding bu",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Rhythmic complexity.** Schubert's rhythm is simple: song meter, walking bass, gentle accompaniment",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_inner_voice_melody_the_hidden_tune",
-   "category": "fingerprint",
-   "description": "Inner-voice melody \u2014 the hidden tune",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_rhythmic_displacement_and_syncopation",
-   "category": "fingerprint",
-   "description": "Rhythmic displacement and syncopation",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_sudden_tonal_leaps_the_schumannesque_shift",
-   "category": "fingerprint",
-   "description": "Sudden tonal leaps \u2014 the Schumannesque shift",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_literary_poetic_program_florestan_and_eusebius",
-   "category": "fingerprint",
-   "description": "Literary/poetic program \u2014 Florestan and Eusebius",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_piano_texture_as_interior_monologue",
-   "category": "fingerprint",
-   "description": "Piano texture as interior monologue",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Melody on top throughout.** A Schumann piano piece where the melody is always the top voice is mis",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Smooth, predictable harmonic rhythm.** Schumann's harmonies don't change on schedule. They linger,",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Extrovert brightness.** Schumann's major-key writing always has shadow \u2014 a modal chord, a flat-VI,",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Clear phrase structure.** Schumann's phrases run on \u2014 they don't cadence cleanly. They elide, inte",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Programmatic vagueness.** Every Schumann piece has a specific emotional state. \"Lyrical and expres",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_hemiola_at_cadences",
-   "category": "fingerprint",
-   "description": "Hemiola at cadences",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_low_register_density_thick_inner_voices",
-   "category": "fingerprint",
-   "description": "Low register density \u2014 thick inner voices",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_subdominant_gravity_plagal_coloring",
-   "category": "fingerprint",
-   "description": "Subdominant gravity \u2014 plagal coloring",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_motivic_saturation_theme_permeates_accompaniment",
-   "category": "fingerprint",
-   "description": "Motivic saturation \u2014 theme permeates accompaniment",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_harmonic_ambiguity_at_phrase_openings",
-   "category": "fingerprint",
-   "description": "Harmonic ambiguity at phrase openings",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Transparent, single-note melody.** Brahms never presents a melody bare in his mature works. It's a",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Regular, undisrupted meter.** A Brahms movement that flows in regular 3/4 without hemiola or cross",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Dominant-function climaxes.** Brahms ends sections and movements with subdominant or plagal motion",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Light, high-register texture.** Brahms's sound is warm and low. A texture that sits entirely in th",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Development that doesn't combine voices.** Brahms developments are contrapuntal \u2014 themes appear si",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_operatic_melody_in_instrumental_clothing",
-   "category": "fingerprint",
-   "description": "Operatic melody in instrumental clothing",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_the_diminished_seventh_as_a_dramatic_hinge",
-   "category": "fingerprint",
-   "description": "The diminished seventh as a dramatic hinge",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_brilliant_wide_spanning_keyboard_figuration",
-   "category": "fingerprint",
-   "description": "Brilliant, wide-spanning keyboard figuration",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_abrupt_dynamic_and_registral_contrast",
-   "category": "fingerprint",
-   "description": "Abrupt dynamic and registral contrast",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_horn_call_and_folk_dance_topics",
-   "category": "fingerprint",
-   "description": "Horn-call and folk-dance topics",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_thematic_transformation_one_idea_many_faces",
-   "category": "fingerprint",
-   "description": "Thematic transformation \u2014 one idea, many faces",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_virtuosic_transcendence_the_piano_as_orchestra",
-   "category": "fingerprint",
-   "description": "Virtuosic transcendence \u2014 the piano as orchestra",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_chromatic_saturation_and_enharmonic_pivot",
-   "category": "fingerprint",
-   "description": "Chromatic saturation and enharmonic pivot",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_rhetorical_silence_and_dramatic_tempo_changes",
-   "category": "fingerprint",
-   "description": "Rhetorical silence and dramatic tempo changes",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_hungarian_color_verbunkos_style",
-   "category": "fingerprint",
-   "description": "Hungarian color (verbunkos style)",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Technical restraint.** Liszt doesn't hold back. If a passage calls for octaves, it calls for doubl",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Static harmonic language.** A Liszt passage that stays in one key for 16 bars is unusual. The harm",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Monolithic texture.** Liszt doesn't sustain one texture for long passages (unlike Beethoven's Op. ",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**No thematic relationship across sections.** If you're using a Liszt formal model, all themes shoul",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Absence of rhetorical gesture.** A Liszt piece without at least one dramatic pause or sudden tempo",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_scherzo_lightness_the_fleet_elfin_texture",
-   "category": "fingerprint",
-   "description": "Scherzo lightness \u2014 the fleet, elfin texture",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_singing_tone_bel_canto_melody_in_instruments",
-   "category": "fingerprint",
-   "description": "Singing tone \u2014 bel canto melody in instruments",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_formal_clarity_with_romantic_content",
-   "category": "fingerprint",
-   "description": "Formal clarity with Romantic content",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_venetian_barcarolle_lilt",
-   "category": "fingerprint",
-   "description": "Venetian barcarolle lilt",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_bright_unclouded_orchestration_the_protestant_clarity",
-   "category": "fingerprint",
-   "description": "Bright, unclouded orchestration \u2014 the Protestant clarity",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Darkness, angst, or existential struggle.** Mendelssohn is not Schumann or Brahms. His minor-key m",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Harmonic ambiguity or wandering.** Mendelssohn's harmony is clear and functional. He doesn't wande",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Heavy, massive orchestration.** Mendelssohn's orchestra is never heavy. Thick brass doublings, sus",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Rhythmic irregularity.** Mendelssohn's rhythms are regular and song-like. Syncopation and metric i",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Irony or modernism.** Mendelssohn is sincere, not ironic. His use of Classical forms is genuine, n",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_long_sweeping_melody_with_a_built_in_arch",
-   "category": "fingerprint",
-   "description": "Long, sweeping melody with a built-in arch",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_waltz_rhythm_as_emotional_vehicle",
-   "category": "fingerprint",
-   "description": "Waltz rhythm as emotional vehicle",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_sequence_as_escalation",
-   "category": "fingerprint",
-   "description": "Sequence as escalation",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_russian_modal_color_within_tonal_framework",
-   "category": "fingerprint",
-   "description": "Russian modal color within tonal framework",
-   "severity": "soft"
-  },
-  {
-   "id": "fp_fate_doom_bass_ostinato_at_crisis_moments",
-   "category": "fingerprint",
-   "description": "Fate/doom bass ostinato at crisis moments",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_6",
-   "category": "anti_pattern",
-   "description": "**Short, symmetrical themes.** Tchaikovsky's themes are long and asymmetrical (5-bar + 7-bar = 12 ba",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_7",
-   "category": "anti_pattern",
-   "description": "**Restrained climax.** Tchaikovsky is not restrained at climaxes. The peak of a Tchaikovsky theme is",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_8",
-   "category": "anti_pattern",
-   "description": "**Absence of sequential approach.** A Tchaikovsky climax that arrives without sequential preparation",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_9",
-   "category": "anti_pattern",
-   "description": "**Neutral harmonic language.** Tchaikovsky's harmony always has Russian color \u2014 a flat-six, a Phrygi",
-   "severity": "soft"
-  },
-  {
-   "id": "anti_10",
-   "category": "anti_pattern",
-   "description": "**Irony or emotional distance.** Tchaikovsky wears his heart on his sleeve. Emotional restraint, iro",
-   "severity": "soft"
-  }
- ]
+  "checks": [
+    {
+      "id": "fp_nocturne_bass",
+      "category": "fingerprint",
+      "description": "Nocturne bass",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_grace_note_entry",
+      "category": "fingerprint",
+      "description": "Grace-note entry",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_inner_voice",
+      "category": "fingerprint",
+      "description": "Chromatic inner voice",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_enharmonic_modulation",
+      "category": "fingerprint",
+      "description": "Enharmonic modulation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_ornamental_passagework_as_melody",
+      "category": "fingerprint",
+      "description": "Ornamental passagework as melody",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_parallel_major_minor_shift_the_schubertian_flip",
+      "category": "fingerprint",
+      "description": "Parallel major-minor shift (the Schubertian flip)",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_third_relation_harmony_mediant_motion",
+      "category": "fingerprint",
+      "description": "Third-relation harmony (mediant motion)",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_celestial_prolongation_the_moment_that_stops_time",
+      "category": "fingerprint",
+      "description": "Celestial prolongation \u2014 the moment that stops time",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_song_melody_in_instrumental_writing",
+      "category": "fingerprint",
+      "description": "Song melody in instrumental writing",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_wandering_harmonic_language_never_quite_settling",
+      "category": "fingerprint",
+      "description": "Wandering harmonic language \u2014 never quite settling",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_inner_voice_melody_the_hidden_tune",
+      "category": "fingerprint",
+      "description": "Inner-voice melody \u2014 the hidden tune",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhythmic_displacement_and_syncopation",
+      "category": "fingerprint",
+      "description": "Rhythmic displacement and syncopation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sudden_tonal_leaps_the_schumannesque_shift",
+      "category": "fingerprint",
+      "description": "Sudden tonal leaps \u2014 the Schumannesque shift",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_literary_poetic_program_florestan_and_eusebius",
+      "category": "fingerprint",
+      "description": "Literary/poetic program \u2014 Florestan and Eusebius",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_piano_texture_as_interior_monologue",
+      "category": "fingerprint",
+      "description": "Piano texture as interior monologue",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_hemiola_at_cadences",
+      "category": "fingerprint",
+      "description": "Hemiola at cadences",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_low_register_density_thick_inner_voices",
+      "category": "fingerprint",
+      "description": "Low register density \u2014 thick inner voices",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_subdominant_gravity_plagal_coloring",
+      "category": "fingerprint",
+      "description": "Subdominant gravity \u2014 plagal coloring",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_motivic_saturation_theme_permeates_accompaniment",
+      "category": "fingerprint",
+      "description": "Motivic saturation \u2014 theme permeates accompaniment",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_harmonic_ambiguity_at_phrase_openings",
+      "category": "fingerprint",
+      "description": "Harmonic ambiguity at phrase openings",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_operatic_melody_in_instrumental_clothing",
+      "category": "fingerprint",
+      "description": "Operatic melody in instrumental clothing",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_the_diminished_seventh_as_a_dramatic_hinge",
+      "category": "fingerprint",
+      "description": "The diminished seventh as a dramatic hinge",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_brilliant_wide_spanning_keyboard_figuration",
+      "category": "fingerprint",
+      "description": "Brilliant, wide-spanning keyboard figuration",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_abrupt_dynamic_and_registral_contrast",
+      "category": "fingerprint",
+      "description": "Abrupt dynamic and registral contrast",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_horn_call_and_folk_dance_topics",
+      "category": "fingerprint",
+      "description": "Horn-call and folk-dance topics",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_thematic_transformation_one_idea_many_faces",
+      "category": "fingerprint",
+      "description": "Thematic transformation \u2014 one idea, many faces",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_virtuosic_transcendence_the_piano_as_orchestra",
+      "category": "fingerprint",
+      "description": "Virtuosic transcendence \u2014 the piano as orchestra",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_saturation_and_enharmonic_pivot",
+      "category": "fingerprint",
+      "description": "Chromatic saturation and enharmonic pivot",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_rhetorical_silence_and_dramatic_tempo_changes",
+      "category": "fingerprint",
+      "description": "Rhetorical silence and dramatic tempo changes",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_hungarian_color_verbunkos_style",
+      "category": "fingerprint",
+      "description": "Hungarian color (verbunkos style)",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_scherzo_lightness_the_fleet_elfin_texture",
+      "category": "fingerprint",
+      "description": "Scherzo lightness \u2014 the fleet, elfin texture",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_singing_tone_bel_canto_melody_in_instruments",
+      "category": "fingerprint",
+      "description": "Singing tone \u2014 bel canto melody in instruments",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_formal_clarity_with_romantic_content",
+      "category": "fingerprint",
+      "description": "Formal clarity with Romantic content",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_venetian_barcarolle_lilt",
+      "category": "fingerprint",
+      "description": "Venetian barcarolle lilt",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_bright_unclouded_orchestration_the_protestant_clarity",
+      "category": "fingerprint",
+      "description": "Bright, unclouded orchestration \u2014 the Protestant clarity",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_long_sweeping_melody_with_a_built_in_arch",
+      "category": "fingerprint",
+      "description": "Long, sweeping melody with a built-in arch",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_waltz_rhythm_as_emotional_vehicle",
+      "category": "fingerprint",
+      "description": "Waltz rhythm as emotional vehicle",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_sequence_as_escalation",
+      "category": "fingerprint",
+      "description": "Sequence as escalation",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_russian_modal_color_within_tonal_framework",
+      "category": "fingerprint",
+      "description": "Russian modal color within tonal framework",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_fate_doom_bass_ostinato_at_crisis_moments",
+      "category": "fingerprint",
+      "description": "Fate/doom bass ostinato at crisis moments",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_40",
+      "category": "anti_pattern",
+      "description": "**: A smooth pp\u2192p\u2192mp\u2192mf\u2192f\u2192ff\u2192p\u2192pp arc over 100 bars. Real Chopin dynamics are *volatile* \u2014 they chan",
+      "severity": "soft"
+    }
+  ]
 }

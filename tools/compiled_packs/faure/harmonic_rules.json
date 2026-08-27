@@ -5,6 +5,10 @@
       "frequency_weight": 0.5
     },
     {
+      "type": "IAC",
+      "frequency_weight": 0.5
+    },
+    {
       "type": "HC",
       "frequency_weight": 0.5
     },

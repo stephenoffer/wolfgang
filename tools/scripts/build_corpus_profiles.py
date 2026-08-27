@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from scales.atomic_io import write_json_atomic
 from scales.corpus_metrics import (
     SCALAR_METRICS,
     bar_metrics,
@@ -127,8 +128,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             continue
         out_path = COMPILED_PACKS / composer / "corpus_profile.json"
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(out_path, "w") as f:
-            json.dump(profile, f, indent=1)
+        write_json_atomic(out_path, profile, indent=1)
         print(
             json.dumps(
                 {

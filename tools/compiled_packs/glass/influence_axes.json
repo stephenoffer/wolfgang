@@ -1,4 +1,55 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Alla Rakha (tabla)"
+    },
+    {
+      "composer": "Ravi Shankar (sitar)"
+    },
+    {
+      "composer": "Shankar recordings"
+    },
+    {
+      "composer": "Direct transmission"
+    },
+    {
+      "composer": "Structural parallel"
+    },
+    {
+      "composer": "Arpeggiated piano + strings scoring style (The Hours \u2192 every indie drama)"
+    },
+    {
+      "composer": "Repetitive structures, cycling patterns (Aphex Twin, Boards of Canada)"
+    },
+    {
+      "composer": "Repetitive guitar arpeggios (Radiohead, Sigur R\u00f3s)"
+    },
+    {
+      "composer": "Piano arpeggiation technique (Nils Frahm, \u00d3lafur Arnalds, Ludovico Einaudi)"
+    },
+    {
+      "composer": "Cycling modal harmony for ambient exploration"
+    },
+    {
+      "composer": "Music as continuous texture beneath performance"
+    }
+  ],
+  "influenced": [],
+  "comparative_axes": {
+    "Indian Music Influence": [
+      "Alla Rakha (tabla)",
+      "Ravi Shankar (sitar)",
+      "Shankar recordings",
+      "Direct transmission",
+      "Structural parallel"
+    ],
+    "Influence on Later Music": [
+      "Arpeggiated piano + strings scoring style (The Hours \u2192 every indie drama)",
+      "Repetitive structures, cycling patterns (Aphex Twin, Boards of Canada)",
+      "Repetitive guitar arpeggios (Radiohead, Sigur R\u00f3s)",
+      "Piano arpeggiation technique (Nils Frahm, \u00d3lafur Arnalds, Ludovico Einaudi)",
+      "Cycling modal harmony for ambient exploration",
+      "Music as continuous texture beneath performance"
+    ]
+  }
 }

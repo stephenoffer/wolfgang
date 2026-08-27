@@ -1,4 +1,426 @@
 {
- "instruments": {},
- "source_file": "orchestration.md"
+  "instruments": {
+    "horn_(4)": {
+      "name": "Horn (4)",
+      "section": "Brass",
+      "function": "Sustaining pedals; warm harmony; forest calls; heroic themes",
+      "register": "Middle: the glue of the orchestra"
+    },
+    "trumpet_(2-3)": {
+      "name": "Trumpet (2-3)",
+      "section": "Brass",
+      "function": "Fanfare; brilliance; climactic power; ceremonial",
+      "register": "High: cutting through full orchestra at fff"
+    },
+    "trombone_(3)": {
+      "name": "Trombone (3)",
+      "section": "Brass",
+      "function": "Weight; solemn chords; power at climaxes",
+      "register": "Low-middle: foundation and gravity"
+    },
+    "tuba": {
+      "name": "Tuba",
+      "section": "Brass",
+      "function": "Bass reinforcement; weight at climaxes",
+      "register": "Lowest: doubles bass trombone"
+    }
+  },
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Warm foundation; melody and accompaniment; tremolo for excitement"
+    },
+    {
+      "name": "2 Fl (+Picc), 2 Ob (+C.A.), 2 Cl, 2 Bsn",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Primary melodic soloists; folk-song carriers"
+    },
+    {
+      "name": "4 Hn, 2 Tpt, 3 Tbn, Tuba",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Celebratory weight; horn calls; chorale in codas"
+    },
+    {
+      "name": "Timpani, Triangle, Cymbals",
+      "section": "Standard Dvorak Orchestra",
+      "function": "Timpani pedal points; triangle in dance movements"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwind Solos \u2014 The Heart of Dvorak's Sound"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (2)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Solo wind + strings",
+      "section": "Orchestral Texture Types",
+      "function": "Single woodwind carries folk melody; strings sustain or tremolo",
+      "genre": "Slow movements, theme statements"
+    },
+    {
+      "name": "Full warm tutti",
+      "section": "Orchestral Texture Types",
+      "function": "All sections playing; melody in winds and Vln I; horns prominent",
+      "genre": "Exposition main themes, triumphant codas"
+    },
+    {
+      "name": "String cantabile",
+      "section": "Orchestral Texture Types",
+      "function": "Strings alone, singing in octaves or 3rds; no winds",
+      "genre": "Lyrical second themes, slow movement episodes"
+    },
+    {
+      "name": "Folk-band",
+      "section": "Orchestral Texture Types",
+      "function": "Pizzicato bass, rhythmic violas, melody in upper winds",
+      "genre": "Dance movements, Slavonic Dance character"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Horns and trombones in hymn-like homophony",
+      "genre": "Codas, ceremonial passages"
+    },
+    {
+      "name": "Tremolo excitement",
+      "section": "Orchestral Texture Types",
+      "function": "String tremolo under brass and wind melody",
+      "genre": "Climactic passages, fast movement development"
+    },
+    {
+      "name": "Flute, Oboe (melody in canon), muted strings",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Muted Vln I, Vln II, Vla, Vc \u2014 quartet texture",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Solo violin, pizzicato strings, triangle",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Bassoon/cello start \u2192 full orchestra; the additive build",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Voice (or solo instrument), strings pp",
+      "section": "Peer Gynt Orchestration \u2014 The Reference"
+    },
+    {
+      "name": "Open-5th drone",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Hardanger fiddle imitation"
+    },
+    {
+      "name": "Folk melody over drone",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Single line in RH, pedal in LH"
+    },
+    {
+      "name": "Wide-spaced chords",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Chords spanning 2+ octaves"
+    },
+    {
+      "name": "Waltz bass (not Alberti)",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Bass note - chord - chord in 3/4"
+    },
+    {
+      "name": "Tremolo atmosphere",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Rapid repeated notes or octaves"
+    },
+    {
+      "name": "Bell-like resonance",
+      "section": "Piano Writing \u2014 Grieg's Native Orchestration",
+      "function": "Open intervals ringing with pedal"
+    },
+    {
+      "name": "Full strings, allegro, arpeggiated",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Sustained, grave, homophonic",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Dance + drone",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Lyrical, legato, singing",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Fast, rhythmic, festive",
+      "section": "Holberg Suite \u2014 String Orchestra Writing"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Strings",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Woodwinds",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Brass",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Percussion",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Harp",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Voice/Choir",
+      "section": "Instrument Usage"
+    },
+    {
+      "name": "Bell texture",
+      "section": "Texture Types",
+      "function": "Open 5th bass drone + slow chord movement + folk melody above",
+      "genre": "Coronation, Great Gate of Kiev"
+    },
+    {
+      "name": "Bare declamation",
+      "section": "Texture Types",
+      "function": "Voice with minimal accompaniment (single bass notes, silence)",
+      "genre": "Boris monologues, Songs and Dances of Death"
+    },
+    {
+      "name": "Block orchestral",
+      "section": "Texture Types",
+      "function": "Full orchestra in homophonic block chords, parallel motion",
+      "genre": "Crowd scenes, ceremonial passages"
+    },
+    {
+      "name": "Atmospheric tremolo",
+      "section": "Texture Types",
+      "function": "String tremolo + isolated wind notes; creating unease",
+      "genre": "Supernatural scenes, hallucinations"
+    },
+    {
+      "name": "Piano-orchestral",
+      "section": "Texture Types",
+      "function": "Piano writing that implies specific orchestral colors",
+      "genre": "All of Pictures at an Exhibition"
+    },
+    {
+      "name": "Choral mass",
+      "section": "Texture Types",
+      "function": "Choir as primary sound; orchestra supports, does not lead",
+      "genre": "Boris crowd scenes, Khovanshchina"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb, Harp(s)",
+      "section": "The Rimsky-Korsakov Orchestra",
+      "function": "Foundation + tremolo textures + pizzicato rhythm + solo melody"
+    },
+    {
+      "name": "Picc, 2 Fl, 2 Ob, Cor Anglais, 2 Cl, 2 Bsn",
+      "section": "The Rimsky-Korsakov Orchestra",
+      "function": "Solo melodies (each with individual character), color choirs"
+    },
+    {
+      "name": "4 Hn, 2-3 Tpt, 3 Tbn, Tuba",
+      "section": "The Rimsky-Korsakov Orchestra",
+      "function": "Ceremonial weight, sustained pedals, climactic power"
+    },
+    {
+      "name": "Timp, Cym, Tri, Tamb, S.Dr., B.Dr., Tam-tam, Bells",
+      "section": "The Rimsky-Korsakov Orchestra",
+      "function": "Rhythmic color, atmospheric effect, climactic punctuation"
+    },
+    {
+      "name": "1-2 harps",
+      "section": "The Rimsky-Korsakov Orchestra",
+      "function": "Arpeggiated chords, glissandi, atmospheric shimmer"
+    },
+    {
+      "name": "Harp",
+      "section": "Strings"
+    },
+    {
+      "name": "Piccolo",
+      "section": "Woodwinds \u2014 The Color Palette",
+      "function": "Bird song; supernatural sparkle"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds \u2014 The Color Palette",
+      "function": "Nature (bird, breeze, water); fairy-tale lightness"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds \u2014 The Color Palette",
+      "function": "Pastoral; sometimes exotic oriental"
+    },
+    {
+      "name": "Cor Anglais",
+      "section": "Woodwinds \u2014 The Color Palette",
+      "function": "Distance, nostalgia, exotic warmth"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds \u2014 The Color Palette",
+      "function": "The all-purpose storyteller; pastoral to exotic"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds \u2014 The Color Palette",
+      "function": "Comic character; deep warmth; sometimes grotesque"
+    },
+    {
+      "name": "Solo + shimmer",
+      "section": "Orchestral Texture Types",
+      "function": "Solo instrument over string tremolo + harp arpeggios",
+      "genre": "Scheherazade storytelling; Sadko sea scenes"
+    },
+    {
+      "name": "Woodwind choir",
+      "section": "Orchestral Texture Types",
+      "function": "Woodwinds alone, each on its own line",
+      "genre": "Pastoral scenes; fairy-tale lightness"
+    },
+    {
+      "name": "Full tutti brilliance",
+      "section": "Orchestral Texture Types",
+      "function": "All instruments, graduated from bass to treble, maximum clarity",
+      "genre": "Climaxes; Russian Easter; Scheherazade finales"
+    },
+    {
+      "name": "String tremolo sea",
+      "section": "Orchestral Texture Types",
+      "function": "Strings tremolo pp; isolated wind notes float above",
+      "genre": "Sea scenes; nature painting; atmospheric opening"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Brass alone, sustained hymn chords",
+      "genre": "Ceremonial; Russian Easter; solemn passages"
+    },
+    {
+      "name": "Pizzicato + wind solo",
+      "section": "Orchestral Texture Types",
+      "function": "Strings pizzicato, single wind instrument melodic",
+      "genre": "Light, dancing, character scenes"
+    },
+    {
+      "name": "Graduated crescendo",
+      "section": "Orchestral Texture Types",
+      "function": "Instruments added one by one, bass to treble",
+      "genre": "Building to climax; Rimsky's signature dynamic structure"
+    },
+    {
+      "name": "Violins below G3 for extended passages; flutes in low register for power",
+      "section": "Principles of Orchestration \u2014 Key Rules"
+    },
+    {
+      "name": "Doubling everything in octaves \"for safety\"",
+      "section": "Principles of Orchestration \u2014 Key Rules"
+    },
+    {
+      "name": "All instruments playing all the time; orchestral mush",
+      "section": "Principles of Orchestration \u2014 Key Rules"
+    },
+    {
+      "name": "Everyone at ff from the start; nowhere to grow",
+      "section": "Principles of Orchestration \u2014 Key Rules"
+    },
+    {
+      "name": "Generic \"melody for wind instrument\"",
+      "section": "Principles of Orchestration \u2014 Key Rules"
+    },
+    {
+      "name": "Choosing instruments without imagistic intent",
+      "section": "Principles of Orchestration \u2014 Key Rules"
+    }
+  ],
+  "source_file": "orchestration.md"
 }

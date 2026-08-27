@@ -1,0 +1,493 @@
+{
+  "influenced_by": [
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Contrapuntal thinking; the 48 Preludes as model",
+      "heard_in": "24 Preludes (one per key); canonic writing in late Mazurkas; constant inner-voice independence"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Clarity of line; balanced phrasing; piano concerto form",
+      "heard_in": "Concerto slow movements; Classical proportion in early works"
+    },
+    {
+      "composer": "Hummel",
+      "absorbed": "Virtuoso piano technique; ornamental passagework",
+      "heard_in": "Brilliant passagework; passage technique; early concertos"
+    },
+    {
+      "composer": "John Field",
+      "absorbed": "Nocturne form (ABA, singing melody over arpeggiated bass)",
+      "heard_in": "All 21 Nocturnes \u2014 but Chopin deepened the form immeasurably"
+    },
+    {
+      "composer": "Bellini (bel canto)",
+      "absorbed": "Long melodic line; vocal ornamentation; portamento effect",
+      "heard_in": "The entire concept of melody on piano; grace notes as breath; rubato"
+    },
+    {
+      "composer": "Polish folk music",
+      "absorbed": "Mazurka and polonaise rhythms; modal scales (Lydian, Mixolydian)",
+      "heard_in": "58 Mazurkas, 16 Polonaises; modal inflections throughout"
+    },
+    {
+      "composer": "Elsner (teacher)",
+      "absorbed": "Rigorous counterpoint training; respect for tradition",
+      "heard_in": "Structural discipline beneath the surface freedom"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-form architecture; harmonic wandering; mode mixture",
+      "heard_in": "Moments of Schubertian harmonic surprise (major/minor alternation)"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Counterpoint, fugue technique, inner-voice independence, pedal point",
+      "heard_in": "Six Fugues on BACH Op.60; contrapuntal piano textures throughout"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song form, major/minor alternation, lyrical melody, the Lied tradition",
+      "heard_in": "Dichterliebe inherits Winterreise; Schumann's modulations echo Schubert's tonal shifts"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Sonata form ambition, motivic development, symphonic weight",
+      "heard_in": "Symphonies 1-4, Piano Quintet; the struggle toward large form"
+    },
+    {
+      "composer": "Jean Paul (novelist)",
+      "absorbed": "Doppelgaenger characters, humor mixed with pathos, narrative fragmentation",
+      "heard_in": "Florestan/Eusebius; the episodic, literary structure of Carnaval and Kreisleriana"
+    },
+    {
+      "composer": "E.T.A. Hoffmann",
+      "absorbed": "Music as visionary experience; the mad artist; Romantic irony",
+      "heard_in": "Kreisleriana (named after Hoffmann's character); the boundary between art and madness"
+    },
+    {
+      "composer": "Paganini",
+      "absorbed": "Virtuoso technique adapted for piano; transcription as creative act",
+      "heard_in": "Paganini Etudes Op.3 and Op.10; virtuosic figuration in Etudes Symphoniques"
+    },
+    {
+      "composer": "Weber",
+      "absorbed": "Romantic piano tone, supernatural atmosphere, German Romantic opera",
+      "heard_in": "Fantasie Op.17 mvt 1 sonority; operatic impulse behind Genoveva"
+    },
+    {
+      "composer": "Clara Wieck/Schumann",
+      "absorbed": "Performance standard, emotional catalyst, practical musicianship",
+      "heard_in": "Almost everything \u2014 Clara is co-author of Schumann's musical world"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "\"Hats off, gentlemen \u2014 a genius!\" (1831, on Op.2 Variations)"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Enthusiastic review of Symphonie fantastique (1835)"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Consistent admiration and friendship"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Motivic development, symphonic weight, variation form, structural ambition",
+      "heard_in": "All symphonies, Piano Concerto No. 1, passacaglia in Symphony 4"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Intimate Romanticism, rhythmic complexity (syncopation, hemiola), fantasy within form",
+      "heard_in": "Early piano works, Intermezzi, cross-rhythms throughout"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Counterpoint, chorale style, chaconne/passacaglia structure",
+      "heard_in": "German Requiem fugues, Symphony 4 finale, late organ works"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-like melody, major/minor alternation, harmonic wandering",
+      "heard_in": "Second themes, slow movements, modal mixture pervasiveness"
+    },
+    {
+      "composer": "Handel",
+      "absorbed": "Choral grandeur, variation technique, ceremonial weight",
+      "heard_in": "Handel Variations Op. 24, choral works"
+    },
+    {
+      "composer": "Hungarian/Romani folk music",
+      "absorbed": "Dotted rhythms, augmented 2nds, verbunkos character, irregular phrase lengths",
+      "heard_in": "Hungarian Dances, Piano Quartet Op. 25 finale, Clarinet Quintet finale"
+    },
+    {
+      "composer": "German Volkslieder",
+      "absorbed": "Stepwise melody, strophic form, modal simplicity",
+      "heard_in": "49 Deutsche Volkslieder (WoO 33), symphony second themes"
+    },
+    {
+      "composer": "Palestrina / Renaissance polyphony",
+      "absorbed": "Smooth voice-leading, modal harmony, contrapuntal independence",
+      "heard_in": "Late choral works, chorale-style orchestral passages"
+    },
+    {
+      "composer": "Beethoven (via Czerny)",
+      "absorbed": "Motivic development; structural ambition; heroic drama",
+      "heard_in": "B minor Sonata; Faust Symphony; the idea that music IS argument"
+    },
+    {
+      "composer": "Paganini",
+      "absorbed": "Transcendental virtuosity; showmanship as art; one instrument = orchestra",
+      "heard_in": "Transcendental Etudes; Paganini Etudes; all bravura writing"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Idee fixe; programmatic narrative; orchestral color",
+      "heard_in": "Symphonic poems; Faust Symphony; the concept of thematic transformation"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Chromatic harmony; piano poetry; intimate expression",
+      "heard_in": "Harmonic vocabulary; lyrical transformations; Liebestraum"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song melody; harmonic wandering; mode mixture",
+      "heard_in": "Schubert song transcriptions; lyrical passages"
+    },
+    {
+      "composer": "Weber",
+      "absorbed": "Brilliant piano writing; operatic piano style",
+      "heard_in": "Early virtuoso works; operatic fantasies"
+    },
+    {
+      "composer": "Hungarian folk music",
+      "absorbed": "Verbunkos rhythm; Gypsy scale; improvisatory character",
+      "heard_in": "19 Hungarian Rhapsodies; Hungarian Fantasia; pervasive accent"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Harmonic audacity; leitmotif principle; Gesamtkunstwerk ambition",
+      "heard_in": "Late harmony; mutual influence (hard to separate who influenced whom)"
+    },
+    {
+      "composer": "J.S. Bach"
+    },
+    {
+      "composer": "Mozart"
+    },
+    {
+      "composer": "Beethoven"
+    },
+    {
+      "composer": "Weber"
+    },
+    {
+      "composer": "Italian opera (Bellini, Donizetti)"
+    },
+    {
+      "composer": "Robert Schumann"
+    },
+    {
+      "composer": "Chopin"
+    },
+    {
+      "composer": "Berlioz"
+    },
+    {
+      "composer": "Liszt"
+    },
+    {
+      "composer": "British music (Parry, Stanford, Elgar)"
+    },
+    {
+      "composer": "Brahms"
+    },
+    {
+      "composer": "Dvorak"
+    },
+    {
+      "composer": "Grieg"
+    },
+    {
+      "composer": "Schubert"
+    },
+    {
+      "composer": "Schumann"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Melodic grace, formal elegance, operatic feeling",
+      "heard_in": "Eugene Onegin's lyrical intimacy; Serenade for Strings (dedicated to Mozart)"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Lyrical melody as primary expression; piano character pieces",
+      "heard_in": "Song-form slow movements; the idea that melody IS the argument"
+    },
+    {
+      "composer": "Anton Rubinstein",
+      "absorbed": "Western conservatory training; Germanic formal rigor",
+      "heard_in": "Sonata form attempts; symphonic ambition; professional craft"
+    },
+    {
+      "composer": "Glinka",
+      "absorbed": "Russian opera; folk-song integration; orchestral color",
+      "heard_in": "Russian modal inflections; opera plots from Russian literature"
+    },
+    {
+      "composer": "Balakirev",
+      "absorbed": "Programmatic orchestral form; Russian folk-scale harmony",
+      "heard_in": "Romeo and Juliet (Balakirev suggested the subject and critiqued drafts)"
+    },
+    {
+      "composer": "Bizet",
+      "absorbed": "Orchestral clarity; direct emotional appeal; dramatic timing",
+      "heard_in": "Tchaikovsky called Carmen \"a masterpiece\" \u2014 directness without pretension"
+    },
+    {
+      "composer": "Russian folk music",
+      "absorbed": "Modal scales, dance rhythms, strophic melody",
+      "heard_in": "bVI, Dorian 6th, trepak rhythms, narrow-range folk themes"
+    },
+    {
+      "composer": "Russian Orthodox chant",
+      "absorbed": "Solemn, descending phrases; Phrygian cadences",
+      "heard_in": "The Phrygian bII-I cadence; slow-movement solemnity"
+    },
+    {
+      "composer": "Italian opera (Verdi)",
+      "absorbed": "Vocal melody as dramatic vehicle; theatrical timing",
+      "heard_in": "Long singing lines in instruments; the orchestra as opera"
+    },
+    {
+      "composer": "French ballet (Delibes)",
+      "absorbed": "Ballet as serious art; orchestral dance scoring",
+      "heard_in": "Swan Lake, Sleeping Beauty, Nutcracker \u2014 elevated beyond Delibes"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Liszt",
+      "absorbed": "Pianistic virtuosity; concert etude concept; harmonic daring",
+      "heard_in": "Transcendental Etudes; Sonata in B minor; but Liszt's approach is orchestral where Chopin's is vocal"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Poetic miniature concept; character pieces; emotional intimacy",
+      "heard_in": "Kreisleriana, Carnaval \u2014 but Schumann's rhythm is more eccentric, his forms more literary"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "LH figuration patterns; inner-voice chromaticism; variation technique",
+      "heard_in": "Intermezzi; Piano Concerto No. 2 slow movement; late piano works"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Non-functional harmony; pedal-point structures; piano resonance",
+      "heard_in": "Preludes, Arabesques; Debussy called Chopin \"the greatest of all\""
+    },
+    {
+      "composer": "Scriabin",
+      "absorbed": "Chromatic harmony pushed toward atonality; nocturne texture; left-hand patterns",
+      "heard_in": "Early Preludes and Etudes are pure Chopin; later works extend Chopin's chromaticism to its breaking point"
+    },
+    {
+      "composer": "Rachmaninoff",
+      "absorbed": "Bel canto melody on piano; wide LH arpeggios; emotional directness",
+      "heard_in": "Piano Concertos 2-3; Preludes; but Rachmaninoff's scale is orchestral, Chopin's is intimate"
+    },
+    {
+      "composer": "Faure",
+      "absorbed": "Harmonic subtlety; voice-leading over function; nocturne concept",
+      "heard_in": "13 Nocturnes; Barcarolles; the French piano tradition flows directly from Chopin's Paris teaching"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Lyric miniature; national folk elements in art music; piano poem",
+      "heard_in": "Lyric Pieces \u2014 Grieg's Norway = Chopin's Poland in miniature form"
+    },
+    {
+      "composer": "Szymanowski",
+      "absorbed": "Polish identity + advanced chromaticism; piano as expressive instrument",
+      "heard_in": "Mazurkas Op. 50; the Polish tradition from Chopin to Szymanowski is a direct line"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Inner-voice melody, rhythmic displacement, intimate Romanticism, fantasy within form",
+      "heard_in": "Brahms systematized what Schumann intuited; Intermezzi inherit Kinderszenen's inwardness"
+    },
+    {
+      "composer": "Hugo Wolf",
+      "absorbed": "Song cycle architecture, piano-as-equal-partner, word-music unity",
+      "heard_in": "Wolf extended Schumann's Lied innovations to their extreme \u2014 the piano dominates completely"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Lyrical piano miniature, character piece, Nordic folk integration with Romantic harmony",
+      "heard_in": "Grieg's Lyric Pieces descend directly from Kinderszenen and Album for the Young"
+    },
+    {
+      "composer": "Dvorak",
+      "absorbed": "Cyclic symphonic form, lyrical melodic character, Romantic chamber music",
+      "heard_in": "Symphony 4's cyclic plan anticipates Dvorak 9; Piano Quintet model"
+    },
+    {
+      "composer": "Franck",
+      "absorbed": "Cyclic form across movements, chromatic harmony within tonal frame",
+      "heard_in": "Symphony 4's through-composed design is the direct ancestor of Franck's Symphony in D minor"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Emotional directness, inner torment expressed through orchestral melody",
+      "heard_in": "Tchaikovsky admired Schumann's emotional honesty; similar vulnerability"
+    },
+    {
+      "composer": "Faure",
+      "absorbed": "Song cycle subtlety, piano as psychological instrument, harmonic ambiguity",
+      "heard_in": "La Bonne Chanson and L'Horizon chimerique inherit Schumann's Lied sophistication"
+    },
+    {
+      "composer": "Dvorak",
+      "absorbed": "Symphonic form, developing variation, folk material within Classical architecture",
+      "heard_in": "Symphonies 7\u20139; Dvorak was Brahms's protege and closest compositional heir"
+    },
+    {
+      "composer": "Schoenberg",
+      "absorbed": "Developing variation as compositional principle; \"every note must serve the whole\"",
+      "heard_in": "Schoenberg explicitly claimed Brahms as ancestor of his method; \"Brahms the Progressive\" (1947 essay)"
+    },
+    {
+      "composer": "Reger",
+      "absorbed": "Dense counterpoint, variation form, chromatic harmony within tonal framework",
+      "heard_in": "Reger = Brahms + Wagner chromaticism; the maximalist continuation"
+    },
+    {
+      "composer": "Zemlinsky",
+      "absorbed": "Lyrical warmth, orchestral density, formal rigor",
+      "heard_in": "Zemlinsky bridges Brahms and early Schoenberg"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "Symphonic weight, motivic development, autumnal emotional character",
+      "heard_in": "Enigma Variations, symphonies \u2014 English Brahms"
+    },
+    {
+      "composer": "R. Strauss",
+      "absorbed": "Symphonic poem form; thematic transformation; orchestral virtuosity",
+      "heard_in": "Don Juan, Ein Heldenleben, Also sprach Zarathustra \u2014 all descended from Les Preludes"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Augmented triads as color; whole-tone scale; non-functional harmony",
+      "heard_in": "Prelude a l'apres-midi; whole-tone passages; Jeux de vagues"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Hungarian modality; augmented intervals; late experimental spirit",
+      "heard_in": "Romanian Dances; Piano Sonata; the idea that Hungarian music is serious art"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Virtuoso piano technique; orchestral brilliance; Gypsy/Hungarian color",
+      "heard_in": "Tzigane; Piano Concerto in G; Gaspard de la nuit (virtuosity lineage)"
+    },
+    {
+      "composer": "Scriabin",
+      "absorbed": "Augmented harmonies pushed to dissolution; mystic-religious aspiration",
+      "heard_in": "Mystic chord; late sonatas; the spiritual ambition"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Liszt championed him directly; chromatic mediant usage; national pride",
+      "heard_in": "Grieg's Piano Concerto (Liszt sight-read the MS and praised it)"
+    },
+    {
+      "composer": "Smetana",
+      "absorbed": "National symphonic poem; Liszt as personal mentor",
+      "heard_in": "Ma Vlast modeled on Liszt's symphonic poems"
+    },
+    {
+      "composer": "Franck",
+      "absorbed": "Cyclic form (themes recurring across movements); chromatic harmony",
+      "heard_in": "Symphony in D minor; cyclic principle = Liszt's thematic transformation"
+    },
+    {
+      "composer": "Saint-Saens",
+      "absorbed": "Symphonic poem form; virtuoso concerto writing",
+      "heard_in": "Danse macabre; Piano Concertos"
+    },
+    {
+      "composer": "Early Schoenberg",
+      "absorbed": "Late Liszt's tonal dissolution; atonality as expressive resource",
+      "heard_in": "Verklarte Nacht chromaticism; the step from Liszt's late works to free atonality is short"
+    },
+    {
+      "composer": "Rachmaninoff",
+      "absorbed": "Long melody arch; piano concerto drama; emotional directness",
+      "heard_in": "Piano Concerto No. 2 \u2014 Tchaikovsky's melodic scale + even more piano"
+    },
+    {
+      "composer": "Glazunov",
+      "absorbed": "Orchestral brilliance; ballet scoring; Russian Romanticism",
+      "heard_in": "Raymonda \u2014 Tchaikovsky's ballet model continued"
+    },
+    {
+      "composer": "Arensky",
+      "absorbed": "Lyrical melody; chamber music warmth",
+      "heard_in": "Piano Trio \u2014 directly modeled on Tchaikovsky's Op. 50"
+    },
+    {
+      "composer": "Sibelius",
+      "absorbed": "Orchestral color; symphonic drama; nature-as-program",
+      "heard_in": "Early symphonies show Tchaikovsky influence before Sibelius found his own voice"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "Emotional directness; orchestral richness; the long melody",
+      "heard_in": "Enigma Variations; Cello Concerto \u2014 Tchaikovsky's emotional scale in English dress"
+    },
+    {
+      "composer": "Film composers (all)",
+      "absorbed": "Emotional leitmotif; orchestral climax technique; the \"love theme\"",
+      "heard_in": "Williams, Korngold, Steiner \u2014 the entire film-score tradition descends from Tchaikovsky"
+    },
+    {
+      "composer": "Barber",
+      "absorbed": "Lyrical Romanticism in 20th century; Adagio as emotional statement",
+      "heard_in": "Adagio for Strings \u2014 Tchaikovsky's emotional world in modern harmony"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Waltz as ironic/tragic form; symphonic drama; Russian orchestral tradition",
+      "heard_in": "Waltz No. 2; Symphony 5's forced triumph echoes Tchaikovsky 5"
+    }
+  ],
+  "comparative_axes": {
+    "Influence Map": [
+      "J.S. Bach",
+      "Mozart",
+      "Beethoven",
+      "Weber",
+      "Italian opera (Bellini, Donizetti)",
+      "Robert Schumann",
+      "Chopin",
+      "Berlioz",
+      "Liszt",
+      "British music (Parry, Stanford, Elgar)",
+      "Brahms",
+      "Dvorak",
+      "Grieg"
+    ],
+    "Comparative Harmonic Signatures": [
+      "Beethoven",
+      "Schubert",
+      "Schumann",
+      "Chopin",
+      "Brahms",
+      "Liszt"
+    ]
+  }
+}

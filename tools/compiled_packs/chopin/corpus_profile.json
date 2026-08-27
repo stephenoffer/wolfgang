@@ -377,25 +377,25 @@
   }
  },
  "lh_texture_distribution": {
-  "silence": 0.0582,
-  "walking_bass": 0.067,
-  "bass_melody": 0.0966,
-  "broken_chord_wave": 0.1626,
   "block_chord_sparse": 0.4478,
-  "broken_chord_desc": 0.0024,
+  "walking_bass": 0.067,
   "block_chord_offbeat": 0.1118,
+  "bass_melody": 0.0966,
+  "silence": 0.0582,
+  "broken_chord_wave": 0.1626,
   "alberti": 0.0349,
+  "block_chord_tremolo": 0.001,
   "pedal_point": 0.015,
-  "broken_chord_asc": 0.0027,
-  "block_chord_tremolo": 0.001
+  "broken_chord_desc": 0.0024,
+  "broken_chord_asc": 0.0027
  },
  "rh_texture_distribution": {
-  "chordal": 0.2913,
-  "singing_melody": 0.439,
+  "scalar_run": 0.058,
   "zigzag_figuration": 0.1626,
   "held_note": 0.0327,
-  "scalar_run": 0.058,
-  "silence": 0.0163
+  "chordal": 0.2913,
+  "silence": 0.0163,
+  "singing_melody": 0.439
  },
  "lh_l1_baseline": {
   "mean": 1.0129,

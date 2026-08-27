@@ -1,7 +1,81 @@
 {
   "influenced_by": [
     {
-      "composer": "a"
+      "composer": "J.C. Bach",
+      "absorbed": "Singing allegro, galant keyboard style, concerto form",
+      "heard_in": "Piano concertos \u2014 the entire genre's DNA comes from the London meeting (1764)"
+    },
+    {
+      "composer": "Haydn",
+      "absorbed": "Sonata-form development, motivic work, quartet texture",
+      "heard_in": "\"Haydn\" Quartets K.387-465; symphonic development sections"
+    },
+    {
+      "composer": "Italian opera (Jommelli, Piccini, Sarti)",
+      "absorbed": "Vocal melody as supreme value; aria forms; buffa pacing",
+      "heard_in": "Every melody Mozart wrote \u2014 instrumental music IS vocal music"
+    },
+    {
+      "composer": "Mannheim School (Stamitz, Cannabich)",
+      "absorbed": "Orchestral crescendo, dynamic contrast, wind independence",
+      "heard_in": "Paris Symphony K.297 onward; wind writing in concertos"
+    },
+    {
+      "composer": "Bach & Handel (via van Swieten, 1782)",
+      "absorbed": "Fugal technique, contrapuntal density, choral grandeur",
+      "heard_in": "Jupiter Symphony finale, Requiem, late keyboard fugues"
+    },
+    {
+      "composer": "Padre Martini",
+      "absorbed": "Strict counterpoint, church style (stile antico)",
+      "heard_in": "Mass settings, Requiem fugues, K.387 fugal finale"
+    },
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil \u2014 sudden dynamic changes, recitative-like passages",
+      "heard_in": "Fantasy in C minor K.475; development section surprises"
+    },
+    {
+      "composer": "French culture",
+      "absorbed": "Elegance, dance forms, orchestral refinement",
+      "heard_in": "Minuets, serenades, ballet music in operas"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Beethoven",
+      "absorbed": "Sonata-form drama, piano concerto model, motivic integration",
+      "heard_in": "Piano Concerto No. 3 (modeled on K.491); sonata development"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Lyric melody, harmonic coloring, song-like instrumental themes",
+      "heard_in": "Schubert's Bb Sonata D.960 echoes K.595's farewell tone"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Classical clarity, elegant orchestration, chamber transparency",
+      "heard_in": "Octet, Violin Concerto \u2014 Mozartian balance updated"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Formal proportion, thematic economy, motivic development",
+      "heard_in": "Piano concertos inherit Mozart's dialogue principle"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Operatic melody in orchestral music, emotional directness",
+      "heard_in": "Tchaikovsky adored Mozart; echoes in Romeo and Juliet's lyricism"
+    },
+    {
+      "composer": "Richard Strauss",
+      "absorbed": "Operatic vocal writing, wind orchestration",
+      "heard_in": "Der Rosenkavalier \u2014 explicitly Mozartian opera"
+    },
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Neoclassical works directly channel Mozart's clarity",
+      "heard_in": "The Rake's Progress \u2014 20th-century opera in Mozartian form"
     }
   ],
   "comparative_axes": {}

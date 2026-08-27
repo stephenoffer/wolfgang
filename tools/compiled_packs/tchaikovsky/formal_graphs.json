@@ -108,6 +108,105 @@
         }
       ],
       "key_scheme": {}
+    },
+    "suite": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "song form": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "arch": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        }
+      ],
+      "key_scheme": {}
     }
   }
 }

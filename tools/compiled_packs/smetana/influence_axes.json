@@ -1,7 +1,61 @@
 {
   "influenced_by": [
     {
-      "composer": "but"
+      "composer": "Liszt",
+      "absorbed": "Symphonic poem form; thematic transformation; virtuoso piano style; personal encouragement",
+      "heard_in": "Gothenburg symphonic poems (Richard III, etc.); Ma vlast formal model"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Lyrical Romanticism; intimate piano writing; formal imagination",
+      "heard_in": "Early piano works; the Piano Trio; song-like themes"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Late-period autobiography; deafness as spiritual trial; sonata form as argument",
+      "heard_in": "String Quartet No. 1 \"From My Life\" \u2014 conscious Beethoven parallel"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Continuous orchestral development; leitmotif principle (debated)",
+      "heard_in": "Dalibor \u2014 critics called it \"Czech Wagner\"; Smetana denied it"
+    },
+    {
+      "composer": "Czech folk music",
+      "absorbed": "Polka, furiant, dumka rhythms; diatonic melody; modal inflections",
+      "heard_in": "The Bartered Bride onward \u2014 folk rhythm as structural material"
+    },
+    {
+      "composer": "Czech legends (Kalevala parallel)",
+      "absorbed": "Libuse, Dalibor, Vysehrad, Hussite tradition",
+      "heard_in": "Ma vlast; the opera subjects; national mythology"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Dvorak",
+      "absorbed": "Czech symphonic tradition; folk dance in art music; national pride in composition",
+      "heard_in": "Dvorak internationalized what Smetana nationalized"
+    },
+    {
+      "composer": "Janacek",
+      "absorbed": "Czech opera tradition; speech-rhythm melody; national identity in music",
+      "heard_in": "Janacek radicalized Smetana's Czech declamation into \"speech melody\""
+    },
+    {
+      "composer": "Fibich",
+      "absorbed": "Czech symphonic poem tradition; programmatic orchestral music",
+      "heard_in": "Fibich continued Smetana's tone poem line"
+    },
+    {
+      "composer": "Novak, Suk",
+      "absorbed": "Czech Romantic orchestral tradition",
+      "heard_in": "Second-generation Czech Romantics"
+    },
+    {
+      "composer": "Czech national consciousness",
+      "absorbed": "Ma vlast as cultural monument; music = national identity",
+      "heard_in": "Ma vlast performed annually at Prague Spring festival as national ritual"
     }
   ],
   "comparative_axes": {}

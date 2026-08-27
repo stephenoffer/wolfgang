@@ -3,21 +3,13 @@
  "schema": 1,
  "total_bars": 8013,
  "textures": {
-  "chordal": {
-   "grace": 0.027,
-   "trill": 0.0,
-   "mordent": 0.0009,
+  "scalar_run": {
+   "grace": 0.1118,
+   "trill": 0.0043,
+   "mordent": 0.0043,
    "turn": 0.0,
-   "dotted": 0.3573,
-   "n": 2334
-  },
-  "singing_melody": {
-   "grace": 0.0409,
-   "trill": 0.0176,
-   "mordent": 0.0128,
-   "turn": 0.0,
-   "dotted": 0.3627,
-   "n": 3518
+   "dotted": 0.1548,
+   "n": 465
   },
   "zigzag_figuration": {
    "grace": 0.0591,
@@ -35,13 +27,13 @@
    "dotted": 0.6565,
    "n": 262
   },
-  "scalar_run": {
-   "grace": 0.1118,
-   "trill": 0.0043,
-   "mordent": 0.0043,
+  "chordal": {
+   "grace": 0.027,
+   "trill": 0.0,
+   "mordent": 0.0009,
    "turn": 0.0,
-   "dotted": 0.1548,
-   "n": 465
+   "dotted": 0.3573,
+   "n": 2334
   },
   "silence": {
    "grace": 0.0,
@@ -50,6 +42,14 @@
    "turn": 0.0,
    "dotted": 0.0,
    "n": 131
+  },
+  "singing_melody": {
+   "grace": 0.0409,
+   "trill": 0.0176,
+   "mordent": 0.0128,
+   "turn": 0.0,
+   "dotted": 0.3627,
+   "n": 3518
   }
  }
 }

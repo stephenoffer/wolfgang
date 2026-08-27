@@ -1,10 +1,86 @@
 {
   "influenced_by": [
     {
-      "composer": "parallel"
+      "composer": "Gregorian chant",
+      "absorbed": "Modal melody, parallel organum, liturgical austerity",
+      "heard_in": "Ogives, Sonneries de la Rose+Croix, all modal writing"
     },
     {
-      "composer": "Satie"
+      "composer": "Medieval music",
+      "absorbed": "Parallel voice movement, open 5ths, non-functional harmony",
+      "heard_in": "Sarabandes (parallel 9ths), Gymnopedies"
+    },
+    {
+      "composer": "Chabrier",
+      "absorbed": "French lightness, simplicity, anti-Germanic aesthetic",
+      "heard_in": "General approach to texture and brevity"
+    },
+    {
+      "composer": "Montmartre cabaret",
+      "absorbed": "Brevity, irony, visual-musical fusion, audience irreverence",
+      "heard_in": "Humorous period, Parade"
+    },
+    {
+      "composer": "Chat Noir shadow theatre",
+      "absorbed": "Music as accompaniment to image, not autonomous art",
+      "heard_in": "Furniture music concept, Cinema"
+    },
+    {
+      "composer": "Josephin Peladan / Rosicrucianism",
+      "absorbed": "Mystical ritual, archaic ceremony, symbolic art",
+      "heard_in": "Rose+Croix works, Ogives"
+    },
+    {
+      "composer": "Cocteau",
+      "absorbed": "Anti-Romantic manifesto, \"everyday\" art, clarity over complexity",
+      "heard_in": "Parade collaboration, anti-Wagnerian stance"
+    },
+    {
+      "composer": "Alphonse Allais",
+      "absorbed": "Absurdist humor: blank paintings, silent music",
+      "heard_in": "Vexations, ironic titles, conceptual works"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Debussy",
+      "absorbed": "Parallel chords, modal harmony, non-functional color",
+      "heard_in": "Debussy heard Satie's Sarabandes (1887) before writing his own modal harmonies; orchestrated Gymnopedies 1 & 3"
+    },
+    {
+      "composer": "Les Six (Milhaud, Poulenc, Honegger, Auric, Durey, Tailleferre)",
+      "absorbed": "Anti-Romantic clarity, brevity, wit, popular idioms",
+      "heard_in": "Satie was their spiritual father; Cocteau's manifesto \"Le Coq et l'Arlequin\" championed Satie's aesthetic"
+    },
+    {
+      "composer": "John Cage",
+      "absorbed": "Silence as music, duration as form, indeterminacy, conceptual art",
+      "heard_in": "Cage organized the first complete Vexations performance (1963); Satie's furniture music anticipated Cage's ambient silence"
+    },
+    {
+      "composer": "Minimalism (Reich, Glass, Riley)",
+      "absorbed": "Repetition as form, stasis, trance-through-iteration",
+      "heard_in": "Gymnopedies to La Monte Young to Terry Riley \"In C\" to Reich/Glass"
+    },
+    {
+      "composer": "Brian Eno",
+      "absorbed": "Ambient music: sound designed for environment, not attention",
+      "heard_in": "\"Music for Airports\" (1978) directly descends from Satie's furniture music concept"
+    },
+    {
+      "composer": "Fluxus (Maciunas, Paik, Ono)",
+      "absorbed": "Art-as-concept, humor as structure, anti-art",
+      "heard_in": "Vexations as conceptual art; the score-as-object tradition"
+    },
+    {
+      "composer": "Gavin Bryars",
+      "absorbed": "Repetition, emotional restraint, ambient quality",
+      "heard_in": "\"Jesus' Blood Never Failed Me Yet\" \u2014 Satie's looping principle extended"
+    },
+    {
+      "composer": "Wim Mertens / Max Richter",
+      "absorbed": "Neo-classical simplicity, piano + static harmony",
+      "heard_in": "Post-Satie piano music: simple, repetitive, atmospheric"
     }
   ],
   "comparative_axes": {}

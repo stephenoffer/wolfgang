@@ -1,4 +1,88 @@
 {
-  "instruments": {},
+  "instruments": {
+    "marimba": {
+      "name": "Marimba",
+      "section": "Mallet Percussion (The Reich Sound)",
+      "function": "Primary pattern instrument",
+      "register": "C3\u2013C7"
+    },
+    "vibraphone": {
+      "name": "Vibraphone",
+      "section": "Mallet Percussion (The Reich Sound)",
+      "function": "Shimmering color",
+      "register": "F3\u2013F6"
+    },
+    "glockenspiel": {
+      "name": "Glockenspiel",
+      "section": "Mallet Percussion (The Reich Sound)",
+      "function": "High register sparkle",
+      "register": "G5\u2013C8"
+    },
+    "xylophone": {
+      "name": "Xylophone",
+      "section": "Mallet Percussion (The Reich Sound)",
+      "function": "Crisp articulation",
+      "register": "F4\u2013C7"
+    },
+    "crotales": {
+      "name": "Crotales",
+      "section": "Mallet Percussion (The Reich Sound)",
+      "function": "Highest register color",
+      "register": "C6\u2013C8"
+    }
+  },
+  "textures": [
+    {
+      "name": "Flute",
+      "section": "The \"Counterpoint\" Series"
+    },
+    {
+      "name": "Clarinet",
+      "section": "The \"Counterpoint\" Series"
+    },
+    {
+      "name": "Electric guitar",
+      "section": "The \"Counterpoint\" Series"
+    },
+    {
+      "name": "Cello",
+      "section": "The \"Counterpoint\" Series"
+    },
+    {
+      "name": "Piano (acoustic)",
+      "section": "Keyboard Writing",
+      "function": "Primary pattern instrument"
+    },
+    {
+      "name": "Electric organ",
+      "section": "Keyboard Writing",
+      "function": "Sustained pulsing chords"
+    },
+    {
+      "name": "Synthesizer",
+      "section": "Keyboard Writing",
+      "function": "Doubling, color"
+    },
+    {
+      "name": "Flute",
+      "section": "Wind Writing",
+      "function": "Melody doubling; high-register patterns (*Vermont Counterpoint*)"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Wind Writing",
+      "function": "Middle-register patterns; warm color (*New York Counterpoint*)"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Wind Writing",
+      "function": "Structural signal (cue for section changes in *Music for 18 Musicians*)"
+    },
+    {
+      "name": "Oboe/Bassoon",
+      "section": "Wind Writing",
+      "function": "Rare; late orchestral works only"
+    }
+  ],
   "source_file": "orchestration.md"
 }

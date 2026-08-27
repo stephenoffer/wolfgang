@@ -1,33 +1,134 @@
 {
- "forms": {
-  "sonata": {
-   "sections": [
-    {
-     "role": "1",
-     "proportion_range": [
-      0.02,
-      0.2
-     ]
+  "forms": {
+    "sonata": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {
+        "exposition_keys_major": [
+          "I",
+          "V"
+        ],
+        "exposition_keys_minor": [
+          "i",
+          "III"
+        ],
+        "recap_rule": "tonic"
+      }
     },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.02,
-      0.18
-     ]
+    "binary": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "fugue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "da capo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "toccata": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "mass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cantus firmus": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "character piece": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "chaconne": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ground bass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.02,
+            0.18
+          ]
+        }
+      ],
+      "key_scheme": {}
     }
-   ],
-   "key_scheme": {
-    "exposition_keys_major": [
-     "I",
-     "V"
-    ],
-    "exposition_keys_minor": [
-     "i",
-     "III"
-    ],
-    "recap_rule": "tonic"
-   }
   }
- }
 }

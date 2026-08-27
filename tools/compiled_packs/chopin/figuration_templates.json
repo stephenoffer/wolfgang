@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Wide arpeggiated wave",
     "description": "the nocturne engine. One bass note, then the chord unfolding upward across an octave and a half: `Ab1e Eb3e Ab3e C4e Eb4e C4e Ab3e Eb3e`. The span from the bass to the top of the figure is 15\u201320 semitones; the *width* is the sound.",
+    "shorthand": "Ab1e Eb3e Ab3e C4e Eb4e C4e Ab3e Eb3e",
+    "events": 8,
+    "register": [
+      32,
+      63
+    ],
+    "span_semitones": 31,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -14,6 +21,13 @@
     "hand": "lh",
     "name": "Bass note plus displaced chord",
     "description": "`Bb1q [F3,Bb3,D4]q [F3,Bb3,D4]q` in 3/4. The mazurka and waltz shape. The gap between the bass and the chord is the point; closing it makes it sound like a folk band.",
+    "shorthand": "Bb1q [F3,Bb3,D4]q [F3,Bb3,D4]q",
+    "events": 3,
+    "register": [
+      34,
+      62
+    ],
+    "span_semitones": 28,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -23,6 +37,13 @@
     "hand": "lh",
     "name": "Rocking tenths",
     "description": "`Ab1e C3e Ab1e C3e \u2026`. A tenth apart, alternating. Warm and open, and the tenth is what makes it Romantic rather than an octave.",
+    "shorthand": "Ab1e C3e Ab1e C3e \u2026",
+    "events": 5,
+    "register": [
+      32,
+      48
+    ],
+    "span_semitones": 16,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -32,6 +53,13 @@
     "hand": "lh",
     "name": "Sustained pedal bass under moving inner voices",
     "description": "`Ab1w // Eb3e F3e Gb3e F3e Eb3e F3e Gb3e F3e`. The bass holds for the whole bar while a middle voice moves. This is genuine two-voice left-hand writing and it is what most generated Chopin is missing.",
+    "shorthand": "Ab1w // Eb3e F3e Gb3e F3e Eb3e F3e Gb3e F3e",
+    "events": 10,
+    "register": [
+      32,
+      54
+    ],
+    "span_semitones": 22,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +69,13 @@
     "hand": "lh",
     "name": "Chromatic inner-voice descent",
     "description": "the bass stays, the note above it falls by semitone across four bars: `C3 \u2192 B2 \u2192 Bb2 \u2192 A2`. Chopin's most reliable way of making a repeated harmony feel like it is going somewhere.",
+    "shorthand": "C3 \u2192 B2 \u2192 Bb2 \u2192 A2",
+    "events": 7,
+    "register": [
+      45,
+      48
+    ],
+    "span_semitones": 3,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -50,6 +85,13 @@
     "hand": "lh",
     "name": "Doubled octaves in the bass",
     "description": "`[Ab1,Ab2]h [Eb2,Eb3]h`. For weight at a climax, or for the ballades' declamatory passages. Rare and heavy; do not use it as a default.",
+    "shorthand": "[Ab1,Ab2]h [Eb2,Eb3]h",
+    "events": 2,
+    "register": [
+      32,
+      51
+    ],
+    "span_semitones": 19,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -59,6 +101,13 @@
     "hand": "lh",
     "name": "Waltz oom-pah-pah, widely spaced",
     "description": "`Ab1q [C3,Eb3]q [C3,Eb3]q`. The textbook figure, but the bass is an octave lower than a Classical waltz would put it and the chord is thinner (two notes, not three).",
+    "shorthand": "Ab1q [C3,Eb3]q [C3,Eb3]q",
+    "events": 3,
+    "register": [
+      32,
+      51
+    ],
+    "span_semitones": 19,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -68,6 +117,13 @@
     "hand": "lh",
     "name": "Free arpeggio spanning the whole hand",
     "description": "`Db1e Ab1e F2e Ab2e Db3e F3e Ab3e Db4e`, a two-and-a-half-octave sweep in one bar. The barcarolle and the later nocturnes. Written as one gesture, pedalled through.",
+    "shorthand": "Db1e Ab1e F2e Ab2e Db3e F3e Ab3e Db4e",
+    "events": 8,
+    "register": [
+      25,
+      61
+    ],
+    "span_semitones": 36,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -77,6 +133,13 @@
     "hand": "lh",
     "name": "Repeated chord with a moving bass",
     "description": "the chord stays put while the bass walks underneath it: `Ab1e [C3,Eb3]e G1e [C3,Eb3]e F1e [C3,Eb3]e \u2026`. Motion without any change in colour.",
+    "shorthand": "Ab1e [C3,Eb3]e G1e [C3,Eb3]e F1e [C3,Eb3]e \u2026",
+    "events": 7,
+    "register": [
+      29,
+      51
+    ],
+    "span_semitones": 22,
     "source_file": "chopin/chopin-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -116,8 +179,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -134,8 +197,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -152,8 +215,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -175,8 +238,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -222,8 +285,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -244,8 +307,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -266,8 +329,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -309,8 +372,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -332,8 +395,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -356,8 +419,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },

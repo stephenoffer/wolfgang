@@ -13,6 +13,22 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "strophic": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "song form": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

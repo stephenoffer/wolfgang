@@ -1,4 +1,62 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony; massive orchestra; Leitmotif technique; through-composition",
+      "heard_in": "Every tone poem; Salome/Elektra are post-Tristan opera; the orchestral scale"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "The tone poem as form; thematic transformation; programmatic orchestral writing",
+      "heard_in": "Don Juan, Till, Zarathustra \u2014 the entire tone poem genre, inherited and perfected"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Formal elegance; vocal writing; the concerto and opera as conversation",
+      "heard_in": "Rosenkavalier's Mozartean ensembles; Oboe Concerto; Capriccio's chamber quality"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Orchestral imagination; color as independent parameter; the program symphony",
+      "heard_in": "Strauss's orchestration surpasses Berlioz in precision but inherits the ambition"
+    },
+    {
+      "composer": "Brahms (early)",
+      "absorbed": "Classical forms; motivic discipline; serious craftsmanship",
+      "heard_in": "Pre-conversion works: Symphony in F minor, chamber music; the training he outgrew"
+    },
+    {
+      "composer": "His father (Franz Strauss)",
+      "absorbed": "Horn playing; orchestral sound from inside; conservative craft",
+      "heard_in": "The horn as totem instrument; the technical assurance that no score contains errors"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Film composers (all)",
+      "absorbed": "Leitmotif technique, lush orchestration, emotional narrative scoring, the long crescendo",
+      "heard_in": "John Williams, Erich Korngold, Max Steiner \u2014 Hollywood's orchestral language is Strauss's language"
+    },
+    {
+      "composer": "Korngold",
+      "absorbed": "Lush late-Romantic orchestration; soaring melody; tonal warmth in dramatic context",
+      "heard_in": "Hollywood's first great film composer; the bridge between Strauss and Williams"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Orchestral virtuosity; ironic quotation; the grotesque within the lyrical",
+      "heard_in": "Shostakovich's orchestral clarity and his ironic tone owe something to Strauss"
+    },
+    {
+      "composer": "Britten",
+      "absorbed": "Vocal writing; orchestral economy; character-driven opera",
+      "heard_in": "Peter Grimes and the Strauss operas share dramatic vocal writing within orchestral brilliance"
+    },
+    {
+      "composer": "Contemporary film scoring",
+      "absorbed": "The Straussian swell (long dominant buildup -> arrival); lush string writing; horn themes",
+      "heard_in": "Every \"epic\" film cue traces back to Heldenleben and the Alpine Symphony"
+    }
+  ],
   "comparative_axes": {}
 }

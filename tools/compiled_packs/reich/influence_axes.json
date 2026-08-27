@@ -1,4 +1,55 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Repetitive loops, gradual evolution (The Orb, Aphex Twin)"
+    },
+    {
+      "composer": "Phase-like processes, pattern manipulation (Autechre)"
+    },
+    {
+      "composer": "Interlocking guitar patterns (Tortoise, Battles)"
+    },
+    {
+      "composer": "Loop-based music, layering, gradual build"
+    },
+    {
+      "composer": "Different Trains* technique prefigures found-sound"
+    },
+    {
+      "composer": "Eno cites Reich; process-based composition algorithms"
+    },
+    {
+      "composer": "Reich"
+    },
+    {
+      "composer": "Glass"
+    },
+    {
+      "composer": "P\u00e4rt"
+    },
+    {
+      "composer": "Riley"
+    },
+    {
+      "composer": "Young"
+    }
+  ],
+  "influenced": [],
+  "comparative_axes": {
+    "Influence on Electronic Music": [
+      "Repetitive loops, gradual evolution (The Orb, Aphex Twin)",
+      "Phase-like processes, pattern manipulation (Autechre)",
+      "Interlocking guitar patterns (Tortoise, Battles)",
+      "Loop-based music, layering, gradual build",
+      "*Different Trains* technique prefigures found-sound",
+      "Eno cites Reich; process-based composition algorithms"
+    ],
+    "Comparative Process Techniques": [
+      "Reich",
+      "Glass",
+      "P\u00e4rt",
+      "Riley",
+      "Young"
+    ]
+  }
 }

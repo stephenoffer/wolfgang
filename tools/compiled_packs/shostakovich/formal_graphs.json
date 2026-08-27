@@ -13,6 +13,26 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "fugue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "passacaglia": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

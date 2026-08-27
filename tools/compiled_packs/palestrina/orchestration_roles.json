@@ -1,4 +1,36 @@
 {
-  "instruments": {},
+  "instruments": {
+    "cantus_/_superius": {
+      "name": "Cantus / Superius",
+      "section": "The voices",
+      "function": "Carries the subject at its clearest; the ear's line",
+      "register": "C4\u2013F5"
+    },
+    "altus": {
+      "name": "Altus",
+      "section": "The voices",
+      "function": "Filler and inner imitation; the hardest to write well",
+      "register": "F3\u2013C5"
+    },
+    "tenor": {
+      "name": "Tenor",
+      "section": "The voices",
+      "function": "Often holds the cantus firmus; the structural voice",
+      "register": "C3\u2013F4"
+    },
+    "bassus": {
+      "name": "Bassus",
+      "section": "The voices",
+      "function": "Supplies the cadential frame's lower note; moves least",
+      "register": "F2\u2013C4"
+    },
+    "quintus": {
+      "name": "Quintus",
+      "section": "The voices",
+      "function": "The extra voice in five-part writing; not a fixed range",
+      "register": "Doubles whichever part it shadows"
+    }
+  },
+  "textures": [],
   "source_file": "orchestration.md"
 }

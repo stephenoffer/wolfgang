@@ -1,4 +1,92 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn (muted)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (muted)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Harp",
+      "section": "Harp, Celesta, Piano"
+    },
+    {
+      "name": "Celesta",
+      "section": "Harp, Celesta, Piano"
+    },
+    {
+      "name": "Piano",
+      "section": "Harp, Celesta, Piano"
+    },
+    {
+      "name": "Mandolin",
+      "section": "Harp, Celesta, Piano"
+    },
+    {
+      "name": "Guitar",
+      "section": "Harp, Celesta, Piano"
+    },
+    {
+      "name": "Pointillistic dispersal",
+      "section": "Texture Types",
+      "function": "Single notes in isolation across instruments",
+      "genre": "Op. 10, Op. 21"
+    },
+    {
+      "name": "Double canon",
+      "section": "Texture Types",
+      "function": "Two canons simultaneously; 4 voices",
+      "genre": "Symphony Op. 21"
+    },
+    {
+      "name": "Homophonic (rare)",
+      "section": "Texture Types",
+      "function": "2\u20133 notes simultaneously; vertical",
+      "genre": "Climactic moments only"
+    },
+    {
+      "name": "Monophonic",
+      "section": "Texture Types",
+      "function": "Single voice; one note at a time in one instrument",
+      "genre": "Rare; beginning of a section"
+    },
+    {
+      "name": "Silence",
+      "section": "Texture Types",
+      "function": "No sound; all instruments rest",
+      "genre": "The most Webernian texture"
+    }
+  ],
   "source_file": "orchestration.md"
 }

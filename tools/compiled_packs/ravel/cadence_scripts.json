@@ -173,5 +173,47 @@
     "typical_texture": "",
     "preparation_bars": 2,
     "source_file": "ravel/harmonic-language.md"
+  },
+  {
+    "id": "cad_pac_authentic_close",
+    "type": "PAC (authentic close)",
+    "approach_chords": [
+      "IV",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "4-1",
+    "usage": "The Impressionist answer to a perfect authentic cadence. V7-I is deliberately avoided: the leading tone is the machinery this idiom exists to switch off. When a plan asks for a PAC, close plagally or settle onto a pedal \u2014 the *arrival* is real, the dominant is not",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "ravel/harmonic-language.md"
+  },
+  {
+    "id": "cad_hc_half_close",
+    "type": "HC (half close)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Rest on an unresolved dominant ninth, or on a whole-tone sonority",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "ravel/harmonic-language.md"
+  },
+  {
+    "id": "cad_iac_weak_close",
+    "type": "IAC (weak close)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "I(maj7) reached by step in the bass, melody on the 3rd or 9th",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "ravel/harmonic-language.md"
   }
 ]

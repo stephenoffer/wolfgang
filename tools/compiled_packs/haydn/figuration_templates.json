@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Two-part texture, bass as a real line",
     "description": "often just a single melodic line under the melody, no chords at all: `C3q D3q E3q F3q`. Haydn writes far more two-voice keyboard texture than Mozart, and it is the most under-used idiom in generated Classical writing.",
+    "shorthand": "C3q D3q E3q F3q",
+    "events": 4,
+    "register": [
+      48,
+      53
+    ],
+    "span_semitones": 5,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -14,6 +21,13 @@
     "hand": "lh",
     "name": "Oom-pah, dry",
     "description": "`C2q [E3,G3]q C2q [E3,G3]q`. Present, but lighter and more often staccato than in Mozart. The dots matter: without them it is heavy.",
+    "shorthand": "C2q [E3,G3]q C2q [E3,G3]q",
+    "events": 4,
+    "register": [
+      36,
+      55
+    ],
+    "span_semitones": 19,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -32,6 +46,13 @@
     "hand": "lh",
     "name": "The sudden rest",
     "description": "`rest_h [G2,B2,D3]h`, or a whole bar of silence in the middle of a phrase. Haydn's signature. A joke needs a beat of nothing before the punchline.",
+    "shorthand": "rest_h [G2,B2,D3]h",
+    "events": 2,
+    "register": [
+      43,
+      50
+    ],
+    "span_semitones": 7,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +62,13 @@
     "hand": "lh",
     "name": "Repeated notes as a drone",
     "description": "the same bass note pulsing under changing harmony above: `G2e \u00d78`. The rustic, folk-derived sound of the finales; suggests a drone instrument.",
+    "shorthand": "G2e \u00d78",
+    "events": 2,
+    "register": [
+      43,
+      43
+    ],
+    "span_semitones": 0,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -50,6 +78,13 @@
     "hand": "lh",
     "name": "Bare octaves for emphasis",
     "description": "`[C2,C3]h` at the start of a phrase or a development, with nothing in between. Stark and attention-getting.",
+    "shorthand": "[C2,C3]h",
+    "events": 1,
+    "register": [
+      36,
+      48
+    ],
+    "span_semitones": 12,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -59,6 +94,13 @@
     "hand": "lh",
     "name": "Off-beat entries",
     "description": "the accompaniment begins on beat 2 rather than beat 1: `rest_q [C3,E3,G3]q [C3,E3,G3]q [C3,E3,G3]q`. Displaces the whole bar's feeling without changing a note of the melody.",
+    "shorthand": "rest_q [C3,E3,G3]q [C3,E3,G3]q [C3,E3,G3]q",
+    "events": 4,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -95,6 +137,13 @@
     "hand": "lh",
     "name": "Held chord under a running right hand",
     "description": "`[C3,E3,G3]w`. Simple, and it gives the right hand room to be virtuosic.",
+    "shorthand": "[C3,E3,G3]w",
+    "events": 1,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
     "source_file": "haydn/haydn-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -116,8 +165,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -134,8 +183,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -152,8 +201,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -175,8 +224,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -222,8 +271,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -244,8 +293,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -266,8 +315,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -309,8 +358,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -332,8 +381,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -356,8 +405,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },

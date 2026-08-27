@@ -61,6 +61,188 @@
         }
       ],
       "key_scheme": {}
+    },
+    "binary": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "passacaglia": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "strophic": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "song form": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.45
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
     }
   }
 }

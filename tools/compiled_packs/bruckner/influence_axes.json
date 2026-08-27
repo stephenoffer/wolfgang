@@ -1,4 +1,30 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Chromatic saturation, enharmonic modulation, deferred cadence",
+      "absorbed": "Bruckner sustains single chords for 8-16 bars; Wagner's harmony is continuously restless"
+    },
+    {
+      "composer": "Wagner tubas, expanded brass, orchestral mass",
+      "absorbed": "Bruckner's textures are terraced blocks; Wagner's are continuously blended"
+    },
+    {
+      "composer": "Monumental time-scale; works lasting 60-80+ minutes",
+      "absorbed": "Wagner's length serves drama; Bruckner's serves architecture"
+    },
+    {
+      "composer": "Bruckner does NOT use leitmotif \u2014 his themes are self-contained, not referential",
+      "absorbed": "Bruckner's themes transform by contrapuntal combination, not dramatic reinterpretation"
+    },
+    {
+      "composer": "Wagner: erotic, dramatic, narrative",
+      "absorbed": "Bruckner: devotional, architectural, transcendent"
+    },
+    {
+      "composer": "Bruckner idolized Wagner; wept at performances; dedicated Symphony 3 to him",
+      "absorbed": "Wagner respected Bruckner's organ playing but was largely indifferent to his symphonies"
+    }
+  ],
+  "influenced": [],
   "comparative_axes": {}
 }

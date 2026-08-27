@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Wide, low, sustained fifths and octaves",
     "description": "`[C1,G1]w`, pedalled, as a resonant floor rather than a bass line.",
+    "shorthand": "[C1,G1]w",
+    "events": 1,
+    "register": [
+      24,
+      31
+    ],
+    "span_semitones": 7,
     "source_file": "debussy/debussy-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -14,6 +21,13 @@
     "hand": "lh",
     "name": "Parallel chords moving in blocks",
     "description": "the whole chord shape sliding by step or third, `[C3,E3,G3]q [D3,F3,A3]q`. Planing; the defining Impressionist texture.",
+    "shorthand": "[C3,E3,G3]q [D3,F3,A3]q",
+    "events": 2,
+    "register": [
+      48,
+      57
+    ],
+    "span_semitones": 9,
     "source_file": "debussy/debussy-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -68,6 +82,13 @@
     "hand": "lh",
     "name": "Chord with an added second or sixth",
     "description": "`[C3,D3,G3,A3]` \u2014 resonance rather than function.",
+    "shorthand": "[C3,D3,G3,A3]",
+    "events": 1,
+    "register": [
+      48,
+      57
+    ],
+    "span_semitones": 9,
     "source_file": "debussy/debussy-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -116,8 +137,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -134,8 +155,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -152,8 +173,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -175,8 +196,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -222,8 +243,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -244,8 +265,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -266,8 +287,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -309,8 +330,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -332,8 +353,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -356,8 +377,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },

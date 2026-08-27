@@ -1,4 +1,67 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Brahms",
+      "absorbed": "Symphonic architecture; motivic development; variation technique; orchestral weight",
+      "heard_in": "Symphony 1's formal plan; the Enigma Variations' craftsmanship; the seriousness"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony; orchestral continuity; emotional intensity; Leitmotif suggestion",
+      "heard_in": "Gerontius: through-composed, Wagnerian; the chromatic shadows in major-key passages"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Lyrical warmth; song-like melody; the intimate within the public",
+      "heard_in": "The Serenade for Strings; the private Elgar beneath the public surface"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Sequential technique; emotional directness; the climax built through repetition",
+      "heard_in": "Elgar's sequence chains with mounting emotional force"
+    },
+    {
+      "composer": "Dvorak",
+      "absorbed": "Orchestral warmth; pastoral character; structural clarity",
+      "heard_in": "The Introduction and Allegro; the Cello Concerto's warmth"
+    },
+    {
+      "composer": "English choral tradition",
+      "absorbed": "Oratorio craft; hymn-tune foundation; the sound of church music",
+      "heard_in": "Gerontius; the organ-like sustained chords; the hymn beneath the symphony"
+    },
+    {
+      "composer": "The English landscape",
+      "absorbed": "The Malvern Hills; the Severn valley; walking as compositional practice",
+      "heard_in": "The pastoral quality is not borrowed \u2014 it is the place where the music was made"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Vaughan Williams",
+      "absorbed": "The possibility of an English symphonic tradition; pastoral orchestral color",
+      "heard_in": "RVW rejected Elgar's Germanism but inherited the English pastoral and the confidence to write English symphonies"
+    },
+    {
+      "composer": "Walton",
+      "absorbed": "Nobilmente character; orchestral brilliance; the public ceremonial voice",
+      "heard_in": "Belshazzar's Feast, Symphony 1; Walton is Elgar's spiritual heir in English orchestral writing"
+    },
+    {
+      "composer": "Britten",
+      "absorbed": "Not influence but reaction \u2014 Britten defined himself AGAINST Elgar's Edwardian warmth",
+      "heard_in": "War Requiem vs. Gerontius; public statement vs. private devotion; but both are English to the core"
+    },
+    {
+      "composer": "Herbert Howells",
+      "absorbed": "The English string tradition; modal harmony; pastoral warmth",
+      "heard_in": "Hymnus Paradisi; English choral and orchestral music after Elgar"
+    },
+    {
+      "composer": "Film composers (British)",
+      "absorbed": "The noble string theme; emotional directness; processional character",
+      "heard_in": "Every British period drama score; the Elgar sound is England on screen"
+    }
+  ],
   "comparative_axes": {}
 }

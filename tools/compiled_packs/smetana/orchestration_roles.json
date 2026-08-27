@@ -1,4 +1,129 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Smetana Orchestra",
+      "function": "Landscape textures (figuration, tremolo); melody in cantabile passages"
+    },
+    {
+      "name": "2 Fl (+Picc), 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Smetana Orchestra",
+      "function": "Folk melody solos; pastoral color; dance lightness"
+    },
+    {
+      "name": "4 Hn, 2 Tpt, 3 Tbn (+Tuba)",
+      "section": "Standard Smetana Orchestra",
+      "function": "Heroic fanfare; Hussite chorale; weight at climaxes"
+    },
+    {
+      "name": "Timpani, Triangle, Cymbals",
+      "section": "Standard Smetana Orchestra",
+      "function": "Structural accent; dance punctuation; climactic reinforcement"
+    },
+    {
+      "name": "1\u20132 Harps",
+      "section": "Standard Smetana Orchestra",
+      "function": "Narrative framing; water texture; castle arpeggiation"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Piccolo",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (2)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Water figuration",
+      "section": "Orchestral Texture Types",
+      "function": "Rapid string arpeggiation (sextuplets or triplets) rocking between two pitches",
+      "genre": "Vltava \u2014 the defining Smetana texture"
+    },
+    {
+      "name": "Fanfare with harp",
+      "section": "Orchestral Texture Types",
+      "function": "Brass dotted-rhythm theme over harp arpeggiation",
+      "genre": "Vysehrad \u2014 the opening of Ma vlast"
+    },
+    {
+      "name": "Dance scoring",
+      "section": "Orchestral Texture Types",
+      "function": "Melody in winds; pizzicato bass; staccato strings",
+      "genre": "Polka/furiant sections throughout"
+    },
+    {
+      "name": "Pastoral",
+      "section": "Orchestral Texture Types",
+      "function": "Sustained string chords; solo woodwind melody; horn pedal",
+      "genre": "From Bohemian Fields and Forests"
+    },
+    {
+      "name": "Hussite chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Brass choir (hn + tbn) in hymn-like homophony; strings reinforce",
+      "genre": "Tabor, Blanik \u2014 the warrior tradition"
+    },
+    {
+      "name": "Opera tutti",
+      "section": "Orchestral Texture Types",
+      "function": "Full orchestra with vocal line projecting above; clear texture",
+      "genre": "All operas \u2014 the singer must be heard"
+    },
+    {
+      "name": "Nocturnal",
+      "section": "Orchestral Texture Types",
+      "function": "Muted strings; solo cello or clarinet; minimal texture",
+      "genre": "Vltava moonlight scene; quiet opera moments"
+    }
+  ],
   "source_file": "orchestration.md"
 }

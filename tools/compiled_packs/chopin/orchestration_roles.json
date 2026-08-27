@@ -1,4 +1,131 @@
 {
-  "instruments": {},
+  "instruments": {
+    "bass": {
+      "name": "Bass",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Harmonic root; resonance anchor",
+      "register": "C1-E3",
+      "hand": "LH, lowest note of arpeggio"
+    },
+    "accompaniment": {
+      "name": "Accompaniment",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Harmonic fill; rhythmic pulse",
+      "register": "F3-C5",
+      "hand": "LH, upper notes of arpeggio"
+    },
+    "inner_voice_(tenor)": {
+      "name": "Inner voice (tenor)",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Chromatic countermelody; harmonic color",
+      "register": "C4-G4",
+      "hand": "RH, lower notes of chord"
+    },
+    "soprano_melody": {
+      "name": "Soprano melody",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Primary melodic voice",
+      "register": "G4-C6",
+      "hand": "RH, top note"
+    },
+    "ornamental_filigree": {
+      "name": "Ornamental filigree",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Melody continuation; peak cascades",
+      "register": "C5-C7",
+      "hand": "RH, rapid passagework"
+    },
+    "nocturne_bass": {
+      "name": "Nocturne bass",
+      "section": "LH Accompaniment Patterns",
+      "function": "Low root \u2192 chord tone a 9th-12th above \u2192 another chord tone",
+      "register": "9th-12th (compound)",
+      "genre": "Nocturnes, ballades"
+    },
+    "waltz_bass": {
+      "name": "Waltz bass",
+      "section": "LH Accompaniment Patterns",
+      "function": "Root on beat 1, chord on beats 2-3",
+      "register": "8ve-10th",
+      "genre": "Waltzes"
+    },
+    "mazurka_bass": {
+      "name": "Mazurka bass",
+      "section": "LH Accompaniment Patterns",
+      "function": "Root on beat 1, chord on beat 3 (beat 2 sometimes empty)",
+      "register": "5th-8ve",
+      "genre": "Mazurkas"
+    },
+    "etude_pattern": {
+      "name": "Etude pattern",
+      "section": "LH Accompaniment Patterns",
+      "function": "Continuous broken figuration (specific to each etude)",
+      "register": "Varies widely",
+      "genre": "Etudes"
+    },
+    "chorale": {
+      "name": "Chorale",
+      "section": "LH Accompaniment Patterns",
+      "function": "Block chords, voice-led, hymn-like",
+      "register": "Close position",
+      "genre": "Slow passages, Sonata movements"
+    },
+    "tremolo/repeated_octave": {
+      "name": "Tremolo/repeated octave",
+      "section": "LH Accompaniment Patterns",
+      "function": "Rapid octave repetition in bass",
+      "register": "8ve",
+      "genre": "Polonaises, dramatic climaxes"
+    },
+    "arpeggiated_wash": {
+      "name": "Arpeggiated wash",
+      "section": "LH Accompaniment Patterns",
+      "function": "Wide arpeggios flowing continuously",
+      "register": "10th-14th",
+      "genre": "Barcarolle, Berceuse"
+    }
+  },
+  "textures": [
+    {
+      "name": "Melody + nocturne bass",
+      "section": "Texture Types",
+      "function": "Singing RH over wide LH arpeggio"
+    },
+    {
+      "name": "Melody + chorale",
+      "section": "Texture Types",
+      "function": "RH melody above block chords (both hands)"
+    },
+    {
+      "name": "Melody + countermelody",
+      "section": "Texture Types",
+      "function": "Two independent RH voices (soprano + tenor)"
+    },
+    {
+      "name": "Continuous figuration",
+      "section": "Texture Types",
+      "function": "One hand plays unbroken pattern; other hand has melody embedded"
+    },
+    {
+      "name": "Octave melody + tremolo",
+      "section": "Texture Types",
+      "function": "RH in octaves, LH in tremolo or rapid arpeggios"
+    },
+    {
+      "name": "Bare unison/octave",
+      "section": "Texture Types",
+      "function": "Both hands in octaves, no harmony"
+    },
+    {
+      "name": "Filigree over pedal",
+      "section": "Texture Types",
+      "function": "Delicate RH passagework over sustained LH pedal tone"
+    },
+    {
+      "name": "Storm texture",
+      "section": "Texture Types",
+      "function": "Rapid LH figuration + massive RH chords"
+    }
+  ],
   "source_file": "orchestration.md"
 }

@@ -1,4 +1,51 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Boulez",
+      "absorbed": "Serial principle (via Webern more than Schoenberg)",
+      "heard_in": "Total serialism \u2192 controlled complexity"
+    },
+    {
+      "composer": "Stockhausen",
+      "absorbed": "Parameter thinking; serial organization",
+      "heard_in": "Electronic music, spatial composition"
+    },
+    {
+      "composer": "Babbitt",
+      "absorbed": "Combinatorial twelve-tone technique",
+      "heard_in": "Hyper-systematic American serialism"
+    },
+    {
+      "composer": "Nono",
+      "absorbed": "Political serial music",
+      "heard_in": "Serial technique as political expression"
+    },
+    {
+      "composer": "Carter",
+      "absorbed": "Developing variation; complexity",
+      "heard_in": "Non-serial but Schoenbergian in density"
+    },
+    {
+      "composer": "John Adams",
+      "absorbed": "Schoenberg as \"the great liberator\" (ironic distance)",
+      "heard_in": "Post-minimalism acknowledges Schoenberg's questions"
+    },
+    {
+      "composer": "Schoenberg"
+    },
+    {
+      "composer": "Berg"
+    },
+    {
+      "composer": "Webern"
+    }
+  ],
+  "influenced": [],
+  "comparative_axes": {
+    "The Second Viennese School": [
+      "Schoenberg",
+      "Berg",
+      "Webern"
+    ]
+  }
 }

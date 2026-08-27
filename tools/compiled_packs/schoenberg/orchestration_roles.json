@@ -1,4 +1,102 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Flute / Piccolo",
+      "section": "The Pierrot Ensemble (1912)",
+      "function": "High melodic line; airy, transparent"
+    },
+    {
+      "name": "Clarinet / Bass Clarinet",
+      "section": "The Pierrot Ensemble (1912)",
+      "function": "Middle voice; flexible, agile"
+    },
+    {
+      "name": "Violin / Viola",
+      "section": "The Pierrot Ensemble (1912)",
+      "function": "String melody; can alternate registers"
+    },
+    {
+      "name": "Cello",
+      "section": "The Pierrot Ensemble (1912)",
+      "function": "Bass and low melody"
+    },
+    {
+      "name": "Piano",
+      "section": "The Pierrot Ensemble (1912)",
+      "function": "Chordal, percussive, melodic"
+    },
+    {
+      "name": "Sprechstimme voice",
+      "section": "The Pierrot Ensemble (1912)",
+      "function": "Melodramatic narrator"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bass Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Romantic tutti",
+      "section": "Texture Types",
+      "function": "Full orchestra, blended, rich"
+    },
+    {
+      "name": "Nocturnal chamber",
+      "section": "Texture Types",
+      "function": "3\u20135 instruments, sparse, ppp"
+    },
+    {
+      "name": "Klangfarbenmelodie",
+      "section": "Texture Types",
+      "function": "Static harmony, shifting timbre"
+    },
+    {
+      "name": "Pointillistic",
+      "section": "Texture Types",
+      "function": "Individual notes in isolated instruments, wide leaps"
+    },
+    {
+      "name": "Transparent counterpoint",
+      "section": "Texture Types",
+      "function": "2\u20134 voices, each audible, no blending"
+    },
+    {
+      "name": "Melodrama (Sprechstimme)",
+      "section": "Texture Types",
+      "function": "Speaking voice + sparse chamber ensemble"
+    }
+  ],
   "source_file": "orchestration.md"
 }

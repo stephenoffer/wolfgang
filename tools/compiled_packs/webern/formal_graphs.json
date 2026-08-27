@@ -13,6 +13,22 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "binary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

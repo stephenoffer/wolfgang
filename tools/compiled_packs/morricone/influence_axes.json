@@ -1,4 +1,79 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Created the entire sonic language"
+    },
+    {
+      "composer": "Sparse, eclectic instrumentation model"
+    },
+    {
+      "composer": "Morricone tracks in *Kill Bill*, *Inglourious Basterds*; original score for *Hateful Eight"
+    },
+    {
+      "composer": "Showed that film music need not sound \"Hollywood\""
+    },
+    {
+      "composer": "Cites Morricone as primary influence; eclectic timbres, emotional directness"
+    },
+    {
+      "composer": "Greenwood's film scores (*There Will Be Blood*) echo Morricone's avant-garde + tonal mix"
+    },
+    {
+      "composer": "Son; continues the family scoring tradition"
+    },
+    {
+      "composer": "Morricone"
+    },
+    {
+      "composer": "P\u00e4rt"
+    },
+    {
+      "composer": "Williams"
+    },
+    {
+      "composer": "Herrmann"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Zimmer"
+    },
+    {
+      "composer": "Greenwood"
+    },
+    {
+      "composer": "Desplat"
+    },
+    {
+      "composer": "Sakamoto"
+    },
+    {
+      "composer": "Indie film scoring generally"
+    }
+  ],
+  "comparative_axes": {
+    "Influence on Later Film Scoring": [
+      "Created the entire sonic language",
+      "Sparse, eclectic instrumentation model",
+      "Morricone tracks in *Kill Bill*, *Inglourious Basterds*; original score for *Hateful Eight*",
+      "Showed that film music need not sound \"Hollywood\"",
+      "Cites Morricone as primary influence; eclectic timbres, emotional directness",
+      "Greenwood's film scores (*There Will Be Blood*) echo Morricone's avant-garde + tonal mix",
+      "Son; continues the family scoring tradition"
+    ],
+    "Direct Descendants / Influenced": [
+      "Zimmer",
+      "Greenwood",
+      "Desplat",
+      "Sakamoto",
+      "Indie film scoring generally"
+    ],
+    "Comparative Silence Usage": [
+      "Morricone",
+      "P\u00e4rt",
+      "Williams",
+      "Zimmer",
+      "Herrmann"
+    ]
+  }
 }

@@ -1,9 +1,17 @@
 {
   "composer": "style__renaissance",
   "genre": "",
-  "support_tier": "D",
+  "support_tier": "C",
   "corpus_bar_count": 0,
-  "profile_files": [],
+  "profile_files": [
+    "composition-guide.md",
+    "formal-approach.md",
+    "harmonic-language.md",
+    "melodic-style.md",
+    "orchestration.md",
+    "palestrina-devices.md",
+    "palestrina-lh-vocabulary.md"
+  ],
   "corpus_files": [],
   "pattern_count": 0
 }

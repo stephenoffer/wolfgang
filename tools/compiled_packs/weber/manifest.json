@@ -1,6 +1,6 @@
 {
   "composer": "weber",
-  "genre": "romantic",
+  "genre": "",
   "support_tier": "B",
   "corpus_bar_count": 241,
   "profile_files": [
@@ -8,10 +8,13 @@
     "formal-approach.md",
     "harmonic-language.md",
     "melodic-style.md",
-    "orchestration.md"
+    "orchestration.md",
+    "weber-devices.md",
+    "weber-lh-vocabulary.md"
   ],
   "corpus_files": [
     "bar_index.json",
+    "bars_00.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",

@@ -1,71 +1,71 @@
 [
   {
-    "id": "melodic_voice_leitmotif_counterpoint",
+    "id": "melodic_voice_leitmotif_as_melodic_unit",
     "category": "composer_melodic_voice",
-    "description": "Leitmotif counterpoint: 3\u20135 Leitmotifs sounding simultaneously in different instruments, tempos, registers",
+    "description": "Leitmotif as melodic unit: Short (3\u20138 notes), rhythmically distinctive, harmonically bound; a symbol, not a theme",
     "parameters": {
-      "feature": "Leitmotif counterpoint",
-      "note": "Gotterdammerung Funeral March; Immolation Scene; Siegfried Act III awakening"
+      "feature": "Leitmotif as melodic unit",
+      "note": "All mature works; the fabric of Wagnerian texture"
     },
     "conditions": {},
     "grounding": "profile",
     "source_file": "wagner/melodic-style.md"
   },
   {
-    "id": "melodic_voice_melodic_deceleration",
+    "id": "melodic_voice_endless_melody",
     "category": "composer_melodic_voice",
-    "description": "Melodic deceleration: Leitmotifs presented at half or quarter their original speed; the motif becomes landscape",
+    "description": "Endless melody: No cadences within phrases; phrases elide; melody continues for 16\u201332+ bars",
     "parameters": {
-      "feature": "Melodic deceleration",
-      "note": "Parsifal transformation music; Grail approach; Parsifal Prelude"
+      "feature": "Endless melody",
+      "note": "Tristan throughout, Ring love scenes, Parsifal"
     },
     "conditions": {},
     "grounding": "profile",
     "source_file": "wagner/melodic-style.md"
   },
   {
-    "id": "melodic_voice_vocal_line_simplification",
+    "id": "melodic_voice_vocal_line_as_speech_melody",
     "category": "composer_melodic_voice",
-    "description": "Vocal line simplification: Voice often reduced to monotone declamation; orchestra carries all melodic content",
+    "description": "Vocal line as speech-melody: Singers declaim rather than sing arias; the line follows German speech rhythm",
     "parameters": {
-      "feature": "Vocal line simplification",
-      "note": "Parsifal Act I: Gurnemanz narrates on 2\u20133 pitches while orchestra unfolds"
+      "feature": "Vocal line as speech-melody",
+      "note": "All music-dramas from Dutchman onward"
     },
     "conditions": {},
     "grounding": "profile",
     "source_file": "wagner/melodic-style.md"
   },
   {
-    "id": "melodic_voice_the_summing_gesture",
+    "id": "melodic_voice_orchestral_melody_as_true_voice",
     "category": "composer_melodic_voice",
-    "description": "The \"summing\" gesture: Leitmotifs recalled in sequence \u2014 each one a chapter of biography",
+    "description": "Orchestral melody as true voice: The orchestra carries the \"real\" melody \u2014 the character's unconscious truth",
     "parameters": {
-      "feature": "The \"summing\" gesture",
-      "note": "Funeral March: Siegfried's life told through his motifs in chronological order"
+      "feature": "Orchestral melody as true voice",
+      "note": "Tristan Act II, Walkure Act I, Parsifal Act III"
     },
     "conditions": {},
     "grounding": "profile",
     "source_file": "wagner/melodic-style.md"
   },
   {
-    "id": "melodic_voice_diatonic_purification_parsifal",
+    "id": "melodic_voice_chromatic_inflection",
     "category": "composer_melodic_voice",
-    "description": "Diatonic purification (Parsifal): Late Leitmotifs built from triadic intervals and stepwise motion; chromatic complexity reserved for Klingsor",
+    "description": "Chromatic inflection: Melodies incorporate chromatic neighbor tones, appoggiaturas, and passing tones constantly",
     "parameters": {
-      "feature": "Diatonic purification (Parsifal)",
-      "note": "Grail motif, Communion motif, Faith motif \u2014 all diatonic, all slow"
+      "feature": "Chromatic inflection",
+      "note": "Tristan, Parsifal, late Ring"
     },
     "conditions": {},
     "grounding": "profile",
     "source_file": "wagner/melodic-style.md"
   },
   {
-    "id": "melodic_voice_fragmentation_into_silence",
+    "id": "melodic_voice_transformation_technique",
     "category": "composer_melodic_voice",
-    "description": "Fragmentation into silence: A Leitmotif states only its first 2\u20133 notes, then rests; the silence completes the thought",
+    "description": "Transformation technique: Leitmotifs appear in inversion, augmentation, diminution, fragmentation, and recombination",
     "parameters": {
-      "feature": "Fragmentation into silence",
-      "note": "Parsifal Act III; the final pages of Gotterdammerung"
+      "feature": "Transformation technique",
+      "note": "Ring cycle throughout \u2014 same motif means different things"
     },
     "conditions": {},
     "grounding": "profile",

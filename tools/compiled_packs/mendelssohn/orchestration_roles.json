@@ -1,4 +1,61 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin 1 (or cello in tenor register)",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Cantabile, espressivo"
+    },
+    {
+      "name": "Cello (or oboe)",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Gentle, complementary line \u2014 fills rests in the melody"
+    },
+    {
+      "name": "Violin 2 + viola, sustained or tremolo",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Warm harmonic carpet"
+    },
+    {
+      "name": "Cello + bass, pizzicato or sustained",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Harmonic foundation, 1 note per bar"
+    },
+    {
+      "name": "Horn held note, or clarinet sustained 3rd",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Adds warmth without weight"
+    },
+    {
+      "name": "Elfin staccato strings, woodwind shimmer, minimal brass",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Overture (fairy)"
+    },
+    {
+      "name": "Full Beethovenian sonata orchestra with clear sections",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Overture (dramatic)"
+    },
+    {
+      "name": "Singing strings, woodwind solos, horn pedals",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Symphony slow mvt"
+    },
+    {
+      "name": "Fairy-scherzo OR robust dance (saltarello in Italian Symphony)",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Symphony scherzo"
+    },
+    {
+      "name": "Solo instrument against reduced orchestra; dialogue, not competition",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Concerto"
+    },
+    {
+      "name": "Chorus as primary mass; orchestra supports, does not overwhelm",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Oratorio"
+    }
+  ],
   "source_file": "orchestration.md"
 }

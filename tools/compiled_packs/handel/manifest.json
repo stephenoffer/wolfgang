@@ -1,8 +1,8 @@
 {
   "composer": "handel",
-  "genre": "baroque",
+  "genre": "",
   "support_tier": "B",
-  "corpus_bar_count": 54,
+  "corpus_bar_count": 1794,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -18,10 +18,12 @@
   ],
   "corpus_files": [
     "bar_index.json",
+    "bars_00.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",
-    "window_index_00.json"
+    "window_index_00.json",
+    "window_index_01.json"
   ],
   "pattern_count": 54
 }

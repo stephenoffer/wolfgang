@@ -78,80 +78,15 @@
     "source_file": "wagner/harmonic-language.md"
   },
   {
-    "id": "cad_deceptive_resolution",
-    "type": "Deceptive resolution",
-    "approach_chords": [],
-    "soprano_line": [],
-    "bass_motion": "",
-    "usage": "V -> not-I",
-    "inner_voice_rules": [],
-    "strength": 3,
-    "typical_texture": "",
-    "preparation_bars": 2,
-    "source_file": "wagner/harmonic-language.md"
-  },
-  {
-    "id": "cad_evaded_cadence",
-    "type": "Evaded cadence",
-    "approach_chords": [],
-    "soprano_line": [],
-    "bass_motion": "",
-    "usage": "V -> I becomes V -> I6 or IV6",
-    "inner_voice_rules": [],
-    "strength": 3,
-    "typical_texture": "",
-    "preparation_bars": 2,
-    "source_file": "wagner/harmonic-language.md"
-  },
-  {
-    "id": "cad_interrupted_cadence",
-    "type": "Interrupted cadence",
-    "approach_chords": [],
-    "soprano_line": [],
-    "bass_motion": "",
-    "usage": "New phrase interrupts before resolution",
-    "inner_voice_rules": [],
-    "strength": 3,
-    "typical_texture": "",
-    "preparation_bars": 2,
-    "source_file": "wagner/harmonic-language.md"
-  },
-  {
-    "id": "cad_elided_cadence",
-    "type": "Elided cadence",
-    "approach_chords": [],
-    "soprano_line": [],
-    "bass_motion": "",
-    "usage": "Arrival = new departure",
-    "inner_voice_rules": [],
-    "strength": 3,
-    "typical_texture": "",
-    "preparation_bars": 2,
-    "source_file": "wagner/harmonic-language.md"
-  },
-  {
-    "id": "cad_plagal_substitution",
-    "type": "Plagal substitution",
-    "approach_chords": [],
-    "soprano_line": [],
-    "bass_motion": "",
-    "usage": "IV replaces V for cadence",
-    "inner_voice_rules": [],
-    "strength": 3,
-    "typical_texture": "",
-    "preparation_bars": 2,
-    "source_file": "wagner/harmonic-language.md"
-  },
-  {
-    "id": "cad_modal_cadence",
-    "type": "Modal cadence",
+    "id": "cad_plagal_with_added_6th",
+    "type": "Plagal with added 6th",
     "approach_chords": [
-      "bVII",
-      "i"
+      "IV",
+      "I"
     ],
     "soprano_line": [],
-    "bass_motion": "7-1",
-    "usage": "Archaic, open",
+    "bass_motion": "4-1",
+    "usage": "Warm, hymn-like",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",
@@ -159,12 +94,81 @@
     "source_file": "wagner/harmonic-language.md"
   },
   {
-    "id": "cad_dissolution",
-    "type": "Dissolution",
-    "approach_chords": [],
+    "id": "cad_chromatic_plagal",
+    "type": "Chromatic plagal",
+    "approach_chords": [
+      "iv",
+      "I"
+    ],
     "soprano_line": [],
-    "bass_motion": "",
-    "usage": "Harmony dissolves rather than resolves",
+    "bass_motion": "4-1",
+    "usage": "Darker plagal",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_deceptive_to_bvi",
+    "type": "Deceptive to bVI",
+    "approach_chords": [
+      "V",
+      "bVI"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-6",
+    "usage": "Expansive, unexpected",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_evaded",
+    "type": "Evaded",
+    "approach_chords": [
+      "V",
+      "I6"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "Continuation required",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_half_cadence_on_v_with_app",
+    "type": "Half-cadence on V with app.",
+    "approach_chords": [
+      "ii",
+      "I64",
+      "V"
+    ],
+    "soprano_line": [],
+    "bass_motion": "2-1-5",
+    "usage": "Extended suspense",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "wagner/harmonic-language.md"
+  },
+  {
+    "id": "cad_romantic_pac",
+    "type": "Romantic PAC",
+    "approach_chords": [
+      "I64",
+      "V7",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "1-5-1",
+    "usage": "Full Romantic",
     "inner_voice_rules": [],
     "strength": 3,
     "typical_texture": "",

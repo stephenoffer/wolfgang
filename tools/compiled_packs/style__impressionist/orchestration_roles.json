@@ -1,4 +1,201 @@
 {
- "instruments": {},
- "source_file": "orchestration.md"
+  "instruments": {
+    "flute": {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Primary melodic voice; pastoral, sensuous",
+      "register": "Low register (C4-A4): breathy, intimate. High: bright, birdlike"
+    },
+    "oboe": {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Plaintive color; rarely melodic lead",
+      "register": "Middle register solos; paired with English horn for warmth"
+    },
+    "english_horn": {
+      "name": "English horn",
+      "section": "Instrument Roles",
+      "function": "Melancholy distance; rare but distinctive",
+      "register": "Used for specific emotional color \u2014 distance, nostalgia"
+    },
+    "clarinet": {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Warm dark color; nocturnal quality",
+      "register": "Chalumeau register (low): dark warmth. High: bright singing"
+    },
+    "bassoon": {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Low wind color; sardonic or pastoral",
+      "register": "Not comic (as in Mozart); atmospheric, adding depth"
+    },
+    "horn": {
+      "name": "Horn",
+      "section": "Instrument Roles",
+      "function": "Sustained background; distant calls",
+      "register": "Muted horns for veiled color; open horns for noble distance"
+    },
+    "trumpet": {
+      "name": "Trumpet",
+      "section": "Instrument Roles",
+      "function": "Rare; brilliant accent when used",
+      "register": "Muted: delicate. Open: only at genuine climaxes"
+    },
+    "trombone": {
+      "name": "Trombone",
+      "section": "Instrument Roles",
+      "function": "Very rare; archaic or dramatic weight",
+      "register": "La cath\u00e9drale engloutie orchestration; processional"
+    },
+    "harp_(1-2)": {
+      "name": "Harp (1-2)",
+      "section": "Instrument Roles",
+      "function": "Harmonic color, water imagery, structural",
+      "register": "Arpeggiated chords, bisbigliando, glissandi, harmonics"
+    },
+    "celesta": {
+      "name": "Celesta",
+      "section": "Instrument Roles",
+      "function": "Sparkle, magic, high shimmer",
+      "register": "Reinforces high-register textures; bell-like quality"
+    },
+    "timpani": {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rumble, distant thunder; not rhythmic drive",
+      "register": "Rolls ppp \u2014 atmospheric, not punctuating"
+    },
+    "violin_i_(div.)": {
+      "name": "Violin I (div.)",
+      "section": "Instrument Roles",
+      "function": "Shimmer, high melody, harmonic halo",
+      "register": "Divided into 3-4 parts; high tremolo; muted for distant quality"
+    },
+    "violin_ii_(div.)": {
+      "name": "Violin II (div.)",
+      "section": "Instrument Roles",
+      "function": "Inner texture, independent of Vln I",
+      "register": "Not merely doubling Vln I \u2014 distinct harmonic layer"
+    },
+    "viola_(div.)": {
+      "name": "Viola (div.)",
+      "section": "Instrument Roles",
+      "function": "Warm middle color",
+      "register": "Divided for rich inner texture; sometimes melodic"
+    },
+    "cello_(div.)": {
+      "name": "Cello (div.)",
+      "section": "Instrument Roles",
+      "function": "Singing line or deep resonance",
+      "register": "Solo cello for intimate melody; divided for warmth"
+    },
+    "double_bass": {
+      "name": "Double bass",
+      "section": "Instrument Roles",
+      "function": "Foundation, deep pedal tones",
+      "register": "Rarely busy; sustained pedals, pizzicato punctuation"
+    }
+  },
+  "textures": [
+    {
+      "name": "Shimmer",
+      "section": "Orchestral Textures"
+    },
+    {
+      "name": "Pastoral solo",
+      "section": "Orchestral Textures"
+    },
+    {
+      "name": "Water",
+      "section": "Orchestral Textures"
+    },
+    {
+      "name": "Bell/Cathedral",
+      "section": "Orchestral Textures"
+    },
+    {
+      "name": "Wind choir",
+      "section": "Orchestral Textures"
+    },
+    {
+      "name": "Climactic wash",
+      "section": "Orchestral Textures"
+    },
+    {
+      "name": "Clarinet, flute, trumpet (solo, not doubled)",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Simple tunes, often folk-like or ragtime"
+    },
+    {
+      "name": "Strings (reduced), piano",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Static chords, repeated patterns"
+    },
+    {
+      "name": "Percussion expanded",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Driving pulse, mechanical quality"
+    },
+    {
+      "name": "Typewriter, lottery wheel, pistol shots, siren",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Collage elements \u2014 treated as equal to musical sounds"
+    },
+    {
+      "name": "Flute",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Strings",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Piano",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Percussion",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Melody + chordal accompaniment",
+      "section": "Texture Classification",
+      "genre": "Gymnopedies, Gnossiennes (95% of piano works)"
+    },
+    {
+      "name": "Monophonic chant",
+      "section": "Texture Classification",
+      "genre": "Ogives passages"
+    },
+    {
+      "name": "Block chords",
+      "section": "Texture Classification",
+      "genre": "Sonneries, Rose+Croix works"
+    },
+    {
+      "name": "Cubist collage",
+      "section": "Texture Classification",
+      "genre": "Parade"
+    },
+    {
+      "name": "White-note austerity",
+      "section": "Texture Classification",
+      "genre": "Socrate"
+    },
+    {
+      "name": "Ambient loop",
+      "section": "Texture Classification",
+      "genre": "Furniture music"
+    }
+  ],
+  "source_file": "orchestration.md"
 }

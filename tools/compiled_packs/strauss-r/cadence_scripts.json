@@ -117,6 +117,51 @@
     "source_file": "strauss-r/harmonic-language.md"
   },
   {
+    "id": "cad_pac_authentic_close",
+    "type": "PAC (authentic close)",
+    "approach_chords": [
+      "V7",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "The late-Romantic idiom defers cadences for pages; when a plan asks for a real PAC it should be a structural event, at the end of a large section, and it should feel earned by everything that avoided one before it",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "strauss-r/harmonic-language.md"
+  },
+  {
+    "id": "cad_hc_half_close",
+    "type": "HC (half close)",
+    "approach_chords": [],
+    "soprano_line": [],
+    "bass_motion": "",
+    "usage": "Arrival on V, often a dominant ninth or thirteenth, held and coloured rather than plain",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "strauss-r/harmonic-language.md"
+  },
+  {
+    "id": "cad_iac_weak_close",
+    "type": "IAC (weak close)",
+    "approach_chords": [
+      "V",
+      "I"
+    ],
+    "soprano_line": [],
+    "bass_motion": "5-1",
+    "usage": "The default close: an arrival that keeps the music moving",
+    "inner_voice_rules": [],
+    "strength": 3,
+    "typical_texture": "",
+    "preparation_bars": 2,
+    "source_file": "strauss-r/harmonic-language.md"
+  },
+  {
     "id": "cad_elided_cadence",
     "type": "Elided cadence",
     "approach_chords": [],

@@ -1,4 +1,87 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Corelli",
+      "absorbed": "Concerto grosso form, balanced phrases, trio sonata",
+      "heard_in": "Grand Concertos Op. 6"
+    },
+    {
+      "composer": "A. Scarlatti",
+      "absorbed": "Da capo aria structure, vocal ornamentation",
+      "heard_in": "Italian operas (Agrippina, Rinaldo)"
+    },
+    {
+      "composer": "Steffani",
+      "absorbed": "Italian opera dramaturgy, recitative style",
+      "heard_in": "Hamburg and Italian period operas"
+    },
+    {
+      "composer": "Vivaldi",
+      "absorbed": "Ritornello energy, driving rhythms, concerto brilliance",
+      "heard_in": "Organ concertos, orchestral writing"
+    },
+    {
+      "composer": "Purcell",
+      "absorbed": "English choral tradition, word-painting, anthem form",
+      "heard_in": "Chandos Anthems, coronation anthems"
+    },
+    {
+      "composer": "Keiser",
+      "absorbed": "Hamburg operatic style, orchestral color",
+      "heard_in": "Early Hamburg operas (Almira)"
+    },
+    {
+      "composer": "Lully",
+      "absorbed": "French overture form, ceremonial grandeur",
+      "heard_in": "Overtures to operas and oratorios"
+    },
+    {
+      "composer": "Zachow",
+      "absorbed": "German organ/chorale tradition, counterpoint",
+      "heard_in": "Early cantatas, organ concertos"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Haydn",
+      "absorbed": "Oratorio as concert genre; choral grandeur",
+      "heard_in": "The Creation, The Seasons \u2014 directly inspired by Messiah"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Orchestrated Messiah (1789); choral+orchestral integration",
+      "heard_in": "Requiem \u2014 Handelian choral drama in Classical language"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "\"Handel is the greatest composer who ever lived\" \u2014 grand public gesture",
+      "heard_in": "Missa Solemnis, Ninth Symphony choral finale"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Oratorio tradition, English choral festival culture",
+      "heard_in": "Elijah \u2014 Handelian drama in Romantic harmony"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "English oratorio lineage, ceremonial writing",
+      "heard_in": "Dream of Gerontius, Pomp and Circumstance"
+    },
+    {
+      "composer": "Sullivan",
+      "absorbed": "English dramatic vocal tradition, clear melody",
+      "heard_in": "Savoy operas \u2014 Handel's directness in comic form"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Studied Handel's keyboard works; variation technique",
+      "heard_in": "Variations on a Theme of Handel Op. 24"
+    },
+    {
+      "composer": "British choral tradition",
+      "absorbed": "Three Choirs Festival, Proms \u2014 Handel became England's national composer",
+      "heard_in": "250+ years of continuous Messiah performances"
+    }
+  ],
   "comparative_axes": {}
 }

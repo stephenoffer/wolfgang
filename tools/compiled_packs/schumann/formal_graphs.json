@@ -13,6 +13,30 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "character piece": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "arch": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cyclic": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

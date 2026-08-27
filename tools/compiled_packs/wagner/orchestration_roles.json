@@ -1,4 +1,201 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "16-16-12-12-8 (Vln I, II, Vla, Vc, Cb); frequent divisi",
+      "section": "The Wagner Orchestra",
+      "function": "Atmospheric fabric; sustained tremolo; chromatic inner voices; orchestral \"ocean\""
+    },
+    {
+      "name": "3 Fl (+ picc), 3 Ob (+ cor anglais), 3 Cl (+ bass cl), 3 Bsn (+ contrabsn)",
+      "section": "The Wagner Orchestra",
+      "function": "Leitmotif carriers; timbral identity; soloistic color"
+    },
+    {
+      "name": "8 Hn, 3 Tpt, bass trumpet, 4 Wagner tubas, 3 Tbn, contrabass tbn, contrabass tuba",
+      "section": "The Wagner Orchestra",
+      "function": "Structural weight; Leitmotif proclamation; harmonic sustain; the backbone"
+    },
+    {
+      "name": "2\u20133 Timp, cymbals, triangle, glockenspiel, tam-tam",
+      "section": "The Wagner Orchestra",
+      "function": "Structural punctuation; thunder; magic; always specific, never generic"
+    },
+    {
+      "name": "6 harps in Rheingold; typically 2",
+      "section": "The Wagner Orchestra",
+      "function": "Arpeggiated texture; water, light, enchantment"
+    },
+    {
+      "name": "Stierhorn (bull's horn), anvils (18 in Rheingold), thunder machine",
+      "section": "The Wagner Orchestra",
+      "function": "Theatrical effect; Wagner demands the impossible"
+    },
+    {
+      "name": "Violin I (16)",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II (16)",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola (12)",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello (12)",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass (8)",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Winds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Winds"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Winds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Winds"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Winds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Winds"
+    },
+    {
+      "name": "Contrabassoon",
+      "section": "Winds"
+    },
+    {
+      "name": "Horn (8)",
+      "section": "Brass"
+    },
+    {
+      "name": "Wagner tuba (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (3 + bass tpt)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3 + contrabass)",
+      "section": "Brass"
+    },
+    {
+      "name": "Contrabass tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Full symphonic fabric",
+      "section": "Orchestral Texture Types",
+      "function": "All sections active; Leitmotifs in 3\u20135 layers; voice rides on top",
+      "genre": "Climactic scenes; Gotterdammerung Immolation"
+    },
+    {
+      "name": "Atmospheric shimmer",
+      "section": "Orchestral Texture Types",
+      "function": "High string tremolo pp, sustained wind chords, solo instrument emerges",
+      "genre": "Forest Murmurs, Lohengrin Prelude"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Wagner tubas + horns + trombones in slow, sustained harmony",
+      "genre": "Valhalla entries, Parsifal Grail scene"
+    },
+    {
+      "name": "Solo instrument + string cushion",
+      "section": "Orchestral Texture Types",
+      "function": "One wind solo over pp string sustained chords",
+      "genre": "Tristan Act III cor anglais, many Parsifal passages"
+    },
+    {
+      "name": "Orchestral unison",
+      "section": "Orchestral Texture Types",
+      "function": "Entire orchestra on one Leitmotif in octaves",
+      "genre": "Climactic Leitmotif statements; Curse motif revelation"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Types",
+      "function": "2\u20134 instruments only; rare but devastating",
+      "genre": "Parsifal Act I communion approach; Tristan Act III delirium"
+    },
+    {
+      "name": "Crescendo wave",
+      "section": "Orchestral Texture Types",
+      "function": "Building from pp to fff over 16\u201364 bars; instruments enter one by one",
+      "genre": "Lohengrin Prelude; Rheingold Prelude (Eb pedal 136 bars)"
+    },
+    {
+      "name": "Leitmotif polyphony",
+      "section": "Late-Period Orchestral Textures",
+      "function": "3\u20135 Leitmotifs in different instruments, registers, dynamics, simultaneously"
+    },
+    {
+      "name": "Sacred chorale",
+      "section": "Late-Period Orchestral Textures",
+      "function": "Wagner tubas + horns + trombones in slow, widely-spaced harmony; pppp\u2013pp"
+    },
+    {
+      "name": "Atmospheric tremolo",
+      "section": "Late-Period Orchestral Textures",
+      "function": "High strings divided into 6\u20138 parts, each sustaining different note, pppp tremolo"
+    },
+    {
+      "name": "Orchestral unison crescendo",
+      "section": "Late-Period Orchestral Textures",
+      "function": "Single motif stated by one instrument, then doubled section by section over 16\u201364 bars"
+    },
+    {
+      "name": "Chamber transparency",
+      "section": "Late-Period Orchestral Textures",
+      "function": "2\u20134 solo instruments over silence; the 120-piece orchestra reduced to whispers"
+    },
+    {
+      "name": "Total saturation",
+      "section": "Late-Period Orchestral Textures",
+      "function": "Every instrument playing; octave doublings across 5 octaves; the Immolation sound"
+    },
+    {
+      "name": "Horn 1\u20134",
+      "section": "Brass in the Late Works",
+      "function": "Solo Leitmotif statements; heroic calls; Siegfried's horn call"
+    },
+    {
+      "name": "Horn 5\u20138 / Wagner tubas",
+      "section": "Brass in the Late Works",
+      "function": "Sacred chorale; Valhalla; harmonic sustain beneath everything"
+    },
+    {
+      "name": "Trumpet (3 + bass)",
+      "section": "Brass in the Late Works",
+      "function": "Fanfare and proclamation; reserved for structural arrivals; rarer than middle period"
+    },
+    {
+      "name": "Trombone (3 + contrabass)",
+      "section": "Brass in the Late Works",
+      "function": "Fate, divine judgment, chorale weight; Parsifal communion authority"
+    },
+    {
+      "name": "Contrabass tuba",
+      "section": "Brass in the Late Works",
+      "function": "Deepest pedal; Fafner; the abyss; Parsifal bass foundation"
+    }
+  ],
   "source_file": "orchestration.md"
 }

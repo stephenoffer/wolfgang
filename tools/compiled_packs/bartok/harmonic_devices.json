@@ -8,7 +8,7 @@
       "Dense but not directionless"
     ],
     "frequency_weight": 0.12,
-    "emotional_color": "",
+    "emotional_color": "Dense but not directionless",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Increasing tension as pitches approach"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Increasing tension as pitches approach",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -33,7 +33,7 @@
       "static"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Night music; mysterious",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -45,7 +45,7 @@
       "Climax = maximum chromatic density"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Climax = maximum chromatic density",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -58,7 +58,7 @@
       "Stravinsky Petrushka chord"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Milhaud",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -71,7 +71,7 @@
       "Milhaud"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Ives",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -83,7 +83,7 @@
       "Iconic bitonal sonority"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Iconic bitonal sonority",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -95,7 +95,7 @@
       "Independence of strata"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Independence of strata",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -107,7 +107,7 @@
       "Tension without atonality"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tension without atonality",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -119,7 +119,7 @@
       "Stravinsky Pulcinella"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky Pulcinella",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -131,7 +131,7 @@
       "Prokofiev"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Prokofiev",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -144,7 +144,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Copland",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -156,7 +156,47 @@
       "Mixolydian bVII-I"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mixolydian bVII-I",
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "pac_authentic_close",
+    "name": "PAC (authentic close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+      "not from a dominant: the bass lands on the tonic",
+      "the texture stops moving",
+      "and that is the close. V7-I in this idiom reads as quotation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "hc_half_close",
+    "name": "HC (half close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+      "not from a chord that demands resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+    "source_file": "bartok/harmonic-language.md"
+  },
+  {
+    "id": "iac_weak_close",
+    "name": "IAC (weak close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "An arrival that does not fully close"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "An arrival that does not fully close",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -168,7 +208,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -181,7 +221,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Ravel",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -193,7 +233,7 @@
       "Low-Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Low-Medium",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -205,7 +245,7 @@
       "High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "High",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -217,7 +257,7 @@
       "Very High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Very High",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -229,7 +269,7 @@
       "Medium-Low"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Medium-Low",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -241,7 +281,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -253,7 +293,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "bartok/harmonic-language.md"
   },
   {
@@ -265,7 +305,7 @@
       "Variable"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Variable",
     "source_file": "bartok/harmonic-language.md"
   }
 ]

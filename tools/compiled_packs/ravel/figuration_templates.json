@@ -1,5 +1,111 @@
 [
   {
+    "id": "lh_idiom_precise_ostinato",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Precise ostinato",
+    "description": "a figure repeated exactly, in strict time, for pages. The *Bol\u00e9ro* principle applies everywhere in his music.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_wide_arpeggios_cleanly_voiced",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide arpeggios, cleanly voiced",
+    "description": "every note audible rather than washed together.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_parallel_chords_in_strict_rhythm",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Parallel chords in strict rhythm",
+    "description": "planing, but rhythmically exact.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_dance_form_accompaniment",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Dance-form accompaniment",
+    "description": "waltz, forlane, rigaudon, pavane. The bass keeps the dance.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_added_note_chords_in_close_position",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Added-note chords in close position",
+    "description": "`[C3,D3,F3,G3]`, crisp rather than resonant.",
+    "shorthand": "[C3,D3,F3,G3]",
+    "events": 1,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_repeated_notes_as_a_mechanism",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated notes as a mechanism",
+    "description": "clockwork, music-box, machine textures.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_bare_fifths_in_the_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare fifths in the bass",
+    "description": "for archaism, especially in the neoclassical works.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_spanish_idiom",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Spanish idiom",
+    "description": "habanera rhythm, guitar-like strummed chords, drone fifths.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_independent_contrapuntal_bass",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Independent contrapuntal bass",
+    "description": "cleaner and more classical than Debussy's.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_extreme_register_separation",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Extreme register separation",
+    "description": "very low and very high with a deliberate gap in the middle.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "lh_idiom_cascading_arpeggio_across_the_full_keyboard",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cascading arpeggio across the full keyboard",
+    "description": "as a virtuoso gesture.",
+    "source_file": "ravel/ravel-lh-vocabulary.md",
+    "grounding": "profile"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +123,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +141,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +159,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +182,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +229,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +251,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +273,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +316,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +339,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +363,189 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_added_note_and_extended_chords",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Added-note and extended chords",
+    "description": "ninths, elevenths, added sixths, used as stable sonorities.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_planing",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Planing",
+    "description": "but in strict rhythm.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_modal_writing",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal writing",
+    "description": "Dorian, Phrygian, and the Spanish Phrygian with its major third.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_bitonal_touches",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bitonal touches",
+    "description": "a melody in one key over an ostinato in another.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_unresolved_appoggiaturas",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved appoggiaturas",
+    "description": "left standing as colour.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_whole_tone_and_octatonic_passages",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone and octatonic passages",
+    "description": "as transitional colour.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_a_functional_bass_under_non_functional_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "A functional bass under non-functional harmony",
+    "description": "the progression still moves somewhere, unlike Debussy.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_exact_ostinato",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Exact ostinato",
+    "description": "the same figure, unvaried, accumulating.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_mechanical_repetition_as_a_form",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Mechanical repetition as a form",
+    "description": "a single crescendo over an unchanging pattern.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_dance_rhythms",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Dance rhythms",
+    "description": "waltz, habanera, bolero, forlane, each precisely characterised.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_clockwork_textures",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Clockwork textures",
+    "description": "music-box, automaton, precise and glittering.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_extreme_register_contrast",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Extreme register contrast",
+    "description": "with a deliberate empty middle.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_virtuoso_cascades",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Virtuoso cascades",
+    "description": "glissandi, rapid parallel chords, cross-hand leaps.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_orchestral_thinking_at_the_keyboard",
+    "category": "composer_device",
+    "section": "Rhythmic and textural devices",
+    "name": "Orchestral thinking at the keyboard",
+    "description": "each layer is a different instrument.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_classical_forms",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Classical forms",
+    "description": "sonata, rondo, variation, suite of dances. Clearly articulated.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_single_long_crescendo",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The single long crescendo",
+    "description": "as an entire movement's shape.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_neoclassical_pastiche",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Neoclassical pastiche",
+    "description": "an eighteenth-century form with twentieth-century harmony.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_the_tombeau",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The tombeau",
+    "description": "a suite of baroque dances as memorial.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_a_quiet_exact_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "A quiet, exact ending",
+    "description": "precise rather than evaporating.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
+  },
+  {
+    "id": "device_orchestration_as_composition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Orchestration as composition",
+    "description": "the colour changes are structural.",
+    "source_file": "ravel/ravel-devices.md",
+    "grounding": "profile"
   }
 ]

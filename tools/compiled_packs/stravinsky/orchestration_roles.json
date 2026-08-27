@@ -1,4 +1,72 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Bassoon (high register)",
+      "section": "Woodwinds (Stravinsky's Primary Voice)"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds (Stravinsky's Primary Voice)"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds (Stravinsky's Primary Voice)"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds (Stravinsky's Primary Voice)"
+    },
+    {
+      "name": "Cor Anglais",
+      "section": "Woodwinds (Stravinsky's Primary Voice)"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Stratified layers",
+      "section": "Texture Types",
+      "function": "3\u20134 independent ostinato layers, each in its own key/meter"
+    },
+    {
+      "name": "Antiphonal blocks",
+      "section": "Texture Types",
+      "function": "Groups alternate without overlap"
+    },
+    {
+      "name": "Chamber transparency",
+      "section": "Texture Types",
+      "function": "2\u20133 voices, each fully exposed"
+    },
+    {
+      "name": "Tutti rhythmic unison",
+      "section": "Texture Types",
+      "function": "Entire orchestra on same rhythm, different pitches"
+    },
+    {
+      "name": "Pointillistic",
+      "section": "Texture Types",
+      "function": "Single notes in isolation, surrounded by silence"
+    },
+    {
+      "name": "Chorale homophony",
+      "section": "Texture Types",
+      "function": "Block chords, hymn-like, wind-dominated"
+    }
+  ],
   "source_file": "orchestration.md"
 }

@@ -1,4 +1,91 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl (Bb), 2 Bsn",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Lyrical transformations; pastoral color; doubling"
+    },
+    {
+      "name": "4 Hn (F), 3 Tpt (C/Bb), 3 Tbn, Tuba",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Heroic transformations; chorale; climax weight"
+    },
+    {
+      "name": "Timp (3), Cymbals, Triangle, Bass Drum",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Punctuation; climactic moments; Hungarian color"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Foundation; all transformations; tremolo; arco/pizz contrast"
+    },
+    {
+      "name": "Harp (1-2), Organ (sacred works)",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Arpeggiated color; sacred gravity"
+    },
+    {
+      "name": "Heroic unison",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Pastoral lyric",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Tremolo storm",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Chorale",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Full tutti",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Pizzicato underpinning",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Divided strings",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Brass (Hn + Tpt) + Strings unison",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Solo Ob or Cl over string arpeggios",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Fl + Cl in 3rds, harp arpeggios",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Low strings (Vc/Cb) + bass clarinet",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Muted brass + timpani; low strings",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Full brass choir, organ",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Vln solo + pizz strings; triangle, cymbal",
+      "section": "Thematic Transformation Through Orchestration"
+    }
+  ],
   "source_file": "orchestration.md"
 }

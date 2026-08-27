@@ -9,7 +9,7 @@
       "then corrects to tonic"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Theme returns in wrong key",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -21,7 +21,7 @@
       "Fortissimo chord where piano was expected (or reverse)"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Fortissimo chord where piano was expected (or reverse)",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -34,7 +34,7 @@
       "followed by pause"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "V-vi where V-I was expected",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -46,7 +46,7 @@
       "First theme restated in dominant as \"second theme\""
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "First theme restated in dominant as \"second theme\"",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -60,7 +60,7 @@
       "or enharmonic territory"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sudden arrival in bVI",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -72,7 +72,7 @@
       "Bass holds V for 8-16 bars while upper voices avoid resolution"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Bass holds V for 8-16 bars while upper voices avoid resolution",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -84,7 +84,7 @@
       "Multiple deceptive cadences before the real PAC"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Multiple deceptive cadences before the real PAC",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -96,7 +96,7 @@
       "Unrelated chord follows without preparation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Unrelated chord follows without preparation",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -108,7 +108,7 @@
       "Broadens phrase"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Broadens phrase",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -120,7 +120,7 @@
       "Delays closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Delays closure",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -132,7 +132,7 @@
       "Sets up phrase"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sets up phrase",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -144,7 +144,7 @@
       "Confirms closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Confirms closure",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -156,7 +156,7 @@
       "Restarts phrase"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Restarts phrase",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -168,7 +168,7 @@
       "Emphasis"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Emphasis",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -180,7 +180,7 @@
       "Very common"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Very common",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -192,7 +192,7 @@
       "Moderate (more in late Classical)"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Moderate (more in late Classical)",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -205,7 +205,7 @@
       "dramatic cadences"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Moderate",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -217,7 +217,7 @@
       "Common in inner voices"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Common in inner voices",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -229,7 +229,7 @@
       "Increasingly common"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Increasingly common",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -242,7 +242,7 @@
       "esp. in development"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Common",
     "source_file": "haydn/harmonic-language.md"
   },
   {
@@ -254,7 +254,7 @@
       "Rare in early Classical; Beethoven"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Rare in early Classical; Beethoven",
     "source_file": "haydn/harmonic-language.md"
   }
 ]

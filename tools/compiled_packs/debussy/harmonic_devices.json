@@ -8,7 +8,7 @@
       "La fille aux cheveux de lin"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "La fille aux cheveux de lin",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -21,7 +21,7 @@
       "gamelan-influenced passages"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Pagodes",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -33,7 +33,7 @@
       "Creates gentle bitonality without harshness"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Creates gentle bitonality without harshness",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -45,7 +45,7 @@
       "Pagodes bell-patterns"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Pagodes bell-patterns",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -57,7 +57,7 @@
       "Natural rest without dominant-tonic closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Natural rest without dominant-tonic closure",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -69,7 +69,7 @@
       "Sudden color shift \u2014 like walking from one room into different light"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Sudden color shift \u2014 like walking from one room into different light",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -82,19 +82,21 @@
       "unexpected warmth or coolness"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Rich",
     "source_file": "debussy/harmonic-language.md"
   },
   {
     "id": "common_tone_pivot",
     "name": "Common-tone pivot",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "common tone held"
+    ],
     "contexts": [
       "Smooth connection between unrelated harmonies"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Smooth connection between unrelated harmonies",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -107,7 +109,7 @@
       "static \u2014 light on water"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shimmering",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -119,7 +121,7 @@
       "Elegant arrival without dominant preparation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Elegant arrival without dominant preparation",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -131,7 +133,7 @@
       "Grounded freedom \u2014 the bass anchors; everything else floats"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grounded freedom \u2014 the bass anchors; everything else floats",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -143,7 +145,7 @@
       "Evaporation \u2014 the sound dissolves"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Evaporation \u2014 the sound dissolves",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -155,7 +157,7 @@
       "Natural rest without closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Natural rest without closure",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -167,20 +169,23 @@
       "Grounding \u2014 but not resolution"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grounding \u2014 but not resolution",
     "source_file": "debussy/harmonic-language.md"
   },
   {
     "id": "modal_cadence",
     "name": "Modal cadence",
-    "chord_sequence": [],
+    "chord_sequence": [
+      "bVII",
+      "I"
+    ],
     "voice_leading_hints": [],
     "contexts": [
       "Archaic",
       "non-tonal closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Archaic",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -192,7 +197,7 @@
       "Mallarm\u00e9's white space"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mallarm\u00e9's white space",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -204,7 +209,7 @@
       "Awakening \u2014 gravity returns"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Awakening \u2014 gravity returns",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -217,7 +222,7 @@
       "never changing"
     ],
     "frequency_weight": 0.09,
-    "emotional_color": "",
+    "emotional_color": "Alternation between two chords creates the effect of light on moving water \u2014 never still",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -230,7 +235,7 @@
       "directionless"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Voices moving together in the same direction feel like a gust \u2014 effortless",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -243,7 +248,7 @@
       "but luminous"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Symmetrical scales create colors that exist between major and minor \u2014 neither warm nor cold",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -256,7 +261,7 @@
       "harmony floats without gravity \u2014 edges dissolve"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Without half-step pulls",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -268,19 +273,22 @@
       "Pentatonic intervals carry no tension; the listener relaxes into the sound"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Pentatonic intervals carry no tension; the listener relaxes into the sound",
     "source_file": "debussy/harmonic-language.md"
   },
   {
     "id": "distance_memory",
     "name": "Distance / Memory",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension",
+      "pedal point"
+    ],
     "contexts": [
       "A chord that never resolves feels like a thought that trails off \u2014 present but receding"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A chord that never resolves feels like a thought that trails off \u2014 present but receding",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -292,7 +300,7 @@
       "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stepping from the symmetrical whole-tone world back to diatonic tonality creates the sensation of waking from a dream \u2014 gravity returns",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -305,20 +313,22 @@
       "non-directional"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Floating",
     "source_file": "debussy/harmonic-language.md"
   },
   {
     "id": "common_tone_linking",
     "name": "Common-tone linking",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "common tone held"
+    ],
     "contexts": [
       "Smooth",
       "connected"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Smooth",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -330,7 +340,7 @@
       "Grounded yet colorful"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grounded yet colorful",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -342,7 +352,7 @@
       "Sudden color shift"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sudden color shift",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -354,7 +364,7 @@
       "Expanded palette"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Expanded palette",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -366,7 +376,7 @@
       "Smooth chromatic motion"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Smooth chromatic motion",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -379,7 +389,7 @@
       "static"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shimmering",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -391,7 +401,7 @@
       "Elegant slide"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Elegant slide",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -453,7 +463,7 @@
       "Shimmering tension"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shimmering tension",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -465,7 +475,7 @@
       "Dreamlike disconnect"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dreamlike disconnect",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -477,7 +487,7 @@
       "Piano color effect"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Piano color effect",
     "source_file": "debussy/harmonic-language.md"
   },
   {
@@ -489,7 +499,7 @@
       "Grounded dissonance"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grounded dissonance",
     "source_file": "debussy/harmonic-language.md"
   }
 ]

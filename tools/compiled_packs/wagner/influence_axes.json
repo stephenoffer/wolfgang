@@ -1,8 +1,124 @@
 {
   "influenced_by": [
     {
-      "composer": "him"
+      "composer": "Weber",
+      "absorbed": "German Romantic opera; supernatural subjects; orchestral color; the Freischutz wolf's glen as proto-Wagner",
+      "heard_in": "Dutchman: the storm, the curse, the supernatural orchestra; Weber's horn writing becomes Wagner's brass revolution"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "The Ninth Symphony: voices enter the symphony; music as philosophical argument; monumental scale",
+      "heard_in": "Wagner's entire aesthetic: music as the highest art; the act as symphonic movement; Bayreuth as Beethoven's heir"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Orchestral imagination; idee fixe as proto-Leitmotif; programmatic symphonic writing",
+      "heard_in": "Wagner admired Berlioz's orchestration; the expanded orchestra owes something to the Symphonie fantastique"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Thematic transformation; the symphonic poem; harmonic daring; personal loyalty",
+      "heard_in": "Liszt's thematic transformation becomes Wagner's Leitmotif transformation; the augmented triad as harmonic device"
+    },
+    {
+      "composer": "Schopenhauer",
+      "absorbed": "The Will as thing-in-itself; music as direct expression of the Will; renunciation as liberation",
+      "heard_in": "Tristan: love = desire = suffering = death; Wotan's willing of his own end; Parsifal: compassion as redemption"
+    },
+    {
+      "composer": "Bach",
+      "absorbed": "Counterpoint; the chorale; the idea of music as spiritual practice",
+      "heard_in": "Meistersinger chorales; the Parsifal communion music; contrapuntal Leitmotif combination"
+    },
+    {
+      "composer": "Meyerbeer",
+      "absorbed": "Grand opera spectacle; large forces; theatrical staging; the crowd scene",
+      "heard_in": "Rienzi is pure Meyerbeer; Wagner then spent his career denying the debt"
+    },
+    {
+      "composer": "Chromatic harmony as emotion"
+    },
+    {
+      "composer": "Leitmotif system"
+    },
+    {
+      "composer": "Orchestral density"
+    },
+    {
+      "composer": "fff climaxes"
+    },
+    {
+      "composer": "Through-composition"
+    },
+    {
+      "composer": "Total artwork ambition"
+    },
+    {
+      "composer": "Chromatic saturation"
+    },
+    {
+      "composer": "Orchestral density, fff"
+    },
+    {
+      "composer": "Leitmotif proclamation"
+    },
+    {
+      "composer": "Massive scale"
     }
   ],
-  "comparative_axes": {}
+  "influenced": [
+    {
+      "composer": "Mahler",
+      "absorbed": "The gigantic orchestra; the symphony as world; chromatic harmony; the long crescendo; music as philosophy",
+      "heard_in": "Mahler's symphonies are Wagner's music-dramas without singers \u2014 same scale, same emotional universe"
+    },
+    {
+      "composer": "Richard Strauss",
+      "absorbed": "Leitmotif technique; chromatic harmony; orchestral virtuosity; the tone poem as drama",
+      "heard_in": "Strauss's tone poems = Wagner's orchestral interludes expanded; Salome/Elektra = post-Tristan opera"
+    },
+    {
+      "composer": "Bruckner",
+      "absorbed": "The long crescendo; brass chorale; Wagner tubas; the symphony as cathedral",
+      "heard_in": "Bruckner worshipped Wagner; Symphony 7 slow movement uses Wagner tubas as memorial"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Attending Bayreuth transformed Debussy \u2014 then he spent his life escaping",
+      "heard_in": "Pelleas: through-composed opera with Leitmotifs, but harmony is French, dynamics are pp, scale is intimate \u2014 Wagner inverted"
+    },
+    {
+      "composer": "Schoenberg",
+      "absorbed": "Tristan's chromatic dissolution leads to atonality leads to twelve-tone method",
+      "heard_in": "Schoenberg: \"I am merely continuing what Wagner began\"; Tristan is the direct ancestor of Verklarte Nacht"
+    },
+    {
+      "composer": "Puccini",
+      "absorbed": "Leitmotif system (simplified); continuous orchestral texture; verismo as music-drama's grandchild",
+      "heard_in": "Puccini's operas use recurring motifs and through-composed scenes \u2014 Wagner filtered through Italian sensibility"
+    },
+    {
+      "composer": "Film music",
+      "absorbed": "Leitmotif system; orchestra as emotional narrator; through-composed underscore",
+      "heard_in": "John Williams's Star Wars = Wagner's Ring technique applied to cinema; every film score with character themes descends from Wagner"
+    }
+  ],
+  "comparative_axes": {
+    "Impact on Debussy and French Music": [
+      "Chromatic harmony as emotion",
+      "Leitmotif system",
+      "Orchestral density",
+      "fff climaxes",
+      "Through-composition",
+      "Total artwork ambition"
+    ],
+    "Debussy \u2014 The Escape": [
+      "Chromatic saturation",
+      "Orchestral density, fff",
+      "Leitmotif proclamation",
+      "Through-composition",
+      "Total artwork ambition",
+      "Massive scale"
+    ]
+  }
 }

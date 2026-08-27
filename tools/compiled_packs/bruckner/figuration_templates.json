@@ -1,5 +1,66 @@
 [
   {
+    "id": "lh_idiom_the_long_pedal_point",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The long pedal point",
+    "description": "a bass note held for eight, sixteen or thirty-two bars while everything above it changes. Forty-one percent of the armed bars, and the single most Brucknerian device. `C2w | C2w | C2w | C2w`",
+    "shorthand": "C2w | C2w | C2w | C2w",
+    "events": 7,
+    "register": [
+      36,
+      36
+    ],
+    "span_semitones": 0,
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_bass_as_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The bass as melody",
+    "description": "the lowest voice carrying the tune while the upper parts sustain. A third of his bars. This is the organ pedal division playing a chorale.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_full_block_chords_organ_registration_thick",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full block chords, organ-registration thick",
+    "description": "five to eight notes, struck and held, changing on the bar rather than within it.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_in_unison",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves in unison",
+    "description": "the whole texture reduced to one line at the octave, for a theme's first statement. The contrast with the block chords is the drama.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_string_carpet",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo string carpet",
+    "description": "a sustained shimmer under a brass melody. In a piano reduction this is a repeated chord.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_total_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Total silence",
+    "description": "the general pause. Bruckner stops the entire orchestra before a new paragraph, and the silence is a structural device, not a rest.",
+    "source_file": "bruckner/bruckner-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +78,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +96,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +114,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +137,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +184,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +206,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +228,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +271,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +294,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +318,162 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_three_theme_exposition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The three-theme exposition",
+    "description": "not two but three theme groups, the second a lyrical \"song period\" in a distant key, the third a unison or chorale.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_general_pause",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The general pause",
+    "description": "everything stops for a full bar or more before a new paragraph begins. Structural punctuation, and it must not be filled.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_block_build",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The block build",
+    "description": "a theme stated quietly, restated louder and thicker, restated again at full weight. Terraced like organ registration rather than graded.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_steigerung",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The Steigerung",
+    "description": "a long crescendo over a pedal point, accumulating voices and rhythmic activity across twenty or more bars to a brass climax.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_chorale",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The chorale",
+    "description": "a slow, homophonic, hymn-like passage in the brass, usually crowning a movement.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_coda_as_apotheosis",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Coda as apotheosis",
+    "description": "the movement's main theme returned over a tonic pedal at full volume, which is where the symphony actually ends emotionally.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_bruckner_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "The Bruckner rhythm",
+    "description": "two-plus-three (a duplet followed by a triplet) or its inverse, laid over the bar. His fingerprint, and it appears in nearly every symphony.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cross_rhythm_between_sections",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Cross-rhythm between sections",
+    "description": "triplets against duplets sustained for long stretches.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_slow_even_harmonic_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Slow, even harmonic rhythm.",
+    "description": "One chord per bar or per several bars.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_third_relation_modulation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Third-relation modulation",
+    "description": "moving to a key a third away, abruptly, with no pivot. The commonest way his music travels.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_neapolitan_and_the_flat_submediant",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The Neapolitan and the flat submediant",
+    "description": "used as structural keys, not as passing colour.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_inflection_from_plainchant",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal inflection from plainchant",
+    "description": "flat sevenths, plagal cadences, and the church modes he played daily.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_unison_passage",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The unison passage",
+    "description": "the entire texture on one line, harmonically ambiguous, before a resolution.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_dominant_pedals",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Long dominant pedals",
+    "description": "under chromatic upper voices, preparing an arrival for many bars.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_themes_built_from_a_rising_interval_a_fifth_or_an_octave_then_a_slow_stepwise_descent",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Themes built from a rising interval \u2014 a fifth or an octave \u2014 then a slow stepwise descent.",
+    "description": "Spacious, singable, and slow to unfold.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unison_octave_statements",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Unison octave statements",
+    "description": "of the theme, bare, at the start of a movement.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_note_values",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long note values.",
+    "description": "The tune moves in halves and wholes far more than his contemporaries.",
+    "source_file": "bruckner/bruckner-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

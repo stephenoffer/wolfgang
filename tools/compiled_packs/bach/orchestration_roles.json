@@ -1,4 +1,198 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles",
+      "function": "Melodic leader, virtuosic solo voice"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Imitative partner, harmonic fill"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Inner voice, harmonic glue"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles",
+      "function": "Bass melody, continuo anchor"
+    },
+    {
+      "name": "Violone/Bass",
+      "section": "Instrument Roles",
+      "function": "Foundation, octave doubling"
+    },
+    {
+      "name": "Flute (traverso)",
+      "section": "Instrument Roles",
+      "function": "Lyrical solo color, pastoral"
+    },
+    {
+      "name": "Recorder",
+      "section": "Instrument Roles",
+      "function": "Softer pastoral, death symbolism"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Principal wind, doubles violin"
+    },
+    {
+      "name": "Oboe d'amore",
+      "section": "Instrument Roles",
+      "function": "Warm middle voice, A tonalities"
+    },
+    {
+      "name": "Oboe da caccia",
+      "section": "Instrument Roles",
+      "function": "Alto wind, hunting/pastoral"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Wind bass, continuo doubling"
+    },
+    {
+      "name": "Trumpet (natural)",
+      "section": "Instrument Roles",
+      "function": "Festive brilliance, D major"
+    },
+    {
+      "name": "Horn (natural)",
+      "section": "Instrument Roles",
+      "function": "Hunting, pastoral, F/Bb keys"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic anchor for brass"
+    },
+    {
+      "name": "Organ",
+      "section": "Instrument Roles",
+      "function": "Continuo realization, solo instrument"
+    },
+    {
+      "name": "Harpsichord",
+      "section": "Instrument Roles",
+      "function": "Continuo, solo, concerto instrument"
+    },
+    {
+      "name": "Harpsichord or clavichord",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Violin or cello alone",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "2 melody + continuo",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Solo(s) + strings + continuo",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "SATB choir + strings + winds + continuo",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "+ trumpets, timpani, extra winds",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Double choir + double orchestra + soloists",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Flexible: keyboard concertos, secular cantatas",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Largest ensemble; horns + oboes = hunting festivity",
+      "section": "The Brandenburg Concertos: Orchestral Imagination"
+    },
+    {
+      "name": "Four contrasting timbres compete as equals",
+      "section": "The Brandenburg Concertos: Orchestral Imagination"
+    },
+    {
+      "name": "Pure strings divided into three choirs \u2014 no soloists",
+      "section": "The Brandenburg Concertos: Orchestral Imagination"
+    },
+    {
+      "name": "Violin virtuosity against gentle recorder backdrop",
+      "section": "The Brandenburg Concertos: Orchestral Imagination"
+    },
+    {
+      "name": "Harpsichord cadenza invents the keyboard concerto",
+      "section": "The Brandenburg Concertos: Orchestral Imagination"
+    },
+    {
+      "name": "No violins \u2014 dark, low-register chamber texture",
+      "section": "The Brandenburg Concertos: Orchestral Imagination"
+    },
+    {
+      "name": "Violin solo",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Oboe",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Oboe d'amore",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Flute",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Cello",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Organ obbligato",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Two instruments",
+      "section": "Obbligato Writing: The Independent Voice"
+    },
+    {
+      "name": "Trumpets + timpani",
+      "section": "Color Choices: Instrument as Meaning"
+    },
+    {
+      "name": "Recorders (not flutes)",
+      "section": "Color Choices: Instrument as Meaning"
+    },
+    {
+      "name": "Oboe da caccia pair",
+      "section": "Color Choices: Instrument as Meaning"
+    },
+    {
+      "name": "Solo violin",
+      "section": "Color Choices: Instrument as Meaning"
+    },
+    {
+      "name": "Organ alone with voice",
+      "section": "Color Choices: Instrument as Meaning"
+    },
+    {
+      "name": "Strings without winds",
+      "section": "Color Choices: Instrument as Meaning"
+    },
+    {
+      "name": "All forces combined",
+      "section": "Color Choices: Instrument as Meaning"
+    }
+  ],
   "source_file": "orchestration.md"
 }

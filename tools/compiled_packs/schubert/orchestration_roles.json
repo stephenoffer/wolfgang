@@ -1,4 +1,86 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Flute",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Oboe",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Horn",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Trumpet/trombone",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Melody + accompaniment",
+      "section": "Orchestral Texture Types",
+      "function": "One instrument sings, others provide rhythmic/harmonic support",
+      "genre": "Default texture \u2014 the Lied model"
+    },
+    {
+      "name": "Tremolo atmosphere",
+      "section": "Orchestral Texture Types",
+      "function": "Strings tremolo; melody in winds or solo string over the texture",
+      "genre": "Dramatic passages, openings, transitions"
+    },
+    {
+      "name": "Chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Block chords in all parts; homophonic; hymn-like",
+      "genre": "Codas, climactic statements, trombone entries"
+    },
+    {
+      "name": "Dialogue",
+      "section": "Orchestral Texture Types",
+      "function": "Melody passes phrase-by-phrase between instruments or instrument groups",
+      "genre": "Development sections, transitional passages"
+    },
+    {
+      "name": "Divine moment",
+      "section": "Orchestral Texture Types",
+      "function": "High strings only (pp/ppp); low instruments tacet; one sustained chord",
+      "genre": "Slow movements, transcendent episodes"
+    },
+    {
+      "name": "Unison/octave tutti",
+      "section": "Orchestral Texture Types",
+      "function": "All instruments on the same melody in unison or octaves",
+      "genre": "Fortissimo climaxes, recapitulation entries"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Foundation; carry melody, accompaniment, and tremolo"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Melodic color; doublings; solo passages"
+    },
+    {
+      "name": "2 Hn, 2 Tpt, 3 Tbn (late works)",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Distance, weight, chorale; trombones in late symphonies only"
+    },
+    {
+      "name": "2 drums (tonic + dominant)",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Rhythmic punctuation; not prominent"
+    }
+  ],
   "source_file": "orchestration.md"
 }

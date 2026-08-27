@@ -3,6 +3,34 @@
     {
       "id": "prototype_0",
       "data": {
+        "p": "A4",
+        "d": "q"
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "p": "B4",
+        "d": "q"
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "p": "C5",
+        "d": "q"
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "p": "D5",
+        "d": "q"
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
         "m": 19,
         "_feel": "The silence after the peak \u2014 let it last its full duration. Do not rush the next phrase.",
         "voices": {
@@ -19,6 +47,48 @@
             }
           ]
         }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Begin as if from silence \u2014 the first note is already happening, not beginning"
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 8,
+        "_feel": "The ascent is nearly complete \u2014 one step left to the ceiling"
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 18,
+        "_feel": "Peak \u2014 the M-voice has arrived. The T-voice in the bass. Silence will follow."
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 19,
+        "_feel": "Structural silence \u2014 not a rest. The music is still present in the resonance."
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 20,
+        "_feel": "Descent begins \u2014 the same simplicity, but now returning home"
+      }
+    },
+    {
+      "id": "prototype_10",
+      "data": {
+        "bar_num": 32,
+        "_feel": "Final cadence \u2014 the M-voice returns to its origin. The T-voice rests on the tonic."
       }
     }
   ]

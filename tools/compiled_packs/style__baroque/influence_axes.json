@@ -1,4 +1,232 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Buxtehude",
+      "absorbed": "Free organ fantasy, dramatic toccata style",
+      "heard_in": "Toccata & Fugue in D minor BWV 565"
+    },
+    {
+      "composer": "Vivaldi",
+      "absorbed": "Ritornello form, driving rhythm, concerto structure",
+      "heard_in": "Brandenburg Concertos; transcriptions BWV 972\u2013987"
+    },
+    {
+      "composer": "Corelli",
+      "absorbed": "Trio sonata texture, walking bass, sequential harmony",
+      "heard_in": "Sonatas for violin & continuo"
+    },
+    {
+      "composer": "Frescobaldi",
+      "absorbed": "Chromatic ricercar, toccata figuration",
+      "heard_in": "Chromatic Fantasy BWV 903"
+    },
+    {
+      "composer": "Pachelbel",
+      "absorbed": "Chorale-based organ writing, clear diatonic harmony",
+      "heard_in": "Organ chorales, early cantatas"
+    },
+    {
+      "composer": "Couperin/French clavecinistes",
+      "absorbed": "Suite dance forms, ornament vocabulary, style galant",
+      "heard_in": "French Suites, English Suites, Overture BWV 831"
+    },
+    {
+      "composer": "Palestrina (via Fux)",
+      "absorbed": "Strict voice-leading, species counterpoint",
+      "heard_in": "Art of Fugue, Mass in B minor stile antico"
+    },
+    {
+      "composer": "Lully",
+      "absorbed": "French overture (slow\u2013fast), dotted rhythms",
+      "heard_in": "Orchestral Suite openings BWV 1066\u20131069"
+    },
+    {
+      "composer": "Corelli",
+      "absorbed": "Concerto grosso form, balanced phrases, trio sonata",
+      "heard_in": "Grand Concertos Op. 6"
+    },
+    {
+      "composer": "A. Scarlatti",
+      "absorbed": "Da capo aria structure, vocal ornamentation",
+      "heard_in": "Italian operas (Agrippina, Rinaldo)"
+    },
+    {
+      "composer": "Steffani",
+      "absorbed": "Italian opera dramaturgy, recitative style",
+      "heard_in": "Hamburg and Italian period operas"
+    },
+    {
+      "composer": "Vivaldi",
+      "absorbed": "Ritornello energy, driving rhythms, concerto brilliance",
+      "heard_in": "Organ concertos, orchestral writing"
+    },
+    {
+      "composer": "Purcell",
+      "absorbed": "English choral tradition, word-painting, anthem form",
+      "heard_in": "Chandos Anthems, coronation anthems"
+    },
+    {
+      "composer": "Keiser",
+      "absorbed": "Hamburg operatic style, orchestral color",
+      "heard_in": "Early Hamburg operas (Almira)"
+    },
+    {
+      "composer": "Lully",
+      "absorbed": "French overture form, ceremonial grandeur",
+      "heard_in": "Overtures to operas and oratorios"
+    },
+    {
+      "composer": "Zachow",
+      "absorbed": "German organ/chorale tradition, counterpoint",
+      "heard_in": "Early cantatas, organ concertos"
+    },
+    {
+      "composer": "Corelli",
+      "absorbed": "Concerto grosso texture, trio sonata form, balanced phrases",
+      "heard_in": "L'estro armonico Op. 3 (expands Corelli's concerto grosso into solo concerto)"
+    },
+    {
+      "composer": "Torelli",
+      "absorbed": "Solo concerto concept, trumpet writing",
+      "heard_in": "Early solo concertos, ritornello structure"
+    },
+    {
+      "composer": "Albinoni",
+      "absorbed": "Oboe concerto idiom, lyrical slow movements",
+      "heard_in": "Oboe concertos, cantabile slow movements"
+    },
+    {
+      "composer": "Legrenzi",
+      "absorbed": "Venetian ceremonial style, multi-choir texture",
+      "heard_in": "Sacred works (Gloria, Magnificat)"
+    },
+    {
+      "composer": "Italian violin school (Veracini, Locatelli)",
+      "absorbed": "Virtuoso technique, high positions, double stops",
+      "heard_in": "Solo episodes, cadenza-like passages"
+    },
+    {
+      "composer": "Venetian opera tradition",
+      "absorbed": "Dramatic contrast, aria forms, programmatic expression",
+      "heard_in": "Opera arias; Four Seasons program music"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "C.P.E. Bach",
+      "absorbed": "Empfindsamer Stil grew from father's chromaticism",
+      "heard_in": "Hamburg symphonies \u2014 chromatic surprises within clear form"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Fugal technique after studying Bach scores (1782)",
+      "heard_in": "Jupiter Symphony finale, Requiem Kyrie fugue"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Fugue as developmental climax; WTC as daily bread",
+      "heard_in": "Grosse Fuge Op. 133, Hammerklavier fugue"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Revived Bach (1829 St Matthew Passion); choral writing",
+      "heard_in": "Elijah oratorio, organ sonatas"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Motivic saturation, contrapuntal inner voices",
+      "heard_in": "Symphony No. 4 passacaglia finale"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Polyphonic piano texture, fugal studies",
+      "heard_in": "Studies after Paganini, BACH fugues Op. 60"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "24 Preludes & Fugues directly modeled on WTC",
+      "heard_in": "Op. 87 \u2014 modern chromaticism in Bachian form"
+    },
+    {
+      "composer": "Webern",
+      "absorbed": "Contrapuntal density, motivic economy",
+      "heard_in": "Serial works \u2014 every note serving multiple roles"
+    },
+    {
+      "composer": "Haydn",
+      "absorbed": "Oratorio as concert genre; choral grandeur",
+      "heard_in": "The Creation, The Seasons \u2014 directly inspired by Messiah"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Orchestrated Messiah (1789); choral+orchestral integration",
+      "heard_in": "Requiem \u2014 Handelian choral drama in Classical language"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "\"Handel is the greatest composer who ever lived\" \u2014 grand public gesture",
+      "heard_in": "Missa Solemnis, Ninth Symphony choral finale"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Oratorio tradition, English choral festival culture",
+      "heard_in": "Elijah \u2014 Handelian drama in Romantic harmony"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "English oratorio lineage, ceremonial writing",
+      "heard_in": "Dream of Gerontius, Pomp and Circumstance"
+    },
+    {
+      "composer": "Sullivan",
+      "absorbed": "English dramatic vocal tradition, clear melody",
+      "heard_in": "Savoy operas \u2014 Handel's directness in comic form"
+    },
+    {
+      "composer": "Brahms",
+      "absorbed": "Studied Handel's keyboard works; variation technique",
+      "heard_in": "Variations on a Theme of Handel Op. 24"
+    },
+    {
+      "composer": "British choral tradition",
+      "absorbed": "Three Choirs Festival, Proms \u2014 Handel became England's national composer",
+      "heard_in": "250+ years of continuous Messiah performances"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Ritornello form, concerto structure, driving rhythm",
+      "heard_in": "Brandenburg Concertos; 6 Vivaldi transcriptions BWV 972\u2013987"
+    },
+    {
+      "composer": "Handel",
+      "absorbed": "Concerto energy, Italian brilliance, orchestral drive",
+      "heard_in": "Organ concertos, Op. 6 Grand Concertos"
+    },
+    {
+      "composer": "Tartini",
+      "absorbed": "Violin concerto tradition, virtuosic solo writing",
+      "heard_in": "Devil's Trill Sonata \u2014 Vivaldian virtuosity pushed further"
+    },
+    {
+      "composer": "J.C. Bach",
+      "absorbed": "Galant concerto form descending from Vivaldi's model",
+      "heard_in": "London keyboard concertos"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Concerto form (ritornello \u2192 sonata-ritornello hybrid)",
+      "heard_in": "Piano concertos \u2014 soloist/orchestra dialogue is Vivaldi's legacy"
+    },
+    {
+      "composer": "Piazzolla",
+      "absorbed": "Vivaldi's Four Seasons \u2192 Four Seasons of Buenos Aires",
+      "heard_in": "Direct homage; string concerto energy in tango idiom"
+    },
+    {
+      "composer": "Minimalists (Glass, Part)",
+      "absorbed": "Repetitive ostinato patterns, rhythmic drive, clear harmony",
+      "heard_in": "Glass violin concertos echo Vivaldi's motor rhythm"
+    }
+  ],
   "comparative_axes": {}
 }

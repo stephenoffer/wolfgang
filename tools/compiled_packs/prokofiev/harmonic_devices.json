@@ -8,7 +8,7 @@
       "Harmonic \"bite\" \u2014 surprise without destruction of tonality"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Harmonic \"bite\" \u2014 surprise without destruction of tonality",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Both layers sound \"correct\" alone; together they create friction"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "Both layers sound \"correct\" alone; together they create friction",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -33,7 +33,7 @@
       "not an expression"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Drives momentum; the bass is a machine",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -45,19 +45,21 @@
       "Genuine tenderness \u2014 the real Prokofiev beneath the irony"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Genuine tenderness \u2014 the real Prokofiev beneath the irony",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
     "id": "chromatic_side_slipping",
     "name": "Chromatic side-slipping",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice"
+    ],
     "contexts": [
       "A passing shadow; harmonic color without modulation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "A passing shadow; harmonic color without modulation",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -69,7 +71,7 @@
       "Unexpected tonal color; avoids dominant-tonic predictability"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Unexpected tonal color; avoids dominant-tonic predictability",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -82,7 +84,7 @@
       "but not where expected"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The cadence arrives",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -94,7 +96,7 @@
       "Mediant shifts"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mediant shifts",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -106,7 +108,7 @@
       "Motoric bass"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Motoric bass",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -118,7 +120,7 @@
       "Plagal color"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Plagal color",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -130,7 +132,7 @@
       "Tritone bass"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "Tritone bass",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -142,7 +144,7 @@
       "Parallel motion"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Parallel motion",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -154,7 +156,7 @@
       "Sudden tonic"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Sudden tonic",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -167,7 +169,7 @@
       "Stravinsky Petrushka chord"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Milhaud",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -180,7 +182,7 @@
       "Milhaud"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Ives",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -192,7 +194,7 @@
       "Iconic bitonal sonority"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Iconic bitonal sonority",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -204,7 +206,7 @@
       "Independence of strata"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Independence of strata",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -216,7 +218,7 @@
       "Tension without atonality"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tension without atonality",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -228,7 +230,7 @@
       "Stravinsky Pulcinella"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky Pulcinella",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -240,7 +242,7 @@
       "Prokofiev"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Prokofiev",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -253,7 +255,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Copland",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -265,7 +267,47 @@
       "Mixolydian bVII-I"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mixolydian bVII-I",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "pac_authentic_close",
+    "name": "PAC (authentic close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+      "not from a dominant: the bass lands on the tonic",
+      "the texture stops moving",
+      "and that is the close. V7-I in this idiom reads as quotation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "hc_half_close",
+    "name": "HC (half close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+      "not from a chord that demands resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+    "source_file": "prokofiev/harmonic-language.md"
+  },
+  {
+    "id": "iac_weak_close",
+    "name": "IAC (weak close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "An arrival that does not fully close"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "An arrival that does not fully close",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -277,7 +319,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -290,7 +332,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Ravel",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -302,7 +344,7 @@
       "Low-Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Low-Medium",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -314,7 +356,7 @@
       "High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "High",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -326,7 +368,7 @@
       "Very High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Very High",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -338,7 +380,7 @@
       "Medium-Low"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Medium-Low",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -350,7 +392,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -362,7 +404,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "prokofiev/harmonic-language.md"
   },
   {
@@ -374,7 +416,7 @@
       "Variable"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Variable",
     "source_file": "prokofiev/harmonic-language.md"
   }
 ]

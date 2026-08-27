@@ -1,8 +1,112 @@
 {
   "influenced_by": [
     {
-      "composer": "Ravel"
+      "composer": "Faur\u00e9",
+      "absorbed": "Modal elegance, melodic refinement, formal proportion",
+      "heard_in": "Pavane, String Quartet \u2014 the foundation of Ravel's restraint"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Non-functional harmony, extended chords, orchestral color",
+      "heard_in": "Water imagery (Jeux d'eau), modal scales, pentatonic passages"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Concerto dialogue, Classical formal clarity, proportional balance",
+      "heard_in": "Piano Concerto in G \u2014 explicitly Mozartian in structure"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Virtuosic piano technique, water effects, transcendental difficulty",
+      "heard_in": "Jeux d'eau (\"Liszt plus water\"), Gaspard de la Nuit"
+    },
+    {
+      "composer": "Rimsky-Korsakov",
+      "absorbed": "Orchestral brilliance, stratified textures, exotic color",
+      "heard_in": "Daphnis et Chlo\u00e9, Rapsodie espagnole"
+    },
+    {
+      "composer": "Chabrier",
+      "absorbed": "Spanish color, rhythmic energy, harmonic daring",
+      "heard_in": "Rapsodie espagnole, habanera rhythms"
+    },
+    {
+      "composer": "Basque folk tradition",
+      "absorbed": "Modal melody, dance rhythms, Phrygian inflection",
+      "heard_in": "Piano Trio (Basque themes), pervasive Spanish/Iberian DNA"
+    },
+    {
+      "composer": "Jazz (1928)",
+      "absorbed": "Blue notes, swing rhythm, saxophone timbre, stride piano",
+      "heard_in": "Concerto in G, Violin Sonata \"Blues,\" Bol\u00e9ro"
+    },
+    {
+      "composer": "Gershwin",
+      "absorbed": "Showed that jazz and concert music could merge",
+      "heard_in": "Concerto in G \u2014 Ravel called Gershwin \"a prince of jazz\""
+    },
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Rhythmic vitality, anti-Romantic clarity",
+      "heard_in": "Late works; Ravel admired The Rite of Spring"
+    },
+    {
+      "composer": "Orchestral; habanera, feria, malague\u00f1a"
+    },
+    {
+      "composer": "Spanish dance form; snare ostinato"
+    },
+    {
+      "composer": "Last completed work; Spanish songs"
+    },
+    {
+      "composer": "Basque theme in 8/8"
+    },
+    {
+      "composer": "Guitar imitation; Phrygian harmony"
     }
   ],
-  "comparative_axes": {}
+  "influenced": [
+    {
+      "composer": "Messiaen",
+      "absorbed": "Extended chord voicing, modal harmony, orchestral color"
+    },
+    {
+      "composer": "Dutilleux",
+      "absorbed": "Orchestral stratification, timbral precision, Classical form"
+    },
+    {
+      "composer": "Bernstein",
+      "absorbed": "Jazz-classical fusion, orchestral brilliance, rhythmic energy"
+    },
+    {
+      "composer": "Bill Evans (jazz piano)",
+      "absorbed": "Voicings, modal harmony, extended chords"
+    },
+    {
+      "composer": "Gil Evans",
+      "absorbed": "Orchestral arrangement, timbral stratification"
+    },
+    {
+      "composer": "Film scoring (broadly)",
+      "absorbed": "Orchestral color, emotional orchestration, fairy-tale textures"
+    },
+    {
+      "composer": "Toru Takemitsu",
+      "absorbed": "Orchestral delicacy, timbral precision"
+    },
+    {
+      "composer": "George Benjamin",
+      "absorbed": "Orchestral color, precise voicing"
+    }
+  ],
+  "comparative_axes": {
+    "Ravel and Spain: The Basque Connection": [
+      "Orchestral; habanera, feria, malague\u00f1a",
+      "Spanish dance form; snare ostinato",
+      "Last completed work; Spanish songs",
+      "Basque theme in 8/8",
+      "Guitar imitation; Phrygian harmony"
+    ]
+  }
 }

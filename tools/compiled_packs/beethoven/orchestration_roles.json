@@ -1,4 +1,58 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Trombone",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles"
+    }
+  ],
   "source_file": "orchestration.md"
 }

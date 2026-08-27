@@ -13,6 +13,26 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "binary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

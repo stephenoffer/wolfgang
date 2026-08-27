@@ -1,3 +1,918 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Begin low \u2014 the climb has not started yet",
+        "voices": {
+          "vln1": [
+            {
+              "p": "A4",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "h"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 3,
+        "voices": {
+          "vln1": [
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "F2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "C3",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 4,
+        "_feel": "Sequential sub-peak \u2014 the first climb reaches E5",
+        "voices": {
+          "vln1": [
+            {
+              "p": "E5",
+              "d": "dh",
+              "dyn": "mf"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "B2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 5,
+        "voices": {
+          "vln1": [
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "F#5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 6,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G#5",
+              "d": "q",
+              "dyn": "f"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            },
+            {
+              "p": "B5",
+              "d": "q"
+            },
+            {
+              "p": "C6",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "B2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 7,
+        "_feel": "Approaching the peak \u2014 tension builds, everyone knows it's coming",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D6",
+              "d": "q",
+              "dyn": "ff"
+            },
+            {
+              "p": "C6",
+              "d": "q"
+            },
+            {
+              "p": "B5",
+              "d": "q"
+            },
+            {
+              "p": "D6",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 8,
+        "_feel": "THE PEAK \u2014 E6, fortissimo, sustained. Full orchestra doubles.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "E6",
+              "d": "h",
+              "dyn": "fff",
+              "expr": "appassionato"
+            },
+            {
+              "p": "D6",
+              "d": "h"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A1",
+              "d": "h",
+              "dyn": "ff"
+            },
+            {
+              "p": "E2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 9,
+        "_feel": "Descent \u2014 resigned, exhaling after the peak. Dynamics fall fast.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "C6",
+              "d": "h",
+              "dyn": "f"
+            },
+            {
+              "p": "B5",
+              "d": "q"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A1",
+              "d": "h",
+              "dyn": "mf"
+            },
+            {
+              "p": "E2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 10,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G5",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "h"
+            },
+            {
+              "p": "A2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_10",
+      "data": {
+        "bar_num": 11,
+        "voices": {
+          "vln1": [
+            {
+              "p": "C5",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "B4",
+              "d": "h"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E2",
+              "d": "h"
+            },
+            {
+              "p": "B2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_11",
+      "data": {
+        "bar_num": 12,
+        "_feel": "The melody settles \u2014 the arch is complete. The peak feels distant already.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D4",
+              "d": "w",
+              "dyn": "p"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "w",
+              "dyn": "p"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_12",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Waltz \u2014 beat 1 bass, beats 2\u20133 inner chord. Melody is already present.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "E5",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            }
+          ],
+          "vla": [
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            },
+            {
+              "p": "G3",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "C2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_13",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G5",
+              "d": "dh"
+            }
+          ],
+          "vla": [
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "G3",
+              "d": "q"
+            },
+            {
+              "p": "B3",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "G2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_14",
+      "data": {
+        "bar_num": 3,
+        "voices": {
+          "vln1": [
+            {
+              "p": "F5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "vla": [
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "F3",
+              "d": "q"
+            },
+            {
+              "p": "A3",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "F2",
+              "d": "q"
+            },
+            {
+              "p": "rest",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_15",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Sequence step 1 \u2014 the gesture, quiet, small ensemble",
+        "voices": {
+          "vln1": [
+            {
+              "p": "A4",
+              "d": "q",
+              "dyn": "mp"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "h"
+            },
+            {
+              "p": "E2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_16",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "vln1": [
+            {
+              "p": "E5",
+              "d": "h"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A2",
+              "d": "h"
+            },
+            {
+              "p": "E2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_17",
+      "data": {
+        "bar_num": 3,
+        "_feel": "Sequence step 2 \u2014 one step higher. Cellos enter to double. mf.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "C5",
+              "d": "q",
+              "dyn": "mf"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "Eb5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "G4",
+              "d": "q"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "Bb4",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "C2",
+              "d": "h"
+            },
+            {
+              "p": "G2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_18",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G5",
+              "d": "h"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            },
+            {
+              "p": "Eb5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "Eb5",
+              "d": "h"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "C2",
+              "d": "h"
+            },
+            {
+              "p": "G2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_19",
+      "data": {
+        "bar_num": 5,
+        "_feel": "Sequence step 3 \u2014 one step higher again. Violas double melody. f.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "E5",
+              "d": "q",
+              "dyn": "f"
+            },
+            {
+              "p": "F#5",
+              "d": "q"
+            },
+            {
+              "p": "G#5",
+              "d": "q"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "B4",
+              "d": "q"
+            },
+            {
+              "p": "C#5",
+              "d": "q"
+            },
+            {
+              "p": "D#5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            }
+          ],
+          "vla": [
+            {
+              "p": "E4",
+              "d": "q"
+            },
+            {
+              "p": "F#4",
+              "d": "q"
+            },
+            {
+              "p": "G#4",
+              "d": "q"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E2",
+              "d": "h"
+            },
+            {
+              "p": "B2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_20",
+      "data": {
+        "bar_num": 6,
+        "voices": {
+          "vln1": [
+            {
+              "p": "B5",
+              "d": "h",
+              "dyn": "ff"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            },
+            {
+              "p": "G#5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "G#5",
+              "d": "h"
+            },
+            {
+              "p": "F#5",
+              "d": "q"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            }
+          ],
+          "vla": [
+            {
+              "p": "B4",
+              "d": "h"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "G#4",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E2",
+              "d": "h"
+            },
+            {
+              "p": "B2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_21",
+      "data": {
+        "bar_num": 7,
+        "_feel": "The climax arrives \u2014 full orchestra, fff",
+        "voices": {
+          "vln1": [
+            {
+              "p": "A5",
+              "d": "w",
+              "dyn": "fff",
+              "expr": "appassionato"
+            }
+          ],
+          "vc": [
+            {
+              "p": "A1",
+              "d": "w",
+              "dyn": "fff"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

@@ -1,4 +1,102 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Piccolo (extreme high)",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (muted)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Xylophone",
+      "section": "Percussion \u2014 The Grotesque Palette"
+    },
+    {
+      "name": "Snare drum",
+      "section": "Percussion \u2014 The Grotesque Palette"
+    },
+    {
+      "name": "Timpani",
+      "section": "Percussion \u2014 The Grotesque Palette"
+    },
+    {
+      "name": "Bass drum",
+      "section": "Percussion \u2014 The Grotesque Palette"
+    },
+    {
+      "name": "Celesta",
+      "section": "Percussion \u2014 The Grotesque Palette"
+    },
+    {
+      "name": "Whip",
+      "section": "Percussion \u2014 The Grotesque Palette"
+    },
+    {
+      "name": "Chamber within orchestra",
+      "section": "Texture Types",
+      "function": "2-3 solo instruments, rest tacet",
+      "genre": "Slow movements; Symphony No. 5 (mvt 3)"
+    },
+    {
+      "name": "Mechanical ostinato",
+      "section": "Texture Types",
+      "function": "Repeated pattern in one group; distress in another",
+      "genre": "Invasion theme (Symphony No. 7); passacaglia"
+    },
+    {
+      "name": "Extreme register spread",
+      "section": "Texture Types",
+      "function": "Piccolo at top + contrabass at bottom; gap in middle",
+      "genre": "Climaxes; the registral void IS the emotion"
+    },
+    {
+      "name": "Full unison",
+      "section": "Texture Types",
+      "function": "Entire orchestra on same melody, octave doublings",
+      "genre": "Climactic statements; Symphony No. 5"
+    },
+    {
+      "name": "Solo monologue",
+      "section": "Texture Types",
+      "function": "Single instrument, no accompaniment",
+      "genre": "Late quartets; Viola Sonata"
+    },
+    {
+      "name": "Grotesque tutti",
+      "section": "Texture Types",
+      "function": "Full orchestra, staccato, ff, xylophone + piccolo doubling",
+      "genre": "Scherzo climaxes; ironic passages"
+    }
+  ],
   "source_file": "orchestration.md"
 }

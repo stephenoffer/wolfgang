@@ -1,4 +1,198 @@
 {
-  "instruments": {},
+  "instruments": {
+    "solo_violin": {
+      "name": "Solo Violin",
+      "section": "Instrument Roles",
+      "function": "Virtuosic protagonist",
+      "register": "G, \u2013 c''''",
+      "hand": "Extreme range (positions I\u2013VII); defines the concerto"
+    },
+    "violin_i_(tutti)": {
+      "name": "Violin I (tutti)",
+      "section": "Instrument Roles",
+      "function": "Ritornello melody, unison power",
+      "register": "G, \u2013 e'''",
+      "hand": "Strong, clear lines; often in octaves with Solo"
+    },
+    "violin_ii": {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Harmonic support, doubling",
+      "register": "G, \u2013 a''",
+      "hand": "Doubles Vn I in ritornello; simple figuration in episodes"
+    },
+    "viola": {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Inner filler",
+      "register": "C, \u2013 d''",
+      "hand": "Often monotone repeated notes; minimal independence"
+    },
+    "cello": {
+      "name": "Cello",
+      "section": "Instrument Roles",
+      "function": "Bass line, occasional soloist",
+      "register": "C,, \u2013 g'",
+      "hand": "Walking bass in episodes; virtuosic in solo concertos (RV 398\u2013424)"
+    },
+    "violone/bass": {
+      "name": "Violone/Bass",
+      "section": "Instrument Roles",
+      "function": "Foundation doubling",
+      "register": "E,, \u2013 c'",
+      "hand": "Doubles cello at the octave; never independent"
+    },
+    "harpsichord": {
+      "name": "Harpsichord",
+      "section": "Instrument Roles",
+      "function": "Continuo realization",
+      "register": "F,, \u2013 f'''",
+      "hand": "Chordal support \u2014 fills harmony between melody and bass"
+    },
+    "organ": {
+      "name": "Organ",
+      "section": "Instrument Roles",
+      "function": "Continuo (sacred)",
+      "register": "C,, \u2013 c''''",
+      "hand": "Replaces harpsichord in church; sustained support"
+    },
+    "oboe": {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Doubling Vn I, solo color",
+      "register": "c \u2013 d'''",
+      "hand": "Doubles violins in tutti; solo concertos RV 447\u2013465"
+    },
+    "bassoon": {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Bass doubling, solo concertos",
+      "register": "B,, \u2013 e'",
+      "hand": "Doubles cello in tutti; virtuosic solo writing (RV 466\u2013504)"
+    },
+    "flute_(traverso)": {
+      "name": "Flute (traverso)",
+      "section": "Instrument Roles",
+      "function": "Solo concertos, color",
+      "register": "d' \u2013 a'''",
+      "hand": "Lyrical solo voice; RV 427\u2013440"
+    },
+    "recorder": {
+      "name": "Recorder",
+      "section": "Instrument Roles",
+      "function": "Solo concertos",
+      "register": "f' \u2013 g'''",
+      "hand": "Lighter, pastoral character; RV 441\u2013445"
+    },
+    "trumpet": {
+      "name": "Trumpet",
+      "section": "Instrument Roles",
+      "function": "Festive/sacred",
+      "register": "c' \u2013 d'''",
+      "hand": "Fanfare figures; RV 537 double trumpet concerto"
+    },
+    "horn": {
+      "name": "Horn",
+      "section": "Instrument Roles",
+      "function": "Rare",
+      "register": "c \u2013 c'''",
+      "hand": "RV 538\u2013539; hunting character"
+    },
+    "mandolin": {
+      "name": "Mandolin",
+      "section": "Instrument Roles",
+      "function": "Special color",
+      "register": "g \u2013 e'''",
+      "hand": "Plucked delicacy; RV 425, RV 532"
+    },
+    "lute/theorbo": {
+      "name": "Lute/Theorbo",
+      "section": "Instrument Roles",
+      "function": "Continuo, solo",
+      "register": "varies",
+      "hand": "Continuo alternative; RV 540, RV 93"
+    },
+    "piccolo_(flautino)": {
+      "name": "Piccolo (flautino)",
+      "section": "Instrument Roles",
+      "function": "Brilliant high register",
+      "register": "c'' \u2013 c''''",
+      "hand": "Bird-like brilliance; RV 443\u2013444"
+    }
+  },
+  "textures": [
+    {
+      "name": "Unison/octave tutti",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Melody + bass (solo episodes)",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Repeated-eighth ostinato",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Sustained strings",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Pizzicato bass",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Full homophonic chords",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Terraced dynamics",
+      "section": "Texture Strategies"
+    },
+    {
+      "name": "Repeated eighths (strings)",
+      "section": "Accompaniment Under Solo"
+    },
+    {
+      "name": "Walking bass (cello)",
+      "section": "Accompaniment Under Solo"
+    },
+    {
+      "name": "Sustained chords",
+      "section": "Accompaniment Under Solo"
+    },
+    {
+      "name": "Pizzicato punctuation",
+      "section": "Accompaniment Under Solo"
+    },
+    {
+      "name": "Silence (solo unaccompanied)",
+      "section": "Accompaniment Under Solo"
+    },
+    {
+      "name": "Tremolo (measured)",
+      "section": "Accompaniment Under Solo"
+    },
+    {
+      "name": "Oboe",
+      "section": "Wind Instrument Solo Writing"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Wind Instrument Solo Writing"
+    },
+    {
+      "name": "Flute (traverso)",
+      "section": "Wind Instrument Solo Writing"
+    },
+    {
+      "name": "Recorder",
+      "section": "Wind Instrument Solo Writing"
+    },
+    {
+      "name": "Piccolo (flautino)",
+      "section": "Wind Instrument Solo Writing"
+    }
+  ],
   "source_file": "orchestration.md"
 }

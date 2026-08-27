@@ -1,4 +1,122 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles",
+      "function": "Melodic leader, but shares material"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Dialogue partner, not echo"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Inner harmonic voice with independence"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles",
+      "function": "Bass + melodic voice"
+    },
+    {
+      "name": "Double bass",
+      "section": "Instrument Roles",
+      "function": "Foundation reinforcement"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Bright color, high register sparkle"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Principal wind color"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Warm middle-register color"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Wind bass, comic potential"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles",
+      "function": "Harmonic foundation, hunting calls"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles",
+      "function": "Festive brilliance"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic anchor, dramatic shock"
+    },
+    {
+      "name": "2 vln, vla, vc",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + 2 ob + 2 hn",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + 2 ob + 2 hn + bsn",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "+ fl, 2 cl, 2 tpt, timp",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Pf + vln + vc",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Solo keyboard",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Full orchestra + SATB choir + soloists",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Solo + orchestra",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Flute",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Oboe",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Horn",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Wind Writing"
+    }
+  ],
   "source_file": "orchestration.md"
 }

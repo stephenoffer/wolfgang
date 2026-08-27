@@ -1,1538 +1,1198 @@
 [
- {
-  "id": "general__1_the_appoggiatura_and_sigh",
-  "name": "1. The Appoggiatura and Sigh",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "E5",
-     "d": "q",
-     "dyn": "mf",
-     "expr": "espressivo"
+  {
+    "id": "general__1_the_appoggiatura_and_sigh",
+    "name": "1. The Appoggiatura and Sigh",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "E5",
+          "d": "q",
+          "dyn": "mf",
+          "expr": "espressivo"
+        },
+        {
+          "p": "D5",
+          "d": "q"
+        },
+        {
+          "p": "C5",
+          "d": "h"
+        }
+      ]
     },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "C5",
-     "d": "h"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "1. The Appoggiatura and Sigh"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "1. The Appoggiatura and Sigh"
- },
- {
-  "id": "general__2_the_4_3_suspension",
-  "name": "2. The 4-3 Suspension",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "A4",
-     "d": "w",
-     "dyn": "mp",
-     "art": "tenuto"
+  {
+    "id": "general__2_the_4_3_suspension",
+    "name": "2. The 4-3 Suspension",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "A4",
+          "d": "w",
+          "dyn": "mp",
+          "art": "tenuto"
+        },
+        {
+          "p": "G#4",
+          "d": "h",
+          "expr": "dolce"
+        },
+        {
+          "p": "A4",
+          "d": "q"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        }
+      ]
     },
-    {
-     "p": "G#4",
-     "d": "h",
-     "expr": "dolce"
-    },
-    {
-     "p": "A4",
-     "d": "q"
-    },
-    {
-     "p": "E4",
-     "d": "q"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "2. The 4-3 Suspension"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "2. The 4-3 Suspension"
- },
- {
-  "id": "general__3_the_lament_bass_descending_chromatic_bass",
-  "name": "3. The Lament Bass (Descending Chromatic Bass)",
-  "situation": "",
-  "voice_events": {
-   "vln1": [
-    {
-     "p": "E5",
-     "d": "w",
-     "dyn": "p"
+  {
+    "id": "general__3_the_lament_bass_descending_chromatic_bass",
+    "name": "3. The Lament Bass (Descending Chromatic Bass)",
+    "situation": "",
+    "voice_events": {
+      "vln1": [
+        {
+          "p": "E5",
+          "d": "w",
+          "dyn": "p"
+        },
+        {
+          "p": "D5",
+          "d": "w"
+        },
+        {
+          "p": "C5",
+          "d": "h"
+        },
+        {
+          "p": "B4",
+          "d": "h"
+        },
+        {
+          "p": "A4",
+          "d": "w",
+          "orn": "trill"
+        }
+      ],
+      "vc": [
+        {
+          "p": "C2",
+          "d": "w",
+          "dyn": "p"
+        },
+        {
+          "p": "B1",
+          "d": "w"
+        },
+        {
+          "p": "Bb1",
+          "d": "w"
+        },
+        {
+          "p": "A1",
+          "d": "w"
+        }
+      ]
     },
-    {
-     "p": "D5",
-     "d": "w"
-    },
-    {
-     "p": "C5",
-     "d": "h"
-    },
-    {
-     "p": "B4",
-     "d": "h"
-    },
-    {
-     "p": "A4",
-     "d": "w",
-     "orn": "trill"
-    }
-   ],
-   "vc": [
-    {
-     "p": "C2",
-     "d": "w",
-     "dyn": "p"
-    },
-    {
-     "p": "B1",
-     "d": "w"
-    },
-    {
-     "p": "Bb1",
-     "d": "w"
-    },
-    {
-     "p": "A1",
-     "d": "w"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "3. The Lament Bass (Descending Chromatic Bass)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "3. The Lament Bass (Descending Chromatic Bass)"
- },
- {
-  "id": "general__4_the_walking_bass",
-  "name": "4. The Walking Bass",
-  "situation": "",
-  "voice_events": {
-   "melody": [
-    {
-     "p": "F4",
-     "d": "h"
+  {
+    "id": "general__4_the_walking_bass",
+    "name": "4. The Walking Bass",
+    "situation": "",
+    "voice_events": {
+      "melody": [
+        {
+          "p": "F4",
+          "d": "h"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        },
+        {
+          "p": "D4",
+          "d": "q"
+        },
+        {
+          "p": "C#4",
+          "d": "h"
+        },
+        {
+          "p": "A4",
+          "d": "h"
+        },
+        {
+          "p": "D4",
+          "d": "w"
+        }
+      ],
+      "bass": [
+        {
+          "p": "G2",
+          "d": "q",
+          "dyn": "mp"
+        },
+        {
+          "p": "A2",
+          "d": "q"
+        },
+        {
+          "p": "Bb2",
+          "d": "q"
+        },
+        {
+          "p": "C3",
+          "d": "q"
+        },
+        {
+          "p": "A2",
+          "d": "q"
+        },
+        {
+          "p": "G2",
+          "d": "q"
+        },
+        {
+          "p": "F2",
+          "d": "q"
+        },
+        {
+          "p": "E2",
+          "d": "q"
+        },
+        {
+          "p": "D2",
+          "d": "w"
+        }
+      ]
     },
-    {
-     "p": "E4",
-     "d": "q"
-    },
-    {
-     "p": "D4",
-     "d": "q"
-    },
-    {
-     "p": "C#4",
-     "d": "h"
-    },
-    {
-     "p": "A4",
-     "d": "h"
-    },
-    {
-     "p": "D4",
-     "d": "w"
-    }
-   ],
-   "bass": [
-    {
-     "p": "G2",
-     "d": "q",
-     "dyn": "mp"
-    },
-    {
-     "p": "A2",
-     "d": "q"
-    },
-    {
-     "p": "Bb2",
-     "d": "q"
-    },
-    {
-     "p": "C3",
-     "d": "q"
-    },
-    {
-     "p": "A2",
-     "d": "q"
-    },
-    {
-     "p": "G2",
-     "d": "q"
-    },
-    {
-     "p": "F2",
-     "d": "q"
-    },
-    {
-     "p": "E2",
-     "d": "q"
-    },
-    {
-     "p": "D2",
-     "d": "w"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "4. The Walking Bass"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "4. The Walking Bass"
- },
- {
-  "id": "general__5_the_ascending_sequence_tension_builder",
-  "name": "5. The Ascending Sequence (Tension Builder)",
-  "situation": "Sequence begins \u2014 forward lean, slightly urgent",
-  "voice_events": {
-   "vln1": [
-    {
-     "p": "D4",
-     "d": "q",
-     "dyn": "mf"
+  {
+    "id": "general__5_the_ascending_sequence_tension_builder",
+    "name": "5. The Ascending Sequence (Tension Builder)",
+    "situation": "Sequence begins \u2014 forward lean, slightly urgent",
+    "voice_events": {
+      "vln1": [
+        {
+          "p": "D4",
+          "d": "q",
+          "dyn": "mf"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "A4",
+          "d": "h"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "E4",
+          "d": "q",
+          "dyn": "f"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "A4",
+          "d": "q"
+        },
+        {
+          "p": "B4",
+          "d": "h"
+        },
+        {
+          "p": "A4",
+          "d": "q"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q",
+          "dyn": "ff"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "A4",
+          "d": "q"
+        },
+        {
+          "p": "Bb4",
+          "d": "q"
+        }
+      ],
+      "vc": [
+        {
+          "p": "D3",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "F2",
+          "d": "h"
+        },
+        {
+          "p": "C3",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        },
+        {
+          "p": "B2",
+          "d": "h"
+        },
+        {
+          "p": "G2",
+          "d": "h"
+        },
+        {
+          "p": "D3",
+          "d": "h"
+        },
+        {
+          "p": "F2",
+          "d": "h"
+        },
+        {
+          "p": "C3",
+          "d": "h"
+        }
+      ]
     },
-    {
-     "p": "E4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "A4",
-     "d": "h"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "E4",
-     "d": "q",
-     "dyn": "f"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "A4",
-     "d": "q"
-    },
-    {
-     "p": "B4",
-     "d": "h"
-    },
-    {
-     "p": "A4",
-     "d": "q"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q",
-     "dyn": "ff"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "A4",
-     "d": "q"
-    },
-    {
-     "p": "Bb4",
-     "d": "q"
-    }
-   ],
-   "vc": [
-    {
-     "p": "D3",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "F2",
-     "d": "h"
-    },
-    {
-     "p": "C3",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    },
-    {
-     "p": "B2",
-     "d": "h"
-    },
-    {
-     "p": "G2",
-     "d": "h"
-    },
-    {
-     "p": "D3",
-     "d": "h"
-    },
-    {
-     "p": "F2",
-     "d": "h"
-    },
-    {
-     "p": "C3",
-     "d": "h"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "5. The Ascending Sequence (Tension Builder)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "5. The Ascending Sequence (Tension Builder)"
- },
- {
-  "id": "general__6_the_deceptive_cadence",
-  "name": "6. The Deceptive Cadence",
-  "situation": "The arrival everyone expects \u2014 but it doesn't come",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "D5",
-     "d": "w",
-     "dyn": "mp",
-     "art": "tenuto"
+  {
+    "id": "general__6_the_deceptive_cadence",
+    "name": "6. The Deceptive Cadence",
+    "situation": "The arrival everyone expects \u2014 but it doesn't come",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "D5",
+          "d": "w",
+          "dyn": "mp",
+          "art": "tenuto"
+        },
+        {
+          "p": "D5",
+          "d": "h",
+          "dyn": "p"
+        },
+        {
+          "p": "C5",
+          "d": "h"
+        }
+      ]
     },
-    {
-     "p": "D5",
-     "d": "h",
-     "dyn": "p"
-    },
-    {
-     "p": "C5",
-     "d": "h"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "6. The Deceptive Cadence"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "6. The Deceptive Cadence"
- },
- {
-  "id": "general__7_the_neapolitan_approach_bii6",
-  "name": "7. The Neapolitan Approach (bII6)",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "Bb4",
-     "d": "h",
-     "dyn": "mf",
-     "art": "tenuto"
+  {
+    "id": "general__7_the_neapolitan_approach_bii6",
+    "name": "7. The Neapolitan Approach (bII6)",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "Bb4",
+          "d": "h",
+          "dyn": "mf",
+          "art": "tenuto"
+        },
+        {
+          "p": "A4",
+          "d": "h"
+        },
+        {
+          "p": "A4",
+          "d": "dh",
+          "orn": "trill"
+        },
+        {
+          "p": "rest",
+          "d": "q"
+        },
+        {
+          "p": "D4",
+          "d": "w",
+          "dyn": "p"
+        }
+      ]
     },
-    {
-     "p": "A4",
-     "d": "h"
-    },
-    {
-     "p": "A4",
-     "d": "dh",
-     "orn": "trill"
-    },
-    {
-     "p": "rest",
-     "d": "q"
-    },
-    {
-     "p": "D4",
-     "d": "w",
-     "dyn": "p"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "7. The Neapolitan Approach (bII6)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "7. The Neapolitan Approach (bII6)"
- },
- {
-  "id": "general__8_the_chopin_nocturne_bass_wide_arpeggio",
-  "name": "8. The Chopin Nocturne Bass (Wide Arpeggio)",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "Bb5",
-     "d": "dh",
-     "dyn": "p",
-     "orn": "grace:C6"
+  {
+    "id": "general__8_the_chopin_nocturne_bass_wide_arpeggio",
+    "name": "8. The Chopin Nocturne Bass (Wide Arpeggio)",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "Bb5",
+          "d": "dh",
+          "dyn": "p",
+          "orn": "grace:C6"
+        },
+        {
+          "p": "Ab5",
+          "d": "q"
+        }
+      ],
+      "lh": [
+        {
+          "p": "Eb2",
+          "d": "q"
+        },
+        {
+          "p": "Bb3",
+          "d": "q"
+        },
+        {
+          "p": "Eb4",
+          "d": "q"
+        }
+      ]
     },
-    {
-     "p": "Ab5",
-     "d": "q"
-    }
-   ],
-   "lh": [
-    {
-     "p": "Eb2",
-     "d": "q"
-    },
-    {
-     "p": "Bb3",
-     "d": "q"
-    },
-    {
-     "p": "Eb4",
-     "d": "q"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "8. The Chopin Nocturne Bass (Wide Arpeggio)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "8. The Chopin Nocturne Bass (Wide Arpeggio)"
- },
- {
-  "id": "general__9_the_chromatic_inner_voice_descent_chopin_sigh",
-  "name": "9. The Chromatic Inner Voice Descent (Chopin Sigh)",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": [
-      "G4",
-      "C4"
-     ],
-     "d": "q"
+  {
+    "id": "general__9_the_chromatic_inner_voice_descent_chopin_sigh",
+    "name": "9. The Chromatic Inner Voice Descent (Chopin Sigh)",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": [
+            "G4",
+            "C4"
+          ],
+          "d": "q"
+        },
+        {
+          "p": [
+            "G4",
+            "B3"
+          ],
+          "d": "q"
+        },
+        {
+          "p": [
+            "G4",
+            "Bb3"
+          ],
+          "d": "q"
+        },
+        {
+          "p": [
+            "G4",
+            "A3"
+          ],
+          "d": "q"
+        }
+      ],
+      "lh": [
+        {
+          "p": "C2",
+          "d": "w"
+        }
+      ]
     },
-    {
-     "p": [
-      "G4",
-      "B3"
-     ],
-     "d": "q"
-    },
-    {
-     "p": [
-      "G4",
-      "Bb3"
-     ],
-     "d": "q"
-    },
-    {
-     "p": [
-      "G4",
-      "A3"
-     ],
-     "d": "q"
-    }
-   ],
-   "lh": [
-    {
-     "p": "C2",
-     "d": "w"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "9. The Chromatic Inner Voice Descent (Chopin Sigh)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "9. The Chromatic Inner Voice Descent (Chopin Sigh)"
- },
- {
-  "id": "general__10_the_alberti_bass_classical",
-  "name": "10. The Alberti Bass (Classical)",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "G4",
-     "d": "h",
-     "dyn": "p"
+  {
+    "id": "general__10_the_alberti_bass_classical",
+    "name": "10. The Alberti Bass (Classical)",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "G4",
+          "d": "h",
+          "dyn": "p"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        }
+      ],
+      "lh": [
+        {
+          "p": "C3",
+          "d": "q"
+        },
+        {
+          "p": "G3",
+          "d": "q"
+        },
+        {
+          "p": "E3",
+          "d": "q"
+        },
+        {
+          "p": "G3",
+          "d": "q"
+        }
+      ]
     },
-    {
-     "p": "E4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    }
-   ],
-   "lh": [
-    {
-     "p": "C3",
-     "d": "q"
-    },
-    {
-     "p": "G3",
-     "d": "q"
-    },
-    {
-     "p": "E3",
-     "d": "q"
-    },
-    {
-     "p": "G3",
-     "d": "q"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "10. The Alberti Bass (Classical)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "10. The Alberti Bass (Classical)"
- },
- {
-  "id": "general__11_parallel_thirds_in_the_melody_two_voice_unison",
-  "name": "11. Parallel Thirds in the Melody (Two-Voice Unison)",
-  "situation": "",
-  "voice_events": {
-   "vln1": [
-    {
-     "p": "A4",
-     "d": "q",
-     "dyn": "mf"
+  {
+    "id": "general__11_parallel_thirds_in_the_melody_two_voice_unison",
+    "name": "11. Parallel Thirds in the Melody (Two-Voice Unison)",
+    "situation": "",
+    "voice_events": {
+      "vln1": [
+        {
+          "p": "A4",
+          "d": "q",
+          "dyn": "mf"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        }
+      ],
+      "vln2": [
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        },
+        {
+          "p": "D4",
+          "d": "q"
+        },
+        {
+          "p": "C#4",
+          "d": "q"
+        }
+      ]
     },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "E4",
-     "d": "q"
-    }
-   ],
-   "vln2": [
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "E4",
-     "d": "q"
-    },
-    {
-     "p": "D4",
-     "d": "q"
-    },
-    {
-     "p": "C#4",
-     "d": "q"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "11. Parallel Thirds in the Melody (Two-Voice Unison)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "11. Parallel Thirds in the Melody (Two-Voice Unison)"
- },
- {
-  "id": "general__12_the_suspense_pedal_dominant_pedal",
-  "name": "12. The Suspense Pedal (Dominant Pedal)",
-  "situation": "Held breath \u2014 the A in the bass will not let go",
-  "voice_events": {
-   "vln1": [
-    {
-     "p": "F4",
-     "d": "h"
+  {
+    "id": "general__12_the_suspense_pedal_dominant_pedal",
+    "name": "12. The Suspense Pedal (Dominant Pedal)",
+    "situation": "Held breath \u2014 the A in the bass will not let go",
+    "voice_events": {
+      "vln1": [
+        {
+          "p": "F4",
+          "d": "h"
+        },
+        {
+          "p": "E4",
+          "d": "h"
+        },
+        {
+          "p": "E4",
+          "d": "h"
+        },
+        {
+          "p": "D4",
+          "d": "q"
+        },
+        {
+          "p": "C#4",
+          "d": "q"
+        },
+        {
+          "p": "C#4",
+          "d": "h"
+        },
+        {
+          "p": "A4",
+          "d": "h",
+          "dyn": "f"
+        },
+        {
+          "p": "D4",
+          "d": "w",
+          "dyn": "p",
+          "orn": "trill"
+        }
+      ],
+      "vla": [
+        {
+          "formula": "chorale_hold",
+          "bass": "C4",
+          "chord_tones": [
+            "E4",
+            "C4"
+          ]
+        },
+        {
+          "formula": "chorale_hold",
+          "bass": "A3",
+          "chord_tones": [
+            "E4",
+            "A3"
+          ]
+        },
+        {
+          "formula": "chorale_hold",
+          "bass": "E4",
+          "chord_tones": [
+            "E4",
+            "A3"
+          ]
+        },
+        {
+          "formula": "chorale_hold",
+          "bass": "F3",
+          "chord_tones": [
+            "D4",
+            "A3",
+            "F3"
+          ]
+        }
+      ],
+      "vc": [
+        {
+          "p": "A2",
+          "d": "w"
+        },
+        {
+          "p": "A2",
+          "d": "w"
+        },
+        {
+          "p": "A2",
+          "d": "w"
+        },
+        {
+          "p": "D2",
+          "d": "w",
+          "dyn": "p"
+        }
+      ]
     },
-    {
-     "p": "E4",
-     "d": "h"
-    },
-    {
-     "p": "E4",
-     "d": "h"
-    },
-    {
-     "p": "D4",
-     "d": "q"
-    },
-    {
-     "p": "C#4",
-     "d": "q"
-    },
-    {
-     "p": "C#4",
-     "d": "h"
-    },
-    {
-     "p": "A4",
-     "d": "h",
-     "dyn": "f"
-    },
-    {
-     "p": "D4",
-     "d": "w",
-     "dyn": "p",
-     "orn": "trill"
-    }
-   ],
-   "vla": [
-    {
-     "formula": "chorale_hold",
-     "bass": "C4",
-     "chord_tones": [
-      "E4",
-      "C4"
-     ]
-    },
-    {
-     "formula": "chorale_hold",
-     "bass": "A3",
-     "chord_tones": [
-      "E4",
-      "A3"
-     ]
-    },
-    {
-     "formula": "chorale_hold",
-     "bass": "E4",
-     "chord_tones": [
-      "E4",
-      "A3"
-     ]
-    },
-    {
-     "formula": "chorale_hold",
-     "bass": "F3",
-     "chord_tones": [
-      "D4",
-      "A3",
-      "F3"
-     ]
-    }
-   ],
-   "vc": [
-    {
-     "p": "A2",
-     "d": "w"
-    },
-    {
-     "p": "A2",
-     "d": "w"
-    },
-    {
-     "p": "A2",
-     "d": "w"
-    },
-    {
-     "p": "D2",
-     "d": "w",
-     "dyn": "p"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "12. The Suspense Pedal (Dominant Pedal)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "12. The Suspense Pedal (Dominant Pedal)"
- },
- {
-  "id": "general__13_the_cadential_6_4_v_i",
-  "name": "13. The Cadential 6/4 \u2192 V \u2192 I",
-  "situation": "",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "B4",
-     "d": "h",
-     "dyn": "f"
+  {
+    "id": "general__13_the_cadential_6_4_v_i",
+    "name": "13. The Cadential 6/4 \u2192 V \u2192 I",
+    "situation": "",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "B4",
+          "d": "h",
+          "dyn": "f"
+        },
+        {
+          "p": "A4",
+          "d": "h",
+          "orn": "trill"
+        },
+        {
+          "p": "G4",
+          "d": "w",
+          "dyn": "p"
+        }
+      ],
+      "lh": [
+        {
+          "p": "D3",
+          "d": "h"
+        },
+        {
+          "p": "D3",
+          "d": "h"
+        },
+        {
+          "p": "G2",
+          "d": "w"
+        }
+      ]
     },
-    {
-     "p": "A4",
-     "d": "h",
-     "orn": "trill"
-    },
-    {
-     "p": "G4",
-     "d": "w",
-     "dyn": "p"
-    }
-   ],
-   "lh": [
-    {
-     "p": "D3",
-     "d": "h"
-    },
-    {
-     "p": "D3",
-     "d": "h"
-    },
-    {
-     "p": "G2",
-     "d": "w"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "13. The Cadential 6/4 \u2192 V \u2192 I"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "13. The Cadential 6/4 \u2192 V \u2192 I"
- },
- {
-  "id": "general__14_pentatonic_melody_construction_folk_norwegian_celtic",
-  "name": "14. Pentatonic Melody Construction (Folk/Norwegian/Celtic)",
-  "situation": "Folk melody \u2014 5 notes only, no semitones",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "A4",
-     "d": "q",
-     "dyn": "p",
-     "expr": "tranquillo"
+  {
+    "id": "general__14_pentatonic_melody_construction_folk_norwegian_celtic",
+    "name": "14. Pentatonic Melody Construction (Folk/Norwegian/Celtic)",
+    "situation": "Folk melody \u2014 5 notes only, no semitones",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "A4",
+          "d": "q",
+          "dyn": "p",
+          "expr": "tranquillo"
+        },
+        {
+          "p": "C5",
+          "d": "q"
+        },
+        {
+          "p": "D5",
+          "d": "h"
+        },
+        {
+          "p": "E5",
+          "d": "q"
+        },
+        {
+          "p": "D5",
+          "d": "q"
+        },
+        {
+          "p": "C5",
+          "d": "h"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "A4",
+          "d": "q"
+        },
+        {
+          "p": "C5",
+          "d": "q"
+        },
+        {
+          "p": "D5",
+          "d": "q"
+        },
+        {
+          "p": "E5",
+          "d": "dh",
+          "orn": "trill"
+        },
+        {
+          "p": "D5",
+          "d": "q"
+        },
+        {
+          "p": "A4",
+          "d": "w",
+          "dyn": "pp"
+        }
+      ],
+      "lh": [
+        {
+          "p": "A2",
+          "d": "w"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "w"
+        },
+        {
+          "p": "E2",
+          "d": "h"
+        },
+        {
+          "p": "B2",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        }
+      ]
     },
-    {
-     "p": "C5",
-     "d": "q"
-    },
-    {
-     "p": "D5",
-     "d": "h"
-    },
-    {
-     "p": "E5",
-     "d": "q"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "C5",
-     "d": "h"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "A4",
-     "d": "q"
-    },
-    {
-     "p": "C5",
-     "d": "q"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "E5",
-     "d": "dh",
-     "orn": "trill"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "A4",
-     "d": "w",
-     "dyn": "pp"
-    }
-   ],
-   "lh": [
-    {
-     "p": "A2",
-     "d": "w"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "w"
-    },
-    {
-     "p": "E2",
-     "d": "h"
-    },
-    {
-     "p": "B2",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "14. Pentatonic Melody Construction (Folk/Norwegian/Celtic)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "14. Pentatonic Melody Construction (Folk/Norwegian/Celtic)"
- },
- {
-  "id": "general__15_modal_phrase_dorian_mode",
-  "name": "15. Modal Phrase \u2014 Dorian Mode",
-  "situation": "Dorian \u2014 minor with the raised 6th. Neither major nor minor \u2014 both.",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "D4",
-     "d": "q",
-     "dyn": "mp"
+  {
+    "id": "general__15_modal_phrase_dorian_mode",
+    "name": "15. Modal Phrase \u2014 Dorian Mode",
+    "situation": "Dorian \u2014 minor with the raised 6th. Neither major nor minor \u2014 both.",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "D4",
+          "d": "q",
+          "dyn": "mp"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "A4",
+          "d": "h"
+        },
+        {
+          "p": "B4",
+          "d": "q",
+          "_feel": "B\u266e \u2014 the Dorian raised 6th. This is the characteristic note."
+        },
+        {
+          "p": "A4",
+          "d": "q"
+        },
+        {
+          "p": "G4",
+          "d": "q"
+        },
+        {
+          "p": "F4",
+          "d": "q"
+        },
+        {
+          "p": "E4",
+          "d": "q"
+        },
+        {
+          "p": "D4",
+          "d": "q"
+        }
+      ],
+      "lh": [
+        {
+          "p": "D2",
+          "d": "w"
+        },
+        {
+          "p": "D2",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "D2",
+          "d": "w"
+        }
+      ]
     },
-    {
-     "p": "E4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "A4",
-     "d": "h"
-    },
-    {
-     "p": "B4",
-     "d": "q",
-     "_feel": "B\u266e \u2014 the Dorian raised 6th. This is the characteristic note."
-    },
-    {
-     "p": "A4",
-     "d": "q"
-    },
-    {
-     "p": "G4",
-     "d": "q"
-    },
-    {
-     "p": "F4",
-     "d": "q"
-    },
-    {
-     "p": "E4",
-     "d": "q"
-    },
-    {
-     "p": "D4",
-     "d": "q"
-    }
-   ],
-   "lh": [
-    {
-     "p": "D2",
-     "d": "w"
-    },
-    {
-     "p": "D2",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "D2",
-     "d": "w"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "15. Modal Phrase \u2014 Dorian Mode"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "15. Modal Phrase \u2014 Dorian Mode"
- },
- {
-  "id": "general__16_norwegian_open_5th_drone_bass_hardanger_idiom",
-  "name": "16. Norwegian Open-5th Drone Bass (Hardanger Idiom)",
-  "situation": "The drone never moves \u2014 the earth beneath",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "C5",
-     "d": "h",
-     "dyn": "p"
+  {
+    "id": "general__16_norwegian_open_5th_drone_bass_hardanger_idiom",
+    "name": "16. Norwegian Open-5th Drone Bass (Hardanger Idiom)",
+    "situation": "The drone never moves \u2014 the earth beneath",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "C5",
+          "d": "h",
+          "dyn": "p"
+        },
+        {
+          "p": "E5",
+          "d": "h"
+        },
+        {
+          "p": "F#5",
+          "d": "h",
+          "dyn": "mp"
+        },
+        {
+          "p": "A5",
+          "d": "h"
+        },
+        {
+          "p": "F5",
+          "d": "h",
+          "dyn": "mf"
+        },
+        {
+          "p": "A5",
+          "d": "h"
+        },
+        {
+          "p": "E5",
+          "d": "h",
+          "dyn": "p"
+        },
+        {
+          "p": "C5",
+          "d": "h"
+        }
+      ],
+      "lh": [
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        },
+        {
+          "p": "A2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        }
+      ]
     },
-    {
-     "p": "E5",
-     "d": "h"
-    },
-    {
-     "p": "F#5",
-     "d": "h",
-     "dyn": "mp"
-    },
-    {
-     "p": "A5",
-     "d": "h"
-    },
-    {
-     "p": "F5",
-     "d": "h",
-     "dyn": "mf"
-    },
-    {
-     "p": "A5",
-     "d": "h"
-    },
-    {
-     "p": "E5",
-     "d": "h",
-     "dyn": "p"
-    },
-    {
-     "p": "C5",
-     "d": "h"
-    }
-   ],
-   "lh": [
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    },
-    {
-     "p": "A2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "16. Norwegian Open-5th Drone Bass (Hardanger Idiom)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "16. Norwegian Open-5th Drone Bass (Hardanger Idiom)"
- },
- {
-  "id": "general__17_parallel_chord_movement_debussy",
-  "name": "17. Parallel Chord Movement (Debussy)",
-  "situation": "The chord shape slides \u2014 no voice-leading, just color moving",
-  "voice_events": {
-   "rh": [
-    {
-     "p": [
-      "E5",
-      "G5",
-      "B5",
-      "D6"
-     ],
-     "d": "h",
-     "dyn": "p"
+  {
+    "id": "general__17_parallel_chord_movement_debussy",
+    "name": "17. Parallel Chord Movement (Debussy)",
+    "situation": "The chord shape slides \u2014 no voice-leading, just color moving",
+    "voice_events": {
+      "rh": [
+        {
+          "p": [
+            "E5",
+            "G5",
+            "B5",
+            "D6"
+          ],
+          "d": "h",
+          "dyn": "p"
+        },
+        {
+          "p": [
+            "F#5",
+            "A5",
+            "C#6",
+            "E6"
+          ],
+          "d": "h"
+        },
+        {
+          "p": [
+            "G#5",
+            "B5",
+            "D#6",
+            "F#6"
+          ],
+          "d": "h",
+          "dyn": "mp"
+        },
+        {
+          "p": [
+            "A#5",
+            "C#6",
+            "F6",
+            "G#6"
+          ],
+          "d": "h"
+        },
+        {
+          "p": [
+            "C5",
+            "E5",
+            "G5"
+          ],
+          "d": "q",
+          "dyn": "pp"
+        },
+        {
+          "p": [
+            "B4",
+            "D#5",
+            "F#5"
+          ],
+          "d": "q"
+        },
+        {
+          "p": [
+            "Bb4",
+            "D5",
+            "F5"
+          ],
+          "d": "q"
+        },
+        {
+          "p": [
+            "A4",
+            "C#5",
+            "E5"
+          ],
+          "d": "q"
+        }
+      ],
+      "lh": [
+        {
+          "p": [
+            "C3",
+            "E3",
+            "G3",
+            "B3"
+          ],
+          "d": "h"
+        },
+        {
+          "p": [
+            "D3",
+            "F#3",
+            "A3",
+            "C#4"
+          ],
+          "d": "h"
+        },
+        {
+          "p": [
+            "E3",
+            "G#3",
+            "B3",
+            "D#4"
+          ],
+          "d": "h"
+        },
+        {
+          "p": [
+            "F#3",
+            "A#3",
+            "C#4",
+            "F4"
+          ],
+          "d": "h"
+        },
+        {
+          "p": "C3",
+          "d": "w"
+        }
+      ]
     },
-    {
-     "p": [
-      "F#5",
-      "A5",
-      "C#6",
-      "E6"
-     ],
-     "d": "h"
-    },
-    {
-     "p": [
-      "G#5",
-      "B5",
-      "D#6",
-      "F#6"
-     ],
-     "d": "h",
-     "dyn": "mp"
-    },
-    {
-     "p": [
-      "A#5",
-      "C#6",
-      "F6",
-      "G#6"
-     ],
-     "d": "h"
-    },
-    {
-     "p": [
-      "C5",
-      "E5",
-      "G5"
-     ],
-     "d": "q",
-     "dyn": "pp"
-    },
-    {
-     "p": [
-      "B4",
-      "D#5",
-      "F#5"
-     ],
-     "d": "q"
-    },
-    {
-     "p": [
-      "Bb4",
-      "D5",
-      "F5"
-     ],
-     "d": "q"
-    },
-    {
-     "p": [
-      "A4",
-      "C#5",
-      "E5"
-     ],
-     "d": "q"
-    }
-   ],
-   "lh": [
-    {
-     "p": [
-      "C3",
-      "E3",
-      "G3",
-      "B3"
-     ],
-     "d": "h"
-    },
-    {
-     "p": [
-      "D3",
-      "F#3",
-      "A3",
-      "C#4"
-     ],
-     "d": "h"
-    },
-    {
-     "p": [
-      "E3",
-      "G#3",
-      "B3",
-      "D#4"
-     ],
-     "d": "h"
-    },
-    {
-     "p": [
-      "F#3",
-      "A#3",
-      "C#4",
-      "F4"
-     ],
-     "d": "h"
-    },
-    {
-     "p": "C3",
-     "d": "w"
-    }
-   ]
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "17. Parallel Chord Movement (Debussy)"
   },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "17. Parallel Chord Movement (Debussy)"
- },
- {
-  "id": "general__18_whole_tone_passage",
-  "name": "18. Whole-Tone Passage",
-  "situation": "Whole-tone \u2014 no gravity, no direction, suspended in air",
-  "voice_events": {
-   "rh": [
-    {
-     "p": "C5",
-     "d": "q",
-     "dyn": "p"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "E5",
-     "d": "q"
-    },
-    {
-     "p": "F#5",
-     "d": "q"
-    },
-    {
-     "p": "G#5",
-     "d": "q"
-    },
-    {
-     "p": "Bb5",
-     "d": "q"
-    },
-    {
-     "p": "G#5",
-     "d": "q"
-    },
-    {
-     "p": "F#5",
-     "d": "q"
-    },
-    {
-     "p": "E5",
-     "d": "q"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "C5",
-     "d": "h",
-     "dyn": "pp"
-    }
-   ],
-   "lh": [
-    {
-     "p": "C3",
-     "d": "h"
-    },
-    {
-     "p": "G#3",
-     "d": "h"
-    },
-    {
-     "p": "Bb2",
-     "d": "h"
-    },
-    {
-     "p": "E3",
-     "d": "h"
-    },
-    {
-     "p": "C3",
-     "d": "h"
-    },
-    {
-     "p": "G#3",
-     "d": "h"
-    }
-   ]
-  },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [],
-  "source_file": "phrase-construction.md",
-  "source_heading": "18. Whole-Tone Passage"
- },
- {
-  "id": "beethoven__note_level_technique_1_motivic_cell_compression_development_engine",
-  "name": "Note-Level Technique 1: Motivic Cell Compression (Development Engine)",
-  "situation": "Cell statement \u2014 full size, 2 bars",
-  "voice_events": {
-   "soprano": [
-    {
-     "p": "G4",
-     "d": "e",
-     "dyn": "ff",
-     "art": "staccato"
-    },
-    {
-     "p": "G4",
-     "d": "e",
-     "art": "staccato"
-    },
-    {
-     "p": "G4",
-     "d": "e",
-     "art": "staccato"
-    },
-    {
-     "p": "Eb4",
-     "d": "dh",
-     "dyn": "ff"
-    },
-    {
-     "p": "F4",
-     "d": "e"
-    },
-    {
-     "p": "F4",
-     "d": "e"
-    },
-    {
-     "p": "F4",
-     "d": "e"
-    },
-    {
-     "p": "D4",
-     "d": "dh"
-    },
-    {
-     "p": "E4",
-     "d": "e",
-     "dyn": "f"
-    },
-    {
-     "p": "E4",
-     "d": "e"
-    },
-    {
-     "p": "E4",
-     "d": "e"
-    },
-    {
-     "p": "C4",
-     "d": "q",
-     "dyn": "ff"
-    },
-    {
-     "p": "F4",
-     "d": "e",
-     "dyn": "ff"
-    },
-    {
-     "p": "F4",
-     "d": "e"
-    },
-    {
-     "p": "F4",
-     "d": "e"
-    },
-    {
-     "p": "D4",
-     "d": "q"
-    },
-    {
-     "p": "G4",
-     "d": "e",
-     "dyn": "ff",
-     "art": "sfz"
-    },
-    {
-     "p": "G4",
-     "d": "e"
-    },
-    {
-     "p": "Ab4",
-     "d": "e",
-     "art": "sfz"
-    },
-    {
-     "p": "Ab4",
-     "d": "e"
-    }
-   ],
-   "bass": [
-    {
-     "p": "G2",
-     "d": "e"
-    },
-    {
-     "p": "G2",
-     "d": "e"
-    },
-    {
-     "p": "G2",
-     "d": "e"
-    },
-    {
-     "p": "Eb2",
-     "d": "dh"
-    },
-    {
-     "p": "F2",
-     "d": "e"
-    },
-    {
-     "p": "F2",
-     "d": "e"
-    },
-    {
-     "p": "F2",
-     "d": "e"
-    },
-    {
-     "p": "D2",
-     "d": "dh"
-    },
-    {
-     "p": "E2",
-     "d": "e"
-    },
-    {
-     "p": "E2",
-     "d": "e"
-    },
-    {
-     "p": "E2",
-     "d": "e"
-    },
-    {
-     "p": "C2",
-     "d": "q"
-    },
-    {
-     "p": "F2",
-     "d": "e"
-    },
-    {
-     "p": "F2",
-     "d": "e"
-    },
-    {
-     "p": "F2",
-     "d": "e"
-    },
-    {
-     "p": "D2",
-     "d": "q"
-    },
-    {
-     "p": "Eb2",
-     "d": "q"
-    },
-    {
-     "p": "Eb2",
-     "d": "q"
-    }
-   ]
-  },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [
-   "beethoven"
-  ],
-  "source_file": "beethoven/composition-guide.md",
-  "source_heading": "Note-Level Technique 1: Motivic Cell Compression (Development Engine)"
- },
- {
-  "id": "beethoven__note_level_technique_2_sforzando_on_off_beat_metric_destabilization",
-  "name": "Note-Level Technique 2: Sforzando on Off-Beat (Metric Destabilization)",
-  "situation": "The accents shift the floor \u2014 where is beat 1?",
-  "voice_events": {
-   "soprano": [
-    {
-     "p": "C5",
-     "d": "q"
-    },
-    {
-     "p": "Eb5",
-     "d": "q",
-     "dyn": "sfz"
-    },
-    {
-     "p": "C5",
-     "d": "q"
-    },
-    {
-     "p": "Eb5",
-     "d": "q",
-     "dyn": "sfz"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "F5",
-     "d": "q",
-     "dyn": "sfz"
-    },
-    {
-     "p": "D5",
-     "d": "q"
-    },
-    {
-     "p": "F5",
-     "d": "q",
-     "dyn": "sfz"
-    },
-    {
-     "p": "G4",
-     "d": "w",
-     "dyn": "sfz"
-    }
-   ],
-   "bass": [
-    {
-     "p": "C2",
-     "d": "q"
-    },
-    {
-     "p": "rest",
-     "d": "q"
-    },
-    {
-     "p": "C2",
-     "d": "q"
-    },
-    {
-     "p": "rest",
-     "d": "q"
-    },
-    {
-     "p": "D2",
-     "d": "q"
-    },
-    {
-     "p": "rest",
-     "d": "q"
-    },
-    {
-     "p": "D2",
-     "d": "q"
-    },
-    {
-     "p": "rest",
-     "d": "q"
-    },
-    {
-     "p": "G2",
-     "d": "w",
-     "dyn": "sfz"
-    }
-   ]
-  },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [
-   "beethoven"
-  ],
-  "source_file": "beethoven/composition-guide.md",
-  "source_heading": "Note-Level Technique 2: Sforzando on Off-Beat (Metric Destabilization)"
- },
- {
-  "id": "beethoven__note_level_technique_3_false_recapitulation_structural_deception",
-  "name": "Note-Level Technique 3: False Recapitulation (Structural Deception)",
-  "situation": "False recapitulation \u2014 the theme is back, but wrong. Ab major, not C minor.",
-  "voice_events": {
-   "soprano": [
-    {
-     "p": "Eb5",
-     "d": "q",
-     "dyn": "p"
-    },
-    {
-     "p": "F5",
-     "d": "q"
-    },
-    {
-     "p": "G5",
-     "d": "q"
-    },
-    {
-     "p": "Ab5",
-     "d": "q"
-    },
-    {
-     "p": "Bb5",
-     "d": "h"
-    },
-    {
-     "p": "Ab5",
-     "d": "q"
-    },
-    {
-     "p": "G5",
-     "d": "q"
-    },
-    {
-     "p": "G5",
-     "d": "q",
-     "dyn": "mf"
-    },
-    {
-     "p": "F5",
-     "d": "q"
-    },
-    {
-     "p": "Eb5",
-     "d": "q"
-    },
-    {
-     "p": "D5",
-     "d": "q",
-     "dyn": "f"
-    }
-   ]
-  },
-  "harmonic_context": "",
-  "phrase_functions": [],
-  "composer_affinities": [
-   "beethoven"
-  ],
-  "source_file": "beethoven/composition-guide.md",
-  "source_heading": "Note-Level Technique 3: False Recapitulation (Structural Deception)"
- }
+  {
+    "id": "general__18_whole_tone_passage",
+    "name": "18. Whole-Tone Passage",
+    "situation": "Whole-tone \u2014 no gravity, no direction, suspended in air",
+    "voice_events": {
+      "rh": [
+        {
+          "p": "C5",
+          "d": "q",
+          "dyn": "p"
+        },
+        {
+          "p": "D5",
+          "d": "q"
+        },
+        {
+          "p": "E5",
+          "d": "q"
+        },
+        {
+          "p": "F#5",
+          "d": "q"
+        },
+        {
+          "p": "G#5",
+          "d": "q"
+        },
+        {
+          "p": "Bb5",
+          "d": "q"
+        },
+        {
+          "p": "G#5",
+          "d": "q"
+        },
+        {
+          "p": "F#5",
+          "d": "q"
+        },
+        {
+          "p": "E5",
+          "d": "q"
+        },
+        {
+          "p": "D5",
+          "d": "q"
+        },
+        {
+          "p": "C5",
+          "d": "h",
+          "dyn": "pp"
+        }
+      ],
+      "lh": [
+        {
+          "p": "C3",
+          "d": "h"
+        },
+        {
+          "p": "G#3",
+          "d": "h"
+        },
+        {
+          "p": "Bb2",
+          "d": "h"
+        },
+        {
+          "p": "E3",
+          "d": "h"
+        },
+        {
+          "p": "C3",
+          "d": "h"
+        },
+        {
+          "p": "G#3",
+          "d": "h"
+        }
+      ]
+    },
+    "harmonic_context": "",
+    "phrase_functions": [],
+    "composer_affinities": [],
+    "source_file": "phrase-construction.md",
+    "source_heading": "18. Whole-Tone Passage"
+  }
 ]

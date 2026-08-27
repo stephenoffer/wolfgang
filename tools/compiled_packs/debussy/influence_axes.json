@@ -1,7 +1,87 @@
 {
   "influenced_by": [
     {
-      "composer": "Debussy"
+      "composer": "Mussorgsky",
+      "absorbed": "Modal harmony, block chords, speech-rhythm vocal writing",
+      "heard_in": "Pell\u00e9as recitative; parallel chord movement; rejection of German development"
+    },
+    {
+      "composer": "Javanese gamelan (1889)",
+      "absorbed": "Pentatonic layering, non-Western timbre, cyclic form",
+      "heard_in": "Pagodes, La Mer layered textures, all pentatonic passages"
+    },
+    {
+      "composer": "Wagner (then rejected)",
+      "absorbed": "Orchestral sensuality, continuous harmonic flow",
+      "heard_in": "Sensitivity to orchestral blend \u2014 but without Wagnerian density"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Piano color, pedal technique, nocturnal atmosphere",
+      "heard_in": "Pr\u00e9ludes, \u00c9tudes \u2014 the piano as world of sound"
+    },
+    {
+      "composer": "Mallarm\u00e9/Symbolists",
+      "absorbed": "Suggestion over statement, evocation over description",
+      "heard_in": "Titles, aesthetic philosophy, Pr\u00e9lude \u00e0 l'apr\u00e8s-midi d'un faune"
+    },
+    {
+      "composer": "Massenet (early)",
+      "absorbed": "Lyrical French melody, elegant vocal writing",
+      "heard_in": "Early songs; later rejected but the French vocal instinct remains"
+    },
+    {
+      "composer": "Russian Five (Borodin, Rimsky-Korsakov)",
+      "absorbed": "Exotic color, orchestral brilliance, non-Germanic aesthetics",
+      "heard_in": "Orchestral color palette, modal harmony"
+    },
+    {
+      "composer": "Erik Satie",
+      "absorbed": "Bare textures, modal simplicity, anti-Romantic stance",
+      "heard_in": "Sarabande harmonies, static form, reduction of means"
+    },
+    {
+      "composer": "Medieval music (organum)",
+      "absorbed": "Parallel 5ths, modal scales, archaic sonority",
+      "heard_in": "La cath\u00e9drale engloutie, Danseuses de Delphes"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Ravel",
+      "absorbed": "Non-functional harmony, orchestral color, modal scales"
+    },
+    {
+      "composer": "Messiaen",
+      "absorbed": "Modes, non-functional harmony, nature as source"
+    },
+    {
+      "composer": "Boulez (early)",
+      "absorbed": "Liberation from tonal function, texture as form"
+    },
+    {
+      "composer": "Bart\u00f3k",
+      "absorbed": "Modal harmony, pentatonic scales, non-developmental form"
+    },
+    {
+      "composer": "Takemitsu",
+      "absorbed": "Orchestral color, nature imagery, silence"
+    },
+    {
+      "composer": "Jazz harmony",
+      "absorbed": "Extended chords as stable sonorities, modal improvisation"
+    },
+    {
+      "composer": "Film scoring",
+      "absorbed": "Atmospheric harmony, music as emotional landscape"
+    },
+    {
+      "composer": "Spectralists (Grisey, Murail)",
+      "absorbed": "Overtone-based harmony, timbre as composition"
+    },
+    {
+      "composer": "Bill Evans / Gil Evans",
+      "absorbed": "Voicings, modal harmony, impressionistic piano color"
     }
   ],
   "comparative_axes": {}

@@ -1,4 +1,74 @@
 {
-  "instruments": {},
+  "instruments": {
+    "violin_i": {
+      "name": "Violin I",
+      "section": "The instruments",
+      "function": "First of the pair; leads the suspension chains",
+      "register": "G3\u2013D6"
+    },
+    "violin_ii": {
+      "name": "Violin II",
+      "section": "The instruments",
+      "function": "Equal partner, not accompaniment \u2014 the two cross and exchange",
+      "register": "G3\u2013D6"
+    },
+    "viola": {
+      "name": "Viola",
+      "section": "The instruments",
+      "function": "Ripieno filler; often absent in trio textures",
+      "register": "C3\u2013D5"
+    },
+    "cello": {
+      "name": "Cello",
+      "section": "The instruments",
+      "function": "The bass line, played not realised",
+      "register": "C2\u2013E5"
+    },
+    "violone": {
+      "name": "Violone",
+      "section": "The instruments",
+      "function": "Doubles the bass an octave below in tutti",
+      "register": "E1\u2013G3"
+    },
+    "harpsichord_/_organ": {
+      "name": "Harpsichord / organ",
+      "section": "The instruments",
+      "function": "Realises the figures above the bass",
+      "register": "continuo"
+    },
+    "archlute_/_theorbo": {
+      "name": "Archlute / theorbo",
+      "section": "The instruments",
+      "function": "Alternative or additional realisation",
+      "register": "continuo"
+    }
+  },
+  "textures": [
+    {
+      "name": "Trio",
+      "section": "Textures",
+      "genre": "The default; the whole sonata repertoire"
+    },
+    {
+      "name": "Tutti ripieno",
+      "section": "Textures",
+      "genre": "Concerto grosso statements"
+    },
+    {
+      "name": "Solo over continuo",
+      "section": "Textures",
+      "genre": "Slow movement decoration"
+    },
+    {
+      "name": "Unison passagework",
+      "section": "Textures",
+      "genre": "Emphatic cadential drive"
+    },
+    {
+      "name": "Walking bass alone",
+      "section": "Textures",
+      "genre": "Transitions; setting up an entry"
+    }
+  ],
   "source_file": "orchestration.md"
 }

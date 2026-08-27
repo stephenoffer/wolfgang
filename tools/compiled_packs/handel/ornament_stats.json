@@ -1,23 +1,55 @@
 {
  "composer": "handel",
  "schema": 1,
- "total_bars": 54,
+ "total_bars": 1794,
  "textures": {
   "singing_melody": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.4516,
-   "n": 31
+   "dotted": 0.3,
+   "n": 440
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2388,
+   "n": 716
+  },
+  "chordal": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2941,
+   "n": 187
+  },
+  "scalar_run": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.189,
+   "n": 291
   },
   "held_note": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.15,
-   "n": 20
+   "dotted": 0.1667,
+   "n": 48
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 112
   }
  }
 }

@@ -1,14 +1,109 @@
 {
   "influenced_by": [
     {
-      "composer": "harmonically"
+      "composer": "Niedermeyer school / Gregorian chant",
+      "absorbed": "Modal melody, church modes, smooth voice-leading",
+      "heard_in": "All works \u2014 the modal inflections ARE the Niedermeyer training"
     },
     {
-      "composer": "his"
+      "composer": "Saint-Saens",
+      "absorbed": "Modern harmony (Wagner, Liszt); pianistic craft; French clarity",
+      "heard_in": "Piano writing, formal elegance, professional model"
     },
     {
-      "composer": "this"
+      "composer": "Schumann",
+      "absorbed": "Intimate song art; piano as poetic instrument; cross-rhythms",
+      "heard_in": "Early songs, piano accompaniment textures"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Nocturne form; flowing piano figuration; harmonic color",
+      "heard_in": "Nocturnes, Barcarolles \u2014 Faure extends Chopin's nocturne tradition"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony; continuous modulation; through-composition",
+      "heard_in": "Absorbed harmonically but rejected aesthetically (no drama, no display)"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Pianistic idiom; third-related harmony",
+      "heard_in": "Occasional \u2014 less central than Saint-Saens or Chopin"
+    },
+    {
+      "composer": "French chanson tradition",
+      "absorbed": "Melodic simplicity; strophic song; direct emotional expression",
+      "heard_in": "Early melodies; the vocal quality of all his melody"
+    },
+    {
+      "composer": "Palestrina / Renaissance polyphony",
+      "absorbed": "Smooth voice-leading; modal harmony; contrapuntal independence",
+      "heard_in": "Late works especially \u2014 the String Quartet is Renaissance in its purity"
+    },
+    {
+      "composer": "Berlioz"
+    },
+    {
+      "composer": "Gounod"
+    },
+    {
+      "composer": "Duparc"
+    },
+    {
+      "composer": "Faure"
+    },
+    {
+      "composer": "Debussy"
+    },
+    {
+      "composer": "Poulenc"
     }
   ],
-  "comparative_axes": {}
+  "influenced": [
+    {
+      "composer": "Ravel",
+      "absorbed": "Harmonic daring, formal precision, emotional restraint, melodic elegance",
+      "heard_in": "Ravel was Faure's student at the Conservatoire; absorbed his modal harmony and surpassed his orchestration"
+    },
+    {
+      "composer": "Nadia Boulanger",
+      "absorbed": "Everything \u2014 harmonic language, form, aesthetic of clarity and restraint",
+      "heard_in": "Boulanger studied with Faure; taught Copland, Carter, Piazzolla, Glass, Quincy Jones \u2014 Faure's influence radiates through her to the entire 20th century"
+    },
+    {
+      "composer": "Lili Boulanger",
+      "absorbed": "Lyrical sensitivity, modal harmony, song art",
+      "heard_in": "Nadia's sister; died young (1918); her music is the most directly Faurean of any successor"
+    },
+    {
+      "composer": "Charles Koechlin",
+      "absorbed": "Harmonic experimentation, modal richness, orchestral transparency",
+      "heard_in": "Koechlin studied with Faure; extended the harmonic language further"
+    },
+    {
+      "composer": "Florent Schmitt",
+      "absorbed": "Orchestral writing, formal ambition",
+      "heard_in": "Combined Faure's harmony with larger-scale orchestral forms"
+    },
+    {
+      "composer": "Roger-Ducasse",
+      "absorbed": "Chamber music intimacy, song craft",
+      "heard_in": "Direct continuation of Faure's chamber aesthetic"
+    },
+    {
+      "composer": "Jean Roger-Ducasse",
+      "absorbed": "Piano and chamber music",
+      "heard_in": "Carried the Faurean aesthetic into the 20th century"
+    }
+  ],
+  "comparative_axes": {
+    "Faure and the French Melodie Tradition": [
+      "Berlioz",
+      "Gounod",
+      "Duparc",
+      "Faure",
+      "Debussy",
+      "Poulenc"
+    ]
+  }
 }

@@ -1,4 +1,262 @@
 {
- "instruments": {},
- "source_file": "orchestration.md"
+  "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Foundation; tremolo, sustained harmony, unison themes"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Doubling strings or independent lyrical lines; rarely soloistic"
+    },
+    {
+      "name": "4 Hn, 3 Tpt, 3 Tbn, 1 Tba",
+      "section": "Standard Bruckner Orchestra",
+      "function": "The chorale section; the cathedral organ's principal stop"
+    },
+    {
+      "name": "4 (2 tenor, 2 bass) \u2014 Symphonies 7, 8, 9",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Warm, dark, hymn-like; the Bruckner sound at its most distinctive"
+    },
+    {
+      "name": "Timpani only (rare cymbals/triangle in climaxes)",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Pedal points, rhythmic punctuation; never coloristic"
+    },
+    {
+      "name": "Tremolo mist",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Solo/chamber",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Tutti homophony",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Octave unison",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Texture Types"
+    },
+    {
+      "name": "String polyphony",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Violins I",
+      "section": "Instrument Roles",
+      "function": "Primary melody carrier"
+    },
+    {
+      "name": "Violins II",
+      "section": "Instrument Roles",
+      "function": "Harmonic support, counter-melody"
+    },
+    {
+      "name": "Violas",
+      "section": "Instrument Roles",
+      "function": "Inner voice, harmonic glue"
+    },
+    {
+      "name": "Cellos",
+      "section": "Instrument Roles",
+      "function": "Melody (alternative), bass support"
+    },
+    {
+      "name": "Basses",
+      "section": "Instrument Roles",
+      "function": "Foundation, pedal"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Color, echo"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Solo melody, pastoral color"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Warmth, inner voice"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Bass doubling, tenor color"
+    },
+    {
+      "name": "Horns",
+      "section": "Instrument Roles",
+      "function": "Harmonic foundation, heroic call"
+    },
+    {
+      "name": "Trumpets",
+      "section": "Instrument Roles",
+      "function": "Climax punctuation"
+    },
+    {
+      "name": "Trombones",
+      "section": "Instrument Roles",
+      "function": "Weight, solemnity"
+    },
+    {
+      "name": "Tuba",
+      "section": "Instrument Roles",
+      "function": "Deepest foundation"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic anchor, thunder"
+    },
+    {
+      "name": "Piano (concerto)",
+      "section": "Instrument Roles",
+      "function": "Protagonist; melody + harmony + texture simultaneously"
+    },
+    {
+      "name": "Bell resonance",
+      "section": "Texture Types",
+      "function": "Tonic pedal in bass, harmony shimmering above"
+    },
+    {
+      "name": "Lush cantabile",
+      "section": "Texture Types",
+      "function": "Full string section carrying melody in octaves"
+    },
+    {
+      "name": "Concerto dialogue",
+      "section": "Texture Types",
+      "function": "Piano states melody, orchestra responds"
+    },
+    {
+      "name": "Climax tutti",
+      "section": "Texture Types",
+      "function": "Full orchestra at fff"
+    },
+    {
+      "name": "Chamber transparency",
+      "section": "Texture Types",
+      "function": "Reduced forces for intimate moments"
+    },
+    {
+      "name": "Chorale",
+      "section": "Texture Types",
+      "function": "Brass or string chorale, hymn-like"
+    },
+    {
+      "name": "Oboe or clarinet melody; muted strings",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Violins melody; violas + cellos accompany",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Doubled melody; added harmonic color",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Horns join for warmth; woodwinds fill",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Melody in trumpets or octave strings; brass chords",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Strings in octaves; full brass; doubled woodwinds",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Everything; timpani rolls; cymbal at peak moment",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Arpeggiated accompaniment",
+      "section": "Piano Writing",
+      "function": "Flowing broken chords in LH, 6/8 or 9/8, under melody in RH"
+    },
+    {
+      "name": "Triplet carpet",
+      "section": "Piano Writing",
+      "function": "Continuous triplet eighths creating rhythmic haze"
+    },
+    {
+      "name": "Chordal song accompaniment",
+      "section": "Piano Writing",
+      "function": "Simple block or broken chords supporting vocal melody"
+    },
+    {
+      "name": "Late sparse texture",
+      "section": "Piano Writing",
+      "function": "Bare two-voice writing, widely spaced, few chords"
+    },
+    {
+      "name": "Contrapuntal piano",
+      "section": "Piano Writing",
+      "function": "Two or three independent lines, no \"accompaniment\""
+    },
+    {
+      "name": "Strings",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Flute",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Oboe",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Horns",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Harp",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Full tutti",
+      "section": "Pelleas et Melisande Suite"
+    },
+    {
+      "name": "Monophonic unison",
+      "section": "String Quartet Op.121",
+      "function": "All four strings on the same line \u2014 extreme austerity"
+    },
+    {
+      "name": "Two-part counterpoint",
+      "section": "String Quartet Op.121",
+      "function": "First violin + cello; inner voices silent"
+    },
+    {
+      "name": "Homophonic chorale",
+      "section": "String Quartet Op.121",
+      "function": "Four-part chords, hymn-like"
+    },
+    {
+      "name": "Free counterpoint",
+      "section": "String Quartet Op.121",
+      "function": "Four independent lines, no \"accompaniment\" layer"
+    },
+    {
+      "name": "Accompanied melody",
+      "section": "String Quartet Op.121",
+      "function": "One voice sings, three accompany \u2014 but the accompaniment is lean"
+    }
+  ],
+  "source_file": "orchestration.md"
 }

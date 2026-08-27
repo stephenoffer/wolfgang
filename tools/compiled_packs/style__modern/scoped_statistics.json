@@ -1,0 +1,17 @@
+{
+  "total_bars": 16,
+  "lh_distribution": {
+    "block_chord_sparse": 1.0
+  },
+  "rh_distribution": {
+    "singing_melody": 0.6875,
+    "held_note": 0.1875,
+    "chordal": 0.0625,
+    "scalar_run": 0.0625
+  },
+  "transition_matrix": {
+    "block_chord_sparse": {
+      "block_chord_sparse": 1.0
+    }
+  }
+}

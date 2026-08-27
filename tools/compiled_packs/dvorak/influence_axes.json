@@ -1,13 +1,71 @@
 {
   "influenced_by": [
     {
-      "composer": "subtly"
+      "composer": "Brahms",
+      "absorbed": "Sonata form discipline, developing variation, orchestral weight, symphonic ambition",
+      "heard_in": "Symphony 7, Piano Quintet Op. 81, all mature formal structures"
     },
     {
-      "composer": "into"
+      "composer": "Smetana",
+      "absorbed": "Czech national identity as artistic mission; the precedent that Bohemian music belongs in the concert hall",
+      "heard_in": "The decision to write Czech music \u2014 Smetana opened the door; Dvorak walked through it"
     },
     {
-      "composer": "subtly"
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony (early period), orchestral color, leitmotif technique (late symphonic poems)",
+      "heard_in": "Early symphonies; late symphonic poems use Wagnerian transformation"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Symphonic weight, formal proportion, the concept of the symphony as a serious statement",
+      "heard_in": "Symphonies 5-9 (Dvorak's numbering); the ambition to write great symphonies"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Lyrical melody, major/minor alternation, song-form influence",
+      "heard_in": "Second themes, slow movements, the singing quality of instrumental melody"
+    },
+    {
+      "composer": "Czech folk music",
+      "absorbed": "Furiant, polka, dumka, sousedska dance rhythms; pentatonic and modal scales; question-answer phrase structure",
+      "heard_in": "Everywhere \u2014 this is the primary source"
+    },
+    {
+      "composer": "African-American spirituals",
+      "absorbed": "Pentatonic melody with emotional depth; call-and-response; gapped scales",
+      "heard_in": "New World Symphony, American Quartet \u2014 the American period synthesis"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Josef Suk",
+      "absorbed": "Warm orchestration, folk-influenced melody, formal craft",
+      "heard_in": "Suk was Dvorak's student and son-in-law; Asrael Symphony continues Dvorak's emotional directness"
+    },
+    {
+      "composer": "Vitezslav Novak",
+      "absorbed": "Czech folk integration, orchestral color",
+      "heard_in": "The next generation of Czech national music"
+    },
+    {
+      "composer": "American composers",
+      "absorbed": "The idea that American folk music (spirituals, Native American) could be the basis for a national art music",
+      "heard_in": "Dvorak's \"New World\" thesis influenced the search for an American musical identity"
+    },
+    {
+      "composer": "William Grant Still",
+      "absorbed": "African-American musical materials as symphonic content",
+      "heard_in": "Afro-American Symphony (1930) \u2014 the direct descendant of Dvorak's New World thesis"
+    },
+    {
+      "composer": "English pastoralists",
+      "absorbed": "Warm orchestration, folk-song melody in symphonic context",
+      "heard_in": "Vaughan Williams, Butterworth \u2014 English folk music treated as Dvorak treated Czech folk music"
+    },
+    {
+      "composer": "Film scoring",
+      "absorbed": "Pentatonic melody for emotional directness; folk-like themes that audiences remember instantly",
+      "heard_in": "John Williams's \"accessible melody\" approach has Dvorak DNA"
     }
   ],
   "comparative_axes": {}

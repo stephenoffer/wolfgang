@@ -1,15 +1,31 @@
 {
  "composer": "corelli",
  "schema": 1,
- "total_bars": 19,
+ "total_bars": 143,
  "textures": {
   "singing_melody": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.4667,
-   "n": 15
+   "dotted": 0.2626,
+   "n": 99
+  },
+  "zigzag_figuration": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.5263,
+   "n": 19
+  },
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.125,
+   "n": 16
   }
  }
 }

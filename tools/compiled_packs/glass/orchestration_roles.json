@@ -1,4 +1,77 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Soprano saxophone",
+      "section": "Wind Writing",
+      "function": "Melody doubling, floating line above keyboards"
+    },
+    {
+      "name": "Flute",
+      "section": "Wind Writing",
+      "function": "Melody doubling"
+    },
+    {
+      "name": "Oboe",
+      "section": "Wind Writing",
+      "function": "\u2014"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Wind Writing",
+      "function": "\u2014"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Wind Writing",
+      "function": "\u2014"
+    },
+    {
+      "name": "Solo arpeggio",
+      "section": "Texture Types",
+      "function": "Single keyboard arpeggiated pattern"
+    },
+    {
+      "name": "Ensemble arpeggio",
+      "section": "Texture Types",
+      "function": "Multiple keyboards + winds in unison arpeggio"
+    },
+    {
+      "name": "Arpeggio + melody",
+      "section": "Texture Types",
+      "function": "Arpeggiated accompaniment + solo melody above"
+    },
+    {
+      "name": "Orchestral pad + arpeggio",
+      "section": "Texture Types",
+      "function": "Sustained strings + arpeggiated keyboards"
+    },
+    {
+      "name": "Choral block + arpeggio",
+      "section": "Texture Types",
+      "function": "Choir sustained chords + orchestral motion"
+    },
+    {
+      "name": "Full orchestral arpeggio",
+      "section": "Texture Types",
+      "function": "Entire orchestra on the arpeggiated pattern"
+    },
+    {
+      "name": "Organ + choir + Glass Ensemble",
+      "section": "Film Scoring Orchestration"
+    },
+    {
+      "name": "Solo piano + sparse strings",
+      "section": "Film Scoring Orchestration"
+    },
+    {
+      "name": "Piano arpeggios + strings",
+      "section": "Film Scoring Orchestration"
+    },
+    {
+      "name": "Orchestra + piano",
+      "section": "Film Scoring Orchestration"
+    }
+  ],
   "source_file": "orchestration.md"
 }

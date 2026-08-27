@@ -1,4 +1,83 @@
 {
-  "instruments": {},
+  "instruments": {
+    "g3\u2013e5": {
+      "name": "G3\u2013E5",
+      "section": "String Register Allocation",
+      "function": "Usually M-voice",
+      "register": "A3\u2013E5 (triad tones)"
+    },
+    "g3\u2013c5": {
+      "name": "G3\u2013C5",
+      "section": "String Register Allocation",
+      "function": "T-voice or doubling",
+      "register": "A3\u2013C5"
+    },
+    "c3\u2013a4": {
+      "name": "C3\u2013A4",
+      "section": "String Register Allocation",
+      "function": "M-voice or T-voice",
+      "register": "C3\u2013A4"
+    },
+    "c2\u2013g3": {
+      "name": "C2\u2013G3",
+      "section": "String Register Allocation",
+      "function": "T-voice or bass drone",
+      "register": "A2\u2013E3"
+    },
+    "e1\u2013g2": {
+      "name": "E1\u2013G2",
+      "section": "String Register Allocation",
+      "function": "Bass drone or doubling at octave",
+      "register": "A1\u2013E2"
+    }
+  },
+  "textures": [
+    {
+      "name": "M + T paired",
+      "section": "Choral Voicing Patterns"
+    },
+    {
+      "name": "Unison + drone",
+      "section": "Choral Voicing Patterns"
+    },
+    {
+      "name": "Antiphonal",
+      "section": "Choral Voicing Patterns"
+    },
+    {
+      "name": "Full convergence",
+      "section": "Choral Voicing Patterns"
+    },
+    {
+      "name": "Solo M-voice unaccompanied",
+      "section": "Texture Density",
+      "genre": "Openings, after silence"
+    },
+    {
+      "name": "M + T (the core texture)",
+      "section": "Texture Density",
+      "genre": "Most of every piece"
+    },
+    {
+      "name": "M + T + drone",
+      "section": "Texture Density",
+      "genre": "Piano works, trio settings"
+    },
+    {
+      "name": "2M + 2T (SATB)",
+      "section": "Texture Density",
+      "genre": "Choral works"
+    },
+    {
+      "name": "All strings + bell",
+      "section": "Texture Density",
+      "genre": "Climactic moments (still pp\u2013mp)"
+    },
+    {
+      "name": "No voices",
+      "section": "Texture Density",
+      "genre": "Structural punctuation"
+    }
+  ],
   "source_file": "orchestration.md"
 }

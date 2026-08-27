@@ -1,5 +1,80 @@
 [
   {
+    "id": "lh_idiom_bare_doubled_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare doubled octaves",
+    "description": "the bass line in octaves, no chord, marching. The Promenade and the Great Gate open this way. `[G2,G3]q [F2,F3]q [E-2,E-3]h`",
+    "shorthand": "[G2,G3]q [F2,F3]q [E-2,E-3]h",
+    "events": 3,
+    "register": [
+      39,
+      55
+    ],
+    "span_semitones": 16,
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_block_chords_on_the_beat_thick_and_low",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Block chords on the beat, thick and low",
+    "description": "five and six notes struck together in the bass register. Not spread, not rolled. `[C2,G2,C3,E-3,G3]h [C2,G2,C3,E-3,G3]h`",
+    "shorthand": "[C2,G2,C3,E-3,G3]h [C2,G2,C3,E-3,G3]h",
+    "events": 2,
+    "register": [
+      36,
+      55
+    ],
+    "span_semitones": 19,
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_off_beat_chordal_stabs",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Off-beat chordal stabs",
+    "description": "a rest on the beat and the chord after it, giving the lurching gait of *Byd\u0142o* and *Gnomus*. 28% of his bars. `rest_e [C3,E-3,G3]e rest_e [C3,E-3,G3]e`",
+    "shorthand": "rest_e [C3,E-3,G3]e rest_e [C3,E-3,G3]e",
+    "events": 4,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_or_repeated_chord_under_a_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo or repeated chord under a melody",
+    "description": "a chord repeated in even values for tension, usually growing.",
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_pedal_bass_with_chords_above",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The pedal bass with chords above",
+    "description": "a low held note while the harmony moves over it. Used for the ominous pictures.",
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_sudden_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Sudden silence",
+    "description": "the hand stops dead for a beat. He uses rests as punctuation, and they are often the loudest moment.",
+    "source_file": "mussorgsky/mussorgsky-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +92,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +110,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +128,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +151,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +198,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +220,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +242,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +285,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +308,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +332,162 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_promenade_principle",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The Promenade principle",
+    "description": "a recurring theme between sections, each time in a different key, metre and mood, reflecting what has just been seen.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_irregular_and_changing_metre",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Irregular and changing metre",
+    "description": "5/4 and 6/4 alternating, or a bar of 7 dropped into a march. The metre follows the phrase, not the other way round.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_phrase_lengths_of_five_and_seven_bars",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Phrase lengths of five and seven bars",
+    "description": "the tune ends when the sentence ends.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_abrupt_sectional_juxtaposition",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Abrupt sectional juxtaposition",
+    "description": "one picture stops, the next starts, with no transition.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_cumulative_final_statement",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The cumulative final statement",
+    "description": "the last return is thicker, lower and slower than every previous one, in full chords (the Great Gate).",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_harmony_from_russian_folk_song",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal harmony from Russian folk song",
+    "description": "Dorian and Aeolian, a flat seventh instead of a leading tone, and cadences that avoid the dominant.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bare_open_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bare open fifths",
+    "description": "the third omitted entirely, giving the archaic, bell-like sound.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_whole_tone_colouring",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Whole-tone colouring",
+    "description": "for the supernatural and grotesque pictures.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_triads_moving_in_blocks",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel triads moving in blocks",
+    "description": "the whole chord shifted, parallel fifths and all, which the conservatory forbade and he used deliberately.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_static_harmony_over_a_long_pedal",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Static harmony over a long pedal",
+    "description": "with the melody carrying all the motion.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_bell_effect",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The bell effect",
+    "description": "a low octave struck against a mid-register chord, repeated with the harmony changing above it, imitating Russian church bells. Both hands wide apart; the 16-semitone gap in his own bars is this.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_speech_rhythm",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Speech rhythm",
+    "description": "the tune follows the stresses of a Russian phrase, so repeated notes and irregular groupings dominate. He described this as his method.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_narrow_range_recitative",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Narrow-range recitative",
+    "description": "the melody circles a few notes, declaimed rather than sung.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repeated_notes_as_emphasis",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repeated notes as emphasis",
+    "description": "often the same pitch four or five times.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_sudden_leap_of_a_seventh_or_an_octave",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The sudden leap of a seventh or an octave",
+    "description": "at a moment of shock, into an otherwise stepwise line.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_extreme_registers_used_bare",
+    "category": "composer_device",
+    "section": "Colour",
+    "name": "The extreme registers used bare",
+    "description": "the very bottom and the very top, with nothing between.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_abrupt_dynamic_contrast",
+    "category": "composer_device",
+    "section": "Colour",
+    "name": "Abrupt dynamic contrast",
+    "description": "`ff` beside `pp` with no hairpin.",
+    "source_file": "mussorgsky/mussorgsky-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

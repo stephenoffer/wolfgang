@@ -1,4 +1,77 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Rimsky-Korsakov",
+      "absorbed": "Orchestral brilliance, octatonic scale, Russian folk modality",
+      "heard_in": "Firebird (directly), octatonic harmony in all periods"
+    },
+    {
+      "composer": "Russian folk music",
+      "absorbed": "Narrow-range cells, pentatonic melody, asymmetric phrase",
+      "heard_in": "Petrushka, Rite of Spring, Les Noces"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Orchestral color as structure, whole-tone harmony, non-functional chord motion",
+      "heard_in": "Firebird harmonic shifts, Symphony of Psalms static harmony"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Ballet form, orchestral clarity, formal elegance",
+      "heard_in": "Firebird, Pulcinella, The Fairy's Kiss (explicit homage)"
+    },
+    {
+      "composer": "Pergolesi / Baroque",
+      "absorbed": "Ritornello form, counterpoint, motivic sequence",
+      "heard_in": "Pulcinella, Octet, Dumbarton Oaks"
+    },
+    {
+      "composer": "Jazz / American popular music",
+      "absorbed": "Ragtime rhythm, blues inflection, syncopation",
+      "heard_in": "Ragtime (1918), Ebony Concerto, The Soldier's Tale"
+    },
+    {
+      "composer": "Webern",
+      "absorbed": "Sparse texture, pointillism, short forms, row technique",
+      "heard_in": "Movements, Requiem Canticles, all serial works"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Messiaen",
+      "absorbed": "Rhythmic modes, block form, additive rhythm",
+      "heard_in": "Modes of limited transposition + Stravinsky's rhythmic cells"
+    },
+    {
+      "composer": "Boulez",
+      "absorbed": "Serial technique (via Webern path), orchestral color",
+      "heard_in": "Le Marteau sans maitre \u2014 Stravinsky's clarity + total serialism"
+    },
+    {
+      "composer": "Copland",
+      "absorbed": "Pandiatonicism, open spacing, rhythmic displacement",
+      "heard_in": "Appalachian Spring, Fanfare \u2014 American Stravinsky"
+    },
+    {
+      "composer": "Bernstein",
+      "absorbed": "Rhythmic energy, changing meter, theater as music",
+      "heard_in": "West Side Story's 5/8 and 7/8 dances"
+    },
+    {
+      "composer": "Reich / Glass",
+      "absorbed": "Ostinato repetition, additive process, rhythmic cell",
+      "heard_in": "Minimalism's DNA: the Rite's ostinato taken to its logical end"
+    },
+    {
+      "composer": "John Adams",
+      "absorbed": "Neo-Classical irony, tonal reference, rhythmic motor",
+      "heard_in": "Post-minimalism with Stravinsky's formal wit"
+    },
+    {
+      "composer": "Film composers",
+      "absorbed": "Block scoring, ostinato, rhythmic drive, orchestral attack",
+      "heard_in": "John Williams (Star Wars), Hans Zimmer (rhythmic ostinato)"
+    }
+  ],
   "comparative_axes": {}
 }

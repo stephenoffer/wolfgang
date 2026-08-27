@@ -1,3 +1,437 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "C major \u2014 open, daylit",
+        "voices": {
+          "soprano": [
+            {
+              "p": "E5",
+              "d": "h",
+              "dyn": "mp",
+              "expr": "innig"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "C2",
+            "chord_tones": [
+              "G3",
+              "E3",
+              "C3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "soprano": [
+            {
+              "p": "E5",
+              "d": "dh"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "C2",
+            "chord_tones": [
+              "G3",
+              "E3",
+              "C3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 3,
+        "_feel": "C minor \u2014 shadow descends. ONLY the third changes: E\u2192Eb. Everything else identical.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "Eb5",
+              "d": "h",
+              "dyn": "p"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "C2",
+            "chord_tones": [
+              "G3",
+              "Eb3",
+              "C3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "soprano": [
+            {
+              "p": "Eb5",
+              "d": "dh"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "C2",
+            "chord_tones": [
+              "G3",
+              "Eb3",
+              "C3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 5,
+        "_feel": "C major returns \u2014 daylight again. One note. The world shifts twice.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "E5",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q"
+            }
+          ],
+          "bass": {
+            "formula": "alberti",
+            "bass": "C2",
+            "chord_tones": [
+              "G3",
+              "E3",
+              "C3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 8,
+        "_feel": "C major phrase completes cleanly \u2014 the tonic is clear, the phrase is done",
+        "voices": {
+          "soprano": [
+            {
+              "p": "G4",
+              "d": "w",
+              "dyn": "mf"
+            }
+          ],
+          "bass": {
+            "formula": "block_chord",
+            "bass": "C2",
+            "chord_tones": [
+              "E3",
+              "G3",
+              "C4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 9,
+        "_feel": "Ab major \u2014 no preparation. A different, veiled light. Not darker \u2014 simply other.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "C5",
+              "d": "h",
+              "dyn": "p"
+            },
+            {
+              "p": "Eb5",
+              "d": "h",
+              "art": "legato"
+            }
+          ],
+          "bass": {
+            "formula": "block_chord",
+            "bass": "Ab1",
+            "chord_tones": [
+              "Eb3",
+              "Ab3",
+              "C4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 10,
+        "voices": {
+          "soprano": [
+            {
+              "p": "Ab5",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "Eb5",
+              "d": "h"
+            }
+          ],
+          "bass": {
+            "formula": "block_chord",
+            "bass": "Ab1",
+            "chord_tones": [
+              "Eb3",
+              "Ab3",
+              "C4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 11,
+        "_feel": "Return to C major \u2014 equally without preparation. The parenthesis closes.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "E4",
+              "d": "w",
+              "dyn": "p"
+            }
+          ],
+          "bass": {
+            "formula": "block_chord",
+            "bass": "C2",
+            "chord_tones": [
+              "E3",
+              "G3",
+              "C4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 15,
+        "_feel": "The divine moment \u2014 time stops. One chord. The music touches something beyond.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "G#6",
+              "d": "w",
+              "dyn": "ppp",
+              "art": "harmonics",
+              "expr": "wie aus der Ferne"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "E6",
+              "d": "w",
+              "dyn": "ppp"
+            }
+          ],
+          "vla": [
+            {
+              "p": "B5",
+              "d": "w",
+              "dyn": "ppp"
+            }
+          ],
+          "vc": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "cb": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_10",
+      "data": {
+        "bar_num": 16,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G#6",
+              "d": "w"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "E6",
+              "d": "w"
+            }
+          ],
+          "vla": [
+            {
+              "p": "B5",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "cb": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_11",
+      "data": {
+        "bar_num": 17,
+        "voices": {
+          "vln1": [
+            {
+              "p": "G#6",
+              "d": "w"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "E6",
+              "d": "w"
+            }
+          ],
+          "vla": [
+            {
+              "p": "B5",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "cb": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_12",
+      "data": {
+        "bar_num": 18,
+        "_feel": "The divine moment ends \u2014 the world resumes",
+        "voices": {
+          "vln1": [
+            {
+              "p": "B5",
+              "d": "h",
+              "dyn": "pp"
+            },
+            {
+              "p": "A5",
+              "d": "h"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "E5",
+              "d": "h"
+            },
+            {
+              "p": "D#5",
+              "d": "h"
+            }
+          ],
+          "vla": [
+            {
+              "p": "B4",
+              "d": "h"
+            },
+            {
+              "p": "G#4",
+              "d": "h"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E3",
+              "d": "h",
+              "dyn": "pp"
+            },
+            {
+              "p": "B2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

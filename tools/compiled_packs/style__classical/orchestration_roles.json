@@ -1,4 +1,360 @@
 {
- "instruments": {},
- "source_file": "orchestration.md"
+  "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles",
+      "function": "Melodic leader, operatic soprano"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Harmonic partner, dialogue voice"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Harmonic filler, occasionally melodic"
+    },
+    {
+      "name": "Cello/Bass",
+      "section": "Instrument Roles",
+      "function": "Harmonic foundation"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Bright color, high register"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Principal wind voice, expressive warmth"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Mozart's beloved \u2014 warm, vocal, infinitely flexible"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Wind bass, comic character"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles",
+      "function": "Sustaining warmth, hunting calls, heroic color"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles",
+      "function": "Festive brilliance, ceremonial"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic anchor, dramatic thunder"
+    },
+    {
+      "name": "Piano (concertos)",
+      "section": "Instrument Roles",
+      "function": "Protagonist \u2014 the operatic lead"
+    },
+    {
+      "name": "Strings + 2 oboes + 2 horns",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + 1 flute + 2 oboes + 2 bassoons + 2 horns + 2 trumpets + timpani",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "As above but clarinets replace or join oboes",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + 2 oboes + 2 horns",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + flute + 2 oboes/clarinets + 2 bassoons + 2 horns + 2 trumpets + timpani",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "2 oboes + 2 clarinets + 2 horns + 2 bassoons (+ contrabassoon/basset horns)",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "2 violins + viola + cello",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "2 violins + 2 violas + cello",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Full symphony orchestra + trombones (for sacred/supernatural scenes)",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "singing_melody",
+      "section": "Right Hand Textures",
+      "function": "Dominant \u2014 almost half of all bars are singing melody"
+    },
+    {
+      "name": "scalar_run",
+      "section": "Right Hand Textures",
+      "function": "Passage work, transitions, development"
+    },
+    {
+      "name": "zigzag_figuration",
+      "section": "Right Hand Textures",
+      "function": "Alberti-like RH patterns, broken intervals"
+    },
+    {
+      "name": "chordal",
+      "section": "Right Hand Textures",
+      "function": "Block chords, dramatic punctuation"
+    },
+    {
+      "name": "passage_work",
+      "section": "Right Hand Textures",
+      "function": "Virtuosic figuration"
+    },
+    {
+      "name": "dotted_pairs",
+      "section": "Right Hand Textures",
+      "function": "French overture influence, march-like"
+    },
+    {
+      "name": "ornamental_cascade",
+      "section": "Right Hand Textures",
+      "function": "Cadenzas, written-out ornamentation"
+    },
+    {
+      "name": "held_note",
+      "section": "Right Hand Textures",
+      "function": "Sustained tones over active LH"
+    },
+    {
+      "name": "stammer_repeat",
+      "section": "Right Hand Textures",
+      "function": "Repeated-note figuration"
+    },
+    {
+      "name": "alberti",
+      "section": "Left Hand Textures",
+      "function": "Only 1 in 5 bars \u2014 NOT the majority!"
+    },
+    {
+      "name": "bass_melody",
+      "section": "Left Hand Textures",
+      "function": "Nearly as common as Alberti \u2014 LH sings too"
+    },
+    {
+      "name": "block_chord_sparse",
+      "section": "Left Hand Textures",
+      "function": "Simple harmonic punctuation"
+    },
+    {
+      "name": "pedal_point",
+      "section": "Left Hand Textures",
+      "function": "Sustained bass, dominant or tonic pedals"
+    },
+    {
+      "name": "sparse_punctuation",
+      "section": "Left Hand Textures",
+      "function": "Minimal bass, RH-dominant texture"
+    },
+    {
+      "name": "walking_bass",
+      "section": "Left Hand Textures",
+      "function": "Stepwise bass motion, contrapuntal"
+    },
+    {
+      "name": "block_chord_offbeat",
+      "section": "Left Hand Textures",
+      "function": "Syncopated chordal accompaniment"
+    },
+    {
+      "name": "silence",
+      "section": "Left Hand Textures",
+      "function": "LH tacet \u2014 the music breathes"
+    },
+    {
+      "name": "broken_chord_wave",
+      "section": "Left Hand Textures",
+      "function": "Arpeggiated, wave-like patterns"
+    },
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles",
+      "function": "Melodic leader, but shares material"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Dialogue partner, not echo"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Inner harmonic voice with independence"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles",
+      "function": "Bass + melodic voice"
+    },
+    {
+      "name": "Double bass",
+      "section": "Instrument Roles",
+      "function": "Foundation reinforcement"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Bright color, high register sparkle"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Principal wind color"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Warm middle-register color"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Wind bass, comic potential"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles",
+      "function": "Harmonic foundation, hunting calls"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles",
+      "function": "Festive brilliance"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic anchor, dramatic shock"
+    },
+    {
+      "name": "2 vln, vla, vc",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + 2 ob + 2 hn",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Strings + 2 ob + 2 hn + bsn",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "+ fl, 2 cl, 2 tpt, timp",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Pf + vln + vc",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Solo keyboard",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Full orchestra + SATB choir + soloists",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Solo + orchestra",
+      "section": "Ensemble Configurations"
+    },
+    {
+      "name": "Flute",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Oboe",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Horn",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Trombone",
+      "section": "Instrument Roles"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles"
+    }
+  ],
+  "source_file": "orchestration.md"
 }

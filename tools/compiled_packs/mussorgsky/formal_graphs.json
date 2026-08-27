@@ -1,3 +1,36 @@
 {
-  "forms": {}
+  "forms": {
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "binary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "strophic": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

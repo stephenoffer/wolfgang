@@ -1,3 +1,116 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "theme_in_octaves": [
+          {
+            "p": [
+              "Ab3",
+              "Ab4"
+            ],
+            "d": "q",
+            "dyn": "mf"
+          },
+          {
+            "p": [
+              "C4",
+              "C5"
+            ],
+            "d": "e"
+          },
+          {
+            "p": [
+              "Db4",
+              "Db5"
+            ],
+            "d": "e"
+          },
+          {
+            "p": [
+              "Eb4",
+              "Eb5"
+            ],
+            "d": "h"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "enveloping_arpeggio": [
+          {
+            "p": "Ab1",
+            "d": "s"
+          },
+          {
+            "p": "Eb2",
+            "d": "s"
+          },
+          {
+            "p": "Ab2",
+            "d": "s"
+          },
+          {
+            "p": "C3",
+            "d": "s"
+          },
+          {
+            "p": "Eb3",
+            "d": "s"
+          },
+          {
+            "p": "Ab3",
+            "d": "s"
+          },
+          {
+            "p": "C4",
+            "d": "s"
+          },
+          {
+            "p": "Eb4",
+            "d": "s"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "theme_transformed_march": [
+          {
+            "p": [
+              "Ab3",
+              "Ab4"
+            ],
+            "d": "dq",
+            "dyn": "ff",
+            "art": "marcato"
+          },
+          {
+            "p": [
+              "C4",
+              "C5"
+            ],
+            "d": "s"
+          },
+          {
+            "p": [
+              "Db4",
+              "Db5"
+            ],
+            "d": "s"
+          },
+          {
+            "p": [
+              "Eb4",
+              "Eb5"
+            ],
+            "d": "q"
+          }
+        ]
+      }
+    }
+  ]
 }

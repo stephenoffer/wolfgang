@@ -1,197 +1,526 @@
 {
- "forms": {
-  "sonata": {
-   "sections": [
-    {
-     "role": "3",
-     "proportion_range": [
-      0.0,
-      0.35
-     ]
+  "forms": {
+    "sonata": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {
+        "exposition_keys_major": [
+          "I",
+          "V"
+        ],
+        "exposition_keys_minor": [
+          "i",
+          "III"
+        ],
+        "recap_rule": "tonic"
+      }
     },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
+    "rondo": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.0,
-      0.25
-     ]
+    "scherzo": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.05,
-      0.2
-     ]
+    "fugue": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
+    "cyclic": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.35
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
+    "through-composed": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.05,
-      0.2
-     ]
+    "ternary": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
+    "theme and variations": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "3",
-     "proportion_range": [
-      0.05,
-      0.4
-     ]
+    "strophic": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.0,
-      0.15
-     ]
+    "song form": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.05,
+            0.3
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        }
+      ],
+      "key_scheme": {}
     }
-   ],
-   "key_scheme": {
-    "exposition_keys_major": [
-     "I",
-     "V"
-    ],
-    "exposition_keys_minor": [
-     "i",
-     "III"
-    ],
-    "recap_rule": "tonic"
-   }
-  },
-  "rondo": {
-   "sections": [
-    {
-     "role": "3",
-     "proportion_range": [
-      0.0,
-      0.35
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.0,
-      0.25
-     ]
-    },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.05,
-      0.2
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
-    },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.05,
-      0.2
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
-    },
-    {
-     "role": "3",
-     "proportion_range": [
-      0.05,
-      0.4
-     ]
-    },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.0,
-      0.15
-     ]
-    }
-   ],
-   "key_scheme": {}
-  },
-  "ternary": {
-   "sections": [
-    {
-     "role": "3",
-     "proportion_range": [
-      0.05,
-      0.4
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.0,
-      0.25
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.05,
-      0.3
-     ]
-    },
-    {
-     "role": "1",
-     "proportion_range": [
-      0.0,
-      0.15
-     ]
-    }
-   ],
-   "key_scheme": {}
   }
- }
 }

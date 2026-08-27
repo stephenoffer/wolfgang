@@ -1,4 +1,51 @@
 {
-  "instruments": {},
+  "instruments": {
+    "clarinet": {
+      "name": "Clarinet",
+      "section": "The instruments as he uses them",
+      "register": "D3\u2013G6"
+    },
+    "horn": {
+      "name": "Horn",
+      "section": "The instruments as he uses them",
+      "register": "B1\u2013F5"
+    },
+    "flute": {
+      "name": "Flute",
+      "section": "The instruments as he uses them",
+      "register": "C4\u2013C7"
+    },
+    "oboe": {
+      "name": "Oboe",
+      "section": "The instruments as he uses them",
+      "register": "Bb3\u2013G6"
+    },
+    "bassoon": {
+      "name": "Bassoon",
+      "section": "The instruments as he uses them",
+      "register": "Bb1\u2013Eb5"
+    },
+    "trumpet": {
+      "name": "Trumpet",
+      "section": "The instruments as he uses them",
+      "register": "E3\u2013C6"
+    },
+    "trombones": {
+      "name": "Trombones",
+      "section": "The instruments as he uses them",
+      "register": "E2\u2013C5"
+    },
+    "timpani": {
+      "name": "Timpani",
+      "section": "The instruments as he uses them",
+      "register": "C2\u2013C4"
+    },
+    "strings": {
+      "name": "Strings",
+      "section": "The instruments as he uses them",
+      "register": "\u2014"
+    }
+  },
+  "textures": [],
   "source_file": "orchestration.md"
 }

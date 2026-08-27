@@ -9,7 +9,7 @@
       "psychological tension"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Horror",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -22,7 +22,7 @@
       "dream sequences"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Giallo films",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -34,7 +34,7 @@
       "Experimental cues"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Experimental cues",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -47,7 +47,7 @@
       "chaos"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Violence",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -60,7 +60,7 @@
       "desire"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Yearning",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -73,20 +73,22 @@
       "aggression"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "War",
     "source_file": "morricone/harmonic-language.md"
   },
   {
     "id": "barber_adagio",
     "name": "Barber: Adagio",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Grief",
       "tragedy"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Grief",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -99,7 +101,7 @@
       "underwater"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dream",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -111,7 +113,7 @@
       "Epic choir moments"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Epic choir moments",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -124,7 +126,7 @@
       "violent"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Primal",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -137,7 +139,7 @@
       "passion"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Romance",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -150,7 +152,7 @@
       "pursuit"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Battle",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -165,7 +167,7 @@
       "#IVdim"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "I",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -180,7 +182,7 @@
       "v"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "i",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -194,7 +196,7 @@
       "clusters"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "dim",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -209,7 +211,7 @@
       "V"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "bVI",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -223,7 +225,7 @@
       "bII"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "aug",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -238,7 +240,7 @@
       "iv"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "I",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -253,7 +255,7 @@
       "vi"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "I",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -268,7 +270,7 @@
       "V"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "i",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -282,7 +284,7 @@
       "sus"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Imaj7",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -297,7 +299,7 @@
       "V"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "i",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -309,7 +311,7 @@
       "Hard cut between scenes"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Hard cut between scenes",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -321,7 +323,7 @@
       "Smooth scene transition"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Smooth scene transition",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -334,7 +336,7 @@
       "same scene"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Shift in mood",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -346,19 +348,21 @@
       "Surprise recontextualization"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Surprise recontextualization",
     "source_file": "morricone/harmonic-language.md"
   },
   {
     "id": "pedal_tone",
     "name": "Pedal tone",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "pedal point"
+    ],
     "contexts": [
       "Gradual scene transition"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "Gradual scene transition",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -371,7 +375,7 @@
       "then new key"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Scene to black",
     "source_file": "morricone/harmonic-language.md"
   },
   {
@@ -383,7 +387,7 @@
       "Dissolve between scenes"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "Dissolve between scenes",
     "source_file": "morricone/harmonic-language.md"
   }
 ]

@@ -1,5 +1,73 @@
 [
   {
+    "id": "lh_idiom_the_gymnop_die_bass_and_chord",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The Gymnop\u00e9die bass-and-chord",
+    "description": "a single low bass note on beat 1, a mid-register chord on beat 2, nothing on beat 3. In 3/4 forever. `G2h. // rest_q [B3,D4,F#4]q rest_q` The rest on three is the whole gesture. Filling it destroys the piece.",
+    "shorthand": "G2h. // rest_q [B3,D4,F#4]q rest_q",
+    "events": 5,
+    "register": [
+      43,
+      66
+    ],
+    "span_semitones": 23,
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_in_the_low_register",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves in the low register",
+    "description": "the bass alone, doubled at the octave, under a slow melody. Used for the Gnossiennes' opening. `[D2,D3]w`",
+    "shorthand": "[D2,D3]w",
+    "events": 1,
+    "register": [
+      38,
+      50
+    ],
+    "span_semitones": 12,
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_unchanging_ostinato",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The unchanging ostinato",
+    "description": "one figure repeated exactly while the right hand moves through unrelated harmony. Change the ostinato only at a section.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_pedal_point_under_everything",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Pedal point under everything",
+    "description": "a held bass for eight or sixteen bars while the upper chords shift over it. 18% of his bars.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_slow_walking_bass_in_even_quarters",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Slow walking bass in even quarters",
+    "description": "the cabaret inheritance, used in the more popular pieces. Even, unhurried, never syncopated.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_silence",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Silence",
+    "description": "the left hand stops for a bar or a phrase. 16% of his bars. In any other composer this is a gap; here it is a texture, and it is why the returning bass has weight.",
+    "source_file": "satie/satie-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +85,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +103,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +121,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +144,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +191,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +213,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +235,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +278,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +301,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +325,162 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_strophic_repetition_without_development",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Strophic repetition without development",
+    "description": "the same music three times, with tiny changes or none. There is no development section because there is no argument.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sectional_blocks_that_simply_stop",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Sectional blocks that simply stop",
+    "description": "a section ends and another begins with no transition and no modulation joining them.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_three_piece_set",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The three-piece set",
+    "description": "Gymnop\u00e9dies, Gnossiennes: variations on one mood rather than one theme, each piece nearly the same as the last.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_no_climax",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "No climax.",
+    "description": "The dynamic level barely moves. The piece has no highest point, which is why it feels suspended rather than shaped.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_absence_of_a_double_bar_s_worth_of_preparation",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Absence of a double bar's worth of preparation",
+    "description": "no retransition, no dominant build. Arrivals are not prepared.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parallel_seventh_and_ninth_chords",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Parallel seventh and ninth chords",
+    "description": "the whole chord moving in parallel, which the period forbade. The Gymnop\u00e9dies open on a major seventh.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_sevenths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved sevenths",
+    "description": "a seventh chord that simply moves to another seventh chord. Nothing resolves in the textbook sense.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_rather_than_functional_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal rather than functional harmony",
+    "description": "Dorian and Lydian inflections, a flat seventh instead of a leading tone, cadences on degrees that are not the dominant.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_mediants",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic mediants",
+    "description": "a shift from a chord to one a third away with no pivot. The commonest way his harmony moves.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_static_harmony_under_a_moving_line",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Static harmony under a moving line",
+    "description": "one chord held for four or eight bars while the melody wanders. See `pedal_point` in the vocabulary.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bare_fourths_and_fifths",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Bare fourths and fifths",
+    "description": "open intervals with the third omitted, giving the medieval colour of the Gnossiennes.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_even_note_values",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Long even note values",
+    "description": "the melody in half and quarter notes, unhurried, with no ornament.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_small_range",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Small range",
+    "description": "a fifth or a sixth for a whole phrase. The tune does not reach.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_repetition_of_a_short_cell",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Repetition of a short cell",
+    "description": "three or four notes turned over several times before moving on.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_phrase_lengths_that_are_not_four_bars",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Phrase lengths that are not four bars",
+    "description": "five, seven, eleven. He does not square his phrases.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_prose_directions_instead_of_italian",
+    "category": "composer_device",
+    "section": "Notation",
+    "name": "Prose directions instead of Italian",
+    "description": "*\"Lent et douloureux\"*, and the famous absurd ones. Written above the staff as text expressions.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_no_barlines_no_key_signature_no_time_signature",
+    "category": "composer_device",
+    "section": "Notation",
+    "name": "No barlines, no key signature, no time signature",
+    "description": "in some pieces. Where the engine requires them, keep the accidentals local and the metre simple.",
+    "source_file": "satie/satie-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

@@ -1,3 +1,453 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 45,
+        "_feel": "Tutti climax \u2014 the peak of the movement. Everyone, everything, fff.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "C6",
+              "d": "w",
+              "dyn": "fff"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "G5",
+              "d": "w",
+              "dyn": "fff"
+            }
+          ],
+          "vla": [
+            {
+              "p": "Eb5",
+              "d": "w",
+              "dyn": "fff"
+            }
+          ],
+          "vc": [
+            {
+              "p": "C4",
+              "d": "w",
+              "dyn": "fff"
+            }
+          ],
+          "cb": [
+            {
+              "p": "C2",
+              "d": "w",
+              "dyn": "fff"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 46,
+        "_feel": "Sudden silence \u2014 one full bar of rest. The abyss between grandeur and vulnerability.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "vla": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "vc": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ],
+          "cb": [
+            {
+              "p": "rest",
+              "d": "w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 47,
+        "_feel": "Solo violin alone \u2014 high register, piano, as if speaking to no one. The vulnerability IS the point.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "E6",
+              "d": "h",
+              "dyn": "p",
+              "expr": "wie verlassen"
+            },
+            {
+              "p": "D6",
+              "d": "q"
+            },
+            {
+              "p": "C#6",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "C2",
+              "d": "q",
+              "dyn": "ppp",
+              "art": "pizz"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "G2",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 48,
+        "voices": {
+          "vln1": [
+            {
+              "p": "B5",
+              "d": "h",
+              "dyn": "pp"
+            },
+            {
+              "p": "A5",
+              "d": "h"
+            }
+          ],
+          "vc": [
+            {
+              "p": "E2",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "C2",
+              "d": "h",
+              "art": "pizz"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 1,
+        "_feel": "4 voices, none dominant \u2014 the orchestra is a world of simultaneous private thoughts",
+        "voices": {
+          "fl": [
+            {
+              "p": "A5",
+              "d": "dh",
+              "dyn": "mf",
+              "expr": "cantabile"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "ob": [
+            {
+              "p": "F#5",
+              "d": "h",
+              "dyn": "mp",
+              "expr": "dolce"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "vla": [
+            {
+              "p": "D4",
+              "d": "q",
+              "dyn": "p",
+              "expr": "schwer"
+            },
+            {
+              "p": "E4",
+              "d": "q"
+            },
+            {
+              "p": "F#4",
+              "d": "h"
+            }
+          ],
+          "timp": [
+            {
+              "p": "D2",
+              "d": "q",
+              "dyn": "pp",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "fl": [
+            {
+              "p": "F#5",
+              "d": "h"
+            },
+            {
+              "p": "E5",
+              "d": "h",
+              "dyn": "mp"
+            }
+          ],
+          "ob": [
+            {
+              "p": "C#5",
+              "d": "dh",
+              "expr": "klagend"
+            },
+            {
+              "p": "B4",
+              "d": "q"
+            }
+          ],
+          "vla": [
+            {
+              "p": "G4",
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": "F#4",
+              "d": "q"
+            },
+            {
+              "p": "E4",
+              "d": "q"
+            }
+          ],
+          "timp": [
+            {
+              "p": "A2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "A2",
+              "d": "e"
+            },
+            {
+              "p": "D2",
+              "d": "h",
+              "dyn": "p"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 62,
+        "_section": "L\u00e4ndler intrusion",
+        "_feel": "The L\u00e4ndler appears \u2014 a dance memory in the middle of grief. Was this tender once?",
+        "voices": {
+          "vln1": [
+            {
+              "p": "rest",
+              "d": "q"
+            },
+            {
+              "p": "F5",
+              "d": "q",
+              "dyn": "pp",
+              "expr": "naiv"
+            },
+            {
+              "p": "E5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "C3",
+              "d": "q",
+              "dyn": "pp",
+              "art": "pizz"
+            },
+            {
+              "p": "G3",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "G3",
+              "d": "q",
+              "art": "pizz"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 63,
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            },
+            {
+              "p": "D5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "F2",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "A3",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "C4",
+              "d": "q",
+              "art": "pizz"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 64,
+        "voices": {
+          "vln1": [
+            {
+              "p": "E5",
+              "d": "dh",
+              "dyn": "p"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "C3",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "G3",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "G3",
+              "d": "q",
+              "art": "pizz"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 65,
+        "_feel": "The L\u00e4ndler ends as suddenly as it began \u2014 the symphony resumes",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "h"
+            },
+            {
+              "p": "C5",
+              "d": "q"
+            }
+          ],
+          "vln2": [
+            {
+              "p": "F2",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "C3",
+              "d": "q",
+              "art": "pizz"
+            },
+            {
+              "p": "rest",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

@@ -1,4 +1,204 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Bright pastoral color; high register brilliance"
+    },
+    {
+      "name": "Piccolo",
+      "section": "Instrument Roles",
+      "function": "Piercing brilliance at climaxes"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Plaintive, expressive solo voice"
+    },
+    {
+      "name": "English horn",
+      "section": "Instrument Roles",
+      "function": "Dark warmth, melancholy distance"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Primary solo voice; warm, flexible, vocal"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Instrument Roles",
+      "function": "Dark low warmth, mysterious"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Comic or sardonic; extreme high register exploited"
+    },
+    {
+      "name": "Contrabassoon",
+      "section": "Instrument Roles",
+      "function": "Deep rumble, foundation"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles",
+      "function": "Warm sustaining, hunting calls, noble"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles",
+      "function": "Brilliant, clean; often muted for specific color"
+    },
+    {
+      "name": "Trombone",
+      "section": "Instrument Roles",
+      "function": "Weight, grandeur, or grotesque"
+    },
+    {
+      "name": "Tuba",
+      "section": "Instrument Roles",
+      "function": "Deep foundation at climaxes only"
+    },
+    {
+      "name": "Harp (1-2)",
+      "section": "Instrument Roles",
+      "function": "Color, glissando, harmonic support"
+    },
+    {
+      "name": "Celesta",
+      "section": "Instrument Roles",
+      "function": "Sparkle, fairy-tale color"
+    },
+    {
+      "name": "Piano (orchestral)",
+      "section": "Instrument Roles",
+      "function": "Percussive color, rhythmic clarity"
+    },
+    {
+      "name": "Snare drum",
+      "section": "Instrument Roles",
+      "function": "Rhythmic skeleton, ostinato foundation"
+    },
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles",
+      "function": "Melodic leader in tutti; solo for passion"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles",
+      "function": "Independent from Vln I \u2014 own material"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles",
+      "function": "Warm middle color; melodic"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles",
+      "function": "Singing warmth; melodic solo voice"
+    },
+    {
+      "name": "Double bass",
+      "section": "Instrument Roles",
+      "function": "Foundation \u2014 pizzicato and sustained"
+    },
+    {
+      "name": "Flute solo",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Clarinet solo",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Bassoon (high register!)",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Eb clarinet",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Oboe d'amore",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Trumpet (muted) + flute",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Tenor saxophone",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Soprano saxophone",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Winds + brass combinations",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Progressive tutti",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "Full orchestra, key change",
+      "section": "The Bol\u00e9ro Principle \u2014 Orchestration as Composition"
+    },
+    {
+      "name": "RH melody",
+      "section": "Piano-to-Orchestra Translation"
+    },
+    {
+      "name": "LH bass",
+      "section": "Piano-to-Orchestra Translation"
+    },
+    {
+      "name": "Middle-register harmony",
+      "section": "Piano-to-Orchestra Translation"
+    },
+    {
+      "name": "Arpeggiated figure",
+      "section": "Piano-to-Orchestra Translation"
+    },
+    {
+      "name": "Fortissimo climax",
+      "section": "Piano-to-Orchestra Translation"
+    },
+    {
+      "name": "Pianissimo texture",
+      "section": "Piano-to-Orchestra Translation"
+    },
+    {
+      "name": "Solo wind or solo string",
+      "section": "Textural Stratification",
+      "function": "The tune \u2014 always clear"
+    },
+    {
+      "name": "Horns, muted brass, or sustained winds",
+      "section": "Textural Stratification",
+      "function": "The chord \u2014 precisely voiced"
+    },
+    {
+      "name": "Percussion, pizzicato, piano",
+      "section": "Textural Stratification",
+      "function": "The pulse \u2014 mechanical, regular"
+    },
+    {
+      "name": "Cello, bass, contrabassoon",
+      "section": "Textural Stratification",
+      "function": "Foundation \u2014 spare, not busy"
+    },
+    {
+      "name": "Harp, celesta, high strings",
+      "section": "Textural Stratification",
+      "function": "Sparkle, ornament, fairy-dust"
+    }
+  ],
   "source_file": "orchestration.md"
 }

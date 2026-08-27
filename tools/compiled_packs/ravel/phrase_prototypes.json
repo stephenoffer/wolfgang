@@ -1,3 +1,434 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Crystalline \u2014 every note of the 13th chord in its own register. Ravel, not Debussy.",
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "E6",
+                "B5",
+                "G5",
+                "F5"
+              ],
+              "d": "h",
+              "dyn": "mf"
+            },
+            {
+              "p": [
+                "D6",
+                "A5",
+                "F5",
+                "E5"
+              ],
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": [
+                "G2",
+                "D3",
+                "F3",
+                "A3"
+              ],
+              "d": "h"
+            },
+            {
+              "p": [
+                "C3",
+                "G3",
+                "E3",
+                "B3"
+              ],
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "_feel": "The chord shape slides up by step \u2014 Ravelian parallel harmony, precisely voiced",
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "F#6",
+                "C#6",
+                "A5",
+                "G5"
+              ],
+              "d": "h",
+              "dyn": "mp"
+            },
+            {
+              "p": [
+                "E6",
+                "B5",
+                "G5",
+                "F#5"
+              ],
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": [
+                "A2",
+                "E3",
+                "G3",
+                "B3"
+              ],
+              "d": "h"
+            },
+            {
+              "p": [
+                "D3",
+                "A3",
+                "F#3",
+                "C#4"
+              ],
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Habanera LH \u2014 dotted quarter then eighth. Written out, not formula.",
+        "voices": {
+          "soprano": [
+            {
+              "p": "E5",
+              "d": "h",
+              "dyn": "mp"
+            }
+          ],
+          "bass": [
+            {
+              "p": "A2",
+              "d": "q",
+              "dyn": "mp"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "soprano": [
+            {
+              "p": "D5",
+              "d": "q"
+            },
+            {
+              "p": "C#5",
+              "d": "q"
+            }
+          ],
+          "bass": [
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 3,
+        "_feel": "Same LH pattern exactly \u2014 the ostinato does not change",
+        "voices": {
+          "soprano": [
+            {
+              "p": "C#5",
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "soprano": [
+            {
+              "p": "A4",
+              "d": "h",
+              "dyn": "mf"
+            }
+          ],
+          "bass": [
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "E3",
+              "d": "q"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bass": [
+          {
+            "p": "A2",
+            "d": "dq"
+          },
+          {
+            "p": "E3",
+            "d": "e"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 1,
+        "_section": "Bolero pass 1 \u2014 fl solo",
+        "_feel": "Solo flute \u2014 the melody alone. Very precise.",
+        "voices": {
+          "fl": [
+            {
+              "p": "G5",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            },
+            {
+              "p": "Bb5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "sn": [
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 17,
+        "_section": "Bolero pass 2 \u2014 fl + cl",
+        "_feel": "Same melody. Clarinet added below flute. Not louder \u2014 thicker.",
+        "voices": {
+          "fl": [
+            {
+              "p": "G5",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            },
+            {
+              "p": "Bb5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "cl": [
+            {
+              "p": "G4",
+              "d": "q",
+              "dyn": "p"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "Bb4",
+              "d": "q"
+            },
+            {
+              "p": "G4",
+              "d": "q"
+            }
+          ],
+          "sn": [
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 33,
+        "_section": "Bolero pass 3 \u2014 fl + cl + vln1",
+        "_feel": "Same melody, same dynamic. Strings added. Texture thickens; pitch unchanged.",
+        "voices": {
+          "fl": [
+            {
+              "p": "G5",
+              "d": "q",
+              "dyn": "mp"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            },
+            {
+              "p": "Bb5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "cl": [
+            {
+              "p": "G4",
+              "d": "q",
+              "dyn": "mp"
+            },
+            {
+              "p": "A4",
+              "d": "q"
+            },
+            {
+              "p": "Bb4",
+              "d": "q"
+            },
+            {
+              "p": "G4",
+              "d": "q"
+            }
+          ],
+          "vln1": [
+            {
+              "p": "G5",
+              "d": "q",
+              "dyn": "mp"
+            },
+            {
+              "p": "A5",
+              "d": "q"
+            },
+            {
+              "p": "Bb5",
+              "d": "q"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            }
+          ],
+          "sn": [
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

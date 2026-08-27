@@ -1,4 +1,97 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Mozart",
+      "absorbed": "Melodic grace, formal elegance, operatic feeling",
+      "heard_in": "Eugene Onegin's lyrical intimacy; Serenade for Strings (dedicated to Mozart)"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Lyrical melody as primary expression; piano character pieces",
+      "heard_in": "Song-form slow movements; the idea that melody IS the argument"
+    },
+    {
+      "composer": "Anton Rubinstein",
+      "absorbed": "Western conservatory training; Germanic formal rigor",
+      "heard_in": "Sonata form attempts; symphonic ambition; professional craft"
+    },
+    {
+      "composer": "Glinka",
+      "absorbed": "Russian opera; folk-song integration; orchestral color",
+      "heard_in": "Russian modal inflections; opera plots from Russian literature"
+    },
+    {
+      "composer": "Balakirev",
+      "absorbed": "Programmatic orchestral form; Russian folk-scale harmony",
+      "heard_in": "Romeo and Juliet (Balakirev suggested the subject and critiqued drafts)"
+    },
+    {
+      "composer": "Bizet",
+      "absorbed": "Orchestral clarity; direct emotional appeal; dramatic timing",
+      "heard_in": "Tchaikovsky called Carmen \"a masterpiece\" \u2014 directness without pretension"
+    },
+    {
+      "composer": "Russian folk music",
+      "absorbed": "Modal scales, dance rhythms, strophic melody",
+      "heard_in": "bVI, Dorian 6th, trepak rhythms, narrow-range folk themes"
+    },
+    {
+      "composer": "Russian Orthodox chant",
+      "absorbed": "Solemn, descending phrases; Phrygian cadences",
+      "heard_in": "The Phrygian bII-I cadence; slow-movement solemnity"
+    },
+    {
+      "composer": "Italian opera (Verdi)",
+      "absorbed": "Vocal melody as dramatic vehicle; theatrical timing",
+      "heard_in": "Long singing lines in instruments; the orchestra as opera"
+    },
+    {
+      "composer": "French ballet (Delibes)",
+      "absorbed": "Ballet as serious art; orchestral dance scoring",
+      "heard_in": "Swan Lake, Sleeping Beauty, Nutcracker \u2014 elevated beyond Delibes"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Rachmaninoff",
+      "absorbed": "Long melody arch; piano concerto drama; emotional directness",
+      "heard_in": "Piano Concerto No. 2 \u2014 Tchaikovsky's melodic scale + even more piano"
+    },
+    {
+      "composer": "Glazunov",
+      "absorbed": "Orchestral brilliance; ballet scoring; Russian Romanticism",
+      "heard_in": "Raymonda \u2014 Tchaikovsky's ballet model continued"
+    },
+    {
+      "composer": "Arensky",
+      "absorbed": "Lyrical melody; chamber music warmth",
+      "heard_in": "Piano Trio \u2014 directly modeled on Tchaikovsky's Op. 50"
+    },
+    {
+      "composer": "Sibelius",
+      "absorbed": "Orchestral color; symphonic drama; nature-as-program",
+      "heard_in": "Early symphonies show Tchaikovsky influence before Sibelius found his own voice"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "Emotional directness; orchestral richness; the long melody",
+      "heard_in": "Enigma Variations; Cello Concerto \u2014 Tchaikovsky's emotional scale in English dress"
+    },
+    {
+      "composer": "Film composers (all)",
+      "absorbed": "Emotional leitmotif; orchestral climax technique; the \"love theme\"",
+      "heard_in": "Williams, Korngold, Steiner \u2014 the entire film-score tradition descends from Tchaikovsky"
+    },
+    {
+      "composer": "Barber",
+      "absorbed": "Lyrical Romanticism in 20th century; Adagio as emotional statement",
+      "heard_in": "Adagio for Strings \u2014 Tchaikovsky's emotional world in modern harmony"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Waltz as ironic/tragic form; symphonic drama; Russian orchestral tradition",
+      "heard_in": "Waltz No. 2; Symphony 5's forced triumph echoes Tchaikovsky 5"
+    }
+  ],
   "comparative_axes": {}
 }

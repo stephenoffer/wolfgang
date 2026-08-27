@@ -1,3 +1,95 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "displaced_melody": [
+          {
+            "p": "rest",
+            "d": "e"
+          },
+          {
+            "p": "A4",
+            "d": "q"
+          },
+          {
+            "p": "C5",
+            "d": "q"
+          },
+          {
+            "p": "B4",
+            "d": "q"
+          },
+          {
+            "p": "A4",
+            "d": "q",
+            "tie": "start"
+          },
+          {
+            "p": "A4",
+            "d": "e",
+            "tie": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "steady_accompaniment": [
+          {
+            "p": "F2",
+            "d": "q"
+          },
+          {
+            "p": [
+              "A3",
+              "C4",
+              "F4"
+            ],
+            "d": "q"
+          },
+          {
+            "p": [
+              "A3",
+              "C4",
+              "F4"
+            ],
+            "d": "q"
+          },
+          {
+            "p": [
+              "A3",
+              "C4",
+              "F4"
+            ],
+            "d": "q"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "inner_melody": [
+          {
+            "p": "F3",
+            "d": "h"
+          },
+          {
+            "p": "E3",
+            "d": "h"
+          },
+          {
+            "p": "D3",
+            "d": "h"
+          },
+          {
+            "p": "C3",
+            "d": "w"
+          }
+        ]
+      }
+    }
+  ]
 }

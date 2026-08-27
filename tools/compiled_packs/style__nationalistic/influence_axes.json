@@ -1,0 +1,292 @@
+{
+  "influenced_by": [
+    {
+      "composer": "Brahms",
+      "absorbed": "Sonata form discipline, developing variation, orchestral weight, symphonic ambition",
+      "heard_in": "Symphony 7, Piano Quintet Op. 81, all mature formal structures"
+    },
+    {
+      "composer": "Smetana",
+      "absorbed": "Czech national identity as artistic mission; the precedent that Bohemian music belongs in the concert hall",
+      "heard_in": "The decision to write Czech music \u2014 Smetana opened the door; Dvorak walked through it"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony (early period), orchestral color, leitmotif technique (late symphonic poems)",
+      "heard_in": "Early symphonies; late symphonic poems use Wagnerian transformation"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Symphonic weight, formal proportion, the concept of the symphony as a serious statement",
+      "heard_in": "Symphonies 5-9 (Dvorak's numbering); the ambition to write great symphonies"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Lyrical melody, major/minor alternation, song-form influence",
+      "heard_in": "Second themes, slow movements, the singing quality of instrumental melody"
+    },
+    {
+      "composer": "Czech folk music",
+      "absorbed": "Furiant, polka, dumka, sousedska dance rhythms; pentatonic and modal scales; question-answer phrase structure",
+      "heard_in": "Everywhere \u2014 this is the primary source"
+    },
+    {
+      "composer": "African-American spirituals",
+      "absorbed": "Pentatonic melody with emotional depth; call-and-response; gapped scales",
+      "heard_in": "New World Symphony, American Quartet \u2014 the American period synthesis"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Lyrical Romanticism, character piece form, piano as expressive medium",
+      "heard_in": "Early works, Lyric Pieces concept, rhythmic sensitivity"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Clarity, elegance, lightness of orchestral touch",
+      "heard_in": "Morning Mood; Holberg Suite; transparent textures"
+    },
+    {
+      "composer": "Rikard Nordraak",
+      "absorbed": "Norwegian national consciousness as artistic mission; \"our music must be Norwegian\"",
+      "heard_in": "The decision to make folk material central \u2014 Nordraak was the catalyst"
+    },
+    {
+      "composer": "Hardanger fiddle tradition",
+      "absorbed": "Open-5th drone, raised 4th, Halling/Springar rhythms, sympathetic resonance",
+      "heard_in": "Throughout \u2014 the primary folk source"
+    },
+    {
+      "composer": "Norwegian folk song",
+      "absorbed": "Pentatonic and modal melodies, strophic form, narrative ballads",
+      "heard_in": "Song settings (Haugtussa), melodic construction everywhere"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Encouragement; pianistic brilliance; the concept of the piano rhapsody",
+      "heard_in": "Piano Concerto cadenza; confidence to pursue a national path"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Piano as miniature form; the nocturne as atmospheric piece; rubato",
+      "heard_in": "Lyric Pieces: the piano miniature tradition"
+    },
+    {
+      "composer": "Russian folk song",
+      "absorbed": "Modal scales, arched contour, irregular phrase lengths, pentatonic skeleton",
+      "heard_in": "Pictures promenade, Boris crowd scenes, The Nursery"
+    },
+    {
+      "composer": "Russian Orthodox liturgy",
+      "absorbed": "Open 5th drones, parallel chord motion, no leading tone, plagal cadences",
+      "heard_in": "Boris coronation, Great Gate of Kiev, Khovanshchina"
+    },
+    {
+      "composer": "Balakirev",
+      "absorbed": "Informal composition teaching; orientation toward Russian subjects",
+      "heard_in": "Early works; the nationalist aesthetic"
+    },
+    {
+      "composer": "Glinka",
+      "absorbed": "Pioneer of Russian opera; folk material in operatic context",
+      "heard_in": "Boris inherits Glinka's nationalist opera project"
+    },
+    {
+      "composer": "Dargomyzhsky",
+      "absorbed": "\"The Stone Guest\" \u2014 opera based entirely on speech-melody, no conventional arias",
+      "heard_in": "Boris vocal writing directly continues Dargomyzhsky's experiment"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Studied scores intensively; the idea of music as moral force",
+      "heard_in": "Psychological depth of Boris; music serving truth, not beauty"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Early piano style; Romantic song",
+      "heard_in": "Early songs and piano pieces; later rejected"
+    },
+    {
+      "composer": "Balakirev",
+      "absorbed": "Nationalist orientation; informal composition teaching; exotic subjects",
+      "heard_in": "Symphony No. 1; Antar; the entire Mighty Five aesthetic"
+    },
+    {
+      "composer": "Glinka",
+      "absorbed": "Russian opera tradition; orchestral color; A Life for the Tsar and Ruslan as models",
+      "heard_in": "Fairy-tale operas inherit Ruslan's magic scenes"
+    },
+    {
+      "composer": "Mussorgsky",
+      "absorbed": "Raw Russian color; speech-melody; the power of \"crude\" harmony",
+      "heard_in": "Rimsky absorbed it, then smoothed it \u2014 both in his own works and in revisions"
+    },
+    {
+      "composer": "Borodin",
+      "absorbed": "Exotic oriental color; Central Asian melody; orchestral pictures",
+      "heard_in": "Scheherazade's exotic color owes debt to Borodin's Polovtsian world"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Orchestral treatise; programmatic orchestration; the orchestra as storyteller",
+      "heard_in": "Rimsky's Principles directly continues Berlioz's Treatise on Instrumentation"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Symphonic poem form; thematic transformation; orchestral brilliance",
+      "heard_in": "Symphonic works; the idea of orchestral narrative"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Late influence: continuous operatic texture; chromaticism; leitmotif",
+      "heard_in": "Kashchei, Kitezh, Golden Cockerel \u2014 the late chromatic period"
+    },
+    {
+      "composer": "Russian folk song",
+      "absorbed": "Modal scales; arched contour; seasonal ritual subject matter",
+      "heard_in": "All \"real world\" scenes in the fairy-tale operas"
+    },
+    {
+      "composer": "Russian Orthodox liturgy",
+      "absorbed": "Chant melody; bell texture; plagal cadences",
+      "heard_in": "Russian Easter Overture; church scenes in operas"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Josef Suk",
+      "absorbed": "Warm orchestration, folk-influenced melody, formal craft",
+      "heard_in": "Suk was Dvorak's student and son-in-law; Asrael Symphony continues Dvorak's emotional directness"
+    },
+    {
+      "composer": "Vitezslav Novak",
+      "absorbed": "Czech folk integration, orchestral color",
+      "heard_in": "The next generation of Czech national music"
+    },
+    {
+      "composer": "American composers",
+      "absorbed": "The idea that American folk music (spirituals, Native American) could be the basis for a national art music",
+      "heard_in": "Dvorak's \"New World\" thesis influenced the search for an American musical identity"
+    },
+    {
+      "composer": "William Grant Still",
+      "absorbed": "African-American musical materials as symphonic content",
+      "heard_in": "Afro-American Symphony (1930) \u2014 the direct descendant of Dvorak's New World thesis"
+    },
+    {
+      "composer": "English pastoralists",
+      "absorbed": "Warm orchestration, folk-song melody in symphonic context",
+      "heard_in": "Vaughan Williams, Butterworth \u2014 English folk music treated as Dvorak treated Czech folk music"
+    },
+    {
+      "composer": "Film scoring",
+      "absorbed": "Pentatonic melody for emotional directness; folk-like themes that audiences remember instantly",
+      "heard_in": "John Williams's \"accessible melody\" approach has Dvorak DNA"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Chromatic mediant juxtaposition; parallel motion; modal harmony; atmospheric stasis",
+      "heard_in": "Debussy acknowledged studying Grieg carefully; the harmonic freshness of the Preludes has Grieg DNA"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Open-5th drones; modal color; atmospheric piano writing",
+      "heard_in": "Ravel's folk-influenced works; Jeux d'eau has parallels to Grieg's resonant piano texture"
+    },
+    {
+      "composer": "Sibelius",
+      "absorbed": "Nordic identity in concert music; the precedent that Scandinavian music matters",
+      "heard_in": "Sibelius took a different path (symphonic) but Grieg opened the door for Nordic music internationally"
+    },
+    {
+      "composer": "Nielsen",
+      "absorbed": "Danish counterpart; national identity through music",
+      "heard_in": "Less direct influence; but Grieg's success validated the Nordic national project"
+    },
+    {
+      "composer": "Percy Grainger",
+      "absorbed": "Folk melody as art music; direct transcription of folk sources",
+      "heard_in": "Grainger studied with Grieg; absorbed the folk-to-concert principle directly"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Slatter Op. 72's dissonant folk transcription approach",
+      "heard_in": "Bartok's ethnomusicological method parallels Grieg's late Hardanger fiddle work"
+    },
+    {
+      "composer": "British pastoralists",
+      "absorbed": "Folk-based nationalism; atmospheric miniature",
+      "heard_in": "Delius (who lived in Norway), Vaughan Williams (indirect)"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Parallel chord motion; modal harmony; rejection of dominant-tonic obligation",
+      "heard_in": "\"Musorgsky est un Dieu\" \u2014 Debussy's parallel chords in Pelleas trace directly to Boris"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Pictures at an Exhibition (orchestration, 1922); rhythmic freedom; programmatic specificity",
+      "heard_in": "The Ravel orchestration made Pictures globally famous"
+    },
+    {
+      "composer": "Janacek",
+      "absorbed": "Speech-melody principle; music follows natural language stress",
+      "heard_in": "Janacek's \"speech-tunes\" (napevky mluvy) are the Czech equivalent of Mussorgsky's method"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Folk-song as structural basis (not decoration); modal harmony",
+      "heard_in": "Bartok's folk-song research continues Mussorgsky's instinct with scholarly rigor"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Re-orchestrated Boris and Khovanshchina; psychological realism in opera",
+      "heard_in": "Lady Macbeth of Mtsensk inherits Boris's dark psychological intensity"
+    },
+    {
+      "composer": "Prokofiev",
+      "absorbed": "Declamatory vocal writing; grotesque character pieces",
+      "heard_in": "War and Peace opera; Prokofiev acknowledged Mussorgsky's Boris as model"
+    },
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Block-form juxtaposition; raw orchestral color; Russian modality",
+      "heard_in": "Rite of Spring's block form and parallel chord motion echo Mussorgsky"
+    },
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Octatonic harmony; orchestral color as primary parameter; block scoring",
+      "heard_in": "The Firebird is pure Rimsky; Petrushka and Rite extend his octatonic language"
+    },
+    {
+      "composer": "Glazunov",
+      "absorbed": "Orchestral craft; symphonic form; conservatory professionalism",
+      "heard_in": "Glazunov's 8 symphonies and ballets; Rimsky's most faithful student"
+    },
+    {
+      "composer": "Respighi",
+      "absorbed": "Orchestral brilliance; color as structure; the Principles as textbook",
+      "heard_in": "Pines of Rome, Fountains of Rome \u2014 the Italian Rimsky"
+    },
+    {
+      "composer": "Prokofiev",
+      "absorbed": "Orchestral clarity; fairy-tale subject matter; brilliant scoring",
+      "heard_in": "Love for Three Oranges (fairy-tale opera); orchestral suites"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Orchestral color; Spanish exoticism; transparency of scoring",
+      "heard_in": "Ravel studied Rimsky's scores; Rapsodie espagnole echoes Capriccio"
+    },
+    {
+      "composer": "Dukas",
+      "absorbed": "Orchestral brilliance; the Sorcerer's Apprentice owes to Rimsky's orchestral narrative",
+      "heard_in": "Programmatic orchestral clarity"
+    },
+    {
+      "composer": "Film composers",
+      "absorbed": "The entire tradition of narrative orchestration: image-specific instrumentation",
+      "heard_in": "Williams, Korngold \u2014 the sea sounds like the sea, danger sounds like danger"
+    }
+  ],
+  "comparative_axes": {}
+}

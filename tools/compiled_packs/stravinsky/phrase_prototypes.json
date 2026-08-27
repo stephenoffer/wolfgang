@@ -1,3 +1,427 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "prototype_0",
+      "data": {
+        "bar_num": 1,
+        "_feel": "C major + F# major simultaneously \u2014 the tritone clash IS the Stravinsky sound",
+        "voices": {
+          "soprano": [
+            {
+              "p": [
+                "C5",
+                "E5",
+                "G5",
+                "F#5",
+                "A#5",
+                "C#6"
+              ],
+              "d": "h",
+              "dyn": "ff"
+            },
+            {
+              "p": [
+                "C5",
+                "E5",
+                "G5",
+                "F#5",
+                "A#5",
+                "C#6"
+              ],
+              "d": "h"
+            }
+          ],
+          "bass": [
+            {
+              "p": [
+                "C3",
+                "E3",
+                "G3",
+                "F#3",
+                "A#3"
+              ],
+              "d": "w",
+              "dyn": "ff"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_1",
+      "data": {
+        "bar_num": 2,
+        "_feel": "Arpeggiated \u2014 the two triads interleave",
+        "voices": {
+          "soprano": [
+            {
+              "p": "C5",
+              "d": "e"
+            },
+            {
+              "p": "F#5",
+              "d": "e"
+            },
+            {
+              "p": "E5",
+              "d": "e"
+            },
+            {
+              "p": "A#5",
+              "d": "e"
+            },
+            {
+              "p": "G5",
+              "d": "e"
+            },
+            {
+              "p": "C#6",
+              "d": "e"
+            },
+            {
+              "p": "C5",
+              "d": "e"
+            },
+            {
+              "p": "F#5",
+              "d": "e"
+            }
+          ],
+          "bass": [
+            {
+              "p": "C3",
+              "d": "h"
+            },
+            {
+              "p": "F#2",
+              "d": "h"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_2",
+      "data": {
+        "bar_num": 1,
+        "_feel": "Ostinato cell established \u2014 this pattern will repeat without change",
+        "voices": {
+          "vc": [
+            {
+              "p": "D2",
+              "d": "q",
+              "dyn": "mf",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "F#2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_3",
+      "data": {
+        "bar_num": 2,
+        "voices": {
+          "vc": [
+            {
+              "p": "E2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "E2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "E2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "A2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_4",
+      "data": {
+        "bar_num": 3,
+        "_feel": "Bars 3\u20134: exact repeat of ostinato \u2014 identical",
+        "voices": {
+          "vc": [
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "F#2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_5",
+      "data": {
+        "bar_num": 4,
+        "voices": {
+          "vc": [
+            {
+              "p": "E2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "E2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "E2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "A2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_6",
+      "data": {
+        "bar_num": 5,
+        "_feel": "New layer enters above unchanged ostinato \u2014 the EVENT after 4 bars of repetition",
+        "voices": {
+          "fl": [
+            {
+              "p": "A5",
+              "d": "h",
+              "dyn": "f"
+            },
+            {
+              "p": "G5",
+              "d": "q"
+            },
+            {
+              "p": "F#5",
+              "d": "q"
+            }
+          ],
+          "vc": [
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "e",
+              "art": "staccato"
+            },
+            {
+              "p": "F#2",
+              "d": "q",
+              "art": "staccato"
+            },
+            {
+              "p": "D2",
+              "d": "q",
+              "art": "staccato"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_7",
+      "data": {
+        "bar_num": 1,
+        "_feel": "5/8 \u2014 five eighths before the next accent impulse",
+        "voices": {
+          "vln1": [
+            {
+              "p": "D5",
+              "d": "e",
+              "dyn": "f",
+              "art": "marcato"
+            },
+            {
+              "p": "E5",
+              "d": "e"
+            },
+            {
+              "p": "F#5",
+              "d": "e"
+            },
+            {
+              "p": "A5",
+              "d": "e"
+            },
+            {
+              "p": "G5",
+              "d": "e"
+            }
+          ],
+          "cb": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "D2",
+              "d": "dq"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_8",
+      "data": {
+        "bar_num": 2,
+        "_feel": "3/8 \u2014 the accent arrives sooner than expected. Jolt.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "F#5",
+              "d": "e",
+              "dyn": "ff",
+              "art": "sfz"
+            },
+            {
+              "p": "E5",
+              "d": "e"
+            },
+            {
+              "p": "D5",
+              "d": "e"
+            }
+          ],
+          "cb": [
+            {
+              "p": "A2",
+              "d": "dq"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prototype_9",
+      "data": {
+        "bar_num": 3,
+        "_feel": "7/8 \u2014 longer than expected. The motion continues without expected resolution.",
+        "voices": {
+          "vln1": [
+            {
+              "p": "E5",
+              "d": "e",
+              "art": "marcato"
+            },
+            {
+              "p": "D5",
+              "d": "e"
+            },
+            {
+              "p": "A4",
+              "d": "e",
+              "dyn": "mf"
+            },
+            {
+              "p": "F#4",
+              "d": "e"
+            },
+            {
+              "p": "D4",
+              "d": "e"
+            },
+            {
+              "p": "E4",
+              "d": "e"
+            },
+            {
+              "p": "F#4",
+              "d": "e"
+            }
+          ],
+          "cb": [
+            {
+              "p": "D2",
+              "d": "q"
+            },
+            {
+              "p": "A2",
+              "d": "q"
+            },
+            {
+              "p": "D2",
+              "d": "dq"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

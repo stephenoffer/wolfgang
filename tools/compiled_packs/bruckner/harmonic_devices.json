@@ -8,7 +8,7 @@
       "4 keys equally accessible"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "4 keys equally accessible",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "3 keys by major thirds"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "3 keys by major thirds",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -32,19 +32,21 @@
       "Semitone-related keys"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Semitone-related keys",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
     "id": "common_tone_pivot",
     "name": "Common-tone pivot",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "common tone held"
+    ],
     "contexts": [
       "Any key sharing that pitch"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Any key sharing that pitch",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -56,7 +58,7 @@
       "Any key at all"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Any key at all",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -69,7 +71,7 @@
       "never delivered \u2014 the reaching never ends"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Resolution is always promised",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -81,7 +83,7 @@
       "No key establishes itself long enough to feel like home"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "No key establishes itself long enough to feel like home",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -93,7 +95,7 @@
       "The mind tries to categorize the harmony but cannot \u2014 uncertainty becomes sensation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The mind tries to categorize the harmony but cannot \u2014 uncertainty becomes sensation",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -105,7 +107,7 @@
       "The key change across a movement IS the story \u2014 Mahler's C# minor to D major is the journey from funeral to triumph"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The key change across a movement IS the story \u2014 Mahler's C# minor to D major is the journey from funeral to triumph",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -118,7 +120,7 @@
       "characters collide"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Each motif carries its own harmonic world; when harmonies collide",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -130,7 +132,7 @@
       "An island of tonal stability in an ambiguous sea \u2014 the listener grasps it before it dissolves"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "An island of tonal stability in an ambiguous sea \u2014 the listener grasps it before it dissolves",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -142,7 +144,7 @@
       "Tonal center obscured"
     ],
     "frequency_weight": 0.12,
-    "emotional_color": "",
+    "emotional_color": "Tonal center obscured",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -154,19 +156,22 @@
       "No stable center"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "No stable center",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
     "id": "deceptive_resolution_chains",
     "name": "Deceptive resolution chains",
-    "chord_sequence": [],
+    "chord_sequence": [
+      "V",
+      "V"
+    ],
     "voice_leading_hints": [],
     "contexts": [
       "Perpetual avoidance"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Perpetual avoidance",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -178,7 +183,7 @@
       "Floating tension"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Floating tension",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -190,7 +195,7 @@
       "Island of clarity"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Island of clarity",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -202,7 +207,7 @@
       "Multiple interpretations"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Multiple interpretations",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -214,7 +219,7 @@
       "Leitmotif development"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Leitmotif development",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -226,7 +231,7 @@
       "Continuous tension"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Continuous tension",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -238,7 +243,7 @@
       "Infinite postponement"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Infinite postponement",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -250,20 +255,22 @@
       "Continuous flow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Continuous flow",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
     "id": "chromatic_voice_leading",
     "name": "Chromatic voice leading",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice"
+    ],
     "contexts": [
       "Smooth",
       "inevitable"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Smooth",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -275,7 +282,7 @@
       "Remote color"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Remote color",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -288,7 +295,7 @@
       "functional"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "4-8 bars",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -301,7 +308,7 @@
       "modulation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "16-32 bars",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -314,7 +321,7 @@
       "structural"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Minutes-long",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -327,7 +334,7 @@
       "progressive"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "15-30 min",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -340,7 +347,7 @@
       "60-90 min"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Full symphony",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -392,7 +399,7 @@
       "Continuation forced"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Continuation forced",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -404,7 +411,7 @@
       "Weakened arrival"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Weakened arrival",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -416,7 +423,52 @@
       "Breathless"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Breathless",
+    "source_file": "bruckner/harmonic-language.md"
+  },
+  {
+    "id": "pac_authentic_close",
+    "name": "PAC (authentic close)",
+    "chord_sequence": [
+      "V7",
+      "I"
+    ],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The late-Romantic idiom defers cadences for pages; when a plan asks for a real PAC it should be a structural event",
+      "at the end of a large section",
+      "and it should feel earned by everything that avoided one before it"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "The late-Romantic idiom defers cadences for pages; when a plan asks for a real PAC it should be a structural event",
+    "source_file": "bruckner/harmonic-language.md"
+  },
+  {
+    "id": "hc_half_close",
+    "name": "HC (half close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The half cadence is this idiom's natural state \u2014 the dominant is where the music lives",
+      "and the tonic is what it postpones"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The half cadence is this idiom's natural state \u2014 the dominant is where the music lives",
+    "source_file": "bruckner/harmonic-language.md"
+  },
+  {
+    "id": "iac_weak_close",
+    "name": "IAC (weak close)",
+    "chord_sequence": [
+      "V",
+      "I"
+    ],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The default close: an arrival that keeps the music moving"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The default close: an arrival that keeps the music moving",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -428,7 +480,7 @@
       "Continuous flow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Continuous flow",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -440,20 +492,23 @@
       "Softer closure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Softer closure",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
     "id": "modal_cadence",
     "name": "Modal cadence",
-    "chord_sequence": [],
+    "chord_sequence": [
+      "bVII",
+      "i"
+    ],
     "voice_leading_hints": [],
     "contexts": [
       "Archaic",
       "open"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Archaic",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -465,7 +520,7 @@
       "Evaporation"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Evaporation",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -478,7 +533,7 @@
       "early Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Strauss (Elektra)",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -491,7 +546,7 @@
       "Mahler (distorted quotations)"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Ives",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -503,7 +558,7 @@
       "Mahler (ironic passages)"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mahler (ironic passages)",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -516,7 +571,7 @@
       "Stravinsky (Petrushka chord)"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Strauss",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -529,7 +584,7 @@
       "inevitable flow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Smooth",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -541,7 +596,7 @@
       "Painterly harmony"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Painterly harmony",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -553,7 +608,7 @@
       "Dramatic logic replaces tonal logic"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Dramatic logic replaces tonal logic",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -565,7 +620,7 @@
       "Tension without chaos"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tension without chaos",
     "source_file": "bruckner/harmonic-language.md"
   },
   {
@@ -578,7 +633,7 @@
       "otherworldly"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Suspended",
     "source_file": "bruckner/harmonic-language.md"
   }
 ]

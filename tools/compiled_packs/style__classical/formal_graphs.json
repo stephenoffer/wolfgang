@@ -1,66 +1,220 @@
 {
- "forms": {
-  "sonata": {
-   "sections": [
-    {
-     "role": "3",
-     "proportion_range": [
-      0.05,
-      0.4
-     ]
+  "forms": {
+    "sonata": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {
+        "exposition_keys_major": [
+          "I",
+          "V"
+        ],
+        "exposition_keys_minor": [
+          "i",
+          "III"
+        ],
+        "recap_rule": "tonic"
+      }
     },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.0,
-      0.3
-     ]
+    "rondo": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {}
     },
-    {
-     "role": "3",
-     "proportion_range": [
-      0.0,
-      0.4
-     ]
+    "theme and variations": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "da capo": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "strophic": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [
+        {
+          "role": "3",
+          "proportion_range": [
+            0.05,
+            0.4
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.3
+          ]
+        },
+        {
+          "role": "3",
+          "proportion_range": [
+            0.0,
+            0.4
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "minuet and trio": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "fugue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "song form": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cyclic": {
+      "sections": [],
+      "key_scheme": {}
     }
-   ],
-   "key_scheme": {
-    "exposition_keys_major": [
-     "I",
-     "V"
-    ],
-    "exposition_keys_minor": [
-     "i",
-     "III"
-    ],
-    "recap_rule": "tonic"
-   }
-  },
-  "rondo": {
-   "sections": [
-    {
-     "role": "3",
-     "proportion_range": [
-      0.05,
-      0.4
-     ]
-    },
-    {
-     "role": "2",
-     "proportion_range": [
-      0.0,
-      0.3
-     ]
-    },
-    {
-     "role": "3",
-     "proportion_range": [
-      0.0,
-      0.4
-     ]
-    }
-   ],
-   "key_scheme": {}
   }
- }
 }

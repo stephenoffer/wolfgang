@@ -1,10 +1,12 @@
 {
   "composer": "bruckner",
-  "genre": "late-romantic",
+  "genre": "",
   "support_tier": "B",
   "corpus_bar_count": 27,
   "profile_files": [
     "biography.md",
+    "bruckner-devices.md",
+    "bruckner-lh-vocabulary.md",
     "composition-guide.md",
     "cross-references.md",
     "formal-approach.md",

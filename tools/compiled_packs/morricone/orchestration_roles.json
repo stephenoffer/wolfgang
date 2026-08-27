@@ -1,4 +1,91 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Harmonica (diatonic)",
+      "section": "Signature Instruments",
+      "function": "Character voice; melody"
+    },
+    {
+      "name": "Human whistle",
+      "section": "Signature Instruments",
+      "function": "Main theme"
+    },
+    {
+      "name": "Electric guitar (twangy)",
+      "section": "Signature Instruments",
+      "function": "Theme + arpeggiation"
+    },
+    {
+      "name": "Jaw harp",
+      "section": "Signature Instruments",
+      "function": "Rhythmic texture"
+    },
+    {
+      "name": "Ocarina",
+      "section": "Signature Instruments",
+      "function": "Melody"
+    },
+    {
+      "name": "Solo trumpet (distant)",
+      "section": "Signature Instruments",
+      "function": "Call, announcement"
+    },
+    {
+      "name": "Solo oboe",
+      "section": "Signature Instruments",
+      "function": "Lyrical melody"
+    },
+    {
+      "name": "Pan-flute",
+      "section": "Signature Instruments",
+      "function": "Theme"
+    },
+    {
+      "name": "Wordless soprano",
+      "section": "Signature Instruments",
+      "function": "Floating melody"
+    },
+    {
+      "name": "Whip crack",
+      "section": "Signature Instruments",
+      "function": "Rhythmic punctuation"
+    },
+    {
+      "name": "Carillon/music box",
+      "section": "Signature Instruments",
+      "function": "Leitmotif"
+    },
+    {
+      "name": "Solo unaccompanied",
+      "section": "Texture Types",
+      "function": "One instrument alone (trumpet, harmonica, oboe)"
+    },
+    {
+      "name": "Solo + drone",
+      "section": "Texture Types",
+      "function": "Melody over sustained open 5th"
+    },
+    {
+      "name": "Solo + arpeggio",
+      "section": "Texture Types",
+      "function": "Melody over guitar arpeggiation"
+    },
+    {
+      "name": "Countermelody layering",
+      "section": "Texture Types",
+      "function": "2\u20133 independent melodic layers"
+    },
+    {
+      "name": "Full orchestral",
+      "section": "Texture Types",
+      "function": "Strings, brass, percussion + solo"
+    },
+    {
+      "name": "Silence",
+      "section": "Texture Types",
+      "function": "Complete absence of sound"
+    }
+  ],
   "source_file": "orchestration.md"
 }

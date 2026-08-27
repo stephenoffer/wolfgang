@@ -1,0 +1,203 @@
+{
+  "influenced_by": [
+    {
+      "composer": "Chromatic saturation, enharmonic modulation, deferred cadence",
+      "absorbed": "Bruckner sustains single chords for 8-16 bars; Wagner's harmony is continuously restless"
+    },
+    {
+      "composer": "Wagner tubas, expanded brass, orchestral mass",
+      "absorbed": "Bruckner's textures are terraced blocks; Wagner's are continuously blended"
+    },
+    {
+      "composer": "Monumental time-scale; works lasting 60-80+ minutes",
+      "absorbed": "Wagner's length serves drama; Bruckner's serves architecture"
+    },
+    {
+      "composer": "Bruckner does NOT use leitmotif \u2014 his themes are self-contained, not referential",
+      "absorbed": "Bruckner's themes transform by contrapuntal combination, not dramatic reinterpretation"
+    },
+    {
+      "composer": "Wagner: erotic, dramatic, narrative",
+      "absorbed": "Bruckner: devotional, architectural, transcendent"
+    },
+    {
+      "composer": "Bruckner idolized Wagner; wept at performances; dedicated Symphony 3 to him",
+      "absorbed": "Wagner respected Bruckner's organ playing but was largely indifferent to his symphonies"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Emotional directness; orchestral warmth; sequence as drama",
+      "heard_in": "Early works especially; Symphony No. 1; orchestral palette throughout"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Bel canto piano melody; wide LH arpeggio; rubato",
+      "heard_in": "Piano Concerto slow movements; Preludes; the singing RH line"
+    },
+    {
+      "composer": "Russian Orthodox liturgy",
+      "absorbed": "Znamenny chant; bell resonance; basso profondo register",
+      "heard_in": "Vespers; bell-chord opening of Concerto No. 2; tonic pedal technique"
+    },
+    {
+      "composer": "Arensky (teacher)",
+      "absorbed": "Lyrical melody; elegant harmony",
+      "heard_in": "Early works; the gift for tunefulness"
+    },
+    {
+      "composer": "Taneyev (teacher)",
+      "absorbed": "Contrapuntal rigor; structural discipline",
+      "heard_in": "Development sections; fugal passages in Vespers"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Virtuoso piano technique; thematic transformation",
+      "heard_in": "Piano concerto cadenzas; Concerto No. 3 virtuosity"
+    },
+    {
+      "composer": "Borodin",
+      "absorbed": "Russian harmonic color; modal progressions",
+      "heard_in": "Symphonic passages; nationalistic harmonic flavor"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Lyrical concerto model; Nordic/Slavic emotional kinship",
+      "heard_in": "Piano Concerto No. 2 structure echoes Grieg A minor"
+    },
+    {
+      "composer": "Niedermeyer school / Gregorian chant",
+      "absorbed": "Modal melody, church modes, smooth voice-leading",
+      "heard_in": "All works \u2014 the modal inflections ARE the Niedermeyer training"
+    },
+    {
+      "composer": "Saint-Saens",
+      "absorbed": "Modern harmony (Wagner, Liszt); pianistic craft; French clarity",
+      "heard_in": "Piano writing, formal elegance, professional model"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Intimate song art; piano as poetic instrument; cross-rhythms",
+      "heard_in": "Early songs, piano accompaniment textures"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "Nocturne form; flowing piano figuration; harmonic color",
+      "heard_in": "Nocturnes, Barcarolles \u2014 Faure extends Chopin's nocturne tradition"
+    },
+    {
+      "composer": "Wagner",
+      "absorbed": "Chromatic harmony; continuous modulation; through-composition",
+      "heard_in": "Absorbed harmonically but rejected aesthetically (no drama, no display)"
+    },
+    {
+      "composer": "Liszt",
+      "absorbed": "Pianistic idiom; third-related harmony",
+      "heard_in": "Occasional \u2014 less central than Saint-Saens or Chopin"
+    },
+    {
+      "composer": "French chanson tradition",
+      "absorbed": "Melodic simplicity; strophic song; direct emotional expression",
+      "heard_in": "Early melodies; the vocal quality of all his melody"
+    },
+    {
+      "composer": "Palestrina / Renaissance polyphony",
+      "absorbed": "Smooth voice-leading; modal harmony; contrapuntal independence",
+      "heard_in": "Late works especially \u2014 the String Quartet is Renaissance in its purity"
+    },
+    {
+      "composer": "Berlioz"
+    },
+    {
+      "composer": "Gounod"
+    },
+    {
+      "composer": "Duparc"
+    },
+    {
+      "composer": "Faure"
+    },
+    {
+      "composer": "Debussy"
+    },
+    {
+      "composer": "Poulenc"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Film composers (broadly)",
+      "absorbed": "Long melody over lush orchestration; emotional directness",
+      "heard_in": "Hollywood golden age scoring; the \"Rachmaninoff sound\" in cinema"
+    },
+    {
+      "composer": "Popular music",
+      "absorbed": "Variation 18 (Paganini) as template for romantic melody",
+      "heard_in": "Eric Carmen's \"All By Myself\" (direct quotation); countless ballads"
+    },
+    {
+      "composer": "Russian piano school",
+      "absorbed": "Technical approach; wide-range texture; singing tone",
+      "heard_in": "Horowitz, Gilels, Ashkenazy \u2014 performance tradition"
+    },
+    {
+      "composer": "Medtner",
+      "absorbed": "Shared aesthetic; late-Romantic piano language",
+      "heard_in": "Medtner's Fairy Tales; the Russian emigre circle"
+    },
+    {
+      "composer": "Barber",
+      "absorbed": "Lyrical Romanticism in 20th century; orchestral warmth",
+      "heard_in": "Barber's Piano Concerto; Adagio for Strings shares emotional directness"
+    },
+    {
+      "composer": "John Williams",
+      "absorbed": "Lush orchestral textures; long melody; emotional arc",
+      "heard_in": "Williams cites Rachmaninoff as influence; similar orchestral warmth"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Harmonic daring, formal precision, emotional restraint, melodic elegance",
+      "heard_in": "Ravel was Faure's student at the Conservatoire; absorbed his modal harmony and surpassed his orchestration"
+    },
+    {
+      "composer": "Nadia Boulanger",
+      "absorbed": "Everything \u2014 harmonic language, form, aesthetic of clarity and restraint",
+      "heard_in": "Boulanger studied with Faure; taught Copland, Carter, Piazzolla, Glass, Quincy Jones \u2014 Faure's influence radiates through her to the entire 20th century"
+    },
+    {
+      "composer": "Lili Boulanger",
+      "absorbed": "Lyrical sensitivity, modal harmony, song art",
+      "heard_in": "Nadia's sister; died young (1918); her music is the most directly Faurean of any successor"
+    },
+    {
+      "composer": "Charles Koechlin",
+      "absorbed": "Harmonic experimentation, modal richness, orchestral transparency",
+      "heard_in": "Koechlin studied with Faure; extended the harmonic language further"
+    },
+    {
+      "composer": "Florent Schmitt",
+      "absorbed": "Orchestral writing, formal ambition",
+      "heard_in": "Combined Faure's harmony with larger-scale orchestral forms"
+    },
+    {
+      "composer": "Roger-Ducasse",
+      "absorbed": "Chamber music intimacy, song craft",
+      "heard_in": "Direct continuation of Faure's chamber aesthetic"
+    },
+    {
+      "composer": "Jean Roger-Ducasse",
+      "absorbed": "Piano and chamber music",
+      "heard_in": "Carried the Faurean aesthetic into the 20th century"
+    }
+  ],
+  "comparative_axes": {
+    "Faure and the French Melodie Tradition": [
+      "Berlioz",
+      "Gounod",
+      "Duparc",
+      "Faure",
+      "Debussy",
+      "Poulenc"
+    ]
+  }
+}

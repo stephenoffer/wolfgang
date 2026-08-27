@@ -1,169 +1,169 @@
 {
- "required_count": 3,
- "items": [
-  {
-   "id": "pentatonic_folk_melody_the_tune_that_everyone_knows",
-   "name": "Pentatonic/folk melody \u2014 the tune that everyone knows",
-   "description": "Dvo\u0159\u00e1k's melodies have the quality of folk songs: simple, memorable, singable, often pentatonic or hexatonic. They feel like they could have existed before Dvo\u0159\u00e1k wrote them. This is not a limitation ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "furiant_and_dumka_czech_dance_forms_as_structural_units",
-   "name": "Furiant and Dumka \u2014 Czech dance forms as structural units",
-   "description": "The Furiant is a fast (Presto/Vivace) dance in 3/4 with hemiola (cross-rhythm between 3/4 and 2/4) and strong, accented downbeats. The Dumka is a slow, melancholy Ukrainian/Czech form that alternates ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "flat_vii_chord_mixolydian_as_characteristic_color",
-   "name": "Flat-VII chord (Mixolydian) as characteristic color",
-   "description": "In major keys, Dvo\u0159\u00e1k regularly uses the chord built on the flat-7th degree (in C major: Bb major chord). This chord has a folk/modal quality \u2014 it sounds like it belongs in a village square, not a con",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "richly_lyrical_slow_movements_the_american_idiom",
-   "name": "Richly lyrical slow movements \u2014 the American idiom",
-   "description": "Dvo\u0159\u00e1k's Largo/Andante movements (especially the New World Symphony's Largo) are his most personal: a single sustained melody in a solo instrument (cor anglais, cello, violin), pp to p, harmonized wit",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "american_pentatonic_color_late_dvo_k",
-   "name": "American pentatonic color (late Dvo\u0159\u00e1k)",
-   "description": "After his American period (1892\u20131895), Dvo\u0159\u00e1k's pentatonic melodies took on an African-American spiritual and Native American inflection: gapped scales with no 4th or 7th degree, a specific melancholi",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "norwegian_folk_scale_the_raised_4th_lydian_inflection",
-   "name": "Norwegian folk scale \u2014 the raised 4th (Lydian inflection)",
-   "description": "The characteristic \"Grieg note\" is the raised 4th degree: in A minor, a D# appears as a passing tone or as a chord color. This comes from the Hardanger fiddle tradition. Combined with natural minor or",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "short_atmospheric_miniature_forms",
-   "name": "Short, atmospheric miniature forms",
-   "description": "Grieg's natural habitat is the short character piece: the Lyric Pieces for piano (66 pieces, each 1\u20134 minutes). His large-form work (Piano Concerto, Peer Gynt) is the exception. The miniature form is ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "pedal_point_under_changing_harmonies",
-   "name": "Pedal point under changing harmonies",
-   "description": "Grieg frequently sustains a tonic or dominant pedal in the bass while the harmonies above it change freely \u2014 often to unexpected chromatic chords. The pedal gives stability; the chromatic harmonies ab",
-   "texture_affinities": [
-    "pedal_point"
-   ],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "halling_and_springar_rhythms_norwegian_dance_idiom",
-   "name": "Halling and Springar rhythms \u2014 Norwegian dance idiom",
-   "description": "The Halling is a lively solo dance in 2/4 with strong downbeats and wide leaps. The Springar is a triple-time dance (3/4 or 3/8) with irregular accent patterns (sometimes 2+3+2, sometimes 3+2+2). Thes",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "sudden_tonal_juxtaposition_grieg_s_harmonic_freshness",
-   "name": "Sudden tonal juxtaposition \u2014 Grieg's harmonic freshness",
-   "description": "Grieg moves between harmonically distant keys by simply placing them next to each other: A minor \u2192 F# major, or E major \u2192 C major. The move is not prepared, not modulatory \u2014 it is a juxtaposition of t",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "raw_unpolished_harmonic_language_intentional_wrong_notes",
-   "name": "Raw, unpolished harmonic language \u2014 intentional \"wrong\" notes",
-   "description": "Mussorgsky deliberately avoided the smooth voice-leading rules of European academic harmony. His chord connections can be abrupt, his parallel fifths deliberate, his unresolved dissonances intentional",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "speech_melody_vocal_rhythm_following_natural_russian_speech",
-   "name": "Speech-melody \u2014 vocal rhythm following natural Russian speech",
-   "description": "Mussorgsky's vocal writing in Boris Godunov and Songs follows the natural rhythm and inflection of spoken Russian, not the conventions of Italian opera. Long notes on important syllables, short notes ",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "whole_tone_and_octatonic_fragments",
-   "name": "Whole-tone and octatonic fragments",
-   "description": "Before Debussy made whole-tone harmony fashionable, Mussorgsky used whole-tone fragments and octatonic scales as coloristic devices for the supernatural, demonic, or mysterious. The Night on Bald Moun",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "modal_russian_church_idiom_bells_and_liturgy",
-   "name": "Modal Russian church idiom \u2014 bells and liturgy",
-   "description": "The Orthodox Christian liturgical tradition is embedded in Mussorgsky's writing: open 5th drone basses, parallel 5th chord movements, slow-moving choral harmonies with no leading tone. The \"Boris\" cor",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "programmatic_specificity_portraits_and_places",
-   "name": "Programmatic specificity \u2014 portraits and places",
-   "description": "Pictures at an Exhibition is the paradigm: each piece is a specific portrait, place, or scene, described with specific musical material unique to that subject. Mussorgsky doesn't write \"atmospheric\" m",
-   "texture_affinities": [
-    "walking_bass"
-   ],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "orchestral_color_as_the_primary_compositional_parameter",
-   "name": "Orchestral color as the primary compositional parameter",
-   "description": "Rimsky-Korsakov thought in colors: each instrument is a specific color, and composition means arranging colors. His Principles of Orchestration remains the definitive manual of Late Romantic orchestra",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "the_rimsky_korsakov_scale_octatonic_as_exotic_color",
-   "name": "The Rimsky-Korsakov scale (octatonic) as exotic color",
-   "description": "Rimsky-Korsakov regularly used the octatonic scale (alternating whole-step and half-step: C-D-Eb-F-Gb-Ab-A-B-C) for fantasy and supernatural passages. Scheherazade's demonic characters, the magic sect",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "arabian_nights_exotic_color_modal_scales_and_augmented_2nds",
-   "name": "Arabian Nights exotic color \u2014 modal scales and augmented 2nds",
-   "description": "Scheherazade, the Spanish Capriccio, Antar \u2014 Rimsky's exotic subjects call for specific scale types: harmonic minor (with its augmented 2nd between the 6th and 7th degrees), Phrygian mode, Arabic doub",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "brilliant_solo_woodwind_writing_the_storyteller_s_voice",
-   "name": "Brilliant solo woodwind writing \u2014 the storyteller's voice",
-   "description": "Rimsky's orchestral solos are legendary: the bassoon in the opening of Scheherazade, the clarinet in the Spanish Capriccio, the flute in Sadko. Each solo is individually crafted for the specific timbr",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  },
-  {
-   "id": "narrative_orchestration_music_as_visual_image",
-   "name": "Narrative orchestration \u2014 music as visual image",
-   "description": "Rimsky's program music is specifically visual: the sea (Scheherazade), the sunrise, the flight of the bumblebee. The orchestration creates these images through specific technical means: string tremolo",
-   "texture_affinities": [],
-   "frequency": "per_section",
-   "period": ""
-  }
- ]
+  "required_count": 3,
+  "items": [
+    {
+      "id": "pentatonic_folk_melody_the_tune_that_everyone_knows",
+      "name": "Pentatonic/folk melody \u2014 the tune that everyone knows",
+      "description": "Dvo\u0159\u00e1k's melodies have the quality of folk songs: simple, memorable, singable, often pentatonic or hexatonic. They feel like they could have existed before Dvo\u0159\u00e1k wrote them. This is not a limitation ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "furiant_and_dumka_czech_dance_forms_as_structural_units",
+      "name": "Furiant and Dumka \u2014 Czech dance forms as structural units",
+      "description": "The Furiant is a fast (Presto/Vivace) dance in 3/4 with hemiola (cross-rhythm between 3/4 and 2/4) and strong, accented downbeats. The Dumka is a slow, melancholy Ukrainian/Czech form that alternates ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "flat_vii_chord_mixolydian_as_characteristic_color",
+      "name": "Flat-VII chord (Mixolydian) as characteristic color",
+      "description": "In major keys, Dvo\u0159\u00e1k regularly uses the chord built on the flat-7th degree (in C major: Bb major chord). This chord has a folk/modal quality \u2014 it sounds like it belongs in a village square, not a con",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "richly_lyrical_slow_movements_the_american_idiom",
+      "name": "Richly lyrical slow movements \u2014 the American idiom",
+      "description": "Dvo\u0159\u00e1k's Largo/Andante movements (especially the New World Symphony's Largo) are his most personal: a single sustained melody in a solo instrument (cor anglais, cello, violin), pp to p, harmonized wit",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "american_pentatonic_color_late_dvo_k",
+      "name": "American pentatonic color (late Dvo\u0159\u00e1k)",
+      "description": "After his American period (1892\u20131895), Dvo\u0159\u00e1k's pentatonic melodies took on an African-American spiritual and Native American inflection: gapped scales with no 4th or 7th degree, a specific melancholi",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "norwegian_folk_scale_the_raised_4th_lydian_inflection",
+      "name": "Norwegian folk scale \u2014 the raised 4th (Lydian inflection)",
+      "description": "The characteristic \"Grieg note\" is the raised 4th degree: in A minor, a D# appears as a passing tone or as a chord color. This comes from the Hardanger fiddle tradition. Combined with natural minor or",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "short_atmospheric_miniature_forms",
+      "name": "Short, atmospheric miniature forms",
+      "description": "Grieg's natural habitat is the short character piece: the Lyric Pieces for piano (66 pieces, each 1\u20134 minutes). His large-form work (Piano Concerto, Peer Gynt) is the exception. The miniature form is ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "pedal_point_under_changing_harmonies",
+      "name": "Pedal point under changing harmonies",
+      "description": "Grieg frequently sustains a tonic or dominant pedal in the bass while the harmonies above it change freely \u2014 often to unexpected chromatic chords. The pedal gives stability; the chromatic harmonies ab",
+      "texture_affinities": [
+        "pedal_point"
+      ],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "halling_and_springar_rhythms_norwegian_dance_idiom",
+      "name": "Halling and Springar rhythms \u2014 Norwegian dance idiom",
+      "description": "The Halling is a lively solo dance in 2/4 with strong downbeats and wide leaps. The Springar is a triple-time dance (3/4 or 3/8) with irregular accent patterns (sometimes 2+3+2, sometimes 3+2+2). Thes",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "sudden_tonal_juxtaposition_grieg_s_harmonic_freshness",
+      "name": "Sudden tonal juxtaposition \u2014 Grieg's harmonic freshness",
+      "description": "Grieg moves between harmonically distant keys by simply placing them next to each other: A minor \u2192 F# major, or E major \u2192 C major. The move is not prepared, not modulatory \u2014 it is a juxtaposition of t",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "raw_unpolished_harmonic_language_intentional_wrong_notes",
+      "name": "Raw, unpolished harmonic language \u2014 intentional \"wrong\" notes",
+      "description": "Mussorgsky deliberately avoided the smooth voice-leading rules of European academic harmony. His chord connections can be abrupt, his parallel fifths deliberate, his unresolved dissonances intentional",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "speech_melody_vocal_rhythm_following_natural_russian_speech",
+      "name": "Speech-melody \u2014 vocal rhythm following natural Russian speech",
+      "description": "Mussorgsky's vocal writing in Boris Godunov and Songs follows the natural rhythm and inflection of spoken Russian, not the conventions of Italian opera. Long notes on important syllables, short notes ",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "whole_tone_and_octatonic_fragments",
+      "name": "Whole-tone and octatonic fragments",
+      "description": "Before Debussy made whole-tone harmony fashionable, Mussorgsky used whole-tone fragments and octatonic scales as coloristic devices for the supernatural, demonic, or mysterious. The Night on Bald Moun",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "modal_russian_church_idiom_bells_and_liturgy",
+      "name": "Modal Russian church idiom \u2014 bells and liturgy",
+      "description": "The Orthodox Christian liturgical tradition is embedded in Mussorgsky's writing: open 5th drone basses, parallel 5th chord movements, slow-moving choral harmonies with no leading tone. The \"Boris\" cor",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "programmatic_specificity_portraits_and_places",
+      "name": "Programmatic specificity \u2014 portraits and places",
+      "description": "Pictures at an Exhibition is the paradigm: each piece is a specific portrait, place, or scene, described with specific musical material unique to that subject. Mussorgsky doesn't write \"atmospheric\" m",
+      "texture_affinities": [
+        "walking_bass"
+      ],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "orchestral_color_as_the_primary_compositional_parameter",
+      "name": "Orchestral color as the primary compositional parameter",
+      "description": "Rimsky-Korsakov thought in colors: each instrument is a specific color, and composition means arranging colors. His Principles of Orchestration remains the definitive manual of Late Romantic orchestra",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "the_rimsky_korsakov_scale_octatonic_as_exotic_color",
+      "name": "The Rimsky-Korsakov scale (octatonic) as exotic color",
+      "description": "Rimsky-Korsakov regularly used the octatonic scale (alternating whole-step and half-step: C-D-Eb-F-Gb-Ab-A-B-C) for fantasy and supernatural passages. Scheherazade's demonic characters, the magic sect",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "arabian_nights_exotic_color_modal_scales_and_augmented_2nds",
+      "name": "Arabian Nights exotic color \u2014 modal scales and augmented 2nds",
+      "description": "Scheherazade, the Spanish Capriccio, Antar \u2014 Rimsky's exotic subjects call for specific scale types: harmonic minor (with its augmented 2nd between the 6th and 7th degrees), Phrygian mode, Arabic doub",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "brilliant_solo_woodwind_writing_the_storyteller_s_voice",
+      "name": "Brilliant solo woodwind writing \u2014 the storyteller's voice",
+      "description": "Rimsky's orchestral solos are legendary: the bassoon in the opening of Scheherazade, the clarinet in the Spanish Capriccio, the flute in Sadko. Each solo is individually crafted for the specific timbr",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    },
+    {
+      "id": "narrative_orchestration_music_as_visual_image",
+      "name": "Narrative orchestration \u2014 music as visual image",
+      "description": "Rimsky's program music is specifically visual: the sea (Scheherazade), the sunrise, the flight of the bumblebee. The orchestration creates these images through specific technical means: string tremolo",
+      "texture_affinities": [],
+      "frequency": "per_section",
+      "period": ""
+    }
+  ]
 }

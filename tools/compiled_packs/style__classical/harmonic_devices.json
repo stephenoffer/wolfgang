@@ -1,729 +1,251 @@
 [
- {
-  "id": "b6_melodic_inflection",
-  "name": "b6 melodic inflection",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Any major-key phrase \u2014 the signature shadow"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "neapolitan_6th_bii6",
-  "name": "Neapolitan 6th (bII6)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Slow movements",
-   "minor-key cadences"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "diminished_7th_pivot",
-  "name": "Diminished 7th pivot",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Development sections",
-   "operatic transitions"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "augmented_6th_chords",
-  "name": "Augmented 6th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Dramatic cadential moments",
-   "late works"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "chromatic_bass_descent",
-  "name": "Chromatic bass descent",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Lament",
-   "grief",
-   "slow introductions"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "enharmonic_reinterpretation",
-  "name": "Enharmonic reinterpretation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Late works",
-   "development sections"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "secondary_dominants",
-  "name": "Secondary dominants",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Transitions",
-   "sequences"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "internal_expansion",
-  "name": "Internal expansion",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Broadens phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "cadential_extension",
-  "name": "Cadential extension",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Delays closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "prefix",
-  "name": "Prefix",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sets up phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "suffix_codetta",
-  "name": "Suffix (codetta)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Confirms closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "evaded_cadence",
-  "name": "Evaded cadence",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Restarts phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "one_more_time",
-  "name": "One more time",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Emphasis"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "secondary_dominants",
-  "name": "Secondary dominants",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Very common"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "augmented_6th_chords",
-  "name": "Augmented 6th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate (more in late Classical)"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "neapolitan_6th",
-  "name": "Neapolitan 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate",
-   "dramatic cadences"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "chromatic_passing_tones",
-  "name": "Chromatic passing tones",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Common in inner voices"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "mode_mixture",
-  "name": "Mode mixture",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Increasingly common"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "diminished_7th_chords",
-  "name": "Diminished 7th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Common",
-   "esp. in development"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "enharmonic_modulation",
-  "name": "Enharmonic modulation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Rare in early Classical; Beethoven"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "mozart/harmonic-language.md"
- },
- {
-  "id": "1",
-  "name": "1",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Theme returns in wrong key",
-   "then corrects to tonic"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "2",
-  "name": "2",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Fortissimo chord where piano was expected (or reverse)"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "3",
-  "name": "3",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "V-vi where V-I was expected",
-   "followed by pause"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "4",
-  "name": "4",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "First theme restated in dominant as \"second theme\""
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "5",
-  "name": "5",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sudden arrival in bVI",
-   "bII",
-   "or enharmonic territory"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "6",
-  "name": "6",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Bass holds V for 8-16 bars while upper voices avoid resolution"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "7",
-  "name": "7",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Multiple deceptive cadences before the real PAC"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "8",
-  "name": "8",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Unrelated chord follows without preparation"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "internal_expansion",
-  "name": "Internal expansion",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Broadens phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "cadential_extension",
-  "name": "Cadential extension",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Delays closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "prefix",
-  "name": "Prefix",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sets up phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "suffix_codetta",
-  "name": "Suffix (codetta)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Confirms closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "evaded_cadence",
-  "name": "Evaded cadence",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Restarts phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "one_more_time",
-  "name": "One more time",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Emphasis"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "secondary_dominants",
-  "name": "Secondary dominants",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Very common"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "augmented_6th_chords",
-  "name": "Augmented 6th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate (more in late Classical)"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "neapolitan_6th",
-  "name": "Neapolitan 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate",
-   "dramatic cadences"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "chromatic_passing_tones",
-  "name": "Chromatic passing tones",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Common in inner voices"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "mode_mixture",
-  "name": "Mode mixture",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Increasingly common"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "diminished_7th_chords",
-  "name": "Diminished 7th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Common",
-   "esp. in development"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "enharmonic_modulation",
-  "name": "Enharmonic modulation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Rare in early Classical; Beethoven"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "haydn/harmonic-language.md"
- },
- {
-  "id": "semitone_key_juxtaposition",
-  "name": "Semitone key juxtaposition",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Tonal vertigo; the listener's sense of key is suspended"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "tritone_relationship",
-  "name": "Tritone relationship",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Maximum tonal distance traversed instantly"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "extended_trills_as_harmonic_events",
-  "name": "Extended trills as harmonic events",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "The surface is static; the ground moves"
-  ],
-  "frequency_weight": 0.04,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "recitative_in_instrumental_music",
-  "name": "Recitative in instrumental music",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Op. 31/2 (Tempest)",
-   "Op. 110",
-   "Ninth Symphony"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "fugue_as_harmonic_compression",
-  "name": "Fugue as harmonic compression",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Grosse Fuge \u2014 the harmony strains under contrapuntal pressure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "internal_expansion",
-  "name": "Internal expansion",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Broadens phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "cadential_extension",
-  "name": "Cadential extension",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Delays closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "prefix",
-  "name": "Prefix",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Sets up phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "suffix_codetta",
-  "name": "Suffix (codetta)",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Confirms closure"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "evaded_cadence",
-  "name": "Evaded cadence",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Restarts phrase"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "one_more_time",
-  "name": "One more time",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Emphasis"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "secondary_dominants",
-  "name": "Secondary dominants",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Very common"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "augmented_6th_chords",
-  "name": "Augmented 6th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate (more in late Classical)"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "neapolitan_6th",
-  "name": "Neapolitan 6th",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Moderate",
-   "dramatic cadences"
-  ],
-  "frequency_weight": 0.06,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "chromatic_passing_tones",
-  "name": "Chromatic passing tones",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Common in inner voices"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "mode_mixture",
-  "name": "Mode mixture",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Increasingly common"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "diminished_7th_chords",
-  "name": "Diminished 7th chords",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Common",
-   "esp. in development"
-  ],
-  "frequency_weight": 0.3,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- },
- {
-  "id": "enharmonic_modulation",
-  "name": "Enharmonic modulation",
-  "chord_sequence": [],
-  "voice_leading_hints": [],
-  "contexts": [
-   "Rare in early Classical; Beethoven"
-  ],
-  "frequency_weight": 0.07,
-  "emotional_color": "",
-  "source_file": "beethoven/harmonic-language.md"
- }
+  {
+    "id": "b6_melodic_inflection",
+    "name": "b6 melodic inflection",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Any major-key phrase \u2014 the signature shadow"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Any major-key phrase \u2014 the signature shadow",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan_6th_bii6",
+    "name": "Neapolitan 6th (bII6)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Slow movements",
+      "minor-key cadences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Slow movements",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "diminished_7th_pivot",
+    "name": "Diminished 7th pivot",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Development sections",
+      "operatic transitions"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Development sections",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "augmented_6th_chords",
+    "name": "Augmented 6th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Dramatic cadential moments",
+      "late works"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Dramatic cadential moments",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_bass_descent",
+    "name": "Chromatic bass descent",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Lament",
+      "grief",
+      "slow introductions"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Lament",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_reinterpretation",
+    "name": "Enharmonic reinterpretation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Late works",
+      "development sections"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Late works",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "secondary_dominants",
+    "name": "Secondary dominants",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Transitions",
+      "sequences"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Transitions",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "internal_expansion",
+    "name": "Internal expansion",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Broadens phrase"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Broadens phrase",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "cadential_extension",
+    "name": "Cadential extension",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Delays closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Delays closure",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "prefix",
+    "name": "Prefix",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Sets up phrase"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Sets up phrase",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "suffix_codetta",
+    "name": "Suffix (codetta)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Confirms closure"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Confirms closure",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "evaded_cadence",
+    "name": "Evaded cadence",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Restarts phrase"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Restarts phrase",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "one_more_time",
+    "name": "One more time",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Emphasis"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Emphasis",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "secondary_dominants",
+    "name": "Secondary dominants",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Very common"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Very common",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "augmented_6th_chords",
+    "name": "Augmented 6th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Moderate (more in late Classical)"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "Moderate (more in late Classical)",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "neapolitan_6th",
+    "name": "Neapolitan 6th",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Moderate",
+      "dramatic cadences"
+    ],
+    "frequency_weight": 0.06,
+    "emotional_color": "Moderate",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "chromatic_passing_tones",
+    "name": "Chromatic passing tones",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Common in inner voices"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Common in inner voices",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "mode_mixture",
+    "name": "Mode mixture",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Increasingly common"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Increasingly common",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "diminished_7th_chords",
+    "name": "Diminished 7th chords",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Common",
+      "esp. in development"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "Common",
+    "source_file": "mozart/harmonic-language.md"
+  },
+  {
+    "id": "enharmonic_modulation",
+    "name": "Enharmonic modulation",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "Rare in early Classical; Beethoven"
+    ],
+    "frequency_weight": 0.07,
+    "emotional_color": "Rare in early Classical; Beethoven",
+    "source_file": "mozart/harmonic-language.md"
+  }
 ]

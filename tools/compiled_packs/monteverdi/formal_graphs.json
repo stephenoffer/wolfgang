@@ -1,3 +1,28 @@
 {
-  "forms": {}
+  "forms": {
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ritornello": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ground bass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "madrigal": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "strophic": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

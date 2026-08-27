@@ -14,6 +14,13 @@
     "hand": "lh",
     "name": "The declaiming solo over a slow bass",
     "description": "one voice in speech rhythm, the bass holding whole notes underneath: `C3w` under a freely-moving upper line. The recitative texture, and Monteverdi's invention as a musical form.",
+    "shorthand": "C3w",
+    "events": 1,
+    "register": [
+      48,
+      48
+    ],
+    "span_semitones": 0,
     "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -23,6 +30,13 @@
     "hand": "lh",
     "name": "Basso continuo in slow harmonic rhythm",
     "description": "`G2w`, `C3w`, one chord per bar or per two bars. It supports; it does not compete.",
+    "shorthand": "G2w",
+    "events": 1,
+    "register": [
+      43,
+      43
+    ],
+    "span_semitones": 0,
     "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -32,6 +46,13 @@
     "hand": "lh",
     "name": "Descending tetrachord ground",
     "description": "`A3h G3h F3h E3h` repeated as an ostinato under changing upper material. The lament bass, and the *Lamento della Ninfa* is built entirely on one. The most reusable device in his vocabulary.",
+    "shorthand": "A3h G3h F3h E3h",
+    "events": 4,
+    "register": [
+      52,
+      57
+    ],
+    "span_semitones": 5,
     "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +62,13 @@
     "hand": "lh",
     "name": "Stile concitato",
     "description": "the \"agitated style\": rapid repeated notes on one pitch, `C4s \u00d716`, representing warfare and passion. Monteverdi's own invention and unmistakably his.",
+    "shorthand": "C4s \u00d716",
+    "events": 2,
+    "register": [
+      60,
+      60
+    ],
+    "span_semitones": 0,
     "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -86,6 +114,13 @@
     "hand": "lh",
     "name": "Chromatic descent in the bass",
     "description": "semitone by semitone, `A2q Ab2q G2q Gb2q`. Grief. Later than Palestrina and earlier than everyone else who used it.",
+    "shorthand": "A2q Ab2q G2q Gb2q",
+    "events": 4,
+    "register": [
+      42,
+      45
+    ],
+    "span_semitones": 3,
     "source_file": "monteverdi/monteverdi-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -125,8 +160,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -143,8 +178,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -161,8 +196,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -184,8 +219,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -231,8 +266,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -253,8 +288,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -275,8 +310,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -318,8 +353,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -341,8 +376,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -365,8 +400,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },

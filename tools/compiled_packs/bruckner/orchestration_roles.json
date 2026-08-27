@@ -1,4 +1,55 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Foundation; tremolo, sustained harmony, unison themes"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Doubling strings or independent lyrical lines; rarely soloistic"
+    },
+    {
+      "name": "4 Hn, 3 Tpt, 3 Tbn, 1 Tba",
+      "section": "Standard Bruckner Orchestra",
+      "function": "The chorale section; the cathedral organ's principal stop"
+    },
+    {
+      "name": "4 (2 tenor, 2 bass) \u2014 Symphonies 7, 8, 9",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Warm, dark, hymn-like; the Bruckner sound at its most distinctive"
+    },
+    {
+      "name": "Timpani only (rare cymbals/triangle in climaxes)",
+      "section": "Standard Bruckner Orchestra",
+      "function": "Pedal points, rhythmic punctuation; never coloristic"
+    },
+    {
+      "name": "Tremolo mist",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Solo/chamber",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Tutti homophony",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Octave unison",
+      "section": "Texture Types"
+    },
+    {
+      "name": "Brass chorale",
+      "section": "Texture Types"
+    },
+    {
+      "name": "String polyphony",
+      "section": "Texture Types"
+    }
+  ],
   "source_file": "orchestration.md"
 }

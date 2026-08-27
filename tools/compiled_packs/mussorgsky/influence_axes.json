@@ -1,4 +1,77 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "Russian folk song",
+      "absorbed": "Modal scales, arched contour, irregular phrase lengths, pentatonic skeleton",
+      "heard_in": "Pictures promenade, Boris crowd scenes, The Nursery"
+    },
+    {
+      "composer": "Russian Orthodox liturgy",
+      "absorbed": "Open 5th drones, parallel chord motion, no leading tone, plagal cadences",
+      "heard_in": "Boris coronation, Great Gate of Kiev, Khovanshchina"
+    },
+    {
+      "composer": "Balakirev",
+      "absorbed": "Informal composition teaching; orientation toward Russian subjects",
+      "heard_in": "Early works; the nationalist aesthetic"
+    },
+    {
+      "composer": "Glinka",
+      "absorbed": "Pioneer of Russian opera; folk material in operatic context",
+      "heard_in": "Boris inherits Glinka's nationalist opera project"
+    },
+    {
+      "composer": "Dargomyzhsky",
+      "absorbed": "\"The Stone Guest\" \u2014 opera based entirely on speech-melody, no conventional arias",
+      "heard_in": "Boris vocal writing directly continues Dargomyzhsky's experiment"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Studied scores intensively; the idea of music as moral force",
+      "heard_in": "Psychological depth of Boris; music serving truth, not beauty"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Early piano style; Romantic song",
+      "heard_in": "Early songs and piano pieces; later rejected"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Debussy",
+      "absorbed": "Parallel chord motion; modal harmony; rejection of dominant-tonic obligation",
+      "heard_in": "\"Musorgsky est un Dieu\" \u2014 Debussy's parallel chords in Pelleas trace directly to Boris"
+    },
+    {
+      "composer": "Ravel",
+      "absorbed": "Pictures at an Exhibition (orchestration, 1922); rhythmic freedom; programmatic specificity",
+      "heard_in": "The Ravel orchestration made Pictures globally famous"
+    },
+    {
+      "composer": "Janacek",
+      "absorbed": "Speech-melody principle; music follows natural language stress",
+      "heard_in": "Janacek's \"speech-tunes\" (napevky mluvy) are the Czech equivalent of Mussorgsky's method"
+    },
+    {
+      "composer": "Bartok",
+      "absorbed": "Folk-song as structural basis (not decoration); modal harmony",
+      "heard_in": "Bartok's folk-song research continues Mussorgsky's instinct with scholarly rigor"
+    },
+    {
+      "composer": "Shostakovich",
+      "absorbed": "Re-orchestrated Boris and Khovanshchina; psychological realism in opera",
+      "heard_in": "Lady Macbeth of Mtsensk inherits Boris's dark psychological intensity"
+    },
+    {
+      "composer": "Prokofiev",
+      "absorbed": "Declamatory vocal writing; grotesque character pieces",
+      "heard_in": "War and Peace opera; Prokofiev acknowledged Mussorgsky's Boris as model"
+    },
+    {
+      "composer": "Stravinsky",
+      "absorbed": "Block-form juxtaposition; raw orchestral color; Russian modality",
+      "heard_in": "Rite of Spring's block form and parallel chord motion echo Mussorgsky"
+    }
+  ],
   "comparative_axes": {}
 }

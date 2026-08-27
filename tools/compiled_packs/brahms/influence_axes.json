@@ -1,7 +1,71 @@
 {
   "influenced_by": [
     {
-      "composer": "subtly"
+      "composer": "Beethoven",
+      "absorbed": "Motivic development, symphonic weight, variation form, structural ambition",
+      "heard_in": "All symphonies, Piano Concerto No. 1, passacaglia in Symphony 4"
+    },
+    {
+      "composer": "Schumann",
+      "absorbed": "Intimate Romanticism, rhythmic complexity (syncopation, hemiola), fantasy within form",
+      "heard_in": "Early piano works, Intermezzi, cross-rhythms throughout"
+    },
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Counterpoint, chorale style, chaconne/passacaglia structure",
+      "heard_in": "German Requiem fugues, Symphony 4 finale, late organ works"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song-like melody, major/minor alternation, harmonic wandering",
+      "heard_in": "Second themes, slow movements, modal mixture pervasiveness"
+    },
+    {
+      "composer": "Handel",
+      "absorbed": "Choral grandeur, variation technique, ceremonial weight",
+      "heard_in": "Handel Variations Op. 24, choral works"
+    },
+    {
+      "composer": "Hungarian/Romani folk music",
+      "absorbed": "Dotted rhythms, augmented 2nds, verbunkos character, irregular phrase lengths",
+      "heard_in": "Hungarian Dances, Piano Quartet Op. 25 finale, Clarinet Quintet finale"
+    },
+    {
+      "composer": "German Volkslieder",
+      "absorbed": "Stepwise melody, strophic form, modal simplicity",
+      "heard_in": "49 Deutsche Volkslieder (WoO 33), symphony second themes"
+    },
+    {
+      "composer": "Palestrina / Renaissance polyphony",
+      "absorbed": "Smooth voice-leading, modal harmony, contrapuntal independence",
+      "heard_in": "Late choral works, chorale-style orchestral passages"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Dvorak",
+      "absorbed": "Symphonic form, developing variation, folk material within Classical architecture",
+      "heard_in": "Symphonies 7\u20139; Dvorak was Brahms's protege and closest compositional heir"
+    },
+    {
+      "composer": "Schoenberg",
+      "absorbed": "Developing variation as compositional principle; \"every note must serve the whole\"",
+      "heard_in": "Schoenberg explicitly claimed Brahms as ancestor of his method; \"Brahms the Progressive\" (1947 essay)"
+    },
+    {
+      "composer": "Reger",
+      "absorbed": "Dense counterpoint, variation form, chromatic harmony within tonal framework",
+      "heard_in": "Reger = Brahms + Wagner chromaticism; the maximalist continuation"
+    },
+    {
+      "composer": "Zemlinsky",
+      "absorbed": "Lyrical warmth, orchestral density, formal rigor",
+      "heard_in": "Zemlinsky bridges Brahms and early Schoenberg"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "Symphonic weight, motivic development, autumnal emotional character",
+      "heard_in": "Enigma Variations, symphonies \u2014 English Brahms"
     }
   ],
   "comparative_axes": {}

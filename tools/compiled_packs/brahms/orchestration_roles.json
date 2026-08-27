@@ -1,4 +1,114 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Brahms Orchestra",
+      "function": "Core texture; violas and cellos as important as violins"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Brahms Orchestra",
+      "function": "Melodic solos (Cl, Ob), harmonic fill, doubling"
+    },
+    {
+      "name": "4 Hn, 2 Tpt, 3 Tbn (+Tuba in Sym 2, 4)",
+      "section": "Standard Brahms Orchestra",
+      "function": "Horns: thematic; Tpt/Tbn: weight and punctuation"
+    },
+    {
+      "name": "Timpani only",
+      "section": "Standard Brahms Orchestra",
+      "function": "Structural accents, pedal point reinforcement"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (2)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Tutti warmth",
+      "section": "Orchestral Texture Types",
+      "function": "All instruments, middle register, melody in 3rds, horns prominent",
+      "genre": "Exposition main themes, codas"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Types",
+      "function": "Solo woodwind + light string accompaniment",
+      "genre": "Second themes, slow movement lyrical passages"
+    },
+    {
+      "name": "String chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Strings alone, hymn-like homophony, viola prominent",
+      "genre": "Slow movements, transitions"
+    },
+    {
+      "name": "Horn call + response",
+      "section": "Orchestral Texture Types",
+      "function": "Horn states theme, strings or woodwinds answer",
+      "genre": "Openings, structural signals"
+    },
+    {
+      "name": "Dense counterpoint",
+      "section": "Orchestral Texture Types",
+      "function": "All voices active, bass heavy, multiple thematic strands",
+      "genre": "Development sections"
+    },
+    {
+      "name": "Pizzicato bass + arco upper",
+      "section": "Orchestral Texture Types",
+      "function": "Cellos/basses pizzicato, upper strings and winds arco",
+      "genre": "Dance-like passages, scherzos"
+    }
+  ],
   "source_file": "orchestration.md"
 }

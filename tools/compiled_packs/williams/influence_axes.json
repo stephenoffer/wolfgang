@@ -1,4 +1,102 @@
 {
-  "influenced_by": [],
-  "comparative_axes": {}
+  "influenced_by": [
+    {
+      "composer": "Max Steiner",
+      "absorbed": "Character-specific themes"
+    },
+    {
+      "composer": "Erich Wolfgang Korngold",
+      "absorbed": "Lush strings, brass grandeur, emotional directness"
+    },
+    {
+      "composer": "Bernard Herrmann",
+      "absorbed": "Suspense technique, motivic economy"
+    },
+    {
+      "composer": "John Williams",
+      "absorbed": "Complete system"
+    },
+    {
+      "composer": "Holst (*The Planets*)",
+      "absorbed": "Orchestral scale; *Mars* rhythmic drive",
+      "heard_in": "Star Wars battle music; Imperial March"
+    },
+    {
+      "composer": "R. Strauss (tone poems)",
+      "absorbed": "Orchestral color; narrative specificity",
+      "heard_in": "Scene-specific orchestration"
+    },
+    {
+      "composer": "Wagner (Ring)",
+      "absorbed": "Leitmotif system; chromatic harmony",
+      "heard_in": "Entire thematic web approach"
+    },
+    {
+      "composer": "Stravinsky (*Rite of Spring*)",
+      "absorbed": "Rhythmic vitality; orchestral percussion",
+      "heard_in": "Action sequences"
+    },
+    {
+      "composer": "Prokofiev (*Alexander Nevsky*)",
+      "absorbed": "Battle music; brass fanfares",
+      "heard_in": "Epic battle scoring"
+    },
+    {
+      "composer": "Debussy",
+      "absorbed": "Whole-tone harmony; orchestral color",
+      "heard_in": "Mystery/wonder cues"
+    },
+    {
+      "composer": "Elgar",
+      "absorbed": "Noble themes; English horn melody",
+      "heard_in": "Dignified, processional themes"
+    },
+    {
+      "composer": "Restored orchestra to film"
+    },
+    {
+      "composer": "Leitmotif standard"
+    },
+    {
+      "composer": "Heroic fanfare template"
+    },
+    {
+      "composer": "Concert suite tradition"
+    },
+    {
+      "composer": "Franchise scoring"
+    },
+    {
+      "composer": "James Horner"
+    },
+    {
+      "composer": "Howard Shore"
+    },
+    {
+      "composer": "Michael Giacchino"
+    },
+    {
+      "composer": "Alexandre Desplat"
+    },
+    {
+      "composer": "Ludwig Goransson"
+    }
+  ],
+  "influenced": [],
+  "comparative_axes": {
+    "Williams's Influence on Film Scoring": [
+      "Restored orchestra to film",
+      "Leitmotif standard",
+      "Heroic fanfare template",
+      "Concert suite tradition",
+      "Franchise scoring"
+    ],
+    "Direct Descendants": [
+      "James Horner",
+      "Howard Shore",
+      "Michael Giacchino",
+      "Alexandre Desplat",
+      "Ludwig Goransson"
+    ]
+  }
 }

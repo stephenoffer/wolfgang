@@ -1,4 +1,139 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violins I",
+      "section": "Instrument Roles",
+      "function": "Primary melody carrier"
+    },
+    {
+      "name": "Violins II",
+      "section": "Instrument Roles",
+      "function": "Harmonic support, counter-melody"
+    },
+    {
+      "name": "Violas",
+      "section": "Instrument Roles",
+      "function": "Inner voice, harmonic glue"
+    },
+    {
+      "name": "Cellos",
+      "section": "Instrument Roles",
+      "function": "Melody (alternative), bass support"
+    },
+    {
+      "name": "Basses",
+      "section": "Instrument Roles",
+      "function": "Foundation, pedal"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles",
+      "function": "Color, echo"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles",
+      "function": "Solo melody, pastoral color"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles",
+      "function": "Warmth, inner voice"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles",
+      "function": "Bass doubling, tenor color"
+    },
+    {
+      "name": "Horns",
+      "section": "Instrument Roles",
+      "function": "Harmonic foundation, heroic call"
+    },
+    {
+      "name": "Trumpets",
+      "section": "Instrument Roles",
+      "function": "Climax punctuation"
+    },
+    {
+      "name": "Trombones",
+      "section": "Instrument Roles",
+      "function": "Weight, solemnity"
+    },
+    {
+      "name": "Tuba",
+      "section": "Instrument Roles",
+      "function": "Deepest foundation"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles",
+      "function": "Rhythmic anchor, thunder"
+    },
+    {
+      "name": "Piano (concerto)",
+      "section": "Instrument Roles",
+      "function": "Protagonist; melody + harmony + texture simultaneously"
+    },
+    {
+      "name": "Bell resonance",
+      "section": "Texture Types",
+      "function": "Tonic pedal in bass, harmony shimmering above"
+    },
+    {
+      "name": "Lush cantabile",
+      "section": "Texture Types",
+      "function": "Full string section carrying melody in octaves"
+    },
+    {
+      "name": "Concerto dialogue",
+      "section": "Texture Types",
+      "function": "Piano states melody, orchestra responds"
+    },
+    {
+      "name": "Climax tutti",
+      "section": "Texture Types",
+      "function": "Full orchestra at fff"
+    },
+    {
+      "name": "Chamber transparency",
+      "section": "Texture Types",
+      "function": "Reduced forces for intimate moments"
+    },
+    {
+      "name": "Chorale",
+      "section": "Texture Types",
+      "function": "Brass or string chorale, hymn-like"
+    },
+    {
+      "name": "Oboe or clarinet melody; muted strings",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Violins melody; violas + cellos accompany",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Doubled melody; added harmonic color",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Horns join for warmth; woodwinds fill",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Melody in trumpets or octave strings; brass chords",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Strings in octaves; full brass; doubled woodwinds",
+      "section": "Dynamic and Texture Architecture"
+    },
+    {
+      "name": "Everything; timpani rolls; cymbal at peak moment",
+      "section": "Dynamic and Texture Architecture"
+    }
+  ],
   "source_file": "orchestration.md"
 }

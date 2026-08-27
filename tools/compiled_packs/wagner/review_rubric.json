@@ -1,3 +1,58 @@
 {
-  "checks": []
+  "checks": [
+    {
+      "id": "fp_leitmotif_as_structural_dna",
+      "category": "fingerprint",
+      "description": "Leitmotif as structural DNA",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_endless_melody_no_cadences_no_phrases",
+      "category": "fingerprint",
+      "description": "Endless melody \u2014 no cadences, no phrases",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_chromatic_harmony_as_emotional_coloring",
+      "category": "fingerprint",
+      "description": "Chromatic harmony as emotional coloring",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_orchestral_texture_as_psychological_interior",
+      "category": "fingerprint",
+      "description": "Orchestral texture as psychological interior",
+      "severity": "soft"
+    },
+    {
+      "id": "fp_transformation_and_intensification_the_long_wave",
+      "category": "fingerprint",
+      "description": "Transformation and intensification \u2014 the long wave",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_5",
+      "category": "anti_pattern",
+      "description": "**Clear phrase endings.** Wagner does not cadence cleanly. Any V\u2192I cadence that sounds final is wron",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_6",
+      "category": "anti_pattern",
+      "description": "**Literal repetition.** Wagner doesn't repeat. He transforms, develops, combines. The same Leitmotif",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_7",
+      "category": "anti_pattern",
+      "description": "**Single-layer texture.** A Wagnerian texture with melody + simple accompaniment is not Wagner \u2014 it'",
+      "severity": "soft"
+    },
+    {
+      "id": "anti_8",
+      "category": "anti_pattern",
+      "description": "**Short time scale.** A 4-bar Wagnerian passage is a fragment, not a structure.",
+      "severity": "soft"
+    }
+  ]
 }

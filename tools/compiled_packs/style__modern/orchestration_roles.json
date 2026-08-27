@@ -1,4 +1,124 @@
 {
- "instruments": {},
- "source_file": "orchestration.md"
+  "instruments": {},
+  "textures": [
+    {
+      "name": "Vln I, Vln II, Vla, Vc",
+      "section": "Standard Bartok Forces"
+    },
+    {
+      "name": "Piano (percussive)",
+      "section": "Standard Bartok Forces"
+    },
+    {
+      "name": "Strings, xylophone, celesta, harp, timpani, piano",
+      "section": "Standard Bartok Forces"
+    },
+    {
+      "name": "Standard + expanded percussion",
+      "section": "Standard Bartok Forces"
+    },
+    {
+      "name": "2 pianos, 2 timpani, xylophone, snare drum, bass drum, cymbals",
+      "section": "Standard Bartok Forces"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Xylophone",
+      "section": "Percussion and Celesta",
+      "function": "Melodic and rhythmic; dry, bright, percussive",
+      "genre": "Music for Strings (movement 2 theme)"
+    },
+    {
+      "name": "Celesta",
+      "section": "Percussion and Celesta",
+      "function": "Ethereal, bell-like; night music color",
+      "genre": "Music for Strings (movement 3)"
+    },
+    {
+      "name": "Timpani",
+      "section": "Percussion and Celesta",
+      "function": "Rhythmic ostinato; pitched instrument, not just accents",
+      "genre": "Sonata for Two Pianos; Music for Strings"
+    },
+    {
+      "name": "Snare drum",
+      "section": "Percussion and Celesta",
+      "function": "Military rhythm; folk-dance energy",
+      "genre": "Concerto for Orchestra"
+    },
+    {
+      "name": "Piano (orchestral)",
+      "section": "Percussion and Celesta",
+      "function": "Percussive member of the ensemble, not soloist",
+      "genre": "Music for Strings"
+    },
+    {
+      "name": "Night music",
+      "section": "Texture Types",
+      "function": "Sparse, isolated timbres, ppp, extended techniques, no pulse",
+      "genre": "Slow movements of quartets 4\u20136; Concerto for Orchestra mvt 3"
+    },
+    {
+      "name": "Folk dance",
+      "section": "Texture Types",
+      "function": "Unison or octave melody, rhythmic accompaniment, driving tempo",
+      "genre": "Fast movements; Allegro barbaro; Romanian Folk Dances"
+    },
+    {
+      "name": "Fugal",
+      "section": "Texture Types",
+      "function": "Strict imitative counterpoint (often chromatic subject)",
+      "genre": "Music for Strings mvt 1; String Quartet No. 1"
+    },
+    {
+      "name": "Percussive tutti",
+      "section": "Texture Types",
+      "function": "Full ensemble, staccato, hammered rhythms, ff",
+      "genre": "Climaxes of fast movements"
+    },
+    {
+      "name": "Paired instruments",
+      "section": "Texture Types",
+      "function": "Two instruments of the same type in parallel 3rds, 6ths, or 2nds",
+      "genre": "Concerto for Orchestra mvt 2 (each pair a different interval)"
+    },
+    {
+      "name": "Arch texture",
+      "section": "Texture Types",
+      "function": "Texture thins to a single line at the center, then expands symmetrically",
+      "genre": "Arch-form slow movements"
+    }
+  ],
+  "source_file": "orchestration.md"
 }

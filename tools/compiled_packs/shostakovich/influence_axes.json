@@ -1,11 +1,57 @@
 {
   "influenced_by": [
     {
-      "composer": "Prokofiev"
+      "composer": "Alfred Schnittke",
+      "absorbed": "Polystylism; irony; political coding; grotesque parody"
+    },
+    {
+      "composer": "Sofia Gubaidulina",
+      "absorbed": "Spiritual intensity; chamber-in-orchestra texture; extreme register"
+    },
+    {
+      "composer": "Galina Ustvolskaya",
+      "absorbed": "Harsh, uncompromising expression; cluster-like writing"
+    },
+    {
+      "composer": "Benjamin Britten",
+      "absorbed": "Chamber opera; War Requiem; friendship influenced both composers"
+    },
+    {
+      "composer": "Krzysztof Penderecki",
+      "absorbed": "Extreme orchestral techniques; political witness in music"
+    },
+    {
+      "composer": "Arvo Part",
+      "absorbed": "Early works influenced by Shostakovich; later rejected this language"
     },
     {
       "composer": "Shostakovich"
+    },
+    {
+      "composer": "Prokofiev"
+    },
+    {
+      "composer": "Bartok"
+    },
+    {
+      "composer": "Hindemith"
+    },
+    {
+      "composer": "Strauss"
+    },
+    {
+      "composer": "Britten"
     }
   ],
-  "comparative_axes": {}
+  "influenced": [],
+  "comparative_axes": {
+    "The Political Context \u2014 Comparative": [
+      "Shostakovich",
+      "Prokofiev",
+      "Bartok",
+      "Hindemith",
+      "Strauss",
+      "Britten"
+    ]
+  }
 }

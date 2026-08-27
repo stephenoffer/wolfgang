@@ -13,6 +13,22 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ground bass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

@@ -1,4 +1,123 @@
 {
-  "instruments": {},
+  "instruments": {
+    "contrabass,_bass_clarinet,_tuba": {
+      "name": "Contrabass, bass clarinet, tuba",
+      "section": "The Copland Texture \u2014 Open Spacing",
+      "function": "Anchor: root or 5th, sustained",
+      "register": "C1\u2013C2"
+    },
+    "cello,_bassoon": {
+      "name": "Cello, bassoon",
+      "section": "The Copland Texture \u2014 Open Spacing",
+      "function": "5th above bass; sustained",
+      "register": "G2\u2013G3"
+    },
+    "nothing": {
+      "name": "NOTHING",
+      "section": "The Copland Texture \u2014 Open Spacing",
+      "function": "The empty space IS the Copland sound",
+      "register": "C3\u2013C4"
+    },
+    "occasionally_viola,_single_note": {
+      "name": "Occasionally viola, single note",
+      "section": "The Copland Texture \u2014 Open Spacing",
+      "function": "Very sparse if present",
+      "register": "\u2014"
+    },
+    "solo_clarinet,_oboe,_flute,_trumpet": {
+      "name": "Solo clarinet, oboe, flute, trumpet",
+      "section": "The Copland Texture \u2014 Open Spacing",
+      "function": "Folk melody, hymn tune",
+      "register": "C4\u2013C6"
+    }
+  },
+  "textures": [
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds (Primary Melodic Voice)"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds (Primary Melodic Voice)"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds (Primary Melodic Voice)"
+    },
+    {
+      "name": "English horn",
+      "section": "Woodwinds (Primary Melodic Voice)"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds (Primary Melodic Voice)"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Timpani",
+      "section": "Percussion"
+    },
+    {
+      "name": "Bass drum",
+      "section": "Percussion"
+    },
+    {
+      "name": "Snare drum",
+      "section": "Percussion"
+    },
+    {
+      "name": "Glockenspiel",
+      "section": "Percussion"
+    },
+    {
+      "name": "Woodblock/claves",
+      "section": "Percussion"
+    },
+    {
+      "name": "Solo + drone",
+      "section": "Texture Types",
+      "function": "Single melody over sustained open 5th"
+    },
+    {
+      "name": "Brass fanfare",
+      "section": "Texture Types",
+      "function": "Unison/octave brass, open 5ths, ff"
+    },
+    {
+      "name": "Hoedown tutti",
+      "section": "Texture Types",
+      "function": "Full orchestra, rhythmic unison, 3+3+2"
+    },
+    {
+      "name": "Pastoral shimmer",
+      "section": "Texture Types",
+      "function": "High strings tremolo, solo woodwind, ppp"
+    },
+    {
+      "name": "Hymn chorale",
+      "section": "Texture Types",
+      "function": "Homophonic, wind-dominant, simple chords"
+    },
+    {
+      "name": "Silence block",
+      "section": "Texture Types",
+      "function": "All instruments tacet, 2\u20134 bars of rest"
+    }
+  ],
   "source_file": "orchestration.md"
 }

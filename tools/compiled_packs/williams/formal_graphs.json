@@ -1,3 +1,24 @@
 {
-  "forms": {}
+  "forms": {
+    "scherzo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cue": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "leitmotif": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

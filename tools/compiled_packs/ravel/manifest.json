@@ -1,6 +1,6 @@
 {
   "composer": "ravel",
-  "genre": "impressionist",
+  "genre": "",
   "support_tier": "C",
   "corpus_bar_count": 0,
   "profile_files": [
@@ -12,6 +12,8 @@
     "index.md",
     "melodic-style.md",
     "orchestration.md",
+    "ravel-devices.md",
+    "ravel-lh-vocabulary.md",
     "stylistic-evolution.md"
   ],
   "corpus_files": [],

@@ -1,32 +1,32 @@
 {
  "composer": "bach",
  "schema": 1,
- "bars": 6795,
- "notes": 22850,
- "rest_bar_pct": 0.248,
- "dotted_bar_pct": 0.2037,
- "fast_note_pct": 0.0028,
- "lh_texture_change_pct": 0.6322,
+ "bars": 8699,
+ "notes": 32564,
+ "rest_bar_pct": 0.3005,
+ "dotted_bar_pct": 0.2312,
+ "fast_note_pct": 0.002,
+ "lh_texture_change_pct": 0.5734,
  "top_note_values": [
   [
    1.0,
-   0.6017
+   0.475
   ],
   [
    0.5,
-   0.2083
-  ],
-  [
-   2.0,
-   0.0849
+   0.2077
   ],
   [
    0.25,
-   0.0638
+   0.1846
+  ],
+  [
+   2.0,
+   0.0789
   ],
   [
    3.0,
-   0.0189
+   0.0157
   ]
  ]
 }

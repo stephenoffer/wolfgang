@@ -1,3 +1,28 @@
 {
-  "forms": {}
+  "forms": {
+    "rondo": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "suite": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "cyclic": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "additive process": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

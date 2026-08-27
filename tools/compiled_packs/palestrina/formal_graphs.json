@@ -1,3 +1,20 @@
 {
-  "forms": {}
+  "forms": {
+    "ternary": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "point of imitation": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "motet": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "mass": {
+      "sections": [],
+      "key_scheme": {}
+    }
+  }
 }

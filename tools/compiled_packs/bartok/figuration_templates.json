@@ -1,5 +1,89 @@
 [
   {
+    "id": "lh_idiom_struck_dissonant_blocks",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Struck dissonant blocks",
+    "description": "a chord containing a second or a seventh, played hard and not resolved. The seconds are the sound. `[C3,D3,G3]e [C3,D3,G3]e`",
+    "shorthand": "[C3,D3,G3]e [C3,D3,G3]e",
+    "events": 2,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_ostinato_in_an_irregular_metre",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Ostinato in an irregular metre",
+    "description": "a short figure repeated exactly under a changing metre, the Bulgarian rhythms of 5/8, 7/8 and 9/8 grouped 2+2+3. `C2e G2e C2e G2e C2e`",
+    "shorthand": "C2e G2e C2e G2e C2e",
+    "events": 5,
+    "register": [
+      36,
+      43
+    ],
+    "span_semitones": 7,
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_open_fifths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare open fifths",
+    "description": "the peasant bagpipe drone, held or repeated, under a modal tune. `[D2,A2]w`",
+    "shorthand": "[D2,A2]w",
+    "events": 1,
+    "register": [
+      38,
+      45
+    ],
+    "span_semitones": 7,
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_parallel_motion_in_fourths_or_fifths",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Parallel motion in fourths or fifths",
+    "description": "both hands moving in rigid parallel, deliberately breaking the part-writing rules.",
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_mirror_inversion",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Mirror inversion",
+    "description": "the left hand playing the right hand's line upside down, note for note. A structural device in the Mikrokosmos and the concerti.",
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_cluster",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Cluster",
+    "description": "adjacent notes struck together with the flat of the hand or as a written chord, for percussive attack.",
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_night_music_stillness",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Night-music stillness",
+    "description": "isolated low notes and dissonant specks against silence, with no pulse. His most personal texture, and the opposite of everything above.",
+    "source_file": "bartok/bartok-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +101,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +119,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +137,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +160,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +207,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +229,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +251,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +294,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +317,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +341,198 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_folk_derived_modality",
+    "category": "composer_device",
+    "section": "Melodic and modal devices",
+    "name": "Folk-derived modality",
+    "description": "Lydian, Dorian, Phrygian, and the \"acoustic scale\" (Lydian with a flat seventh). Not major or minor.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_phrygian_second",
+    "category": "composer_device",
+    "section": "Melodic and modal devices",
+    "name": "The Phrygian second",
+    "description": "a flat second above the centre, the sharpest folk inflection he uses.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_narrow_range_melodies",
+    "category": "composer_device",
+    "section": "Melodic and modal devices",
+    "name": "Narrow-range melodies",
+    "description": "a fourth or a fifth for a whole tune, circling its centre, the shape of a collected peasant song.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_parlando_rubato_melody",
+    "category": "composer_device",
+    "section": "Melodic and modal devices",
+    "name": "Parlando-rubato melody",
+    "description": "free, speech-derived, unmetred, against a still accompaniment.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_tempo_giusto",
+    "category": "composer_device",
+    "section": "Melodic and modal devices",
+    "name": "Tempo giusto",
+    "description": "the opposite: strict, dance-driven, motoric.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_arch_form",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Arch form",
+    "description": "ABCBA, the movement mirroring itself around a centre. His signature large-scale plan.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_mirror_inversion_and_retrograde",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Mirror inversion and retrograde",
+    "description": "of a subject, worked strictly.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_fugal_exposition_on_a_chromatic_subject",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Fugal exposition on a chromatic subject",
+    "description": "entries at the fifth, accumulating.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_golden_section_placement_of_the_climax",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Golden-section placement of the climax",
+    "description": "the high point placed roughly 61.8% of the way through. Whether he calculated it or not, the effect is that the climax is late.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_night_music",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Night music",
+    "description": "a slow movement of isolated sounds, birdcalls and dissonant specks against silence.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_polymodal_chromaticism",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Polymodal chromaticism",
+    "description": "two modes on the same centre sounding at once, producing chromatic aggregate from purely modal parts.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_axis_system",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The axis system",
+    "description": "tonic, subdominant and dominant functions each shared by four keys a minor third apart.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_quartal_harmony",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Quartal harmony",
+    "description": "chords built in fourths rather than thirds.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_tonal_centre_asserted_by_insistence",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The tonal centre asserted by insistence",
+    "description": "repetition and register, not by a cadence.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_unresolved_seconds_and_sevenths_as_consonance",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Unresolved seconds and sevenths as consonance.",
+    "description": "Unresolved seconds and sevenths as consonance.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bulgarian_rhythm",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Bulgarian rhythm",
+    "description": "5/8, 7/8, 9/8 grouped in unequal beats (2+2+3), fast and danced.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_changing_metre_bar_to_bar",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Changing metre bar to bar",
+    "description": "following the phrase.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_ostinato",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Ostinato",
+    "description": "driving a whole section unchanged.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_accents_displaced_against_the_barline",
+    "category": "composer_device",
+    "section": "Rhythmic devices",
+    "name": "Accents displaced against the barline",
+    "description": "marked explicitly.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_percussive_attack",
+    "category": "composer_device",
+    "section": "Instrumental devices",
+    "name": "The percussive attack",
+    "description": "the piano struck, marked `pesante` or with accents, dry.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_snap_pizzicato",
+    "category": "composer_device",
+    "section": "Instrumental devices",
+    "name": "Snap pizzicato",
+    "description": "glissando, col legno and sul ponticello in the string writing \u2014 effects treated as normal vocabulary.",
+    "source_file": "bartok/bartok-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

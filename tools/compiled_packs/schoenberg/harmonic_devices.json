@@ -8,7 +8,7 @@
       "Verklarte Nacht development"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Verklarte Nacht development",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -20,7 +20,7 @@
       "Gurrelieder"
     ],
     "frequency_weight": 0.08,
-    "emotional_color": "",
+    "emotional_color": "Gurrelieder",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -32,7 +32,7 @@
       "Chamber Symphony No. 1"
     ],
     "frequency_weight": 0.02,
-    "emotional_color": "",
+    "emotional_color": "Chamber Symphony No. 1",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -44,7 +44,7 @@
       "Chamber Symphony No. 1 (opening horn call)"
     ],
     "frequency_weight": 0.04,
-    "emotional_color": "",
+    "emotional_color": "Chamber Symphony No. 1 (opening horn call)",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -56,7 +56,7 @@
       "Pelleas und Melisande"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Pelleas und Melisande",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -69,7 +69,7 @@
       "Stravinsky Petrushka chord"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Milhaud",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -82,7 +82,7 @@
       "Milhaud"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Ives",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -94,7 +94,7 @@
       "Iconic bitonal sonority"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Iconic bitonal sonority",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -106,7 +106,7 @@
       "Independence of strata"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Independence of strata",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -118,7 +118,7 @@
       "Tension without atonality"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tension without atonality",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -130,7 +130,7 @@
       "Stravinsky Pulcinella"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky Pulcinella",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -142,7 +142,7 @@
       "Prokofiev"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Prokofiev",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -155,7 +155,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Copland",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -167,7 +167,47 @@
       "Mixolydian bVII-I"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Mixolydian bVII-I",
+    "source_file": "schoenberg/harmonic-language.md"
+  },
+  {
+    "id": "pac_authentic_close",
+    "name": "PAC (authentic close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+      "not from a dominant: the bass lands on the tonic",
+      "the texture stops moving",
+      "and that is the close. V7-I in this idiom reads as quotation"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*",
+    "source_file": "schoenberg/harmonic-language.md"
+  },
+  {
+    "id": "hc_half_close",
+    "name": "HC (half close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+      "not from a chord that demands resolution"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home",
+    "source_file": "schoenberg/harmonic-language.md"
+  },
+  {
+    "id": "iac_weak_close",
+    "name": "IAC (weak close)",
+    "chord_sequence": [],
+    "voice_leading_hints": [],
+    "contexts": [
+      "An arrival that does not fully close"
+    ],
+    "frequency_weight": 0.3,
+    "emotional_color": "An arrival that does not fully close",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -179,7 +219,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stravinsky",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -192,7 +232,7 @@
       "Stravinsky"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Ravel",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -204,7 +244,7 @@
       "Low-Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Low-Medium",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -216,7 +256,7 @@
       "High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "High",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -228,7 +268,7 @@
       "Very High"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Very High",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -240,7 +280,7 @@
       "Medium-Low"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Medium-Low",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -252,7 +292,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -264,7 +304,7 @@
       "Medium"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Medium",
     "source_file": "schoenberg/harmonic-language.md"
   },
   {
@@ -276,7 +316,7 @@
       "Variable"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Variable",
     "source_file": "schoenberg/harmonic-language.md"
   }
 ]

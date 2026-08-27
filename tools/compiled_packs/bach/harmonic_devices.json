@@ -8,31 +8,35 @@
       "Bass moves by semitone for 3-6 steps"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Bass moves by semitone for 3-6 steps",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "2",
     "name": "2",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Penultimate chord has 4th resolving to 3rd"
     ],
     "frequency_weight": 0.04,
-    "emotional_color": "",
+    "emotional_color": "Penultimate chord has 4th resolving to 3rd",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "3",
     "name": "3",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Each chord's 7th becomes the next chord's preparation"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Each chord's 7th becomes the next chord's preparation",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -44,7 +48,7 @@
       "Subject mutated to keep tonic-dominant relationship"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Subject mutated to keep tonic-dominant relationship",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -56,7 +60,7 @@
       "bII6 chord before V"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "bII6 chord before V",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -70,7 +74,7 @@
       "Ger+6 approaching V"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "It+6",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -82,7 +86,7 @@
       "Major I ending a minor-key piece"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Major I ending a minor-key piece",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -94,7 +98,7 @@
       "Simultaneous natural and sharp/flat in different voices"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Simultaneous natural and sharp/flat in different voices",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -106,7 +110,7 @@
       "Bass holds V while upper voices create dissonance"
     ],
     "frequency_weight": 0.08,
-    "emotional_color": "",
+    "emotional_color": "Bass holds V while upper voices create dissonance",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -118,7 +122,7 @@
       "Expected resolution denied"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Expected resolution denied",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -130,7 +134,7 @@
       "Key changes via descending-5ths or ascending-step sequence"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Key changes via descending-5ths or ascending-step sequence",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -142,31 +146,36 @@
       "Same dim7 chord reinterpreted in new key"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Same dim7 chord reinterpreted in new key",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "13",
     "name": "13",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Two voices suspend at once"
     ],
     "frequency_weight": 0.04,
-    "emotional_color": "",
+    "emotional_color": "Two voices suspend at once",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "14",
     "name": "14",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice",
+      "voice exchange"
+    ],
     "contexts": [
       "Outer voices swap chromatic notes"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Outer voices swap chromatic notes",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -178,7 +187,7 @@
       "Sequence broken at unexpected point"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Sequence broken at unexpected point",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -190,7 +199,7 @@
       "Picardy chord becomes new tonic for following section"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Picardy chord becomes new tonic for following section",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -203,7 +212,7 @@
       "not formula"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Harmony responds to meaning",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -215,7 +224,7 @@
       "No voice is filler \u2014 every line rewards attention"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "No voice is filler \u2014 every line rewards attention",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -227,7 +236,7 @@
       "Modulatory freedom between phrases; each line is a fresh harmonic world"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Modulatory freedom between phrases; each line is a fresh harmonic world",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -239,7 +248,7 @@
       "Physical constraint generates musical invention"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Physical constraint generates musical invention",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -251,7 +260,7 @@
       "Adds warmth and motion without changing the harmonic structure"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Adds warmth and motion without changing the harmonic structure",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -263,7 +272,7 @@
       "Moderate"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Moderate",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -275,7 +284,7 @@
       "Moderate"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Moderate",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -287,7 +296,7 @@
       "Low-moderate"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Low-moderate",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -299,7 +308,7 @@
       "Rare"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Rare",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -311,45 +320,51 @@
       "Rare"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Rare",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "chromatic_inner_voices",
     "name": "Chromatic inner voices",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice"
+    ],
     "contexts": [
       "Low"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Low",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "grief_lament",
     "name": "Grief / Lament",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "chromatic inner voice"
+    ],
     "contexts": [
       "Stepwise chromatic descent feels like slow",
       "inevitable falling \u2014 the body sinking under sorrow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Stepwise chromatic descent feels like slow",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "devotion_pleading",
     "name": "Devotion / Pleading",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Each suspension creates a moment of yearning; resolution brings brief peace",
       "then yearning returns"
     ],
     "frequency_weight": 0.04,
-    "emotional_color": "",
+    "emotional_color": "Each suspension creates a moment of yearning; resolution brings brief peace",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -361,7 +376,7 @@
       "Functional momentum creates forward-flowing energy; the arrival IS the triumph"
     ],
     "frequency_weight": 0.05,
-    "emotional_color": "",
+    "emotional_color": "Functional momentum creates forward-flowing energy; the arrival IS the triumph",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -373,7 +388,7 @@
       "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest"
     ],
     "frequency_weight": 0.07,
-    "emotional_color": "",
+    "emotional_color": "Harmonic instability mirrors emotional turbulence \u2014 the listener cannot find rest",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -385,19 +400,21 @@
       "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The unexpected harmony jolts the listener out of expectation \u2014 the gasp IS the wonder",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "pastoral_peace",
     "name": "Pastoral peace",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "pedal point"
+    ],
     "contexts": [
       "The drone beneath creates unchanging ground; time itself seems to slow"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "The drone beneath creates unchanging ground; time itself seems to slow",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -410,32 +427,36 @@
       "the greater the sense of overcoming"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "The longer the preparation",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "chromatic_lament",
     "name": "Chromatic lament",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "Minor keys"
     ],
     "frequency_weight": 0.01,
-    "emotional_color": "",
+    "emotional_color": "Minor keys",
     "source_file": "bach/harmonic-language.md"
   },
   {
     "id": "diatonic_lament",
     "name": "Diatonic lament",
     "chord_sequence": [],
-    "voice_leading_hints": [],
+    "voice_leading_hints": [
+      "suspension"
+    ],
     "contexts": [
       "D min",
       "G min"
     ],
     "frequency_weight": 0.08,
-    "emotional_color": "",
+    "emotional_color": "D min",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -447,7 +468,7 @@
       "Major keys"
     ],
     "frequency_weight": 0.03,
-    "emotional_color": "",
+    "emotional_color": "Major keys",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -459,7 +480,7 @@
       "D minor"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "D minor",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -471,7 +492,7 @@
       "Tonicizing modulation targets"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Tonicizing modulation targets",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -483,7 +504,7 @@
       "Pre-dominant chromatic"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Pre-dominant chromatic",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -495,7 +516,7 @@
       "Dramatic cadences (minor keys)"
     ],
     "frequency_weight": 0.06,
-    "emotional_color": "",
+    "emotional_color": "Dramatic cadences (minor keys)",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -507,7 +528,7 @@
       "English baroque (Purcell)"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "English baroque (Purcell)",
     "source_file": "bach/harmonic-language.md"
   },
   {
@@ -519,7 +540,7 @@
       "Final cadence convention"
     ],
     "frequency_weight": 0.3,
-    "emotional_color": "",
+    "emotional_color": "Final cadence convention",
     "source_file": "bach/harmonic-language.md"
   }
 ]

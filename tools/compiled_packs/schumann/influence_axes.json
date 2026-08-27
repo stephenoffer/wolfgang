@@ -1,4 +1,94 @@
 {
-  "influenced_by": [],
+  "influenced_by": [
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Counterpoint, fugue technique, inner-voice independence, pedal point",
+      "heard_in": "Six Fugues on BACH Op.60; contrapuntal piano textures throughout"
+    },
+    {
+      "composer": "Schubert",
+      "absorbed": "Song form, major/minor alternation, lyrical melody, the Lied tradition",
+      "heard_in": "Dichterliebe inherits Winterreise; Schumann's modulations echo Schubert's tonal shifts"
+    },
+    {
+      "composer": "Beethoven",
+      "absorbed": "Sonata form ambition, motivic development, symphonic weight",
+      "heard_in": "Symphonies 1-4, Piano Quintet; the struggle toward large form"
+    },
+    {
+      "composer": "Jean Paul (novelist)",
+      "absorbed": "Doppelgaenger characters, humor mixed with pathos, narrative fragmentation",
+      "heard_in": "Florestan/Eusebius; the episodic, literary structure of Carnaval and Kreisleriana"
+    },
+    {
+      "composer": "E.T.A. Hoffmann",
+      "absorbed": "Music as visionary experience; the mad artist; Romantic irony",
+      "heard_in": "Kreisleriana (named after Hoffmann's character); the boundary between art and madness"
+    },
+    {
+      "composer": "Paganini",
+      "absorbed": "Virtuoso technique adapted for piano; transcription as creative act",
+      "heard_in": "Paganini Etudes Op.3 and Op.10; virtuosic figuration in Etudes Symphoniques"
+    },
+    {
+      "composer": "Weber",
+      "absorbed": "Romantic piano tone, supernatural atmosphere, German Romantic opera",
+      "heard_in": "Fantasie Op.17 mvt 1 sonority; operatic impulse behind Genoveva"
+    },
+    {
+      "composer": "Clara Wieck/Schumann",
+      "absorbed": "Performance standard, emotional catalyst, practical musicianship",
+      "heard_in": "Almost everything \u2014 Clara is co-author of Schumann's musical world"
+    },
+    {
+      "composer": "Chopin",
+      "absorbed": "\"Hats off, gentlemen \u2014 a genius!\" (1831, on Op.2 Variations)"
+    },
+    {
+      "composer": "Berlioz",
+      "absorbed": "Enthusiastic review of Symphonie fantastique (1835)"
+    },
+    {
+      "composer": "Mendelssohn",
+      "absorbed": "Consistent admiration and friendship"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "Brahms",
+      "absorbed": "Inner-voice melody, rhythmic displacement, intimate Romanticism, fantasy within form",
+      "heard_in": "Brahms systematized what Schumann intuited; Intermezzi inherit Kinderszenen's inwardness"
+    },
+    {
+      "composer": "Hugo Wolf",
+      "absorbed": "Song cycle architecture, piano-as-equal-partner, word-music unity",
+      "heard_in": "Wolf extended Schumann's Lied innovations to their extreme \u2014 the piano dominates completely"
+    },
+    {
+      "composer": "Grieg",
+      "absorbed": "Lyrical piano miniature, character piece, Nordic folk integration with Romantic harmony",
+      "heard_in": "Grieg's Lyric Pieces descend directly from Kinderszenen and Album for the Young"
+    },
+    {
+      "composer": "Dvorak",
+      "absorbed": "Cyclic symphonic form, lyrical melodic character, Romantic chamber music",
+      "heard_in": "Symphony 4's cyclic plan anticipates Dvorak 9; Piano Quintet model"
+    },
+    {
+      "composer": "Franck",
+      "absorbed": "Cyclic form across movements, chromatic harmony within tonal frame",
+      "heard_in": "Symphony 4's through-composed design is the direct ancestor of Franck's Symphony in D minor"
+    },
+    {
+      "composer": "Tchaikovsky",
+      "absorbed": "Emotional directness, inner torment expressed through orchestral melody",
+      "heard_in": "Tchaikovsky admired Schumann's emotional honesty; similar vulnerability"
+    },
+    {
+      "composer": "Faure",
+      "absorbed": "Song cycle subtlety, piano as psychological instrument, harmonic ambiguity",
+      "heard_in": "La Bonne Chanson and L'Horizon chimerique inherit Schumann's Lied sophistication"
+    }
+  ],
   "comparative_axes": {}
 }

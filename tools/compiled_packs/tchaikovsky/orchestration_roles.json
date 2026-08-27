@@ -1,4 +1,126 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Trombone",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Tuba",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Celesta",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Harp",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Thin; the idea exposed",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Warmer; the line thickens",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Full strings; winds enter",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Nearly full orchestra",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Maximum \u2014 everything plays",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Devastation \u2014 one voice remains",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Solo strings, muted; celesta; harp harmonics",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "String quartet texture; solo woodwind",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Strings cantabile; clarinet or oboe solo",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Full strings; woodwinds doubling",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Full strings + winds; horns sustained",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Full orchestra; brass melody; timpani",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Tutti unison; percussion battery; cymbal crash",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Solo instrument after full orchestra",
+      "section": "Dynamic and Color Palette"
+    }
+  ],
   "source_file": "orchestration.md"
 }

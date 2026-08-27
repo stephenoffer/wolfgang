@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Walking bass",
     "description": "steady quarters or eighths stepping and leaping through the harmony with a shape of its own: `C2q D2q E2q F2q` / `C2e G2e E2e C2e G1e B1e C2e D2e`. The default in the chorale-derived and continuo textures. It should move mostly by step with an occasional leap of a fourth or fifth to a new harmony.",
+    "shorthand": "C2q D2q E2q F2q",
+    "events": 4,
+    "register": [
+      36,
+      41
+    ],
+    "span_semitones": 5,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -23,6 +30,13 @@
     "hand": "lh",
     "name": "Running sixteenths in one voice",
     "description": "a continuous line, the same rhythmic value throughout, changing direction and register as the harmony moves: `C2s D2s E2s F2s G2s A2s B2s C3s \u2026`. The invention and prelude engine. Its *continuity* is the point; a rest inside it is an event.",
+    "shorthand": "C2s D2s E2s F2s G2s A2s B2s C3s \u2026",
+    "events": 9,
+    "register": [
+      36,
+      48
+    ],
+    "span_semitones": 12,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -32,6 +46,13 @@
     "hand": "lh",
     "name": "Broken-chord figuration",
     "description": "`C2s G2s E3s G2s C2s G2s E3s G2s`. The C major prelude shape. Note it is written as one unbroken stream, not as bass-plus- chord: the harmony is *implied* by the figure rather than stated under it.",
+    "shorthand": "C2s G2s E3s G2s C2s G2s E3s G2s",
+    "events": 8,
+    "register": [
+      36,
+      52
+    ],
+    "span_semitones": 16,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +62,13 @@
     "hand": "lh",
     "name": "Pedal point",
     "description": "the bass holds one note, usually the dominant, for four to sixteen bars while everything above changes: `G1w` repeated, or `G1w~` tied. Bach's standard preparation for a final cadence.",
+    "shorthand": "G1w",
+    "events": 1,
+    "register": [
+      31,
+      31
+    ],
+    "span_semitones": 0,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -50,6 +78,13 @@
     "hand": "lh",
     "name": "Suspension chain in an inner voice",
     "description": "a held note becomes a dissonance when the bass moves, then falls by step, then is held again. Written with ties: `F3h~ F3q E3q`. This is where Baroque expression lives, and a texture with no suspensions sounds bland however correct the chords are.",
+    "shorthand": "F3h~ F3q E3q",
+    "events": 3,
+    "register": [
+      52,
+      53
+    ],
+    "span_semitones": 1,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -59,6 +94,13 @@
     "hand": "lh",
     "name": "Two independent voices in the left hand",
     "description": "a held tenor over a moving bass, written with `//`: `C2h G2h // E3q F3q E3q D3q`. Real three- and four-voice writing needs this; a single-stream left hand cannot do it.",
+    "shorthand": "C2h G2h // E3q F3q E3q D3q",
+    "events": 7,
+    "register": [
+      36,
+      53
+    ],
+    "span_semitones": 17,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -68,6 +110,13 @@
     "hand": "lh",
     "name": "Sequence",
     "description": "the same figure transposed down a fifth or up a fourth, two to four times. `C2e E2e G2e C3e` then `F1e A1e C2e F2e` then `B1e D2e F2e B2e`. Bach's principal method of continuation, and it should be *exact* transposition, not an approximation.",
+    "shorthand": "C2e E2e G2e C3e",
+    "events": 4,
+    "register": [
+      36,
+      48
+    ],
+    "span_semitones": 12,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -86,6 +135,13 @@
     "hand": "lh",
     "name": "Chordal, all voices together",
     "description": "reserved for chorale texture and for cadential arrivals: `[C2,C3,E3,G3]q`. Four real voices moving in the same rhythm, each singable.",
+    "shorthand": "[C2,C3,E3,G3]q",
+    "events": 1,
+    "register": [
+      36,
+      55
+    ],
+    "span_semitones": 19,
     "source_file": "bach/bach-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -116,8 +172,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -134,8 +190,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -152,8 +208,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -175,8 +231,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -222,8 +278,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -244,8 +300,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -266,8 +322,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -309,8 +365,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -332,8 +388,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -356,8 +412,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },

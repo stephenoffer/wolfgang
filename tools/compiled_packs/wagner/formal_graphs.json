@@ -13,6 +13,22 @@
         ],
         "recap_rule": "tonic"
       }
+    },
+    "prelude": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "mass": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "through-composed": {
+      "sections": [],
+      "key_scheme": {}
+    },
+    "leitmotif": {
+      "sections": [],
+      "key_scheme": {}
     }
   }
 }

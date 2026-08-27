@@ -5,6 +5,13 @@
     "hand": "lh",
     "name": "Repeated-chord motor",
     "description": "the engine of the driving movements. Straight eighths or sixteenths on one chord: `[C3,Eb3,G3]e \u00d78`. Relentless, and it *accumulates*: what makes it Beethoven rather than Alberti is that it does not decorate, it insists. Use under a melody that is itself agitated.",
+    "shorthand": "[C3,Eb3,G3]e \u00d78",
+    "events": 2,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -14,6 +21,13 @@
     "hand": "lh",
     "name": "Broken octaves / murky bass",
     "description": "`C2s C3s C2s C3s \u2026`. The storm engine (Op.13 first movement, Op.31/2). Wider and heavier than a tremolo; the two notes are an octave apart and the effect is a low growl, not a shimmer.",
+    "shorthand": "C2s C3s C2s C3s \u2026",
+    "events": 5,
+    "register": [
+      36,
+      48
+    ],
+    "span_semitones": 12,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -23,6 +37,13 @@
     "hand": "lh",
     "name": "Rising bass line against a static melody",
     "description": "quarters or half notes climbing chromatically or by step while the right hand holds: `C2h C#2h`, `D2h Eb2h`. This is how Beethoven builds tension without getting louder, and it is almost absent from generated writing.",
+    "shorthand": "C2h C#2h",
+    "events": 2,
+    "register": [
+      36,
+      37
+    ],
+    "span_semitones": 1,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -41,6 +62,13 @@
     "hand": "lh",
     "name": "Sforzando punctuation on a weak beat",
     "description": "`rest_q [C2,C3]q:sfz rest_h`. A single loud stab where the metre does not expect one. One of the most recognisable Beethoven fingerprints and it costs one note.",
+    "shorthand": "rest_q [C2,C3]q:sfz rest_h",
+    "events": 3,
+    "register": [
+      36,
+      48
+    ],
+    "span_semitones": 12,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -59,6 +87,13 @@
     "hand": "lh",
     "name": "Sustained low octave under everything",
     "description": "`[C1,C2]w` held for two or four bars while the right hand works above. The bottom of the piano used as a *pedal point*, not as a bass line. Enormous weight for one note.",
+    "shorthand": "[C1,C2]w",
+    "events": 1,
+    "register": [
+      24,
+      36
+    ],
+    "span_semitones": 12,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -68,6 +103,13 @@
     "hand": "lh",
     "name": "Alberti, deliberately plain",
     "description": "`C3e G3e E3e G3e \u00d72`. Beethoven inherits it and uses it sparingly, usually in an early or a lyrical work. If a whole movement is Alberti it is Mozart's costume, not Beethoven's.",
+    "shorthand": "C3e G3e E3e G3e \u00d72",
+    "events": 5,
+    "register": [
+      48,
+      55
+    ],
+    "span_semitones": 7,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -86,6 +128,13 @@
     "hand": "lh",
     "name": "Contrary-motion scales",
     "description": "both hands moving apart or together in scales (`C3e D3e E3e F3e G3e A3e B3e C4e` against a descending right hand). Used at transitions and in codas; it is *motion* rather than accompaniment.",
+    "shorthand": "C3e D3e E3e F3e G3e A3e B3e C4e",
+    "events": 8,
+    "register": [
+      48,
+      60
+    ],
+    "span_semitones": 12,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -95,6 +144,13 @@
     "hand": "lh",
     "name": "Widely-spaced arpeggios",
     "description": "the hand covering two octaves per bar: `C2e G2e C3e E3e G3e C4e G3e E3e`. Open, resonant, and characteristic of the later sonatas. Compare with Alberti's narrow oscillation.",
+    "shorthand": "C2e G2e C3e E3e G3e C4e G3e E3e",
+    "events": 8,
+    "register": [
+      36,
+      60
+    ],
+    "span_semitones": 24,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -104,6 +160,13 @@
     "hand": "lh",
     "name": "Off-beat chords with a silent downbeat",
     "description": "`rest_e [Eb3,G3]e [Eb3,G3]e [Eb3,G3]e \u2026`. The bar has no floor under its first beat. Unsettling in exactly the way Beethoven likes.",
+    "shorthand": "rest_e [Eb3,G3]e [Eb3,G3]e [Eb3,G3]e \u2026",
+    "events": 5,
+    "register": [
+      51,
+      55
+    ],
+    "span_semitones": 4,
     "source_file": "beethoven/beethoven-lh-vocabulary.md",
     "grounding": "hard_corroborated"
   },
@@ -125,8 +188,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -143,8 +206,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -161,8 +224,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -184,8 +247,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -231,8 +294,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -253,8 +316,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -275,8 +338,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -318,8 +381,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -341,8 +404,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -365,8 +428,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },

@@ -89,6 +89,166 @@
         }
       ],
       "key_scheme": {}
+    },
+    "theme and variations": {
+      "sections": [
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "scherzo": {
+      "sections": [
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "fugue": {
+      "sections": [
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        }
+      ],
+      "key_scheme": {}
+    },
+    "arch": {
+      "sections": [
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.0,
+            0.15
+          ]
+        },
+        {
+          "role": "1",
+          "proportion_range": [
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "role": "2",
+          "proportion_range": [
+            0.0,
+            0.25
+          ]
+        }
+      ],
+      "key_scheme": {}
     }
   }
 }

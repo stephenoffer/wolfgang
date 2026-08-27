@@ -1,4 +1,80 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Clarinet, flute, trumpet (solo, not doubled)",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Simple tunes, often folk-like or ragtime"
+    },
+    {
+      "name": "Strings (reduced), piano",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Static chords, repeated patterns"
+    },
+    {
+      "name": "Percussion expanded",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Driving pulse, mechanical quality"
+    },
+    {
+      "name": "Typewriter, lottery wheel, pistol shots, siren",
+      "section": "Orchestral Writing (Parade, 1917)",
+      "function": "Collage elements \u2014 treated as equal to musical sounds"
+    },
+    {
+      "name": "Flute",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Strings",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Piano",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Percussion",
+      "section": "Parade Orchestral Palette"
+    },
+    {
+      "name": "Melody + chordal accompaniment",
+      "section": "Texture Classification",
+      "genre": "Gymnopedies, Gnossiennes (95% of piano works)"
+    },
+    {
+      "name": "Monophonic chant",
+      "section": "Texture Classification",
+      "genre": "Ogives passages"
+    },
+    {
+      "name": "Block chords",
+      "section": "Texture Classification",
+      "genre": "Sonneries, Rose+Croix works"
+    },
+    {
+      "name": "Cubist collage",
+      "section": "Texture Classification",
+      "genre": "Parade"
+    },
+    {
+      "name": "White-note austerity",
+      "section": "Texture Classification",
+      "genre": "Socrate"
+    },
+    {
+      "name": "Ambient loop",
+      "section": "Texture Classification",
+      "genre": "Furniture music"
+    }
+  ],
   "source_file": "orchestration.md"
 }

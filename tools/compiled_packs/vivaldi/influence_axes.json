@@ -1,10 +1,71 @@
 {
   "influenced_by": [
     {
-      "composer": "Vivaldi"
+      "composer": "Corelli",
+      "absorbed": "Concerto grosso texture, trio sonata form, balanced phrases",
+      "heard_in": "L'estro armonico Op. 3 (expands Corelli's concerto grosso into solo concerto)"
     },
     {
-      "composer": "differently"
+      "composer": "Torelli",
+      "absorbed": "Solo concerto concept, trumpet writing",
+      "heard_in": "Early solo concertos, ritornello structure"
+    },
+    {
+      "composer": "Albinoni",
+      "absorbed": "Oboe concerto idiom, lyrical slow movements",
+      "heard_in": "Oboe concertos, cantabile slow movements"
+    },
+    {
+      "composer": "Legrenzi",
+      "absorbed": "Venetian ceremonial style, multi-choir texture",
+      "heard_in": "Sacred works (Gloria, Magnificat)"
+    },
+    {
+      "composer": "Italian violin school (Veracini, Locatelli)",
+      "absorbed": "Virtuoso technique, high positions, double stops",
+      "heard_in": "Solo episodes, cadenza-like passages"
+    },
+    {
+      "composer": "Venetian opera tradition",
+      "absorbed": "Dramatic contrast, aria forms, programmatic expression",
+      "heard_in": "Opera arias; Four Seasons program music"
+    }
+  ],
+  "influenced": [
+    {
+      "composer": "J.S. Bach",
+      "absorbed": "Ritornello form, concerto structure, driving rhythm",
+      "heard_in": "Brandenburg Concertos; 6 Vivaldi transcriptions BWV 972\u2013987"
+    },
+    {
+      "composer": "Handel",
+      "absorbed": "Concerto energy, Italian brilliance, orchestral drive",
+      "heard_in": "Organ concertos, Op. 6 Grand Concertos"
+    },
+    {
+      "composer": "Tartini",
+      "absorbed": "Violin concerto tradition, virtuosic solo writing",
+      "heard_in": "Devil's Trill Sonata \u2014 Vivaldian virtuosity pushed further"
+    },
+    {
+      "composer": "J.C. Bach",
+      "absorbed": "Galant concerto form descending from Vivaldi's model",
+      "heard_in": "London keyboard concertos"
+    },
+    {
+      "composer": "Mozart",
+      "absorbed": "Concerto form (ritornello \u2192 sonata-ritornello hybrid)",
+      "heard_in": "Piano concertos \u2014 soloist/orchestra dialogue is Vivaldi's legacy"
+    },
+    {
+      "composer": "Piazzolla",
+      "absorbed": "Vivaldi's Four Seasons \u2192 Four Seasons of Buenos Aires",
+      "heard_in": "Direct homage; string concerto energy in tango idiom"
+    },
+    {
+      "composer": "Minimalists (Glass, Part)",
+      "absorbed": "Repetitive ostinato patterns, rhythmic drive, clear harmony",
+      "heard_in": "Glass violin concertos echo Vivaldi's motor rhythm"
     }
   ],
   "comparative_axes": {}

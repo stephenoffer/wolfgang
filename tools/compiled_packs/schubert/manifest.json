@@ -1,8 +1,8 @@
 {
   "composer": "schubert",
-  "genre": "romantic",
+  "genre": "",
   "support_tier": "B",
-  "corpus_bar_count": 82,
+  "corpus_bar_count": 3753,
   "profile_files": [
     "biography.md",
     "composition-guide.md",
@@ -18,10 +18,14 @@
   ],
   "corpus_files": [
     "bar_index.json",
+    "bars_00.json",
+    "bars_01.json",
     "gesture_bank.json",
     "phrase_catalog.json",
     "window_index.json",
-    "window_index_00.json"
+    "window_index_00.json",
+    "window_index_01.json",
+    "window_index_02.json"
   ],
   "pattern_count": 82
 }

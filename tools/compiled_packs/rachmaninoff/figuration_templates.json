@@ -1,5 +1,118 @@
 [
   {
+    "id": "lh_idiom_wide_spaced_arpeggio_spanning_two_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Wide-spaced arpeggio spanning two octaves",
+    "description": "`C1e G1e Eb2e G2e C3e Eb3e`, pedalled into a wash.",
+    "shorthand": "C1e G1e Eb2e G2e C3e Eb3e",
+    "events": 6,
+    "register": [
+      24,
+      51
+    ],
+    "span_semitones": 27,
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_deep_bass_octaves",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Deep bass octaves",
+    "description": "`[C1,C2]h`, the bottom of the instrument used constantly.",
+    "shorthand": "[C1,C2]h",
+    "events": 1,
+    "register": [
+      24,
+      36
+    ],
+    "span_semitones": 12,
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_full_chords_in_both_hands",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Full chords in both hands",
+    "description": "six to eight notes sounding, the \"orchestral\" piano texture.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_repeated_chords_throbbing",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Repeated chords, throbbing",
+    "description": "under a long melody.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_chromatic_inner_voice_descent",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Chromatic inner-voice descent",
+    "description": "over a held bass \u2014 his standard intensifier.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_counter_melody_in_the_tenor",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Counter-melody in the tenor",
+    "description": "played by the left hand's thumb.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_the_bell_texture",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "The bell texture",
+    "description": "low octaves struck and pedalled, tolling.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rippling_figuration_under_a_sustained_melody",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rippling figuration under a sustained melody",
+    "description": "wide and even.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_rolled_chords_too_wide_to_strike",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Rolled chords too wide to strike",
+    "description": "written with an arpeggio sign.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_bare_octaves_for_a_dies_irae_statement",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Bare octaves for a Dies Irae statement.",
+    "description": "Bare octaves for a Dies Irae statement.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "lh_idiom_tremolo_low_and_dark",
+    "category": "composer_hand_idiom",
+    "hand": "lh",
+    "name": "Tremolo, low and dark",
+    "description": "orchestral in intent.",
+    "source_file": "rachmaninoff/rachmaninoff-lh-vocabulary.md",
+    "grounding": "hard_corroborated"
+  },
+  {
     "id": "fig_1_alberti",
     "name": "Alberti bass",
     "pattern_keyword": "alberti",
@@ -17,8 +130,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -35,8 +148,8 @@
       "Building energy"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -53,8 +166,8 @@
       "Winding down"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Quarter/eighth notes; Eighth notes",
+    "register_suggestion": "1-2 octaves; 2 octaves",
     "grounding": "hard_corroborated",
     "source_file": "figuration-patterns.md"
   },
@@ -76,8 +189,8 @@
       "Simple support (stay out of melody's way)"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Eighth notes",
+    "register_suggestion": "2 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -123,8 +236,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes throughout; Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "3-4 octaves; 4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -145,8 +258,8 @@
       "Grace and elegance"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -167,8 +280,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes begin; Sixteenth notes throughout",
+    "register_suggestion": "2-3 octaves; 3-4 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -210,8 +323,8 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Dense sixteenths or heavy chords; Maximum density or massive chords",
+    "register_suggestion": "4+ octaves; 5+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -233,8 +346,8 @@
       "Virtuosic display"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes",
+    "register_suggestion": "2-3 octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
   },
@@ -257,9 +370,189 @@
       "Climactic density"
     ],
     "variation_operators": [],
-    "density_suggestion": null,
-    "register_suggestion": "",
+    "density_suggestion": "Sixteenth notes; Sixteenth notes throughout; Dense sixteenths or heavy chords",
+    "register_suggestion": "2-3 octaves; 3-4 octaves; 4+ octaves",
     "grounding": "interpretive",
     "source_file": "figuration-patterns.md"
+  },
+  {
+    "id": "device_the_long_breathed_theme",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The long-breathed theme",
+    "description": "sixteen to thirty-two bars, mostly stepwise, arching once. Write the tune first and make it long.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_stepwise_melodic_motion_with_occasional_expressive_leaps",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Stepwise melodic motion with occasional expressive leaps.",
+    "description": "Stepwise melodic motion with occasional expressive leaps.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_doubled_in_octaves",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody doubled in octaves",
+    "description": "at the climax.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_sequential_rise_to_a_peak",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Sequential rise to a peak",
+    "description": "the same phrase a step higher, three times.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_falling_sequence_after_the_peak",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "The falling sequence after the peak",
+    "description": "sighs descending.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_melody_in_the_tenor_register",
+    "category": "composer_device",
+    "section": "Melodic devices",
+    "name": "Melody in the tenor register",
+    "description": "under the accompaniment.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_chromatic_inner_voice_motion",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Chromatic inner-voice motion",
+    "description": "over a slow-moving bass.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_modal_mixture",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Modal mixture",
+    "description": "constant borrowing from the parallel minor.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_extended_dominants",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Extended dominants",
+    "description": "ninths and elevenths held and unresolved.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_augmented_sixth_at_the_emotional_peak",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "The augmented sixth at the emotional peak.",
+    "description": "The augmented sixth at the emotional peak.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_long_dominant_pedal_under_a_rising_sequence",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Long dominant pedal under a rising sequence",
+    "description": "the standard build.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_deceptive_resolution_to_delay_the_tonic",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Deceptive resolution to delay the tonic.",
+    "description": "Deceptive resolution to delay the tonic.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_dies_irae_quotation",
+    "category": "composer_device",
+    "section": "Harmonic devices",
+    "name": "Dies Irae quotation",
+    "description": "the four-note plainchant, used as a fate motif across many works.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_long_build",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The long build",
+    "description": "twenty or more bars of continuous intensification.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_collapse",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The collapse",
+    "description": "full texture to a single line immediately after a climax.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_climax_at_the_golden_section",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The climax at the golden section.",
+    "description": "The climax at the golden section.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_cyclic_theme_across_movements",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Cyclic theme across movements.",
+    "description": "Cyclic theme across movements.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_the_quiet_dark_ending",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "The quiet dark ending",
+    "description": "low, `ppp`, after everything.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_bell_sonorities",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Bell sonorities",
+    "description": "as structural punctuation.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
+  },
+  {
+    "id": "device_variation_form_on_a_borrowed_theme",
+    "category": "composer_device",
+    "section": "Structural devices",
+    "name": "Variation form on a borrowed theme.",
+    "description": "Variation form on a borrowed theme.",
+    "source_file": "rachmaninoff/rachmaninoff-devices.md",
+    "grounding": "hard_corroborated"
   }
 ]

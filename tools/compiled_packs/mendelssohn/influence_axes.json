@@ -1,8 +1,75 @@
 {
   "influenced_by": [
     {
-      "composer": "Bach"
+      "composer": "J.S. Bach"
+    },
+    {
+      "composer": "Mozart"
+    },
+    {
+      "composer": "Beethoven"
+    },
+    {
+      "composer": "Weber"
+    },
+    {
+      "composer": "Italian opera (Bellini, Donizetti)"
+    },
+    {
+      "composer": "Robert Schumann"
+    },
+    {
+      "composer": "Chopin"
+    },
+    {
+      "composer": "Berlioz"
+    },
+    {
+      "composer": "Liszt"
+    },
+    {
+      "composer": "British music (Parry, Stanford, Elgar)"
+    },
+    {
+      "composer": "Brahms"
+    },
+    {
+      "composer": "Dvorak"
+    },
+    {
+      "composer": "Grieg"
+    },
+    {
+      "composer": "Schubert"
+    },
+    {
+      "composer": "Schumann"
     }
   ],
-  "comparative_axes": {}
+  "influenced": [],
+  "comparative_axes": {
+    "Influence Map": [
+      "J.S. Bach",
+      "Mozart",
+      "Beethoven",
+      "Weber",
+      "Italian opera (Bellini, Donizetti)",
+      "Robert Schumann",
+      "Chopin",
+      "Berlioz",
+      "Liszt",
+      "British music (Parry, Stanford, Elgar)",
+      "Brahms",
+      "Dvorak",
+      "Grieg"
+    ],
+    "Comparative Harmonic Signatures": [
+      "Beethoven",
+      "Schubert",
+      "Schumann",
+      "Chopin",
+      "Brahms",
+      "Liszt"
+    ]
+  }
 }

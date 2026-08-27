@@ -1,4 +1,685 @@
 {
- "instruments": {},
- "source_file": "orchestration.md"
+  "instruments": {
+    "bass": {
+      "name": "Bass",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Harmonic root; resonance anchor",
+      "register": "C1-E3",
+      "hand": "LH, lowest note of arpeggio"
+    },
+    "accompaniment": {
+      "name": "Accompaniment",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Harmonic fill; rhythmic pulse",
+      "register": "F3-C5",
+      "hand": "LH, upper notes of arpeggio"
+    },
+    "inner_voice_(tenor)": {
+      "name": "Inner voice (tenor)",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Chromatic countermelody; harmonic color",
+      "register": "C4-G4",
+      "hand": "RH, lower notes of chord"
+    },
+    "soprano_melody": {
+      "name": "Soprano melody",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Primary melodic voice",
+      "register": "G4-C6",
+      "hand": "RH, top note"
+    },
+    "ornamental_filigree": {
+      "name": "Ornamental filigree",
+      "section": "The Piano Ensemble: Voice Roles",
+      "function": "Melody continuation; peak cascades",
+      "register": "C5-C7",
+      "hand": "RH, rapid passagework"
+    },
+    "nocturne_bass": {
+      "name": "Nocturne bass",
+      "section": "LH Accompaniment Patterns",
+      "function": "Low root \u2192 chord tone a 9th-12th above \u2192 another chord tone",
+      "register": "9th-12th (compound)",
+      "genre": "Nocturnes, ballades"
+    },
+    "waltz_bass": {
+      "name": "Waltz bass",
+      "section": "LH Accompaniment Patterns",
+      "function": "Root on beat 1, chord on beats 2-3",
+      "register": "8ve-10th",
+      "genre": "Waltzes"
+    },
+    "mazurka_bass": {
+      "name": "Mazurka bass",
+      "section": "LH Accompaniment Patterns",
+      "function": "Root on beat 1, chord on beat 3 (beat 2 sometimes empty)",
+      "register": "5th-8ve",
+      "genre": "Mazurkas"
+    },
+    "etude_pattern": {
+      "name": "Etude pattern",
+      "section": "LH Accompaniment Patterns",
+      "function": "Continuous broken figuration (specific to each etude)",
+      "register": "Varies widely",
+      "genre": "Etudes"
+    },
+    "chorale": {
+      "name": "Chorale",
+      "section": "LH Accompaniment Patterns",
+      "function": "Block chords, voice-led, hymn-like",
+      "register": "Close position",
+      "genre": "Slow passages, Sonata movements"
+    },
+    "tremolo/repeated_octave": {
+      "name": "Tremolo/repeated octave",
+      "section": "LH Accompaniment Patterns",
+      "function": "Rapid octave repetition in bass",
+      "register": "8ve",
+      "genre": "Polonaises, dramatic climaxes"
+    },
+    "arpeggiated_wash": {
+      "name": "Arpeggiated wash",
+      "section": "LH Accompaniment Patterns",
+      "function": "Wide arpeggios flowing continuously",
+      "register": "10th-14th",
+      "genre": "Barcarolle, Berceuse"
+    },
+    "clarinet": {
+      "name": "Clarinet",
+      "section": "The instruments as he uses them",
+      "register": "D3\u2013G6"
+    },
+    "horn": {
+      "name": "Horn",
+      "section": "The instruments as he uses them",
+      "register": "B1\u2013F5"
+    },
+    "flute": {
+      "name": "Flute",
+      "section": "The instruments as he uses them",
+      "register": "C4\u2013C7"
+    },
+    "oboe": {
+      "name": "Oboe",
+      "section": "The instruments as he uses them",
+      "register": "Bb3\u2013G6"
+    },
+    "bassoon": {
+      "name": "Bassoon",
+      "section": "The instruments as he uses them",
+      "register": "Bb1\u2013Eb5"
+    },
+    "trumpet": {
+      "name": "Trumpet",
+      "section": "The instruments as he uses them",
+      "register": "E3\u2013C6"
+    },
+    "trombones": {
+      "name": "Trombones",
+      "section": "The instruments as he uses them",
+      "register": "E2\u2013C5"
+    },
+    "timpani": {
+      "name": "Timpani",
+      "section": "The instruments as he uses them",
+      "register": "C2\u2013C4"
+    },
+    "strings": {
+      "name": "Strings",
+      "section": "The instruments as he uses them",
+      "register": "\u2014"
+    }
+  },
+  "textures": [
+    {
+      "name": "Melody + nocturne bass",
+      "section": "Texture Types",
+      "function": "Singing RH over wide LH arpeggio"
+    },
+    {
+      "name": "Melody + chorale",
+      "section": "Texture Types",
+      "function": "RH melody above block chords (both hands)"
+    },
+    {
+      "name": "Melody + countermelody",
+      "section": "Texture Types",
+      "function": "Two independent RH voices (soprano + tenor)"
+    },
+    {
+      "name": "Continuous figuration",
+      "section": "Texture Types",
+      "function": "One hand plays unbroken pattern; other hand has melody embedded"
+    },
+    {
+      "name": "Octave melody + tremolo",
+      "section": "Texture Types",
+      "function": "RH in octaves, LH in tremolo or rapid arpeggios"
+    },
+    {
+      "name": "Bare unison/octave",
+      "section": "Texture Types",
+      "function": "Both hands in octaves, no harmony"
+    },
+    {
+      "name": "Filigree over pedal",
+      "section": "Texture Types",
+      "function": "Delicate RH passagework over sustained LH pedal tone"
+    },
+    {
+      "name": "Storm texture",
+      "section": "Texture Types",
+      "function": "Rapid LH figuration + massive RH chords"
+    },
+    {
+      "name": "Flute",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Oboe",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Horn",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Trumpet/trombone",
+      "section": "Wind Writing"
+    },
+    {
+      "name": "Melody + accompaniment",
+      "section": "Orchestral Texture Types",
+      "function": "One instrument sings, others provide rhythmic/harmonic support",
+      "genre": "Default texture \u2014 the Lied model"
+    },
+    {
+      "name": "Tremolo atmosphere",
+      "section": "Orchestral Texture Types",
+      "function": "Strings tremolo; melody in winds or solo string over the texture",
+      "genre": "Dramatic passages, openings, transitions"
+    },
+    {
+      "name": "Chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Block chords in all parts; homophonic; hymn-like",
+      "genre": "Codas, climactic statements, trombone entries"
+    },
+    {
+      "name": "Dialogue",
+      "section": "Orchestral Texture Types",
+      "function": "Melody passes phrase-by-phrase between instruments or instrument groups",
+      "genre": "Development sections, transitional passages"
+    },
+    {
+      "name": "Divine moment",
+      "section": "Orchestral Texture Types",
+      "function": "High strings only (pp/ppp); low instruments tacet; one sustained chord",
+      "genre": "Slow movements, transcendent episodes"
+    },
+    {
+      "name": "Unison/octave tutti",
+      "section": "Orchestral Texture Types",
+      "function": "All instruments on the same melody in unison or octaves",
+      "genre": "Fortissimo climaxes, recapitulation entries"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Foundation; carry melody, accompaniment, and tremolo"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Melodic color; doublings; solo passages"
+    },
+    {
+      "name": "2 Hn, 2 Tpt, 3 Tbn (late works)",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Distance, weight, chorale; trombones in late symphonies only"
+    },
+    {
+      "name": "2 drums (tonic + dominant)",
+      "section": "The Schubert Orchestra (Typical Forces)",
+      "function": "Rhythmic punctuation; not prominent"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Schumann Orchestra",
+      "function": "Core texture; violins often doubled in octaves or thirds"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Schumann Orchestra",
+      "function": "Doubling strings; occasional solo (oboe theme, clarinet lyric)"
+    },
+    {
+      "name": "2-4 Hn, 2 Tpt, 3 Tbn",
+      "section": "Standard Schumann Orchestra",
+      "function": "Horns: thematic + harmonic; Tbn: weight, chorale; Tpt: punctuation"
+    },
+    {
+      "name": "Timpani (triangle in Symphony 3)",
+      "section": "Standard Schumann Orchestra",
+      "function": "Structural downbeats, pedal reinforcement"
+    },
+    {
+      "name": "Violin I",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello",
+      "section": "Strings"
+    },
+    {
+      "name": "Contrabass",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Woodwinds"
+    },
+    {
+      "name": "Horn",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone",
+      "section": "Brass"
+    },
+    {
+      "name": "Interior monologue",
+      "section": "Piano Texture Types",
+      "function": "4+ simultaneous layers: melody, countermelody, accompaniment, bass"
+    },
+    {
+      "name": "Character-piece simplicity",
+      "section": "Piano Texture Types",
+      "function": "Deceptively simple melody + accompaniment; the simplicity IS the expression"
+    },
+    {
+      "name": "Arpeggiated density",
+      "section": "Piano Texture Types",
+      "function": "Rapid broken chords with melody notes accented within the figuration"
+    },
+    {
+      "name": "March/chorale",
+      "section": "Piano Texture Types",
+      "function": "Chordal, rhythmically square, forte \u2014 Florestan speaks"
+    },
+    {
+      "name": "Tremolo/tremolando",
+      "section": "Piano Texture Types",
+      "function": "Sustained atmosphere through repeated notes or rapid alternation"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Brahms Orchestra",
+      "function": "Core texture; violas and cellos as important as violins"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl, 2 Bsn",
+      "section": "Standard Brahms Orchestra",
+      "function": "Melodic solos (Cl, Ob), harmonic fill, doubling"
+    },
+    {
+      "name": "4 Hn, 2 Tpt, 3 Tbn (+Tuba in Sym 2, 4)",
+      "section": "Standard Brahms Orchestra",
+      "function": "Horns: thematic; Tpt/Tbn: weight and punctuation"
+    },
+    {
+      "name": "Timpani only",
+      "section": "Standard Brahms Orchestra",
+      "function": "Structural accents, pedal point reinforcement"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Strings"
+    },
+    {
+      "name": "Horn (4)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (2)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba",
+      "section": "Brass"
+    },
+    {
+      "name": "Tutti warmth",
+      "section": "Orchestral Texture Types",
+      "function": "All instruments, middle register, melody in 3rds, horns prominent",
+      "genre": "Exposition main themes, codas"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Types",
+      "function": "Solo woodwind + light string accompaniment",
+      "genre": "Second themes, slow movement lyrical passages"
+    },
+    {
+      "name": "String chorale",
+      "section": "Orchestral Texture Types",
+      "function": "Strings alone, hymn-like homophony, viola prominent",
+      "genre": "Slow movements, transitions"
+    },
+    {
+      "name": "Horn call + response",
+      "section": "Orchestral Texture Types",
+      "function": "Horn states theme, strings or woodwinds answer",
+      "genre": "Openings, structural signals"
+    },
+    {
+      "name": "Dense counterpoint",
+      "section": "Orchestral Texture Types",
+      "function": "All voices active, bass heavy, multiple thematic strands",
+      "genre": "Development sections"
+    },
+    {
+      "name": "Pizzicato bass + arco upper",
+      "section": "Orchestral Texture Types",
+      "function": "Cellos/basses pizzicato, upper strings and winds arco",
+      "genre": "Dance-like passages, scherzos"
+    },
+    {
+      "name": "2 Fl, 2 Ob, 2 Cl (Bb), 2 Bsn",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Lyrical transformations; pastoral color; doubling"
+    },
+    {
+      "name": "4 Hn (F), 3 Tpt (C/Bb), 3 Tbn, Tuba",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Heroic transformations; chorale; climax weight"
+    },
+    {
+      "name": "Timp (3), Cymbals, Triangle, Bass Drum",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Punctuation; climactic moments; Hungarian color"
+    },
+    {
+      "name": "Vln I, Vln II, Vla, Vc, Cb",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Foundation; all transformations; tremolo; arco/pizz contrast"
+    },
+    {
+      "name": "Harp (1-2), Organ (sacred works)",
+      "section": "Standard Liszt Symphonic Poem Orchestra",
+      "function": "Arpeggiated color; sacred gravity"
+    },
+    {
+      "name": "Heroic unison",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Pastoral lyric",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Tremolo storm",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Chorale",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Full tutti",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Pizzicato underpinning",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Divided strings",
+      "section": "Orchestral Texture Strategies"
+    },
+    {
+      "name": "Brass (Hn + Tpt) + Strings unison",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Solo Ob or Cl over string arpeggios",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Fl + Cl in 3rds, harp arpeggios",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Low strings (Vc/Cb) + bass clarinet",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Muted brass + timpani; low strings",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Full brass choir, organ",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Vln solo + pizz strings; triangle, cymbal",
+      "section": "Thematic Transformation Through Orchestration"
+    },
+    {
+      "name": "Violin 1 (or cello in tenor register)",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Cantabile, espressivo"
+    },
+    {
+      "name": "Cello (or oboe)",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Gentle, complementary line \u2014 fills rests in the melody"
+    },
+    {
+      "name": "Violin 2 + viola, sustained or tremolo",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Warm harmonic carpet"
+    },
+    {
+      "name": "Cello + bass, pizzicato or sustained",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Harmonic foundation, 1 note per bar"
+    },
+    {
+      "name": "Horn held note, or clarinet sustained 3rd",
+      "section": "Lyrical Orchestral Texture",
+      "function": "Adds warmth without weight"
+    },
+    {
+      "name": "Elfin staccato strings, woodwind shimmer, minimal brass",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Overture (fairy)"
+    },
+    {
+      "name": "Full Beethovenian sonata orchestra with clear sections",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Overture (dramatic)"
+    },
+    {
+      "name": "Singing strings, woodwind solos, horn pedals",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Symphony slow mvt"
+    },
+    {
+      "name": "Fairy-scherzo OR robust dance (saltarello in Italian Symphony)",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Symphony scherzo"
+    },
+    {
+      "name": "Solo instrument against reduced orchestra; dialogue, not competition",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Concerto"
+    },
+    {
+      "name": "Chorus as primary mass; orchestra supports, does not overwhelm",
+      "section": "Orchestral Textures by Genre",
+      "genre": "Oratorio"
+    },
+    {
+      "name": "Violin I",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Violin II",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Viola",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Cello",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Double Bass",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Flute",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Oboe",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Horn",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Trumpet",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Trombone",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Tuba",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Timpani",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Celesta",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Harp",
+      "section": "Instrument Roles \u2014 Detailed"
+    },
+    {
+      "name": "Thin; the idea exposed",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Warmer; the line thickens",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Full strings; winds enter",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Nearly full orchestra",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Maximum \u2014 everything plays",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Devastation \u2014 one voice remains",
+      "section": "Orchestral Accumulation in Sequences"
+    },
+    {
+      "name": "Solo strings, muted; celesta; harp harmonics",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "String quartet texture; solo woodwind",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Strings cantabile; clarinet or oboe solo",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Full strings; woodwinds doubling",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Full strings + winds; horns sustained",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Full orchestra; brass melody; timpani",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Tutti unison; percussion battery; cymbal crash",
+      "section": "Dynamic and Color Palette"
+    },
+    {
+      "name": "Solo instrument after full orchestra",
+      "section": "Dynamic and Color Palette"
+    }
+  ],
+  "source_file": "orchestration.md"
 }

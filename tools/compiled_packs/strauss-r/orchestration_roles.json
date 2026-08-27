@@ -1,4 +1,105 @@
 {
   "instruments": {},
+  "textures": [
+    {
+      "name": "Violin I (16)",
+      "section": "Strings"
+    },
+    {
+      "name": "Violin II (16)",
+      "section": "Strings"
+    },
+    {
+      "name": "Viola (12)",
+      "section": "Strings"
+    },
+    {
+      "name": "Cello (12)",
+      "section": "Strings"
+    },
+    {
+      "name": "Double Bass (8)",
+      "section": "Strings"
+    },
+    {
+      "name": "Flute",
+      "section": "Winds"
+    },
+    {
+      "name": "Oboe",
+      "section": "Winds"
+    },
+    {
+      "name": "Cor anglais",
+      "section": "Winds"
+    },
+    {
+      "name": "Clarinet",
+      "section": "Winds"
+    },
+    {
+      "name": "Bass clarinet",
+      "section": "Winds"
+    },
+    {
+      "name": "Bassoon",
+      "section": "Winds"
+    },
+    {
+      "name": "Contrabassoon",
+      "section": "Winds"
+    },
+    {
+      "name": "Horn (8)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trumpet (3\u20134)",
+      "section": "Brass"
+    },
+    {
+      "name": "Trombone (3 + bass)",
+      "section": "Brass"
+    },
+    {
+      "name": "Tuba (2)",
+      "section": "Brass"
+    },
+    {
+      "name": "Full symphonic blaze",
+      "section": "Orchestral Texture Types",
+      "function": "All sections ff\u2013fff; every instrument active but layered"
+    },
+    {
+      "name": "Solo + orchestral cushion",
+      "section": "Orchestral Texture Types",
+      "function": "One instrument solos over warm, sustained orchestral chords"
+    },
+    {
+      "name": "Chamber reduction",
+      "section": "Orchestral Texture Types",
+      "function": "3\u20135 solo instruments; the rest tacet"
+    },
+    {
+      "name": "Orchestral unison",
+      "section": "Orchestral Texture Types",
+      "function": "Entire orchestra on one melody in octaves"
+    },
+    {
+      "name": "Graduated crescendo",
+      "section": "Orchestral Texture Types",
+      "function": "Instruments enter one by one over 16\u201332 bars; p to fff"
+    },
+    {
+      "name": "Virtuosic ensemble",
+      "section": "Orchestral Texture Types",
+      "function": "String section plays concerto-level passages in unison"
+    },
+    {
+      "name": "Atmospheric shimmer",
+      "section": "Orchestral Texture Types",
+      "function": "High string harmonics, harp, celesta; ppp"
+    }
+  ],
   "source_file": "orchestration.md"
 }
