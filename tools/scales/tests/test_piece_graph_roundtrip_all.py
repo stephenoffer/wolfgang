@@ -266,3 +266,81 @@ def test_a_concurrent_reader_never_sees_a_half_written_graph():
             t.join()
 
         assert not corrupt, f"{len(corrupt)} partial reads — the save is not atomic"
+
+
+def test_every_json_the_pipeline_writes_at_runtime_is_atomic():
+    """The graph was not the only file read while another process wrote it.
+
+    A composer sweep across 24 keys surfaced a `JSONDecodeError` after the
+    graph save was made atomic — the brief's density, ornament and fingerprint
+    caches still truncated before writing. They are read with a
+    `except JSONDecodeError: recompute` guard, so corruption there is
+    self-healing rather than fatal, but a cache that has to be rebuilt because
+    it was caught mid-write is a cost paid for nothing.
+
+    One helper for all of them, so there is no second implementation to forget.
+    """
+    import ast
+    import inspect
+    from pathlib import Path
+
+    from scales import composition_brief, piece_graph
+
+    for module in (piece_graph, composition_brief):
+        tree = ast.parse(Path(inspect.getfile(module)).read_text())
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Call):
+                continue
+            func = node.func
+            if not (isinstance(func, ast.Attribute) and func.attr == "dump"):
+                continue
+            owner = getattr(func.value, "id", "")
+            assert owner != "json", (
+                f"{module.__name__} line {node.lineno}: a bare `json.dump` "
+                "truncates its target before writing — use `write_json_atomic`"
+            )
+
+
+def test_the_atomic_helper_survives_a_concurrent_reader():
+    """Asserts ZERO, not "few": `os.replace` makes a partial read impossible."""
+    import json
+    import tempfile
+    import threading
+    import time
+    from pathlib import Path
+
+    from scales.atomic_io import write_json_atomic
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "cache.json"
+        payload = {"schema": 1, "rows": [{"i": i, "v": "x" * 40} for i in range(400)]}
+        write_json_atomic(path, payload, indent=1)
+
+        stop = threading.Event()
+        corrupt = []
+
+        def writer():
+            while not stop.is_set():
+                write_json_atomic(path, payload, indent=1)
+
+        def reader():
+            while not stop.is_set():
+                try:
+                    json.loads(path.read_text())
+                except FileNotFoundError:
+                    pass
+                except ValueError:
+                    corrupt.append(1)
+
+        threads = [threading.Thread(target=writer), threading.Thread(target=reader)]
+        for t in threads:
+            t.start()
+        time.sleep(0.4)
+        stop.set()
+        for t in threads:
+            t.join()
+
+        assert not corrupt, f"{len(corrupt)} partial reads"
+        import os
+
+        assert os.listdir(tmp) == ["cache.json"], os.listdir(tmp)

@@ -24,6 +24,7 @@ from pathlib import Path
 from statistics import mean, median
 from typing import Any, Dict, List, Optional, Tuple
 
+from .atomic_io import write_json_atomic
 from .corpus_adapter import AdaptedBar, CorpusAdapter, CorpusQuery
 from .duration import bar_duration, beats_to_dur, dur_to_beats
 from .pitch import is_minor_key, pitch_to_midi
@@ -459,7 +460,7 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
     return profile
 
 
-def voicing_lines(composer: str, graph=None) -> List[str]:
+def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]:
     """The VOICING section of the brief, or nothing when unmeasurable."""
     profile = voicing_profile(composer)
     if not profile:
@@ -503,7 +504,7 @@ def voicing_lines(composer: str, graph=None) -> List[str]:
     # of the composer the whole time. A target is a number to agree with; a gap
     # is a number to act on, and MARKS SO FAR earns its place the same way.
     if graph is not None:
-        got = _rh_thickness_so_far(graph)
+        got = _rh_thickness_so_far(graph, movement_id)
         if got is not None:
             target = profile.get("rh_chord_share") or 0.0
             verdict = (
@@ -520,10 +521,90 @@ def voicing_lines(composer: str, graph=None) -> List[str]:
     return lines
 
 
-def _rh_thickness_so_far(graph) -> Optional[float]:
+def _narrative_section_for(graph, slot):
+    """The narrative section covering this phrase, in the right movement.
+
+    Falls back to the section's `id`/`label` prefix when `movement_id` is unset,
+    so narratives written before the field existed still resolve correctly if
+    they named their movement (`"m2_open"`).
+    """
+    nar = getattr(graph, "narrative", None)
+    sections = list(getattr(nar, "sections", None) or []) if nar else []
+    if not sections:
+        return None
+    bar = getattr(slot, "bar_start", 0) or 0
+    mid = (getattr(slot, "section_id", "") or "").split("_", 1)[0]
+
+    from .models import narrative_section_is_in_movement
+
+    covering = [s for s in sections if s.bar_start <= bar <= s.bar_end]
+    return next((s for s in covering if narrative_section_is_in_movement(s, mid)), None)
+
+
+def _phrases_before(graph, slot):
+    """Phrases that precede ``slot`` in PERFORMANCE order, across movements.
+
+    Bar numbers restart per movement, so `other.bar_start < slot.bar_start` is
+    not "earlier" in a multi-movement work — for a phrase at bar 20 of movement
+    two it admits movement one's bars 1-19 and rejects its bars 20-38. Anything
+    reasoning about what the piece has already done needs (movement index, bar),
+    not bar alone.
+
+    Motif history is deliberately WORK-wide rather than movement-scoped: a theme
+    stated in the first movement and taken up in the third is cyclic form, not
+    repetition, and the composer of the third movement needs to know.
+    """
+    movements = [
+        getattr(m, "id", "")
+        for m in (getattr(getattr(graph, "work_graph", None), "movements", None) or [])
+    ]
+
+    def order(section_id: str) -> int:
+        mid = (section_id or "").split("_", 1)[0]
+        return movements.index(mid) if mid in movements else 0
+
+    here_section = getattr(slot, "section_id", "") or ""
+    here = (order(here_section), getattr(slot, "bar_start", 0) or 0)
+    out = []
+    for st in (getattr(graph, "phrases", {}) or {}).values():
+        s2 = getattr(st, "slot", None)
+        if s2 is None:
+            continue
+        there = (order(getattr(s2, "section_id", "") or ""), getattr(s2, "bar_start", 0) or 0)
+        if there < here:
+            out.append(st)
+    return out
+
+
+def _phrases_in_scope(graph, movement_id: str = ""):
+    """Committed phrases that belong to the SAME MOVEMENT as ``slot``.
+
+    Every "so far" figure in the brief describes what the composer has written
+    up to now, and in a multi-movement work "up to now" must mean this movement.
+    Reporting the opening allegro's rest rate and articulation counts to the
+    slow movement mixes two pieces of music with genuinely different habits —
+    the same mistake as telling three movements each that they hold the climax
+    of the whole piece (Addendum 65), one measurement layer down.
+
+    Single-movement pieces are unaffected: every phrase is in scope.
+    """
+    states = list((getattr(graph, "phrases", {}) or {}).values())
+    movements = getattr(getattr(graph, "work_graph", None), "movements", None) or []
+    mid = (movement_id or "").split("_", 1)[0]
+    if not mid or len(movements) < 2:
+        return states
+    scoped = [
+        st
+        for st in states
+        if (getattr(getattr(st, "slot", None), "section_id", "") or "").split("_", 1)[0] == mid
+    ]
+    return scoped or states
+
+
+def _rh_thickness_so_far(graph, movement_id: str = "") -> Optional[float]:
     """Share of committed right-hand attacks that are more than one note."""
     multi = total = 0
-    for state in (getattr(graph, "phrases", {}) or {}).values():
+    for state in _phrases_in_scope(graph, movement_id):
         layer = getattr(state, "realized", None)
         if layer is None:
             continue
@@ -1401,9 +1482,7 @@ def texture_density_stats(composer: str, refresh: bool = False) -> Dict[str, Any
     }
 
     try:
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(cache_path, "w") as f:
-            json.dump(stats, f, indent=1)
+        write_json_atomic(cache_path, stats, indent=1)
     except OSError as exc:
         logger.warning("could not write density cache: %s", exc)
 
@@ -1504,9 +1583,7 @@ def rhythmic_fingerprint(composer: str, refresh: bool = False) -> Dict[str, Any]
         "top_note_values": [[q, round(n / notes, 4)] for q, n in top] if notes else [],
     }
     try:
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(cache_path, "w") as f:
-            json.dump(out, f, indent=1)
+        write_json_atomic(cache_path, out, indent=1)
     except OSError:
         pass
     _FINGERPRINT_CACHE[composer] = out
@@ -1530,7 +1607,7 @@ _QL_NAME = {
 }
 
 
-def render_rhythmic_fingerprint(composer: str, graph=None) -> List[str]:
+def render_rhythmic_fingerprint(composer: str, graph=None, movement_id: str = "") -> List[str]:
     """The fingerprint as brief lines, in the units a composer reasons in."""
     fp = rhythmic_fingerprint(composer)
     if not fp.get("bars"):
@@ -1575,7 +1652,7 @@ def render_rhythmic_fingerprint(composer: str, graph=None) -> List[str]:
     # gap earn their place the same way — a target is a number to agree with.
     so_far: List[str] = []
     if graph is not None:
-        got = _rest_and_dotted_so_far(graph)
+        got = _rest_and_dotted_so_far(graph, movement_id)
         if got:
             rest, dotted, bars, compound = got
             line = (
@@ -1610,7 +1687,7 @@ def render_rhythmic_fingerprint(composer: str, graph=None) -> List[str]:
     )
 
 
-def _rest_and_dotted_so_far(graph):
+def _rest_and_dotted_so_far(graph, movement_id: str = ""):
     """(rest-bar share, dotted-bar share, bar count) over committed phrases.
 
     Counted per BAR, not per note, to match how the corpus fingerprint counts
@@ -1619,7 +1696,7 @@ def _rest_and_dotted_so_far(graph):
     """
     rest_bars: dict = {}
     dotted_bars: dict = {}
-    for state in (getattr(graph, "phrases", {}) or {}).values():
+    for state in _phrases_in_scope(graph, movement_id):
         layer = getattr(state, "realized", None)
         if layer is None:
             continue
@@ -1646,7 +1723,7 @@ def _rest_and_dotted_so_far(graph):
         return None
     n = len(rest_bars)
     compound = False
-    for state in (getattr(graph, "phrases", {}) or {}).values():
+    for state in _phrases_in_scope(graph, movement_id):
         meter = getattr(getattr(state, "slot", None), "meter", None)
         if meter and len(meter) == 2 and meter[1] == 8 and meter[0] % 3 == 0:
             compound = True
@@ -2027,9 +2104,7 @@ def ornament_stats(composer: str, refresh: bool = False) -> Dict[str, Any]:
         },
     }
     try:
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(cache_path, "w") as f:
-            json.dump(out, f, indent=1)
+        write_json_atomic(cache_path, out, indent=1)
     except OSError as exc:
         logger.warning("could not write ornament cache: %s", exc)
     _ORNAMENT_CACHE[composer] = out
@@ -2928,8 +3003,7 @@ def _is_structural_phrase(graph, slot) -> bool:
     # A phrase the narrative marks as a climax.
     nar = getattr(graph, "narrative", None)
     if nar and getattr(nar, "sections", None):
-        b0 = slot.bar_start
-        sec = next((s for s in nar.sections if s.bar_start <= b0 <= s.bar_end), None)
+        sec = _narrative_section_for(graph, slot)
         if sec and sec.climax_type in ("primary", "secondary"):
             return True
     return False
@@ -4037,7 +4111,15 @@ def _cadences_already_used(graph, phrase_id: str) -> Dict[str, Any]:
         return {}
     here = state.slot.bar_start or 0
     used: List[Dict[str, Any]] = []
-    for pid, ps in graph.phrases.items():
+    # Scoped to this movement. Bar numbers RESTART per movement — a two-movement
+    # sonatina has two phrases at bar 1 and two at bar 38 — so the
+    # `bar_start < here` filter below silently admitted an arbitrary slice of the
+    # other movement: for a phrase at bar 20 of movement 2, all of movement 1's
+    # bars 1-19 and none of its bars 20-38. That both over-reports reuse (a
+    # cadence is allowed to recur across movements) and does it inconsistently.
+    scoped = _phrases_in_scope(graph, getattr(state.slot, "section_id", "") or "")
+    for ps in scoped:
+        pid = getattr(getattr(ps, "slot", None), "phrase_id", "") or ""
         if pid == phrase_id or not ps.realized or ps.slot is None:
             continue
         if (ps.slot.bar_start or 0) >= here:
@@ -4273,11 +4355,9 @@ def _derive_continuation(graph, prev_id: str) -> Dict[str, Any]:
     # Which motifs the piece has already put on the table, so the next phrase
     # develops rather than invents.
     stated, developed = [], []
-    for pid, st in graph.phrases.items():
+    for st in _phrases_before(graph, slot) if slot else []:
         s2 = getattr(st, "slot", None)
-        if s2 is None or s2.bar_start > (getattr(slot, "bar_start", 0) if slot else 0):
-            continue
-        if not getattr(st, "realized", None):
+        if s2 is None or not getattr(st, "realized", None):
             continue
         for mt in getattr(s2, "motif_transforms", None) or []:
             params = getattr(mt, "params", None) or (
@@ -4589,7 +4669,11 @@ def _register_target(graph, slot) -> List[str]:
 
     key = getattr(slot, "key", "C") or "C"
     used: List[int] = []
-    for ps in (getattr(graph, "phrases", None) or {}).values():
+    # Scoped to this movement, like the other "so far" reports: a slow
+    # movement judged against the allegro's register has the wrong ceiling and
+    # the wrong floor. (This was the fourth of the four sections in Addendum 66
+    # and the one I named but did not fix in the same pass.)
+    for ps in _phrases_in_scope(graph, getattr(slot, "section_id", "") or ""):
         layer = getattr(ps, "realized", None)
         if layer is None or not getattr(ps, "agent_authored", False):
             continue
@@ -4692,9 +4776,29 @@ def _movement_brief(graph, slot) -> List[str]:
         value = (value or "").strip()
         if value:
             bits.append(f"{label}: {value}")
-    if len(bits) == 1:
-        return []
-    return [" — ".join(bits)]
+    lines = [" — ".join(bits)] if len(bits) > 1 else []
+
+    # The WORK's plan, which `init_work` stores and nothing has ever read:
+    # `emotional_narrative`, `finale_payoff` and `home_key` are all written and
+    # never surfaced. The home key even carries a comment about the bug where a
+    # G major sonatina recorded "C" — "and every later question about where the
+    # work lives got the wrong answer" — except there is no later question,
+    # because no reader exists. A movement composed without the work's arc is a
+    # piece that happens to be third in a folder.
+    narrative = (getattr(work, "emotional_narrative", "") or "").strip()
+    if narrative:
+        lines.append(f"THE WHOLE WORK: {narrative}")
+    home = (getattr(getattr(work, "tonal_itinerary", None), "home_key", "") or "").strip()
+    if home and home != (getattr(mv, "key", "") or ""):
+        lines.append(
+            f"  (the work's home key is {home}; this movement is in "
+            f"{getattr(mv, 'key', '?')} — the distance is part of the plan)"
+        )
+    # The payoff belongs to the movement that has to deliver it.
+    payoff = (getattr(work, "finale_payoff", "") or "").strip()
+    if payoff and ordinal == len(movements):
+        lines.append(f"THIS MOVEMENT MUST PAY OFF: {payoff}")
+    return lines
 
 
 def _dramatic_brief(slot, graph=None) -> List[str]:
@@ -4745,18 +4849,35 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
             "Do not assume this is the climax. Judge the shape from the "
             "surrounding music and the form, and leave somewhere to go."
         )
+    # In a multi-movement work "the whole piece" is a lie told three times: the
+    # dramatic plan runs per movement, so a three-movement sonatina produced
+    # THREE phrases each told they were the peak of everything, with two more
+    # movements still to come after the first of them. Scope the claim to what
+    # is actually true — the movement — and say where the work's own peak is
+    # decided, which is nowhere yet (`WorkGraph.climax_reservations` exists and
+    # nothing fills it, Addendum 59).
+    n_movements = len(getattr(getattr(graph, "work_graph", None), "movements", None) or [])
+    scope = "whole piece" if n_movements < 2 else "MOVEMENT"
     if planned and isinstance(dist, int):
         if dist == 0:
             out.append(
-                "WHERE YOU ARE: this is the CLIMAX of the whole piece. Everything "
+                f"WHERE YOU ARE: this is the CLIMAX of the {scope}. Everything "
                 "before has been building to it and everything after subsides from "
                 "it. It must be the highest, densest, most harmonically charged "
                 "moment — and it must cost something. Do not write another good "
                 "phrase here; write the peak."
+                + (
+                    " (Each movement has its own peak; which of them is the WORK's "
+                    "apex is not recorded anywhere, so judge it from the work's arc "
+                    "above.)"
+                    if n_movements >= 2
+                    else ""
+                )
             )
         elif dist < 0:
             out.append(
-                f"WHERE YOU ARE: {abs(dist)} phrase(s) before the piece's climax — "
+                f"WHERE YOU ARE: {abs(dist)} phrase(s) before "
+                f"{'this movement' if n_movements >= 2 else 'the piece'}'s climax — "
                 f"still climbing. Leave somewhere higher to go; do not spend the "
                 f"peak here."
             )
@@ -4890,8 +5011,7 @@ def _creative_intent(graph, slot) -> str:
     nar = getattr(graph, "narrative", None)
     sec = None
     if nar and getattr(nar, "sections", None):
-        b0 = slot.bar_start
-        sec = next((s for s in nar.sections if s.bar_start <= b0 <= s.bar_end), None)
+        sec = _narrative_section_for(graph, slot)
     if own_role:
         try:
             from .dramatic_plan import ROLE_INTENT
@@ -5131,7 +5251,7 @@ _MINDSET = (
 )
 
 
-def marks_so_far(graph) -> Dict[str, int]:
+def marks_so_far(graph, movement_id: str = "") -> Dict[str, int]:
     """What the composer has actually written into THIS piece up to now.
 
     The brief used to assert, in its most emphatic section, that the system had
@@ -5143,7 +5263,7 @@ def marks_so_far(graph) -> Dict[str, int]:
     spends the credibility of everything true around it.
     """
     counts = {k: 0 for k in ("articulation", "tie", "slur", "pedal", "arpeggio", "ornament")}
-    for state in (getattr(graph, "phrases", {}) or {}).values():
+    for state in _phrases_in_scope(graph, movement_id):
         layer = getattr(state, "realized", None)
         if layer is None:
             continue
@@ -5171,14 +5291,18 @@ def marks_so_far(graph) -> Dict[str, int]:
     return counts
 
 
-def render_marks_so_far(graph) -> List[str]:
-    """The live version of what the frozen claims used to assert."""
-    counts = marks_so_far(graph)
+def render_marks_so_far(graph, movement_id: str = "") -> List[str]:
+    """The live version of what the frozen claims used to assert.
+
+    ``movement_id`` scopes the count to one movement; without it, every phrase
+    in the graph counts.
+    """
+    counts = marks_so_far(graph, movement_id)
     bars = 0
-    for state in (getattr(graph, "phrases", {}) or {}).values():
-        slot = getattr(state, "slot", None)
-        if slot is not None and getattr(state, "realized", None) is not None:
-            bars += int(getattr(slot, "bar_count", 0) or 0)
+    for state in _phrases_in_scope(graph, movement_id):
+        st_slot = getattr(state, "slot", None)
+        if st_slot is not None and getattr(state, "realized", None) is not None:
+            bars += int(getattr(st_slot, "bar_count", 0) or 0)
     if not bars:
         return [
             "MARKS SO FAR: nothing committed yet — this is the first phrase, so "
@@ -5209,8 +5333,9 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
         _MINDSET,
         "",
     ]
+    movement_id = (brief.phrase_id or "").split("_", 1)[0]
     if graph is not None:
-        lines.extend(render_marks_so_far(graph))
+        lines.extend(render_marks_so_far(graph, movement_id))
         lines.append("")
     cov = brief.coverage or {}
     if cov.get("tier"):
@@ -5541,7 +5666,7 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
         lines.extend(fid_lines)
         lines.append("")
     try:
-        fp_lines = render_rhythmic_fingerprint(brief.composer, graph)
+        fp_lines = render_rhythmic_fingerprint(brief.composer, graph, movement_id)
     except Exception:
         fp_lines = []
     if fp_lines:
@@ -5754,7 +5879,7 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
     # against a real-Chopin 22%, and no distribution test can catch that: the
     # per-movement 10th percentile of chord share is 0.00, because some real
     # movements genuinely are single-line. It has to be said up front.
-    lines.extend(voicing_lines(brief.composer, graph))
+    lines.extend(voicing_lines(brief.composer, graph, movement_id))
     lines.extend(motion_lines(brief.composer))
     lines.extend(cadence_soprano_lines(brief.composer))
 

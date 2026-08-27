@@ -8,16 +8,14 @@ one auditable, patchable graph.
 
 from __future__ import annotations
 
-import contextlib
 import json
-import os
-import tempfile
 from dataclasses import asdict, fields
 from dataclasses import fields as dataclass_fields
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from .atomic_io import write_json_atomic
 from .enums import CompositionMode, PhraseStatus, PipelinePhase
 from .models import (
     CandidateNode,
@@ -707,21 +705,7 @@ class PieceGraph:
         filepath.parent.mkdir(parents=True, exist_ok=True)
         data = self._to_data()
         # Same directory: `os.replace` is only atomic within one filesystem.
-        fd, tmp = tempfile.mkstemp(
-            dir=str(filepath.parent), prefix=f".{filepath.name}.", suffix=".tmp"
-        )
-        try:
-            with os.fdopen(fd, "w") as f:
-                json.dump(data, f, indent=2, default=str)
-                f.flush()
-                os.fsync(f.fileno())
-            os.replace(tmp, filepath)
-        except BaseException:
-            # Leave the previous good file in place, and take the scratch file
-            # with us rather than littering the workspace.
-            with contextlib.suppress(OSError):
-                os.unlink(tmp)
-            raise
+        write_json_atomic(filepath, data, indent=2, default=str)
 
     @classmethod
     def load(cls, path: str) -> "PieceGraph":
