@@ -197,6 +197,7 @@ def test_the_pass_says_why_it_declined_not_only_how_often_it_acted():
     report = {}
     ir = _piece(with_bass=False)
     assert _rest_the_downbeat(ir, (4, 4), share=0.5, report=report) == 0
+    assert report["pass"] == "downbeat_rests"
     assert report["reason"] == "no bar could take a rest"
     assert report["considered"] == 24
     assert report["eligible"] == 0
@@ -236,3 +237,31 @@ def test_the_cadence_bar_keeps_its_downbeat():
     _rest_the_downbeat(ir, (4, 4), share=0.9)
     last = sorted([e for e in ir.principal_line if e.bar == 8], key=lambda x: float(x.beat))
     assert last[0].pitch != "rest"
+
+
+def test_every_early_exit_publishes_its_reason():
+    """`stop()` writes the report itself so the two cannot happen out of order.
+
+    A first version left the write to the caller and every early return
+    published a report with `reason` missing — which is exactly the field the
+    early returns exist to carry. A report that omits the reason on the paths
+    that have one is the same defect as no report at all, arriving quietly.
+    """
+    from scales.surface_composer import PassReport
+
+    report = {}
+    made = PassReport("probe")
+    assert made.stop(report, "nothing to do") == 0
+    assert report["reason"] == "nothing to do"
+    assert report["pass"] == "probe"
+    assert report["ran"] is True
+    assert made.idle
+
+
+def test_a_pass_that_acted_carries_no_reason():
+    """`reason` present means the pass gave up; absent means it worked."""
+    report = {}
+    ir = _piece()
+    assert _rest_the_downbeat(ir, (4, 4), share=0.12, report=report) > 0
+    assert "reason" not in report, report
+    assert report["applied"] > 0

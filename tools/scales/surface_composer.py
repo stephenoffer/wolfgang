@@ -416,6 +416,98 @@ def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> in
     return added
 
 
+class PassReport:
+    """What a surface pass did, and — when it did nothing — why.
+
+    Every surface pass returns the number of edits it made, and a pass that
+    does nothing returns 0. So does a pass that correctly declined, one whose
+    quota rounded away, one switched off by a zero rate, and one that never ran
+    at all. Five states, one integer, and "0" reads as "there was nothing to do"
+    in every log there is. That is the generator-side form of the thing this
+    repo keeps finding on the checking side: something reporting nothing may be
+    unable to report anything.
+
+    It hid two separate faults in one afternoon. `_rest_the_downbeat` was inert
+    on every planned piece because its theme guard was eating whole phrases, and
+    `_hold_over_barline` was idle on three composers because "never swallow a
+    structural arrival" excluded everything once a theme was placed. Both showed
+    up as a plausible `0`, and both were located in one run once the passes said
+    which condition was doing the declining.
+
+    THE REASON, NOT ONLY THE COUNT. `declined: 9` says a pass is declining and
+    not why; `{"theme statement": 7, "quota met": 2}` says which rule to look
+    at. Shared by every surface pass so a section reports one shape:
+
+        {"pass": "downbeat_rests", "ran": True, "considered": 41,
+         "eligible": 4, "allowance": 1, "applied": 1,
+         "declined": {"cadence bar": 9, "the downbeat is the bar's peak": 9}}
+
+    `reason` replaces the per-bar breakdown when the pass exits before looking
+    at any candidate — a zero rate, or material too short to judge.
+    """
+
+    __slots__ = ("name", "considered", "eligible", "allowance", "applied", "declined", "reason")
+
+    def __init__(self, name: str):
+        self.name = name
+        self.considered = 0
+        self.eligible = 0
+        self.allowance = 0
+        self.applied = 0
+        self.declined: collections.Counter = collections.Counter()
+        self.reason = ""
+
+    def decline(self, why: str) -> None:
+        """One candidate rejected, recorded under the rule that rejected it."""
+        self.declined[why] += 1
+
+    def stop(self, report, why: str) -> int:
+        """The pass gives up. Records the reason, writes the report, returns 0.
+
+        It writes the report itself so the two cannot be done in the wrong
+        order — a first version left `_finish` to the caller and every early
+        return published a report with the `reason` field missing, which is
+        precisely the information the early returns exist to carry.
+        """
+        self.reason = why
+        _finish(report, self)
+        return 0
+
+    def as_dict(self) -> dict:
+        out = {
+            "pass": self.name,
+            "ran": True,
+            "considered": self.considered,
+            "eligible": self.eligible,
+            "allowance": self.allowance,
+            "applied": self.applied,
+            "declined": dict(self.declined),
+        }
+        if self.reason:
+            out["reason"] = self.reason
+        return out
+
+    @property
+    def idle(self) -> bool:
+        """Did nothing — which is worth surfacing whether or not it was right to."""
+        return self.applied == 0
+
+
+def _report_into(report, name: str) -> "PassReport":
+    """A PassReport, writing through to the caller's dict if one was given."""
+    made = PassReport(name)
+    if report is not None:
+        report.clear()
+        report["_report"] = made
+    return made
+
+
+def _finish(report, made: "PassReport") -> None:
+    if report is not None:
+        report.pop("_report", None)
+        report.update(made.as_dict())
+
+
 def _rest_the_downbeat(
     layer: LayerIR,
     meter: tuple,
@@ -471,11 +563,9 @@ def _rest_the_downbeat(
     the rate is the piece's and not each phrase's; and no `max(1, ...)` floor,
     which would put one rest in every phrase whatever the composer's rate.
     """
-    log: dict = report if report is not None else {}
-    log.update({"ran": True, "declined": collections.Counter(), "applied": 0})
+    made = _report_into(report, "downbeat_rests")
     if share <= 0:
-        log["reason"] = "share is zero"
-        return 0
+        return made.stop(report, "share is zero")
     if composer:
         from .composition_brief import downbeat_rest_rate
 
@@ -483,9 +573,7 @@ def _rest_the_downbeat(
         if measured is not None:
             share = measured
             if share <= 0:
-                log["reason"] = f"{composer} rests on no downbeats"
-                return 0
-    log["share"] = share
+                return made.stop(report, f"{composer} rests on no downbeats")
 
     from .duration import beats_to_dur, dur_to_beats, largest_dur_at_most
 
@@ -494,8 +582,7 @@ def _rest_the_downbeat(
         key=lambda e: (e.bar, float(e.beat)),
     )
     if len(line) < 8:
-        log["reason"] = f"melody too short to judge ({len(line)} notes)"
-        return 0
+        return made.stop(report, f"melody too short to judge ({len(line)} notes)")
 
     by_bar: dict[int, list] = {}
     for event in line:
@@ -550,13 +637,13 @@ def _rest_the_downbeat(
     eligible = []
     for bar in sorted(by_bar):
         if bar == cadence_bar:
-            log["declined"]["cadence bar"] += 1
+            made.decline("cadence bar")
             continue
         if bar in protected:
-            log["declined"]["theme statement"] += 1
+            made.decline("theme statement")
             continue
         if bar not in bass_downbeats:
-            log["declined"]["no accompaniment on the downbeat"] += 1
+            made.decline("no accompaniment on the downbeat")
             continue
         events = by_bar[bar]
         # TWO, not three. A bar whose melody is a rest and then one note is
@@ -564,33 +651,32 @@ def _rest_the_downbeat(
         # requiring three left a four-bar phrase in 2/4 with ZERO eligible bars,
         # so the piece's quota landed on phrases that could not spend it.
         if len(events) < 2:
-            log["declined"]["too few melody notes in the bar"] += 1
+            made.decline("too few melody notes in the bar")
             continue
         head, nxt = events[0], events[1]
         if head.pitch == "rest" or nxt.pitch == "rest":
-            log["declined"]["already silent"] += 1
+            made.decline("already silent")
             continue
         if getattr(head, "tie", None) or getattr(nxt, "tie", None):
-            log["declined"]["tied"] += 1
+            made.decline("tied")
             continue
         if abs(float(head.beat) - 1.0) > 1e-6:
-            log["declined"]["bar already starts late"] += 1
+            made.decline("bar already starts late")
             continue  # nothing to silence: the bar already starts late
         tops = [pitch_to_midi(e.pitch) for e in events if e.pitch != "rest"]
         tops = [m for m in tops if m is not None]
         head_midi = pitch_to_midi(head.pitch)
         if tops and head_midi is not None and head_midi >= max(tops):
-            log["declined"]["the downbeat is the bar's peak"] += 1
+            made.decline("the downbeat is the bar's peak")
             continue  # the bar's peak is not a note to delete
         gap = float(nxt.beat) - float(head.beat)
         if gap <= 0:
             continue
         eligible.append((bar, head, gap))
-    log["considered"] = len(by_bar)
-    log["eligible"] = len(eligible)
+    made.considered = len(by_bar)
+    made.eligible = len(eligible)
     if not eligible:
-        log["reason"] = "no bar could take a rest"
-        return 0
+        return made.stop(report, "no bar could take a rest")
 
     # AN EXACT RUNNING QUOTA OVER ABSOLUTE BARS.
     #
@@ -632,10 +718,9 @@ def _rest_the_downbeat(
     allowance = int(hi * share) - int((lo - 1) * share)
     already = sum(1 for events in by_bar.values() if events and events[0].pitch == "rest")
     allowance -= already
-    log["allowance"] = allowance
+    made.allowance = allowance
     if allowance <= 0:
-        log["reason"] = "this phrase's share of the piece's quota is already met"
-        return 0
+        return made.stop(report, "this phrase's share of the piece's quota is already met")
 
     # Spread across the phrase rather than taking the first N in a row.
     if len(eligible) > allowance:
@@ -653,7 +738,8 @@ def _rest_the_downbeat(
         head.articulation = None
         head.ornament = None
         done += 1
-    log["applied"] = done
+    made.applied = done
+    _finish(report, made)
     return done
 
 
