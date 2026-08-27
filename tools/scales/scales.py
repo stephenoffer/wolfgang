@@ -566,6 +566,10 @@ def build_form_graph(
         phrases = _build_sonata(key, tempo_bpm, meter, graph.style_dna, movement_id)
     elif form == "theme_variations":
         phrases = _build_theme_variations(key, tempo_bpm, meter, graph.style_dna, movement_id)
+    elif form in ("binary", "rounded_binary"):
+        phrases = _build_binary(
+            key, tempo_bpm, meter, graph.style_dna, movement_id, rounded=form == "rounded_binary"
+        )
     else:
         # SAY SO. `_build_simple` is a reasonable default for a form this system
         # has no spec for, but it was silent: asking for a `rondo` returned a
@@ -763,17 +767,17 @@ def build_form_graph(
     if form_substituted:
         _LOG.warning(
             "form %r has no spec in this system; built the default song form "
-            "(A-B-A', %d phrases) instead. Known forms: ternary, sonata, "
-            "theme_variations.",
+            "(A-B-A', %d phrases) instead. Known forms: %s.",
             form_substituted,
             len(phrase_summaries),
+            ", ".join(_KNOWN_FORMS),
         )
         phrase_summaries.append(
             {
                 "warning": "form_substituted",
                 "requested": form_substituted,
                 "built": "simple song form (A-B-A')",
-                "known_forms": ["ternary", "sonata", "theme_variations"],
+                "known_forms": list(_KNOWN_FORMS),
                 "note": (
                     "A rondo built this way has no refrain returns and a "
                     "minuet_trio has no trio. Use a known form, or lay the "
@@ -1587,6 +1591,62 @@ _TERNARY_SPEC = [
     ("m1_coda", 4, _PF.CODA.value, _CT.PLAGAL.value, "tonic"),
 ]
 
+# ── Binary and rounded binary ────────────────────────────────────────────────
+#
+# The two commonest forms in the repertoire this project is armed for, and
+# neither had a spec: every Baroque dance (allemande, courante, sarabande,
+# gigue), every Scarlatti sonata, and — as rounded binary — the minuet, the trio
+# and most Classical dance movements. Asking for a `binary` gigue silently built
+# a four-phrase A-B-A' song form, which is not a gigue in any respect that
+# matters: no modulation to the dominant, no double bar, no return.
+#
+# SIMPLE BINARY ‖: A :‖: B :‖ — A leaves the tonic and cadences in the new key
+# (the dominant from a major tonic, the relative major from a minor one, which
+# is why the second half of `_binary_spec` is chosen from the mode rather than
+# fixed); B works back and closes in the tonic. The two halves balance; B is
+# usually the longer, because getting home takes more room than leaving.
+#: The forms `build_form_graph` dispatches. One list, so the warning message,
+#: the result field and the tests cannot disagree about what exists — a
+#: hardcoded copy in the test broke on every form ADDED to the system.
+_KNOWN_FORMS = ("binary", "rounded_binary", "ternary", "sonata", "theme_variations")
+
+_BINARY_SPEC_MAJOR = [
+    ("m1_a", 4, _PF.PRESENTATION.value, _CT.NONE.value, "tonic"),
+    ("m1_a", 4, _PF.CONTINUATION.value, _CT.PAC.value, "dominant"),
+    ("m1_b", 4, _PF.CONTINUATION.value, _CT.EVADED.value, "dominant"),
+    ("m1_b", 4, _PF.RETRANSITION.value, _CT.HC.value, "tonic"),
+    ("m1_b", 6, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+]
+_BINARY_SPEC_MINOR = [
+    ("m1_a", 4, _PF.PRESENTATION.value, _CT.NONE.value, "tonic"),
+    ("m1_a", 4, _PF.CONTINUATION.value, _CT.PAC.value, "relative"),
+    ("m1_b", 4, _PF.CONTINUATION.value, _CT.EVADED.value, "relative"),
+    ("m1_b", 4, _PF.RETRANSITION.value, _CT.HC.value, "tonic"),
+    ("m1_b", 6, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+]
+
+# ROUNDED BINARY ‖: A :‖: B A' :‖ — the same departure, then the opening
+# material RETURNS in the tonic. The difference from ternary is that A' is a
+# reprise inside the second half rather than a third section, so B is short: a
+# digression, not a contrasting theme.
+_ROUNDED_BINARY_SPEC_MAJOR = [
+    ("m1_a", 4, _PF.PRESENTATION.value, _CT.NONE.value, "tonic"),
+    ("m1_a", 4, _PF.CONTINUATION.value, _CT.PAC.value, "dominant"),
+    ("m1_b", 4, _PF.CONTRASTING_THEME.value, _CT.EVADED.value, "dominant"),
+    ("m1_b", 4, _PF.RETRANSITION.value, _CT.HC.value, "tonic"),
+    ("m1_a2", 4, _PF.RETURN.value, _CT.NONE.value, "tonic"),
+    ("m1_a2", 6, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+]
+_ROUNDED_BINARY_SPEC_MINOR = [
+    ("m1_a", 4, _PF.PRESENTATION.value, _CT.NONE.value, "tonic"),
+    ("m1_a", 4, _PF.CONTINUATION.value, _CT.PAC.value, "relative"),
+    ("m1_b", 4, _PF.CONTRASTING_THEME.value, _CT.EVADED.value, "relative"),
+    ("m1_b", 4, _PF.RETRANSITION.value, _CT.HC.value, "tonic"),
+    ("m1_a2", 4, _PF.RETURN.value, _CT.NONE.value, "tonic"),
+    ("m1_a2", 6, _PF.CADENTIAL.value, _CT.PAC.value, "tonic"),
+]
+
+
 # A complete sonata movement: exposition, development, recapitulation, coda.
 # Building only the exposition (as before) meant asking for sonata form got a
 # fragment that stops after the closing theme, in the wrong key, with the
@@ -1695,6 +1755,31 @@ def _build_sonata(
 ) -> List[PhraseSlot]:
     """A complete sonata-allegro: exposition, development, recapitulation, coda."""
     return _build_from_spec(_SONATA_SPEC, key, tempo, meter, style, movement_id)
+
+
+def _build_binary(
+    key: str,
+    tempo: int,
+    meter: Tuple[int, int],
+    style: StyleDNA,
+    movement_id: str = "m1",
+    rounded: bool = False,
+) -> List[PhraseSlot]:
+    """Binary or rounded binary, with the second key area chosen by mode.
+
+    A major-key first half goes to the DOMINANT; a minor-key one goes to the
+    RELATIVE MAJOR. That is not a stylistic preference — a minor-key dance that
+    cadences in the minor dominant is the rarer choice, and getting it wrong
+    puts the whole first half in the wrong key.
+    """
+    from .pitch import is_minor_key
+
+    minor = is_minor_key(key)
+    if rounded:
+        spec = _ROUNDED_BINARY_SPEC_MINOR if minor else _ROUNDED_BINARY_SPEC_MAJOR
+    else:
+        spec = _BINARY_SPEC_MINOR if minor else _BINARY_SPEC_MAJOR
+    return _build_from_spec(spec, key, tempo, meter, style, movement_id)
 
 
 def _build_theme_variations(

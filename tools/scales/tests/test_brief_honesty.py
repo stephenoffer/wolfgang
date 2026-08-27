@@ -581,3 +581,54 @@ def test_no_exemplar_shows_an_empty_voice():
                     voices = [v.strip() for v in shorthand.split("//")]
                     assert all(voices), f"{composer}: empty voice in {shorthand!r}"
     assert checked, "no multi-voice exemplars were examined"
+
+
+# ── Form specs ───────────────────────────────────────────────────────────────
+
+
+def test_binary_and_rounded_binary_are_real_forms_not_the_song_default():
+    """Every Baroque dance and every Scarlatti sonata is binary, and the minuet
+    is rounded binary — and neither had a spec, so both silently built a
+    four-phrase A-B-A' song form. That is not a gigue in any respect that
+    matters: no modulation to the dominant, no return.
+    """
+    from scales.models import StyleDNA
+    from scales.scales import _build_binary
+
+    def shape(key, rounded):
+        slots = _build_binary(key, 100, (4, 4), StyleDNA(), "m1", rounded=rounded)
+        return [(s.section_id, s.key, s.cadence_target) for s in slots]
+
+    simple = shape("G major", False)
+    # Two halves, and the first one LEAVES the tonic and cadences there.
+    assert simple[0][0] == "m1_a" and simple[0][1] == "G major"
+    assert simple[1][1] == "D major" and simple[1][2] == "PAC"
+    assert simple[-1][1] == "G major" and simple[-1][2] == "PAC"
+    assert {sec for sec, _, _ in simple} == {"m1_a", "m1_b"}, "simple binary has no reprise"
+
+    # A minor-key first half goes to the RELATIVE MAJOR, not the minor dominant.
+    assert shape("d minor", False)[1][1] == "F major"
+
+    # Rounded binary brings the opening back, inside the second half.
+    rounded = shape("G major", True)
+    assert "m1_a2" in {sec for sec, _, _ in rounded}, "rounded binary must return"
+    assert rounded[-1][1] == "G major" and rounded[-1][2] == "PAC"
+
+
+def test_the_planning_guidance_lists_the_forms_that_exist():
+    """An agent choosing a form has no way to know which are real but to be
+    told, and an unknown name silently builds a song form."""
+    from pathlib import Path
+
+    from scales import scales
+
+    doc = Path(__file__).resolve().parents[3] / ".claude" / "skills" / "w-plan" / "SKILL.md"
+    if not doc.exists():
+        return
+    text = doc.read_text()
+    for form in ("binary", "rounded_binary", "ternary", "sonata", "theme_variations"):
+        assert f"`{form}`" in text, f"w-plan does not document the {form} form"
+    # And the code's own list agrees.
+    src = __import__("inspect").getsource(scales.build_form_graph)
+    for form in ("binary", "rounded_binary", "ternary", "sonata", "theme_variations"):
+        assert form in src, f"{form} is documented but not dispatched"

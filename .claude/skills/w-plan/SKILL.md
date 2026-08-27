@@ -206,6 +206,20 @@ for p in phrases:
 "
 ```
 
+`form` is one of **`binary`**, **`rounded_binary`**, **`ternary`**, **`sonata`**,
+**`theme_variations`**. Anything else builds a short A-B-A' song form and SAYS
+so in the result (`form_substituted`) — read that field, because a `rondo` built
+this way has no refrain returns and a `fugue` has no subject entries.
+
+Pick the form the music actually is, not the largest one available. Binary is
+every Baroque dance — allemande, courante, sarabande, gigue — and every
+Scarlatti sonata: two halves, the first cadencing in the dominant (or the
+relative major from a minor tonic), the second working home. Rounded binary
+adds the opening's return inside the second half, and is the minuet, the trio,
+and most Classical dance movements. Reach for `ternary` when the middle really
+is a separate section rather than a digression, and for `sonata` only when
+there is a genuine second subject in a second key.
+
 Review: key scheme, cadence pacing, texture contrast, motif obligations.
 
 ## Step 6: Self-Critique
