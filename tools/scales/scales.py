@@ -2818,8 +2818,13 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
     2. **Truncate a note that is still sounding when its own voice re-attacks.**
        One voice cannot play two notes at once; the earlier note ends where the
        next begins.
-    3. **Drop what runs past the barline.** A bar holding 4.875 beats of a 4/4
-       cannot be engraved; the overflow is the engine's error, not music.
+    3. **Deal with what runs past the barline.** A bar holding 4.875 beats of a
+       4/4 cannot be engraved; the overflow is the engine's error, not music. A
+       note STARTING past the barline is dropped (`overflow_dropped`); one that
+       merely runs over the end is shortened to fit (`overflow_clamped`). Those
+       are different reports — the first loses music, the second does not — and
+       reporting both as "dropped" said three notes had been lost from a phrase
+       where none had.
 
     This is a repair, not a rescue: it makes a malformed surface legal, and the
     counts it returns are the signal that the generator upstream needs fixing.
@@ -2833,6 +2838,7 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
         "snapped": 0,
         "duplicates_removed": 0,
         "overlaps_trimmed": 0,
+        "overflow_clamped": 0,
         "overflow_dropped": 0,
     }
 
@@ -2908,7 +2914,13 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
                 # can be LONGER than the room (1.4375 -> a dotted quarter at
                 # 1.5), so the clamp rounded straight back past the barline.
                 e.duration = largest_dur_at_most(room)
-                counts["overlaps_trimmed" if nxt is not None else "overflow_dropped"] += 1
+                # SHORTENED to fit, not removed. Counting that as
+                # `overflow_dropped` said three notes had been lost from a
+                # phrase where none had — they were clamped by a sixteenth,
+                # because a drifted onset at beat 4.56 snapped to 4.5625 and a
+                # 4/4 bar has no room for an eighth there. "Dropped" and
+                # "clamped" are not the same report and the first is alarming.
+                counts["overlaps_trimmed" if nxt is not None else "overflow_clamped"] += 1
             keep.append(e)
         events[:] = keep
 

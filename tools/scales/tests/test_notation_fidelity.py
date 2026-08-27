@@ -2353,3 +2353,40 @@ def test_the_repair_distinguishes_a_duplicate_from_an_overlap():
     # Same pitch, different length, is not the same note written twice.
     relength = _repair_engine_surface(surface("C5", "h"), (4, 4))
     assert relength.get("overlaps_trimmed") == 1, relength
+
+
+def test_a_clamped_note_is_not_reported_as_a_dropped_one():
+    """A note STARTING past the barline is gone; one that merely runs over the
+    end is shortened to fit. Reporting both as `overflow_dropped` said three
+    notes had been lost from a phrase where none had — they were clamped by a
+    sixteenth, because a drifted onset at beat 4.56 snapped to 4.5625 and a 4/4
+    bar has no room for an eighth there.
+    """
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    def one(beat, duration):
+        layer = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+        layer.principal_line = [
+            LayerEvent(
+                bar=1,
+                beat=beat,
+                pitch="C5",
+                duration=duration,
+                role="structural",
+                source_layer="principal_line",
+            )
+        ]
+        return layer, _repair_engine_surface(layer, (4, 4))
+
+    # Runs a sixteenth past the end: shortened, and still there.
+    layer, counts = one(4.5625, "e")
+    assert counts.get("overflow_clamped") == 1, counts
+    assert not counts.get("overflow_dropped"), counts
+    assert len(layer.principal_line) == 1, "a clamped note must survive"
+
+    # Starts past the barline: genuinely gone.
+    layer, counts = one(5.5, "e")
+    assert counts.get("overflow_dropped") == 1, counts
+    assert not counts.get("overflow_clamped"), counts
+    assert layer.principal_line == [], "a note starting past the bar cannot be kept"
