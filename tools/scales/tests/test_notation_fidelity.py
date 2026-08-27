@@ -2390,3 +2390,41 @@ def test_a_clamped_note_is_not_reported_as_a_dropped_one():
     assert counts.get("overflow_dropped") == 1, counts
     assert not counts.get("overflow_clamped"), counts
     assert layer.principal_line == [], "a note starting past the bar cannot be kept"
+
+
+def test_a_triplet_onset_is_not_counted_as_drift_repaired():
+    """`snapped` compared the resolved fraction to `Fraction(e.beat)` — the
+    exact binary expansion of a float — and 7/6 cannot be written as a float.
+
+    So every triplet onset counted as drift repaired, and a phrase whose onsets
+    were all already exact to within 1e-6 reported `snapped: 6`. A counter that
+    fires on correct data says nothing about the incorrect kind.
+    """
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    def snapped(beat):
+        layer = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+        layer.principal_line = [
+            LayerEvent(
+                bar=1,
+                beat=beat,
+                pitch="C5",
+                duration="s",
+                role="structural",
+                source_layer="principal_line",
+            )
+        ]
+        counts = _repair_engine_surface(layer, (4, 4))
+        return counts.get("snapped", 0), layer.principal_line[0].beat
+
+    # Exact positions, tuplets included: nothing moved, nothing counted.
+    for beat in (1.166667, 1.3333333, 1.25, 1.5625, 1.2):
+        count, after = snapped(beat)
+        assert count == 0, f"{beat} counted as a snap but resolved to {after}"
+
+    # Real float drift still moves and still counts.
+    for beat, resolved in ((1.56, 1.5625), (2.06, 2.0625)):
+        count, after = snapped(beat)
+        assert count == 1, f"{beat} was drift and went uncounted"
+        assert abs(after - resolved) < 1e-9, after

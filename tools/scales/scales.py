@@ -2953,7 +2953,14 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
     for events in _all_event_lists(layer):
         for e in events:
             exact = _on_grid(e.beat)
-            if exact != Fraction(e.beat):
+            # Count a snap only when the note actually MOVED. Comparing the
+            # resolved fraction to `Fraction(e.beat)` compares it to the exact
+            # binary expansion of a float, which for any tuplet is never equal:
+            # 7/6 cannot be written as a float, so every triplet onset counted
+            # as drift repaired. That reported `snapped: 6` on a phrase whose
+            # onsets were all already exact to within 1e-6 — a clean surface
+            # described as needing six repairs.
+            if abs(float(exact) - float(e.beat)) > 1e-6:
                 counts["snapped"] += 1
             e.beat = round(float(exact), 6)
 
