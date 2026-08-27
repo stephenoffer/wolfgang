@@ -2714,3 +2714,44 @@ def test_padding_tolerates_the_float_residue_it_inherits():
     assert not [n for n in measure.notesAndRests if isinstance(n, music21.note.Rest)], (
         "float residue was treated as a gap and padded"
     )
+
+
+def test_pedal_marked_on_two_bars_is_two_pedallings():
+    """`ped` is written PER BAR. Two marked bars with unmarked ones between
+    them are two pedallings, not one long blur.
+
+    The span ran on until the NEXT `down`, so pedal marked on bars 1 and 4 came
+    out as a single four-bar span holding I-IV-V-I under one pedal — and bar 4's
+    own pedalling was then discarded for having only one note under it, which is
+    what a held final chord always has.
+    """
+    import re
+    import warnings
+
+    warnings.filterwarnings("ignore")
+
+    from scales.assembler import assemble
+    from scales.piece_graph import PieceGraph
+    from scales.scales import _WORKSPACE
+
+    graph_path = _WORKSPACE / "agent-fidelity-20260827" / "piece_graph.json"
+    if not graph_path.exists():
+        pytest.skip("no fidelity probe in the workspace")
+
+    path = assemble(
+        PieceGraph.load(str(graph_path)), scope="full", output_dir="/tmp/wolfgang-pedal"
+    )
+    text = Path(path).read_text()
+
+    marks = []
+    for measure in re.finditer(r'<measure[^>]*number="(\d+)"[^>]*>(.*?)</measure>', text, re.S):
+        for pedal in re.finditer(r'<pedal[^/>]*type="(\w+)"', measure.group(2)):
+            marks.append((int(measure.group(1)), pedal.group(1)))
+
+    assert marks, "no pedal reached the score"
+    starts = [bar for bar, kind in marks if kind == "start"]
+    stops = [bar for bar, kind in marks if kind == "stop"]
+    assert len(starts) == len(stops), marks
+    # Every span closes in the bar it opened: no pedal is held across a bar the
+    # composer did not mark.
+    assert starts == stops, f"a pedal span crossed an unmarked bar: {marks}"

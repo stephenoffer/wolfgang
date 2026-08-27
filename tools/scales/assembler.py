@@ -41,10 +41,15 @@ def scoped_basename(piece_id: str, scope: str) -> str:
 
     "full" keeps the bare piece id, so the deliverable path is unchanged.
     """
+    # A graph with no `piece_id` produced the basename "" — so the writers put
+    # out a file called ".mid" / ".musicxml", which is hidden on Unix and which
+    # music21 cannot parse back. Silent until something tries to read its own
+    # output.
+    name = str(piece_id or "").strip() or "piece"
     tag = str(scope or "full").strip()
     if not tag or tag == "full":
-        return str(piece_id)
-    return f"{piece_id}__{re.sub(r'[^A-Za-z0-9_.-]+', '-', tag)}"
+        return name
+    return f"{name}__{re.sub(r'[^A-Za-z0-9_.-]+', '-', tag)}"
 
 
 def assemble(
@@ -1833,9 +1838,16 @@ def _apply_spanners(part, events: List[EventIR], note_map: Dict[int, Any]) -> No
                 pass
         open_ottava = None
 
+    # Which bars the composer actually asked for pedal in. A span may only
+    # cover these: `ped` is written PER BAR, so two marked bars with unmarked
+    # ones between them are two pedallings, not one long blur.
+    pedal_marked = {e.bar for e in ordered if getattr(e, "pedal", None) in ("down", "change")}
+
     def _close_pedal():
         nonlocal open_pedal
-        if open_pedal and len(open_pedal[1]) >= 2:
+        # ONE note is a real pedalling — a held final chord under the pedal is
+        # the commonest of all. Requiring two dropped every one of them.
+        if open_pedal and open_pedal[1]:
             try:
                 _emit(music21.expressions.PedalMark(open_pedal[1]))
             except Exception:
@@ -1867,7 +1879,16 @@ def _apply_spanners(part, events: List[EventIR], note_map: Dict[int, Any]) -> No
             if bar - open_ottava[1] >= _MAX_SPANNER_BARS * 2:
                 _close_ottava()
         if open_pedal:
-            open_pedal[1].append(n)
+            # Close BEFORE reaching a bar the composer did not pedal. The span
+            # used to run on until the next `down`, so pedal marked on bars 1
+            # and 4 came out as one four-bar span holding I-IV-V-I under a
+            # single pedal — and bar 4's own pedalling was then dropped for
+            # having one note. Two marks, one blur, nothing said.
+            if bar not in pedal_marked:
+                _close_pedal()
+            else:
+                open_pedal[1].append(n)
+        if open_pedal:
             if bar - open_pedal[0] >= _MAX_SPANNER_BARS:
                 _close_pedal()
 
