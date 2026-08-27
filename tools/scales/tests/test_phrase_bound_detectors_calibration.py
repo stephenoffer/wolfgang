@@ -311,3 +311,72 @@ def test_the_four_bounds_dependent_detectors_are_named():
         "passes no PieceGraph — so a new one would inherit a clean record it "
         "never earned. Calibrate it here, against corpus bar records."
     )
+
+
+# ─── A composer's own band needs a composer's worth of movements ─────────────
+
+
+@pytest.mark.calibration
+def test_a_thin_corpus_does_not_get_a_narrow_band_of_its_own():
+    """The sample-size guard counted staff-views, and two staves of one
+    movement are not independent samples of a composer.
+
+    Liszt cleared a threshold of 8 with 8 views drawn from FOUR pieces, giving
+    him a 95th-percentile dominant-value share of 0.714 — narrower than any
+    well-armed composer's. A generated Liszt then tripped
+    `rhythm_vocabulary_poverty` at 73% and 97%, while real CHOPIN left hands
+    exceed 97% in a quarter of his movements and reach 100%. The band was a fact
+    about the sample, not about Liszt.
+
+    Four composers were affected: debussy and liszt at 4 movements,
+    rimsky-korsakov and vivaldi at 5. They fall back to the wide cross-composer
+    band, which errs toward silence — the right failure for a thin corpus.
+    """
+    import collections
+
+    from scales.composition_brief import _iter_corpus_bars
+    from scales.score_realism import _rhythm_vocabulary_bounds
+
+    checked = 0
+    for composer in ("liszt", "mozart", "chopin", "haydn"):
+        per = collections.defaultdict(int)
+        try:
+            for bar in _iter_corpus_bars(composer):
+                for hand in ("rh_display", "lh_display"):
+                    for event in bar.get(hand) or []:
+                        if isinstance(event, dict) and event.get("type") != "rest":
+                            per[(bar.get("source"), hand)] += 1
+        except Exception:
+            continue
+        movements = {src for (src, _hand), n in per.items() if n >= 40}
+        if not movements:
+            continue
+        checked += 1
+        bounds = _rhythm_vocabulary_bounds(composer)
+        if len(movements) < 8:
+            assert bounds is None, (
+                f"{composer} has {len(movements)} movements and still gets a band "
+                f"of its own: {bounds}"
+            )
+        else:
+            assert bounds is not None, f"{composer} has {len(movements)} movements and no band"
+    if checked < 2:
+        pytest.skip("corpus not available")
+
+
+def test_the_detector_still_catches_a_staff_of_one_value():
+    """The other falsification question. A band wide enough to say nothing
+    about anything would pass the test above and be useless.
+    """
+    from scales.score_realism import detect_rhythm_vocabulary_poverty
+
+    one_value = [{"staff": 0, "bar": i + 1, "durations": [1.0]} for i in range(60)]
+    for composer in ("liszt", "mozart", ""):
+        assert detect_rhythm_vocabulary_poverty(one_value, composer=composer), composer
+
+    varied = [
+        {"staff": 0, "bar": i + 1, "durations": [[0.25, 0.5, 1.0, 1.5, 2.0][i % 5]]}
+        for i in range(60)
+    ]
+    for composer in ("liszt", "mozart"):
+        assert not detect_rhythm_vocabulary_poverty(varied, composer=composer), composer

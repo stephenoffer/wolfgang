@@ -727,13 +727,27 @@ def _rhythm_vocabulary_bounds(composer: str) -> Optional[Tuple[float, int]]:
                     if isinstance(e, dict) and e.get("type") != "rest" and e.get("dur"):
                         per[(bar.get("source"), hand)].append(round(float(e["dur"]), 3))
         shares, distincts = [], []
-        for durs in per.values():
+        sources: set = set()
+        for (source, _hand), durs in per.items():
             if len(durs) < 40:
                 continue
             counts = Counter(durs)
             shares.append(counts.most_common(1)[0][1] / len(durs))
             distincts.append(len(counts))
-        if len(shares) >= 8:
+            sources.add(source)
+        # MOVEMENTS, not staff-views. The guard counted staff-views, and the two
+        # staves of one movement are not independent samples of a composer:
+        # Liszt cleared a threshold of 8 with 8 views drawn from FOUR pieces, so
+        # his 95th percentile share was effectively the second-highest of four.
+        # It came out at 0.714, and a generated Liszt tripped the detector at
+        # 73% and 97% — while real CHOPIN left hands exceed 97% in a quarter of
+        # his movements. A band that narrow is a fact about the sample.
+        #
+        # Four composers were affected: debussy and liszt at 4 movements,
+        # rimsky-korsakov and vivaldi at 5. They fall back to the wide
+        # cross-composer band, which errs toward saying nothing — the right
+        # failure for a thinly-armed composer.
+        if len(sources) >= 8 and len(shares) >= 8:
             shares.sort()
             distincts.sort()
             bounds = (
