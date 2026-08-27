@@ -488,24 +488,41 @@ def test_a_composer_with_no_compound_metre_teaches_none():
 
 def test_an_empty_exemplar_result_says_why():
     """Every filter in the per-bar loop is a `continue`, so a spec whose
-    candidates ALL fail returned nothing and said nothing.
+    candidates ALL fail returns nothing and, without this, says nothing — which
+    reads as "this composer has no material" when it really means "every bar we
+    found was unusable".
 
-    Handel and Schubert came back with zero exemplars and zero warnings, which
-    reads as "this composer has no material" when it is really "every bar we
-    found was unusable" — their records all underfill their metre, a corpus
-    extraction defect, and both are already flagged `needs_reacquire`.
+    Written against handel and schubert, whose records underfilled their metre.
+    Both have since been re-acquired and now return exemplars, so the original
+    `if exemplars: continue` guard skipped every case and this test executed
+    **zero assertions** — it had stopped checking the behaviour entirely while
+    still passing. The empty case is now CONSTRUCTED rather than waited for.
     """
     from scales.composition_brief import _retrieve_exemplars
     from scales.models import PhraseSlot
 
-    for composer in ("handel", "schubert"):
+    cases = {
+        "an unarmed composer": ("nobody_by_this_name", (4, 4)),
+        "a metre the corpus has never seen": ("mozart", (23, 16)),
+        "no composer at all": ("", (4, 4)),
+    }
+    for label, (composer, meter) in cases.items():
         warnings: list = []
-        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=meter)
         exemplars = _retrieve_exemplars(composer, slot, 4, warnings)
-        if exemplars:
-            continue  # re-acquired since; nothing to explain
-        assert warnings, f"{composer} returned nothing and said nothing"
-        assert any("unusable" in w for w in warnings), warnings
+        assert not exemplars, f"{label}: expected no exemplars, got {len(exemplars)}"
+        assert warnings, f"{label}: returned nothing and said nothing"
+
+
+def test_real_composers_still_return_exemplars():
+    """The other half: the check above must not be passing because retrieval is
+    broken for everyone."""
+    from scales.composition_brief import _retrieve_exemplars
+    from scales.models import PhraseSlot
+
+    for composer in ("mozart", "handel", "schubert"):
+        slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=(4, 4))
+        assert _retrieve_exemplars(composer, slot, 4, []), composer
 
 
 def test_a_metre_dead_end_blames_the_metre_not_the_texture():
@@ -632,3 +649,63 @@ def test_the_planning_guidance_lists_the_forms_that_exist():
     src = __import__("inspect").getsource(scales.build_form_graph)
     for form in ("binary", "rounded_binary", "ternary", "sonata", "theme_variations"):
         assert form in src, f"{form} is documented but not dispatched"
+
+
+def test_an_unreadable_corpus_shard_is_not_skipped_in_silence():
+    """A corrupt or half-written shard was `continue`d without a word, so a
+    composer quietly lost several thousand bars and every statistic downstream —
+    density targets, fingerprints, the corpus profile the gate compares against
+    — was computed over less corpus than it reported.
+
+    Measured: truncating one of Mozart's four shards drops 2,000 of his 7,022
+    bars. An interrupted rebuild is the ordinary way to get one, and nothing
+    anywhere said which file to rebuild.
+    """
+    import shutil
+    import tempfile
+    from pathlib import Path
+
+    import scales.composition_brief as brief
+
+    source = Path("tools/reference_index/mozart")
+    if not source.is_dir() or not list(source.glob("bars_*.json")):
+        pytest.skip("no sharded corpus on disk")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        shutil.copytree(source, root / "mozart")
+        shard = sorted((root / "mozart").glob("bars_*.json"))[0]
+        shard.write_text("")  # what an interrupted write leaves behind
+
+        original = brief._REFERENCE_INDEX
+        try:
+            brief._REFERENCE_INDEX = root
+            with _capture_warnings() as logged:
+                bars = sum(1 for _ in brief._iter_corpus_bars("mozart"))
+        finally:
+            brief._REFERENCE_INDEX = original
+
+        assert bars > 0, "the other shards must still load"
+        assert logged, "an unreadable shard must be reported, not skipped silently"
+        assert any(str(shard.name) in line for line in logged), logged
+
+
+class _capture_warnings:
+    """Collect WARNING records from the module's logger."""
+
+    def __enter__(self):
+        import logging
+
+        self._records: list = []
+        self._handler = logging.Handler()
+        self._handler.emit = lambda record: self._records.append(record.getMessage())
+        self._logger = logging.getLogger("scales.composition_brief")
+        self._logger.addHandler(self._handler)
+        self._prev = self._logger.level
+        self._logger.setLevel(logging.WARNING)
+        return self._records
+
+    def __exit__(self, *exc):
+        self._logger.removeHandler(self._handler)
+        self._logger.setLevel(self._prev)
+        return False

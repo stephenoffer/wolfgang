@@ -13,6 +13,7 @@ compiled packs, and texture templates. Thresholding lives in commit_gate.py.
 
 from __future__ import annotations
 
+import collections
 import json
 import logging
 import re
@@ -20,6 +21,7 @@ import statistics
 from dataclasses import dataclass, field
 from fractions import Fraction
 from pathlib import Path
+from statistics import mean, median
 from typing import Any, Dict, List, Optional, Tuple
 
 from .corpus_adapter import AdaptedBar, CorpusAdapter, CorpusQuery
@@ -44,6 +46,7 @@ _FINGERPRINT_CACHE: Dict[str, Any] = {}
 _SCOPE_CACHE: Dict[str, Any] = {}
 _TEXTURE_TEMPLATE_CACHE: Dict[str, Dict[str, Any]] = {}
 _PACK_CACHE: Dict[str, Any] = {}  # compiled_packs/<composer>/<name>.json
+_PACK_SOURCE: Dict[str, str] = {}  # which id actually supplied each cached pack
 
 
 def _pack_dir(composer: str) -> str:
@@ -111,9 +114,25 @@ def _load_pack(composer: str, name: str) -> Any:
                 member_pack = _load_pack(member, name)
                 if member_pack:
                     data = member_pack
+                    # Which member stood in. A style with no pack of its own
+                    # gets ONE member's doctrine — Haydn's cadence scripts and
+                    # ornament intents were printed under "STYLE DOCTRINE" for
+                    # `style__classical` with nothing saying they were his
+                    # rather than the style's. The substitution is reasonable;
+                    # making it silent is the part this project keeps paying for.
+                    _PACK_SOURCE[key] = member
                     break
     _PACK_CACHE[key] = data
     return data
+
+
+def pack_source(composer: str, name: str) -> str:
+    """Which id actually supplied a pack — the reference itself, or the member
+    that stood in for an aggregate that has no pack of its own."""
+    key = f"{composer}/{name}"
+    if key not in _PACK_CACHE:
+        _load_pack(composer, name)
+    return _PACK_SOURCE.get(key, composer)
 
 
 def corpus_profile(composer: str) -> Dict[str, Any]:
@@ -137,14 +156,36 @@ def corpus_profile(composer: str) -> Dict[str, Any]:
     data = _load_pack(composer, "corpus_profile") or {}
     metrics = data.get("metrics") if isinstance(data, dict) else None
     if isinstance(metrics, dict) and metrics and "melody_direction_change_pct" not in metrics:
-        logger.warning(
-            "corpus_profile for %r predates the metric rename (no "
-            "melody_direction_change_pct); ignoring it rather than judging a "
-            "section against stale numbers. Rebuild with "
-            "`python -m scripts.build_corpus_profiles`.",
-            composer,
-        )
-        data = {}
+        # Discarding the stale profile is right; leaving nothing in its place is
+        # not. An AGGREGATE reference (a style or a `blend:a+b`) has armed
+        # members whose own profiles are current, and `build_corpus_profiles`
+        # — the rebuild this used to recommend — does not write aggregate packs
+        # at all, so for a blend the advice named a command that could not fix
+        # it. `blend__beethoven-liszt/corpus_profile.json` has sat two months
+        # stale beside a `density_stats.json` rebuilt this month, and every
+        # piece on that blend was compared against nothing.
+        members = _aggregate_members(composer) or []
+        fallback = next((corpus_profile(m) for m in members if corpus_profile(m)), {})
+        if fallback:
+            logger.warning(
+                "corpus_profile for %r predates the metric rename; using %s's "
+                "current profile instead. This is a SUBSTITUTION, not %r's own "
+                "distribution — rebuild the aggregate pack to judge it against "
+                "itself.",
+                composer,
+                members[0] if members else "?",
+                composer,
+            )
+            data = fallback
+        else:
+            logger.warning(
+                "corpus_profile for %r predates the metric rename (no "
+                "melody_direction_change_pct); ignoring it rather than judging a "
+                "section against stale numbers. Rebuild with "
+                "`.venv/bin/python -m scripts.build_corpus_profiles`.",
+                composer,
+            )
+            data = {}
     _PROFILE_CACHE[composer] = data
     return data
 
@@ -205,6 +246,9 @@ class CompositionBrief:
     # per-beat chord frame to voice against (prevents clashes), and the real
     # composed theme + a suggested development for this section.
     creative_intent: str = ""
+    #: Everything in the piece that names a FEELING — see `_feeling_text`.
+    #: Held on the brief because `render_text` has no graph to ask.
+    feeling_text: str = ""
     # The MOTIFS this phrase must state or transform (motif_bank + slot plan).
     motifs: List[Dict[str, Any]] = field(default_factory=list)
     # What this phrase is FOR (dramatic_plan): role, climax distance, return
@@ -215,6 +259,7 @@ class CompositionBrief:
     # The agent's OWN analysis of whole reference scores it studied at plan time
     # (form, themes, harmonic language, what makes them work) — its understanding
     # of real music, fed forward so every phrase composes from it.
+    lock_contract: List[str] = field(default_factory=list)
     reference_study: List[Dict[str, str]] = field(default_factory=list)
     # How well this composer is actually armed. Composing "as Corelli" from 19
     # bars is a different act from composing as Mozart from 7,022, and the brief
@@ -224,6 +269,692 @@ class CompositionBrief:
 
 
 # ─── Composer resolution ─────────────────────────────────────────────────────
+
+
+_VOICING_CACHE: Dict[str, Any] = {}
+#: Below this many measured attacks the shares are noise, not a profile.
+_VOICING_MIN_ATTACKS = 200
+_VOICING_MAX_BARS = 4000
+#: One source's scoring is not a composer's habit — see the note at the guard.
+_VOICING_MIN_SOURCES = 3
+
+
+def _event_midis(event: Dict[str, Any]) -> List[int]:
+    """MIDI numbers of one corpus display event; empty for a rest."""
+    kind = event.get("type")
+    if kind == "chord":
+        pitches = event.get("pitches") or []
+    elif kind == "note":
+        pitches = [event.get("pitch")]
+    else:
+        return []
+    out: List[int] = []
+    for pitch in pitches:
+        if not pitch:
+            continue
+        try:
+            out.append(pitch_to_midi(pitch))
+        except (ValueError, KeyError, TypeError):
+            continue
+    return out
+
+
+def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
+    """How THICK this composer's writing is, measured from his own bars.
+
+    The brief told the agent what the left hand plays, how dense the bar is and
+    which rhythms recur — and never once how many notes are sounding in the
+    melody. So a Chopin nocturne came back with a right hand that is a single
+    line in 99% of its attacks, against a real Chopin figure of 22%, and nothing
+    anywhere remarked on it: per-movement the 10th percentile of chord share is
+    0.00, because some real movements genuinely are single-line, so no
+    distribution test can catch a piece that is single-line ALL the way through.
+    It is not a defect a threshold finds. It is something the composer has to be
+    told before writing.
+
+    Measured over the corpus (share of right-hand attacks that sound more than
+    one note, median span of each hand within a bar, median gap between the
+    hands):
+
+        liszt       50.5%   the right hand is chordal half the time
+        debussy     28.4%
+        chopin      21.9%
+        beethoven   17.7%
+        brahms      16.9%
+        schubert    15.8%
+        mozart       8.4%
+        handel       6.9%
+        haydn        6.3%
+        bach         0.7%   counterpoint: one note per voice, by definition
+        palestrina   0.0%   vocal parts do not play chords
+
+    A single number could not serve that range, which is why this is measured
+    per composer and why "add some chords" is not the guidance. Returns None
+    when the corpus cannot support the measurement.
+    """
+    if composer in _VOICING_CACHE:
+        return _VOICING_CACHE[composer]
+    # A style is the union of its members, but `_iter_corpus_bars` yields them
+    # one composer at a time and the bar cap below would stop inside the FIRST
+    # one — so `style__romantic` came back as Chopin's numbers exactly, to three
+    # decimal places, which is what gave it away. Aggregate the members' own
+    # profiles instead, weighted by how much each was measured on.
+    members = _aggregate_members(composer)
+    if members:
+        parts = [(m, voicing_profile(m)) for m in members]
+        parts = [(m, p) for m, p in parts if p]
+        total = sum(p["attacks"] for _m, p in parts)
+        if not total:
+            _VOICING_CACHE[composer] = None
+            return None
+        blended = {
+            key: sum(p[key] * p["attacks"] for _m, p in parts) / total
+            for key in ("rh_chord_share", "rh_chord_size", "lh_span", "rh_span", "hand_gap")
+        }
+        blended["rh_chord_share"] = round(blended["rh_chord_share"], 3)
+        blended["rh_chord_size"] = round(blended["rh_chord_size"], 2)
+        for key in ("lh_span", "rh_span", "hand_gap"):
+            blended[key] = int(round(blended[key]))
+        blended["attacks"] = total
+        blended["members"] = len(parts)
+        _VOICING_CACHE[composer] = blended
+        return blended
+    profile = None
+    try:
+        chords = attacks = 0
+        sizes: List[int] = []
+        lh_spans: List[int] = []
+        rh_spans: List[int] = []
+        gaps: List[int] = []
+        sources: set = set()
+        for seen, bar in enumerate(_iter_corpus_bars(composer)):
+            if seen > _VOICING_MAX_BARS:
+                break
+            sources.add(bar.get("source"))
+            rh_mid: List[int] = []
+            lh_mid: List[int] = []
+            for event in bar.get("rh_display") or []:
+                if not isinstance(event, dict) or event.get("type") == "rest":
+                    continue
+                midis = _event_midis(event)
+                if not midis:
+                    continue
+                attacks += 1
+                rh_mid.extend(midis)
+                # DISTINCT pitches: two voices doubling a unison arrive as a
+                # two-note "chord" (1,471 of them in the corpus), and counting
+                # that as thickness overstates how chordal the hand is. The span
+                # above is unaffected either way, so only the chord test moves.
+                distinct = set(midis)
+                if len(distinct) > 1:
+                    chords += 1
+                    sizes.append(len(distinct))
+            for event in bar.get("lh_display") or []:
+                if isinstance(event, dict) and event.get("type") != "rest":
+                    lh_mid.extend(_event_midis(event))
+            if rh_mid:
+                rh_spans.append(max(rh_mid) - min(rh_mid))
+            if lh_mid:
+                lh_spans.append(max(lh_mid) - min(lh_mid))
+            if rh_mid and lh_mid:
+                gaps.append(min(rh_mid) - max(lh_mid))
+        # A count of attacks is not enough on its own. Weber's whole corpus is
+        # ONE clarinet work, and a clarinet cannot play a chord — so 1,200
+        # attacks yielded a confident 0.0% and would have told the composer to
+        # write a Romantic piano piece as a bare single line. The scoring of one
+        # source is not a composer's habit.
+        if attacks >= _VOICING_MIN_ATTACKS and len(sources) >= _VOICING_MIN_SOURCES:
+            profile = {
+                "rh_chord_share": round(chords / attacks, 3),
+                "rh_chord_size": round(mean(sizes), 2) if sizes else 0.0,
+                "lh_span": int(median(lh_spans)) if lh_spans else 0,
+                "rh_span": int(median(rh_spans)) if rh_spans else 0,
+                "hand_gap": int(median(gaps)) if gaps else 0,
+                "attacks": attacks,
+            }
+    except Exception:
+        profile = None
+    _VOICING_CACHE[composer] = profile
+    return profile
+
+
+def voicing_lines(composer: str) -> List[str]:
+    """The VOICING section of the brief, or nothing when unmeasurable."""
+    profile = voicing_profile(composer)
+    if not profile:
+        return []
+    share = profile["rh_chord_share"]
+    if share >= 0.30:
+        how = (
+            f"The melody is CHORDAL — {round(share * 100)}% of right-hand attacks sound "
+            f"{profile['rh_chord_size']:.1f} notes on average. Write the tune in octaves, "
+            "thirds and full chords far more often than as a single line."
+        )
+    elif share >= 0.12:
+        how = (
+            f"{round(share * 100)}% of right-hand attacks are more than one note "
+            f"({profile['rh_chord_size']:.1f} notes on average) — the melody is doubled in "
+            "thirds or sixths, or thickened into a chord, roughly every fourth or fifth note. "
+            "A tune that is a bare single line throughout is the commonest way this comes out "
+            "thin."
+        )
+    elif share >= 0.03:
+        how = (
+            f"The melody is mostly a single line: only {round(share * 100)}% of right-hand "
+            "attacks carry more than one note, saved for accents and cadences."
+        )
+    else:
+        how = (
+            "The right hand is a SINGLE LINE — this idiom does not thicken the melody. "
+            "Independent voices, not chords."
+        )
+    return [
+        "",
+        f"VOICING (how thick, measured over {profile['attacks']} real {composer} attacks):",
+        f"  {how}",
+        f"  Each hand spans about {profile['lh_span']} semitones (LH) and "
+        f"{profile['rh_span']} (RH) within a bar; the hands sit about "
+        f"{profile['hand_gap']} semitones apart.",
+    ]
+
+
+_MOTION_CACHE: Dict[str, Any] = {}
+
+
+def motion_profile(composer: str) -> Optional[Dict[str, Any]]:
+    """How this composer's music MOVES — by step or by leap, how fast the
+    harmony turns over, and where on the keyboard it lives.
+
+    Three facts the brief never carried, each with a spread far too wide for a
+    default to serve. Measured over the corpus:
+
+        melodic motion       harmonic rhythm        lowest note
+        monteverdi 86% step  bach       2.60/bar    liszt    39
+        bach       86% step  palestrina 2.41/bar    brahms   39
+        palestrina 81% step  handel     2.26/bar    schubert 44
+        chopin     67% step  debussy    2.22/bar    chopin   46
+        mozart     60% step  mozart     1.86/bar    mozart   53
+        beethoven  53% step  chopin     1.68/bar    haydn    52
+        debussy    44% step  beethoven  1.61/bar    palestr. 53
+        liszt      36% step  schubert   1.45/bar
+
+    Liszt leaps where Monteverdi steps; Bach turns his harmony nearly twice as
+    often as Schubert; and the bottom of Liszt's keyboard is a minor seventh
+    below the bottom of Mozart's. A generated piece that steps politely through
+    the middle of the keyboard changing chord once a bar is plausible for
+    nobody in particular — which is exactly how "generic" sounds.
+
+    Same guards as `voicing_profile`: silent below the sample and source floors,
+    and a style aggregates its members rather than reporting its first.
+    """
+    if composer in _MOTION_CACHE:
+        return _MOTION_CACHE[composer]
+    members = _aggregate_members(composer)
+    if members:
+        parts = [(m, motion_profile(m)) for m in members]
+        parts = [(m, prof) for m, prof in parts if prof]
+        total = sum(prof["intervals"] for _m, prof in parts)
+        if not total:
+            _MOTION_CACHE[composer] = None
+            return None
+        blended = {
+            key: sum(prof[key] * prof["intervals"] for _m, prof in parts) / total
+            for key in ("step_share", "leap_share", "harmonies_per_bar")
+        }
+        blended = {k: round(v, 3) for k, v in blended.items()}
+        blended["low"] = min(prof["low"] for _m, prof in parts)
+        blended["high"] = max(prof["high"] for _m, prof in parts)
+        blended["intervals"] = total
+        blended["members"] = len(parts)
+        _MOTION_CACHE[composer] = blended
+        return blended
+
+    profile = None
+    try:
+        steps = leaps = wide = 0
+        harmonies: List[int] = []
+        lows: List[int] = []
+        highs: List[int] = []
+        sources: set = set()
+        bars = 0
+        for seen, bar in enumerate(_iter_corpus_bars(composer)):
+            if seen > _VOICING_MAX_BARS:
+                break
+            bars += 1
+            sources.add(bar.get("source"))
+            line = [
+                e.get("midi")
+                for e in (bar.get("melody_line") or [])
+                if isinstance(e, dict) and e.get("midi")
+            ]
+            for first, second in zip(line, line[1:]):
+                gap = abs(second - first)
+                if gap <= 2:
+                    steps += 1
+                elif gap <= 4:
+                    leaps += 1
+                else:
+                    wide += 1
+            events = bar.get("harmony_events")
+            harmonies.append(len(events) if isinstance(events, list) and events else 1)
+            midis = [
+                m
+                for hand in ("rh_display", "lh_display")
+                for e in (bar.get(hand) or [])
+                if isinstance(e, dict)
+                for m in _event_midis(e)
+            ]
+            if midis:
+                lows.append(min(midis))
+                highs.append(max(midis))
+        total = steps + leaps + wide
+        if total >= _VOICING_MIN_ATTACKS and len(sources) >= _VOICING_MIN_SOURCES:
+            profile = {
+                "step_share": round(steps / total, 3),
+                "leap_share": round(wide / total, 3),
+                "harmonies_per_bar": round(mean(harmonies), 2) if harmonies else 1.0,
+                "low": int(median(lows)) if lows else 0,
+                "high": int(median(highs)) if highs else 0,
+                "intervals": total,
+            }
+    except Exception:
+        profile = None
+    _MOTION_CACHE[composer] = profile
+    return profile
+
+
+def motion_lines(composer: str) -> List[str]:
+    """The MELODIC MOTION & HARMONIC RHYTHM section, or nothing when unmeasurable."""
+    profile = motion_profile(composer)
+    if not profile:
+        return []
+    step = profile["step_share"]
+    leap = profile["leap_share"]
+    if step >= 0.75:
+        melody = (
+            f"The line moves BY STEP — {round(step * 100)}% of melodic intervals are a tone "
+            "or less, and a leap is an event the line steps back inside afterwards."
+        )
+    elif step >= 0.55:
+        melody = (
+            f"{round(step * 100)}% of melodic intervals are stepwise, "
+            f"{round(leap * 100)}% are a fifth or wider. Mostly conjunct, with real leaps "
+            "for shape."
+        )
+    else:
+        melody = (
+            f"The line LEAPS — only {round(step * 100)}% of intervals are stepwise and "
+            f"{round(leap * 100)}% span a fifth or more. A smooth scalar melody is the "
+            "wrong instrument for this idiom."
+        )
+    rate = profile["harmonies_per_bar"]
+    if rate >= 2.2:
+        harmony = (
+            f"The harmony turns over {rate:.1f} times a bar — it moves WITHIN the bar, "
+            "not on the barline."
+        )
+    elif rate >= 1.7:
+        harmony = f"About {rate:.1f} harmonies a bar: the chord usually changes mid-bar."
+    else:
+        harmony = (
+            f"Slow harmonic rhythm — {rate:.1f} harmonies a bar. A chord is prolonged; "
+            "changing it every beat busies the surface and flattens the phrase."
+        )
+    return [
+        "",
+        # NOT "MOTION": the brief already has a `KEY MOTION` section, and two
+        # headings sharing a word is how a reader conflates two different
+        # things. Never let two things in one context window share a name.
+        f"MELODIC MOTION & HARMONIC RHYTHM (measured over {profile['intervals']} "
+        f"real {composer} melodic intervals):",
+        f"  {melody}",
+        f"  {harmony}",
+        f"  The writing lives between MIDI {profile['low']} and {profile['high']} "
+        f"— go outside that range only for a reason.",
+    ]
+
+
+_CADENCE_SOPRANO_CACHE: Dict[str, Any] = {}
+#: Semitones above the tonic -> how a musician names that scale degree.
+_DEGREE_NAME = {
+    0: "the tonic",
+    1: "the flat 2nd",
+    2: "the 2nd",
+    3: "the minor 3rd",
+    4: "the 3rd",
+    5: "the 4th",
+    6: "the tritone",
+    7: "the 5th",
+    8: "the minor 6th",
+    9: "the 6th",
+    10: "the flat 7th",
+    11: "the leading tone",
+}
+
+
+#: Suffixes that turn one of these nouns into the adjective a person actually
+#: writes. Stripped from BOTH sides before comparing, so `serene` reaches
+#: `serenity` without anyone hand-writing 2,000 synonym lists.
+#:
+#: Order matters: the longest form of each family comes first, or `iousness`
+#: is eaten as `ness` and the rest is left behind.
+_EMOTION_SUFFIXES = (
+    "fulness",
+    "iousness",
+    "ousness",
+    "edness",
+    "ness",
+    "ically",
+    "ical",
+    "ially",
+    "ial",
+    "ful",
+    "ious",
+    "ous",
+    "ally",
+    "al",
+    "ated",
+    "ate",
+    "ant",
+    "ent",
+    "ing",
+    "ed",
+    # NOT a bare "ly": `melancholy` is not an adverb, and stripping it gave
+    # `melancho` where `melancholic` gives `melanchol`. The `ically`/`ally`
+    # forms above already cover the adverbs that occur.
+    # The noun endings, which is what the vocabulary is keyed on.
+    "ity",
+    "ety",
+    "ia",
+    "ic",
+    "y",
+    "e",
+)
+#: Below this the stems stop being distinguishable — `joy` must survive whole,
+#: so the floor is 3, not 4. `joyful` -> `joy` needs it.
+_EMOTION_STEM_FLOOR = 3
+
+
+def _emotion_stem(word: str) -> str:
+    """A word reduced far enough that `serene` and `serenity` meet.
+
+    The vocabulary is keyed on NOUNS — serenity, joy, melancholy, sorrow,
+    triumph, playfulness, tenderness — and people write ADJECTIVES: serene,
+    joyful, melancholic, sorrowful, triumphant, playful, tender. Twelve of
+    twelve natural requests matched nothing, so the emotional layer was wired
+    and firing on almost no real prompt.
+
+    Deliberately crude. It only has to bring two forms of the same feeling
+    together, and every candidate is checked against a fixed 74-word list, so a
+    stem that over-shortens costs a wrong match at worst — and the length floor
+    below is what stops that.
+    """
+    low = re.sub(r"[^a-z]", "", (word or "").lower())
+    changed = True
+    while changed and len(low) > _EMOTION_STEM_FLOOR:
+        changed = False
+        for suffix in _EMOTION_SUFFIXES:
+            if low.endswith(suffix) and len(low) - len(suffix) >= _EMOTION_STEM_FLOOR:
+                low = low[: -len(suffix)]
+                changed = True
+                break
+    return low
+
+
+def _tonic_pc(key: Optional[str]) -> Optional[int]:
+    if not key:
+        return None
+    root = str(key).split()[0].replace("-", "b")
+    try:
+        return pitch_to_midi(root + "4") % 12
+    except (ValueError, KeyError, TypeError):
+        return None
+
+
+def cadence_soprano_profile(composer: str) -> Optional[Dict[str, Any]]:
+    """What the TOP VOICE does at this composer's own V-I cadences.
+
+    `cadence_scripts.json` carries a `soprano_line` field, `composition_brief`
+    reads it, and it is an empty list in **856 of 856 scripts** — the compiler
+    hard-codes `[]`. So the brief could say which cadence to write and never
+    what the melody does when it gets there, which is the half a listener
+    actually hears.
+
+    Measured over real V-I cadences rather than asserted from the textbook,
+    because the textbook answer (2-1) turns out to be one composer's habit:
+
+        composer     cadences   commonest approach -> arrival
+        bach              636   2 -> 1   (stepwise from above)
+        beethoven        1083   5 -> 1, then 7 -> 1
+        chopin            618   5 -> 1
+        mozart            539   5 -> 1, then 7 -> 1
+
+    and the arrival degree is not always the tonic — it is the tonic only about
+    a third of the time, the 5th on a fifth of cadences, the 3rd on an eighth.
+    A generated piece that lands every cadence on the tonic in the melody is
+    more final, more often, than any real composer is.
+    """
+    if composer in _CADENCE_SOPRANO_CACHE:
+        return _CADENCE_SOPRANO_CACHE[composer]
+    members = _aggregate_members(composer)
+    if members:
+        arrivals: collections.Counter = collections.Counter()
+        moves: collections.Counter = collections.Counter()
+        total = 0
+        for member in members:
+            part = cadence_soprano_profile(member)
+            if not part:
+                continue
+            total += part["cadences"]
+            arrivals.update(dict(part["arrivals"]))
+            moves.update({tuple(k): v for k, v in part["moves"]})
+        result = (
+            {
+                "cadences": total,
+                "arrivals": arrivals.most_common(4),
+                "moves": [(list(k), v) for k, v in moves.most_common(3)],
+                "members": len(members),
+            }
+            if total
+            else None
+        )
+        _CADENCE_SOPRANO_CACHE[composer] = result
+        return result
+
+    profile = None
+    try:
+        arrivals: collections.Counter = collections.Counter()
+        moves: collections.Counter = collections.Counter()
+        previous = None
+        for bar in _iter_corpus_bars(composer):
+            roman = (bar.get("roman") or "").strip()
+            tonic = _tonic_pc(bar.get("key"))
+            line = [
+                e.get("midi")
+                for e in (bar.get("melody_line") or [])
+                if isinstance(e, dict) and e.get("midi")
+            ]
+            if previous and tonic is not None and line:
+                prev_roman, prev_line = previous
+                if prev_roman.upper().startswith("V") and roman in ("I", "i"):
+                    arrival = (line[-1] - tonic) % 12
+                    arrivals[arrival] += 1
+                    if prev_line:
+                        moves[((prev_line[-1] - tonic) % 12, arrival)] += 1
+            previous = (roman, line)
+        if sum(arrivals.values()) >= 40:
+            profile = {
+                "cadences": sum(arrivals.values()),
+                "arrivals": arrivals.most_common(4),
+                "moves": [(list(k), v) for k, v in moves.most_common(3)],
+            }
+    except Exception:
+        profile = None
+    _CADENCE_SOPRANO_CACHE[composer] = profile
+    return profile
+
+
+def cadence_soprano_lines(composer: str) -> List[str]:
+    """The CADENTIAL MELODY section of the brief."""
+    profile = cadence_soprano_profile(composer)
+    if not profile:
+        return []
+    total = profile["cadences"]
+    arrivals = ", ".join(
+        f"{_DEGREE_NAME.get(deg, str(deg))} {count / total:.0%}"
+        for deg, count in profile["arrivals"]
+    )
+    moves = "; ".join(
+        f"{_DEGREE_NAME.get(a, str(a))} → {_DEGREE_NAME.get(z, str(z))}"
+        for (a, z), _n in [((m[0][0], m[0][1]), m[1]) for m in profile["moves"]]
+    )
+    return [
+        "",
+        f"CADENTIAL MELODY (what the top voice does at {total} real {composer} V-I cadences):",
+        f"  It lands on: {arrivals}.",
+        f"  It gets there by: {moves}.",
+        "  Landing every cadence on the tonic in the melody is more final, more often, "
+        "than he ever is — save it for the ones that really close.",
+    ]
+
+
+_SEMANTICS_CACHE: Dict[str, Any] = {}
+
+
+def emotional_vocabulary(composer: str) -> Dict[str, Dict[str, Any]]:
+    """The compiled emotion-to-music table, keyed by word.
+
+    `prompt_semantics.json` holds 74 emotion words per composer, each with a
+    tempo range, mode, dynamic, texture, register, articulation, rhythm type
+    and harmonic language. `style_resolver` loads all of it into
+    `StyleProgram.prompt_semantics`, deduplicates it — and **nothing reads it
+    from there**. Compiled, loaded, deduped, dropped.
+
+    So a request for "a melancholy nocturne" reached the composer with none of
+    what the project already knows melancholy sounds like:
+
+        melancholy   tempo 56-76   Minor/Aeolian   p-mp
+                     texture "Medium, descending lines"   register "Mid-low"
+                     articulation "Legato, sighing"   rhythm "Gentle, dragging"
+                     harmony "iv-i, added 6ths"
+
+    The emotional content of the user's own request was being discarded between
+    the pack and the page, which is the least defensible place to lose it.
+    """
+    if composer in _SEMANTICS_CACHE:
+        return _SEMANTICS_CACHE[composer]
+    table: Dict[str, Dict[str, Any]] = {}
+    for name in _aggregate_members(composer) or [composer]:
+        data = _load_pack(name, "prompt_semantics")
+        items = data if isinstance(data, list) else []
+        for entry in items:
+            if not isinstance(entry, dict) or not entry.get("word"):
+                continue
+            table.setdefault(str(entry["word"]).lower(), entry)
+            for synonym in entry.get("synonyms") or []:
+                table.setdefault(str(synonym).lower(), entry)
+    _SEMANTICS_CACHE[composer] = table
+    return table
+
+
+def match_emotional_words(text: str, composer: str) -> List[Dict[str, Any]]:
+    """Emotion entries whose word appears in this text, longest first.
+
+    Longest-first matters: "gentle tension" and "tension" are both entries, and
+    matching the short one first would describe the wrong thing.
+    """
+    table = emotional_vocabulary(composer)
+    if not table or not text:
+        return []
+    low = f" {text.lower()} "
+    hits: List[Dict[str, Any]] = []
+    seen: set = set()
+    # Exact phrases first, longest first: "gentle tension" and "tension" are both
+    # entries and matching the short one first would describe the wrong feeling.
+    for word in sorted(table, key=len, reverse=True):
+        if re.search(r"[\s,;:.\-(]" + re.escape(word) + r"[\s,;:.\-)]", low):
+            entry = table[word]
+            key = entry.get("word")
+            if key not in seen:
+                seen.add(key)
+                hits.append(entry)
+    # Then by stem, so the ADJECTIVE a person writes reaches the noun the
+    # vocabulary is keyed on — see `_emotion_stem`. Single words only: a
+    # multi-word entry is already handled above and stemming it would be noise.
+    stems = {
+        _emotion_stem(word): entry
+        for word, entry in sorted(table.items(), key=lambda kv: len(kv[0]), reverse=True)
+        if " " not in word
+    }
+    for token in re.findall(r"[a-z]+", low):
+        entry = stems.get(_emotion_stem(token))
+        if entry and entry.get("word") not in seen:
+            seen.add(entry.get("word"))
+            hits.append(entry)
+    return hits
+
+
+def emotional_lines(text: str, composer: str, limit: int = 2) -> List[str]:
+    """The EMOTIONAL VOCABULARY section: what this feeling sounds like."""
+    hits = match_emotional_words(text, composer)[:limit]
+    if not hits:
+        return []
+    lines = ["", "EMOTIONAL VOCABULARY (what this project already knows this feeling sounds like):"]
+    for entry in hits:
+        parts: List[str] = []
+        tempo = entry.get("tempo_range")
+        if isinstance(tempo, list) and len(tempo) == 2:
+            parts.append(f"tempo {tempo[0]}-{tempo[1]}")
+        for key, label in (
+            ("mode_scale", ""),
+            ("dynamics", "dynamic"),
+            ("register", "register"),
+            ("texture", "texture"),
+            ("articulation", "articulation"),
+            ("rhythm_type", "rhythm"),
+            ("harmonic_language", "harmony"),
+        ):
+            value = entry.get(key)
+            if isinstance(value, list):
+                value = "/".join(str(v) for v in value)
+            if value:
+                parts.append(f"{label} {value}".strip())
+        lines.append(f"  {entry['word']}: " + "; ".join(parts))
+    lines.append(
+        "  These are starting points from the doctrine, not a specification — "
+        "the emotional story drives the notes."
+    )
+    return lines
+
+
+def _feeling_text(graph, slot) -> str:
+    """Everything in this piece that names a FEELING, for the emotion lookup.
+
+    Matching only `creative_intent` under-fires badly: that string is built from
+    `dramatic_plan.ROLE_INTENT` templates, whose language is structural —
+    "return", "establish", "intensify" — and names no emotion at all. The words
+    a listener would recognise live in three other places, and the user's own
+    are the most important of them:
+
+      * the request itself (`contract.description`) — "a MELANCHOLY nocturne";
+      * the narrative's `overall_character`;
+      * this section's own `character` prose.
+
+    Joining them means the emotional content of the request reaches the phrase
+    that has to carry it, rather than stopping at the contract.
+    """
+    parts: List[str] = []
+    contract = getattr(graph, "contract", None)
+    if contract is not None:
+        parts.append(str(getattr(contract, "description", "") or ""))
+    narrative = getattr(graph, "narrative", None)
+    if narrative is not None:
+        parts.append(str(getattr(narrative, "overall_character", "") or ""))
+        section_id = str(getattr(slot, "section_id", "") or "")
+        for section in getattr(narrative, "sections", None) or []:
+            if not section_id or str(getattr(section, "id", "")) == section_id:
+                parts.append(str(getattr(section, "character", "") or ""))
+    return " ".join(p for p in parts if p)
 
 
 def _iter_corpus_bars(composer: str):
@@ -246,7 +977,21 @@ def _iter_corpus_bars(composer: str):
             try:
                 with open(shard) as f:
                     yield from json.load(f)
-            except (json.JSONDecodeError, OSError):
+            except (json.JSONDecodeError, OSError) as exc:
+                # SAY SO. A corrupt or half-written shard was skipped in
+                # silence, so a composer quietly lost several thousand bars and
+                # every statistic downstream — density targets, fingerprints,
+                # the corpus profile the gate compares against — was computed
+                # over less corpus than it reported. An interrupted rebuild is
+                # the ordinary way to get one, and nothing anywhere said which
+                # file to rebuild.
+                logger.warning(
+                    "corpus shard unreadable, SKIPPED (its bars are missing from "
+                    "every statistic for %s): %s — %s",
+                    composer,
+                    shard,
+                    exc,
+                )
                 continue
         return
     index_path = composer_dir / "bar_index.json"
@@ -615,7 +1360,16 @@ def rhythmic_fingerprint(composer: str, refresh: bool = False) -> Dict[str, Any]
         try:
             with open(cache_path) as f:
                 got = json.load(f)
-            if got.get("schema") == _FINGERPRINT_SCHEMA:
+            # Schema alone is not provenance. `density_stats` and
+            # `ornament_stats` both re-count the corpus and discard a cache
+            # describing a different one; this checked only that the FORMAT was
+            # current, so arming a new member of a style left its fingerprint
+            # frozen: `style__baroque` served numbers computed over 6,868 bars
+            # while the corpus behind it had grown to 10,914. The brief prints
+            # these as "FACTS ABOUT HIM".
+            if got.get("schema") == _FINGERPRINT_SCHEMA and got.get("bars") == sum(
+                1 for _ in _iter_corpus_bars(composer)
+            ):
                 _FINGERPRINT_CACHE[composer] = got
                 return got
         except (json.JSONDecodeError, OSError):
@@ -777,6 +1531,20 @@ _GENRE_PATTERNS = (
 )
 
 
+# Patterns that are only true for one composer, tried before the general table.
+#
+# music21's Haydn corpus is the string quartets — the general table already says
+# so via `opusNNnoN/movement`. But a third of his bars are filed as a bare
+# `movement4` with no opus prefix, so they fell through to "unclassified", his
+# dominant genre came out as *unclassified at 35%*, and a corpus that is quartets
+# end to end produced no narrowness warning at all. A pattern this loose cannot
+# go in the general table (`movement\d+` would swallow half of every corpus);
+# scoped to the composer whose corpus is known to be one genre, it is just true.
+_COMPOSER_GENRE_PATTERNS: Dict[str, tuple] = {
+    "haydn": (("string quartets", r"^movement\d+$|opus\d+no\d+"),),
+}
+
+
 def corpus_scope(composer: str, refresh: bool = False) -> Dict[str, Any]:
     """WHAT this composer's corpus actually contains, by genre.
 
@@ -804,7 +1572,7 @@ def corpus_scope(composer: str, refresh: bool = False) -> Dict[str, Any]:
         total += 1
         src = str(bar.get("source") or "").lower()
         label = "unclassified"
-        for name, pat in _GENRE_PATTERNS:
+        for name, pat in _COMPOSER_GENRE_PATTERNS.get(composer, ()) + _GENRE_PATTERNS:
             if re.search(pat, src):
                 label = name
                 break
@@ -822,6 +1590,17 @@ def corpus_scope(composer: str, refresh: bool = False) -> Dict[str, Any]:
         # One genre carrying three-quarters of the corpus means every statistic
         # derived from it describes that genre, not the composer.
         "narrow": bool(total and share >= 0.75 and top[0] != "unclassified"),
+        # ...but "not narrow" and "we cannot tell" are different answers, and
+        # only one of them is reassuring. `narrow` is False whenever the genre
+        # is unknown, which read as "this corpus is broad" for 18 of 27
+        # composers — including Haydn, whose corpus is string quartets end to
+        # end and whose sources are filed as bare `movement4`, missing the
+        # `opusNNnoN/movement` pattern written for him. A silent False is the
+        # worst possible answer to "is this corpus one genre?".
+        "classified_share": round(1.0 - (counts.get("unclassified", 0) / total), 4)
+        if total
+        else 0.0,
+        "scope_known": bool(total and (counts.get("unclassified", 0) / total) < 0.5),
     }
     _SCOPE_CACHE[composer] = out
     return out
@@ -830,7 +1609,20 @@ def corpus_scope(composer: str, refresh: bool = False) -> Dict[str, Any]:
 def render_corpus_scope(composer: str) -> List[str]:
     """The scope warning, or nothing when the corpus is broad enough."""
     sc = corpus_scope(composer)
-    if not sc.get("bars") or not sc.get("narrow"):
+    if not sc.get("bars"):
+        return []
+    if not sc.get("scope_known"):
+        # Say the honest thing rather than the reassuring one.
+        return [
+            f"WHAT THIS CORPUS ACTUALLY IS — unknown. "
+            f"{1 - sc.get('classified_share', 0):.0%} of the {composer} bars "
+            f"behind every number below come from sources this project cannot "
+            f"identify by genre, so whether they are one genre or twenty is not "
+            f"established. Treat the statistics as describing *these particular "
+            f"works*, and where they conflict with what you know of his writing "
+            f"in the genre you are composing, trust what you know of the genre.",
+        ]
+    if not sc.get("narrow"):
         return []
     return [
         f"WHAT THIS CORPUS ACTUALLY IS — {sc['dominant_share']:.0%} of the "
@@ -903,6 +1695,92 @@ def render_corpus_fidelity(composer: str) -> List[str]:
         f"low number there is evidence about the source, not about his hand. "
         f"Write the filigree the music wants.",
     ]
+
+
+# What each lock protects, in the words a composer would use.
+_LOCK_MEANING = {
+    "principal_melody": "the tune itself — its pitches and its shape",
+    "bass_foundation": "the bass line",
+    "cadence_hits": "where the phrases close, and on what",
+    "counterline": "the inner counter-melody",
+    "color_events": "the harmonic colour — the borrowed and chromatic chords",
+    "phrase_count": "how many phrases there are and how long each runs",
+    "key_scheme": "the key of each section and the journey between them",
+    "form_layout": "the shape of the piece — which section follows which",
+}
+
+
+def render_lock_contract(graph, slot) -> List[str]:
+    """What must survive, for the modes whose whole contract is a lock policy.
+
+    CLAUDE.md describes the six composition modes as "all one algorithm,
+    different contracts", and the contract IS the lock policy. It was computed
+    by `load_source_score`, stored on the graph, read only by the engine's
+    candidate scorer — and never spoken to the agent, who writes every note on
+    the default path. A `variation` brief did not contain the word "lock". The
+    mode was decorative: the melody it was meant to preserve could be discarded
+    entirely and nothing would notice.
+    """
+    mode = str(getattr(graph, "mode", "") or "")
+    if mode in ("", "compose_from_text"):
+        return []
+    locks = getattr(getattr(graph, "contract", None), "locks", None)
+    if locks is None:
+        return []
+    held = []
+    for name, meaning in _LOCK_MEANING.items():
+        try:
+            v = float(getattr(locks, name, 0) or 0)
+        except (TypeError, ValueError):
+            continue
+        if v >= 0.5:
+            held.append((v, name, meaning))
+    if not held:
+        return []
+    held.sort(reverse=True)
+    lines = [
+        f"WHAT MUST SURVIVE — this is a {mode.replace('_', ' ')}, and these are "
+        f"the things the source piece is being kept for. A lock near 1.0 means "
+        f"leave it alone; nearer 0.5 means it must still be recognisable:",
+    ]
+    for v, name, meaning in held:
+        lines.append(f"  • {v:.1f}  {name} — {meaning}")
+
+    # The source material for this phrase's bars, so "keep the melody" is a
+    # thing the composer can actually see rather than a number.
+    try:
+        src = _source_phrase_for(graph, slot)
+        if src:
+            lines.append(f"  THE SOURCE, bars {src[0]}: {src[1]}")
+            lines.append(
+                "  Vary it — ornament, reharmonise, change the texture and the "
+                "register — but a listener must still hear THIS underneath."
+            )
+    except Exception:
+        pass
+    return lines
+
+
+def _source_phrase_for(graph, slot):
+    """(bar-range, melody shorthand) of the source phrase covering this slot."""
+    start = int(getattr(slot, "bar_start", 1) or 1)
+    count = int(getattr(slot, "bar_count", 1) or 1)
+    best = None
+    for ps in getattr(graph, "phrases", {}).values():
+        if getattr(ps, "salience", None) != "source" or not ps.realized or not ps.slot:
+            continue
+        a = int(ps.slot.bar_start or 1)
+        b = a + int(ps.slot.bar_count or 1) - 1
+        if a <= start + count - 1 and b >= start:
+            best = ps
+            break
+    if best is None:
+        return None
+    ev = [e for e in (best.realized.principal_line or []) if e.pitch != "rest"][:12]
+    if not ev:
+        return None
+    span = f"{best.slot.bar_start}-{best.slot.bar_start + best.slot.bar_count - 1}"
+    return span, " ".join(f"{e.pitch}{e.duration}" for e in ev)
 
 
 _ORNAMENT_SCHEMA = 1
@@ -1308,11 +2186,27 @@ def _pitch_token(p) -> str:
     from it failed to parse, silently dropping the whole accompaniment.
     """
     if isinstance(p, (list, tuple)):
-        names = [str(x) for x in p if x and str(x) != "rest"]
+        names = _distinct_pitches(p)
         if not names:
             return ""
         return f"[{','.join(names)}]" if len(names) > 1 else names[0]
     return str(p) if p else ""
+
+
+def _distinct_pitches(pitches) -> List[str]:
+    """Chord members, in order, without a pitch repeated.
+
+    A doubled unison is real in the score and meaningless in a chord token: the
+    corpus carries 1,471 chords whose members repeat, and `[G5,G5]` reads as a
+    two-note chord to anyone adapting it.
+    """
+    out: List[str] = []
+    for x in pitches or []:
+        name = str(x)
+        if not x or name == "rest" or name in out:
+            continue
+        out.append(name)
+    return out
 
 
 def _lh_vocabulary(composer: str, slot, key: str, max_patterns: int = 2) -> List[Dict[str, Any]]:
@@ -2060,7 +2954,13 @@ def _adapted_to_shorthand(adapted: AdaptedBar) -> Tuple[str, str]:
                     continue  # a zero-length rest carries no information
                 toks.append(f"rest_{dur_code}")
             elif e.get("type") == "chord":
-                pitches = [p for p in e.get("pitches", []) if p]
+                # Two voices doubling one pitch arrive as a two-note "chord"
+                # (`['G5','G5']`) — 1,471 of them across the corpus, 1.05% of
+                # every chord, and the brief printed `[Ab5,Ab5]s` as material to
+                # adapt. It is a real unison in the score and a nonsense chord in
+                # shorthand, so the duplicate goes here, in the rendering, and
+                # the bar records keep what they measured.
+                pitches = _distinct_pitches(e.get("pitches", []))
                 if len(pitches) > 1:
                     toks.append(f"[{','.join(pitches)}]{dur_code}{suffix}")
                 elif pitches:
@@ -3613,6 +4513,25 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
     # told the opening phrase of the piece that it was four phrases PAST the peak
     # and must not re-peak.
     dist = getattr(slot, "climax_distance", None)
+    # `climax_distance` defaults to 0 and 0 MEANS "this is the climax", so a
+    # phrase the dramatic planner never touched claims the peak of the piece.
+    # Measured across the workspace: nine pieces in which **every** phrase was
+    # told it was the climax — 9 of 9 phrases in the F major andante, 56 of 56
+    # in the seasons sonata. A piece whose every phrase is written as the
+    # highest, densest, most charged moment has no arc at all, which is the
+    # complaint the dramatic planner exists to answer.
+    #
+    # The planner always assigns a role alongside the distance, so an empty role
+    # is the reliable signal that no plan ran. Say nothing rather than something
+    # false: a phrase with no plan should be told it has no plan.
+    planned = bool(getattr(slot, "dramatic_role", ""))
+    if not planned:
+        return [
+            "WHERE YOU ARE: this phrase has no dramatic plan — nothing has "
+            "decided where the piece peaks or where this sits relative to it. "
+            "Do not assume this is the climax. Judge the shape from the "
+            "surrounding music and the form, and leave somewhere to go.",
+        ]
     if isinstance(dist, int):
         if dist == 0:
             out.append(
@@ -3679,6 +4598,48 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
     return out
 
 
+def _character_is_role_derived(character: str, gesture: str = "") -> bool:
+    """Is this section 'character' the agent's prose, or the planner's default?
+
+    `build_form_graph` fills `NarrativeSection.character` with
+    `"; ".join(ROLE_INTENT[r] for r in roles)` — pure role text. So the field
+    `_creative_intent` treats as "the agent's OWN authored prose" is, unless
+    someone called `save_narrative`, a bucket label wearing prose clothes.
+    Measured: a Chopin nocturne and a Mozart andante carry **byte-identical**
+    character on all five sections.
+
+    That matters because CREATIVE INTENT is the one section the phrase-composer
+    is told to start from — "the feeling that should choose the notes ... the
+    intent is the goal". Boilerplate presented as the piece's identity is worse
+    than an empty field, which would at least prompt for one.
+
+    Detected by RECONSTRUCTION rather than a flag, because the graphs already on
+    disk have no flag. `build_form_graph` writes the pair together —
+
+        character = "; ".join(ROLE_INTENT[r] for r in roles)
+        gesture   = " then ".join(roles)
+
+    — so the roles can be read back out of `gesture` and the expected character
+    rebuilt exactly. (Splitting `character` on ";" does not work: several
+    ROLE_INTENT values contain a semicolon of their own, which is what made the
+    first version of this check silently return False for every real piece.)
+    """
+    text = (character or "").strip()
+    if not text:
+        return False
+    try:
+        from .dramatic_plan import ROLE_INTENT
+    except Exception:  # pragma: no cover - defensive
+        return False
+    roles = [r.strip() for r in (gesture or "").split(" then ") if r.strip()]
+    if roles:
+        rebuilt = "; ".join(dict.fromkeys((ROLE_INTENT.get(r) or "").strip() for r in roles))
+        if rebuilt.strip("; ") == text:
+            return True
+    # No gesture to reconstruct from: fall back to "is it exactly one known intent".
+    return text in {(v or "").strip() for v in ROLE_INTENT.values() if v}
+
+
 def _creative_intent(graph, slot) -> str:
     """The FEELING this moment must convey — human-composer terms, from the
     narrative arc + phrase function (NOT analytics).
@@ -3713,6 +4674,24 @@ def _creative_intent(graph, slot) -> str:
     if sec:
         character = (getattr(sec, "character", "") or "").strip()
         gesture = (getattr(sec, "gesture", "") or "").strip()
+        # Role-derived text is not authored intent, and must not be presented as
+        # it: the phrase-composer is told to start from this line. When that is
+        # all there is, say so and hand over the one thing that IS specific to
+        # this piece — the request it was written from — rather than letting a
+        # form-shaped default stand in for the piece's identity.
+        if _character_is_role_derived(character, gesture):
+            character = ""
+            described = ""
+            contract = getattr(graph, "contract", None)
+            if contract is not None:
+                described = (getattr(contract, "description", "") or "").strip()
+            if described:
+                parts.append(
+                    f"(no piece-specific intent was written for this section — "
+                    f"the role default above is generic to the form. What this "
+                    f"piece IS: \u201c{described}\u201d. Decide from that what this "
+                    f"moment has to feel like.)"
+                )
         section_character = character
         if character and not parts:
             parts.append(character)
@@ -3792,7 +4771,12 @@ def build_brief(
     if _is_structural_phrase(graph, slot):
         eff_exemplars = max(n_exemplars, 14)
 
+    try:
+        _locks = render_lock_contract(graph, state.slot)
+    except Exception:
+        _locks = []
     brief = CompositionBrief(
+        lock_contract=_locks,
         phrase_id=phrase_id,
         composer=resolved,
         slot_summary=_summarize_slot(slot),
@@ -3814,6 +4798,7 @@ def build_brief(
         doctrine=_doctrine_slices(resolved, slot, role),
         anti_patterns=_anti_pattern_tells(resolved),
         creative_intent=_creative_intent(graph, slot),
+        feeling_text=_feeling_text(graph, slot),
         dramatic=_dramatic_brief(slot, graph),
         motifs=_motif_brief(graph, slot),
         chord_frame=_chord_frame(slot, key),
@@ -3883,42 +4868,110 @@ _MINDSET = (
     "frame through its inversions) and the phrase (denser into a climax, thinning "
     "at a cadence) — never a fixed pattern stamped on every bar.\n"
     "\n"
-    "WRITE THE MARKS WITH THE NOTES — the five things this system has "
-    "measurably never done (numbers are from 26 canonical Mozart / Beethoven / "
-    "Chopin movements against the last piece it generated):\n"
+    "WRITE THE MARKS WITH THE NOTES — five things that are easy to leave out "
+    "and audible when they are missing (the ranges are measured over 26 "
+    "canonical Mozart / Beethoven / Chopin movements; what THIS piece has "
+    "actually used so far is reported under MARKS SO FAR):\n"
     "  • ARTICULATE. Real movements carry 0.11-5.71 notation marks per bar "
-    "(median 1.58). The last generated score had ZERO articulation marks in 41 "
-    "bars. Slur the sighing pairs, detach the accompaniment where it should be "
+    "(median 1.58). Slur the sighing pairs, detach the accompaniment where it should be "
     "light, put a tenuto on the note that has to be leaned on: "
     ":stacc :stacciss :port :acc :ten :marc, and '( ... )' for a slur.\n"
-    "  • TIE ACROSS BARLINES. The last generated score had ZERO ties: every bar "
-    "was sealed off from the next. Write C5h~ at the end of one bar and C5h at "
+    "  • TIE ACROSS BARLINES. Real keyboard scores tie a median 0.35 times per "
+    "bar (p25 0.06); a score with none has every bar sealed off from the next. "
+    "Write C5h~ at the end of one bar and C5h at "
     "the start of the next — a melody leaning into the next bar, a suspension "
     "resolving late, a pedal bass held through a phrase joint.\n"
-    "  • VARY THE CADENCE. The last generated score closed SEVEN of its NINE "
-    "phrases with the identical rhythm, so the form had no punctuation, only a "
-    "repeating full stop. Land one on a weak beat, elide one into the next "
+    "  • VARY THE CADENCE. Closing every phrase with the same rhythm leaves the "
+    "form no punctuation, only a repeating full stop. Land one on a weak beat, elide one into the next "
     "entry, tie one over the barline, decorate one with an appoggiatura, cut one "
     "short. Save the plainest, strongest close for the moment that needs it.\n"
     "  • DON'T WALK SCALES. Plain unbroken stepwise runs are 0-15% of melody "
-    "bars in real movements (median 2%); the last generated score ran 39%. A "
+    "bars in real movements (median 2%). A "
     "scale connects two ideas — it is not one. Break a run with a leap and a "
     "gap-fill, turn it back on itself, or give it a rhythmic profile.\n"
     "  • USE THE WHOLE KEYBOARD. Real movements span 24-49 semitones in the "
-    "melody (median 32.5); the last generated score spanned 19 across 41 bars, "
-    "narrower than anything in the corpus, and so nothing in it ever sounded "
-    "high or low relative to anything else. See RANGE SO FAR below for where "
+    "melody (median 32.5) — a narrower span means nothing ever sounds high or "
+    "low relative to anything else. See RANGE SO FAR below for where "
     "this piece has actually been. Open below where you intend to peak, take a "
     "return an octave up, drop to the tenor for the darkest phrase.\n"
-    "Also available and never yet used: :arp (the rolled chord — the most "
+    "Also available: :arp (the rolled chord — the most "
     "characteristic piano notation there is), :acci / :appo (crushed vs accented "
     "grace), :ped, :8va, and character text (:dolce :cantabile :leggiero "
     ":sotto_voce :agitato …). A bar dict also takes 'art', 'text' and 'ped'."
 )
 
 
-def render_text(brief: CompositionBrief) -> str:
-    """Compact, note-complete text rendering of a brief for the agent."""
+def marks_so_far(graph) -> Dict[str, int]:
+    """What the composer has actually written into THIS piece up to now.
+
+    The brief used to assert, in its most emphatic section, that the system had
+    "measurably never" articulated, tied, pedalled or rolled a chord — frozen
+    numbers from one score in one session. Measured against the very piece whose
+    brief said it: 19 articulations, 2 ties, 82 pedal marks and 4 rolled chords.
+    Four falsehoods, stated with numbers, in the section the composer is most
+    likely to act on. A brief that is wrong about the piece in front of it
+    spends the credibility of everything true around it.
+    """
+    counts = {k: 0 for k in ("articulation", "tie", "slur", "pedal", "arpeggio", "ornament")}
+    for state in (getattr(graph, "phrases", {}) or {}).values():
+        layer = getattr(state, "realized", None)
+        if layer is None:
+            continue
+        for name in (
+            "principal_line",
+            "bass_foundation",
+            "response_layer",
+            "counter_reply",
+            "ornamental_surface",
+            "inner_voices",
+        ):
+            for e in getattr(layer, name, None) or []:
+                if getattr(e, "articulation", None):
+                    counts["articulation"] += 1
+                if getattr(e, "tie", None):
+                    counts["tie"] += 1
+                if getattr(e, "slur", None):
+                    counts["slur"] += 1
+                if getattr(e, "pedal", None):
+                    counts["pedal"] += 1
+                if str(getattr(e, "technique", "") or "").startswith("arpeggio"):
+                    counts["arpeggio"] += 1
+                if getattr(e, "ornament", None):
+                    counts["ornament"] += 1
+    return counts
+
+
+def render_marks_so_far(graph) -> List[str]:
+    """The live version of what the frozen claims used to assert."""
+    counts = marks_so_far(graph)
+    bars = 0
+    for state in (getattr(graph, "phrases", {}) or {}).values():
+        slot = getattr(state, "slot", None)
+        if slot is not None and getattr(state, "realized", None) is not None:
+            bars += int(getattr(slot, "bar_count", 0) or 0)
+    if not bars:
+        return [
+            "MARKS SO FAR: nothing committed yet — this is the first phrase, so "
+            "every mark in the piece is one you are about to write.",
+        ]
+    missing = [k for k, v in counts.items() if v == 0]
+    body = ", ".join(f"{k} {v}" for k, v in counts.items())
+    line = f"MARKS SO FAR ({bars} committed bars): {body}."
+    if missing:
+        line += (
+            f" Nothing in this piece has used: {', '.join(sorted(missing))} — "
+            f"if that is deliberate, fine; if it is drift, this is where it shows."
+        )
+    return [line]
+
+
+def render_text(brief: CompositionBrief, graph=None) -> str:
+    """Compact, note-complete text rendering of a brief for the agent.
+
+    ``graph`` lets the marks report be measured from the piece instead of
+    asserted from a constant; without it that section is simply omitted, which
+    is better than printing a frozen claim about a different piece.
+    """
     s = brief.slot_summary
     lines = [
         f"COMPOSITION BRIEF — phrase {brief.phrase_id} ({brief.composer})",
@@ -3926,6 +4979,9 @@ def render_text(brief: CompositionBrief) -> str:
         _MINDSET,
         "",
     ]
+    if graph is not None:
+        lines.extend(render_marks_so_far(graph))
+        lines.append("")
     cov = brief.coverage or {}
     if cov.get("tier"):
         lines.append(
@@ -3938,6 +4994,10 @@ def render_text(brief: CompositionBrief) -> str:
         lines += [f"  {line}" for line in brief.dramatic]
     if brief.creative_intent:
         lines.append(f"CREATIVE INTENT (what this passage must FEEL like): {brief.creative_intent}")
+        # The emotion-to-music table has been compiled into every pack all
+        # along and read by nothing. This is where it belongs: beside the
+        # sentence that says what the passage must feel like.
+        lines.extend(emotional_lines(brief.feeling_text, brief.composer))
     if brief.reference_study:
         lines.append("")
         lines.append(
@@ -4230,6 +5290,12 @@ def render_text(brief: CompositionBrief) -> str:
     # Bach's corpus is 100% four-part chorales and Haydn's is 100% string
     # quartets, and both were being quoted as facts about the composer to
     # someone writing solo piano.
+    # What must survive comes FIRST for a mode whose contract is a lock policy:
+    # it constrains everything that follows.
+    lock_lines = list(getattr(brief, "lock_contract", None) or [])
+    if lock_lines:
+        lines.extend(lock_lines)
+        lines.append("")
     try:
         scope_lines = render_corpus_scope(brief.composer)
     except Exception:
@@ -4336,6 +5402,23 @@ def render_text(brief: CompositionBrief) -> str:
     if doc:
         lines.append("")
         lines.append("STYLE DOCTRINE (this phrase):")
+        # If an aggregate reference had no doctrine pack of its own, ONE member
+        # supplied it. That fallback is reasonable and it is currently unused
+        # (every armed style has its own packs) — but it is live code, and when
+        # it does fire the reader has to be told whose doctrine they are reading.
+        stood_in = sorted(
+            {
+                src
+                for pack in ("cadence_scripts", "ornament_intents", "breathing_rules")
+                if (src := pack_source(brief.composer, pack)) != brief.composer
+            }
+        )
+        if stood_in:
+            lines.append(
+                f"  (NOTE: {brief.composer} has no doctrine pack of its own — what "
+                f"follows is {', '.join(stood_in)}'s, standing in for the style. "
+                f"Read it as one member's practice, not the idiom's consensus.)"
+            )
         req = doc.get("cadence_requirement")
         if req:
             lines.append(f"  THIS CADENCE REQUIRES: {req}")
@@ -4433,6 +5516,17 @@ def render_text(brief: CompositionBrief) -> str:
         )
         for v in brief.lh_vocabulary:
             lines.append(f"  {v['texture']}: {v['lh']}")
+
+    # ── Voicing: how thick the writing is ──
+    # The brief said what the left hand plays, how dense the bar is and which
+    # rhythms recur, and never how many notes sound in the melody. A nocturne
+    # came back with a right hand that is a single line in 99% of its attacks
+    # against a real-Chopin 22%, and no distribution test can catch that: the
+    # per-movement 10th percentile of chord share is 0.00, because some real
+    # movements genuinely are single-line. It has to be said up front.
+    lines.extend(voicing_lines(brief.composer))
+    lines.extend(motion_lines(brief.composer))
+    lines.extend(cadence_soprano_lines(brief.composer))
 
     lines.append("")
     lines.append(
