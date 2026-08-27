@@ -502,9 +502,24 @@ def compile_style(
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
 
-    # Compile packs for each composer (all 12 passes)
+    # Compile packs for each composer (all 12 passes).
+    #
+    # NOT for a style. A style pack is an AGGREGATE, built by
+    # `scripts/build_style_profiles.py` from its members; the compiler builds a
+    # pack from `.claude/context/<genre>/composer-profiles/<name>/`, and a style
+    # has no such directory. Running it on one therefore writes EMPTY passes over
+    # the aggregate: compiling "classical" left `style__classical` with zero
+    # instruments, zero textures and zero worked prototypes, and the damage is to
+    # the shared pack — every later piece in that style inherits it. Observed by
+    # doing exactly this and having `test_style_packs_carry_doctrine` catch it.
+    from .style_registry import is_style_id, normalize_style
+
     compiler = ContextCompiler()
+    skipped_styles: List[str] = []
     for composer in composers:
+        if is_style_id(composer) or normalize_style(composer):
+            skipped_styles.append(composer)
+            continue
         compiler.compile(composer, genre)
 
     # Resolve style
@@ -1361,6 +1376,46 @@ def planning_gaps(graph) -> List[Dict[str, str]]:
     return gaps
 
 
+#: Transforms that present the theme so a listener is meant to RECOGNISE it.
+#: `fragment`, `sequence`, `diminish` and `liquidate` are development — the
+#: theme is being worked, not stated, and a bar of it does not have to be whole.
+_THEME_STATEMENT_OPS = frozenset({"state", "augment", "invert", "retrograde", "reharmonize"})
+
+
+def _theme_statement_bars(graph, slot) -> frozenset:
+    """Bars where a theme is STATED, and so must keep their downbeat.
+
+    A `MotifTransform` records the operation and the motif id and no position,
+    so where the statement sits has to be reconstructed: a placement is made on
+    a section's opening phrase, and the motif's own `rhythm_cell` says how many
+    bars it spans. Protecting the whole phrase instead is measurably too much —
+    it silenced `_rest_the_downbeat` on every planned piece.
+    """
+    if slot is None:
+        return frozenset()
+    ops = {
+        str(getattr(t, "operation", "") or "").lower()
+        for t in (getattr(slot, "motif_transforms", None) or [])
+    }
+    if not (ops & _THEME_STATEMENT_OPS):
+        return frozenset()
+
+    from .duration import bar_duration, dur_to_beats
+
+    span = 0.0
+    for transform in getattr(slot, "motif_transforms", None) or []:
+        motif_id = (getattr(transform, "params", None) or {}).get("motif_id", "")
+        motif = (graph.motif_bank or {}).get(motif_id)
+        cell = list(getattr(motif, "rhythm_cell", None) or []) if motif else []
+        span = max(span, sum(float(dur_to_beats(d) or 0) for d in cell))
+    per_bar = float(bar_duration(tuple(slot.meter))) or 4.0
+    # A motif whose length cannot be read still gets its first bar; a placement
+    # that protects nothing would be the same defect one level down.
+    bars = max(1, int(-(-span // per_bar))) if span > 0 else 1
+    bars = min(bars, int(slot.bar_count or 1))
+    return frozenset(range(slot.bar_start, slot.bar_start + bars))
+
+
 @_tool
 def run_scales_section(
     piece_id: str,
@@ -1689,6 +1744,22 @@ def run_scales_section(
     # Phase 6: Commit best path
     engine_repairs: Dict[str, Dict[str, int]] = {}
     engine_engraving: Dict[str, Dict[str, Any]] = {}
+    # WHAT EACH SURFACE PASS ACTUALLY DID.
+    #
+    # A pass that never fired and a pass that correctly found nothing to do are
+    # indistinguishable in every log we have: both return 0 and say nothing.
+    # `_rest_the_downbeat` was inert on every planned piece — a motif placement
+    # protects a whole phrase and planning puts one on most of them — and
+    # reported exactly what it would have reported if it had been working. The
+    # `planning_gaps` report says which INPUTS were missing; this says which
+    # passes actually reached the notes.
+    _passes: Dict[str, int] = {
+        "melody_thickened": 0,
+        "bass_thickened": 0,
+        "cadences_shaped": 0,
+        "barline_ties": 0,
+        "downbeat_rests": 0,
+    }
     for node in best_path.nodes:
         if node.surface:
             # The engine path committed straight to the graph with NO physical
@@ -1711,6 +1782,7 @@ def run_scales_section(
             from .surface_composer import (
                 _clamp_to_period_register,
                 _hold_over_barline,
+                _rest_the_downbeat,
                 _shape_the_cadence,
                 _thicken_bass_foundation,
                 _thicken_principal_line,
@@ -1721,13 +1793,13 @@ def run_scales_section(
             # one guarantee this path makes.
             _existing = graph.phrases.get(node.phrase_id)
             if not getattr(_existing, "agent_authored", False):
-                _thicken_principal_line(
+                _passes["melody_thickened"] += _thicken_principal_line(
                     node.surface,
                     node.surface.key
                     or getattr(getattr(_existing, "slot", None), "key", "")
                     or "C major",
                 )
-                _thicken_bass_foundation(
+                _passes["bass_thickened"] += _thicken_bass_foundation(
                     node.surface,
                     node.surface.key
                     or getattr(getattr(_existing, "slot", None), "key", "")
@@ -1737,16 +1809,51 @@ def run_scales_section(
                 # to bind already rewritten underneath it.
                 _slot = getattr(_existing, "slot", None)
                 if _slot is not None:
-                    _shape_the_cadence(
-                        node.surface,
-                        tuple(slot_meter_for(graph, node.phrase_id)),
-                        getattr(_slot, "cadence_target", "none"),
-                        _slot.bar_start + _slot.bar_count - 1,
+                    _passes["cadences_shaped"] += int(
+                        _shape_the_cadence(
+                            node.surface,
+                            tuple(slot_meter_for(graph, node.phrase_id)),
+                            getattr(_slot, "cadence_target", "none"),
+                            _slot.bar_start + _slot.bar_count - 1,
+                        )
                     )
-                _hold_over_barline(
+                _passes["barline_ties"] += _hold_over_barline(
                     node.surface,
                     tuple(slot_meter_for(graph, node.phrase_id)),
                     composer=composer_id,
+                    protect_bars=_theme_statement_bars(graph, _slot),
+                )
+                # The OTHER way a bar avoids a fresh downbeat: it opens with a
+                # rest. `_hold_over_barline` ties into the bar; nothing let the
+                # melody simply be silent there, and this engine wrote ZERO
+                # leading rests in any layer across two complete pieces where
+                # real melodies rest on 5-12% of downbeats. After the tie pass,
+                # which must not find a note it is about to bind already turned
+                # into a rest.
+                _passes["downbeat_rests"] += _rest_the_downbeat(
+                    node.surface,
+                    tuple(slot_meter_for(graph, node.phrase_id)),
+                    composer=composer_id,
+                    bar_start=getattr(_slot, "bar_start", 1) if _slot is not None else 1,
+                    # The theme is the one thing that must be heard — but
+                    # protecting the WHOLE phrase carrying it makes this pass
+                    # inert on the path the pipeline actually runs.
+                    # `build_form_graph` puts a placement on every section's
+                    # opening phrase, which is 5 of 9 phrases in a ternary and 9
+                    # of 17 in a sonata, and the measured rate came out at 2.4%
+                    # against Haydn's real 7.5%. (My own verification run had
+                    # missed it, on a piece with no motifs — which is what
+                    # `planning_gaps` exists to catch, and it caught its author
+                    # one turn after I wrote it.)
+                    #
+                    # A MotifTransform carries no bar, so the bars it occupies
+                    # are not recorded — but the motif's own rhythm says how
+                    # long it is, and a placement lands at the phrase's opening.
+                    # So the statement's bars are protected instead of the
+                    # phrase's, and only for the transforms that present the
+                    # theme WHOLE. A fragment or a liquidation is development;
+                    # it is not the bar a listener needs intact.
+                    protect_bars=_theme_statement_bars(graph, _slot),
                 )
                 # LAST of the surface passes: the widened melody range is the
                 # union across every composer, and Bach's harpsichord stops a
@@ -1952,6 +2059,11 @@ def run_scales_section(
         # Never silent. A repaired surface means the generator produced
         # something that could not be engraved, and the caller should see it.
         result["engine_repairs"] = engine_repairs
+    # Reported ALWAYS, including the zeroes — a zero is the informative case.
+    result["surface_passes"] = dict(_passes)
+    idle = sorted(name for name, count in _passes.items() if not count)
+    if idle:
+        result["surface_passes_idle"] = idle
         _LOG.warning("engine surface repairs in %s: %s", section_id, engine_repairs)
 
     if engine_engraving:
@@ -5256,6 +5368,21 @@ def _extract_generated_bars(path: str, composer: str, source_name: str):
 # than anything about the music. See the note in _corpus_divergence_from_path.
 _Z_DEGENERATE = 8.0
 
+#: Metrics computed over the piece's CHORD events alone — every one is a ratio
+#: or a mean whose denominator is the chord count, so a mostly single-line
+#: texture makes them meaningless rather than extreme.
+_CHORD_SAMPLE_METRICS = frozenset(
+    {
+        "avg_chord_size",
+        "maj_chord_ratio",
+        "min_chord_ratio",
+        "dim_aug_chord_ratio",
+        "seventh_chord_ratio",
+    }
+)
+#: Below this many chord events, those five are reported but not scored.
+_MIN_CHORD_SAMPLE = 8
+
 
 def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[str, Any]:
     """Compare an assembled score's bar metrics to the composer's corpus
@@ -5306,6 +5433,15 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
     # module docstring calls bar_metrics "the shared yardstick run on BOTH corpus
     # bars and a generated piece"; it was shared for 37 of the 39 metrics.
     gen = {**bar_metrics(bars), **style_fingerprint(bars), **sonority_metrics(bars)}
+    # How many CHORD events the piece actually has. Five of the profiled metrics
+    # are computed over these alone; see `_CHORD_SAMPLE_METRICS`.
+    chord_events = sum(
+        1
+        for bar in bars
+        for hand in ("rh_display", "lh_display", "rh_inner_display", "lh_inner_display")
+        for event in (bar.get(hand) or [])
+        if isinstance(event, dict) and event.get("type") == "chord"
+    )
     metrics: Dict[str, Any] = {}
     flags: List[Dict[str, Any]] = []
     uncomputed: List[str] = []
@@ -5341,6 +5477,15 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
         status = "ok" if abs(z) <= 2 else ("low" if z < 0 else "high")
         if abs(z) > _Z_DEGENERATE:
             status = "unreliable"
+        elif name in _CHORD_SAMPLE_METRICS and chord_events < _MIN_CHORD_SAMPLE:
+            # These five are computed over the piece's CHORD events alone, and a
+            # mean or a ratio over a handful of them is not evidence. The
+            # `_Z_DEGENERATE` guard above catches only the extremes: a baroque
+            # piece with **two** chord events in 388 notes reported
+            # `avg_chord_size z=+3.48, status "high"` and it reached the flags —
+            # "your chords are too big", from two chords. Marked the same way as
+            # a degenerate corpus stat, and for the same reason.
+            status = "unreliable"
         metrics[name] = {
             "value": value,
             "z": z,
@@ -5349,11 +5494,19 @@ def _corpus_divergence_from_path(path: str, composer: str, scope: str) -> Dict[s
             "status": status,
         }
         if status == "unreliable":
-            metrics[name]["note"] = (
-                f"corpus sd is {stat['stdev']:.4g} against mean {stat['mean']:.4g} — "
-                "this composer's corpus barely varies on this measure, so the "
-                "comparison is not evidence about the piece."
-            )
+            if name in _CHORD_SAMPLE_METRICS and chord_events < _MIN_CHORD_SAMPLE:
+                metrics[name]["note"] = (
+                    f"computed over the piece's {chord_events} chord event(s) — too few "
+                    f"to support a ratio or a mean, so this is not evidence about the "
+                    f"piece. A mostly single-line texture is a texture, not a fault."
+                )
+                metrics[name]["chord_events"] = chord_events
+            else:
+                metrics[name]["note"] = (
+                    f"corpus sd is {stat['stdev']:.4g} against mean {stat['mean']:.4g} — "
+                    "this composer's corpus barely varies on this measure, so the "
+                    "comparison is not evidence about the piece."
+                )
         if status not in ("ok", "unreliable"):
             flags.append(
                 {

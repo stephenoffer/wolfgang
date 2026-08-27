@@ -16,10 +16,11 @@ Procedural filler is a last-resort repair path, not a normal path.
 
 from __future__ import annotations
 
+import collections
 import logging
 from dataclasses import dataclass, field
 from fractions import Fraction
-from typing import Any
+from typing import Any, Optional
 
 from .cadence_bank import CadenceBank
 from .corpus_bar_retriever import CorpusBarRetriever
@@ -415,7 +416,254 @@ def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> in
     return added
 
 
-def _hold_over_barline(layer: LayerIR, meter: tuple, share: float = 0.09) -> int:
+def _rest_the_downbeat(
+    layer: LayerIR,
+    meter: tuple,
+    share: float = 0.08,
+    composer: str = "",
+    bar_start: int = 1,
+    protect_bars: frozenset = frozenset(),
+    report: Optional[dict] = None,
+) -> int:
+    """Let the melody be silent at the top of a bar.
+
+    A bar can lack a fresh downbeat attack two ways: the previous note is held
+    across the barline, or the bar simply OPENS WITH A REST. `_hold_over_barline`
+    covers the first. Nothing covered the second, and it is the larger share —
+    real melodies rest on 5-12% of downbeats where they tie on 1-5%.
+
+    Measured on this engine's own output: **zero** leading rests, in any layer,
+    across two complete pieces. Not a low rate — none. Every bar of the melody
+    began with an attack, and the 8-10% of leading rests visible in the exported
+    left hand were the assembler PADDING bars where the accompaniment had no
+    downbeat note, not composed silence. A statistic that looked healthy in the
+    score and did not exist in the music.
+
+    A bar is eligible only where the silence costs nothing structural: not the
+    phrase's opening bar (the statement has to land), not a bar carrying a motif
+    placement (the theme is the one thing that must be heard), not the cadence
+    bar, and only where the note being removed is a passing or neighbour tone
+    with real melody left after it in the bar. The rest is written explicitly,
+    with the duration of the gap it opens, because an implicit gap is something
+    the assembler fills and nobody chose.
+
+    A PASS THAT DECLINES AND A PASS THAT NEVER RAN LOOK THE SAME. Both return 0.
+    So does one whose quota rounded to nothing, one that found no eligible bar,
+    and one switched off by a zero rate — four different states, one integer, and
+    "0" reads as "correctly decided there was nothing to do" in every log we
+    have. Pass a `report` dict to get the counts instead:
+
+        {"considered": 12, "eligible": 5, "allowance": 2, "applied": 2,
+         "declined": {"theme statement": 5, "no accompaniment on the downbeat": 2}}
+
+    and, when the pass exits before looking at any bar, a single `reason`.
+
+    The REASON matters more than the count. A bare `declined: 9` says the pass
+    is declining and not why; the breakdown says which condition is doing it,
+    which is what turns "this pass is inert" into "the theme guard is eating the
+    whole phrase" without an A/B run. This shape is shared with the sibling
+    surface passes so a section reports one thing.
+
+    Rules taken from the sibling passes, each of which learned one the hard way:
+    inert at `share <= 0`; the budget measured over ELIGIBLE bars rather than
+    over whatever the pass has already written, so a second application finds
+    the quota met and adds nothing; a running quota over absolute bar numbers so
+    the rate is the piece's and not each phrase's; and no `max(1, ...)` floor,
+    which would put one rest in every phrase whatever the composer's rate.
+    """
+    log: dict = report if report is not None else {}
+    log.update({"ran": True, "declined": collections.Counter(), "applied": 0})
+    if share <= 0:
+        log["reason"] = "share is zero"
+        return 0
+    if composer:
+        from .composition_brief import downbeat_rest_rate
+
+        measured = downbeat_rest_rate(composer)
+        if measured is not None:
+            share = measured
+            if share <= 0:
+                log["reason"] = f"{composer} rests on no downbeats"
+                return 0
+    log["share"] = share
+
+    from .duration import beats_to_dur, dur_to_beats, largest_dur_at_most
+
+    line = sorted(
+        (e for e in layer.principal_line if not isinstance(e.pitch, list)),
+        key=lambda e: (e.bar, float(e.beat)),
+    )
+    if len(line) < 8:
+        log["reason"] = f"melody too short to judge ({len(line)} notes)"
+        return 0
+
+    by_bar: dict[int, list] = {}
+    for event in line:
+        by_bar.setdefault(event.bar, []).append(event)
+
+    cadence_bar = max(by_bar)
+    # The bars carrying a theme statement come from the CALLER, which holds the
+    # slot. A first version read a `NoteRole.MOTIF` off the events — there is no
+    # such member, and the `hasattr` guard I had written around it would have
+    # made the whole protection permanently dead while looking deliberate. The
+    # theme is the one thing in the piece that must be heard; silencing its
+    # downbeat is the single worst bar this pass could choose.
+    protected = frozenset(protect_bars)
+
+    # NOT THE PHRASE'S FIRST BAR — that exclusion was backwards.
+    #
+    # It looked obviously right ("the entry has to land") and cost more than any
+    # other condition: on a 2/4 ternary it declined 18 of 41 bars, because a
+    # four-bar phrase spends half its bars on an entry or a cadence. Measured
+    # over the corpus by phrase position, an OPENING bar is where real melodies
+    # rest MOST:
+    #
+    #     position     mozart  beethoven  schubert  haydn  bach
+    #     opening       14.6%      12.2%     14.3%   9.2%  6.3%
+    #     middle         8.3%      12.5%     10.6%   7.0%  7.0%
+    #     cadential      4.7%       8.1%     14.5%   7.2%  3.4%
+    #
+    # A phrase that begins with a rest is an upbeat entry, which is ordinary
+    # writing and is the thing `metric_entry: anacrusis` already names. The
+    # cadence bar stays excluded: it is the arrival, and it is the position
+    # where the classical composers do this least.
+    #
+    # WHAT MAKES A DOWNBEAT SAFE TO SILENCE.
+    #
+    # Not the note's role. A first version required the removed note to be a
+    # passing or neighbour tone, which measured one eligible bar in twenty-two:
+    # this generator anchors a STRUCTURAL note on nearly every downbeat, so the
+    # rule could almost never fire. The role is also not the musical question.
+    # When a real melody rests at the top of a bar the note is simply not
+    # written and the line enters later; what has to remain true is that the bar
+    # still states its harmony and still has a melody.
+    #
+    # So: the accompaniment must sound on that downbeat (the harmony is stated
+    # without the melody), the bar must keep real melodic content after the
+    # rest, and the note removed must not be the bar's melodic peak — silencing
+    # the highest note in a bar is silencing the thing it was shaped toward.
+    bass_downbeats = {
+        e.bar
+        for e in (layer.bass_foundation or []) + (layer.response_layer or [])
+        if e.pitch != "rest" and abs(float(e.beat) - 1.0) < 1e-6
+    }
+    eligible = []
+    for bar in sorted(by_bar):
+        if bar == cadence_bar:
+            log["declined"]["cadence bar"] += 1
+            continue
+        if bar in protected:
+            log["declined"]["theme statement"] += 1
+            continue
+        if bar not in bass_downbeats:
+            log["declined"]["no accompaniment on the downbeat"] += 1
+            continue
+        events = by_bar[bar]
+        # TWO, not three. A bar whose melody is a rest and then one note is
+        # ordinary writing — in 2/4 it is a half-bar rest and an entry — and
+        # requiring three left a four-bar phrase in 2/4 with ZERO eligible bars,
+        # so the piece's quota landed on phrases that could not spend it.
+        if len(events) < 2:
+            log["declined"]["too few melody notes in the bar"] += 1
+            continue
+        head, nxt = events[0], events[1]
+        if head.pitch == "rest" or nxt.pitch == "rest":
+            log["declined"]["already silent"] += 1
+            continue
+        if getattr(head, "tie", None) or getattr(nxt, "tie", None):
+            log["declined"]["tied"] += 1
+            continue
+        if abs(float(head.beat) - 1.0) > 1e-6:
+            log["declined"]["bar already starts late"] += 1
+            continue  # nothing to silence: the bar already starts late
+        tops = [pitch_to_midi(e.pitch) for e in events if e.pitch != "rest"]
+        tops = [m for m in tops if m is not None]
+        head_midi = pitch_to_midi(head.pitch)
+        if tops and head_midi is not None and head_midi >= max(tops):
+            log["declined"]["the downbeat is the bar's peak"] += 1
+            continue  # the bar's peak is not a note to delete
+        gap = float(nxt.beat) - float(head.beat)
+        if gap <= 0:
+            continue
+        eligible.append((bar, head, gap))
+    log["considered"] = len(by_bar)
+    log["eligible"] = len(eligible)
+    if not eligible:
+        log["reason"] = "no bar could take a rest"
+        return 0
+
+    # AN EXACT RUNNING QUOTA OVER ABSOLUTE BARS.
+    #
+    # Three ways to get this wrong, and the first two were mine. A quota of
+    # `round(len(phrase_bars) * share)` is zero for every four-bar phrase at any
+    # real rate (4 x 0.083 rounds to 0), so it can never produce the rate;
+    # `max(1, ...)` is the mirror of it and puts one rest in every phrase
+    # whatever the composer does. Replacing it with an independent per-bar draw
+    # fixed the bias and left the variance: with two eligible bars in a phrase
+    # and a draw of 0.17, most phrases still got none, and Mozart came out at
+    # 6.0% against his 8.3% and Beethoven at 2.4% against his 11.1%.
+    #
+    # This phrase's exact share of the piece's total is the difference between
+    # the running quotas at its last and first bars. It needs no state carried
+    # between phrases, has no variance, and sums to the composer's own rate over
+    # the whole work however the phrases are cut.
+    # THE QUOTA IS EXACT AND SOME OF IT IS FORFEITED. Both halves are true and
+    # the second is a known shortfall, not an oversight.
+    #
+    # This phrase's exact share of the piece's total is the difference between
+    # the running quotas at its last and first ABSOLUTE bars. It needs no state
+    # carried between phrases, has no variance, and sums to the composer's own
+    # rate over the whole work however the phrases are cut. What it cannot do is
+    # move an allowance to a phrase that can spend it: over a 41-bar ternary it
+    # allotted three rests and two landed on phrases with ZERO eligible bars,
+    # where they were forfeited. Measured result, against each composer's own
+    # rate: sonatas 6.0-7.2% against 8.3-11.1%, ternaries 2.4-7.3% against
+    # 7.5-11.6%. Short, never over.
+    #
+    # Weighting the quota by each phrase's eligible fraction was tried and
+    # OVERSHOT — a phrase with few eligible bars gets weighted up by more than
+    # it was starved, and Beethoven came out at 18.1% against his 11.1%. For a
+    # pass that removes notes, short is the safe error: a melody that breathes
+    # slightly less often than Beethoven's is still a melody, and one that
+    # breathes twice as often is a different piece. Closing the gap properly
+    # means carrying the deficit between phrases, which is state this function
+    # deliberately does not have.
+    lo, hi = min(by_bar), max(by_bar)
+    allowance = int(hi * share) - int((lo - 1) * share)
+    already = sum(1 for events in by_bar.values() if events and events[0].pitch == "rest")
+    allowance -= already
+    log["allowance"] = allowance
+    if allowance <= 0:
+        log["reason"] = "this phrase's share of the piece's quota is already met"
+        return 0
+
+    # Spread across the phrase rather than taking the first N in a row.
+    if len(eligible) > allowance:
+        step = len(eligible) / allowance
+        eligible = [eligible[min(len(eligible) - 1, int(i * step))] for i in range(allowance)]
+
+    done = 0
+    for bar, head, gap in eligible:
+        duration = beats_to_dur(gap) or largest_dur_at_most(gap)
+        if duration is None or (dur_to_beats(duration) or 0) <= 0:
+            continue
+        head.pitch = "rest"
+        head.duration = duration
+        head.tie = None
+        head.articulation = None
+        head.ornament = None
+        done += 1
+    log["applied"] = done
+    return done
+
+
+def _hold_over_barline(
+    layer: LayerIR,
+    meter: tuple,
+    share: float = 0.09,
+    composer: str = "",
+    protect_bars: frozenset = frozenset(),
+) -> int:
     """Let the melody lean into the next bar instead of restarting every time.
 
     Every bar of this engine's melody began with an attack on beat 1, because
@@ -434,6 +682,21 @@ def _hold_over_barline(layer: LayerIR, meter: tuple, share: float = 0.09) -> int
     """
     if share <= 0:
         return 0
+    # HOW OFTEN, from the composer's own music. Real practice varies eightfold —
+    # Haydn 0.015 ties per bar, Beethoven 0.134, Palestrina 0.192 — and a fixed
+    # 0.09 was right for nobody but Mozart and Chopin. Measured at 0.09 the
+    # engine tied Haydn eight times his own rate and Chopin three times his.
+    # `tie_rate_per_bar` returns None where the corpus cannot answer (Schubert,
+    # Liszt and Brahms carry no ties in their sources at all), and then the
+    # generic rate stands rather than a zero that is really a missing encoding.
+    if composer:
+        from .composition_brief import tie_rate_per_bar
+
+        measured = tie_rate_per_bar(composer)
+        if measured is not None:
+            share = measured
+            if share <= 0:
+                return 0
     events = sorted(
         (e for e in layer.principal_line if e.pitch != "rest" and not isinstance(e.pitch, list)),
         key=lambda e: (e.bar, float(e.beat)),
@@ -477,12 +740,23 @@ def _hold_over_barline(layer: LayerIR, meter: tuple, share: float = 0.09) -> int
             continue
         if abs((float(a.beat) + float(dur_to_beats(a.duration))) - (1.0 + cap)) > 1e-6:
             continue
-        # Never swallow a structural arrival — UNLESS the pitch simply repeats
-        # across the barline. `_build_anchors` places a downbeat anchor in every
-        # bar, so a repeated pitch there is an artifact of that placement rather
-        # than a composer asking for two attacks, and one held note is what
-        # anyone would write.
-        if b.role not in absorbable and a.pitch != b.pitch:
+        # A SUSPENSION DISPLACES A STRUCTURAL ARRIVAL — that is what makes it a
+        # suspension. Refusing every structural downbeat was safe while nothing
+        # else protected the theme, but once a theme is placed almost every
+        # downbeat is structural and this pass went idle on Bach, Haydn and
+        # Schubert alike: Schubert's quota granted four ties and found nothing
+        # eligible for one. The bars that must keep their downbeat are the ones
+        # where the theme is STATED, and `_theme_statement_bars` reconstructs
+        # exactly those; everywhere else a held note over the barline is the
+        # ordinary device rather than a loss.
+        #
+        # The repeated-pitch case stays as its own reason: `_build_anchors` puts
+        # an anchor on every downbeat, so a pitch repeating across the barline
+        # is an artifact of that placement and one held note is what anyone
+        # would write.
+        if b.bar in protect_bars:
+            continue
+        if b.role not in absorbable and a.pitch != b.pitch and b.role != NoteRole.STRUCTURAL.value:
             continue
         midi = pitch_to_midi(a.pitch)
         if midi is None or midi % 12 not in scale_pcs:
@@ -495,9 +769,27 @@ def _hold_over_barline(layer: LayerIR, meter: tuple, share: float = 0.09) -> int
     # Less the ties already there, so a revision loop does not add a fresh
     # budget's worth on every pass — the same compounding the thickening passes
     # had against `len(events)`.
-    bars = len({e.bar for e in events})
+    # A RUNNING QUOTA OVER THE PIECE'S BARS, not `max(1, ...)` per phrase.
+    #
+    # The floor of 1 guaranteed a tie in every phrase whatever the rate, so the
+    # composer-relative rate above changed nothing at all: nine phrases meant
+    # nine ties whether the composer was Beethoven at 0.134 per bar or Haydn at
+    # 0.015. Third time today a `max(1, round(n * share))` has made a share
+    # ornamental.
+    #
+    # Counting from the phrase's absolute bar numbers gives the piece the right
+    # rate without any state between calls: a phrase earns a tie exactly when
+    # the running quota crosses a whole number inside it. Haydn gets none in a
+    # 41-bar piece (his real rate predicts 0.6); Beethoven gets five (5.5).
+    first_bar = min(e.bar for e in events)
+    last = max(e.bar for e in events)
+    # ROUND, not truncate. `int()` discards the fraction at every phrase
+    # boundary, so a 41-bar Mozart piece at his measured 0.070 per bar — 2.9
+    # ties — was granted its first only past bar 15 and landed none at all.
+    # Rounding totals `round(41 * 0.070) = 3`, which is the rate.
+    quota = round(last * share) - round((first_bar - 1) * share)
     already = sum(1 for e in layer.principal_line if e.tie == "start")
-    budget = max(1, round(bars * share)) - already
+    budget = quota - already
     if budget <= 0:
         return 0
     step = max(1, len(candidates) // budget)

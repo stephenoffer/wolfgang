@@ -391,10 +391,20 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
             return None
         blended = {
             key: sum(p[key] * p["attacks"] for _m, p in parts) / total
-            for key in ("rh_chord_share", "rh_chord_size", "lh_span", "rh_span", "hand_gap")
+            for key in (
+                "rh_chord_share",
+                "rh_chord_size",
+                "lh_chord_share",
+                "lh_chord_size",
+                "lh_span",
+                "rh_span",
+                "hand_gap",
+            )
         }
         blended["rh_chord_share"] = round(blended["rh_chord_share"], 3)
         blended["rh_chord_size"] = round(blended["rh_chord_size"], 2)
+        blended["lh_chord_share"] = round(blended["lh_chord_share"], 3)
+        blended["lh_chord_size"] = round(blended["lh_chord_size"], 2)
         for key in ("lh_span", "rh_span", "hand_gap"):
             blended[key] = int(round(blended[key]))
         blended["attacks"] = total
@@ -404,7 +414,9 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
     profile = None
     try:
         chords = attacks = 0
+        lh_chords = lh_attacks = 0
         sizes: List[int] = []
+        lh_sizes: List[int] = []
         lh_spans: List[int] = []
         rh_spans: List[int] = []
         gaps: List[int] = []
@@ -432,8 +444,24 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
                     chords += 1
                     sizes.append(len(distinct))
             for event in bar.get("lh_display") or []:
-                if isinstance(event, dict) and event.get("type") != "rest":
-                    lh_mid.extend(_event_midis(event))
+                if not isinstance(event, dict) or event.get("type") == "rest":
+                    continue
+                midis = _event_midis(event)
+                if not midis:
+                    continue
+                # THE LEFT HAND'S THICKNESS, which this measured for the right
+                # hand only. The composer was told the melody is 8% chords and
+                # nothing at all about the accompaniment — which in real Mozart
+                # is 18.5%, more than double, and ranges from Haydn's 11.9% to
+                # Chopin's 37.9% over 164,000 attacks. The engine wrote 0.0%
+                # until this was measured, and its accompaniment had 11 distinct
+                # bar-shapes where real Mozart 3/8 has at least 14.
+                lh_attacks += 1
+                lh_mid.extend(midis)
+                lh_distinct = set(midis)
+                if len(lh_distinct) > 1:
+                    lh_chords += 1
+                    lh_sizes.append(len(lh_distinct))
             if rh_mid:
                 rh_spans.append(max(rh_mid) - min(rh_mid))
             if lh_mid:
@@ -449,6 +477,8 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
             profile = {
                 "rh_chord_share": round(chords / attacks, 3),
                 "rh_chord_size": round(mean(sizes), 2) if sizes else 0.0,
+                "lh_chord_share": round(lh_chords / lh_attacks, 3) if lh_attacks else 0.0,
+                "lh_chord_size": round(mean(lh_sizes), 2) if lh_sizes else 0.0,
                 "lh_span": int(median(lh_spans)) if lh_spans else 0,
                 "rh_span": int(median(rh_spans)) if rh_spans else 0,
                 "hand_gap": int(median(gaps)) if gaps else 0,
@@ -458,6 +488,34 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
         profile = None
     _VOICING_CACHE[composer] = profile
     return profile
+
+
+def piece_forces(graph) -> tuple[str, str, bool]:
+    """What to call the two staves of a corpus exemplar, for THIS piece's forces.
+
+    The brief never knew what the piece was scored for — the word
+    "instrumentation" did not appear in this file. So a four-voice motet was
+    briefed entirely in "RH:" and "LH:", and told its composer "each hand spans
+    about 3 semitones; the hands sit about 15 semitones apart". A choir has no
+    hands, and the composer reading that has to translate it before it means
+    anything.
+
+    The corpus bar records really are a two-hand reduction, so the labels change
+    but the claim does not: for anything not played at a keyboard the two staves
+    are the upper and lower voices of the texture.
+
+    Returns ``(upper_label, lower_label, keyboard)``.
+    """
+    from .models import is_keyboard
+
+    target = getattr(getattr(graph, "contract", None), "target", None)
+    if isinstance(target, dict):
+        instrumentation = target.get("instrumentation") or ""
+    else:
+        instrumentation = getattr(target, "instrumentation", "") or ""
+    if is_keyboard(instrumentation):
+        return ("RH", "LH", True)
+    return ("UPPER", "LOWER", False)
 
 
 def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]:
@@ -490,13 +548,59 @@ def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]
             "The right hand is a SINGLE LINE — this idiom does not thicken the melody. "
             "Independent voices, not chords."
         )
+    upper, lower, keyboard = piece_forces(graph)
+    if not keyboard:
+        # Same measurement, in words that mean something to a composer writing
+        # for voices or an ensemble. "Each hand spans" is not a fact about them.
+        how = how.replace("right-hand", "upper-voice").replace("right hand", "upper line")
+        spacing = (
+            f"  The upper voices span about {profile['rh_span']} semitones within a bar and "
+            f"the lower about {profile['lh_span']}; the two groups sit about "
+            f"{profile['hand_gap']} semitones apart."
+        )
+    else:
+        spacing = (
+            f"  Each hand spans about {profile['lh_span']} semitones (LH) and "
+            f"{profile['rh_span']} (RH) within a bar; the hands sit about "
+            f"{profile['hand_gap']} semitones apart."
+        )
+    # THE LEFT HAND HAS A THICKNESS TOO, and this section reported only its
+    # SPAN — so the composer was told the melody is 8% chords and nothing about
+    # the accompaniment, which in real Mozart is 21%, more than double. It is
+    # not a smaller version of the same instruction either: Bach's right hand is
+    # thicker than his left, and every keyboard composer's left hand is thicker
+    # than his right.
+    lh_share = profile.get("lh_chord_share") or 0.0
+    lh_size = profile.get("lh_chord_size") or 0.0
+    if lh_share >= 0.25:
+        lh_how = (
+            f"  The accompaniment is CHORDAL — {round(lh_share * 100)}% of left-hand attacks "
+            f"sound {lh_size:.1f} notes. Full chords under the tune, not a single bass line."
+        )
+    elif lh_share >= 0.08:
+        lh_how = (
+            f"  The left hand plays a chord on {round(lh_share * 100)}% of its attacks "
+            f"({lh_size:.1f} notes) — an oom-pah, a broken chord that closes into a block, "
+            "a held third under a moving bass. An accompaniment of single notes throughout "
+            "is the commonest way the texture comes out thin."
+        )
+    elif lh_share > 0:
+        lh_how = (
+            f"  The left hand is nearly always a single line — only "
+            f"{round(lh_share * 100)}% of its attacks carry a chord."
+        )
+    else:
+        lh_how = "  The lower part is a single line; this idiom does not chord beneath the tune."
+    if not keyboard:
+        lh_how = lh_how.replace("left-hand", "lower-voice").replace("left hand", "lower line")
+        lh_how = lh_how.replace("accompaniment", "lower voices")
+
     lines = [
         "",
         f"VOICING (how thick, measured over {profile['attacks']} real {composer} attacks):",
         f"  {how}",
-        f"  Each hand spans about {profile['lh_span']} semitones (LH) and "
-        f"{profile['rh_span']} (RH) within a bar; the hands sit about "
-        f"{profile['hand_gap']} semitones apart.",
+        lh_how,
+        spacing,
     ]
     # ...and where THIS piece actually sits. The target alone has not moved the
     # output: a nocturne came out with a bare single line in 93% of bars against
@@ -517,6 +621,23 @@ def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]
             lines.append(
                 f"  THICKNESS SO FAR: {got:.0%} of your right-hand attacks are more "
                 f"than one note, against his {target:.0%} — {verdict}."
+            )
+        # The same gap for the hand that carries more of the weight. Reporting
+        # only the melody's meant a piece could sit at the composer's own
+        # right-hand figure with a bass of bare single notes throughout and
+        # nothing here would say so.
+        lh_got = _lh_thickness_so_far(graph, movement_id)
+        if lh_got is not None and lh_share:
+            lh_verdict = (
+                "already there"
+                if lh_got >= lh_share * 0.8
+                else f"about {lh_share / lh_got:.0f}x thinner than his"
+                if lh_got
+                else "not once so far — a bass of bare single notes"
+            )
+            lines.append(
+                f"  LEFT-HAND THICKNESS SO FAR: {lh_got:.0%} against his "
+                f"{lh_share:.0%} — {lh_verdict}."
             )
     return lines
 
@@ -601,22 +722,143 @@ def _phrases_in_scope(graph, movement_id: str = ""):
     return scoped or states
 
 
-def _rh_thickness_so_far(graph, movement_id: str = "") -> Optional[float]:
-    """Share of committed right-hand attacks that are more than one note."""
+_RH_LAYERS = ("principal_line", "response_layer", "ornamental_surface")
+_LH_LAYERS = ("bass_foundation",)
+
+
+def _thickness_so_far(graph, movement_id: str, layers) -> Optional[float]:
+    """Share of committed attacks in these layers that sound more than one note.
+
+    A CHORD HAS TWO REPRESENTATIONS HERE and this counted only one. The agent
+    path writes `[E4,G4,C5]` and arrives as a single event with a list pitch;
+    the engine writes coincident events at one instant. Testing
+    `isinstance(pitch, list)` therefore reported **0.0%** on an engine-realized
+    piece whose right hand was in fact thickened 10.3% of the time — and the
+    brief told its composer "not once so far — a bare single line the whole
+    way", about a piece already at Mozart's own rate. Wrong in the direction
+    that makes someone act.
+
+    Counted per INSTANT, which is also the unit the corpus side uses: one
+    three-note chord is one attack there, so it must be one attack here.
+    """
     multi = total = 0
     for state in _phrases_in_scope(graph, movement_id):
         layer = getattr(state, "realized", None)
         if layer is None:
             continue
-        for name in ("principal_line", "response_layer", "ornamental_surface"):
+        at_instant: Dict[Any, int] = {}
+        for name in layers:
             for e in getattr(layer, name, None) or []:
                 pitch = getattr(e, "pitch", None)
                 if not pitch or pitch == "rest":
                     continue
-                total += 1
-                if isinstance(pitch, list) and len({str(p) for p in pitch}) > 1:
-                    multi += 1
+                voices = len({str(p) for p in pitch}) if isinstance(pitch, list) else 1
+                key = (name, e.bar, round(float(e.beat), 4))
+                at_instant[key] = at_instant.get(key, 0) + voices
+        total += len(at_instant)
+        multi += sum(1 for n in at_instant.values() if n > 1)
     return (multi / total) if total else None
+
+
+def _rh_thickness_so_far(graph, movement_id: str = "") -> Optional[float]:
+    """Share of committed right-hand attacks that are more than one note."""
+    return _thickness_so_far(graph, movement_id, _RH_LAYERS)
+
+
+def _lh_thickness_so_far(graph, movement_id: str = "") -> Optional[float]:
+    """The same for the left hand, which nothing measured."""
+    return _thickness_so_far(graph, movement_id, _LH_LAYERS)
+
+
+_TIE_RATE_CACHE: Dict[str, Any] = {}
+
+#: Used when a composer's own rate cannot be measured. Between Mozart's 0.070
+#: and Beethoven's 0.134, so it errs toward the middle of real practice rather
+#: than toward either extreme.
+_DEFAULT_TIE_RATE = 0.07
+
+
+def tie_rate_per_bar(composer: str) -> Optional[float]:
+    """How often this composer holds a line across a barline, per bar.
+
+    Real practice varies by a factor of eight and a fixed rate cannot serve it:
+
+        palestrina 0.192   beethoven 0.134   chopin 0.071
+        mozart     0.070   bach      0.019   haydn  0.015
+
+    The suspension IS Renaissance polyphony, and a Haydn quartet movement holds
+    almost nothing over a barline. A generator tying at one rate is wrong for
+    everyone except whoever it was tuned on.
+
+    **A zero is not an answer here.** Schubert, Liszt and Brahms all read 0.000
+    across thousands of bars — their sources are MIDI and kern editions that
+    carry no ties at all, which is a fact about the encoding and not about the
+    music. Returning 0.0 for them would tell the composer to write a Schubert
+    impromptu with nothing held anywhere. Unmeasurable returns None, and the
+    caller uses the generic rate.
+    """
+    key = (composer or "").strip().lower()
+    if key in _TIE_RATE_CACHE:
+        return _TIE_RATE_CACHE[key]
+    rate = None
+    try:
+        bars = ties = 0
+        for bar in _iter_corpus_bars(composer):
+            bars += 1
+            for event in bar.get("rh_events") or []:
+                if isinstance(event, dict) and event.get("tie") == "start":
+                    ties += 1
+        if bars >= 200 and ties > 0:
+            rate = round(ties / bars, 4)
+    except Exception:
+        rate = None
+    _TIE_RATE_CACHE[key] = rate
+    return rate
+
+
+_DOWNBEAT_REST_CACHE: Dict[str, Optional[float]] = {}
+
+
+def downbeat_rest_rate(composer: str) -> Optional[float]:
+    """How often this composer's melody lets a bar BEGIN with silence.
+
+    A bar can lack a fresh downbeat attack two ways: the previous note is held
+    across the barline, or the bar simply opens with a rest. `tie_rate_per_bar`
+    covers the first. This is the second, and it is the larger share — real
+    melodies rest on 5-12% of downbeats where they tie on 1-5%:
+
+        schubert 0.116   beethoven 0.111   palestrina 0.102   chopin 0.089
+        mozart   0.083   haydn     0.075   bach       0.053
+
+    Measured on the melody staff only. The accompaniment rests on downbeats at
+    its own, different rates (Haydn 16.8%, Bach 4.6%) and a shared number would
+    be right for neither.
+
+    Unmeasurable returns None, as with ties — but for the opposite reason. A
+    zero here would be a real finding rather than a missing encoding, since a
+    rest is present in a source or it is not; the floor on sample size is what
+    guards it.
+    """
+    key = (composer or "").strip().lower()
+    if key in _DOWNBEAT_REST_CACHE:
+        return _DOWNBEAT_REST_CACHE[key]
+    rate = None
+    try:
+        bars = opening_rests = 0
+        for bar in _iter_corpus_bars(composer):
+            events = bar.get("rh_display") or []
+            if not events:
+                continue
+            bars += 1
+            first = min(events, key=lambda e: float(e.get("beat", e.get("offset", 0)) or 0))
+            if first.get("type") == "rest":
+                opening_rests += 1
+        if bars >= 200:
+            rate = round(opening_rests / bars, 4)
+    except Exception:
+        rate = None
+    _DOWNBEAT_REST_CACHE[key] = rate
+    return rate
 
 
 _MOTION_CACHE: Dict[str, Any] = {}
@@ -2289,6 +2531,47 @@ def _cadence_matches(cad: str, script_type: str) -> bool:
     return False
 
 
+def _slot_contour_class(slot) -> str | None:
+    """"ascending" / "descending" / "static" for this phrase's register plan.
+
+    The corpus vocabulary, measured over 9,569 indexed phrases: `static` 17180,
+    `descending` 9912, `ascending` 9287 — and nothing else. A value outside it
+    would score every candidate 0.0 instead of a neutral 0.5, so the words have
+    to be exactly these three.
+    """
+    # Derived from the DRAMATIC ROLE, not the register curve. Two rules over the
+    # curve were tried first and each returned ONE value for all 26 planned
+    # slots — every planned register curve is the same arch, so nothing taken
+    # from it discriminates. A discriminator with one value discriminates
+    # nothing, and would have scored every candidate identically while looking
+    # like it was working. The role varies across nine values and says the same
+    # musical thing: a phrase that intensifies rises, one that retreats falls.
+    role = str(getattr(slot, "dramatic_role", "") or "").strip().lower()
+    if role in ("intensify", "crisis", "depart"):
+        return "ascending"
+    if role in ("retreat", "close"):
+        return "descending"
+    if role in ("establish", "extend", "confirm", "return"):
+        return "static"
+    curve = [float(x) for x in (getattr(getattr(slot, "curves", None), "register", None) or [])]
+    if len(curve) < 2 or max(curve) - min(curve) < 0.02:
+        return None
+    return "ascending" if curve.index(max(curve)) > curve.index(min(curve)) else "descending"
+
+
+def _slot_entry_texture(slot) -> str | None:
+    """The texture this phrase is planned to START in, for entry continuity."""
+    plan = list(getattr(slot, "texture_plan", None) or [])
+    if not plan:
+        return None
+    first = plan[0]
+    texture = getattr(first, "rh_texture", None)
+    if texture is None and isinstance(first, dict):
+        texture = first.get("rh_texture")
+    texture = str(texture or "").strip()
+    return texture or None
+
+
 def _phrase_shape(composer: str, slot, role: str) -> Dict[str, Any]:
     """Top corpus phrase for this slot's role/length — its arc, not just a bar."""
     try:
@@ -2296,10 +2579,18 @@ def _phrase_shape(composer: str, slot, role: str) -> Dict[str, Any]:
 
         bank = _phrase_bank(composer)
         n_bars = slot.bar_count
+        # `PhraseQuery` scores retrieval on three more dimensions that NO caller
+        # ever set — `contour_class`, `entry_texture`, `cadence_distance`, worth
+        # 0.20 of the ranking between them. Unset, each scores a flat 0.5 for
+        # every candidate, so a fifth of the relevance model was a constant. The
+        # planner knows all three; it just never said so.
         q = PhraseQuery(
             formal_function=role,
             length_range=(max(1, n_bars - 2), n_bars + 2),
             cadence_type=_normalize_cadence(getattr(slot, "cadence_target", None)),
+            cadence_distance=n_bars,
+            contour_class=_slot_contour_class(slot),
+            entry_texture=_slot_entry_texture(slot),
             n=1,
         )
         res = bank.retrieve(q)
@@ -3658,11 +3949,36 @@ def _retrieve_exemplars(
 
 # ─── Target stats ─────────────────────────────────────────────────────────────
 
-# Fallback bands when a composer has no corpus_profile (human-sounding-music.md).
+# Fallback bands when a composer has no corpus_profile — shown to the composer
+# as a TARGET, and therefore shown exactly when the system knows least, where a
+# wrong number does the most harm.
+#
+# The bands here were hand-written, and measuring the 28 composer profiles that
+# DO exist falsified all three:
+#
+#   texture_change_pct           was "0.4-0.6"   real: min 0.088  median 0.269  max 0.598
+#                                                only 5 of 36 composers fall inside it,
+#                                                and its floor is above the median
+#   melody_direction_change_pct  was "0.3-0.6"   real: min 0.346  median 0.558  max 0.667
+#                                                its ceiling excludes the top quarter
+#   density_cv                   was ">=0.30"    real: min 0.213  median 0.318  max 0.583
+#                                                12 of 36 real composers are below it
+#
+# An unprofiled composer was being told to change texture roughly twice as often
+# as a typical real one. Each band is now the measured middle half (p25-p75) with
+# the median named, so the target is a place real music actually sits.
 _DISCRIMINATOR_FALLBACK = {
-    "texture_change_pct": "≈0.4-0.6 (change texture every 1-2 bars)",
-    "melody_direction_change_pct": "0.3-0.6",
-    "density_cv": "≥0.30 — let density ebb and flow",
+    "texture_change_pct": (
+        "0.18-0.33 (median 0.27 across 28 measured composers; the full real "
+        "range is 0.09-0.60, so a settled texture is not a fault)"
+    ),
+    "melody_direction_change_pct": (
+        "0.51-0.59 (median 0.56 across 27 measured composers; real range 0.35-0.67)"
+    ),
+    "density_cv": (
+        "0.27-0.36 (median 0.32 across 28 measured composers; real range 0.21-0.58) "
+        "— let density ebb and flow"
+    ),
 }
 
 
@@ -5293,6 +5609,41 @@ _MINDSET = (
 )
 
 
+#: `_MINDSET` is written for a pianist, because for a long time every piece was
+#: one. A choir cannot roll a chord, has no hands to put two voices in, and does
+#: not have a keyboard to use the whole of. These are the phrases that say
+#: something false to anyone writing for voices or an ensemble; the craft advice
+#: they carry is sound, so it is reworded rather than removed.
+_KEYBOARD_PHRASINGS = (
+    ("two-voice-per-hand polyphony", "two independent voices per staff"),
+    ("simultaneous voices in ONE hand", "simultaneous voices on ONE staff"),
+    ("USE THE WHOLE KEYBOARD", "USE THE WHOLE RANGE"),
+    (
+        ":arp (the rolled chord — the most characteristic piano notation there is)",
+        ":arp (the rolled chord — for instruments that can roll one)",
+    ),
+)
+
+#: The shorthand keys do not change with the forces: a bar dict is always
+#: `{'rh': ..., 'lh': ...}`. Saying UPPER/LOWER everywhere else and leaving this
+#: unsaid would be the contradiction the brief is supposed to avoid.
+_STAFF_KEY_NOTE = (
+    "\n  • THE BAR DICT KEYS STAY 'rh' AND 'lh'. For this piece they mean the "
+    "UPPER and LOWER staff, not two hands — 'rh' carries the upper voices, 'lh' "
+    "the lower, and '//' separates two voices sharing one staff.\n"
+)
+
+
+def mindset_for(keyboard: bool) -> str:
+    """`_MINDSET`, in language that is true for this piece's forces."""
+    if keyboard:
+        return _MINDSET
+    text = _MINDSET
+    for phrase, replacement in _KEYBOARD_PHRASINGS:
+        text = text.replace(phrase, replacement)
+    return text + _STAFF_KEY_NOTE
+
+
 def marks_so_far(graph, movement_id: str = "") -> Dict[str, int]:
     """What the composer has actually written into THIS piece up to now.
 
@@ -5369,10 +5720,13 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
     is better than printing a frozen claim about a different piece.
     """
     s = brief.slot_summary
+    # What the two staves of a corpus exemplar should be CALLED for this piece —
+    # a motet's composer should not be reading "RH:" and "LH:".
+    _upper, _lower, _keyboard = piece_forces(graph)
     lines = [
         f"COMPOSITION BRIEF — phrase {brief.phrase_id} ({brief.composer})",
         "",
-        _MINDSET,
+        mindset_for(_keyboard),
         "",
     ]
     movement_id = (brief.phrase_id or "").split("_", 1)[0]
@@ -5533,7 +5887,9 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
             parts.append("melody tail: " + " ".join(t["melody_tail"]))
         lb = t.get("last_bar")
         if lb:
-            parts.append(f"previous bar {lb['bar']} — RH: {lb['rh']} | LH: {lb['lh']}")
+            parts.append(
+                f"previous bar {lb['bar']} — {_upper}: {lb['rh']} | {_lower}: {lb['lh']}"
+            )
         if t.get("last_bass"):
             parts.append(f"last bass: {t['last_bass']}")
         if t.get("last_dynamic"):
@@ -5658,9 +6014,9 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
             if g.get("situation"):
                 head += f" — {g['situation']}"
             lines.append(head)
-            for hand in ("rh", "lh"):
+            for hand, label in (("rh", _upper), ("lh", _lower)):
                 if g.get(hand):
-                    lines.append(f"      {hand.upper()}: {g[hand]}")
+                    lines.append(f"      {label}: {g[hand]}")
 
     if brief.corpus_gestures:
         lines.append("")
@@ -5941,9 +6297,9 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
         if ex.harmony:
             lines.append(f"   harmony within the bar: {ex.harmony}")
         if ex.rh:
-            lines.append(f"   RH: {ex.rh}")
+            lines.append(f"   {_upper}: {ex.rh}")
         if ex.lh:
-            lines.append(f"   LH: {ex.lh}")
+            lines.append(f"   {_lower}: {ex.lh}")
     if not brief.exemplars:
         lines.append("  (none found — see warnings)")
 
