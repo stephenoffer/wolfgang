@@ -2376,9 +2376,12 @@ def test_the_repair_distinguishes_a_duplicate_from_an_overlap():
 
     # Same onset, DIFFERENT length, is neither a chord nor a duplicate: one
     # voice cannot hold two spans at once. The longer survives.
+    # Reported under its own name: five different things used to count as
+    # `overlaps_trimmed`, and a reader could not tell a note losing its length
+    # from a redundant rest being discarded.
     layer = surface("C5", "h")
     relength = _repair_engine_surface(layer, (4, 4))
-    assert relength.get("overlaps_trimmed") == 1, relength
+    assert relength.get("chord_note_length_unified") == 1, relength
     assert [e.duration for e in layer.principal_line] == ["h"], layer.principal_line
 
 

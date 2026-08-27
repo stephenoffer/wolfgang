@@ -1582,6 +1582,7 @@ def run_scales_section(
             # each note's room against the next later one — thickening first
             # made it re-measure spans it had already settled.
             from .surface_composer import (
+                _clamp_to_period_register,
                 _hold_over_barline,
                 _shape_the_cadence,
                 _thicken_bass_foundation,
@@ -1616,6 +1617,11 @@ def run_scales_section(
                         _slot.bar_start + _slot.bar_count - 1,
                     )
                 _hold_over_barline(node.surface, tuple(slot_meter_for(graph, node.phrase_id)))
+                # LAST of the surface passes: the widened melody range is the
+                # union across every composer, and Bach's harpsichord stops a
+                # major third below its ceiling. Bring anything the instrument
+                # did not have back by octaves.
+                _clamp_to_period_register(node.surface, composer_id)
                 # REPAIR AGAIN. Thickening and holding both rewrite the surface
                 # the repair had just settled, and nothing re-checked it before
                 # `commit_phrase` — so a phrase reached the graph with onsets
@@ -3329,7 +3335,18 @@ def _repair_engine_surface(
     counts = {
         "snapped": 0,
         "duplicates_removed": 0,
+        # FIVE different things used to report as `overlaps_trimmed`, and the
+        # reader could not tell a harmless discard from a lost note. A rest
+        # sharing a note's onset is generator noise the repair absorbs
+        # completely; two simultaneous notes in one orchestral part means a note
+        # the composer wrote is GONE. "overlaps_trimmed: 1" was the report for
+        # both. Same shape as the `duplicates_removed` split above it: a counter
+        # that merges opposite diagnoses hides the one that matters.
         "overlaps_trimmed": 0,
+        "rest_over_note_dropped": 0,
+        "simultaneous_notes_dropped": 0,
+        "second_chord_dropped": 0,
+        "chord_note_length_unified": 0,
         "overflow_clamped": 0,
         "overflow_dropped": 0,
     }
@@ -3469,6 +3486,45 @@ def _repair_engine_surface(
             deduped.append(e)
         events[:] = deduped
 
+        # A REST NEVER SHORTENS A NOTE.
+        #
+        # A rest carries no sound, so a rest sitting inside a note's span is the
+        # generator saying two contradictory things about one instant and only
+        # one of them is audible. The overlap rule below did not know that: it
+        # read the rest as the next onset, found the note ran past it, and
+        # CLAMPED THE NOTE. A half note with a pattern rest under its second
+        # beat came out a quarter, reported as `overlaps_trimmed: 1`, which
+        # reads as housekeeping.
+        #
+        # The rests come from the corpus, legitimately: a retrieved left-hand
+        # pattern contains them, `pitch_to_midi("rest")` returns None so the
+        # chord-tone snap falls through and the rest passes into the layer
+        # unchanged, where a bass note is already sounding. Given a choice
+        # between losing a rest and truncating a note, always lose the rest.
+        #
+        # This subsumes the same-onset case handled in the group pass below —
+        # kept there because the group pass must know a rest is not a chord tone
+        # before it decides what kind of group it is looking at.
+        sounding_spans = [
+            (e.bar, float(_on_grid(e.beat)), float(dur_to_beats(e.duration) or 0))
+            for e in events
+            if e.pitch != "rest" and not is_grace(e.ornament)
+        ]
+        if sounding_spans:
+            covered = []
+            for e in events:
+                if e.pitch != "rest":
+                    continue
+                at = float(_on_grid(e.beat))
+                if any(
+                    bar == e.bar and start <= at + 1e-9 < start + span
+                    for bar, start, span in sounding_spans
+                ):
+                    covered.append(id(e))
+                    counts["rest_over_note_dropped"] += 1
+            if covered:
+                events[:] = [e for e in events if id(e) not in covered]
+
         # A chord is simultaneous notes of the SAME LENGTH. Notes sharing an
         # onset with different lengths are not a chord and not playable by one
         # voice — a 64th and a quarter struck together leave the quarter still
@@ -3497,7 +3553,7 @@ def _repair_engine_surface(
                 for x in group:
                     if x.pitch == "rest":
                         drop.add(id(x))
-                        counts["overlaps_trimmed"] += 1
+                        counts["rest_over_note_dropped"] += 1
                 group = sounding
                 if len(group) < 2:
                     continue
@@ -3515,13 +3571,13 @@ def _repair_engine_surface(
                 # `notes_written` in `assemble_orchestration`.
                 for x in group[1:]:
                     drop.add(id(x))
-                    counts["overlaps_trimmed"] += 1
+                    counts["simultaneous_notes_dropped"] += 1
                 continue
             chords = [x for x in group if isinstance(x.pitch, list)]
             if len(chords) > 1:
                 for x in chords[1:]:
                     drop.add(id(x))
-                    counts["overlaps_trimmed"] += 1
+                    counts["second_chord_dropped"] += 1
                 continue
             lengths = _Counter(x.duration for x in group)
             if len(lengths) < 2:
@@ -3530,7 +3586,7 @@ def _repair_engine_surface(
             for x in group:
                 if x.duration != keep_len:
                     drop.add(id(x))
-                    counts["overlaps_trimmed"] += 1
+                    counts["chord_note_length_unified"] += 1
         if drop:
             events[:] = [e for e in events if id(e) not in drop]
 
