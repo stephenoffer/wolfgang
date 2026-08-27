@@ -2495,3 +2495,29 @@ def test_a_section_render_survives_another_section_being_rendered():
     assemble(graph, scope=f"section-{sections[1]}", output_dir=out)
     after = len(music21.converter.parse(first).recurse().notes)
     assert before == after, "rendering another section changed this one's file"
+
+
+def test_the_pitch_validator_agrees_with_the_pitch_parser():
+    """`is_writable_pitch` kept its own regex, and it was WIDER than the parser.
+
+    `x` is standard notation for a double sharp — music21 reads it, and the
+    shorthand regex accepted it — while `pitch.pitch_to_midi` returns None for
+    `Fx4`. A token one layer says yes to and the next cannot read is a note that
+    vanishes between them, which is the whole failure this function exists to
+    prevent.
+    """
+    from scales.direct_compose import is_writable_pitch, parse_issues
+    from scales.pitch import pitch_to_midi
+
+    # Anything accepted must be readable, and anything readable accepted.
+    for token in ("C4", "F##4", "Bb3", "B#3", "Cbb4", "Ab2", "G-1"):
+        assert is_writable_pitch(token), token
+        assert pitch_to_midi(token) is not None, token
+
+    for token in ("Fx4", "Cx4", "H4", "C", "C99", ""):
+        assert not is_writable_pitch(token), f"{token} accepted but unreadable"
+
+    # And the rejection reaches the composer as a named issue, not a dropped note.
+    issues = parse_issues([{"rh": "Fx4q C5q", "lh": "C3w"}])
+    assert issues and any("Fx4" in str(i) for i in issues), issues
+    assert not parse_issues([{"rh": "F##4q C5q", "lh": "C3w"}])

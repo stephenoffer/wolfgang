@@ -211,12 +211,31 @@ _PITCH_RE = re.compile(r"^[A-Ga-g](?:##|#|bb|b|x|--|-)?(?:-1|[0-9])$")
 
 
 def is_writable_pitch(name) -> bool:
-    """Can this pitch name be engraved? ``rest`` counts; a chord is checked per note."""
+    """Can this pitch name be engraved? ``rest`` counts; a chord is checked per note.
+
+    Shape first, then ASK THE PARSER. The regex alone accepted `Fx4` — `x` is
+    standard notation for a double sharp and music21 reads it — while
+    `pitch.pitch_to_midi` returns None for it. A token this said yes to and the
+    pitch layer could not read is a note that vanishes between the two, which is
+    the whole failure this function exists to prevent.
+
+    Deriving the answer from the parser also means an accidental the parser
+    gains tomorrow is accepted here without anyone remembering to widen a second
+    regex.
+    """
     if name == "rest":
         return True
     if isinstance(name, list):
         return bool(name) and all(is_writable_pitch(p) for p in name)
-    return bool(name) and bool(_PITCH_RE.match(str(name)))
+    text = str(name or "")
+    if not _PITCH_RE.match(text):
+        return False
+    from .pitch import pitch_to_midi
+
+    try:
+        return pitch_to_midi(text) is not None
+    except (ValueError, KeyError, TypeError):
+        return False
 
 
 def _parse_token(tok: str) -> Optional[Dict[str, Any]]:
