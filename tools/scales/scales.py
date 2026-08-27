@@ -349,8 +349,15 @@ def _physical_constraints(graph):
         inst = (getattr(graph.contract.target, "instrumentation", "") or "").lower()
     except Exception:
         inst = ""
-    keyboard = inst in ("", "solo_piano", "piano", "harpsichord", "organ", "celesta")
-    return PhysicalConstraints(keyboard=keyboard)
+    # A whitelist of spellings, and the graphs on disk carry four: "solo_piano"
+    # (54 pieces), "piano" (2), "piano_solo" (2) and "solo piano" (1). The last
+    # two missed, so `keyboard` came out False for a solo piano work and the
+    # validator skipped hand span and notes-per-hand entirely — a STRICT
+    # physical constraint switched off by a space. `is_keyboard` normalizes
+    # spacing and hyphens and is the one decider.
+    from .models import is_keyboard
+
+    return PhysicalConstraints(keyboard=is_keyboard(inst))
 
 
 # ─── Workspace Management ────────────────────────────────────────────────────
@@ -872,7 +879,9 @@ def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, An
     # theme system goes inert and says nothing — the caller sees
     # `sections_given_a_theme_statement: 0` with no reason. The commonest way to
     # produce one is writing `"id"` instead of `"motif_id"`.
-    nameless = [i for i, m in enumerate(motif_definitions) if not str(m.get("motif_id", "")).strip()]
+    nameless = [
+        i for i, m in enumerate(motif_definitions) if not str(m.get("motif_id", "")).strip()
+    ]
     if nameless:
         return {
             "error": f"motif definition(s) at index {nameless} have no 'motif_id'",
@@ -1443,7 +1452,7 @@ def run_scales_section(
             # a doubling shares its principal's onset and the repair measures
             # each note's room against the next later one — thickening first
             # made it re-measure spans it had already settled.
-            from .surface_composer import _thicken_principal_line
+            from .surface_composer import _hold_over_barline, _thicken_principal_line
 
             # NEVER on a phrase the agent wrote. The engine is the fallback;
             # adding so much as a doubling to the agent's own notes breaks the
@@ -1456,6 +1465,28 @@ def run_scales_section(
                     or getattr(getattr(_existing, "slot", None), "key", "")
                     or "C major",
                 )
+                _hold_over_barline(node.surface, tuple(slot_meter_for(graph, node.phrase_id)))
+                # REPAIR AGAIN. Thickening and holding both rewrite the surface
+                # the repair had just settled, and nothing re-checked it before
+                # `commit_phrase` — so a phrase reached the graph with onsets
+                # the repair would have fixed had it seen them. The committed
+                # LayerIR of a 3/8 section carried a 64th at 67/48 of a beat,
+                # which no binary note can sit on, and the bar could then not
+                # tile: music21 filled the gap and the measure exported over its
+                # meter. One bar per piece, in the bass staff, every time.
+                #
+                # The repair is idempotent by construction — every pass either
+                # leaves an event alone or moves it onto the grid — so running
+                # it after the passes that disturb it costs a second walk and
+                # nothing else.
+                second = _repair_engine_surface(
+                    node.surface, tuple(slot_meter_for(graph, node.phrase_id))
+                )
+                for key, count in (second or {}).items():
+                    engine_repairs.setdefault(node.phrase_id, {})
+                    engine_repairs[node.phrase_id][key] = (
+                        engine_repairs[node.phrase_id].get(key, 0) + count
+                    )
             # The engraver's pass runs on the agent path (`_gated_commit`) and
             # did not run here, so every phrase the ENGINE realized reached the
             # page unengraved. Measured on a fresh three-phrase section: 229
@@ -2328,8 +2359,7 @@ def _apply_narrative_curves(slot: PhraseSlot, narrative) -> bool:
             (
                 s
                 for s in sections
-                if s.bar_start <= gbar <= s.bar_end
-                and narrative_section_is_in_movement(s, _mid)
+                if s.bar_start <= gbar <= s.bar_end and narrative_section_is_in_movement(s, _mid)
             ),
             None,
         )
@@ -3065,6 +3095,7 @@ _SUBDIVISIONS = (1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 16, 20, 21, 24, 28, 30,
 # noise or a value rounded to four decimals.
 _GRID_TOLERANCE = _F(1, 256)
 
+
 def _contract_instrumentation(graph) -> str:
     """The piece's own forces, for code that builds a LayerIR from scratch.
 
@@ -3077,7 +3108,6 @@ def _contract_instrumentation(graph) -> str:
     if isinstance(target, dict):
         return str(target.get("instrumentation") or "solo_piano")
     return str(getattr(target, "instrumentation", "") or "solo_piano")
-
 
 
 def _repair_engine_surface(
@@ -3118,7 +3148,35 @@ def _repair_engine_surface(
         "overflow_dropped": 0,
     }
 
-    def _on_grid(beat) -> Fraction:
+    def _binary_at_most(beats) -> str:
+        """The longest DOTTED-OR-PLAIN binary value no longer than `beats`."""
+        from .duration import DURATION_VALUES
+
+        want = Fraction(beats)
+        best_code, best = "x", Fraction(0)
+        for code, value in DURATION_VALUES.items():
+            value = Fraction(value)
+            if _tuplet_family(value):
+                continue
+            if best < value <= want:
+                best_code, best = code, value
+        return best_code
+
+    def _tuplet_family(value: Fraction) -> frozenset:
+        """The odd primes in a denominator — the tuplet family it belongs to.
+
+        A binary value is `frozenset()`; a triplet is `{3}`; a quintuplet `{5}`;
+        a septuplet `{7}`.
+        """
+        d = value.denominator
+        out = set()
+        for prime in (3, 5, 7):
+            while d % prime == 0:
+                out.add(prime)
+                d //= prime
+        return frozenset(out)
+
+    def _on_grid(beat, duration=None) -> Fraction:
         """The SIMPLEST subdivision that explains this position.
 
         Two failures to avoid at once. A coarse grid (1/48) repairs float drift
@@ -3133,17 +3191,40 @@ def _repair_engine_surface(
         1.5625 at a sixteenth; a quintuplet's 1.2 is nowhere near any binary or
         ternary position and resolves exactly at a fifth. Nothing plausible ⇒
         fall back to the finest grid, which is exact for anything notatable.
+
+        A POSITION AND ITS DURATION MUST SHARE A GRID. A 64th note sitting on a
+        septuplet position is not a septuplet — it is a drifted onset that
+        happened to land within a 256th of one, and the subdivision walk was
+        explaining it as genuine. The bar could then never tile: a note at
+        39/28 lasting 1/16 leaves a remainder no notatable value fills, music21
+        padded it with rests of 3/80 and 1/56, and the exported measure held
+        85/56 of a 3/8 bar. Four bars in every 3/8 piece, and the only witness
+        was a MusicXML warning during read-back.
+
+        So a tuplet subdivision is only allowed to explain a position when the
+        note's own duration comes from that tuplet family, and a binary note
+        that explains nowhere falls back to a binary grid rather than to
+        1/1680, which is itself divisible by 3, 5 and 7.
         """
         offset = Fraction(beat) - 1
+        allowed = None
+        if duration is not None:
+            try:
+                allowed = _tuplet_family(Fraction(dur_to_beats(duration)))
+            except (TypeError, ValueError, ZeroDivisionError):
+                allowed = None
         for denom in _SUBDIVISIONS:
+            if allowed is not None and not _tuplet_family(Fraction(1, denom)) <= allowed:
+                continue
             candidate = Fraction(round(offset * denom), denom)
             if abs(candidate - offset) <= _GRID_TOLERANCE:
                 return max(Fraction(1), candidate + 1)
-        return max(Fraction(1), Fraction(round(offset * _POSITION_GRID), _POSITION_GRID) + 1)
+        grid = 16 if allowed is not None and not allowed else _POSITION_GRID
+        return max(Fraction(1), Fraction(round(offset * grid), grid) + 1)
 
     for events in _all_event_lists(layer):
         for e in events:
-            exact = _on_grid(e.beat)
+            exact = _on_grid(e.beat, e.duration)
             # Count a snap only when the note actually MOVED. Comparing the
             # resolved fraction to `Fraction(e.beat)` compares it to the exact
             # binary expansion of a float, which for any tuplet is never equal:
@@ -3154,6 +3235,31 @@ def _repair_engine_surface(
             if abs(float(exact) - float(e.beat)) > 1e-6:
                 counts["snapped"] += 1
             e.beat = round(float(exact), 6)
+
+            # AN ISOLATED TUPLET CANNOT TILE A BAR.
+            #
+            # A quintuplet quarter (2/5) starting on a sixteenth ends at 37/80,
+            # which is a position no notatable value reaches — music21 padded
+            # the hole with a 3/80 rest and the bar exported over its meter. A
+            # tuplet is only ever written as a complete group, so its first note
+            # sits on that tuplet's own grid: 0, 1/5, 2/5 for a quintuplet. An
+            # onset that does not is a tuplet value handed to a note that was
+            # never part of a group, and the honest repair is to give it the
+            # nearest binary duration instead.
+            #
+            # A genuine group survives untouched: a triplet beginning on a beat
+            # starts at 0, which lies on every grid, and its later notes at 1/6
+            # and 1/3 lie on the ternary one.
+            family = _tuplet_family(Fraction(dur_to_beats(e.duration)))
+            if family:
+                offset = Fraction(exact) - 1
+                for prime in family:
+                    if (offset * prime).denominator != 1 and (offset * prime * 2).denominator != 1:
+                        e.duration = _binary_at_most(dur_to_beats(e.duration))
+                        counts["isolated_tuplet_rewritten"] = (
+                            counts.get("isolated_tuplet_rewritten", 0) + 1
+                        )
+                        break
 
         events.sort(key=lambda x: (x.bar, x.beat))
 
@@ -3194,6 +3300,21 @@ def _repair_engine_surface(
         for group in by_onset.values():
             if len(group) < 2:
                 continue
+            # A REST is not a chord tone. A rest sharing a note's onset is the
+            # generator saying two contradictory things about one instant, and
+            # treating the pair as a chord kept both: the assembler placed the
+            # note and then laid the rest out sequentially, where it landed
+            # PAST THE BARLINE. That is the trailing rest on the barline that
+            # made one bass bar per piece export over its meter.
+            sounding = [x for x in group if x.pitch != "rest"]
+            if sounding and len(sounding) != len(group):
+                for x in group:
+                    if x.pitch == "rest":
+                        drop.add(id(x))
+                        counts["overlaps_trimmed"] += 1
+                group = sounding
+                if len(group) < 2:
+                    continue
             # Two events that are ALREADY chords are two chords, not one. A
             # viola handed `[F5,A5,C6]` and `[F3,A3,C4]` on the same beat cannot
             # play both — that is the orchestration planner writing an inner
@@ -4444,9 +4565,7 @@ def self_evaluate(
                     report["part_writing"]["muddy_low_intervals"] = {
                         "per_bar": round(rate, 3),
                         "composer_per_bar": round(own, 4) if own is not None else None,
-                        "times_own_practice": (
-                            round(rate / own, 1) if own else None
-                        ),
+                        "times_own_practice": (round(rate / own, 1) if own else None),
                     }
             except Exception as exc:  # never let an analyser break the report
                 report["part_writing"] = {"error": f"{type(exc).__name__}: {exc}"}

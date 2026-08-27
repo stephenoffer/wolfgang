@@ -2602,3 +2602,45 @@ def test_a_chord_written_as_separate_events_survives_to_the_score():
     assert sorted(p.nameWithOctave for p in chords[0].pitches) == ["C5", "E5", "G5"]
     # MusicXML spells a chord as consecutive notes carrying `<chord/>`.
     assert out.read_text().count("<chord") == 2, "not written as a MusicXML chord"
+
+
+def test_a_rest_is_never_part_of_a_chord():
+    """A rest sharing a note's onset is the generator saying two contradictory
+    things about one instant.
+
+    The chord rule groups by onset and duration, and a rest matched both — so
+    both survived, the assembler placed the note and then laid the rest out
+    SEQUENTIALLY, and it landed past the barline. That is the trailing rest on
+    the barline that made one bass bar per piece export over its meter:
+
+        off=0 Rest / off=1 Note / off=2 Rest / off=3 Note / off=4 Rest
+                                                           ^ past 4.0
+    """
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _repair_engine_surface
+
+    layer = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+    for beat, pitch in ((2.0, "B2"), (2.0, "rest"), (3.0, "B2")):
+        layer.bass_foundation.append(
+            LayerEvent(
+                bar=1,
+                beat=beat,
+                pitch=pitch,
+                duration="q",
+                role="structural",
+                source_layer="bass_foundation",
+            )
+        )
+    _repair_engine_surface(layer, (4, 4))
+    kept = [(e.beat, e.pitch) for e in layer.bass_foundation]
+    assert (2.0, "rest") not in kept, f"a rest survived on a sounding onset: {kept}"
+    assert (2.0, "B2") in kept and (3.0, "B2") in kept, kept
+
+    # A rest alone on its onset is untouched — silence is a real event.
+    solo = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+    solo.bass_foundation = [
+        LayerEvent(bar=1, beat=1.0, pitch="rest", duration="q", source_layer="bass_foundation"),
+        LayerEvent(bar=1, beat=2.0, pitch="C3", duration="q", source_layer="bass_foundation"),
+    ]
+    _repair_engine_surface(solo, (4, 4))
+    assert len(solo.bass_foundation) == 2, solo.bass_foundation
