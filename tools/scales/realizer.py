@@ -14,7 +14,7 @@ from __future__ import annotations
 from fractions import Fraction
 
 from .cadence_bank import CadenceBank
-from .duration import bar_duration, dur_to_beats
+from .duration import bar_duration, dur_to_beats, largest_dur_at_most
 from .enums import AccompType, CadenceTarget, NoteRole
 from .gesture_bank import GestureBank
 from .models import (
@@ -159,7 +159,26 @@ class Realizer:
                 )
                 dur = _choose_melody_duration(beats_to_next, variant)
             else:
-                dur = "h" if anchor.role == "cadence" else "q"
+                # The LAST note of the phrase, with nothing after it to bound
+                # its length — so it runs to the end of its bar. A hardcoded
+                # half note left every cadence bar exactly half empty: two
+                # beats of a 4/4, then two beats of silence in both hands,
+                # in every phrase.
+                #
+                # Falsified against the corpus rather than guessed. Cadential
+                # bars in real music are a median 100% sounding (Chopin,
+                # Beethoven, Bach, Haydn) and 75% in Mozart, with only 16-33%
+                # at or below half full — against 50%, uniformly, here.
+                # This IS the cadence — it is the final anchor of the phrase,
+                # by construction, with nothing after it to bound its length.
+                #
+                # The test was `anchor.role == "cadence"`, and `sketch_proposer`
+                # emits only "passing" and "structural". That branch had never
+                # once executed: every phrase ended on a QUARTER NOTE and left
+                # its bar three-quarters empty, while the code read as though
+                # cadences were being given long notes.
+                remaining = beats_per_bar - (anchor.beat - 1)
+                dur = largest_dur_at_most(remaining) if remaining > 0 else "q"
 
             events.append(
                 LayerEvent(

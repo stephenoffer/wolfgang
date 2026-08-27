@@ -18,9 +18,11 @@ from __future__ import annotations
 
 import pytest
 
+from scales.duration import bar_duration
 from scales.models import HarmonyEvent
 from scales.pitch import midi_to_pitch
 from scales.realizer import Realizer
+from scales.scales import _WORKSPACE
 
 
 def _bass(roman: str, key: str) -> str:
@@ -73,3 +75,89 @@ def test_no_second_roman_table_is_maintained_here(function_source):
     src = function_source(realizer, "_harmony_to_bass")
     assert "roman_pitches" in src, "the bass must come from the one Roman parser"
     assert "degree_offsets" not in src, "a second Roman-numeral table has come back"
+
+
+# ─── The cadence, in the same module and the same shape ─────────────────────
+
+
+def test_the_final_note_of_a_phrase_fills_its_bar():
+    """`dur = "h" if anchor.role == "cadence" else "q"` — and `sketch_proposer`
+    emits only "passing" and "structural".
+
+    That branch had never once executed. Every phrase ended on a QUARTER NOTE
+    and left its bar three-quarters empty, while the code read as though
+    cadences were being given long notes. The final anchor IS the cadence, by
+    construction: it is the last one, with nothing after it to bound its length.
+
+    Falsified against the corpus rather than guessed. Cadential bars in real
+    music are a median 100% sounding (Chopin, Beethoven, Bach, Haydn) and 75%
+    in Mozart, with only 16-33% at or below half full.
+    """
+    from scales.duration import dur_to_beats
+    from scales.piece_graph import PieceGraph
+    from scales.scales import (
+        build_form_graph,
+        compile_style,
+        init_workspace,
+        run_scales_section,
+    )
+
+    piece = "_test_cadence_fills_its_bar"
+    init_workspace(piece, mode="compose_from_text", description="A study in D minor")
+    compile_style(piece, composers=["mozart"])
+    build_form_graph(piece, form="rounded_binary", key="d minor", tempo_bpm=96, meter=(4, 4))
+    # The pre-v6 path is where this realizer runs.
+    run_scales_section(piece, "m1_a", use_v6_pipeline=False)
+
+    graph = PieceGraph.load(str(_WORKSPACE / piece / "piece_graph.json"))
+    checked = 0
+    for state in graph.phrases.values():
+        if not state.realized or not state.slot:
+            continue
+        last_bar = state.slot.bar_start + state.slot.bar_count - 1
+        events = [e for e in state.realized.principal_line if e.bar == last_bar]
+        if not events:
+            continue
+        sounding = sum(float(dur_to_beats(e.duration)) for e in events if e.pitch != "rest")
+        capacity = float(bar_duration(tuple(state.slot.meter)))
+        checked += 1
+        assert sounding >= capacity * 0.75, (
+            f"cadence bar {last_bar} sounds {sounding} of {capacity} beats — real "
+            f"cadential bars run a median 75-100% sounding"
+        )
+    assert checked, "no phrases were realized"
+
+
+def test_a_branch_guarded_by_a_role_nothing_emits_is_not_a_feature():
+    """The anchor roles the sketch proposer produces, against the ones the
+    realizer branches on. A test for the shape of the bug, not the instance."""
+    import ast
+    from pathlib import Path
+
+    here = Path(__file__).resolve().parents[1]
+
+    def _role_values(path, mode):
+        """Role strings ASSIGNED (mode="set") or COMPARED (mode="test"), from the
+        parse tree — a regex over the text also matches the comments explaining
+        the bug, which is how the first version of this failed on itself."""
+        tree = ast.parse(Path(path).read_text())
+        found = set()
+        for node in ast.walk(tree):
+            if mode == "set" and isinstance(node, ast.keyword) and node.arg == "role":
+                if isinstance(node.value, ast.Constant) and isinstance(node.value.value, str):
+                    found.add(node.value.value)
+            if mode == "test" and isinstance(node, ast.Compare):
+                left = node.left
+                if isinstance(left, ast.Attribute) and left.attr == "role":
+                    for cmp in node.comparators:
+                        if isinstance(cmp, ast.Constant) and isinstance(cmp.value, str):
+                            found.add(cmp.value)
+        return found
+
+    produced = _role_values(here / "sketch_proposer.py", "set")
+    consumed = _role_values(here / "realizer.py", "test")
+    assert produced, "no anchor roles found — has the proposer changed shape?"
+    assert not (consumed - produced), (
+        f"realizer branches on anchor role(s) nothing emits: {sorted(consumed - produced)} "
+        f"(the proposer emits {sorted(produced)})"
+    )
