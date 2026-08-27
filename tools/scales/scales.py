@@ -274,6 +274,15 @@ def _names_any(text: str, words) -> bool:
     return any(w in present for w in words)
 
 
+#: Modes whose TARGET forces are fixed by the mode itself, whatever the request
+#: says. Both of these name their source in the description — see the note in
+#: `init_workspace`.
+_MODE_TARGET_INSTRUMENTATION = {
+    "reduce_to_piano": "solo_piano",
+    "orchestrate": "ensemble",
+}
+
+
 def _infer_instrumentation(description: str) -> Optional[str]:
     """Read the forces out of the request.
 
@@ -360,8 +369,22 @@ def init_workspace(
             graph.contract.target.difficulty = params["difficulty"]
 
     # Read the forces out of the request when the caller did not name them.
+    #
+    # THE MODE WINS where it names the target. `reduce_to_piano` and
+    # `orchestrate` describe a transformation, so their descriptions name the
+    # SOURCE — "reduce this symphony to piano", "orchestrate this piano piece" —
+    # and inferring from the words set the target to exactly the wrong thing in
+    # both: the reduction was recorded as an ensemble and the orchestration as
+    # solo piano.
+    #
+    # That inversion matters most where it is least visible: the piano
+    # playability check (hand span) runs only for keyboard targets, so a
+    # reduction — whose entire purpose is to fit two hands — was the one output
+    # never checked for it, while an orchestration was checked against a span
+    # no orchestra has.
     if not (params or {}).get("instrumentation"):
-        inferred = _infer_instrumentation(description)
+        forced = _MODE_TARGET_INSTRUMENTATION.get(mode)
+        inferred = forced or _infer_instrumentation(description)
         if inferred:
             graph.contract.target.instrumentation = inferred
 
@@ -516,6 +539,7 @@ def build_form_graph(
     meter: Tuple[int, int] = (4, 4),
     sections: Optional[List[Dict]] = None,
     motif_ids: Optional[List[str]] = None,
+    movement_id: str = "m1",
 ) -> List[Dict]:
     """Build a form graph with PhraseSlots.
 
@@ -527,21 +551,34 @@ def build_form_graph(
     graph = _load_graph(piece_id)
 
     # Build sections and phrases based on form
-    form_graph = FormGraph()
+    # Build ON the existing form graph when this is an additional movement.
+    # A fresh FormGraph() replaced the registry every call, so `form.sections`
+    # held only the LAST movement built — `get_section_phrases` returned []
+    # for every earlier one, which silently blocked the engine fallback, the
+    # section gate and the review path for all but one movement of a work.
+    form_graph = graph.form if (movement_id != "m1" and graph.form) else FormGraph()
     phrase_summaries = []
+    form_substituted = ""
 
     if form == "ternary":
-        phrases = _build_ternary(key, tempo_bpm, meter, graph.style_dna)
+        phrases = _build_ternary(key, tempo_bpm, meter, graph.style_dna, movement_id)
     elif form == "sonata":
-        phrases = _build_sonata(key, tempo_bpm, meter, graph.style_dna)
+        phrases = _build_sonata(key, tempo_bpm, meter, graph.style_dna, movement_id)
     elif form == "theme_variations":
-        phrases = _build_theme_variations(key, tempo_bpm, meter, graph.style_dna)
+        phrases = _build_theme_variations(key, tempo_bpm, meter, graph.style_dna, movement_id)
     else:
-        phrases = _build_simple(key, tempo_bpm, meter, form, graph.style_dna)
+        # SAY SO. `_build_simple` is a reasonable default for a form this system
+        # has no spec for, but it was silent: asking for a `rondo` returned a
+        # four-phrase A-B-A' with no refrain returns, a `minuet_trio` came back
+        # with no trio, and a `fugue` and a `binary` were the same song form
+        # under a different name. Nothing in the result said the form asked for
+        # was not the form built.
+        phrases = _build_simple(key, tempo_bpm, meter, form, graph.style_dna, movement_id)
+        form_substituted = form
 
     # Create movement
     movement = MovementSpec(
-        id="m1",
+        id=movement_id,
         form=form,
         key=key,
         tempo_bpm=tempo_bpm,
@@ -559,7 +596,7 @@ def build_form_graph(
             current_section_id = slot.section_id
             section = SectionSpec(
                 id=current_section_id,
-                movement_id="m1",
+                movement_id=movement_id,
                 key=slot.key,
                 phrase_ids=[],
             )
@@ -723,6 +760,27 @@ def build_form_graph(
 
     graph.save(str(workspace / "piece_graph.json"))
 
+    if form_substituted:
+        _LOG.warning(
+            "form %r has no spec in this system; built the default song form "
+            "(A-B-A', %d phrases) instead. Known forms: ternary, sonata, "
+            "theme_variations.",
+            form_substituted,
+            len(phrase_summaries),
+        )
+        phrase_summaries.append(
+            {
+                "warning": "form_substituted",
+                "requested": form_substituted,
+                "built": "simple song form (A-B-A')",
+                "known_forms": ["ternary", "sonata", "theme_variations"],
+                "note": (
+                    "A rondo built this way has no refrain returns and a "
+                    "minuet_trio has no trio. Use a known form, or lay the "
+                    "sections out explicitly with the `sections` argument."
+                ),
+            }
+        )
     return phrase_summaries
 
 
@@ -987,6 +1045,7 @@ def run_scales_section(
     sc = None
     cc = None
     cbr = None
+    _kept_authored: List[str] = []
     cross_ledger = None
     section_contract = graph.section_contracts.get(section_id)
     style_program = graph.style_program
@@ -1053,6 +1112,7 @@ def run_scales_section(
 
         # Agent-authored LayerIR: Claude wrote final notes — do not run engine
         if getattr(phrase_state, "agent_authored", False) and phrase_state.realized is not None:
+            _kept_authored.append(phrase_id)
             sketch_for_score = phrase_state.sketch
             if sketch_for_score is None:
                 prop = proposer.propose(slot, graph.style_dna, k=1)
@@ -1258,6 +1318,7 @@ def run_scales_section(
 
     # Phase 6: Commit best path
     engine_repairs: Dict[str, Dict[str, int]] = {}
+    engine_engraving: Dict[str, Dict[str, Any]] = {}
     for node in best_path.nodes:
         if node.surface:
             # The engine path committed straight to the graph with NO physical
@@ -1273,7 +1334,35 @@ def run_scales_section(
             )
             if repairs:
                 engine_repairs[node.phrase_id] = repairs
+            # The engraver's pass runs on the agent path (`_gated_commit`) and
+            # did not run here, so every phrase the ENGINE realized reached the
+            # page unengraved. Measured on a fresh three-phrase section: 229
+            # events carrying 0 slurs, 0 articulations, 0 hairpins, 0 ornaments
+            # and 0 pedal marks — dynamics only, straight from the realizer.
+            # That is what a score with 0.00 marks per bar looks like, and the
+            # fallback is exactly the path used for anything the agent did not
+            # author. `enrich_layer_ir` only fills fields left None, so it
+            # cannot overwrite the engine's own decisions.
+            engraved = _engrave_phrase(graph, node.phrase_id, node.surface, composer_id)
+            if engraved and engraved.get("ok") is not False:
+                engine_engraving[node.phrase_id] = {
+                    k: v for k, v in engraved.items() if isinstance(v, (int, float)) and v
+                }
             graph.commit_phrase(node.phrase_id, node.surface)
+            # Both of these run on the agent path at commit and ran on neither
+            # here. Their absence is silent and compounding:
+            #   * the PRINCIPAL THEME is captured from the phrase that first
+            #     states it. When the engine realizes the opening section — the
+            #     usual case for a fallback — nothing captured it, so
+            #     `principal_theme_phrase()` returned "" and there was no theme
+            #     to bring back, develop, or recognise. A piece cannot have a
+            #     memorable theme if nothing ever recorded what the theme was.
+            #   * expectations are DISCHARGED on commit. Recording promises at
+            #     plan time and never closing them leaves every debt open for
+            #     the whole piece, which is the same bug `_settle_expectations`
+            #     was written to fix on the other path.
+            _capture_theme_if_first_statement(graph, node.phrase_id)
+            _settle_expectations(graph, node.phrase_id)
 
     # Phase 6b: Populate expectations from committed phrases
     try:
@@ -1398,7 +1487,13 @@ def run_scales_section(
 
     result: Dict[str, Any] = {
         "section_id": section_id,
-        "phrases_realized": len(best_path.nodes),
+        # What the ENGINE actually wrote. This reported the whole path length,
+        # so running the fallback over a section Claude had already composed
+        # said "3 phrases realized" while correctly leaving all three alone —
+        # an orchestrator reading that would believe work had been done.
+        "phrases_realized": len(best_path.nodes) - len(_kept_authored),
+        "phrases_kept_agent_authored": len(_kept_authored),
+        "phrases_in_path": len(best_path.nodes),
         "path_score": best_path.total_score,
         "transition_scores": best_path.transition_scores,
         "pipeline": "v6" if (sc and style_program) else "classic",
@@ -1408,6 +1503,12 @@ def run_scales_section(
         # something that could not be engraved, and the caller should see it.
         result["engine_repairs"] = engine_repairs
         _LOG.warning("engine surface repairs in %s: %s", section_id, engine_repairs)
+
+    if engine_engraving:
+        # What the ENGRAVER added, separate from what the engine composed — so a
+        # reviewer can tell one from the other, which is the whole reason the
+        # enricher reports at all.
+        result["engraving"] = engine_engraving
 
     if cu_report:
         result["context_utilization"] = {
@@ -1540,14 +1641,23 @@ def _key_for_role(key: str, role: str) -> str:
     return fns.get(role, lambda k: k)(key)
 
 
-def _build_from_spec(spec, key, tempo, meter, style) -> List[PhraseSlot]:
-    """Materialize a form spec into PhraseSlots with running bar numbers."""
+def _build_from_spec(spec, key, tempo, meter, style, movement_id: str = "m1") -> List[PhraseSlot]:
+    """Materialize a form spec into PhraseSlots with running bar numbers.
+
+    Every form spec hardcodes an ``m1_`` prefix, so a second movement built into
+    the same piece produced phrase ids that COLLIDED with the first and silently
+    replaced them — a sonata's ``m1_a_p1`` overwritten by a ternary's. The
+    documented ``m2_a`` convention was unreachable. The prefix is rewritten here
+    so each movement gets its own namespace.
+    """
     phrases: List[PhraseSlot] = []
     bar = 1
     counters: Dict[str, int] = {}
     from .dramatic_plan import role_for
 
+    mid = str(movement_id or "m1")
     for section_id, bars, fn, cad, key_role in spec:
+        section_id = re.sub(r"^m\d+_", f"{mid}_", section_id) if mid != "m1" else section_id
         counters[section_id] = counters.get(section_id, 0) + 1
         slot_key = _key_for_role(key, key_role)
         # Resolve the dramatic role BEFORE the harmony is sampled: an opening
@@ -1574,21 +1684,21 @@ def _build_from_spec(spec, key, tempo, meter, style) -> List[PhraseSlot]:
 
 
 def _build_ternary(
-    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA
+    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA, movement_id: str = "m1"
 ) -> List[PhraseSlot]:
     """ABA' ternary with a retransition and a coda, and asymmetric phrases."""
-    return _build_from_spec(_TERNARY_SPEC, key, tempo, meter, style)
+    return _build_from_spec(_TERNARY_SPEC, key, tempo, meter, style, movement_id)
 
 
 def _build_sonata(
-    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA
+    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA, movement_id: str = "m1"
 ) -> List[PhraseSlot]:
     """A complete sonata-allegro: exposition, development, recapitulation, coda."""
-    return _build_from_spec(_SONATA_SPEC, key, tempo, meter, style)
+    return _build_from_spec(_SONATA_SPEC, key, tempo, meter, style, movement_id)
 
 
 def _build_theme_variations(
-    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA
+    key: str, tempo: int, meter: Tuple[int, int], style: StyleDNA, movement_id: str = "m1"
 ) -> List[PhraseSlot]:
     """Theme + four variations, each with its own key role, phrase rhythm and tempo."""
     spec = [
@@ -1618,10 +1728,10 @@ def _build_theme_variations(
 
 
 def _build_simple(
-    key: str, tempo: int, meter: Tuple[int, int], form: str, style: StyleDNA
+    key: str, tempo: int, meter: Tuple[int, int], form: str, style: StyleDNA, movement_id: str = "m1"
 ) -> List[PhraseSlot]:
     """A short song-form default for unrecognized form names."""
-    return _build_from_spec(_SIMPLE_SPEC, key, tempo, meter, style)
+    return _build_from_spec(_SIMPLE_SPEC, key, tempo, meter, style, movement_id)
 
 
 def _make_slot(
@@ -3674,6 +3784,109 @@ def self_evaluate(
     # phrases flagged as composed-blind (resembling no briefed exemplar).
     report["authoring"] = _authoring_summary(graph, section_id)
 
+    # The craft checklist runs on every commit and is stored on the phrase —
+    # and the reviewer, whose whole input is this report, never saw it. Advisory
+    # by construction; measured over 200 real corpus phrases from five composers
+    # the individual checks fire on 1.5%-13.5% of them, which is the same band
+    # the realism detectors run in, so they are hints and not verdicts.
+    try:
+        from .craft_checker import craft_findings
+
+        craft: List[Dict[str, Any]] = []
+        for pid, ps in graph.phrases.items():
+            if section_id and not (ps.slot and ps.slot.section_id == section_id):
+                continue
+            cc = getattr(ps, "craft_check", None)
+            if cc is None:
+                continue
+            for line in craft_findings(cc) or []:
+                craft.append({"phrase": pid, "note": str(line)})
+        if craft:
+            report["craft"] = {
+                "findings": craft[:20],
+                "count": len(craft),
+                "note": (
+                    "Advisory. Measured on 200 real corpus phrases these checks fire "
+                    "on 1.5%-13.5% of real music each — a phrase may fail one on "
+                    "purpose (no rest because it elides into the next, a deliberately "
+                    "static bass, two-voice counterpoint that has no inner voice)."
+                ),
+            }
+    except Exception as exc:
+        report["craft"] = {"error": f"{type(exc).__name__}: {exc}"}
+
+    # Which briefed evidence the commits actually used. CLAUDE.md documents this
+    # as "embedded in self_evaluate" and it was wired only into
+    # `run_scales_section` — so the reviewer, whose whole input is this report,
+    # could not tell a phrase built from the corpus exemplars from one invented
+    # beside them.
+    try:
+        from .composition_brief import composer_coverage_tier
+        from .context_utilization import compute_section_coverage, compute_utilization
+
+        # `context_trace` round-trips through JSON as a plain dict, and
+        # `compute_utilization` reads dataclass attributes — so on any graph
+        # loaded from disk (which is every graph a reviewer sees) the report
+        # could not be computed at all.
+        from .models import ContextTrace
+        from .piece_graph import _dataclass_from_dict
+
+        def _as_trace(t, pid):
+            if isinstance(t, ContextTrace):
+                return t
+            if isinstance(t, dict):
+                try:
+                    return _dataclass_from_dict(ContextTrace, {"phrase_id": pid, **t})
+                except Exception:
+                    return None
+            return None
+
+        traces = {}
+        for pid, ps in graph.phrases.items():
+            if section_id and not (ps.slot and ps.slot.section_id == section_id):
+                continue
+            tr = _as_trace(getattr(ps, "context_trace", None), pid)
+            if tr is not None:
+                traces[pid] = tr
+        if traces:
+            tier = (composer_coverage_tier(resolved) or {}).get("tier", "D")
+            if section_id:
+                util = compute_section_coverage(section_id, traces, tier=tier)
+            else:
+                u = compute_utilization(traces, tier=tier)
+                util = u.as_dict() if hasattr(u, "as_dict") else vars(u)
+
+            # The engine populates these counters; an AGENT-authored commit does
+            # not, so on the default path every field is 0. Reported raw, that
+            # reads as "this piece used no corpus evidence at all" — a number
+            # that looks like evidence and is not, which is the exact failure
+            # this report is elsewhere used to catch. What IS recorded for an
+            # agent commit is the brief receipt, so report that instead.
+            raw = [ps.context_trace or {} for ps in graph.phrases.values()
+                   if not section_id or (ps.slot and ps.slot.section_id == section_id)]
+            briefed = [t for t in raw if t.get("brief_fetched")]
+            if briefed and not any(v for k, v in util.items() if isinstance(v, (int, float)) and v):
+                report["context_utilization"] = {
+                    "path": "agent_authored",
+                    "note": (
+                        "The engine's utilization counters do not apply to phrases "
+                        "the agent wrote; what is recorded is the brief receipt."
+                    ),
+                    "phrases_briefed": len(briefed),
+                    "phrases_total": len(raw),
+                    # `briefed_exemplars` is persisted as a COUNT by one writer
+                    # and as the LIST of exemplars by another; accept both.
+                    "exemplars_shown": sum(
+                        len(v) if isinstance(v, list) else int(v or 0)
+                        for v in (t.get("briefed_exemplars") for t in briefed)
+                    ),
+                    "composed_blind": sum(1 for t in raw if t.get("composed_blind")),
+                }
+            else:
+                report["context_utilization"] = util
+    except Exception as exc:
+        report["context_utilization"] = {"error": f"{type(exc).__name__}: {exc}"}
+
     # Transparency (C4): the band-based flags above use GENERIC human-vs-AI
     # discriminator bands; the composer-specific comparison lives in
     # corpus_divergence. Say so, and flag when only the generic bands were
@@ -3752,6 +3965,30 @@ def self_evaluate(
                 piece_id=piece_id,
             )
         if merged is not None:
+            # Part-writing reaches the reviewer. `analyze_counterpoint` finds
+            # parallel fifths and octaves, hidden octaves into cadences, doubled
+            # leading tones, unresolved sevenths and voice independence — and it
+            # lived only in `musical_report`, while the music-critic is given
+            # "only the score and the self_evaluate report". A three-voice fugue
+            # with 5 parallel fifths and 2 parallel octaves passed review with
+            # nothing to see. In the contrapuntal styles this system is armed for
+            # — Bach, Palestrina, Monteverdi — those are the cardinal errors.
+            try:
+                from .counterpoint import analyze_counterpoint, summarize_for_critic
+
+                cp = analyze_counterpoint(
+                    merged, key=(in_scope[0].slot.key if in_scope[0].slot else "C")
+                )
+                report["part_writing"] = {
+                    "errors": cp.error_count,
+                    "warnings": cp.warn_count,
+                    "independence": round(cp.independence, 3),
+                    "by_kind": cp.by_kind(),
+                    "lines": summarize_for_critic(cp, limit=12),
+                }
+            except Exception as exc:  # never let an analyser break the report
+                report["part_writing"] = {"error": f"{type(exc).__name__}: {exc}"}
+
             v = analyze_voicing(merged, style=resolved)
             report["voicing"] = {
                 k: getattr(v, k)
@@ -4583,6 +4820,29 @@ def load_source_score(
         from .models import SourceReference
 
         graph.contract.source = SourceReference(path=str(src))
+    # `continue_piece` is documented as the mode where "the ledger carries
+    # forward" — the promises and debts the earlier music left open. It carried
+    # nothing: `load_source_score` reads a SCORE FILE, which has no ledger, so
+    # the mode's whole differentiator did not happen. When the source is another
+    # workspace's output — which is what continuing a piece means — that piece's
+    # graph is right there beside it.
+    if str(getattr(graph, "mode", "")) == "continue_piece":
+        carried = 0
+        try:
+            src_graph = Path(path).resolve().parent.parent / "piece_graph.json"
+            if src_graph.exists():
+                prior = PieceGraph.load(str(src_graph))
+                led = getattr(prior, "cross_scale_ledger", None)
+                if isinstance(led, dict) and led:
+                    graph.cross_scale_ledger = led
+                    exps = led.get("expectations")
+                    carried = len(exps) if isinstance(exps, list) else 0
+        except Exception:
+            carried = 0
+        result_extra = {"ledger_expectations_carried": carried}
+    else:
+        result_extra = {}
+
     graph.save(str(graph_path))
 
     return {
@@ -4596,12 +4856,43 @@ def load_source_score(
         "meter": list(meter),
         "tempo_bpm": tempo,
         "locks_applied": applied,
+        **result_extra,
         "hint": (
             "Source phrases are marked salience='source' and agent_authored=False. "
             "Plan over them with /w-plan, then compose against them — the lock "
             "policy says how much of each must survive."
         ),
     }
+
+
+def _thin_carried_dynamics(layer) -> int:
+    """Collapse a dynamic repeated on consecutive events of one layer.
+
+    Returns how many marks were removed. Only an UNBROKEN run collapses: real
+    scores restate a dynamic 36.1% of the time, and a reminder after a gap is
+    correct engraving, not spam.
+    """
+    removed = 0
+    for name in (
+        "principal_line",
+        "bass_foundation",
+        "response_layer",
+        "counter_reply",
+        "ornamental_surface",
+        "inner_voices",
+    ):
+        events = getattr(layer, name, None) or []
+        last = None
+        for e in sorted(events, key=lambda x: (x.bar, x.beat)):
+            dyn = getattr(e, "dynamic", None)
+            if dyn is None:
+                continue
+            if dyn == last:
+                e.dynamic = None
+                removed += 1
+            else:
+                last = dyn
+    return removed
 
 
 @_tool
@@ -4684,6 +4975,19 @@ def reduce_to_piano(
     )
     from .models import PhraseState
 
+    # A reduction inherits the source's dynamic on EVERY note it carries down,
+    # so a Clara Schumann polonaise holding 7 written dynamics came out with 313
+    # of them — 296 printed, 3.70 per bar, against a real per-part range of
+    # 0.03-0.85 (median 0.24) measured over 212 parts. That is 4.4x the loudest
+    # real part, and it is the reduction shouting a marking at the player on
+    # every beat.
+    #
+    # Thinned to CHANGES, which is where a dynamic is written. Note what this
+    # deliberately does not do: 36.1% of real dynamics restate the level already
+    # in force (a reminder after a long gap is normal engraving), so this only
+    # collapses an unbroken run within one layer, never a restatement after
+    # something else intervened.
+    _thin_carried_dynamics(layer)
     graph.phrases[phrase_id] = PhraseState(slot=slot, realized=layer, agent_authored=False)
     graph.save(str(graph_path))
 
@@ -4741,6 +5045,43 @@ def _source_tempo(path: Path) -> Optional[int]:
     except Exception:
         return None
 
+#: Words in a profile's role description that name what the part DOES.
+_MELODY_WORDS = ("melod", "leader", "soprano", "principal", "tune", "sings", "lead ")
+_BASS_WORDS = ("bass", "root", "foundation", "anchor", "lowest", "pedal")
+
+
+def _style_role_assignments(roles, ensemble) -> Dict[str, str]:
+    """Which INSTRUMENT this style gives the melody and the bass.
+
+    `plan_orchestration` reads `style_roles["melody"]` and `style_roles["bass"]`
+    and expects an instrument NAME. The packs hold the opposite shape —
+    instrument name -> role description — so handing the raw dict over produced
+    `None` for melody and, for Chopin, an `InstrumentRole` OBJECT for bass,
+    which then failed an `in ensemble` test and fell back. It never raised and
+    never assigned anything: the style's own scoring preferences reached the
+    planner as silence.
+
+    Only an instrument actually in the ensemble is proposed; anything else is
+    left to the planner's own choice.
+    """
+    available = {str(name).lower() for name in (ensemble or [])}
+    out: Dict[str, str] = {}
+    for name, role in (roles or {}).items():
+        described = " ".join(
+            str(v).lower()
+            for v in (getattr(role, "role", ""), getattr(role, "name", ""), name)
+            if v
+        )
+        key = str(getattr(role, "name", name) or name).lower().replace(" ", "_")
+        if key not in available:
+            continue
+        if "melody" not in out and any(w in described for w in _MELODY_WORDS):
+            out["melody"] = key
+        elif "bass" not in out and any(w in described for w in _BASS_WORDS):
+            out["bass"] = key
+    return out
+
+
 
 @_tool
 def orchestrate_section(
@@ -4748,6 +5089,7 @@ def orchestrate_section(
     section_id: str,
     target_ensemble: Optional[List[str]] = None,
     planner: str = "idiomatic",
+    soloist: str = "",
 ) -> Dict[str, Any]:
     """Expand a section's committed piano-core LayerIR into orchestral parts.
 
@@ -4812,11 +5154,69 @@ def orchestrate_section(
     else:
         from .orchestration_planner import plan_orchestration
 
+        # `orchestration_roles` is a field of StyleDNA, which StyleProgram
+        # WRAPS — so `getattr(program, "orchestration_roles", None)` read it off
+        # the wrong object and returned None every time, and the planner's
+        # generic fallback took over with nothing to say it had. Try the DNA the
+        # program carries, then the graph's own.
         style_roles = None
-        program = getattr(graph, "style_program", None)
-        if program is not None:
-            style_roles = getattr(program, "orchestration_roles", None)
+        for holder in (
+            getattr(getattr(graph, "style_program", None), "dna", None),
+            getattr(graph, "style_dna", None),
+        ):
+            roles = getattr(holder, "orchestration_roles", None)
+            if roles:
+                style_roles = _style_role_assignments(roles, target_ensemble)
+                break
         parts = plan_orchestration(merged, target_ensemble, key=key, style_roles=style_roles)
+
+    # A CONCERTO keeps its soloist. `orchestrate_section` is documented as the
+    # concerto workflow — "piano-core first, then orchestrate_section" — but the
+    # planner is a role distributor with no notion of a solo part, so naming
+    # `piano` in the ensemble got it the melody line alone: 42 notes between G5
+    # and C7, one staff, no left hand. That is a flute part on a piano staff.
+    #
+    # With a soloist named, that part keeps the piano core entire — both hands,
+    # every event — and the orchestra is planned around it.
+    if soloist:
+        solo_events = []
+        for name in (
+            "principal_line",
+            "counter_reply",
+            "ornamental_surface",
+            "bass_foundation",
+            "response_layer",
+        ):
+            for e in getattr(merged, name, []) or []:
+                if getattr(e, "pitch", None) == "rest":
+                    continue
+                solo_events.append(
+                    {
+                        "bar": e.bar,
+                        "beat": float(e.beat),
+                        "pitch": e.pitch,
+                        "duration": e.duration,
+                        "role": getattr(e, "role", ""),
+                        "staff": "treble"
+                        if name in ("principal_line", "counter_reply", "ornamental_surface")
+                        else "bass",
+                    }
+                )
+        solo_events.sort(key=lambda d: (d["bar"], d["beat"]))
+        # TWO STAVES. The ensemble assembler gives each part one staff, so a
+        # soloist emitted as a single part had its hands overlapping in time and
+        # the repair pass trimmed 42 events — bar 1 came out as the left hand
+        # alone. A concerto soloist is notated on two staves; emit it that way.
+        upper = [e for e in solo_events if e["staff"] == "treble"]
+        lower = [e for e in solo_events if e["staff"] == "bass"]
+        parts[soloist] = upper
+        added = [soloist]
+        if lower:
+            parts[f"{soloist}_lh"] = lower
+            added.append(f"{soloist}_lh")
+        target_ensemble = [n for n in added if n not in target_ensemble] + [
+            n for n in target_ensemble if n not in added
+        ]
 
     out_dir = workspace / "orchestration"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -4924,4 +5324,13 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
     out_path = workspace / "output" / f"{piece_id}_{section_id}_orch.musicxml"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     score.write("musicxml", fp=str(out_path))
-    return {"ok": True, "path": str(out_path), "parts": sorted(data.get("parts", {}).keys())}
+    # Report the parts in the order they are IN THE FILE. Sorting them here made
+    # the tool answer "bassoon, cello, clarinet, contrabass, flute…" about a
+    # score whose parts are correctly flute, oboe, clarinet, bassoon, horn,
+    # strings — so an agent checking its own output reads an alphabetical list
+    # and concludes the score order is broken when it is not.
+    return {
+        "ok": True,
+        "path": str(out_path),
+        "parts": [p.partName or p.id for p in score.parts],
+    }
