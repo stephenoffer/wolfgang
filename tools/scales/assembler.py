@@ -24,7 +24,7 @@ from .duration import (
     dur_to_beats,
     largest_dur_at_most,
 )
-from .models import EventIR, is_keyboard
+from .models import EventIR, is_keyboard, is_string_ensemble, is_vocal
 from .music_io import layer_ir_to_event_ir
 from .piece_graph import PieceGraph
 
@@ -483,6 +483,57 @@ def _collect_events(piece_graph: PieceGraph, scope: str) -> List[EventIR]:
     return events
 
 
+def _pad_measure_to_meter(measure, music21, capacity) -> None:
+    """Fill a short measure with a rest for exactly the time it is missing.
+
+    A bar whose events do not reach the barline was left short and music21's
+    export padded it — with a rest of a WHOLE BAR rather than the remainder. A
+    6/4 measure holding a single two-beat chord came back holding 8.0 of 6.0:
+
+        off=0  ql=2  Chord
+        off=2  ql=6  Rest      <- a full bar appended to a bar with content
+
+    The underfull bar upstream is a separate matter and is reported by the
+    meter check. What must not happen is an engraver's convenience turning it
+    into an OVERFULL one, which is unreadable rather than merely thin.
+
+    Voices are padded individually: each is an independent line and each has to
+    reach the barline on its own.
+    """
+    from fractions import Fraction
+
+    cap = Fraction(capacity).limit_denominator(1680)
+    if cap <= 0:
+        return
+    containers = list(measure.voices) or [measure]
+    for container in containers:
+        held = Fraction(str(round(float(container.highestTime), 6))).limit_denominator(1680)
+        missing = cap - held
+        # Below a 128th is float residue from the six-decimal rounding upstream,
+        # not a gap: two triplet-eighths at 6.666667 end at 6.000000333 against
+        # a capacity of 6, three parts in ten million. A tolerance narrower than
+        # the rounding that produced the number reports a clean bar as broken.
+        if missing <= Fraction(1, 32):
+            continue
+        # NEVER a bare whole rest for a PARTIAL bar. A `<rest/>` of
+        # `<type>whole</type>` is the MusicXML convention for a whole-measure
+        # rest, and a reader that follows it inflates the rest to the bar's
+        # length: a correct 4-quarter rest written into a 6/4 bar came back as
+        # a dotted whole, and the measure read 8.0 of 6.0. The file was right
+        # and every reader of it was wrong, which is worse than a file that is
+        # wrong — so the remainder goes in as half-bar pieces, which is also
+        # how a rest of that length is engraved.
+        position = held
+        left = missing
+        while left > Fraction(1, 32):
+            take = min(left, Fraction(2))
+            rest = music21.note.Rest()
+            rest.duration = music21.duration.Duration(float(take))
+            container.insert(float(position), rest)
+            position += take
+            left -= take
+
+
 def _build_piano_score(
     score,
     events: List[EventIR],
@@ -577,6 +628,7 @@ def _build_piano_score(
             evts = bars_by_num.get(bar_num, [])
             if evts:
                 _add_events_voiced(measure, evts, bar_meter, note_map, offset_shift=shift)
+                _pad_measure_to_meter(measure, music21, beats_per_bar - shift)
             elif not pickup:
                 r = music21.note.Rest()
                 r.duration = music21.duration.Duration(beats_per_bar)
@@ -698,6 +750,28 @@ _VOCAL_ROLES = {
 }
 
 
+# A STRING QUARTET is not a mixed chamber group. With no roles table of its own,
+# the abstract layer names resolved through `_LAYER_INSTRUMENTS`: melody became a
+# Violin, but counter_reply became a CLARINET and response a BASSOON — so "a
+# quartet in Haydn's style", written from a corpus that IS string quartets, came
+# out scored for violin, clarinet, bassoon and cello, with the parts named
+# "Melody", "Counter Reply", "Response" and "Bass". Same defect as the choir
+# above, one genre over.
+#
+# Two violins share an instrument class, so the display name is carried here
+# rather than derived from it.
+_STRING_ROLES = {
+    "treble": ("Violin", "Violin I"),
+    "melody": ("Violin", "Violin I"),
+    "foreground": ("Violin", "Violin I"),
+    "counter": ("Violin", "Violin II"),
+    "counter_reply": ("Violin", "Violin II"),
+    "harmony": ("Viola", "Viola"),
+    "response": ("Viola", "Viola"),
+    "bass": ("Violoncello", "Violoncello"),
+}
+
+
 #: Generic STAFF names — the two halves of a keyboard, or an abstract layer
 #: role. None of them names an instrument, so what they resolve to depends
 #: entirely on what the piece is scored for.
@@ -732,7 +806,16 @@ def _keyboard_instrument(instrumentation: str) -> str:
     return "Piano"
 
 
-def _instrument_for(staff_name: str, vocal: bool = False, keyboard: str = ""):
+def string_part_name(staff_name: str) -> Optional[str]:
+    """The display name a bowed part reads under — "Violin II", not "Counter Reply"."""
+    key = str(staff_name or "").strip().lower().replace(" ", "_").replace("-", "_")
+    entry = _STRING_ROLES.get(key) or _STRING_ROLES.get(key.rsplit("_", 1)[0])
+    return entry[1] if entry else None
+
+
+def _instrument_for(
+    staff_name: str, vocal: bool = False, keyboard: str = "", strings: bool = False
+):
     """A music21 Instrument for a part name — a real instrument first, then the
     abstract layer role, then the piano.
 
@@ -753,7 +836,12 @@ def _instrument_for(staff_name: str, vocal: bool = False, keyboard: str = ""):
             return getattr(music21.instrument, _keyboard_instrument(keyboard))()
         except Exception:
             return music21.instrument.Piano()
-    if vocal and named is None:
+    if strings and named is None:
+        entry = _STRING_ROLES.get(key) or _STRING_ROLES.get(key.rsplit("_", 1)[0])
+        cls_name = (
+            entry[0] if entry else (_NAMED_INSTRUMENTS.get(key.rsplit("_", 1)[0]) or "Violin")
+        )
+    elif vocal and named is None:
         cls_name = _VOCAL_ROLES.get(key) or _VOCAL_ROLES.get(key.rsplit("_", 1)[0])
         if cls_name is None:
             cls_name = _NAMED_INSTRUMENTS.get(key.rsplit("_", 1)[0]) or "Vocalist"
@@ -844,10 +932,13 @@ def _build_ensemble_score(
 
     # A choir is not a small orchestra: its parts are voices, not a piano and a
     # cello. Nothing told this function which it was building.
-    vocal = any(
-        w in str(instrumentation or "").lower()
-        for w in ("choir", "chorus", "choral", "vocal", "satb", "voices", "a_cappella")
-    )
+    #
+    # This was a second, shorter copy of the word list — it knew "choir" and
+    # "satb" but not "motet", "madrigal" or "mass", so "a motet for four parts"
+    # still came out as a piano and a cello. One predicate now, shared with the
+    # validator that gives those same parts a singer's range.
+    vocal = is_vocal(instrumentation)
+    strings = is_string_ensemble(instrumentation)
 
     if bar_meta is None:
         bar_meta = {}
@@ -870,13 +961,14 @@ def _build_ensemble_score(
         staff_evts = staff_events[staff_name]
         is_top_part = idx == 0
         part = music21.stream.Part()
-        instrument = _instrument_for(staff_name, vocal=vocal)
+        instrument = _instrument_for(staff_name, vocal=vocal, strings=strings)
         # A singer reads their own line by its NAME. Naming a choir part
         # "Treble" because that is the staff it happened to be written on leaves
         # nobody able to find the alto. Take the resolved voice type instead; an
         # instrumental part keeps its staff name, which is already how an
         # orchestration plan spells it ("violin_1" -> "Violin 1").
-        part.partName = (
+        bowed_name = string_part_name(staff_name) if strings else None
+        part.partName = bowed_name or (
             instrument.instrumentName
             if vocal and getattr(instrument, "instrumentName", None)
             else staff_name.replace("_", " ").title()
@@ -1356,6 +1448,17 @@ def _merge_simultaneous_into_chords(evts: list) -> list:
     Only events sharing an onset AND a duration merge. Different durations at
     one onset are genuinely two voices, which is what `_add_staff_events`
     separates into `Voice` containers.
+
+    **Call this per bar, never across one.** The key is `(beat, duration,
+    voice)` with NO bar in it, which is correct inside `_add_staff_events` —
+    it is handed one measure at a time — and wrong anywhere else: across a
+    section it would merge beat 1 of bar 3 into beat 1 of bar 1.
+
+    A list-pitched event routes to its own `("solo", id(e))` key, so two chords
+    at one instant are never merged into a bigger one. That is right for a
+    keyboard staff, where a second chord at one onset is a second voice. It is
+    also why the orchestral path cannot use this: a viola part carrying a
+    melodic line AND an accompaniment needs voice separation, not chording.
     """
     from collections import defaultdict
 

@@ -2644,3 +2644,73 @@ def test_a_rest_is_never_part_of_a_chord():
     ]
     _repair_engine_surface(solo, (4, 4))
     assert len(solo.bass_foundation) == 2, solo.bass_foundation
+
+
+def test_a_partial_bar_is_never_padded_with_a_whole_rest():
+    """`<rest/>` with `<type>whole</type>` is the MusicXML convention for a
+    WHOLE-MEASURE rest, whatever `<duration>` says beside it.
+
+    A 6/4 bar holding a two-beat chord was correctly padded with a four-quarter
+    rest, correctly exported as `<duration>40320</duration>` at 10080 divisions
+    — and read back as a *dotted whole*, so the measure reported 8.0 of 6.0.
+    The file was right and every reader of it was wrong, which is worse than a
+    file that is wrong: nothing in the export could be pointed at.
+
+    So a partial bar is filled with half-bar pieces, which is also how a rest of
+    that length is engraved.
+    """
+    import music21
+
+    from scales.assembler import _pad_measure_to_meter
+
+    measure = music21.stream.Measure(number=1)
+    measure.timeSignature = music21.meter.TimeSignature("6/4")
+    chord = music21.chord.Chord(["D4", "Bb4"])
+    chord.duration = music21.duration.Duration(2.0)
+    measure.insert(0.0, chord)
+
+    _pad_measure_to_meter(measure, music21, 6)
+
+    rests = [n for n in measure.notesAndRests if isinstance(n, music21.note.Rest)]
+    assert rests, "the short bar was not filled"
+    assert all(r.quarterLength <= 2.0 for r in rests), (
+        f"a rest longer than a half was written into a partial bar: "
+        f"{[float(r.quarterLength) for r in rests]}"
+    )
+    assert sum(float(n.quarterLength) for n in measure.notesAndRests) == 6.0
+
+    # And it survives a round trip through the file, which is where it failed.
+    score = music21.stream.Score()
+    part = music21.stream.Part()
+    part.append(measure)
+    score.insert(0, part)
+    out = Path("/tmp/wolfgang-whole-rest/probe.musicxml")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    score.write("musicxml", fp=str(out))
+    reread = music21.converter.parse(str(out))
+    for m in reread.parts[0].getElementsByClass("Measure"):
+        held = sum(float(n.quarterLength) for n in m.notesAndRests)
+        assert abs(held - 6.0) < 0.01, f"re-read as {held} of 6.0"
+
+
+def test_padding_tolerates_the_float_residue_it_inherits():
+    """Two triplet-eighths at 6.666667 end at 6.000000333 against a capacity of
+    6 — three parts in ten million, from the six-decimal rounding upstream.
+
+    A gap check tighter than the rounding that produced the number reports a
+    clean bar as short, forever, and pads it into a genuinely broken one.
+    """
+    import music21
+
+    from scales.assembler import _pad_measure_to_meter
+
+    measure = music21.stream.Measure(number=1)
+    measure.timeSignature = music21.meter.TimeSignature("6/4")
+    note = music21.note.Note("C4")
+    note.duration = music21.duration.Duration(6.000000333)
+    measure.insert(0.0, note)
+
+    _pad_measure_to_meter(measure, music21, 6)
+    assert not [n for n in measure.notesAndRests if isinstance(n, music21.note.Rest)], (
+        "float residue was treated as a gap and padded"
+    )
