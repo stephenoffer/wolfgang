@@ -55,9 +55,10 @@ def test_something_that_is_not_a_sequence_raises_with_the_argument_named():
     assert "motif_ids" in str(exc.value)
 
 
-def test_compile_style_accepts_a_bare_composer_name():
+def test_compile_style_accepts_a_bare_composer_name(function_source):
     """The original bug, at its original call site."""
-    src = inspect.getsource(scales.compile_style)
+    # By NAME, not by line offset — see `function_source` in conftest.
+    src = function_source(scales, "compile_style")
     assert "isinstance(composers, str)" in src, (
         "compile_style must still guard against a bare string — this is the "
         "call that wrote six one-letter composer packs to disk"
@@ -110,25 +111,34 @@ def test_every_list_argument_on_the_tool_surface_is_normalised():
     )
 
 
-def test_normalising_none_did_not_break_a_default_branch():
+def test_normalising_none_did_not_break_a_default_branch(tmp_path):
     """`_as_list(None)` returns `[]`, so `is None` checks stop working.
 
     Two call sites branched on `is None` to mean "the caller did not supply
     this": `orchestrate_section` chose its default ensemble that way, and
     `commit_candidate_phrase` chose between the shorthand and the LayerIR path.
     Both would have silently taken the wrong branch.
+
+    Tested by CALLING them with None and seeing which branch they take. The
+    previous version parsed `inspect.getsource` for `is None` comparisons, which
+    finds a function by the line number recorded when the module was IMPORTED —
+    once the file changes on disk it parses whatever now occupies those lines,
+    and the test became intermittent rather than wrong.
     """
-    for fn_name in ("orchestrate_section", "commit_candidate_phrase"):
-        src = inspect.getsource(getattr(scales, fn_name))
-        tree = ast.parse(src.lstrip())
-        for node in ast.walk(tree):
-            if not isinstance(node, ast.Compare):
-                continue
-            if not any(isinstance(op, (ast.Is, ast.IsNot)) for op in node.ops):
-                continue
-            left = ast.unparse(node.left)
-            if left in ("target_ensemble", "bars"):
-                pytest.fail(
-                    f"{fn_name} still branches on `{ast.unparse(node)}` after "
-                    "_as_list has normalised None to []"
-                )
+    from scales.scales import _WORKSPACE, commit_candidate_phrase, orchestrate_section
+
+    piece = "mozart-andante-fmaj-v2-20260826"
+    if not (_WORKSPACE / piece / "piece_graph.json").exists():
+        pytest.skip("no probe piece in the workspace")
+
+    # No ensemble given: the default must be chosen, not an empty one used.
+    result = orchestrate_section(piece, "m1_a", target_ensemble=None)
+    assert result.get("ok"), result
+    assert result.get("ensemble"), "an omitted ensemble produced an empty one"
+    assert result.get("part_event_counts"), "no parts were written"
+
+    # No bars and no layer_ir: it must complain about the MISSING INPUT rather
+    # than take the shorthand path with an empty bar list.
+    empty = commit_candidate_phrase(piece, "m1_a_p1", lens="probe", bars=None, layer_ir=None)
+    assert not empty.get("ok"), empty
+    assert empty.get("error"), "a candidate with no content must say what is missing"

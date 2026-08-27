@@ -2269,16 +2269,38 @@ def test_orchestral_assembly_reports_notes_it_could_not_place():
     Measured on a real orchestrated section: the viola arrived with an inner
     line and a wind pad written into the same single voice, and two of its
     pitches went silently.
+
+    Asserted on the RESULT, not on the function's source text. The first
+    version read `inspect.getsource` and matched strings in it, which is not a
+    claim about behaviour at all — and `getsource` locates a function by the
+    line number recorded when the module was IMPORTED, so once the file changes
+    on disk it returns a fragment of whatever now sits at those lines. That is
+    what made this test intermittent rather than wrong.
     """
-    import inspect
+    import json
 
-    from scales import scales
+    from scales.scales import assemble_orchestration
 
-    src = inspect.getsource(scales.assemble_orchestration)
-    assert "notes_planned" in src and "notes_written" in src, (
-        "the result must say how many pitches were asked for and how many landed"
+    plan = Path("workspace/mozart-andante-fmaj-v2-20260826/orchestration/m1_a.json")
+    if not plan.exists():
+        pytest.skip("no orchestrated probe section in the workspace")
+
+    result = assemble_orchestration("mozart-andante-fmaj-v2-20260826", "m1_a")
+    assert result.get("ok"), result
+
+    planned = 0
+    for events in (json.loads(plan.read_text()).get("parts") or {}).values():
+        for event in events:
+            pitch = event.get("pitch")
+            planned += len(pitch) if isinstance(pitch, list) else 1
+
+    assert result.get("notes_planned") == planned, (
+        "the result must say how many pitches were asked for"
     )
-    assert '"repairs"' in src, "repairs must reach the caller, not only the log"
+    assert isinstance(result.get("notes_written"), int), "the result must say how many landed"
+    if result["notes_written"] < result["notes_planned"]:
+        assert result.get("warning"), "a shortfall must be named, not left to be noticed"
+        assert result.get("repairs"), "repairs must reach the caller, not only the log"
 
 
 def test_orchestral_note_accounting_is_exact_when_nothing_is_dropped():
