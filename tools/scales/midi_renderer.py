@@ -26,7 +26,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .assembler import _in_scope
+from .assembler import _in_scope, scoped_basename
 from .duration import DURATION_VALUES, GRACE_ORNAMENTS, bar_duration, dur_to_beats
 from .models import EventIR, PerformanceIR
 from .music_io import layer_ir_to_event_ir
@@ -816,7 +816,7 @@ def render_midi(
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    filepath = output_path / f"{piece_graph.piece_id}.mid"
+    filepath = output_path / f"{scoped_basename(piece_graph.piece_id, scope)}.mid"
     stream.write("midi", fp=str(filepath))
 
     # Real sustain pedal. Until this, the preview contained no controller event

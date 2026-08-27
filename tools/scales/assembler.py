@@ -11,6 +11,7 @@ Handles: key signatures, time signatures, tempo, dynamics, articulations,
 from __future__ import annotations
 
 import logging
+import re
 from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -25,6 +26,24 @@ from .duration import (
 from .models import EventIR, is_keyboard
 from .music_io import layer_ir_to_event_ir
 from .piece_graph import PieceGraph
+
+
+def scoped_basename(piece_id: str, scope: str) -> str:
+    """Output basename for a piece rendered at ``scope``.
+
+    Both writers named their file after the PIECE alone, so rendering section
+    m1_b overwrote the file a reviewer of m1_a had just been handed — same path,
+    contents silently changed from 14 bars to 9. Reviews are per section and can
+    run one after another or in parallel, so a fresh-ears critic could open its
+    own path and read a section it was never asked about, with nothing to
+    indicate it.
+
+    "full" keeps the bare piece id, so the deliverable path is unchanged.
+    """
+    tag = str(scope or "full").strip()
+    if not tag or tag == "full":
+        return str(piece_id)
+    return f"{piece_id}__{re.sub(r'[^A-Za-z0-9_.-]+', '-', tag)}"
 
 
 def assemble(
@@ -177,7 +196,7 @@ def assemble(
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    filename = f"{piece_graph.piece_id}.musicxml"
+    filename = f"{scoped_basename(piece_graph.piece_id, scope)}.musicxml"
     filepath = output_path / filename
     try:
         score.write("musicxml", fp=str(filepath))

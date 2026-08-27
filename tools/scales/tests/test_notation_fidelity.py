@@ -2428,3 +2428,49 @@ def test_a_triplet_onset_is_not_counted_as_drift_repaired():
         count, after = snapped(beat)
         assert count == 1, f"{beat} was drift and went uncounted"
         assert abs(after - resolved) < 1e-9, after
+
+
+def test_two_sections_do_not_overwrite_each_others_render():
+    """Both writers named their output after the PIECE alone, so rendering
+    section m1_b overwrote the file a reviewer of m1_a had just been handed —
+    same path, contents silently changed from 14 bars to 9.
+
+    Reviews are per section and can run one after another or in parallel, so a
+    fresh-ears critic could open its own path and read a section it was never
+    asked about. Nothing would indicate it: the path is still valid, the file
+    still parses, the music is simply someone else's.
+    """
+    from scales.assembler import scoped_basename
+
+    assert scoped_basename("p", "section-m1_a") != scoped_basename("p", "section-m1_b")
+    # The deliverable path is unchanged — "full" keeps the bare piece id.
+    assert scoped_basename("p", "full") == "p"
+    assert scoped_basename("p", "") == "p"
+    assert scoped_basename("p", None) == "p"
+    # Movement scopes separate too, and a scope with awkward characters is
+    # still a usable filename.
+    assert scoped_basename("p", "movement-1") != scoped_basename("p", "movement-2")
+    assert "/" not in scoped_basename("p", "section-a/b")
+
+
+def test_a_section_render_survives_another_section_being_rendered():
+    """The end-to-end version of the above, through the real writers."""
+    import music21
+
+    from scales.assembler import assemble
+    from scales.piece_graph import PieceGraph
+
+    graph_path = Path("workspace/mozart-andante-fmaj-v2-20260826/piece_graph.json")
+    if not graph_path.exists():
+        pytest.skip("no probe piece in the workspace")
+    graph = PieceGraph.load(str(graph_path))
+    sections = sorted({s.slot.section_id for s in graph.phrases.values() if s.slot})
+    if len(sections) < 2:
+        pytest.skip("probe piece has only one section")
+
+    out = "/tmp/wolfgang-scope-collision"
+    first = assemble(graph, scope=f"section-{sections[0]}", output_dir=out)
+    before = len(music21.converter.parse(first).recurse().notes)
+    assemble(graph, scope=f"section-{sections[1]}", output_dir=out)
+    after = len(music21.converter.parse(first).recurse().notes)
+    assert before == after, "rendering another section changed this one's file"
