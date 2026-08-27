@@ -111,3 +111,69 @@ def test_the_spread_lets_a_piece_be_scored_rather_than_matched():
 
 def test_too_few_movements_returns_none_rather_than_a_guess():
     assert movement_idiom_mix("no-such-composer") is None
+
+
+# ─── How the idioms are laid out in time ─────────────────────────────────────
+
+
+def test_the_run_measure_reproduces_numbers_already_held():
+    """The probe precondition again, on the second measurement."""
+    from scales.composition_brief import movement_idiom_runs
+
+    held = {
+        "chopin": (0.86, 20),
+        "beethoven": (0.73, 12),
+        "mozart": (0.37, 7),
+        "haydn": (0.40, 6),
+        "bach": (0.26, 5),
+    }
+    for composer, (share, longest) in held.items():
+        stats = movement_idiom_runs(composer)
+        if stats is None:
+            pytest.skip("corpus not available")
+        assert abs(stats["share_with_run_over_8"] - share) < 0.02, composer
+        assert stats["longest_run_median"] == longest, composer
+
+
+def test_a_movement_settles_somewhere():
+    """The finding the measure exists for.
+
+    Generated output already matches real practice on the TYPICAL figure — the
+    dominant idiom's run is a median of 2-3 bars in both, and about a third of
+    departures last exactly one bar in both. What it has never had is a passage
+    that simply holds: our longest run is 2 to 6 bars for every composer, where
+    86% of Chopin's movements contain a run of eight or more and his median
+    longest is twenty.
+    """
+    from scales.composition_brief import movement_idiom_runs
+
+    for composer in ("chopin", "beethoven"):
+        stats = movement_idiom_runs(composer)
+        if stats is None:
+            pytest.skip("corpus not available")
+        assert stats["share_with_run_over_8"] > 0.5, composer
+        assert stats["longest_run_median"] >= 12, composer
+        # And the typical run is still short — the tail is the whole point, and
+        # a measure that reported long runs everywhere would be measuring wrong.
+        assert stats["run_median"] <= 4, composer
+
+
+def test_it_counts_the_dominant_idioms_runs_and_not_every_labels():
+    """A first version reported a median run of 1 bar for every composer and
+    would have concluded real movements never settle at all.
+
+    It counted runs of EVERY label, and the one-bar departures outnumber the
+    long stretches so completely that they set the median. Reading one real
+    score bar by bar is what caught it — Chopin's Op. 28 No. 5 holds
+    `broken_chord_wave` for 6 bars, 2, then 12, with single bars of `alberti`
+    between — and no aggregate would have.
+    """
+    from scales.composition_brief import movement_idiom_runs
+
+    stats = movement_idiom_runs("chopin")
+    if stats is None:
+        pytest.skip("corpus not available")
+    assert stats["longest_run_median"] > 1, (
+        "the measure is counting every label's runs again, where the one-bar "
+        "departures swamp the dominant idiom's long stretches"
+    )

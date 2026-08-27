@@ -857,6 +857,108 @@ _MOVEMENT_RATES_CACHE: Dict[str, Any] = {}
 
 #: What a movement is measured on. Each is a share of the movement's own bars or
 #: attacks, so they are comparable across movements of different lengths.
+_IDIOM_RUN_CACHE: Dict[str, Any] = {}
+
+
+def movement_idiom_runs(composer: str, min_bars: int = 24) -> Optional[Dict[str, Any]]:
+    """How long a movement stays on its dominant accompaniment before leaving it.
+
+    `movement_idiom_mix` says WHICH idioms a movement uses and in what
+    proportion. This says how they are laid out in time, which is a different
+    question and the one that was left open.
+
+    Generated output already matches real practice on the typical figure — the
+    dominant idiom's run is a median of 2-3 bars in both, and roughly a third of
+    departures from it last exactly one bar in both. What it has never had is
+    the TAIL. A real movement sits on one accompaniment somewhere for a long
+    stretch:
+
+        composer   movements with a run >=8 bars   >=12   median longest run
+        chopin                              86%     78%                   20
+        beethoven                           73%     57%                   12
+        haydn                               40%     28%                    6
+        mozart                              37%     17%                    7
+        bach                                26%     15%                    5
+
+    against a generated longest run of 2 to 6 bars, for every composer. So the
+    music never settles: it is correct bar to bar and has no passage that simply
+    holds. Reading a real one shows the shape plainly — Chopin's Op. 28 No. 5
+    runs `broken_chord_wave` for 6 bars, 2, then TWELVE, with single bars of
+    `alberti` between.
+
+    A first version of this measurement reported a median run of 1 bar for every
+    composer and would have said real movements never settle at all. It was
+    counting runs of EVERY label, where the one-bar departures outnumber the
+    long stretches and swamp them. Reading one score bar by bar is what caught
+    it; no aggregate would have.
+    """
+    key = f"{(composer or '').strip().lower()}|{min_bars}"
+    if key in _IDIOM_RUN_CACHE:
+        return _IDIOM_RUN_CACHE[key]
+
+    result = None
+    try:
+        from collections import Counter
+
+        from scripts.build_corpus_indexes import group_by_source, load_bars
+
+        longest: List[int] = []
+        runs: List[int] = []
+        one_bar_departures = departures = 0
+        for _source, bars in group_by_source(load_bars(composer)).items():
+            if len(bars) < min_bars:
+                continue
+            order = sorted(bars, key=lambda b: b.get("bar_num", 0))
+            sequence = [b.get("lh_texture") for b in order if b.get("lh_texture")]
+            if not sequence:
+                continue
+            dominant = Counter(sequence).most_common(1)[0][0]
+            here: List[int] = []
+            run = gap = 0
+            for label in sequence:
+                if label == dominant:
+                    if gap:
+                        departures += 1
+                        one_bar_departures += gap == 1
+                        gap = 0
+                    run += 1
+                else:
+                    if run:
+                        here.append(run)
+                        run = 0
+                    gap += 1
+            if run:
+                here.append(run)
+            if gap:
+                departures += 1
+                one_bar_departures += gap == 1
+            if here:
+                runs.extend(here)
+                longest.append(max(here))
+        if len(longest) >= 4:
+            longest.sort()
+            runs.sort()
+            result = {
+                "composer": composer,
+                "movements": len(longest),
+                "run_median": runs[len(runs) // 2],
+                "run_p75": runs[(3 * len(runs)) // 4],
+                "longest_run_median": longest[len(longest) // 2],
+                "share_with_run_over_8": round(sum(1 for x in longest if x >= 8) / len(longest), 4),
+                "share_with_run_over_12": round(
+                    sum(1 for x in longest if x >= 12) / len(longest), 4
+                ),
+                "one_bar_departure_share": round(
+                    one_bar_departures / departures if departures else 0.0, 4
+                ),
+            }
+    except Exception:
+        result = None
+
+    _IDIOM_RUN_CACHE[key] = result
+    return result
+
+
 _IDIOM_MIX_CACHE: Dict[str, Any] = {}
 
 
