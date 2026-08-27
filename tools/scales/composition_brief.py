@@ -280,6 +280,34 @@ _VOICING_MAX_BARS = 4000
 _VOICING_MIN_SOURCES = 3
 
 
+def _sampled_corpus_bars(composer: str, cap: int = _VOICING_MAX_BARS) -> List[Dict[str, Any]]:
+    """At most `cap` bars, spread EVENLY across the composer's whole corpus.
+
+    The cap used to be a prefix — `for seen, bar in enumerate(...): if seen >
+    cap: break` — which is not a sample of a composer, it is a sample of
+    whichever sources happen to sort first. Measured:
+
+        composer     bars   works   works inside the first 4000
+        beethoven   17757      99      24      <- a quarter of him
+        chopin       8013      99      57
+        mozart       7022      69      42
+
+    So the profile telling a composer how Beethoven voices his left hand was
+    measured from a quarter of Beethoven's output, chosen by filename. For
+    Chopin the prefix reads 0.292 LH chord share where his whole corpus reads
+    0.379 — a 23% understatement, and one of the three different numbers that
+    were all being called "his real chord share".
+
+    Striding costs one full pass over the shards, which is half a second for the
+    largest corpus here, against a truncation that silently changes the answer.
+    """
+    bars = list(_iter_corpus_bars(composer))
+    if len(bars) <= cap:
+        return bars
+    step = len(bars) / float(cap)
+    return [bars[int(i * step)] for i in range(cap)]
+
+
 def _event_midis(event: Dict[str, Any]) -> List[int]:
     """MIDI numbers of one corpus display event; empty for a rest."""
     kind = event.get("type")
@@ -392,18 +420,18 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
         blended = {
             key: sum(p[key] * p["attacks"] for _m, p in parts) / total
             for key in (
-                "rh_chord_share",
+                "rh_chord_share_pooled",
                 "rh_chord_size",
-                "lh_chord_share",
+                "lh_chord_share_pooled",
                 "lh_chord_size",
                 "lh_span",
                 "rh_span",
                 "hand_gap",
             )
         }
-        blended["rh_chord_share"] = round(blended["rh_chord_share"], 3)
+        blended["rh_chord_share_pooled"] = round(blended["rh_chord_share_pooled"], 3)
         blended["rh_chord_size"] = round(blended["rh_chord_size"], 2)
-        blended["lh_chord_share"] = round(blended["lh_chord_share"], 3)
+        blended["lh_chord_share_pooled"] = round(blended["lh_chord_share_pooled"], 3)
         blended["lh_chord_size"] = round(blended["lh_chord_size"], 2)
         for key in ("lh_span", "rh_span", "hand_gap"):
             blended[key] = int(round(blended[key]))
@@ -421,9 +449,7 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
         rh_spans: List[int] = []
         gaps: List[int] = []
         sources: set = set()
-        for seen, bar in enumerate(_iter_corpus_bars(composer)):
-            if seen > _VOICING_MAX_BARS:
-                break
+        for bar in _sampled_corpus_bars(composer):
             sources.add(bar.get("source"))
             rh_mid: List[int] = []
             lh_mid: List[int] = []
@@ -474,10 +500,21 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
         # write a Romantic piano piece as a bare single line. The scoring of one
         # source is not a composer's habit.
         if attacks >= _VOICING_MIN_ATTACKS and len(sources) >= _VOICING_MIN_SOURCES:
+            # `_pooled`, because a bare `chord_share` was TWO different numbers.
+            #
+            # This one is pooled over every attack in an even sample of the
+            # composer's whole corpus. `movement_rate_range(composer,
+            # "lh_chord_share")` is the distribution of the same quantity across
+            # his individual MOVEMENTS, and the two are far apart wherever the
+            # distribution is skewed: Chopin pools to 0.380 and his median
+            # movement is 0.539; Haydn pools to 0.119 and his median movement is
+            # 0.013. Both are correct answers to different questions, and while
+            # they shared a name a caller could tune against one and measure the
+            # other — which is exactly what happened, twice, in one evening.
             profile = {
-                "rh_chord_share": round(chords / attacks, 3),
+                "rh_chord_share_pooled": round(chords / attacks, 3),
                 "rh_chord_size": round(mean(sizes), 2) if sizes else 0.0,
-                "lh_chord_share": round(lh_chords / lh_attacks, 3) if lh_attacks else 0.0,
+                "lh_chord_share_pooled": round(lh_chords / lh_attacks, 3) if lh_attacks else 0.0,
                 "lh_chord_size": round(mean(lh_sizes), 2) if lh_sizes else 0.0,
                 "lh_span": int(median(lh_spans)) if lh_spans else 0,
                 "rh_span": int(median(rh_spans)) if rh_spans else 0,
@@ -523,7 +560,7 @@ def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]
     profile = voicing_profile(composer)
     if not profile:
         return []
-    share = profile["rh_chord_share"]
+    share = profile["rh_chord_share_pooled"]
     if share >= 0.30:
         how = (
             f"The melody is CHORDAL — {round(share * 100)}% of right-hand attacks sound "
@@ -570,7 +607,7 @@ def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]
     # not a smaller version of the same instruction either: Bach's right hand is
     # thicker than his left, and every keyboard composer's left hand is thicker
     # than his right.
-    lh_share = profile.get("lh_chord_share") or 0.0
+    lh_share = profile.get("lh_chord_share_pooled") or 0.0
     lh_size = profile.get("lh_chord_size") or 0.0
     if lh_share >= 0.25:
         lh_how = (
@@ -610,7 +647,7 @@ def voicing_lines(composer: str, graph=None, movement_id: str = "") -> List[str]
     if graph is not None:
         got = _rh_thickness_so_far(graph, movement_id)
         if got is not None:
-            target = profile.get("rh_chord_share") or 0.0
+            target = profile.get("rh_chord_share_pooled") or 0.0
             verdict = (
                 "already there"
                 if got >= target * 0.8
@@ -1056,9 +1093,7 @@ def motion_profile(composer: str) -> Optional[Dict[str, Any]]:
         highs: List[int] = []
         sources: set = set()
         bars = 0
-        for seen, bar in enumerate(_iter_corpus_bars(composer)):
-            if seen > _VOICING_MAX_BARS:
-                break
+        for bar in _sampled_corpus_bars(composer):
             bars += 1
             sources.add(bar.get("source"))
             line = [
