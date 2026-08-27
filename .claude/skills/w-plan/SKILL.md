@@ -51,7 +51,7 @@ form your own understanding of how they work.
 1. List what's available for your composer/style:
    ```bash
    .venv/bin/python -c "
-      from scales.scales import list_reference_scores
+   from scales.scales import list_reference_scores
    import json; print(json.dumps(list_reference_scores('<composer-or-style>'), indent=1))
    "
    ```
@@ -59,7 +59,7 @@ form your own understanding of how they work.
    in full — the shorthand carries every bar with its roman/function and texture:
    ```bash
    .venv/bin/python -c "
-      from scales.scales import get_reference_score
+   from scales.scales import get_reference_score
    import json; print(json.dumps(get_reference_score('<composer>', '<source>'), indent=1))
    "
    ```
@@ -71,7 +71,7 @@ form your own understanding of how they work.
    phrase brief (the "WHAT YOU LEARNED FROM THE SCORES" section):
    ```bash
    .venv/bin/python -c "
-      from scales.scales import save_reference_study
+   from scales.scales import save_reference_study
    save_reference_study('<piece-id>', '<composer>', '<source>',
        analysis='<your prose: form, themes, harmonic language, texture/dynamic arc, what makes it work>')
    "
