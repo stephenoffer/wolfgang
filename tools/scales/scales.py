@@ -884,7 +884,7 @@ def build_form_graph(
     # (transformed at the recap) — a memorable, recurring through-line instead of
     # locally-optimized, independent phrases. Runs AFTER the slots exist, and is
     # idempotent, so `resolve_motifs` can do the same work if it comes second.
-    _place_principal_theme(graph)
+    themed = _place_principal_theme(graph)
 
     graph.save(str(workspace / "piece_graph.json"))
 
@@ -909,6 +909,35 @@ def build_form_graph(
                 ),
             }
         )
+    # NO THEME IS A SILENT OUTCOME, and it is the one that matters most.
+    #
+    # `_place_principal_theme` needs `graph.motif_bank`, which only
+    # `resolve_motifs` fills. Called without it — which is what happens if the
+    # planning order in `/w-plan` is not followed, or a caller goes straight to
+    # the form — it plants nothing and returns 0, and every phrase is then
+    # composed with no recurring idea. Measured on a piece built that way: 19
+    # phrases, 19 different openings, where real movements reuse one in about a
+    # third. Nothing anywhere said so.
+    if not themed:
+        reason = (
+            "no motifs are defined for this piece"
+            if not graph.motif_bank
+            else "no section opening was free to carry it"
+        )
+        phrase_summaries.append(
+            {
+                "warning": "no_principal_theme_planted",
+                "movement": movement_id,
+                "why": reason,
+                "note": (
+                    "every phrase will be composed with no recurring idea, and a "
+                    "piece with nothing to recognise has nothing to develop or "
+                    "resolve. Call resolve_motifs BEFORE build_form_graph (the "
+                    "order in /w-plan), then rebuild the form."
+                ),
+            }
+        )
+
     # A REBUILD leaves the old layout's debris behind, and nothing downstream
     # can tell the difference between a phrase this form asked for and one the
     # previous form did. Rebuilding a ternary movement as a sonata keeps the
@@ -2695,7 +2724,27 @@ def init_work(
     which puts it on the contract — and `_creative_intent` reads it from there
     when no narrative prose was authored. Supplying it here now says so rather
     than swallowing it.
+
+    ``movement_count`` is declared `int` and was never checked. Calling this the
+    way every other tool here is called — `init_work(pid, "compose_from_text")`,
+    with the MODE in the second position, which is what `init_workspace` takes —
+    stored the string "compose_from_text" as the movement count and reported it
+    back in the result without complaint. A count is a number or the caller has
+    made a mistake worth naming.
     """
+    try:
+        movement_count = int(movement_count)
+    except (TypeError, ValueError):
+        return {
+            "error": (
+                f"'{piece_id}': movement_count must be a number, got "
+                f"{movement_count!r}. init_work(piece_id, movement_count, ...) — "
+                f"note the second argument is the COUNT, not the mode; the mode "
+                f"belongs to init_workspace(piece_id, mode, ...)."
+            )
+        }
+    if movement_count < 1:
+        return {"error": f"'{piece_id}': movement_count must be at least 1, got {movement_count}"}
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
 
@@ -2797,7 +2846,32 @@ def plan_movement(
         character=character,
         role_in_work=role_in_work,
     )
-    graph.work_graph.movements.append(movement)
+    # REPLACE, never append. Planning a movement twice — which is what revising
+    # one looks like, and what happens the moment a call is corrected and rerun —
+    # used to leave two contracts with the same id. The work then reported
+    # `['m1', 'm2', 'm1']`, and every brief in the piece opened with
+    # "MOVEMENT 1 of 3" for a two-movement sonatina, because the count is the
+    # length of that list.
+    existing = next(
+        (i for i, m in enumerate(graph.work_graph.movements) if m.id == movement_id), None
+    )
+    if existing is None:
+        graph.work_graph.movements.append(movement)
+    else:
+        graph.work_graph.movements[existing] = movement
+    # Heal a list that was already duplicated by an earlier run: keep the FIRST
+    # position of each id (score order) and the LAST contract written for it.
+    # Without this the fix only stops new duplicates and every existing work
+    # keeps counting its movements wrong.
+    seen: Dict[str, int] = {}
+    deduped: List[Any] = []
+    for m in graph.work_graph.movements:
+        if m.id in seen:
+            deduped[seen[m.id]] = m
+        else:
+            seen[m.id] = len(deduped)
+            deduped.append(m)
+    graph.work_graph.movements = deduped
     graph.work_graph.tonal_itinerary.movement_keys[movement_id] = key
     # The work's home key is the FIRST movement's key. `init_work` runs before
     # any movement or phrase exists, so it can only default — a three-movement
@@ -2812,6 +2886,18 @@ def plan_movement(
         "form": form,
         "key": key,
         "character": character,
+        # This registers the movement's CONTRACT and creates no phrases, even
+        # though it takes `form`, `key`, `tempo_bpm` and `meter` — every argument
+        # `build_form_graph` needs. A caller who stops here has a work with two
+        # planned movements and nothing to compose, and the old return said
+        # nothing about it. Same shape as `init_work(description=...)` above:
+        # a tool that quietly does less than its arguments imply.
+        "phrases_created": 0,
+        "next": (
+            f"build_form_graph(piece_id, {form!r}, {key!r}, "
+            f"tempo_bpm={tempo_bpm}, meter={tuple(meter)}, "
+            f"movement_id={movement_id!r}) — this call only records the contract"
+        ),
     }
 
 
@@ -6003,9 +6089,21 @@ def _style_role_assignments(roles, ensemble) -> Dict[str, str]:
     available = {str(name).lower() for name in (ensemble or [])}
     out: Dict[str, str] = {}
     for name, role in (roles or {}).items():
+        # What the style says this instrument DOES — never what it is CALLED.
+        # The instrument's own name used to be part of the matched text, and
+        # `_BASS_WORDS` contains "bass", which is a substring of **bassoon**. So
+        # any ensemble with a bassoon in it got `{"bass": "bassoon"}`, the cello
+        # was left with nothing, and the planner's last pass ("anything still
+        # silent doubles the melody") handed the cello the TUNE. Measured on a
+        # real orchestration off this system: cello 63-74 against viola 48-60 —
+        # the cello playing entirely above the viola for the whole movement.
+        # `bass_clarinet` and `bass_trombone` collide the same way.
         described = " ".join(
             str(v).lower()
-            for v in (getattr(role, "role", ""), getattr(role, "name", ""), name)
+            for v in (
+                getattr(role, "role", ""),
+                getattr(role, "characteristic_usage", ""),
+            )
             if v
         )
         key = str(getattr(role, "name", name) or name).lower().replace(" ", "_")

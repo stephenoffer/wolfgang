@@ -119,3 +119,52 @@ def test_the_finding_is_advisory_not_a_warning():
     figure. The fresh-ears critic is better placed than a counter to judge it."""
     bars, starts = _piece(_DISTINCT[: _N + 2])
     assert detect_no_recurring_material(bars, starts, [])[0]["severity"] == "info"
+
+
+def test_planning_a_form_with_no_motifs_says_so():
+    """No theme is a silent outcome and it is the one that matters most.
+
+    `_place_principal_theme` needs `graph.motif_bank`, which only
+    `resolve_motifs` fills. Built without it, the form plants nothing, every
+    phrase is composed with no recurring idea, and nothing anywhere said so.
+    Measured on a piece built that way: 19 phrase openings, 19 of them
+    different, against a real median of a third. With a theme planted, the same
+    pipeline reuses its opening figure in 7 of 17 phrases — 41%.
+    """
+    import shutil
+
+    from scales.scales import _WORKSPACE, build_form_graph, init_workspace, resolve_motifs
+
+    piece = "test-theme-warning-20260827"
+    shutil.rmtree(_WORKSPACE / piece, ignore_errors=True)
+    try:
+        init_workspace(
+            piece, "compose_from_text", "probe", {"target": {"instrumentation": "solo_piano"}}
+        )
+        rows = build_form_graph(piece, "binary", "C major", tempo_bpm=120, meter=(4, 4))
+        warned = [r for r in rows if r.get("warning") == "no_principal_theme_planted"]
+        assert warned, "a form with no motifs planted no theme and said nothing"
+        assert "resolve_motifs" in warned[0]["note"]
+
+        # And it is silent once there IS a theme — a warning that always fires
+        # is a warning nobody reads.
+        shutil.rmtree(_WORKSPACE / piece, ignore_errors=True)
+        init_workspace(
+            piece, "compose_from_text", "probe", {"target": {"instrumentation": "solo_piano"}}
+        )
+        stored = resolve_motifs(
+            piece,
+            [
+                {
+                    "motif_id": "head",
+                    "character": "rising",
+                    "interval_contour": [0, 2, 2, -1],
+                    "rhythm_cell": ["e", "e", "e", "q"],
+                }
+            ],
+        )
+        assert stored.get("motif_ids") == ["head"], stored
+        rows = build_form_graph(piece, "binary", "C major", tempo_bpm=120, meter=(4, 4))
+        assert not [r for r in rows if r.get("warning") == "no_principal_theme_planted"]
+    finally:
+        shutil.rmtree(_WORKSPACE / piece, ignore_errors=True)

@@ -1628,7 +1628,7 @@ class SurfaceComposer:
                                 duration=r["duration"],
                                 role=r["role"],
                                 justification=OnsetJustification(
-                                    structural_reasons=[NoteJustification.MOTIVE.value],
+                                    structural_reasons=[NoteJustification.MOTIF.value],
                                 ),
                             )
                         )
