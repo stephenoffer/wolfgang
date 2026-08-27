@@ -177,3 +177,71 @@ def test_it_counts_the_dominant_idioms_runs_and_not_every_labels():
         "the measure is counting every label's runs again, where the one-bar "
         "departures swamp the dominant idiom's long stretches"
     )
+
+
+# ─── One movement, described once ────────────────────────────────────────────
+
+
+def test_combining_two_correct_accessors_describes_no_real_piece():
+    """The error this profile exists to make impossible.
+
+    `movement_idiom_mix` returns the movement at the median CONCENTRATION;
+    `movement_rate_range` returns the median of a rate across all movements.
+    Both verifiable alone. Together they describe different pieces — and the gap
+    is not subtle:
+
+        Chopin's Op. 28 No. 5 is 77% broken-chord wave and its actual left-hand
+        chord share is 0.5%. Combining the two accessors targets 53.9%.
+
+    A broken-chord wave is 2.3% chords where a block-chord bar is 86%, so a
+    movement that is three quarters broken-chord wave CANNOT be half chords. A
+    peer session built a thickening pass against exactly that pair of numbers.
+
+    Third variety of the same-yardstick error, and the least visible: not two
+    definitions of a quantity, not two scopes of one, but two correct statistics
+    about DIFFERENT MEMBERS of the same population.
+    """
+    from scales.composition_brief import movement_profile, movement_rate_range
+
+    profile = movement_profile("chopin")
+    spread = movement_rate_range("chopin", "lh_chord_share")
+    if profile is None or spread is None:
+        pytest.skip("corpus not available")
+    combined = spread["median"]
+    coherent = profile["lh_chord_share"]
+    assert abs(combined - coherent) > 0.3, (
+        "the two accessors now agree for Chopin, which would make this test "
+        f"vacuous: combined {combined}, coherent {coherent}"
+    )
+    assert profile["top_idiom"] == "broken_chord_wave"
+    assert coherent < 0.1, profile
+
+
+def test_a_profile_is_one_movement_and_says_which():
+    """Everything in it comes from one set of bars, or it is an average again."""
+    from scales.composition_brief import movement_profile
+
+    for composer in _COMPOSERS:
+        profile = movement_profile(composer)
+        if profile is None:
+            continue
+        assert profile["source"], "no movement named"
+        assert profile["bars"] >= 24
+        assert abs(sum(profile["idioms"].values()) - 1.0) < 0.01
+        for metric in ("ties_per_bar", "downbeat_rest_share", "lh_chord_share", "rh_chord_share"):
+            assert metric in profile, metric
+            assert 0.0 <= profile[metric] <= 10.0
+
+
+def test_the_profile_agrees_with_the_mix_it_replaces():
+    """It must pick the SAME movement `movement_idiom_mix` does, or there are
+    now two answers to "which movement is representative"."""
+    from scales.composition_brief import movement_profile
+
+    for composer in _COMPOSERS:
+        profile = movement_profile(composer)
+        mix = movement_idiom_mix(composer)
+        if profile is None or mix is None:
+            continue
+        assert profile["source"] == mix["source"], composer
+        assert profile["idioms"] == mix["idioms"], composer

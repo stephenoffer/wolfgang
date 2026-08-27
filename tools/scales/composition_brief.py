@@ -857,6 +857,93 @@ _MOVEMENT_RATES_CACHE: Dict[str, Any] = {}
 
 #: What a movement is measured on. Each is a share of the movement's own bars or
 #: attacks, so they are comparable across movements of different lengths.
+_MOVEMENT_PROFILE_CACHE: Dict[str, Any] = {}
+
+
+def movement_profile(composer: str, min_bars: int = 24) -> Optional[Dict[str, Any]]:
+    """ONE movement described completely — its idioms and its rates together.
+
+    `movement_idiom_mix` returns the movement at the median CONCENTRATION.
+    `movement_rate_range` returns the median of a rate across all movements.
+    Both are correct, and combining them is not: they describe different pieces.
+    A caller scheduling idioms from Chopin's Op. 28 No. 5 (77% broken-chord
+    wave) while targeting his median chord share of 53.9% is asking for a
+    movement that is 77% broken-chord wave and 54% chords, and no such movement
+    exists — a broken-chord wave is 2.3% chords where a block-chord bar is 86%.
+
+    That is a third variety of the same-yardstick error, and the least visible.
+    Not two definitions of a quantity, and not two scopes of one — two correct
+    statistics about DIFFERENT MEMBERS of the same population, each verifiable
+    on its own and incoherent together.
+
+    So this returns a single real movement's whole description, from one set of
+    bars: what it plays, how often it ties, how often it rests on a downbeat,
+    how chordal each hand is. Anything derived from it is describing one piece.
+    Use `movement_rate_range` to score a generated piece against the spread of
+    real practice; use this to give it a coherent target to aim at.
+    """
+    key = f"{(composer or '').strip().lower()}|{min_bars}"
+    if key in _MOVEMENT_PROFILE_CACHE:
+        return _MOVEMENT_PROFILE_CACHE[key]
+
+    result = None
+    try:
+        from collections import Counter
+
+        from scripts.build_corpus_indexes import group_by_source, load_bars
+
+        rows = []
+        for source, bars in group_by_source(load_bars(composer)).items():
+            if len(bars) < min_bars:
+                continue
+            idioms = Counter(b.get("lh_texture") for b in bars if b.get("lh_texture"))
+            total = sum(idioms.values())
+            if not total:
+                continue
+            ties = rests = 0
+            lh_attacks = lh_chords = rh_attacks = rh_chords = 0
+            for bar in bars:
+                right = bar.get("rh_events") or []
+                if right and isinstance(right[0], dict) and right[0].get("type") == "rest":
+                    rests += 1
+                for event in right:
+                    if not isinstance(event, dict):
+                        continue
+                    if event.get("tie") == "start":
+                        ties += 1
+                    if event.get("type") in ("note", "chord"):
+                        rh_attacks += 1
+                        rh_chords += event.get("type") == "chord"
+                for event in bar.get("lh_events") or []:
+                    if isinstance(event, dict) and event.get("type") in ("note", "chord"):
+                        lh_attacks += 1
+                        lh_chords += event.get("type") == "chord"
+            rows.append(
+                {
+                    "source": source,
+                    "bars": len(bars),
+                    "idioms": {k: round(v / total, 4) for k, v in idioms.most_common()},
+                    "top_idiom": idioms.most_common(1)[0][0],
+                    "top_share": idioms.most_common(1)[0][1] / total,
+                    "ties_per_bar": round(ties / len(bars), 4),
+                    "downbeat_rest_share": round(rests / len(bars), 4),
+                    "lh_chord_share": round(lh_chords / lh_attacks, 4) if lh_attacks else 0.0,
+                    "rh_chord_share": round(rh_chords / rh_attacks, 4) if rh_attacks else 0.0,
+                }
+            )
+        if len(rows) >= 4:
+            rows.sort(key=lambda r: r["top_share"])
+            result = dict(rows[len(rows) // 2])
+            result["composer"] = composer
+            result["movements"] = len(rows)
+            result.pop("top_share", None)
+    except Exception:
+        result = None
+
+    _MOVEMENT_PROFILE_CACHE[key] = result
+    return result
+
+
 _IDIOM_RUN_CACHE: Dict[str, Any] = {}
 
 
