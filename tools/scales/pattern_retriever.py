@@ -54,6 +54,23 @@ def _reaches_the_bass(pattern: Dict) -> bool:
     return False
 
 
+def _chord_share(pattern: Dict) -> float:
+    """Share of this pattern's attacks that sound more than one note.
+
+    What makes an oom-pah an oom-pah. Real `block_chord_offbeat` bars are 83.8%
+    chorded and `alberti` bars 1.4%, so this is per idiom or it is meaningless.
+    """
+    attacks = chorded = 0
+    for event in pattern.get("lh_events") or []:
+        pitch = event.get("p")
+        if not pitch or pitch == "rest":
+            continue
+        attacks += 1
+        if isinstance(pitch, list) and len(pitch) > 1:
+            chorded += 1
+    return chorded / attacks if attacks else 0.0
+
+
 def _distinct_pitches(pattern: Dict) -> int:
     """How much vocabulary a pattern actually uses — its distinct pitches.
 
@@ -88,6 +105,7 @@ class PatternRetriever:
         self._total_loaded = 0
         self._loaded = False
         self._vocab_floor: Dict[str, int] = {}
+        self._chord_floor_cache: Dict[str, float] = {}
 
     def _ensure_loaded(self) -> None:
         """Lazy-load all 16 hex shards and build indexes."""
@@ -176,8 +194,6 @@ class PatternRetriever:
                 ungrounded.append(p)
                 continue
             filtered.append(p)
-            if len(filtered) >= n * 3:  # pre-filter cap
-                break
 
         # No vocabulary is worse than an odd one, so fall back if nothing kept.
         if not filtered:
@@ -206,11 +222,57 @@ class PatternRetriever:
         # chosen is both well attested and recognisably the idiom. A FLOOR, not
         # a maximum — maximising picks the 15-pitch scale run that happens to be
         # labelled alberti, which is the same mistake facing the other way.
-        floor = self._vocabulary_floor(texture)
-        if floor > 0:
-            filtered.sort(key=lambda p: _distinct_pitches(p) < floor)
+        # TWO AXES, because vocabulary alone is the wrong axis for a CHORDAL
+        # idiom. A bar of three repeated triads has few distinct pitches and is
+        # a perfect `block_chord_offbeat`; a single-note bar that wanders has
+        # more. Ranking on vocabulary alone therefore reached past the chords
+        # for the wanderer, and retrieved oom-pah patterns came back 60.0%
+        # chorded against a pool of 84.1% — the idiom arriving with the thing
+        # that defines it removed. That was a cost of the vocabulary floor
+        # itself, which fixed the opposite problem for the single-line idioms.
+        #
+        # Both floors are medians of the texture's own pool, so each idiom is
+        # asked to look like itself: `alberti` is not pushed toward chords it
+        # does not have, and `block_chord_sparse` is not pushed toward a pitch
+        # variety it does not need.
+        #
+        # AND THE CANDIDATE LIST IS NO LONGER TRUNCATED FIRST. It used to stop
+        # at `n * 3`, taken from the front of a pool sorted by frequency — so
+        # fifteen candidates were chosen by exactly the criterion these floors
+        # exist to override, and sorting them changed nothing. Adding the chord
+        # floor moved `block_chord_offbeat` not at all until the cap came off.
+        # The pools are at most a few thousand patterns and sorting one is
+        # nothing; a cap applied before a preference is a preference that does
+        # not apply.
+        vocabulary = self._vocabulary_floor(texture)
+        chords = self._chord_floor(texture)
+        if vocabulary > 0 or chords > 0:
+            # A TARGET, not a floor, for the chords. A floor pushes one way
+            # only: it lifted `block_chord_offbeat` from 60% to 100% chorded and
+            # simultaneously pushed `alberti` to 6.2% against a real 1.4%,
+            # because "not below the median" is satisfied by anything above it.
+            # An idiom should look like ITSELF in both directions.
+            #
+            # Bucketed to quarters so a small difference in chord share does not
+            # outrank the vocabulary test — the two are ordered, not summed.
+            filtered.sort(
+                key=lambda p: (
+                    round(abs(_chord_share(p) - chords) * 4),
+                    _distinct_pitches(p) < vocabulary,
+                )
+            )
 
         return filtered[:n]
+
+    def _chord_floor(self, texture: str) -> float:
+        """Median chord share for a texture, over the whole library."""
+        if texture in self._chord_floor_cache:
+            return self._chord_floor_cache[texture]
+        pool = self._by_texture.get(texture, [])
+        shares = sorted(_chord_share(p) for p in pool)
+        floor = shares[len(shares) // 2] if shares else 0.0
+        self._chord_floor_cache[texture] = floor
+        return floor
 
     def _vocabulary_floor(self, texture: str) -> int:
         """Median distinct-pitch count for a texture, over the whole library."""
@@ -328,9 +390,27 @@ class PatternRetriever:
             if remaining <= 0:
                 break
             if dur_beats > remaining:
-                dur_beats = _quantize(remaining)
-                if dur_beats <= 0 or dur_beats > remaining:
+                # THE LARGEST VALUE THAT FITS, not the nearest.
+                #
+                # `_quantize` snaps to the closest notatable duration, which for
+                # a remainder of 0.24 is 0.25 — longer than the room — and the
+                # event was then dropped. Quantizing each stored duration can
+                # inflate a four-beat pattern past four beats, so the overflow
+                # is a rounding artefact and the tail pays for it. In an oom-pah
+                # the tail is where the CHORDS are: **76% of the events dropped
+                # here were chords**, and `block_chord_offbeat` lost 11.5 points
+                # of chord share between the library and the score while every
+                # single-line idiom came through whole.
+                #
+                # The same defect was fixed in the repair pass months ago, with
+                # the same note: "NOT beats_to_dur: the nearest notatable value
+                # can be LONGER than the room."
+                from .duration import DURATION_VALUES
+
+                fitted = [v for v in set(DURATION_VALUES.values()) if 0 < v <= remaining]
+                if not fitted:
                     break
+                dur_beats = max(fitted)
 
             events.append(
                 LayerEvent(
