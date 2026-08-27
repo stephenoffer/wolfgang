@@ -142,3 +142,79 @@ def test_normalising_none_did_not_break_a_default_branch(tmp_path):
     empty = commit_candidate_phrase(piece, "m1_a_p1", lens="probe", bars=None, layer_ir=None)
     assert not empty.get("ok"), empty
     assert empty.get("error"), "a candidate with no content must say what is missing"
+
+
+# ─── The decorator stays attached to the tool ────────────────────────────────
+
+
+def _params(fn):
+    try:
+        return inspect.signature(fn).parameters
+    except (TypeError, ValueError):
+        return {}
+
+
+def test_every_tool_is_still_wrapped_by_the_tool_decorator():
+    """Inserting a helper above a tool detaches its decorator, silently.
+
+    `@_tool` supplies the missing-piece guard that turns a `FileNotFoundError`
+    traceback into a result. Writing a new helper function immediately above a
+    decorated tool puts it BETWEEN the decorator and its function, and the
+    decorator moves to the helper — the tool loses its guard and a private
+    helper becomes a tool. Nothing about that reads as wrong in a diff: the
+    added block is clean and the decorator line is untouched.
+
+    This happened twice in one session, to `build_form_graph` and then to
+    `run_scales_section`, and both times the failure surfaced two hundred tests
+    away in `test_a_missing_piece_returns_a_result_not_a_traceback`, which says
+    "this tool raised" rather than "your insertion stole its decorator".
+    """
+    import ast
+    import inspect
+
+    tree = ast.parse(inspect.getsource(scales))
+    decorated = {
+        fn.name
+        for fn in ast.walk(tree)
+        if isinstance(fn, ast.FunctionDef)
+        and any(isinstance(d, ast.Name) and d.id == "_tool" for d in fn.decorator_list)
+    }
+    # The REAL surface, derived rather than listed: every public function that
+    # takes a `piece_id`. `_TOOL_SURFACE` above is a hand-written subset for the
+    # list-argument rule, and a hand-written subset is exactly what let the
+    # second instance of this slip through — `run_scales_section` is not in it.
+    surface = {
+        name
+        for name in dir(scales)
+        if not name.startswith("_")
+        and getattr(getattr(scales, name), "__module__", "") == "scales.scales"
+        and callable(getattr(scales, name))
+        and "piece_id" in _params(getattr(scales, name))
+    } - {"init_workspace"}
+    assert len(surface) > 15, f"tool surface discovery found only {sorted(surface)}"
+    missing = sorted((surface | _TOOL_SURFACE) - decorated)
+    assert not missing, (
+        f"tool(s) no longer carry @_tool: {missing}. If you just added a function "
+        "above one of these, check the line above your insertion point — the "
+        "decorator now belongs to your new helper, and the tool has lost its "
+        "missing-piece guard."
+    )
+
+
+def test_a_private_helper_did_not_become_a_tool():
+    """The other half of the same slip, from the decorator's side."""
+    import ast
+    import inspect
+
+    tree = ast.parse(inspect.getsource(scales))
+    private = sorted(
+        fn.name
+        for fn in ast.walk(tree)
+        if isinstance(fn, ast.FunctionDef)
+        and fn.name.startswith("_")
+        and any(isinstance(d, ast.Name) and d.id == "_tool" for d in fn.decorator_list)
+    )
+    assert not private, (
+        f"private helper(s) decorated with @_tool: {private} — almost certainly a "
+        "decorator that slid off the tool below when this function was inserted"
+    )

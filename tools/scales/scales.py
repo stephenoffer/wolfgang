@@ -1263,6 +1263,104 @@ def save_narrative(
 # ─── SCALES Core ─────────────────────────────────────────────────────────────
 
 
+def planning_gaps(graph) -> List[Dict[str, str]]:
+    """Planning inputs that were never supplied, and what each costs the music.
+
+    Every one of these has a silent fallback, so a piece composed without them
+    comes out plausible-looking and quietly worse. A peer session measured
+    texture, ties, cadences and register all session on pieces with NO thematic
+    material, because its harness went `build_form_graph` → `run_scales_section`
+    and skipped planning entirely — a legal call sequence that nothing objected
+    to. The numbers were valid for what they measured; they were never measuring
+    the whole system.
+
+    Reported, never blocking. Composing an unplanned piece deliberately is a
+    reasonable thing to do while testing something else; doing it by accident
+    and believing the result is not.
+    """
+    gaps: List[Dict[str, str]] = []
+    dna = getattr(graph, "style_dna", None)
+    if dna is None or not (getattr(dna, "composer_id", "") or "").strip():
+        gaps.append(
+            {
+                "missing": "style",
+                "costs": (
+                    "no composer fingerprints, no corpus exemplars in any brief, "
+                    "and generic density bands in place of this composer's own"
+                ),
+                "fix": "compile_style(piece_id, composers=[...])",
+            }
+        )
+    if not getattr(graph, "motif_bank", None):
+        gaps.append(
+            {
+                "missing": "motifs",
+                "costs": (
+                    "no principal theme, so nothing recurs and the piece has "
+                    "nothing to recognise, develop or resolve"
+                ),
+                "fix": "resolve_motifs(piece_id, [...]) BEFORE build_form_graph",
+            }
+        )
+    # AUTHORED prose, not merely present prose. `_narrative_from_slots` fills
+    # `character` for every section by joining entries from `ROLE_INTENT`, a
+    # nine-entry table keyed by dramatic role — so a check for "is character
+    # non-empty" is satisfied on every piece ever built and can never fire.
+    # A gap that cannot fire is worse than no gap: it reports readiness it never
+    # tested. Derived prose is drawn from that closed vocabulary, which is what
+    # makes this decidable without a new field.
+    from .dramatic_plan import ROLE_INTENT
+
+    # Whole entries, subtracted as SUBSTRINGS. Splitting the character text on
+    # ";" and comparing the parts does not work: the table's own entries contain
+    # semicolons ("state the idea plainly and let it be heard; nothing here needs
+    # to prove anything"), so splitting shreds them and every derived section
+    # then looks authored — the check passing for the wrong reason, which reads
+    # exactly like the feature working.
+    derived = sorted(
+        (t.strip() for t in ROLE_INTENT.values() if t and t.strip()), key=len, reverse=True
+    )
+
+    def _is_authored(text: str) -> bool:
+        rest = str(text)
+        for entry in derived:
+            rest = rest.replace(entry, "")
+        return bool(rest.strip(" ;,.\t\n"))
+
+    narrative = getattr(graph, "narrative", None)
+    sections = list(getattr(narrative, "sections", None) or []) if narrative else []
+    authored = [
+        sec
+        for sec in sections
+        if (getattr(sec, "character", "") or "").strip() and _is_authored(sec.character)
+    ]
+    if not authored:
+        gaps.append(
+            {
+                "missing": "narrative",
+                "costs": (
+                    "no section has authored character prose — every one is the "
+                    "role table's own words, so the brief's CREATIVE INTENT says "
+                    "the same thing for every piece with the same form"
+                ),
+                "fix": "save_narrative(piece_id, sections=[...]) with `character` prose",
+            }
+        )
+    if not getattr(graph, "reference_studies", None):
+        gaps.append(
+            {
+                "missing": "reference_study",
+                "costs": (
+                    "briefs carry corpus bars but not the agent's own reading of "
+                    "whole scores — the 'WHAT YOU LEARNED FROM THE SCORES' section "
+                    "of every brief is empty"
+                ),
+                "fix": "list_reference_scores / get_reference_score / save_reference_study",
+            }
+        )
+    return gaps
+
+
 @_tool
 def run_scales_section(
     piece_id: str,
@@ -1645,7 +1743,11 @@ def run_scales_section(
                         getattr(_slot, "cadence_target", "none"),
                         _slot.bar_start + _slot.bar_count - 1,
                     )
-                _hold_over_barline(node.surface, tuple(slot_meter_for(graph, node.phrase_id)))
+                _hold_over_barline(
+                    node.surface,
+                    tuple(slot_meter_for(graph, node.phrase_id)),
+                    composer=composer_id,
+                )
                 # LAST of the surface passes: the widened melody range is the
                 # union across every composer, and Bach's harpsichord stops a
                 # major third below its ceiling. Bring anything the instrument
@@ -1836,6 +1938,16 @@ def run_scales_section(
         "transition_scores": best_path.transition_scores,
         "pipeline": "v6" if (sc and style_program) else "classic",
     }
+    # What planning never supplied. Each has a silent fallback, so a piece
+    # composed without them looks fine and is quietly worse.
+    gaps = planning_gaps(graph)
+    if gaps:
+        result["planning_gaps"] = gaps
+        _LOG.warning(
+            "%s composed with no %s — see `planning_gaps` in the result",
+            section_id,
+            ", ".join(g["missing"] for g in gaps),
+        )
     if engine_repairs:
         # Never silent. A repaired surface means the generator produced
         # something that could not be engraved, and the caller should see it.
@@ -4064,9 +4176,28 @@ def get_composition_brief(
     brief = build_brief(graph, phrase_id, n_exemplars=n_exemplars, composer=composer)
     if _persist_brief_receipt(graph, phrase_id, brief):
         graph.save(str(workspace / "piece_graph.json"))
+    # The composing agent reads the brief and nothing else, so this is where a
+    # missing planning step has to appear or it appears nowhere. A brief built
+    # on an uncompiled style still renders — with generic bands and no
+    # fingerprints — and reads exactly like one that was armed.
+    gaps = planning_gaps(graph)
     if fmt == "json":
-        return asdict(brief)
-    return render_text(brief, graph)
+        out = asdict(brief)
+        if gaps:
+            out["planning_gaps"] = gaps
+        return out
+    text = render_text(brief, graph)
+    if gaps:
+        lines = [
+            "",
+            "!! PLANNING NEVER SUPPLIED: " + ", ".join(g["missing"] for g in gaps),
+            "   Each has a silent fallback, so this brief looks complete and is not.",
+        ]
+        for gap in gaps:
+            lines.append(f"   - no {gap['missing']}: {gap['costs']}")
+            lines.append(f"     fix: {gap['fix']}")
+        text = "\n".join(lines) + "\n\n" + text
+    return text
 
 
 def _persist_brief_receipt(graph, phrase_id: str, brief) -> bool:
