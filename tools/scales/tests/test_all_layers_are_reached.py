@@ -177,3 +177,36 @@ def test_every_spelling_of_piano_gets_the_playability_check():
     # An ensemble has no hands. `piano_trio` contains "piano" and is still one.
     for spelling in ("ensemble", "string_quartet", "piano_trio", "choir"):
         assert not span_findings(spelling), f"{spelling!r} was given a hand-span check"
+
+
+def test_a_layer_knows_what_the_piece_is_scored_for():
+    """Every LayerIR was constructed claiming `solo_piano`, whatever the piece
+    was written for — six sites hardcoded it and nothing read the contract.
+
+    So every physical check asking "is this a keyboard?" answered yes for a
+    motet, the HAND-SPAN limit among them: a Tenor and a Bassus a nineteenth
+    apart is ordinary vocal writing and an impossible reach for one hand. That
+    is the exact failure the forces-inference work exists to prevent, arriving
+    by a different route — the forces were inferred correctly and then not
+    carried to the check that reads them.
+    """
+    from scales.direct_compose import compose_phrase
+    from scales.validator import validate_layer_ir
+
+    bars = [{"rh": "C6w", "lh": "[C3,G4]w"}] * 2  # a 19-semitone reach in one hand
+
+    def span_findings(instrumentation):
+        ir = compose_phrase(
+            bars, key="C", phrase_id="p", meter=(4, 4), instrumentation=instrumentation
+        )
+        assert ir.instrumentation == instrumentation, "the layer dropped its forces"
+        report = validate_layer_ir(ir)
+        return [i for i in getattr(report, "issues", []) if i.category == "playability"]
+
+    for keyboard in ("solo_piano", "piano_solo", "harpsichord"):
+        assert span_findings(keyboard), f"{keyboard} must still be held to a hand's reach"
+    for ensemble in ("choir", "string_quartet", "orchestra"):
+        assert not span_findings(ensemble), f"{ensemble} has no hands to span"
+
+    # The default is unchanged for callers that do not say.
+    assert compose_phrase(bars, key="C", phrase_id="p").instrumentation == "solo_piano"

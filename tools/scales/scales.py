@@ -111,6 +111,20 @@ _REVISION_OP_PARAMS = {
 }
 
 
+def _piece_instrumentation(graph) -> str:
+    """What the piece is scored for, from its contract.
+
+    Every LayerIR was constructed claiming `solo_piano`, so every check that
+    asks "is this a keyboard?" answered yes for a motet — the hand-span limit
+    among them, which is meaningless for two singers.
+    """
+    contract = getattr(graph, "contract", None)
+    target = getattr(contract, "target", None) if contract is not None else None
+    if isinstance(target, dict):
+        return str(target.get("instrumentation") or "solo_piano")
+    return str(getattr(target, "instrumentation", "") or "solo_piano")
+
+
 class _MissingPiece(Exception):
     """A tool was asked about a piece that does not exist.
 
@@ -3219,6 +3233,7 @@ def commit_agent_phrase_direct_bars(
         bar_start=slot.bar_start,
         phrase_id=phrase_id,
         meter=slot.meter,
+        instrumentation=_piece_instrumentation(graph),
     )
     report = validate_layer_ir(layer, _physical_constraints(graph))
     if not report.passed:
@@ -4576,7 +4591,12 @@ def commit_candidate_phrase(
                 ),
             }
         layer = compose_phrase(
-            bars, key=slot.key, bar_start=slot.bar_start, phrase_id=phrase_id, meter=slot.meter
+            bars,
+            key=slot.key,
+            bar_start=slot.bar_start,
+            phrase_id=phrase_id,
+            meter=slot.meter,
+            instrumentation=_piece_instrumentation(graph),
         )
     elif layer_ir is not None:
         layer = load_layer_ir_from_dict(layer_ir)
@@ -4649,7 +4669,8 @@ def _render_layer_preview(layer: LayerIR, out_path: Path, tempo_bpm: int = 120) 
     """Render a single LayerIR as a standalone MusicXML preview."""
     import music21
 
-    from .assembler import _build_piano_score
+    from .assembler import _build_ensemble_score, _build_piano_score
+    from .models import is_keyboard
     from .music_io import layer_ir_to_event_ir
 
     events = layer_ir_to_event_ir(layer)
@@ -4659,7 +4680,22 @@ def _render_layer_preview(layer: LayerIR, out_path: Path, tempo_bpm: int = 120) 
         for e in events:
             e.bar -= shift
     score = music21.stream.Score()
-    score = _build_piano_score(score, events, layer.key, layer.meter, tempo_bpm)
+    # A candidate for a MOTET was previewed as a piano grand staff: this called
+    # `_build_piano_score` whatever the piece was scored for. The judge compares
+    # candidates against each other, so a shared wrong instrument does not bias
+    # the comparison — but it is still the wrong score, and a reviewer reading
+    # one cannot see the forces the phrase was written for.
+    if is_keyboard(layer.instrumentation):
+        score = _build_piano_score(score, events, layer.key, layer.meter, tempo_bpm)
+    else:
+        score = _build_ensemble_score(
+            score,
+            events,
+            layer.key,
+            layer.meter,
+            tempo_bpm,
+            instrumentation=layer.instrumentation,
+        )
     score.write("musicxml", fp=str(out_path))
     return str(out_path)
 

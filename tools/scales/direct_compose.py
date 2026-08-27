@@ -442,7 +442,7 @@ def parse_issues(bars: List[Dict], meter: Tuple[int, int] = (4, 4)) -> List[str]
                         # written lost characters: 'C12q' -> 'C1'.
                         stripped = tok.lstrip("(<>").rstrip(")~!<>")
                         if stripped.startswith(ev["pitch"]):
-                            tail = stripped[len(ev["pitch"]):].split(":")[0]
+                            tail = stripped[len(ev["pitch"]) :].split(":")[0]
                             if tail and tail not in DURATION_VALUES and not tail.startswith("."):
                                 base = tail.rstrip(".")
                                 if base not in DURATION_VALUES:
@@ -692,6 +692,7 @@ def compose_phrase(
     bar_start: int = 1,
     phrase_id: str = "",
     meter: Tuple[int, int] = (4, 4),
+    instrumentation: str = "solo_piano",
 ) -> LayerIR:
     """Convert Claude's bar-by-bar composition to LayerIR.
 
@@ -708,9 +709,14 @@ def compose_phrase(
     Returns:
         LayerIR with principal_line and bass_foundation populated.
     """
+    # What the piece is SCORED FOR, not what this writer assumes. Every LayerIR
+    # in the system was built claiming solo piano, so every physical check that
+    # asks "is this a keyboard?" answered yes for a motet — including the
+    # hand-span limit, which is meaningless for two singers and is the exact
+    # failure the forces-inference work exists to prevent.
     layer = LayerIR(
         phrase_id=phrase_id,
-        instrumentation="solo_piano",
+        instrumentation=instrumentation or "solo_piano",
         key=key,
         meter=meter,
         bar_count=len(bars),
@@ -736,9 +742,7 @@ def compose_phrase(
         # right-aligned to the barline rather than starting on beat 1.
         pickup_start = _pickup_start_beat(bar_data, meter) if bar_data.get("pickup") else None
         if pickup_start is not None:
-            layer.pickup_beats = float(
-                bar_duration(meter) - (pickup_start - 1)
-            )
+            layer.pickup_beats = float(bar_duration(meter) - (pickup_start - 1))
 
         # Right hand: voice 0 → principal_line (the melody); any further '//'
         # voices → counter_reply (treble inner voice — rendered as staff voice 2).
@@ -877,7 +881,11 @@ def merge_phrases(
     """Merge multiple phrase LayerIRs into one."""
     merged = LayerIR(
         phrase_id=piece_id,
-        instrumentation="solo_piano",
+        # Seeded from the phrases being merged rather than assumed; the loop
+        # below already prefers each phrase's own value where it has one.
+        instrumentation=next(
+            (p.instrumentation for p in phrases if p.instrumentation), "solo_piano"
+        ),
         key=key,
         meter=meter,
         bar_count=sum(p.bar_count for p in phrases),
