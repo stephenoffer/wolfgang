@@ -263,6 +263,20 @@
    "min": 5.0,
    "max": 5.0,
    "n": 1
+  },
+  "mean_sonority": {
+   "mean": 4.099,
+   "stdev": 0.0,
+   "min": 4.099,
+   "max": 4.099,
+   "n": 1
+  },
+  "chorded_attack_pct": {
+   "mean": 100.0,
+   "stdev": 0.0,
+   "min": 100.0,
+   "max": 100.0,
+   "n": 1
   }
  },
  "lh_texture_distribution": {

@@ -30,7 +30,8 @@ set in sync with ``analyze_score_bars`` if it changes.
 from __future__ import annotations
 
 import statistics
-from typing import Any, Dict, List
+from fractions import Fraction
+from typing import Any, Dict, List, Tuple
 
 # Metrics this module computes per bar-list. Kept as a module constant so the
 # profile builder, compare_to_corpus, and self_evaluate agree on the set.
@@ -146,3 +147,76 @@ def zscore(value: float, mean: float, stdev: float) -> float:
     """Z-score with a stdev floor so near-constant metrics don't explode."""
     floor = max(stdev, 1e-6)
     return round((value - mean) / floor, 2)
+
+
+# ── Vertical sonority ────────────────────────────────────────────────────────
+#
+# "Does this staff notate a chord" is a KEYBOARD question. Asked of four
+# independent voice streams it is a category error: a chorale's chords are
+# vertical alignments ACROSS streams, and every one of Bach's arrives as its own
+# single-note event. `avg_chord_size` reads a `type` field, so it found chords in
+# 39 of his 470 movements — those where his keyboard writing happens to notate
+# one in a hand — and reported 0.171 for the rest, which is not a size.
+#
+# More than half of Bach's notes and 55% of Palestrina's live in the INNER
+# streams, which the old measure never read at all.
+#
+# So: reconstruct each stream's onsets by walking its durations, then ask how
+# many pitches are sounding at each attack. That question has the same meaning
+# for a piano chord and for four voices arriving together, which is the point.
+
+_DISPLAY_STREAMS = ("rh_display", "rh_inner_display", "lh_display", "lh_inner_display")
+
+
+def _stream_spans(bar: Dict[str, Any]) -> List[Tuple[Fraction, Fraction, str]]:
+    """(start, end, pitch) for every sounding note in a bar, across all streams."""
+    spans: List[Tuple[Fraction, Fraction, str]] = []
+    for stream in _DISPLAY_STREAMS:
+        cursor = Fraction(0)
+        for event in bar.get(stream) or []:
+            if event.get("is_grace"):
+                continue  # a grace takes no metric time
+            try:
+                dur = Fraction(str(event.get("dur", 0))).limit_denominator(64)
+            except (TypeError, ValueError):
+                continue
+            if dur <= 0:
+                continue
+            if event.get("type") != "rest":
+                pitches = event.get("pitches") or ([event["pitch"]] if event.get("pitch") else [])
+                for pitch in pitches:
+                    spans.append((cursor, cursor + dur, str(pitch)))
+            cursor += dur
+    return spans
+
+
+def sonority_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
+    """How many notes sound together, measured across every voice stream.
+
+    `mean_sonority` is the average number of pitches sounding at an attack;
+    `chorded_attack_pct` the share of attacks where more than one does. Both are
+    defined for a piano chord and for four independent voices, which is what
+    makes them comparable across the corpus.
+    """
+    total = 0
+    sounding = 0
+    chorded = 0
+    for bar in bars:
+        spans = _stream_spans(bar)
+        if not spans:
+            continue
+        for attack, _end, _pitch in sorted({(s, e, p) for s, e, p in spans}):
+            here = {p for s, e, p in spans if s <= attack < e}
+            if not here:
+                continue
+            total += 1
+            sounding += len(here)
+            if len(here) > 1:
+                chorded += 1
+    if not total:
+        return {"mean_sonority": 0.0, "chorded_attack_pct": 0.0, "attacks": 0}
+    return {
+        "mean_sonority": round(sounding / total, 3),
+        "chorded_attack_pct": round(100 * chorded / total, 2),
+        "attacks": total,
+    }

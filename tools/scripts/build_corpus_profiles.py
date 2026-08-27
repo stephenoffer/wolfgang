@@ -27,6 +27,7 @@ from scales.corpus_metrics import (
     SCALAR_METRICS,
     bar_metrics,
     l1_distance,
+    sonority_metrics,
     texture_distribution,
 )
 from scales.style_dimensions import FINGERPRINT_FEATURES, style_fingerprint
@@ -43,7 +44,15 @@ COMPILED_PACKS = _TOOLS / "compiled_packs"
 # Full per-movement feature vector: rhythm/texture (corpus_metrics) PLUS the
 # harmony/melody/rhythm-value dimensions (style_dimensions). All aggregated into
 # the same mean/sd profile so a piece is scored on every axis, not just texture.
-_ALL_FEATURES = list(SCALAR_METRICS) + list(FINGERPRINT_FEATURES)
+#: Vertical density, measured across every voice stream rather than by reading
+#: a `type` field off two staves. `avg_chord_size` asks "does this staff notate
+#: a chord", which is a keyboard question — asked of four independent voices it
+#: found chords in 39 of Bach's 470 movements and reported 0.171 for the rest,
+#: a number that is not a size. These say 3.77 for his chorales and 3.32 for
+#: Palestrina, where the old measure said zero.
+_SONORITY_FEATURES = ("mean_sonority", "chorded_attack_pct")
+
+_ALL_FEATURES = list(SCALAR_METRICS) + list(FINGERPRINT_FEATURES) + list(_SONORITY_FEATURES)
 
 # Movements shorter than this are too small to yield a stable metric vector;
 # they still count toward the pooled texture distribution.
@@ -81,7 +90,11 @@ def build_profile(composer: str, min_bars: int = _MIN_MOVEMENT_BARS) -> Optional
     for src, mvt_bars in groups.items():
         if len(mvt_bars) < min_bars:
             continue
-        metrics = {**bar_metrics(mvt_bars), **style_fingerprint(mvt_bars)}
+        metrics = {
+            **bar_metrics(mvt_bars),
+            **style_fingerprint(mvt_bars),
+            **sonority_metrics(mvt_bars),
+        }
         for m in _ALL_FEATURES:
             per_metric[m].append(metrics.get(m, 0.0))
         lh_l1_samples.append(l1_distance(texture_distribution(mvt_bars, "lh"), pooled_lh))
@@ -90,7 +103,7 @@ def build_profile(composer: str, min_bars: int = _MIN_MOVEMENT_BARS) -> Optional
     # Fallback: if a composer has no movement long enough, treat the whole
     # corpus as one sample so the profile still exists (stdev will be 0).
     if movements_used == 0:
-        whole = {**bar_metrics(bars), **style_fingerprint(bars)}
+        whole = {**bar_metrics(bars), **style_fingerprint(bars), **sonority_metrics(bars)}
         for m in _ALL_FEATURES:
             per_metric[m].append(whole.get(m, 0.0))
         movements_used = 1
