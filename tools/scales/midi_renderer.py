@@ -21,12 +21,13 @@ performance_renderer — deterministic, nothing persisted.
 
 from __future__ import annotations
 
+import warnings
 from fractions import Fraction
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .assembler import _in_scope
-from .duration import DURATION_VALUES, bar_duration
+from .duration import DURATION_VALUES, GRACE_ORNAMENTS, bar_duration, dur_to_beats
 from .models import EventIR, PerformanceIR
 from .music_io import layer_ir_to_event_ir
 from .piece_graph import PieceGraph
@@ -142,6 +143,269 @@ def _emit_meters(stream, music21, phrase_renders) -> None:
             current = (num, den)
         bars = len({e.bar for e in events}) or 1
         offset += bars * float(Fraction(num * 4, den))
+
+
+def _insert_sustain_pedal(filepath, spans, ticks_per_quarter: int) -> int:
+    """Write real sustain-pedal (CC64) events into a rendered MIDI file.
+
+    The preview had **no pedal at all**: not one controller event in the file.
+    What stood in for it was lengthening bass notes in bars the renderer decided
+    were pedalled — which sustains the left hand only, ignores any pedal the
+    composer wrote, and cannot blur a harmony the way a real damper lift does.
+    For Romantic piano writing the pedal is not an effect on the sound, it is
+    most of the sound.
+
+    music21 has no stream-level pedal, so this rewrites the written file: track
+    events carry DELTA times, so each track is converted to absolute time, the
+    controller events are merged in, and the deltas are recomputed.
+
+    ``spans`` is an iterable of (down_beat, up_beat) in quarter-note beats from
+    the start of the piece. Returns the number of events inserted.
+    """
+    import music21
+    from music21 import midi as m21
+
+    if not spans:
+        return 0
+    mf = m21.MidiFile()
+    mf.open(str(filepath))
+    try:
+        mf.read()
+    finally:
+        mf.close()
+
+    inserted = 0
+    for track in mf.tracks:
+        if not any(e.isNoteOn() for e in track.events):
+            continue
+        channel = next((e.channel for e in track.events if e.isNoteOn()), 1)
+
+        # delta -> absolute
+        absolute, now = [], 0
+        for ev in track.events:
+            if isinstance(ev, m21.DeltaTime):
+                now += ev.time or 0
+            else:
+                absolute.append((now, ev))
+
+        additions = []
+        for down, up in spans:
+            for beat, value in ((down, 127), (up, 0)):
+                ev = m21.MidiEvent(track=track)
+                ev.type = music21.midi.ChannelVoiceMessages.CONTROLLER_CHANGE
+                ev.channel = channel
+                ev.parameter1 = 64  # sustain
+                ev.parameter2 = value
+                additions.append((int(round(beat * ticks_per_quarter)), ev))
+        inserted += len(additions)
+
+        # A pedal-down must land before the note it catches, and a pedal-up
+        # after the note it releases, so ties are broken by value: 0 first.
+        merged = sorted(absolute + additions, key=lambda pair: (pair[0], pair[1].isNoteOn()))
+
+        rebuilt, prev = [], 0
+        for when, ev in merged:
+            dt = m21.DeltaTime(track=track)
+            dt.time = max(0, when - prev)
+            prev = when
+            rebuilt.append(dt)
+            rebuilt.append(ev)
+        track.events = rebuilt
+
+    mf.open(str(filepath), "wb")
+    try:
+        mf.write()
+    finally:
+        mf.close()
+    return inserted
+
+
+def _pedal_spans(piece_graph, phrase_renders, beats_per_bar: float, bar_starts) -> list:
+    """Where the pedal goes down and comes up, in absolute beats.
+
+    Two sources, because both exist and only one was ever consulted: the
+    period-derived `PerformanceIR.pedal_events`, and any pedal the COMPOSER
+    wrote on an event, which the renderer ignored entirely.
+    """
+    spans, seen = [], set()
+    for events, perf, _meter, _key in phrase_renders:
+        bars = set()
+        if perf is not None:
+            from .performance_renderer import pedal_bars
+
+            bars.update(pedal_bars(perf))
+        for e in events:
+            mark = (getattr(e, "pedal", None) or "").strip().lower()
+            if mark in ("down", "ped", "con_pedale", "start", "true", "1"):
+                bars.add(e.bar)
+        for bar in sorted(bars):
+            if bar in seen:
+                continue
+            seen.add(bar)
+            start = bar_starts.get(bar, (bar - 1) * beats_per_bar)
+            # Down just after the downbeat, up a hair before the bar ends: a
+            # pedal held THROUGH a bar line is what makes a change of harmony
+            # sound like mud.
+            spans.append((start + 0.02, start + beats_per_bar - 0.05))
+    return spans
+
+
+def _slurred_events(events) -> set:
+    """Which events fall UNDER a slur, endpoints included.
+
+    A slur is the composer's legato marking and the renderer never read it, so a
+    slurred phrase and an unslurred one came out of the preview with identical
+    note lengths. Articulation was audible (staccato, tenuto, spiccato all gate
+    the duration) but phrasing — the mark the enricher adds most of — was not.
+    """
+    ordered = sorted(
+        (e for e in events if getattr(e, "pitch", None) != "rest"),
+        key=lambda e: (e.bar, e.beat),
+    )
+    under: set = set()
+    open_run: list = []
+    for ev in ordered:
+        mark = (getattr(ev, "slur", None) or "").strip()
+        if mark == "start":
+            open_run = [ev]
+        elif open_run:
+            open_run.append(ev)
+            if mark == "stop":
+                under.update(id(e) for e in open_run)
+                open_run = []
+    return under
+
+
+def _hairpin_scale(events) -> dict:
+    """Velocity multiplier per event, from the written hairpins.
+
+    A crescendo the composer wrote, the engraver added and the assembler
+    engraved was **inaudible**: `midi_renderer` never read the `hairpin` field,
+    so rendering the same phrase with and without a hairpin produced
+    byte-identical velocities. The music-critic judges this system by listening
+    to the preview, so every written crescendo and diminuendo was, to the only
+    listener in the loop, not there.
+
+    A hairpin opens on `<` or `>` and closes on `!` or at the next dynamic mark
+    (which is how a hairpin actually ends — it leads INTO the new level). The
+    ramp is +-18% across the span, which keeps a hairpin narrower than a step
+    between written dynamics: a crescendo is a shaping of the current level, not
+    a substitute for marking a new one.
+    """
+    span = 0.18
+    ordered = sorted(
+        (e for e in events if getattr(e, "pitch", None) != "rest"),
+        key=lambda e: (e.bar, e.beat),
+    )
+    out: dict = {}
+    open_at = None
+    direction = 0
+    run: list = []
+
+    def _close():
+        if open_at is None or len(run) < 2:
+            return
+        for i, ev in enumerate(run):
+            frac = i / (len(run) - 1)
+            out[id(ev)] = 1.0 + direction * span * (frac - 0.5) * 2.0
+
+    for ev in ordered:
+        mark = (getattr(ev, "hairpin", None) or "").strip()
+        if mark in ("<", ">"):
+            _close()
+            open_at, direction, run = ev, (1 if mark == "<" else -1), [ev]
+            continue
+        if open_at is not None:
+            run.append(ev)
+            if mark == "!" or getattr(ev, "dynamic", None):
+                _close()
+                open_at, direction, run = None, 0, []
+    _close()
+    return out
+
+
+def _pair_graces(events) -> tuple[dict, set]:
+    """Map each principal note onto the grace note leaning into it.
+
+    Returns ``({id(principal): (grace_midi, ornament)}, {id(grace)})``. Only
+    ``appoggiatura`` and ``acciaccatura`` are paired: a bare ``grace`` carries no
+    period-specific reading worth inventing one for, and it already sounds as
+    the short note it is written as.
+    """
+    pairs: dict = {}
+    consumed: set = set()
+    seq = [e for e in events if getattr(e, "pitch", None) != "rest"]
+    for i, ev in enumerate(seq):
+        orn = (getattr(ev, "ornament", None) or "").lower()
+        if orn not in ("appoggiatura", "acciaccatura"):
+            continue
+        principal = next(
+            (
+                n
+                for n in seq[i + 1 :]
+                if (getattr(n, "ornament", None) or "").lower() not in GRACE_ORNAMENTS
+                and getattr(n, "staff", None) == getattr(ev, "staff", None)
+            ),
+            None,
+        )
+        if principal is None:
+            continue  # a grace with nothing to lean on stays a plain note
+        names = principal.pitch if isinstance(principal.pitch, list) else [principal.pitch]
+        gnames = ev.pitch if isinstance(ev.pitch, list) else [ev.pitch]
+        try:
+            gm = pitch_to_midi(gnames[-1])
+        except (ValueError, KeyError, TypeError):
+            continue
+        if gm is None or not names:
+            continue
+        pairs[id(principal)] = (gm, orn)
+        consumed.add(id(ev))
+    return pairs, consumed
+
+
+def _instrumentation_of(piece_graph) -> str:
+    """The piece's forces, from the contract, tolerating either target shape."""
+    contract = getattr(piece_graph, "contract", None)
+    target = getattr(contract, "target", None) if contract is not None else None
+    if isinstance(target, dict):
+        return str(target.get("instrumentation") or "")
+    return str(getattr(target, "instrumentation", "") or "")
+
+
+def _score_from_parts(marks, music21, parts: Dict[str, Any], instrumentation: str):
+    """A Score with one Part per staff, each carrying its own instrument.
+
+    ``marks`` holds the tempo and metre events already collected; it becomes the
+    first part so every player follows one clock.
+    """
+    from .assembler import _instrument_for, _score_order
+    from .models import is_keyboard
+
+    vocal = any(
+        w in str(instrumentation or "").lower()
+        for w in ("choir", "chorus", "choral", "vocal", "satb", "voices", "a_cappella")
+    )
+    # A keyboard's staves are both the same instrument; an ensemble's are not.
+    keyboard = (
+        ""
+        if vocal
+        else (str(instrumentation or "solo_piano") if is_keyboard(instrumentation) else "")
+    )
+    score = music21.stream.Score()
+    ordered = _score_order({k: [] for k in parts}, None) if parts else []
+    ordered = [name for name in ordered if name in parts] or sorted(parts)
+    for index, name in enumerate(ordered):
+        part = marks if index == 0 else music21.stream.Part()
+        try:
+            part.insert(0, _instrument_for(name, vocal=vocal, keyboard=keyboard))
+        except Exception:
+            pass  # an unresolvable staff name must not cost the preview
+        for offset, note in parts[name]:
+            part.insert(offset, note)
+        score.insert(0, part)
+    if not ordered:
+        score.insert(0, marks)
+    return score
 
 
 def render_midi(
@@ -286,7 +550,18 @@ def render_midi(
         # was invisible only because the engraving path could not produce a tie
         # in the first place, so no generated score had ever contained one.
         tie_extra = _tied_extensions(events)
+        # An appoggiatura and an acciaccatura are a PAIR — the small note and
+        # the note it leans on — and the realizer needs both to tell them
+        # apart. The renderer only ever handed it one event, so `realize()`
+        # returned nothing for either and both fell through to a plain short
+        # note on the beat: exactly the "they sounded identical" bug that
+        # ornament_realization.py was written to fix. Pair them up here.
+        grace_pairs, grace_consumed = _pair_graces(events)
+        hairpin_scale = _hairpin_scale(events)
+        slurred = _slurred_events(events)
         for event in events:
+            if id(event) in grace_consumed:
+                continue  # sounded as part of its principal's realization
             if event.pitch == "rest":
                 continue
             if event.tie in ("stop", "continue"):
@@ -326,6 +601,8 @@ def render_midi(
                 if layer_mul is None:
                     layer_mul = 1.12 if (event.staff == "treble" and event.voice == 1) else 1.0
                 vel *= layer_mul
+                # Written hairpins actually swell and fade.
+                vel *= hairpin_scale.get(id(event), 1.0)
                 # Tendency-tone (leading-tone) emphasis.
                 if midis and (max(midis) % 12) == leading_pc:
                     vel *= 1.0 + profile.dissonance_emphasis
@@ -372,6 +649,11 @@ def render_midi(
             elif art in ("breath", "caesura"):
                 # A breath is taken out of the note BEFORE it, not added after.
                 dur *= 0.6 if art == "breath" else 0.45
+            elif id(event) in slurred:
+                # Under a slur the note is held into the next one. Only when no
+                # articulation was written: a staccato inside a slur is portato,
+                # and the composer's own mark decides that, not this.
+                dur *= 1.0 + profile.tenuto_extend
             # A fermata holds. Without this the pause the composer wrote at the
             # end of the piece simply did not happen in the preview.
             if event.ornament == "fermata":
@@ -430,15 +712,35 @@ def render_midi(
                 # identical to an acciaccatura. In a Classical slow movement
                 # that is most of the expression, and the critic judging the
                 # preview never heard any of it.
-                orn_notes = realize_event(
-                    event, key=key, tempo_bpm=tempo_bpm, period=profile.period
-                )
+                gp = grace_pairs.get(id(event))
+                if gp:
+                    from .ornament_realization import realize as _realize_orn
+
+                    orn_notes = _realize_orn(
+                        gp[1],
+                        midis[-1],
+                        dur_to_beats(event.duration),
+                        key=key,
+                        tempo_bpm=tempo_bpm,
+                        grace_midi=gp[0],
+                        period=profile.period,
+                    )
+                else:
+                    orn_notes = realize_event(
+                        event, key=key, tempo_bpm=tempo_bpm, period=profile.period
+                    )
                 technique = getattr(event, "technique", None)
                 if orn_notes:
                     for pn in orn_notes:
                         o, d, m, vscale = pn.as_tuple()
                         specs.append(
-                            [max(0.0, offset + o), d, [m], max(1, min(127, int(vol * vscale)))]
+                            [
+                                max(0.0, offset + o),
+                                d,
+                                [m],
+                                max(1, min(127, int(vol * vscale))),
+                                event.staff,
+                            ]
                         )
                 elif technique in ("arpeggio", "arpeggio_up", "arpeggio_down") and len(midis) > 1:
                     # A rolled chord actually rolls: the notes enter in sequence
@@ -448,13 +750,21 @@ def render_midi(
                     step = min(_ROLL_STEP_BEATS, dur / max(2, len(order)))
                     for i, m in enumerate(order):
                         start = max(0.0, offset + i * step)
-                        specs.append([start, max(0.05, dur - i * step), [m], vol])
+                        specs.append([start, max(0.05, dur - i * step), [m], vol, event.staff])
                 elif technique == "tremolo" and midis:
                     # Measured tremolo: the written value re-struck in 32nds.
                     reps = max(2, int(dur / _TREMOLO_UNIT))
                     unit = dur / reps
                     for i in range(reps):
-                        specs.append([max(0.0, offset + i * unit), unit * 0.95, sorted(midis), vol])
+                        specs.append(
+                            [
+                                max(0.0, offset + i * unit),
+                                unit * 0.95,
+                                sorted(midis),
+                                vol,
+                                event.staff,
+                            ]
+                        )
                 # ensemble spread: a chord's notes don't attack in perfect unison
                 elif len(midis) > 1 and perf is not None and profile.ensemble_spread_ms > 0:
                     for m in sorted(midis):
@@ -462,21 +772,31 @@ def render_midi(
                             jitter((event.bar, event.beat, m, "e"), profile.ensemble_spread_ms)
                             / ms_per_beat
                         )
-                        specs.append([max(0.0, offset + sp), dur, [m], vol])
+                        specs.append([max(0.0, offset + sp), dur, [m], vol, event.staff])
                 else:
-                    specs.append([max(0.0, offset), dur, sorted(midis), vol])
+                    specs.append([max(0.0, offset), dur, sorted(midis), vol, event.staff])
             except Exception:
                 continue
 
     # Emit the notes, with same-pitch retriggers clipped.
+    #
+    # ONE PART PER STAFF, each carrying its real instrument. This wrote every
+    # note into a single flat stream with no Instrument on it at all, so the
+    # preview played back as one nameless General MIDI voice whatever the piece
+    # was scored for. For a keyboard that is merely imprecise; for an ensemble it
+    # means the fresh-ears critic hears the whole orchestra on one timbre, and
+    # the one thing it cannot then judge by ear is the SCORING — which is most of
+    # what an orchestral piece is. The assembler already resolves a staff name to
+    # an instrument, so this uses that resolver rather than growing a second map.
     _clip_same_pitch_overlaps(specs)
-    for off, dur, midis, vol in specs:
+    parts: Dict[str, Any] = {}
+    for off, dur, midis, vol, staff in specs:
         if dur <= 0:
             continue
         n = music21.chord.Chord(midis) if len(midis) > 1 else music21.note.Note(midi=midis[0])
         n.duration = music21.duration.Duration(dur)
         n.volume.velocity = vol
-        stream.insert(off, n)
+        parts.setdefault(staff or "treble", []).append((off, n))
 
     # Rubato as real tempo marks (music21 MIDI export honors these). RAMPED, not
     # stepped: one mark per bar produced a single-bar drop from 76 to 68 and an
@@ -486,6 +806,10 @@ def render_midi(
     for off, bpm in _ramped_tempo_marks(bar_tempo, beats_per_bar):
         stream.insert(off, music21.tempo.MetronomeMark(number=bpm))
 
+    # Assemble the parts. `stream` holds the tempo and metre marks and becomes
+    # the top part, so the whole score follows one clock.
+    stream = _score_from_parts(stream, music21, parts, _instrumentation_of(piece_graph))
+
     # Write MIDI
     if output_dir is None:
         output_dir = f"workspace/{piece_graph.piece_id}/output"
@@ -494,6 +818,16 @@ def render_midi(
 
     filepath = output_path / f"{piece_graph.piece_id}.mid"
     stream.write("midi", fp=str(filepath))
+
+    # Real sustain pedal. Until this, the preview contained no controller event
+    # of any kind: the "pedal" was bass notes held longer in bars the renderer
+    # picked, which sustains one hand, ignores what the composer wrote, and
+    # cannot blur a harmony the way lifting the dampers does.
+    try:
+        spans = _pedal_spans(piece_graph, phrase_renders, beats_per_bar, bar_starts)
+        _insert_sustain_pedal(filepath, spans, music21.defaults.ticksPerQuarter)
+    except Exception as exc:  # a pedal must never cost us the preview
+        warnings.warn(f"sustain pedal not written: {type(exc).__name__}: {exc}", stacklevel=2)
 
     # Setting the field alone wrote it to an object the caller then discards —
     # the documented flow is load the graph, call this, print the path — so the

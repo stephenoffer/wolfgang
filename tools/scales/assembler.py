@@ -10,6 +10,7 @@ Handles: key signatures, time signatures, tempo, dynamics, articulations,
 
 from __future__ import annotations
 
+import logging
 from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -132,7 +133,27 @@ def assemble(
     # `solo piano`, both of which real saved graphs carry — and routing a piano
     # piece down the ensemble path is the documented cause of the voice-overlap
     # bar overflow that desynced the hands in every render.
-    if is_keyboard(instrumentation):
+    # The CONTRACT says which path to take; the NOTES say whether it can work.
+    # `_build_piano_score` reads the treble/bass staves that the piano branch of
+    # `layer_ir_to_event_ir` produces. Phrases realized into ORCHESTRAL layers
+    # emit orchestral staff names instead, so if the contract says solo_piano
+    # while the phrases hold orchestral material, the piano path matches nothing
+    # and writes a score with one empty part — silently, with no error and a
+    # valid file on disk.
+    #
+    # An empty score is never the right answer when there are notes. Route by
+    # the evidence in that one case, and say so.
+    keyboard = is_keyboard(instrumentation)
+    if keyboard and all_events and not any(e.staff in _PIANO_STAVES for e in all_events):
+        keyboard = False
+        _LOG.warning(
+            "%s: contract says %r but no phrase has piano-staff material; "
+            "assembling as an ensemble so the notes survive.",
+            getattr(piece_graph, "piece_id", "?"),
+            instrumentation,
+        )
+
+    if keyboard:
         score = _build_piano_score(score, all_events, key_str, meter, tempo_bpm, bar_meta=bar_meta)
     else:
         score = _build_ensemble_score(
@@ -397,6 +418,12 @@ def _in_scope(phrase_state, scope: str) -> bool:
     return (slot.section_id or "") == scope
 
 
+_LOG = logging.getLogger(__name__)
+
+#: Staff names the piano branch of `layer_ir_to_event_ir` emits.
+_PIANO_STAVES = frozenset({"treble", "bass"})
+
+
 def _collect_events(piece_graph: PieceGraph, scope: str) -> List[EventIR]:
     """Collect all EventIR from realized phrases matching scope."""
     events = []
@@ -651,7 +678,41 @@ _VOCAL_ROLES = {
 }
 
 
-def _instrument_for(staff_name: str, vocal: bool = False):
+#: Generic STAFF names — the two halves of a keyboard, or an abstract layer
+#: role. None of them names an instrument, so what they resolve to depends
+#: entirely on what the piece is scored for.
+_GENERIC_STAFVES = {
+    "treble",
+    "bass",
+    "melody",
+    "foreground",
+    "counter",
+    "counter_reply",
+    "harmony",
+    "response",
+    "motor",
+    "color",
+    "punctuation",
+    "ornament",
+}
+
+
+def _keyboard_instrument(instrumentation: str) -> str:
+    """Which keyboard — a harpsichord piece must not play back as a piano."""
+    inst = str(instrumentation or "").lower()
+    for word, cls in (
+        ("harpsichord", "Harpsichord"),
+        ("clavichord", "Clavichord"),
+        ("organ", "Organ"),
+        ("celesta", "Celesta"),
+        ("fortepiano", "Piano"),
+    ):
+        if word in inst:
+            return cls
+    return "Piano"
+
+
+def _instrument_for(staff_name: str, vocal: bool = False, keyboard: str = ""):
     """A music21 Instrument for a part name — a real instrument first, then the
     abstract layer role, then the piano.
 
@@ -663,6 +724,15 @@ def _instrument_for(staff_name: str, vocal: bool = False):
 
     key = str(staff_name or "").strip().lower().replace(" ", "_").replace("-", "_")
     named = _NAMED_INSTRUMENTS.get(key)
+    # A KEYBOARD's staves are both the same instrument. "bass" is an orchestral
+    # layer role that resolves to a Violoncello, which is right for an ensemble
+    # and wrong for the left hand of a piano — a solo piano preview played back
+    # as a piano and a cello.
+    if keyboard and named is None and key in _GENERIC_STAFVES:
+        try:
+            return getattr(music21.instrument, _keyboard_instrument(keyboard))()
+        except Exception:
+            return music21.instrument.Piano()
     if vocal and named is None:
         cls_name = _VOCAL_ROLES.get(key) or _VOCAL_ROLES.get(key.rsplit("_", 1)[0])
         if cls_name is None:
@@ -1015,7 +1085,17 @@ def _resolve_cross_phrase_ties(events: List[EventIR]) -> None:
                 cur.tie = None
                 continue
             nxt.tie = "stop"
-            for f in _ATTACK_FIELDS:  # the far side of a tie is not a new attack
+            # Only the marks that describe HOW A NOTE IS STRUCK. A dynamic, a
+            # text expression and a pedal change mark a MOMENT IN TIME, and the
+            # moment happens whether or not a note is re-articulated there:
+            # "mp" on the far side of a tie means "from here, mp".
+            #
+            # Clearing the whole attack set deleted exactly the dynamics a
+            # composer cares most about — the ones that open a phrase. In the
+            # B-flat andante, two phrases elide into the next bar over a tie,
+            # and both of their opening dynamics (bar 9 mp, bar 32 p) vanished
+            # between the LayerIR and the score, silently.
+            for f in _REARTICULATION_FIELDS:
                 setattr(nxt, f, None)
         if evs and evs[-1].tie == "start":
             evs[-1].tie = None
@@ -1146,6 +1226,10 @@ _GRACE_ORNAMENTS = GRACE_ORNAMENTS
 # tied note re-articulates its dynamic, accent and ornament in every bar it
 # crosses, which is both wrong and audible.
 _ATTACK_FIELDS = ("dynamic", "articulation", "ornament", "expression", "technique", "pedal")
+# The subset that describes how a note is STRUCK, as opposed to what happens at a
+# moment. Only these are dropped on the far side of a tie between two written
+# notes; see `_resolve_ties`.
+_REARTICULATION_FIELDS = ("articulation", "ornament", "technique")
 _RELEASE_FIELDS = ("slur", "hairpin")
 
 

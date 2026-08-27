@@ -2202,3 +2202,60 @@ def test_a_malformed_metre_does_not_lose_the_preview():
     stream = music21.stream.Stream()
     _emit_meters(stream, music21, [([_Ev()], None, (0, 0), "C"), ([_Ev()], None, None, "C")])
     assert [t.ratioString for t in stream.getElementsByClass("TimeSignature")] == ["4/4"]
+
+
+def test_the_preview_gives_each_staff_its_own_instrument():
+    """The renderer wrote every note into one flat stream with no Instrument on
+    it, so the preview played back as a single nameless General MIDI voice
+    whatever the piece was scored for.
+
+    For a keyboard that is merely imprecise. For an ensemble it means the
+    fresh-ears critic hears the whole orchestra on one timbre — and the one
+    thing it then cannot judge by ear is the SCORING, which is most of what an
+    orchestral piece is.
+    """
+    from scales.assembler import _instrument_for
+
+    # A keyboard's staves are both the same instrument. "bass" is an ORCHESTRAL
+    # layer role resolving to a Violoncello, which is right for an ensemble and
+    # wrong for a piano's left hand — the first version of this rendered a solo
+    # piano preview as a piano and a cello.
+    assert _instrument_for("treble", keyboard="solo_piano").instrumentName == "Piano"
+    assert _instrument_for("bass", keyboard="solo_piano").instrumentName == "Piano"
+    # And the right keyboard: a harpsichord piece must not play back as a piano.
+    assert _instrument_for("bass", keyboard="harpsichord").instrumentName == "Harpsichord"
+    assert _instrument_for("bass", keyboard="organ").instrumentName == "Organ"
+    # A named real instrument still wins in every mode.
+    assert _instrument_for("violin", keyboard="solo_piano").instrumentName == "Violin"
+    # Ensemble and choir behaviour unchanged.
+    assert _instrument_for("bass").instrumentName == "Violoncello"
+    assert _instrument_for("bass", vocal=True).instrumentName == "Bass"
+
+
+def test_the_preview_carries_the_pieces_forces_end_to_end():
+    """Not just the resolver — the rendered file."""
+    import music21
+
+    from scales.midi_renderer import _instrumentation_of, render_midi
+    from scales.piece_graph import PieceGraph
+
+    cases = [
+        ("workspace/mozart-andante-fmaj-v2-20260826/piece_graph.json", {"Piano"}),
+        ("workspace/choir-probe-20260826/piece_graph.json", {"Soprano", "Alto", "Tenor", "Bass"}),
+    ]
+    checked = 0
+    for path, allowed in cases:
+        if not Path(path).exists():
+            continue
+        graph = PieceGraph.load(path)
+        assert _instrumentation_of(graph), f"{path} carries no instrumentation"
+        midi = render_midi(graph, scope="full", output_dir="/tmp/wolfgang-instrument-test")
+        score = music21.converter.parse(midi)
+        assert len(score.parts) >= 2, "each staff must be its own part"
+        for part in score.parts:
+            inst = next(iter(part.recurse().getElementsByClass("Instrument")), None)
+            assert inst is not None, "a part with no instrument plays as a generic voice"
+            assert inst.instrumentName in allowed, f"{inst.instrumentName} not in {allowed}"
+        checked += 1
+    if not checked:
+        pytest.skip("no probe pieces in the workspace")
