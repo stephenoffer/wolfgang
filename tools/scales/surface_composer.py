@@ -356,11 +356,12 @@ def _thicken_principal_line(
 
     # Never thicken an instant that already carries more than one note — the
     # composer put a chord there and it is not this pass's business.
+    # Both representations — see `_thicken_bass_foundation`.
     counts: dict = {}
     for e in layer.principal_line:
-        counts[(e.bar, round(float(e.beat), 4))] = (
-            counts.get((e.bar, round(float(e.beat), 4)), 0) + 1
-        )
+        instant = (e.bar, round(float(e.beat), 4))
+        voices = len({str(p) for p in e.pitch}) if isinstance(e.pitch, list) else 1
+        counts[instant] = counts.get(instant, 0) + voices
 
     mode = "minor" if is_minor_key(key) else "major"
     scale = build_scale(key_to_root_midi(key) + 24, mode, octaves=6)
@@ -990,10 +991,17 @@ def _thicken_bass_foundation(
     if len(events) < 8:
         return made.stop(report, "too few bass notes could be read as pitches")
 
+    # A CHORD HAS TWO REPRESENTATIONS and this counted one. An instant whose
+    # single event carries a LIST pitch is already a chord — that is how the
+    # corpus patterns arrive, now that they survive adaptation — and counting
+    # only coincident events made this pass thicken instants that were already
+    # thick. The total reached 22.1% against Mozart's real 18.5%: the pass was
+    # topping up a number it could not see.
     occupancy: dict = {}
     for e in layer.bass_foundation:
         instant = (e.bar, round(float(e.beat), 4))
-        occupancy[instant] = occupancy.get(instant, 0) + 1
+        voices = len({str(p) for p in e.pitch}) if isinstance(e.pitch, list) else 1
+        occupancy[instant] = occupancy.get(instant, 0) + voices
 
     mode = "minor" if is_minor_key(key) else "major"
     scale_pcs = {m % 12 for m in build_scale(key_to_root_midi(key) + 24, mode, octaves=6)}
@@ -1228,66 +1236,6 @@ def _clamp_to_period_register(layer: LayerIR, composer: str) -> int:
                 event.pitch = midi_to_pitch(shifted, layer.key or "C")
                 moved += 1
     return moved
-
-
-def _map_pattern_to_chord(pattern_midis: list[int], choices: list[int]) -> dict:
-    """Map a pattern's DISTINCT pitches onto chord tones, keeping its shape.
-
-    Snapping each note independently to its nearest chord tone destroys the
-    figure whenever the tones are sparser than the pattern: a real Alberti bass
-    (root, fifth, third, fifth — four positions, three pitches, spanning a
-    tenth) came out as `D2 D3 D3 D2 D3 D2 D3`, two pitches oscillating at the
-    octave, because every pattern pitch found a D nearer than anything else.
-    Measured with the corpus's own classifier, the left hand held **1.52
-    distinct pitches per bar against real Mozart's 3.30**, and the flattened
-    result was then classified as what it had become — `pedal_point` in 27% of
-    bars where Mozart writes it in 3.4%, while `block_chord_offbeat`, 10.4% of
-    his bars, never appeared at all.
-
-    A pattern is a SHAPE. Its lowest pitch takes the nearest chord tone, its
-    next-lowest the nearest one ABOVE that, and so on: contour and the number of
-    distinct pitches both survive, which is what keeps the figure recognisable
-    as the idiom it was retrieved as.
-    """
-    uniq = sorted(set(pattern_midis))
-    if not uniq or not choices:
-        return {}
-    ordered = sorted(choices)
-    mapping: dict = {}
-    taken = -1
-    for midi in uniq:
-        above = [c for c in ordered if c > taken] or [ordered[-1]]
-        pick = min(above, key=lambda c: abs(c - midi))
-        mapping[midi] = pick
-        taken = pick
-    return mapping
-
-
-def _lh_chord_tone_choices(chord_tones_midi: list[int]) -> list[int]:
-    """The chord's tones ACROSS the left hand's register, not in one octave.
-
-    `_get_chord_tones_for_bar` returns a triad built from `root + 48` — three or
-    four pitches inside a single octave. Every retrieved pattern's pitch was then
-    snapped to the nearest of those and clamped into 36..60, so a figure spanning
-    an octave and a third collapsed onto two or three notes. Measured against the
-    classifier the corpus itself uses, our left hand played **1.52 distinct
-    pitches per bar where real Mozart plays 3.30** — and the flattened result was
-    then classified as what it had become: `pedal_point` 27% of bars against his
-    real 3.4%, `block_chord_tremolo` 7% against his 0.4%, while
-    `block_chord_offbeat` (the oom-pah, 10.4% of his bars) never appeared at all.
-
-    A real Alberti bass is C2 G2 E3 G2 — the same three tones, placed in the
-    register the hand is actually in. Offering every octave copy inside the left
-    hand's range lets the snap keep the pattern's shape instead of erasing it.
-    """
-    out: set[int] = set()
-    for tone in chord_tones_midi:
-        pc = tone % 12
-        midi = BASS_RANGE[0] + ((pc - BASS_RANGE[0]) % 12)
-        while midi <= BASS_RANGE[1]:
-            out.add(midi)
-            midi += 12
-    return sorted(out) or list(chord_tones_midi)
 
 
 # The register a melody is allowed to occupy, measured rather than assumed.
@@ -1674,25 +1622,54 @@ class SurfaceComposer:
                     valid = [p for p in pitch if p != "rest"]
                     if not valid:
                         continue
-                    midis = [(p, pitch_to_midi(p)) for p, _ in [(p, None) for p in valid]]
                     midis = [(p, pitch_to_midi(p)) for p in valid]
                     midis = [(p, m) for p, m in midis if m is not None]
                     if not midis:
                         continue
-                    pitch = (
-                        min(midis, key=lambda x: x[1])[0]
-                        if layer_name == "bass_foundation"
-                        else max(midis, key=lambda x: x[1])[0]
-                    )
+                    # KEEP THE CHORD. This took the lowest note for the bass and
+                    # the highest for anything else, which was harmless while
+                    # nothing upstream produced a list — and then
+                    # `_adapt_pattern_to_harmony` started preserving the chords
+                    # in the retrieved patterns (174 of 492 carry one) and every
+                    # one of them was thinned back to a single note here. The
+                    # assembler builds a `music21.chord.Chord` from a list pitch
+                    # and always could; this was the only thing in the way.
+                    #
+                    # A single-member list is still one note, and a unison
+                    # doubling is one sound rather than a chord, so both collapse.
+                    ordered = [p for p, _ in sorted(midis, key=lambda x: x[1])]
+                    unique = list(dict.fromkeys(ordered))
+                    pitch = unique if len(unique) > 1 else unique[0]
 
-                if layer_name == "bass_foundation" and pitch != "rest":
-                    m = pitch_to_midi(pitch)
-                    if m is not None:
-                        pitch = midi_to_pitch(clamp_to_range(m, 36, 60), key)
-                if layer_name == "principal_line" and pitch != "rest":
-                    m = pitch_to_midi(pitch)
-                    if m is not None:
-                        pitch = midi_to_pitch(clamp_to_range(m, *MELODY_RANGE), key)
+                # THE REGISTER CLAMP MUST NOT EAT A CHORD. `pitch_to_midi`
+                # accepts a list and answers with a single number — 61 for
+                # `["A3", "C#4"]` — so a chord that had survived the collapse
+                # above was re-spelled here as one note by the clamp, which is
+                # the second place in this function to lose it the same way.
+                # Clamp each member, keep the chord.
+                bounds = (
+                    (36, 60)
+                    if layer_name == "bass_foundation"
+                    else MELODY_RANGE
+                    if layer_name == "principal_line"
+                    else None
+                )
+                if bounds and pitch != "rest":
+                    if isinstance(pitch, list):
+                        moved = []
+                        for one in pitch:
+                            m = pitch_to_midi(one) if isinstance(one, str) else None
+                            moved.append(
+                                midi_to_pitch(clamp_to_range(m, *bounds), key)
+                                if m is not None
+                                else one
+                            )
+                        kept = list(dict.fromkeys(moved))
+                        pitch = kept if len(kept) > 1 else kept[0]
+                    else:
+                        m = pitch_to_midi(pitch)
+                        if m is not None:
+                            pitch = midi_to_pitch(clamp_to_range(m, *bounds), key)
 
                 layer_list.append(
                     LayerEvent(
@@ -2649,15 +2626,6 @@ class SurfaceComposer:
         # it to the current bar rather than emitting onsets past the barline for
         # the repair pass to drop.
         bar_cap = float(bar_duration(meter)) + 1.0
-        _pattern_midis = [
-            m
-            for m in (pitch_to_midi(e.pitch) for e in lh_events if e.pitch != "rest")
-            if m is not None
-        ]
-        _shape = _map_pattern_to_chord(
-            _pattern_midis, _lh_chord_tone_choices(chord_tones_midi)
-        )
-
         events: list[_TaggedEvent] = []
         for _i, evt in enumerate(lh_events):
             if float(evt.beat) >= bar_cap - 1e-9:
@@ -2683,9 +2651,65 @@ class SurfaceComposer:
 
             # Snap each pattern pitch to nearest chord tone
             evt_midi = pitch_to_midi(evt.pitch)
-            if evt_midi is not None and chord_tones_midi:
-                snapped = _shape.get(evt_midi) or min(
-                    _lh_chord_tone_choices(chord_tones_midi), key=lambda ct: abs(ct - evt_midi)
+            if isinstance(evt.pitch, list) and chord_tones_midi:
+                # A CHORD IN THE PATTERN IS A CHORD IN THE MUSIC.
+                #
+                # `pitch_to_midi(["A3", "C#4"])` returns 61 — it accepts a list
+                # and answers with a single number — so `evt_midi` was never
+                # None for a chord, the snap picked one tone, and the event was
+                # rewritten as one note. **36% of the 24,615 library patterns
+                # carry a chord event**, and not one of them ever reached the
+                # score: the left hand measured 0.0% chords from retrieval, and
+                # every chord in the output came from `_thicken_bass_foundation`
+                # inventing one.
+                #
+                # Each member snaps to its own chord tone, ascending, so the
+                # voicing keeps its spacing instead of collapsing onto one pitch.
+                members: list[int] = []
+                for one in evt.pitch:
+                    m = pitch_to_midi(one) if isinstance(one, str) else None
+                    if m is None:
+                        continue
+                    above = [
+                        c for c in sorted(chord_tones_midi) if c > (members[-1] if members else -1)
+                    ]
+                    candidates = above or sorted(chord_tones_midi)
+                    members.append(
+                        clamp_to_range(min(candidates, key=lambda ct: abs(ct - m)), 36, 60)
+                    )
+                spelled = [midi_to_pitch(m, key) for m in sorted(set(members))]
+                pitch = spelled if len(spelled) > 1 else (spelled[0] if spelled else evt.pitch)
+            elif evt_midi is not None and chord_tones_midi:
+                # SNAP THE PITCH CLASS, KEEP THE OCTAVE.
+                #
+                # `min(chord_tones_midi, key=...)` snaps to the nearest of a few
+                # ABSOLUTE midi values, all sitting in one register — so a
+                # retrieved Alberti figure spanning `B2 D4 F#3 D4 C#3 E4` lands
+                # on two or three pitches whatever its shape was. Measured
+                # across a sonata: patterns arrive carrying 4.73 distinct
+                # pitches and leave this function with 1.45, a 69% loss, which
+                # is far more than anything upstream of it. Downstream the
+                # result is classified as what it has become — a repeated pitch
+                # reads as `pedal_point` (27% of our bars against a real 3.4%),
+                # two alternating pitches as `tremolo`.
+                #
+                # The registral shape IS the pattern; it is the reason for
+                # retrieving a real one rather than generating a figure. So each
+                # note moves to the nearest chord-tone PITCH CLASS in its own
+                # octave — the smallest move that makes it fit the harmony —
+                # instead of being pulled into whichever octave the chord tones
+                # were voiced in.
+                classes = {ct % 12 for ct in chord_tones_midi}
+                snapped = min(
+                    (
+                        candidate
+                        for pc in classes
+                        for candidate in (
+                            evt_midi - ((evt_midi - pc) % 12),
+                            evt_midi + ((pc - evt_midi) % 12),
+                        )
+                    ),
+                    key=lambda c: (abs(c - evt_midi), c),
                 )
                 # Keep in LH register
                 snapped = clamp_to_range(snapped, 36, 60)
