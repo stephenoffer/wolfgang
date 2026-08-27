@@ -857,6 +857,92 @@ _MOVEMENT_RATES_CACHE: Dict[str, Any] = {}
 
 #: What a movement is measured on. Each is a share of the movement's own bars or
 #: attacks, so they are comparable across movements of different lengths.
+_IDIOM_MIX_CACHE: Dict[str, Any] = {}
+
+
+def movement_idiom_mix(composer: str, min_bars: int = 24) -> Optional[Dict[str, Any]]:
+    """One real movement's accompaniment mix, and how concentrated it is.
+
+    Idioms are scheduled from the composer's WHOLE-CORPUS distribution, so a
+    piece uses `block_chord_sparse` at Mozart's corpus rate of 24% — but no
+    movement of his is a scale model of his corpus. A real movement picks an
+    accompaniment and returns to it, and the aggregate is the average of many
+    such commitments, which resembles none of them:
+
+        composer    top idiom, pooled    top idiom, median movement
+        chopin                  44.8%                         76.2%
+        haydn                   21.0%                         37.9%
+        beethoven               20.9%                         36.4%
+        bach                    41.5%                         54.4%
+        mozart                  29.1%                         33.5%
+
+    A Chopin movement gives three quarters of its bars to one accompaniment.
+    Scheduling him from 44.8% changes idiom roughly twice as often as he does.
+
+    Returns the distribution of an ACTUAL movement — the one whose concentration
+    sits at the median — rather than an average of movements, because averaging
+    concentrations reproduces the same flattening one level down. `spread` gives
+    the concentration distribution so a generated piece can be scored against
+    real practice instead of against this one sample.
+
+    This is the same correction as `movement_rate_range`, applied to which
+    idioms a piece uses rather than how often it ties or rests.
+    """
+    key = f"{(composer or '').strip().lower()}|{min_bars}"
+    if key in _IDIOM_MIX_CACHE:
+        return _IDIOM_MIX_CACHE[key]
+
+    result = None
+    try:
+        from collections import Counter
+
+        from scripts.build_corpus_indexes import group_by_source, load_bars
+
+        rows = []
+        for source, bars in group_by_source(load_bars(composer)).items():
+            if len(bars) < min_bars:
+                continue
+            counts = Counter(b.get("lh_texture") for b in bars if b.get("lh_texture"))
+            total = sum(counts.values())
+            if not total:
+                continue
+            rows.append(
+                {
+                    "source": source,
+                    "bars": len(bars),
+                    "idioms": {k: round(v / total, 4) for k, v in counts.most_common()},
+                    "top_idiom": counts.most_common(1)[0][0],
+                    "top_share": counts.most_common(1)[0][1] / total,
+                    "idioms_used": sum(1 for v in counts.values() if v / total >= 0.01),
+                }
+            )
+        if len(rows) >= 4:
+            rows.sort(key=lambda r: r["top_share"])
+            middle = rows[len(rows) // 2]
+            shares = [r["top_share"] for r in rows]
+            used = sorted(r["idioms_used"] for r in rows)
+            result = {
+                "composer": composer,
+                "source": middle["source"],
+                "idioms": middle["idioms"],
+                "top_idiom": middle["top_idiom"],
+                "movements": len(rows),
+                "spread": {
+                    "min": round(shares[0], 4),
+                    "p25": round(shares[len(shares) // 4], 4),
+                    "median": round(shares[len(shares) // 2], 4),
+                    "p75": round(shares[(3 * len(shares)) // 4], 4),
+                    "max": round(shares[-1], 4),
+                },
+                "idioms_used_median": used[len(used) // 2],
+            }
+    except Exception:
+        result = None
+
+    _IDIOM_MIX_CACHE[key] = result
+    return result
+
+
 MOVEMENT_METRICS = ("ties_per_bar", "downbeat_rest_share", "lh_chord_share", "rh_chord_share")
 
 
