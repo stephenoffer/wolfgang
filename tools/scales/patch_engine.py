@@ -22,6 +22,31 @@ from .models import (
 logger = logging.getLogger(__name__)
 
 
+def _melody_of(realized) -> list:
+    """The melodic line a revision op targets when it names no layer.
+
+    Four ops here — `change_dynamic`, `set_articulation`, `set_hairpin`,
+    `set_expression` — defaulted to `principal_line`. Orchestral music never
+    populates it; its tune is in `foreground`. So on an orchestral piece the
+    critic's revision iterated an EMPTY list, changed nothing, and set
+    `status = REALIZED` anyway — the fix reported success and did not happen.
+    The critic is the sole driver of artistic revision, so this was the whole
+    revision loop going quiet for one instrumentation.
+    """
+    if realized is None:
+        return []
+    line = getattr(realized, "melody_line", None)
+    return line() if callable(line) else (getattr(realized, "principal_line", None) or [])
+
+
+def _default_layer_name(realized) -> str:
+    """Which layer `op.target_layer` falls back to. See `_melody_of`."""
+    if realized is not None and not (getattr(realized, "principal_line", None) or []):
+        if getattr(realized, "foreground", None):
+            return "foreground"
+    return "principal_line"
+
+
 class PatchEngine:
     """Scope-aware revision engine.
 
@@ -109,9 +134,31 @@ class PatchEngine:
             new_dynamic = op.params.get("dynamic", "")
             if new_dynamic and phrase_state.realized:
                 target_bars = op.target_bars
-                for evt in phrase_state.realized.principal_line:
-                    if target_bars is None or (target_bars[0] <= evt.bar <= target_bars[1]):
+                # ONE mark. A dynamic is a single instruction that HOLDS until
+                # the next one, so "mp in bar 3" means one mp — this set it on
+                # every event in range and the assembler emitted one Dynamic per
+                # marked event, so a critic asking for mp got five of them in a
+                # bar. Five mp is not a louder instruction, it is the same
+                # instruction restated, and it compounded: a second revision
+                # took one section from seven dynamics to nine.
+                #
+                # Articulation is per NOTE and correctly marks them all; a
+                # dynamic is not, which is why only this op stops at the first.
+                # And it REPLACES rather than adds. Setting bar 3 to mp and then
+                # to ff must leave ff, not both — an op that only ever adds is
+                # not idempotent, so re-running a revision keeps thickening the
+                # page with instructions nobody asked for twice.
+                marked = False
+                for evt in _melody_of(phrase_state.realized):
+                    if target_bars is not None and not (
+                        target_bars[0] <= evt.bar <= target_bars[1]
+                    ):
+                        continue
+                    if marked:
+                        evt.dynamic = None
+                    else:
                         evt.dynamic = new_dynamic
+                        marked = True
                 phrase_state.status = PhraseStatus.REALIZED.value
 
         elif operation == "set_articulation":
@@ -119,7 +166,7 @@ class PatchEngine:
             # Without an op for it the only way to act was `re_realize`, which
             # throws away the notes to change a marking.
             art = op.params.get("articulation")
-            layer_name = op.target_layer or "principal_line"
+            layer_name = op.target_layer or _default_layer_name(phrase_state.realized)
             if art and phrase_state.realized:
                 for evt in getattr(phrase_state.realized, layer_name, None) or []:
                     if op.target_bars and not (op.target_bars[0] <= evt.bar <= op.target_bars[1]):
@@ -136,12 +183,9 @@ class PatchEngine:
             if phrase_state.realized:
                 events = [
                     e
-                    for e in (phrase_state.realized.principal_line or [])
+                    for e in _melody_of(phrase_state.realized)
                     if e.pitch != "rest"
-                    and (
-                        not op.target_bars
-                        or op.target_bars[0] <= e.bar <= op.target_bars[1]
-                    )
+                    and (not op.target_bars or op.target_bars[0] <= e.bar <= op.target_bars[1])
                 ]
                 if len(events) >= 2:
                     for e in events:
@@ -154,7 +198,7 @@ class PatchEngine:
         elif operation == "set_expression":
             text = op.params.get("text")
             if text and phrase_state.realized:
-                for evt in phrase_state.realized.principal_line or []:
+                for evt in _melody_of(phrase_state.realized):
                     if op.target_bars and evt.bar != op.target_bars[0]:
                         continue
                     if evt.pitch != "rest":

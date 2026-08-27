@@ -422,3 +422,81 @@ def test_the_critic_guidance_documents_the_real_parameter_names():
             f"music-critic.md documents {operation} as {row.group(1).strip()!r}, "
             f"but the engine reads {' or '.join(keys)}"
         )
+
+
+def test_a_dynamic_is_one_mark_and_replaces_the_last():
+    """A dynamic is a single instruction that HOLDS until the next one.
+
+    `change_dynamic` set it on every event in range and the assembler emits one
+    Dynamic per marked event, so a critic asking for "mp in bar 3" got five of
+    them. Five mp is not a louder instruction; it is the same instruction
+    restated. And because the op only ever ADDED, a second revision took one
+    section from seven dynamics to nine — re-running a revision thickened the
+    page with instructions nobody asked for twice.
+
+    Articulation is per NOTE and correctly marks them all. A dynamic is not,
+    which is why only this op stops at the first.
+    """
+    from scales.models import LayerEvent, LayerIR, PhraseSlot, PhraseState, RevisionOp
+    from scales.patch_engine import PatchEngine
+
+    def phrase():
+        state = PhraseState()
+        state.slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=2)
+        ir = LayerIR(phrase_id="p", meter=(4, 4), bar_count=2)
+        ir.principal_line = [
+            LayerEvent(bar=b, beat=1.0 + i, pitch="C5", duration="q", source_layer="principal_line")
+            for b in (1, 2)
+            for i in range(4)
+        ]
+        state.realized = ir
+        return state
+
+    engine = PatchEngine()
+
+    def marks(state, bar):
+        return [e.dynamic for e in state.realized.principal_line if e.bar == bar and e.dynamic]
+
+    state = phrase()
+    for level in ("mp", "ff", "p"):
+        state = engine.apply_revision_op(
+            RevisionOp(
+                target_phrase="p",
+                operation="change_dynamic",
+                target_bars=(1, 1),
+                params={"dynamic": level},
+            ),
+            state,
+        )
+        assert marks(state, 1) == [level], f"after {level}: {marks(state, 1)}"
+
+    # The other bar is untouched, and the mark lands on the first note.
+    assert marks(state, 2) == []
+    assert state.realized.principal_line[0].dynamic == "p"
+
+
+def test_articulation_still_marks_every_note_it_is_given():
+    """The contrast that makes the dynamic rule a rule rather than a habit."""
+    from scales.models import LayerEvent, LayerIR, PhraseSlot, PhraseState, RevisionOp
+    from scales.patch_engine import PatchEngine
+
+    state = PhraseState()
+    state.slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=1)
+    ir = LayerIR(phrase_id="p", meter=(4, 4), bar_count=1)
+    ir.principal_line = [
+        LayerEvent(bar=1, beat=1.0 + i, pitch="C5", duration="q", source_layer="principal_line")
+        for i in range(4)
+    ]
+    state.realized = ir
+
+    out = PatchEngine().apply_revision_op(
+        RevisionOp(
+            target_phrase="p",
+            operation="set_articulation",
+            target_bars=(1, 1),
+            params={"articulation": "staccato"},
+        ),
+        state,
+    )
+    marked = [e.articulation for e in out.realized.principal_line if e.articulation]
+    assert marked == ["staccato"] * 4, marked
