@@ -99,7 +99,7 @@ def assemble(
     # Build music21 score
     score = music21.stream.Score()
     score.metadata = music21.metadata.Metadata()
-    _apply_metadata(score, piece_graph, contract)
+    _apply_metadata(score, piece_graph, contract, scope)
 
     # Determine instrumentation (handle dict or dataclass target)
     target = contract.target if hasattr(contract, "target") else {}
@@ -252,7 +252,7 @@ def _dedupe_cross_staff_marks(events: List[EventIR]) -> None:
                 seen[key] = e.staff
 
 
-def _apply_metadata(score, piece_graph, contract) -> None:
+def _apply_metadata(score, piece_graph, contract, scope: str = "full") -> None:
     """Title, composer and movement on the score.
 
     A score whose title is the first fifty characters of the request prompt and
@@ -269,8 +269,28 @@ def _apply_metadata(score, piece_graph, contract) -> None:
     # title-cases the rest), so round-tripping turned "Andante grazioso in F
     # major" into "Ndante Grazioso In F Major".
     md.title = title
+
+    # `movementName` is the name of a MOVEMENT, not a second copy of the title.
+    # Setting both to the same string made music21 drop `<work-title>` from the
+    # MusicXML entirely — it writes only `<movement-title>` when the two agree —
+    # so a three-movement sonatina exported with NO work title and all three
+    # movements titled "three-movement sonatina". Only a single-movement scope
+    # has a movement name worth printing in the header; a whole multi-movement
+    # work carries its movement names as headings in the score
+    # (`_apply_movement_headings`), where an engraver puts them.
+    movements = getattr(getattr(piece_graph, "form", None), "movements", None) or []
+    movement_name = ""
+    if scope and str(scope).startswith("movement-"):
+        want = str(scope)[len("movement-") :]
+        spec = next((m for m in movements if getattr(m, "id", "") == want), None)
+        marking = (getattr(spec, "tempo_marking", "") or "").strip() if spec else ""
+        if not marking and spec is not None:
+            marking = tempo_word(getattr(spec, "tempo_bpm", 0) or 120)
+        idx = next((i for i, m in enumerate(movements) if getattr(m, "id", "") == want), -1)
+        numeral = _ROMAN[idx] if 0 <= idx < len(_ROMAN) else ""
+        movement_name = f"{numeral}. {marking}".strip(". ") if (numeral or marking) else ""
     try:
-        md.movementName = title
+        md.movementName = movement_name or None
     except Exception:
         pass
     style_ref = ""
