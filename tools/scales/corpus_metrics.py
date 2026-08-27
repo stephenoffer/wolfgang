@@ -15,6 +15,34 @@ agent the corpus norm was "1.0-2.0" while the brief, reading the corpus profile,
 said Beethoven's mean was 0.41 — the same label, two incomparable quantities,
 contradicting each other in the same context window.
 
+SCORING, NOT TARGETING — everything in this module is an AGGREGATE over the
+bars it is handed, and an aggregate is the wrong thing for a generator to aim
+at. The same sentence came out true at three scales in one evening:
+
+    a bar is not the average of bars
+    a movement is not the average of movements
+    a piece is not the average of pieces
+
+Concretely: `block_chord_offbeat` bars are 82.2% chorded on average, and 61% of
+them are ENTIRELY chords while 7% have none — the mean describes no bar in the
+corpus, and a generator writes one bar. Chopin's left hand pools to 38% chords
+and his median movement is 54%. Composing to either average produces something
+no real member resembles, and both of those numbers were used as targets here
+before anyone measured the distribution behind them.
+
+So the convention, which the names are meant to carry:
+
+    `_pct`, `_ratio`, `_cv`, `mean_*`, `*_pooled`   aggregates. SCORE against
+        their distribution across real movements (`movement_rate_range`,
+        `corpus_profile.json`) — never aim a generator at the number itself.
+
+    `median_bar_*`, `median_movement_*`, `movement_profile`   member-level.
+        These describe one real bar or one real movement, and are what a
+        generator should be given as a target.
+
+A new function that a generator will aim at belongs in the second family and
+should say so in its name.
+
 CONSTRAINT — only fields produced by BOTH paths may be used. Since the generated
 side runs ``analyze_score_bars`` itself (see ``scales._extract_generated_bars``),
 "both paths" means "whatever that function emits", which today includes
@@ -188,6 +216,36 @@ def _stream_spans(bar: Dict[str, Any]) -> List[Tuple[Fraction, Fraction, str]]:
                     spans.append((cursor, cursor + dur, str(pitch)))
             cursor += dur
     return spans
+
+
+def median_bar_chord_share(bars: List[Dict[str, Any]]) -> Dict[str, float]:
+    """Chord share of the MEDIAN BAR of each accompaniment idiom.
+
+    The member-level counterpart to the aggregates above, and the number a
+    generator writing one bar should be given. Real accompaniment bars are
+    strongly bimodal, so the average of them describes none:
+
+        idiom                  mean   median bar   bars 0%   bars 100%
+        block_chord_offbeat   82.2%       100.0%        7%         61%
+        block_chord_sparse    86.6%       100.0%        4%         71%
+        alberti                2.1%         0.0%       94%          1%
+
+    Scoring retrieved patterns against the mean read a 16-point error on the
+    chordal idioms and none against the median bar, where they are exact.
+    """
+    per_idiom: Dict[str, List[float]] = {}
+    for bar in bars:
+        idiom = bar.get("lh_texture")
+        events = [e for e in (bar.get("lh_display") or []) if e.get("type") != "rest"]
+        if not idiom or not events:
+            continue
+        chorded = sum(1 for e in events if e.get("type") == "chord")
+        per_idiom.setdefault(idiom, []).append(chorded / len(events))
+    out: Dict[str, float] = {}
+    for idiom, shares in per_idiom.items():
+        shares.sort()
+        out[idiom] = round(shares[len(shares) // 2], 4)
+    return out
 
 
 def sonority_metrics(bars: List[Dict[str, Any]]) -> Dict[str, float]:
