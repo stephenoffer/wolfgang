@@ -707,3 +707,34 @@ class _capture_warnings:
         self._logger.removeHandler(self._handler)
         self._logger.setLevel(self._prev)
         return False
+
+
+def test_the_chord_frame_spells_this_projects_symbols_not_music21s():
+    """The frame is what the agent composes the harmony from, so a chord spelled
+    wrong there is wrong in every phrase written from it.
+
+    `_tones` asked music21 FIRST and fell back to `harmony_analysis` only on an
+    exception — and music21 does not raise on this project's symbols, it reads
+    some of them differently and silently. `#viio` in D minor is the
+    leading-tone diminished triad, C#-E-G; music21 raises a viio whose root is
+    already the leading tone and returns **C##-E#-G#**. The agent was handed a
+    chord spelled with a double sharp and told it was the harmony.
+
+    `harmony_analysis` decides WHICH NOTES the symbol means; music21 is used to
+    SPELL them, and only where the two agree about the notes — because spelling
+    from the key signature alone turns G minor's raised leading tone into a
+    flat, which is the reason music21 was reached for in the first place.
+    """
+    from scales.scales import get_composition_brief
+
+    piece = "cadence-probe-20260827"
+    brief = get_composition_brief(piece, "m1_a_p1")
+    if isinstance(brief, dict) and brief.get("error"):
+        pytest.skip("probe piece not in the workspace")
+    text = brief if isinstance(brief, str) else str(brief)
+
+    assert "##" not in text and "bb=" not in text, "a double accidental reached the chord frame"
+    # The two readings that matter, spelled correctly.
+    assert "i=D/F/A" in text, "the minor tonic must not be spelled with a major third"
+    assert "V=A/C#/E" in text, "the dominant of a minor key is major"
+    assert "i6=F/A/D" in text, "an inversion names its own bass note first"

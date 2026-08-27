@@ -299,6 +299,47 @@ def _event_midis(event: Dict[str, Any]) -> List[int]:
     return out
 
 
+_MUDDY_RATE_CACHE: Dict[str, Optional[float]] = {}
+
+
+def muddy_low_interval_rate(composer: str) -> Optional[float]:
+    """How often this composer writes two notes a 2nd-to-3rd apart below C3.
+
+    "Avoid thirds below C3" is an editor's rule of thumb, and real composers
+    disagree with it by an order of magnitude — Liszt 0.094 per bar, Beethoven
+    0.023, Mozart 0.0077, Haydn 0.0007, Palestrina exactly 0.0000 across 60,677
+    bars. A count with no scale attached cannot tell a reviewer whether what they
+    are looking at is a defect or the idiom, which is what
+    `feedback_percentile_is_not_the_bound` and the composer-relative floors in
+    `voicing.py` are both about. Returns None when the composer has no corpus.
+    """
+    key = (composer or "").lower()
+    if key in _MUDDY_RATE_CACHE:
+        return _MUDDY_RATE_CACHE[key]
+    from .pitch import pitch_to_midi
+
+    hits = bars = 0
+    for bar in _iter_corpus_bars(composer):
+        bars += 1
+        for side in ("lh_display", "rh_display"):
+            found = False
+            for event in bar.get(side) or []:
+                if not isinstance(event, dict) or event.get("type") != "chord":
+                    continue
+                midis = sorted(
+                    m for m in ((pitch_to_midi(p) or 0) for p in (event.get("pitches") or [])) if m
+                )
+                if any(hi < 48 and 1 <= hi - lo <= 4 for lo, hi in zip(midis, midis[1:])):
+                    hits += 1
+                    found = True
+                    break
+            if found:
+                break
+    rate = (hits / bars) if bars else None
+    _MUDDY_RATE_CACHE[key] = rate
+    return rate
+
+
 def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
     """How THICK this composer's writing is, measured from his own bars.
 
@@ -418,7 +459,7 @@ def voicing_profile(composer: str) -> Optional[Dict[str, Any]]:
     return profile
 
 
-def voicing_lines(composer: str) -> List[str]:
+def voicing_lines(composer: str, graph=None) -> List[str]:
     """The VOICING section of the brief, or nothing when unmeasurable."""
     profile = voicing_profile(composer)
     if not profile:
@@ -448,7 +489,7 @@ def voicing_lines(composer: str) -> List[str]:
             "The right hand is a SINGLE LINE — this idiom does not thicken the melody. "
             "Independent voices, not chords."
         )
-    return [
+    lines = [
         "",
         f"VOICING (how thick, measured over {profile['attacks']} real {composer} attacks):",
         f"  {how}",
@@ -456,6 +497,45 @@ def voicing_lines(composer: str) -> List[str]:
         f"{profile['rh_span']} (RH) within a bar; the hands sit about "
         f"{profile['hand_gap']} semitones apart.",
     ]
+    # ...and where THIS piece actually sits. The target alone has not moved the
+    # output: a nocturne came out with a bare single line in 93% of bars against
+    # a real Chopin range of 5-63%, with this very section stating 21% in front
+    # of the composer the whole time. A target is a number to agree with; a gap
+    # is a number to act on, and MARKS SO FAR earns its place the same way.
+    if graph is not None:
+        got = _rh_thickness_so_far(graph)
+        if got is not None:
+            target = profile.get("rh_chord_share") or 0.0
+            verdict = (
+                "already there"
+                if got >= target * 0.8
+                else f"about {target / got:.0f}x thinner than his"
+                if got
+                else "not once so far — a bare single line the whole way"
+            )
+            lines.append(
+                f"  THICKNESS SO FAR: {got:.0%} of your right-hand attacks are more "
+                f"than one note, against his {target:.0%} — {verdict}."
+            )
+    return lines
+
+
+def _rh_thickness_so_far(graph) -> Optional[float]:
+    """Share of committed right-hand attacks that are more than one note."""
+    multi = total = 0
+    for state in (getattr(graph, "phrases", {}) or {}).values():
+        layer = getattr(state, "realized", None)
+        if layer is None:
+            continue
+        for name in ("principal_line", "response_layer", "ornamental_surface"):
+            for e in getattr(layer, name, None) or []:
+                pitch = getattr(e, "pitch", None)
+                if not pitch or pitch == "rest":
+                    continue
+                total += 1
+                if isinstance(pitch, list) and len({str(p) for p in pitch}) > 1:
+                    multi += 1
+    return (multi / total) if total else None
 
 
 _MOTION_CACHE: Dict[str, Any] = {}
@@ -1450,7 +1530,7 @@ _QL_NAME = {
 }
 
 
-def render_rhythmic_fingerprint(composer: str) -> List[str]:
+def render_rhythmic_fingerprint(composer: str, graph=None) -> List[str]:
     """The fingerprint as brief lines, in the units a composer reasons in."""
     fp = rhythmic_fingerprint(composer)
     if not fp.get("bars"):
@@ -1487,16 +1567,91 @@ def render_rhythmic_fingerprint(composer: str) -> List[str]:
             f"RHYTHMIC FINGERPRINT ({composer}, measured over {fp['bars']} of his own bars "
             f"from {sources} movements — these are FACTS ABOUT HIM, not quotas):",
         ]
-    return head + [
-        f"  • {fp['rest_bar_pct']:.0%} of these bars contain a REST. Music that never stops "
-        f"sounding is the single clearest tell of a machine.",
-        f"  • {fp['dotted_bar_pct']:.0%} of them carry a DOTTED rhythm.",
-        f"  • {fp['fast_note_pct']:.0%} of the melody notes are a 32nd or faster "
-        f"(written `t`; 64ths are `x`).",
-        f"  • the LEFT HAND changes character on {fp['lh_texture_change_pct']:.0%} of barlines "
-        f"— one accompaniment idiom held all the way through is not his texture.",
-        f"  • note values actually written here: {vals}.",
-    ]
+    # Where THIS piece stands against the two facts a composer can act on while
+    # still writing. The brief has always stated the target and never the gap:
+    # a nocturne rested in 20% of its bars against Chopin's 43%, and an andante
+    # in 27% against Mozart's 60%, with "the single clearest tell of a machine"
+    # printed above it the whole time. `render_marks_so_far` and the VOICING
+    # gap earn their place the same way — a target is a number to agree with.
+    so_far: List[str] = []
+    if graph is not None:
+        got = _rest_and_dotted_so_far(graph)
+        if got:
+            rest, dotted, bars, compound = got
+            line = (
+                f"  BREATHING SO FAR ({bars} committed bars): {rest:.0%} of your bars "
+                f"contain a rest (his {fp['rest_bar_pct']:.0%})"
+            )
+            # Dotted values are only comparable in SIMPLE metre. In 12/8 the beat
+            # itself is a dotted quarter, so a nocturne reads 100% dotted against
+            # a corpus figure drawn mostly from 3/4 mazurkas — a true number and
+            # a meaningless comparison, which is worse than no number at all.
+            if compound:
+                line += (
+                    "; dotted rhythm is not compared here — this phrase is in compound "
+                    "metre, where the beat is already dotted"
+                )
+            else:
+                line += f", {dotted:.0%} carry a dotted rhythm (his {fp['dotted_bar_pct']:.0%})"
+            so_far.append(line + ".")
+    return (
+        head
+        + [
+            f"  • {fp['rest_bar_pct']:.0%} of these bars contain a REST. Music that never stops "
+            f"sounding is the single clearest tell of a machine.",
+            f"  • {fp['dotted_bar_pct']:.0%} of them carry a DOTTED rhythm.",
+            f"  • {fp['fast_note_pct']:.0%} of the melody notes are a 32nd or faster "
+            f"(written `t`; 64ths are `x`).",
+            f"  • the LEFT HAND changes character on {fp['lh_texture_change_pct']:.0%} of barlines "
+            f"— one accompaniment idiom held all the way through is not his texture.",
+            f"  • note values actually written here: {vals}.",
+        ]
+        + so_far
+    )
+
+
+def _rest_and_dotted_so_far(graph):
+    """(rest-bar share, dotted-bar share, bar count) over committed phrases.
+
+    Counted per BAR, not per note, to match how the corpus fingerprint counts
+    them — a share of notes and a share of bars are different quantities, and
+    `feedback_contradictory_guidance` is about exactly this kind of unit slip.
+    """
+    rest_bars: dict = {}
+    dotted_bars: dict = {}
+    for state in (getattr(graph, "phrases", {}) or {}).values():
+        layer = getattr(state, "realized", None)
+        if layer is None:
+            continue
+        for name in (
+            "principal_line",
+            "bass_foundation",
+            "response_layer",
+            "counter_reply",
+            "ornamental_surface",
+        ):
+            for e in getattr(layer, name, None) or []:
+                bar = getattr(e, "bar", None)
+                if bar is None:
+                    continue
+                rest_bars.setdefault(bar, False)
+                dotted_bars.setdefault(bar, False)
+                if getattr(e, "pitch", None) == "rest":
+                    rest_bars[bar] = True
+                if "." in str(getattr(e, "duration", "")) or str(
+                    getattr(e, "duration", "")
+                ).startswith("d"):
+                    dotted_bars[bar] = True
+    if not rest_bars:
+        return None
+    n = len(rest_bars)
+    compound = False
+    for state in (getattr(graph, "phrases", {}) or {}).values():
+        meter = getattr(getattr(state, "slot", None), "meter", None)
+        if meter and len(meter) == 2 and meter[1] == 8 and meter[0] % 3 == 0:
+            compound = True
+            break
+    return (sum(rest_bars.values()) / n, sum(dotted_bars.values()) / n, n, compound)
 
 
 # How a source name betrays its genre. Deliberately coarse: the point is to warn
@@ -4180,15 +4335,32 @@ def _chord_frame(slot, key: str) -> List[Dict[str, Any]]:
         # knows a Roman numeral's own spelling; only the accidental style is ours
         # ("Bb", not "B-", because the frame is meant to be copied into a bar and
         # a token the parser rejects is a note that never reaches the score).
+        # `harmony_analysis` is this project's Roman parser and decides WHICH
+        # NOTES the symbol means; music21 is used only to SPELL them, and only
+        # when the two agree about the notes.
+        #
+        # music21 reads some of this project's own symbols differently, and
+        # silently — it does not raise. `#viio` in D minor is the leading-tone
+        # diminished triad, C#-E-G; music21 raises a viio whose root is already
+        # the leading tone and returns C##-E#-G#. The agent was handed a chord
+        # spelled with a double sharp and told it was the harmony.
+        pcs = roman_pitches(roman, tonic_pc, mode)
         try:
             import music21
 
             names = [p.name for p in music21.roman.RomanNumeral(roman, key_obj).pitches]
-            if names:
-                return [n.replace("-", "b") for n in names]
+            spelled = [n.replace("-", "b") for n in names]
+            if spelled and (
+                not pcs or [music21.pitch.Pitch(n).pitchClass for n in names] == list(pcs)
+            ):
+                return spelled
         except Exception:
             pass
-        pcs = roman_pitches(roman, tonic_pc, mode)
+        if not pcs:
+            return []
+        # Spelling from the key signature alone turns a raised leading tone into
+        # a flat (G minor's V became D/Gb/A), so prefer music21 above; this is
+        # the honest fallback when the two readings disagree.
         return [midi_to_pitch(60 + pc, key)[:-1] for pc in pcs]
 
     for i, roman in enumerate(getattr(slot, "harmony_plan", []) or []):
@@ -4497,6 +4669,34 @@ def _coverage_note(composer: str) -> Dict[str, Any]:
     return {"tier": tier, "bars": bars, "advice": advice}
 
 
+def _movement_brief(graph, slot) -> List[str]:
+    """Which movement this phrase belongs to, and what that movement is for."""
+    if graph is None or slot is None:
+        return []
+    work = getattr(graph, "work_graph", None)
+    movements = list(getattr(work, "movements", None) or []) if work else []
+    if len(movements) < 2:
+        return []  # a single-movement piece needs no orientation
+    section = getattr(slot, "section_id", "") or ""
+    mid = section.split("_", 1)[0]
+    mv = next((m for m in movements if getattr(m, "id", "") == mid), None)
+    if mv is None:
+        return []
+    ordinal = movements.index(mv) + 1
+    bits = [f"MOVEMENT {ordinal} of {len(movements)}"]
+    for label, value in (
+        ("its role in the work", getattr(mv, "role_in_work", "")),
+        ("character", getattr(mv, "character", "")),
+        ("marking", getattr(mv, "tempo_marking", "")),
+    ):
+        value = (value or "").strip()
+        if value:
+            bits.append(f"{label}: {value}")
+    if len(bits) == 1:
+        return []
+    return [" — ".join(bits)]
+
+
 def _dramatic_brief(slot, graph=None) -> List[str]:
     """Why this phrase exists — its role in the piece's arc, in plain language.
 
@@ -4524,15 +4724,28 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
     # The planner always assigns a role alongside the distance, so an empty role
     # is the reliable signal that no plan ran. Say nothing rather than something
     # false: a phrase with no plan should be told it has no plan.
+    # WHICH MOVEMENT this is, and what that movement is for. `plan_movement`
+    # stores `role_in_work`, `character` and `tempo_marking` on a
+    # MovementContract and **nothing has ever read any of them**: a phrase in the
+    # slow movement of a symphony got a brief indistinguishable in kind from one
+    # in the opening allegro. For a multi-movement work that is the largest piece
+    # of context there is, and it was sitting on the graph unused.
+    out += _movement_brief(graph, slot)
+
+    # An absent ARC does not make the rest of the plan absent. This branch used
+    # to `return` immediately, and every later addition — forward context, then
+    # section goals — silently vanished for an unplanned phrase until a test
+    # caught it. Say the arc is missing and carry on, rather than treating one
+    # missing field as "no plan at all".
     planned = bool(getattr(slot, "dramatic_role", ""))
     if not planned:
-        return [
+        out.append(
             "WHERE YOU ARE: this phrase has no dramatic plan — nothing has "
             "decided where the piece peaks or where this sits relative to it. "
             "Do not assume this is the climax. Judge the shape from the "
-            "surrounding music and the form, and leave somewhere to go.",
-        ]
-    if isinstance(dist, int):
+            "surrounding music and the form, and leave somewhere to go."
+        )
+    if planned and isinstance(dist, int):
         if dist == 0:
             out.append(
                 "WHERE YOU ARE: this is the CLIMAX of the whole piece. Everything "
@@ -4576,6 +4789,13 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
     # ("one accompaniment character" next to "added inner voice", "clear periodic
     # phrasing" next to "fragmentation of the head motif"). Give the phrase the
     # slice that is its turn.
+    # The GOAL before the technique: a technique with no goal is a recipe, and
+    # the composer was getting only the recipe. Goals are few and do not
+    # contradict each other the way a unioned technique list does, so they are
+    # given whole.
+    goals = [g for g in (getattr(slot, "section_goals", None) or []) if g]
+    if goals:
+        out.append(f"WHAT THIS SECTION IS FOR: {'; '.join(goals[:3])}")
     techs = [t for t in (getattr(slot, "section_techniques", None) or []) if t]
     if techs:
         idx = max(0, int(getattr(slot, "bar_start", 1)) - 1) // max(
@@ -4590,6 +4810,16 @@ def _dramatic_brief(slot, graph=None) -> List[str]:
     notes = (getattr(slot, "notes", "") or "").strip()
     if notes:
         out.append(f"CHARACTER: {notes}")
+    # Where this phrase is GOING. `dramatic_plan.link_forward_context` was
+    # written because "forward_context existed on the model and was never
+    # populated, so no phrase knew what it was leading into" — it populates the
+    # field, `test_every_phrase_knows_what_follows_it` asserts it is populated,
+    # and **nothing ever read it**. The composer got TRANSITION IN (where the
+    # phrase comes from) and nothing about where it goes, which is precisely the
+    # information that stops a phrase being a well-formed dead end.
+    forward = (getattr(slot, "forward_context", "") or "").strip()
+    if forward:
+        out.append(f"WHERE IT GOES NEXT: {forward}")
     if graph is not None:
         try:
             out += _register_target(graph, slot)
@@ -5311,7 +5541,7 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
         lines.extend(fid_lines)
         lines.append("")
     try:
-        fp_lines = render_rhythmic_fingerprint(brief.composer)
+        fp_lines = render_rhythmic_fingerprint(brief.composer, graph)
     except Exception:
         fp_lines = []
     if fp_lines:
@@ -5524,7 +5754,7 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
     # against a real-Chopin 22%, and no distribution test can catch that: the
     # per-movement 10th percentile of chord share is 0.00, because some real
     # movements genuinely are single-line. It has to be said up front.
-    lines.extend(voicing_lines(brief.composer))
+    lines.extend(voicing_lines(brief.composer, graph))
     lines.extend(motion_lines(brief.composer))
     lines.extend(cadence_soprano_lines(brief.composer))
 
