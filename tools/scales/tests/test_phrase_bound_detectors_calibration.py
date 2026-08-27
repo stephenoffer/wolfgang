@@ -53,6 +53,16 @@ def _movement_ends(composer):
     return out
 
 
+def _as_rec(bar, staff="rh_display"):
+    """A corpus bar record in the shape `_rhythm_sig` / `_contour_sig` read."""
+    ev = [e for e in bar.get(staff, []) if e.get("type") != "rest"]
+    return {
+        "onsets": [round(float(e.get("beat", e.get("offset", 0)) or 0), 4) for e in ev],
+        "durations": [round(float(e.get("dur", 0) or 0), 4) for e in ev],
+        "tops": [e["midi"] for e in ev if e.get("midi") is not None],
+    }
+
+
 def _reuse_share(ends, staff):
     """The detector's own measure: largest share of ends sharing one rhythm."""
     recs = [e for e in ends if e.get(staff)]
@@ -137,6 +147,52 @@ def test_uniform_phrase_lengths_clears_real_music():
         f"uniform_phrase_lengths fires on {rate:.0%} of real movements — classical "
         "phrase rhythm is regular by design and the bound has to allow that"
     )
+
+
+@pytest.mark.calibration
+def test_identical_phrase_openings_clears_real_music():
+    """A returning head-motif is the point of a theme, so this bound has to
+    allow real music to reuse an opening figure and still catch a piece where
+    even the contrasting phrases open the same way."""
+    from scales.score_realism import _contour_sig, _rhythm_sig
+
+    shares = []
+    for composer in _COMPOSERS:
+        from scripts.build_corpus_indexes import group_by_source, load_bars
+
+        for _src, mvt in group_by_source(load_bars(composer)).items():
+            opens = [b for b in mvt if str(b.get("phrase_position", "")).lower() == "opening"]
+            recs = [b for b in opens if b.get("rh_display")]
+            if len(recs) < 4:
+                continue
+            counts = Counter((_rhythm_sig(_as_rec(b)), _contour_sig(_as_rec(b))) for b in recs)
+            shares.append(counts.most_common(1)[0][1] / len(recs))
+    if len(shares) < 50:
+        pytest.skip("corpus bar records not available")
+    shares.sort()
+    rate = sum(1 for v in shares if v >= 0.75) / len(shares)
+    print(
+        f"\n  identical_phrase_openings: n={len(shares)} "
+        f"median={statistics.median(shares):.2f} p90={shares[int(0.9 * len(shares))]:.2f} "
+        f"bound=0.75 flagged={rate:.0%}"
+    )
+    assert rate <= _MAX_FALSE_POSITIVE_RATE, f"fires on {rate:.0%} of real movements"
+
+
+def test_the_melody_staff_is_resolved_not_assumed():
+    """`detect_identical_phrase_openings` read staff index 0.
+
+    That is the melody on a piano grand staff and whichever part happens to be
+    first on anything else. `realism_report` already resolves the melody staff
+    from the score; the detector ignored it.
+    """
+    import inspect
+
+    from scales.score_realism import detect_identical_phrase_openings
+
+    src = inspect.getsource(detect_identical_phrase_openings)
+    assert "for staff in (0,)" not in src, "the melody staff is hardcoded again"
+    assert "melody_staff" in src
 
 
 def test_uniform_phrase_lengths_still_finds_what_is_definitely_there():

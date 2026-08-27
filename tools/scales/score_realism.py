@@ -367,7 +367,7 @@ def detect_accompaniment_monoculture(
     — 6 for that nocturne against a real-Chopin median of 23 — which is
     `detect_accompaniment_vocabulary_poverty`, next door, and a different
     question from this one.
-        """
+    """
     recs = [b for b in bars if b["staff"] == accomp_staff and b["midis"]]
     if len(recs) < 10:
         return []
@@ -576,9 +576,7 @@ def detect_dynamic_poverty(
     ]
 
 
-def detect_voicing_poverty(
-    bars: List[Dict[str, Any]], melody_staff: int = 0, staff_count: int = 2
-):
+def detect_voicing_poverty(bars: List[Dict[str, Any]], melody_staff: int = 0, staff_count: int = 2):
     """A melody that is single notes and nothing else — on a keyboard.
 
     Real piano melody writing thickens at arrivals — thirds, sixths, octaves,
@@ -675,9 +673,7 @@ def _rhythm_vocabulary_bounds(composer: str) -> Optional[Tuple[float, int]]:
     return bounds
 
 
-def detect_rhythm_vocabulary_poverty(
-    bars: List[Dict[str, Any]], cap: int = 2, composer: str = ""
-):
+def detect_rhythm_vocabulary_poverty(bars: List[Dict[str, Any]], cap: int = 2, composer: str = ""):
     """Too few distinct note values in play.
 
     Measured over 52 staff-views of the 26-movement reference corpus: a staff
@@ -764,7 +760,6 @@ def detect_rhythm_vocabulary_poverty(
     if len(tripped) <= staves_measured / 2:
         return []
     return tripped[:cap]
-
 
 
 _LH_VOCAB_CACHE: Dict[str, Any] = {}
@@ -903,6 +898,7 @@ def _vocabulary_for_hand(bars, st, hand, composer, staff_count: int = 2):
         )
     ]
 
+
 def detect_syncopation_absence(bars: List[Dict[str, Any]], cap: int = 1, composer: str = ""):
     """Every attack on the beat, in every bar, for the whole piece.
 
@@ -984,18 +980,31 @@ def detect_uniform_phrase_lengths(phrase_lengths: Sequence[int]) -> List[Dict[st
 
 
 def detect_identical_phrase_openings(
-    bars: List[Dict[str, Any]], phrase_start_bars: Sequence[int], cap: int = 2
+    bars: List[Dict[str, Any]],
+    phrase_start_bars: Sequence[int],
+    cap: int = 2,
+    melody_staff: int = 0,
 ):
     """Every phrase starting with the same figure.
 
     A returning head-motif is the point of a theme; a piece where every phrase,
     including the contrasting ones, opens identically has no contrast at all.
+
+    Measured over 242 real movements (mozart, beethoven, chopin, haydn), taking
+    the bars the corpus marks `opening`: median share 0.33, p90 0.58, and the
+    0.75 bound fires on 7% — the same false-positive rate the cadence bounds
+    carry. Bound unchanged; recorded here because until now it had never been
+    run on a real score at all (see `test_phrase_bound_detectors_calibration`).
+
+    The staff was hardcoded to index 0, which is the melody's staff on a piano
+    grand staff and is whichever part happens to be first on anything else.
+    `realism_report` already resolves the melody staff from the score.
     """
     out: List[Dict[str, Any]] = []
     starts = set(int(b) for b in phrase_start_bars)
     if len(starts) < 4:
         return out
-    for staff in (0,):
+    for staff in (melody_staff,):
         recs = [b for b in bars if b["staff"] == staff and b["bar"] in starts and b["midis"]]
         if len(recs) < 4:
             continue
@@ -1527,13 +1536,11 @@ def realism_report(
     )
     findings += detect_syncopation_absence(bars, composer=composer)
     findings += detect_uniform_phrase_lengths(bounds["lengths"])
-    findings += detect_identical_phrase_openings(bars, bounds["starts"])
+    findings += detect_identical_phrase_openings(bars, bounds["starts"], melody_staff=melody_staff)
     findings += detect_register_stasis(bars, melody_staff, staff_count=staff_count)
     findings += detect_scalar_overuse(bars, melody_staff, composer=composer)
     findings += detect_closing_gesture_absence(bars)
-    findings += detect_texture_stasis_across_sections(
-        bars, bounds["sections"], composer=composer
-    )
+    findings += detect_texture_stasis_across_sections(bars, bounds["sections"], composer=composer)
     findings += detect_out_of_period_register(bars, composer)
 
     n_bars = len({b["bar"] for b in bars}) or 1
