@@ -558,9 +558,26 @@ def build_form_graph(
     """Build a form graph with PhraseSlots.
 
     Returns list of PhraseSlot summaries for Claude to review.
+
+    ``sections`` and ``motif_ids`` are NOT IMPLEMENTED. They were accepted,
+    normalised by `_as_list`, and then never read — so a caller handing over a
+    custom section layout got the canned form for `form` and no indication that
+    their layout had been discarded. Nothing in the repo passes either, and the
+    documented call in `/w-plan` omits both, but the signature advertised them
+    and a silent no-op on a public tool is worse than an unimplemented one.
+    Supplying either now logs a warning; the shape a real implementation should
+    take is `_build_from_spec`, which already materialises a section spec.
     """
     sections = _as_list(sections, "sections")
     motif_ids = _as_list(motif_ids, "motif_ids")
+    for name, given in (("sections", sections), ("motif_ids", motif_ids)):
+        if given:
+            _LOG.warning(
+                "build_form_graph(%s=...) is not implemented and was ignored — the "
+                "form was built from form=%r alone. Nothing was silently applied.",
+                name,
+                form,
+            )
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
 
@@ -686,6 +703,7 @@ def build_form_graph(
         )
         for _sl in section_phrases:
             _sl.section_techniques = list(_techs)
+            _sl.section_goals = list(_goals)
 
     # ─── Populate expectations from form structure ─────────────────────
     #
@@ -847,6 +865,25 @@ def resolve_motifs(piece_id: str, motif_definitions: List[Dict]) -> Dict[str, An
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
 
+    # "Validate and store" validated nothing. A definition with no `motif_id`
+    # was stored under the empty string, and an empty id can never be elected
+    # (`elect_principal_theme` returns it, `if not graph.principal_theme_id`
+    # rejects it) nor referenced by any transform. If it is the only motif, the
+    # theme system goes inert and says nothing — the caller sees
+    # `sections_given_a_theme_statement: 0` with no reason. The commonest way to
+    # produce one is writing `"id"` instead of `"motif_id"`.
+    nameless = [i for i, m in enumerate(motif_definitions) if not str(m.get("motif_id", "")).strip()]
+    if nameless:
+        return {
+            "error": f"motif definition(s) at index {nameless} have no 'motif_id'",
+            "hint": (
+                "Every motif needs a `motif_id` — it is the key the bank is stored "
+                "under and the id a MotifTransform refers to. A motif without one "
+                "cannot be elected as the principal theme or placed on any phrase. "
+                "(The field is `motif_id`, not `id`.)"
+            ),
+        }
+
     for mdef in motif_definitions:
         motif = MotifObject(
             motif_id=mdef.get("motif_id", ""),
@@ -976,18 +1013,42 @@ def save_narrative(
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
 
+    # Bar numbers restart per movement, so in a multi-movement work a section
+    # needs to say which movement it belongs to or a phrase at bar 1 of the
+    # second movement matches a section covering bars 1-8 of the first.
+    n_movements = len(getattr(getattr(graph, "work_graph", None), "movements", None) or [])
+
     sec_fields = {f.name for f in fields(NarrativeSection)}
     arc = NarrativeArc(
         overall_character=overall_character,
         primary_climax_section=primary_climax_section,
     )
     missing_character = []
+    bad_span = []
+    unattributed = []
     for sd in sections:
         if not isinstance(sd, dict):
             continue
         sec = NarrativeSection(**{k: v for k, v in sd.items() if k in sec_fields})
         if not (sec.character or "").strip():
             missing_character.append(sec.id or sec.label or f"bars {sec.bar_start}-{sec.bar_end}")
+        # A section is matched to phrases by `bar_start <= bar <= bar_end`
+        # (see `_creative_intent`), so a span that is inverted or was never
+        # given covers NO phrase and the narrative is silently inert there.
+        # Missing keys fall through to the dataclass defaults, which is how a
+        # section with no bar range at all comes back as a confident 1-8.
+        given = "bar_start" in sd and "bar_end" in sd
+        if not given or sec.bar_end < sec.bar_start:
+            bad_span.append(
+                {
+                    "section": sec.id or sec.label or "?",
+                    "bar_start": sec.bar_start,
+                    "bar_end": sec.bar_end,
+                    "why": "no bar range given" if not given else "bar_end is before bar_start",
+                }
+            )
+        if n_movements >= 2 and not (getattr(sec, "movement_id", "") or "").strip():
+            unattributed.append(sec.id or sec.label or f"bars {sec.bar_start}-{sec.bar_end}")
         arc.sections.append(sec)
     if not primary_climax_section:
         primary = next((s.id for s in arc.sections if s.climax_type == "primary"), "")
@@ -1002,11 +1063,32 @@ def save_narrative(
         # The agent should author prose intent for every section; warn (don't
         # block) so this stays a planning discipline, not a hard gate.
         "sections_missing_character": missing_character,
-        "warning": (
-            f"{len(missing_character)} section(s) have no authored character prose — "
-            "the brief will fall back to generic curve-adjectives there"
-            if missing_character
-            else ""
+        "sections_with_an_unusable_bar_range": bad_span,
+        "sections_with_no_movement_id": unattributed,
+        "warning": "; ".join(
+            w
+            for w in (
+                (
+                    f"{len(missing_character)} section(s) have no authored character prose — "
+                    "the brief will fall back to generic curve-adjectives there"
+                    if missing_character
+                    else ""
+                ),
+                (
+                    f"{len(bad_span)} section(s) cover no bars — a section is matched to "
+                    "phrases by bar_start <= bar <= bar_end, so these reach no phrase at all"
+                    if bad_span
+                    else ""
+                ),
+                (
+                    f"{len(unattributed)} section(s) name no movement_id in a "
+                    f"{n_movements}-movement work — bar numbers restart per "
+                    "movement, so these may attach to the wrong one"
+                    if unattributed
+                    else ""
+                ),
+            )
+            if w
         ),
     }
 
@@ -1254,7 +1336,12 @@ def run_scales_section(
 
                     # Convert to LayerIR for compatibility
                     surface = sc.bundles_to_layer_ir(
-                        bundles, phrase_id, slot.key, slot.meter, slot.bar_count
+                        bundles,
+                        phrase_id,
+                        slot.key,
+                        slot.meter,
+                        slot.bar_count,
+                        instrumentation=_contract_instrumentation(graph),
                     )
 
                     # Self-reduction
@@ -1352,6 +1439,23 @@ def run_scales_section(
             )
             if repairs:
                 engine_repairs[node.phrase_id] = repairs
+            # Give the melody weight at its arrivals. AFTER the repair, because
+            # a doubling shares its principal's onset and the repair measures
+            # each note's room against the next later one — thickening first
+            # made it re-measure spans it had already settled.
+            from .surface_composer import _thicken_principal_line
+
+            # NEVER on a phrase the agent wrote. The engine is the fallback;
+            # adding so much as a doubling to the agent's own notes breaks the
+            # one guarantee this path makes.
+            _existing = graph.phrases.get(node.phrase_id)
+            if not getattr(_existing, "agent_authored", False):
+                _thicken_principal_line(
+                    node.surface,
+                    node.surface.key
+                    or getattr(getattr(_existing, "slot", None), "key", "")
+                    or "C major",
+                )
             # The engraver's pass runs on the agent path (`_gated_commit`) and
             # did not run here, so every phrase the ENGINE realized reached the
             # page unengraved. Measured on a fresh three-phrase section: 229
@@ -2208,12 +2312,27 @@ def _apply_narrative_curves(slot: PhraseSlot, narrative) -> bool:
     """
     if narrative is None or not getattr(narrative, "sections", None):
         return False
+    from .models import narrative_section_is_in_movement
+
     sections = narrative.sections
+    _mid = (getattr(slot, "section_id", "") or "").split("_", 1)[0]
     energy, tension, density, brightness = [], [], [], []
     covered = False
     for i in range(slot.bar_count):
         gbar = slot.bar_start + i
-        sec = next((s for s in sections if s.bar_start <= gbar <= s.bar_end), None)
+        # Movement-aware: bar numbers restart per movement, so a bar range alone
+        # matched the WRONG movement's section and mapped its energy, tension,
+        # density and brightness onto this slot — the curves that drive dynamics,
+        # density targets and the tempo arc.
+        sec = next(
+            (
+                s
+                for s in sections
+                if s.bar_start <= gbar <= s.bar_end
+                and narrative_section_is_in_movement(s, _mid)
+            ),
+            None,
+        )
         prev_e = slot.curves.energy[i] if i < len(slot.curves.energy) else 0.5
         if sec is None:
             energy.append(prev_e)
@@ -2348,9 +2467,23 @@ def init_work(
     """Create a WorkGraph for multi-movement works.
 
     This is WHERE Wolfgang decides the symphony's dramatic destiny.
+
+    ``description`` is NOT STORED: `WorkGraph` has no such field, so it was
+    accepted and dropped. The piece's description belongs to `init_workspace`,
+    which puts it on the contract — and `_creative_intent` reads it from there
+    when no narrative prose was authored. Supplying it here now says so rather
+    than swallowing it.
     """
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
+
+    if (description or "").strip():
+        _LOG.warning(
+            "init_work(description=...) is not stored — WorkGraph has no description "
+            "field. The piece description belongs on init_workspace(description=...), "
+            "which is where the brief reads it from. Nothing was lost silently; "
+            "the work's dramatic material goes in emotional_narrative/finale_payoff."
+        )
 
     from .models import TonalItinerary
 
@@ -2378,10 +2511,38 @@ def init_work(
     graph.work_graph = work
     graph.save(str(workspace / "piece_graph.json"))
 
+    # What a WorkGraph DECLARES and what anything actually fills are different
+    # lists, and the docstring above ("where Wolfgang decides the symphony's
+    # dramatic destiny") reads like the first. Nothing in the codebase writes
+    # `theme_families`, `climax_reservations`, `cross_movement_recalls`,
+    # `orchestral_macro_arc` or `cyclic_obligations` — five declared structures,
+    # 24 fields, never populated by any path. Saying so is not a fix; letting the
+    # data model imply a capability it does not have is the same defect as a
+    # parameter that is accepted and discarded.
+    unplanned = [
+        name
+        for name in (
+            "theme_families",
+            "climax_reservations",
+            "cross_movement_recalls",
+            "orchestral_macro_arc",
+            "cyclic_obligations",
+        )
+        if not getattr(work, name, None)
+    ]
     return {
         "work_id": piece_id,
         "movement_count": movement_count,
         "emotional_narrative": emotional_narrative,
+        # Empty because nothing fills them yet — not because this work has none.
+        "declared_but_not_planned": unplanned,
+        "note": (
+            "Cross-movement structure is DECLARED on WorkGraph and not yet "
+            "populated by any tool: " + ", ".join(unplanned) + ". Plan recalls and "
+            "theme families in the movement narratives until these are implemented."
+            if unplanned
+            else ""
+        ),
     }
 
 
@@ -2904,8 +3065,24 @@ _SUBDIVISIONS = (1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 16, 20, 21, 24, 28, 30,
 # noise or a value rounded to four decimals.
 _GRID_TOLERANCE = _F(1, 256)
 
+def _contract_instrumentation(graph) -> str:
+    """The piece's own forces, for code that builds a LayerIR from scratch.
 
-def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
+    Six sites hardcoded `"solo_piano"`, so the forces could be inferred
+    perfectly from the request and still never reach the checks that consult
+    them. Every reader was correct and all of them were wrong, because the value
+    was never set at the source.
+    """
+    target = getattr(getattr(graph, "contract", None), "target", None)
+    if isinstance(target, dict):
+        return str(target.get("instrumentation") or "solo_piano")
+    return str(getattr(target, "instrumentation", "") or "solo_piano")
+
+
+
+def _repair_engine_surface(
+    layer, meter: Tuple[int, int], allow_chords: bool = True
+) -> Dict[str, int]:
     """Make an engine-realized surface notatable and meter-legal.
 
     Three mechanical repairs, in order, each counted so the caller can report
@@ -2979,6 +3156,77 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
             e.beat = round(float(exact), 6)
 
         events.sort(key=lambda x: (x.bar, x.beat))
+
+        # EXACT duplicates first, and separately from overlaps.
+        #
+        # Two notes on one beat in one layer are a CHORD — the ordinary way a
+        # melody takes weight at an arrival — so the overlap rule below must not
+        # touch them. But the same note written twice is not a chord, and used
+        # to be removed only as a side effect of that rule. Removing it here
+        # keeps both facts true at once: a doubled accompaniment is still
+        # de-duplicated (39 of one section's 67 "overlaps" were exactly that),
+        # and a chord still reaches the score.
+        seen_exact: set = set()
+        deduped = []
+        for e in events:
+            signature = (e.bar, round(float(_on_grid(e.beat)), 6), str(e.pitch), e.duration)
+            if not is_grace(e.ornament) and signature in seen_exact:
+                counts["duplicates_removed"] += 1
+                continue
+            seen_exact.add(signature)
+            deduped.append(e)
+        events[:] = deduped
+
+        # A chord is simultaneous notes of the SAME LENGTH. Notes sharing an
+        # onset with different lengths are not a chord and not playable by one
+        # voice — a 64th and a quarter struck together leave the quarter still
+        # sounding when the next note arrives, which the meter check reports as
+        # a bar holding more beats than it has. Keep the length most of the
+        # group agrees on; that IS the chord, and the odd spans are the defect.
+        from collections import Counter as _Counter
+
+        by_onset: Dict[Tuple[int, float], List] = {}
+        for e in events:
+            if is_grace(e.ornament):
+                continue
+            by_onset.setdefault((e.bar, round(float(_on_grid(e.beat)), 6)), []).append(e)
+        drop: set = set()
+        for group in by_onset.values():
+            if len(group) < 2:
+                continue
+            # Two events that are ALREADY chords are two chords, not one. A
+            # viola handed `[F5,A5,C6]` and `[F3,A3,C4]` on the same beat cannot
+            # play both — that is the orchestration planner writing an inner
+            # line and a pad into one part's single voice — and laid out
+            # sequentially they gave a 3/4 bar 5 beats. Keep the first; the
+            # caller reports the loss (`notes_planned` vs `notes_written`).
+            if not allow_chords:
+                # An ORCHESTRAL part is one player: notes sharing an onset are
+                # not a chord it can take, and this path has no voice splitter
+                # to separate them into two lines. Keep the first and let the
+                # caller report the loss — see `notes_planned` vs
+                # `notes_written` in `assemble_orchestration`.
+                for x in group[1:]:
+                    drop.add(id(x))
+                    counts["overlaps_trimmed"] += 1
+                continue
+            chords = [x for x in group if isinstance(x.pitch, list)]
+            if len(chords) > 1:
+                for x in chords[1:]:
+                    drop.add(id(x))
+                    counts["overlaps_trimmed"] += 1
+                continue
+            lengths = _Counter(x.duration for x in group)
+            if len(lengths) < 2:
+                continue  # a genuine chord
+            keep_len = max(lengths, key=lambda d: (lengths[d], dur_to_beats(d)))
+            for x in group:
+                if x.duration != keep_len:
+                    drop.add(id(x))
+                    counts["overlaps_trimmed"] += 1
+        if drop:
+            events[:] = [e for e in events if id(e) not in drop]
+
         keep = []
         for i, e in enumerate(events):
             # A grace note SHARES its principal's beat by definition — it is
@@ -2994,8 +3242,29 @@ def _repair_engine_surface(layer, meter: Tuple[int, int]) -> Dict[str, int]:
             if start >= capacity:
                 counts["overflow_dropped"] += 1
                 continue
+            # The next event at a LATER onset — not merely the next in the bar.
+            #
+            # Two notes starting on the same beat in the same layer are a
+            # CHORD, which is the ordinary way a melody takes weight at an
+            # arrival. This took the next event in the bar whatever its beat,
+            # so a simultaneous note gave `room = 0` and was deleted as an
+            # overlap: the engine could not represent a thickened melody note
+            # at all, and every melody it wrote came out 100% single notes.
+            # A chord is playable; an overlap is two DIFFERENT spans in one
+            # voice, which is what this still catches.
             nxt = next(
-                (x for x in events[i + 1 :] if x.bar == e.bar and not is_grace(x.ornament)),
+                (
+                    x
+                    for x in events[i + 1 :]
+                    if x.bar == e.bar
+                    and not is_grace(x.ornament)
+                    # OFFSETS on both sides. `start` is `_on_grid(e.beat) - 1`,
+                    # zero-based, and `_on_grid(x.beat)` is one-based — so at
+                    # beat 1 this read `1 > 0` and selected the very same-beat
+                    # event it was written to skip. The guard excluded nothing,
+                    # at any beat, and chords were still deleted.
+                    and _on_grid(x.beat) - 1 > start
+                ),
                 None,
             )
             room = capacity - start
@@ -3537,6 +3806,35 @@ def plan_readiness(piece_id: str) -> Dict[str, Any]:
         )
     elif not any((getattr(s, "character", "") or "").strip() for s in sections):
         thin.append("narrative sections have no authored `character` prose")
+    else:
+        # An EMPTY character is caught above; a character the planner wrote for
+        # itself is not. `build_form_graph` fills the field with
+        # `"; ".join(ROLE_INTENT[r] for r in roles)`, so a piece can pass the
+        # check above with five sections of text that are identical to every
+        # other piece of the same form — measured byte-for-byte across a Chopin
+        # nocturne and a Mozart andante. The readiness report said the narrative
+        # was present; what was present was the form's shape, not the piece's.
+        from .composition_brief import _character_is_role_derived
+
+        default_only = [
+            getattr(s, "label", "") or "?"
+            for s in sections
+            if _character_is_role_derived(
+                getattr(s, "character", "") or "", getattr(s, "gesture", "") or ""
+            )
+        ]
+        if len(default_only) == len(sections):
+            thin.append(
+                "narrative `character` is the planner's own role text on every "
+                "section — generic to the form, identical for any piece with this "
+                "shape. Run save_narrative with prose about THIS piece"
+            )
+        elif default_only:
+            thin.append(
+                f"narrative `character` is still the planner's default on "
+                f"{len(default_only)} of {len(sections)} sections "
+                f"({', '.join(default_only[:4])})"
+            )
 
     if not graph.motif_bank:
         missing.append(
@@ -4127,6 +4425,29 @@ def self_evaluate(
                     "by_kind": cp.by_kind(),
                     "lines": summarize_for_critic(cp, limit=12),
                 }
+                # `muddy_low_interval` is the loudest finding this analyser
+                # produces (392 of them across the workspace) and it arrives with
+                # no scale attached, so a reviewer cannot tell a real problem from
+                # normal practice. Real composers write low thirds at very
+                # different rates — Liszt 0.094 per bar, Beethoven 0.023,
+                # Mozart 0.0077, Haydn 0.0007, and Palestrina exactly 0.0000 in
+                # 60,677 bars. Judged against the piece's OWN composer, a Mozart
+                # andante at 0.171 is 22x his practice while a Liszt piece at the
+                # same figure is unremarkable.
+                muddy = cp.by_kind().get("muddy_low_interval", 0)
+                if muddy:
+                    from .composition_brief import muddy_low_interval_rate
+
+                    own = muddy_low_interval_rate(resolved)
+                    n_bars = sum((ps.slot.bar_count or 0) for ps in in_scope if ps.slot) or 1
+                    rate = muddy / n_bars
+                    report["part_writing"]["muddy_low_intervals"] = {
+                        "per_bar": round(rate, 3),
+                        "composer_per_bar": round(own, 4) if own is not None else None,
+                        "times_own_practice": (
+                            round(rate / own, 1) if own else None
+                        ),
+                    }
             except Exception as exc:  # never let an analyser break the report
                 report["part_writing"] = {"error": f"{type(exc).__name__}: {exc}"}
 
@@ -5457,7 +5778,7 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
         part_events = [e for e in events if e.staff == inst]
         holder = LayerIR(phrase_id=inst, key=data.get("key", "C"), meter=_orch_meter)
         holder.principal_line = part_events
-        fixed = _repair_engine_surface(holder, _orch_meter)
+        fixed = _repair_engine_surface(holder, _orch_meter, allow_chords=False)
         if fixed:
             orch_repairs[inst] = fixed
         events = [e for e in events if e.staff != inst] + list(holder.principal_line)

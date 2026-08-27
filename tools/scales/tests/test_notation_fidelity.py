@@ -2366,14 +2366,20 @@ def test_the_repair_distinguishes_a_duplicate_from_an_overlap():
     assert exact.get("duplicates_removed") == 1, exact
     assert not exact.get("overlaps_trimmed"), exact
 
-    # Two different notes at one instant in one voice: a real collision.
-    collision = _repair_engine_surface(surface("E5", "q"), (4, 4))
-    assert collision.get("overlaps_trimmed") == 1, collision
-    assert not collision.get("duplicates_removed"), collision
+    # Two DIFFERENT notes at one instant in one voice is a CHORD, not a
+    # collision — which this test originally asserted the other way round, from
+    # the same wrong belief that made the repair delete every chord. Real
+    # keyboard writing chords 17% of right-hand attacks.
+    chord = _repair_engine_surface(surface("E5", "q"), (4, 4))
+    assert not chord.get("overlaps_trimmed"), chord
+    assert not chord.get("duplicates_removed"), chord
 
-    # Same pitch, different length, is not the same note written twice.
-    relength = _repair_engine_surface(surface("C5", "h"), (4, 4))
+    # Same onset, DIFFERENT length, is neither a chord nor a duplicate: one
+    # voice cannot hold two spans at once. The longer survives.
+    layer = surface("C5", "h")
+    relength = _repair_engine_surface(layer, (4, 4))
     assert relength.get("overlaps_trimmed") == 1, relength
+    assert [e.duration for e in layer.principal_line] == ["h"], layer.principal_line
 
 
 def test_a_clamped_note_is_not_reported_as_a_dropped_one():
@@ -2521,3 +2527,63 @@ def test_the_pitch_validator_agrees_with_the_pitch_parser():
     issues = parse_issues([{"rh": "Fx4q C5q", "lh": "C3w"}])
     assert issues and any("Fx4" in str(i) for i in issues), issues
     assert not parse_issues([{"rh": "F##4q C5q", "lh": "C3w"}])
+
+
+def test_a_chord_written_as_separate_events_survives_to_the_score():
+    """Two notes on one beat in one layer are a CHORD — the ordinary way a
+    melody takes weight at an arrival — and the engine emits them as separate
+    same-beat events rather than one list-valued pitch.
+
+    `_repair_engine_surface` read the second as a same-voice overlap with
+    `room = 0` and deleted it, so the engine could not represent a thickened
+    melody note at all and every melody it wrote came out 100% single notes,
+    against a measured 17% chorded attacks in real keyboard writing.
+
+    The guard added for this compared a ZERO-based offset against a ONE-based
+    beat (`_on_grid(x.beat) > start`), so at beat 1 it read `1 > 0` and selected
+    the very same-beat event it was written to skip. It excluded nothing at any
+    beat.
+    """
+    from scales.models import LayerEvent, LayerIR
+    from scales.scales import _render_layer_preview, _repair_engine_surface
+
+    def layer(spec):
+        ir = LayerIR(phrase_id="p", key="C", meter=(4, 4), bar_count=1, instrumentation="solo_piano")
+        for beat, pitch, dur in spec:
+            ir.principal_line.append(
+                LayerEvent(
+                    bar=1, beat=beat, pitch=pitch, duration=dur,
+                    role="structural", source_layer="principal_line",
+                )
+            )
+        return ir
+
+    # A chord survives the repair intact.
+    chord = layer([(1.0, "C5", "h"), (1.0, "E5", "h"), (1.0, "G5", "h")])
+    counts = _repair_engine_surface(chord, (4, 4))
+    assert len(chord.principal_line) == 3, f"the repair deleted chord notes: {counts}"
+    assert not counts.get("overlaps_trimmed"), counts
+
+    # The same note twice is NOT a chord.
+    dup = layer([(1.0, "C5", "h"), (1.0, "C5", "h")])
+    assert _repair_engine_surface(dup, (4, 4)).get("duplicates_removed") == 1
+    assert len(dup.principal_line) == 1
+
+    # Two DIFFERENT spans in one voice still is an overlap.
+    overlap = layer([(1.0, "C5", "h"), (1.5, "E5", "q")])
+    assert _repair_engine_surface(overlap, (4, 4)).get("overlaps_trimmed") == 1
+
+    # And it reaches the engraved page as a real chord.
+    written = layer([(1.0, "C5", "h"), (1.0, "E5", "h"), (1.0, "G5", "h"), (3.0, "F5", "h")])
+    out = Path("/tmp/wolfgang-chord-fidelity/preview.musicxml")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    _render_layer_preview(written, out, tempo_bpm=90)
+
+    import music21
+
+    score = music21.converter.parse(str(out))
+    chords = [n for n in score.recurse().notes if len(n.pitches) > 1]
+    assert chords, "the chord did not reach the score"
+    assert sorted(p.nameWithOctave for p in chords[0].pitches) == ["C5", "E5", "G5"]
+    # MusicXML spells a chord as consecutive notes carrying `<chord/>`.
+    assert out.read_text().count("<chord") == 2, "not written as a MusicXML chord"

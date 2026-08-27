@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import logging
 import re
+from dataclasses import replace
 from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -1301,6 +1302,8 @@ def _add_events_voiced(
 
     import music21
 
+    evts, _chord_aliases = _merge_simultaneous_into_chords(list(evts))
+
     by_voice: Dict[int, list] = defaultdict(list)
     for e in evts:
         by_voice[getattr(e, "voice", 1) or 1].append(e)
@@ -1310,6 +1313,7 @@ def _add_events_voiced(
             _add_event_to_measure(
                 measure, event, meter, note_map=note_map, offset_shift=offset_shift
             )
+        _apply_chord_aliases(note_map, _chord_aliases)
         return
 
     for vid in sorted(by_voice):
@@ -1325,6 +1329,78 @@ def _add_events_voiced(
                 marks_target=measure,
             )
         measure.insert(0, voice)
+    _apply_chord_aliases(note_map, _chord_aliases)
+
+
+def _apply_chord_aliases(note_map, aliases) -> None:
+    """Let a merged chord answer to the id of the note that carried its marks."""
+    if not note_map or not aliases:
+        return
+    for chord_id, original_id in aliases.items():
+        if chord_id in note_map:
+            note_map[original_id] = note_map[chord_id]
+
+
+def _merge_simultaneous_into_chords(evts: list) -> list:
+    """Two notes at one instant in one voice are a CHORD, not two notes.
+
+    `_add_event_to_measure` has always built a `music21.chord.Chord` when an
+    event's pitch is a list — but nothing upstream ever produced that list, so
+    coincident events in one voice were inserted as separate `Note`s at the same
+    offset. MusicXML has no way to express that: without a `<chord/>` marker the
+    exporter serializes them one after the other, which is how a 4/4 bar ends up
+    holding more beats than it has. It is the same class of defect as the
+    pedal-under-figuration overlap, and it silently capped every melody at one
+    note per attack.
+
+    Only events sharing an onset AND a duration merge. Different durations at
+    one onset are genuinely two voices, which is what `_add_staff_events`
+    separates into `Voice` containers.
+    """
+    from collections import defaultdict
+
+    groups: Dict[Any, list] = defaultdict(list)
+    order: list = []
+    for e in evts:
+        if e.pitch == "rest" or isinstance(e.pitch, list):
+            key = ("solo", id(e))
+        else:
+            key = (round(float(e.beat), 6), str(e.duration), getattr(e, "voice", 1) or 1)
+        if key not in groups:
+            order.append(key)
+        groups[key].append(e)
+
+    merged = []
+    aliases: Dict[int, int] = {}
+    for key in order:
+        members = groups[key]
+        if len(members) == 1:
+            merged.append(members[0])
+            continue
+        # COPY, never mutate. Setting `top.pitch = [...]` in place wrote the
+        # merged chord back into the PieceGraph's own events — assembling a
+        # piece silently rewrote it, and a second assembly saw a bass note
+        # spelled `"['A2', 'C3']"`. Assembly reads the piece; it does not
+        # compose it.
+        top = max(members, key=lambda e: _pitch_sort_key(e.pitch))
+        seen = []
+        for e in members:
+            if isinstance(e.pitch, str) and e.pitch not in seen:
+                seen.append(e.pitch)
+        chord = replace(top, pitch=seen)
+        # The spanner pass keys slurs and hairpins on `id(event)`, and it is the
+        # top note that carries them — so the copy answers to the original's id.
+        aliases[id(chord)] = id(top)
+        merged.append(chord)
+    return merged, aliases
+
+
+def _pitch_sort_key(pitch) -> int:
+    from .pitch import pitch_to_midi
+
+    if isinstance(pitch, str):
+        return pitch_to_midi(pitch) or 0
+    return 0
 
 
 def _add_event_to_measure(
