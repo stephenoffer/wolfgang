@@ -97,52 +97,52 @@
    "n": 1
   },
   "chromatic_ratio": {
-   "mean": 0.1738,
+   "mean": 0.1387,
    "stdev": 0.0,
-   "min": 0.1738,
-   "max": 0.1738,
+   "min": 0.1387,
+   "max": 0.1387,
    "n": 1
   },
   "chord_pct": {
-   "mean": 1.2407,
+   "mean": 4.0581,
    "stdev": 0.0,
-   "min": 1.2407,
-   "max": 1.2407,
+   "min": 4.0581,
+   "max": 4.0581,
    "n": 1
   },
   "maj_chord_ratio": {
-   "mean": 0.0736,
+   "mean": 0.1176,
    "stdev": 0.0,
-   "min": 0.0736,
-   "max": 0.0736,
+   "min": 0.1176,
+   "max": 0.1176,
    "n": 1
   },
   "min_chord_ratio": {
-   "mean": 0.0167,
+   "mean": 0.0481,
    "stdev": 0.0,
-   "min": 0.0167,
-   "max": 0.0167,
+   "min": 0.0481,
+   "max": 0.0481,
    "n": 1
   },
   "dim_aug_chord_ratio": {
-   "mean": 0.01,
+   "mean": 0.0317,
    "stdev": 0.0,
-   "min": 0.01,
-   "max": 0.01,
+   "min": 0.0317,
+   "max": 0.0317,
    "n": 1
   },
   "seventh_chord_ratio": {
-   "mean": 0.0167,
+   "mean": 0.0337,
    "stdev": 0.0,
-   "min": 0.0167,
-   "max": 0.0167,
+   "min": 0.0337,
+   "max": 0.0337,
    "n": 1
   },
   "avg_chord_size": {
-   "mean": 2.271,
+   "mean": 2.508,
    "stdev": 0.0,
-   "min": 2.271,
-   "max": 2.271,
+   "min": 2.508,
+   "max": 2.508,
    "n": 1
   },
   "harmonic_rhythm": {
@@ -202,66 +202,66 @@
    "n": 1
   },
   "sixteenth_ratio": {
-   "mean": 0.4239,
+   "mean": 0.3334,
    "stdev": 0.0,
-   "min": 0.4239,
-   "max": 0.4239,
+   "min": 0.3334,
+   "max": 0.3334,
    "n": 1
   },
   "eighth_ratio": {
-   "mean": 0.2212,
+   "mean": 0.3786,
    "stdev": 0.0,
-   "min": 0.2212,
-   "max": 0.2212,
+   "min": 0.3786,
+   "max": 0.3786,
    "n": 1
   },
   "dotted_eighth_ratio": {
-   "mean": 0.0147,
+   "mean": 0.0176,
    "stdev": 0.0,
-   "min": 0.0147,
-   "max": 0.0147,
+   "min": 0.0176,
+   "max": 0.0176,
    "n": 1
   },
   "quarter_ratio": {
-   "mean": 0.072,
+   "mean": 0.0712,
    "stdev": 0.0,
-   "min": 0.072,
-   "max": 0.072,
+   "min": 0.0712,
+   "max": 0.0712,
    "n": 1
   },
   "dotted_quarter_ratio": {
-   "mean": 0.0299,
+   "mean": 0.0242,
    "stdev": 0.0,
-   "min": 0.0299,
-   "max": 0.0299,
+   "min": 0.0242,
+   "max": 0.0242,
    "n": 1
   },
   "half_ratio": {
-   "mean": 0.0563,
+   "mean": 0.0421,
    "stdev": 0.0,
-   "min": 0.0563,
-   "max": 0.0563,
+   "min": 0.0421,
+   "max": 0.0421,
    "n": 1
   },
   "whole_ratio": {
-   "mean": 0.0093,
+   "mean": 0.01,
    "stdev": 0.0,
-   "min": 0.0093,
-   "max": 0.0093,
+   "min": 0.01,
+   "max": 0.01,
    "n": 1
   },
   "triplet_ratio": {
-   "mean": 0.1356,
+   "mean": 0.0943,
    "stdev": 0.0,
-   "min": 0.1356,
-   "max": 0.1356,
+   "min": 0.0943,
+   "max": 0.0943,
    "n": 1
   },
   "dur_variety": {
-   "mean": 15.0,
+   "mean": 16.0,
    "stdev": 0.0,
-   "min": 15.0,
-   "max": 15.0,
+   "min": 16.0,
+   "max": 16.0,
    "n": 1
   },
   "mean_sonority": {
