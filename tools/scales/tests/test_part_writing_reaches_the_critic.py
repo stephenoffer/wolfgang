@@ -177,15 +177,14 @@ def test_self_evaluate_carries_the_craft_checklist(piece):
     assert all("phrase" in f and "note" in f for f in c["findings"])
 
 
-def test_the_craft_findings_travel_with_their_false_positive_rate():
+def test_the_craft_findings_travel_with_their_false_positive_rate(function_source):
     """Measured over 200 real corpus phrases from five composers, the individual
     checks fire on 1.5%-13.5% of real music. A reviewer handed them without that
     context would read a hint as a verdict."""
-    import inspect
 
     from scales import scales as S
 
-    src = inspect.getsource(S.self_evaluate)
+    src = function_source(S, "self_evaluate")
     i = src.index('report["craft"]')
     window = src[max(0, i - 1400) : i + 900]
     assert "Advisory" in window

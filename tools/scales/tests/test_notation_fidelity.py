@@ -2145,13 +2145,12 @@ def test_an_unrecognised_scope_renders_nothing_rather_than_everything():
     assert _in_scope(a, "movement-1") and _in_scope(b, "movement-1")
 
 
-def test_the_midi_preview_uses_the_same_scope_matcher_as_the_assembler():
+def test_the_midi_preview_uses_the_same_scope_matcher_as_the_assembler(function_source):
     """It had its own, which understood only "section-<id>"."""
-    import inspect
 
     from scales import midi_renderer
 
-    src = inspect.getsource(midi_renderer.render_midi)
+    src = function_source(midi_renderer, "render_midi")
     assert "_in_scope" in src, "the renderer must share the assembler's scope matcher"
     assert 'scope.replace("section-"' not in src, "a second scope convention has come back"
 

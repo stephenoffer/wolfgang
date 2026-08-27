@@ -39,13 +39,12 @@ def test_a_rich_corpus_says_so_too():
     assert "THIN" not in note["advice"].upper()
 
 
-def test_coverage_is_rendered_where_the_composer_will_read_it():
+def test_coverage_is_rendered_where_the_composer_will_read_it(function_source):
     """Near the top, not buried in the warnings block at the bottom."""
-    import inspect
 
     from scales import composition_brief
 
-    src = inspect.getsource(composition_brief.render_text)
+    src = function_source(composition_brief, "render_text")
     assert "CORPUS COVERAGE" in src
     header = src.index("COMPOSITION BRIEF")
     coverage = src.index("CORPUS COVERAGE")
@@ -72,15 +71,14 @@ def test_the_tier_thresholds_match_what_the_docstring_claims():
         assert rep["tier"] == expect, f"{composer} reported tier {rep['tier']}"
 
 
-def test_synthetic_transition_data_is_declared_in_the_brief():
-    import inspect
+def test_synthetic_transition_data_is_declared_in_the_brief(function_source):
 
     from scales import composition_brief
 
-    src = inspect.getsource(composition_brief._transition_patterns)
+    src = function_source(composition_brief, "_transition_patterns")
     assert "synthetic" in src.lower()
     assert "provenance" in src
-    rendered = inspect.getsource(composition_brief.render_text)
+    rendered = function_source(composition_brief, "render_text")
     assert "provenance" in rendered, "the synthetic-data warning is computed but never printed"
 
 
@@ -632,7 +630,7 @@ def test_binary_and_rounded_binary_are_real_forms_not_the_song_default():
     assert rounded[-1][1] == "G major" and rounded[-1][2] == "PAC"
 
 
-def test_the_planning_guidance_lists_the_forms_that_exist():
+def test_the_planning_guidance_lists_the_forms_that_exist(function_source):
     """An agent choosing a form has no way to know which are real but to be
     told, and an unknown name silently builds a song form."""
     from pathlib import Path
@@ -646,7 +644,7 @@ def test_the_planning_guidance_lists_the_forms_that_exist():
     for form in ("binary", "rounded_binary", "ternary", "sonata", "theme_variations"):
         assert f"`{form}`" in text, f"w-plan does not document the {form} form"
     # And the code's own list agrees.
-    src = __import__("inspect").getsource(scales.build_form_graph)
+    src = function_source(scales, "build_form_graph")
     for form in ("binary", "rounded_binary", "ternary", "sonata", "theme_variations"):
         assert form in src, f"{form} is documented but not dispatched"
 

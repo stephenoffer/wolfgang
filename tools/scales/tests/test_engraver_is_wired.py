@@ -14,7 +14,6 @@ what the composer wrote.
 from __future__ import annotations
 
 import ast
-import inspect
 
 import pytest
 
@@ -29,43 +28,43 @@ def _commit_entry_points():
 
 
 @pytest.mark.parametrize("fn", _commit_entry_points(), ids=lambda f: f.__name__)
-def test_the_agent_commit_paths_reach_the_engraver(fn):
+def test_the_agent_commit_paths_reach_the_engraver(fn, function_source):
     """Both route through `_gated_commit`, which calls `_engrave_phrase`."""
-    src = inspect.getsource(fn)
+    src = function_source(scales, fn.__name__)
     assert "_gated_commit" in src, f"{fn.__name__} no longer goes through _gated_commit"
-    assert "_engrave_phrase" in inspect.getsource(scales._gated_commit), (
+    assert "_engrave_phrase" in function_source(scales, "_gated_commit"), (
         "_gated_commit no longer runs the engraver's pass — this is exactly the "
         "state in which the system shipped scores with no articulation in them"
     )
 
 
-def test_the_candidate_path_engraves_too():
+def test_the_candidate_path_engraves_too(function_source):
     """The panel judge picks a winner from a rendered preview.
 
     An unengraved preview has no articulation, no phrasing and no pedal, so the
     judge was choosing between MIDI dumps and only the winner was engraved.
     """
-    src = inspect.getsource(scales.commit_candidate_phrase)
+    src = function_source(scales, "commit_candidate_phrase")
     assert "_engrave_phrase" in src
 
 
-def test_promoting_a_candidate_goes_through_a_gated_commit():
-    src = inspect.getsource(scales.promote_candidate)
+def test_promoting_a_candidate_goes_through_a_gated_commit(function_source):
+    src = function_source(scales, "promote_candidate")
     assert "commit_agent_phrase_layer_ir" in src
 
 
-def test_the_engraving_report_is_returned_to_the_caller():
+def test_the_engraving_report_is_returned_to_the_caller(function_source):
     """A reviewer must be able to tell the engraver's marks from the composer's."""
-    src = inspect.getsource(scales._gated_commit)
+    src = function_source(scales, "_gated_commit")
     assert '"engraving"' in src or "'engraving'" in src
 
 
-def test_a_failing_engraver_cannot_block_a_good_commit():
+def test_a_failing_engraver_cannot_block_a_good_commit(function_source):
     """It is the last step before storing a phrase the gate already passed.
 
     A crash in a cosmetic pass must never cost the notes.
     """
-    tree = ast.parse(inspect.getsource(scales._engrave_phrase).lstrip())
+    tree = ast.parse(function_source(scales, "_engrave_phrase").lstrip())
     handlers = [n for n in ast.walk(tree) if isinstance(n, ast.ExceptHandler)]
     assert handlers, "_engrave_phrase must not let an exception escape into the commit path"
 

@@ -133,13 +133,12 @@ def test_detectors_still_catch_the_baseline_defects():
     assert any("rit" in f["problem"] for f in spam)
 
 
-def test_tolerated_false_positives_are_advisory_only():
+def test_tolerated_false_positives_are_advisory_only(function_source):
     """Fast guard: anything allowed to fire on real music must be `info`.
 
     A detector with a known false-positive rate must never be able to drive a
     revision, whatever the reference corpus is doing on this machine.
     """
-    import inspect
 
     from scales import score_realism
 
@@ -148,7 +147,7 @@ def test_tolerated_false_positives_are_advisory_only():
             score_realism, f"detect_{name.replace('_absent', '_absence')}", None
         )
         assert fn is not None, f"no detector function found for {name}"
-        src = inspect.getsource(fn)
+        src = function_source(score_realism, fn.__name__)
         assert "_WARN" not in src, (
             f"{fn.__name__} fires on canonical music but can emit a warning; "
             "detectors with a known false-positive rate must be _INFO only"
@@ -186,13 +185,12 @@ def test_no_detector_emits_an_error_severity():
     assert checked >= 12, f"only {checked} _finding() calls found — did the module shrink?"
 
 
-def test_realism_report_is_wired_into_self_evaluate():
+def test_realism_report_is_wired_into_self_evaluate(function_source):
     """The whole module was dead code once. This is what noticed."""
-    import inspect
 
     from scales import scales
 
-    src = inspect.getsource(scales.self_evaluate)
+    src = function_source(scales, "self_evaluate")
     assert "realism_report" in src, (
         "self_evaluate must run the realism audit — score_realism shipped "
         "complete, tested by nothing and called by nothing, and every score "
@@ -321,7 +319,7 @@ def test_period_register_catches_an_anachronistic_climax():
     assert not detect_out_of_period_register(bars, "someone-unarmed")
 
 
-def test_every_detector_defined_is_actually_run():
+def test_every_detector_defined_is_actually_run(function_source):
     """A detector that `realism_report` does not call is dead code.
 
     This whole module was dead once, and the cost was three months of scores
@@ -340,7 +338,7 @@ def test_every_detector_defined_is_actually_run():
         for n in ast.walk(tree)
         if isinstance(n, ast.FunctionDef) and n.name.startswith("detect_")
     }
-    report_src = inspect.getsource(score_realism.realism_report)
+    report_src = function_source(score_realism, "realism_report")
     unwired = sorted(name for name in defined if name not in report_src)
     assert not unwired, f"detector(s) defined but never run by realism_report: {unwired}"
     assert len(defined) >= 15, f"only {len(defined)} detectors found — did the module shrink?"
