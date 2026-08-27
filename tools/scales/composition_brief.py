@@ -816,6 +816,110 @@ def tie_rate_per_bar(composer: str) -> Optional[float]:
     return rate
 
 
+_MOVEMENT_RATES_CACHE: Dict[str, Any] = {}
+
+#: What a movement is measured on. Each is a share of the movement's own bars or
+#: attacks, so they are comparable across movements of different lengths.
+MOVEMENT_METRICS = ("ties_per_bar", "downbeat_rest_share", "lh_chord_share", "rh_chord_share")
+
+
+def movement_rates(composer: str) -> List[Dict[str, Any]]:
+    """Per-MOVEMENT texture rates, not the composer's mean.
+
+    A composer's average is the wrong grain for a piece that has a character.
+    Mozart ties on 7.0% of bars and opens 8.3% with a rest — but his C minor
+    slow movement `sonata14-3` ties in 15% of bars and opens 12% with a rest,
+    twice his mean in both. That is not noise; it is what a slow movement in a
+    minor key does, and a generated piece asked to be sustained has more in
+    common with that movement than with Mozart.
+
+    So: one row per movement, each a share of that movement's own bars, with
+    enough of them that a caller can ask for a *range* rather than a point.
+    Movements under 24 bars are excluded — a share over a dozen bars is noise,
+    and the corpus splits some theme-and-variations sets into single variations.
+    """
+    key = (composer or "").strip().lower()
+    if key in _MOVEMENT_RATES_CACHE:
+        return _MOVEMENT_RATES_CACHE[key]
+
+    from collections import defaultdict
+
+    by_source: Dict[Any, List[Dict[str, Any]]] = defaultdict(list)
+    try:
+        for bar in _iter_corpus_bars(composer):
+            by_source[bar.get("source")].append(bar)
+    except Exception:
+        _MOVEMENT_RATES_CACHE[key] = []
+        return []
+
+    rows: List[Dict[str, Any]] = []
+    for source, bars in by_source.items():
+        if len(bars) < 24:
+            continue
+        ties = rests = 0
+        lh_attacks = lh_chords = rh_attacks = rh_chords = 0
+        for bar in bars:
+            rh = bar.get("rh_events") or []
+            if rh:
+                first = rh[0]
+                if isinstance(first, dict) and first.get("type") == "rest":
+                    rests += 1
+            for event in rh:
+                if not isinstance(event, dict):
+                    continue
+                if event.get("tie") == "start":
+                    ties += 1
+                if event.get("type") in ("note", "chord"):
+                    rh_attacks += 1
+                    if event.get("type") == "chord":
+                        rh_chords += 1
+            for event in bar.get("lh_events") or []:
+                if isinstance(event, dict) and event.get("type") in ("note", "chord"):
+                    lh_attacks += 1
+                    if event.get("type") == "chord":
+                        lh_chords += 1
+        rows.append(
+            {
+                "source": source,
+                "bars": len(bars),
+                "ties_per_bar": round(ties / len(bars), 4),
+                "downbeat_rest_share": round(rests / len(bars), 4),
+                "lh_chord_share": round(lh_chords / lh_attacks, 4) if lh_attacks else 0.0,
+                "rh_chord_share": round(rh_chords / rh_attacks, 4) if rh_attacks else 0.0,
+            }
+        )
+    rows.sort(key=lambda r: str(r["source"]))
+    _MOVEMENT_RATES_CACHE[key] = rows
+    return rows
+
+
+def movement_rate_range(composer: str, metric: str) -> Optional[Dict[str, float]]:
+    """The spread of one metric across a composer's movements.
+
+    `{"min", "p25", "median", "p75", "max", "movements"}`, or None when the
+    corpus cannot support it. A caller wanting "sustained" can reach for `p75`
+    and one wanting "plain" for `p25`, instead of every piece by one composer
+    getting the same number.
+    """
+    if metric not in MOVEMENT_METRICS:
+        return None
+    values = sorted(row[metric] for row in movement_rates(composer))
+    if len(values) < 4:
+        return None
+
+    def _at(q: float) -> float:
+        return values[min(len(values) - 1, int(q * (len(values) - 1)))]
+
+    return {
+        "min": values[0],
+        "p25": _at(0.25),
+        "median": _at(0.5),
+        "p75": _at(0.75),
+        "max": values[-1],
+        "movements": len(values),
+    }
+
+
 _DOWNBEAT_REST_CACHE: Dict[str, Optional[float]] = {}
 
 
@@ -827,12 +931,19 @@ def downbeat_rest_rate(composer: str) -> Optional[float]:
     covers the first. This is the second, and it is the larger share — real
     melodies rest on 5-12% of downbeats where they tie on 1-5%:
 
-        schubert 0.116   beethoven 0.111   palestrina 0.102   chopin 0.089
-        mozart   0.083   haydn     0.075   bach       0.053
+        median movement:  beethoven 0.088  schubert 0.077  mozart 0.073
+                          haydn     0.042  chopin    0.030  bach   0.027
+        pooled over bars: beethoven 0.111  schubert 0.116  mozart 0.083
+                          haydn     0.075  chopin    0.089  bach   0.053
 
     Measured on the melody staff only. The accompaniment rests on downbeats at
     its own, different rates (Haydn 16.8%, Bach 4.6%) and a shared number would
     be right for neither.
+
+    The two columns above are the correction: every pooled figure sits ABOVE its
+    own median because the distribution is right-skewed, so composing to the
+    aggregate writes a piece more sustained than most of what the composer
+    actually wrote — Chopin by a factor of three.
 
     Unmeasurable returns None, as with ties — but for the opposite reason. A
     zero here would be a real finding rather than a missing encoding, since a
@@ -842,7 +953,32 @@ def downbeat_rest_rate(composer: str) -> Optional[float]:
     key = (composer or "").strip().lower()
     if key in _DOWNBEAT_REST_CACHE:
         return _DOWNBEAT_REST_CACHE[key]
+
+    # THE MEDIAN MOVEMENT, not the mean of every bar.
+    #
+    # A piece has a character and resembles some movement of a composer, never
+    # the average of all of them. The two differ by more than rounding: Chopin's
+    # bars rest on 8.9% of downbeats in aggregate and his MEDIAN movement on
+    # 3.0%; Bach 5.3% against 2.7%. Both distributions are right-skewed — a few
+    # movements rest a great deal — so the aggregate describes a piece more
+    # sustained than most of what the composer wrote.
+    #
+    # This is the same correction the tie rate needed for a starker reason:
+    # Haydn's median movement ties ZERO times, and his aggregate of 0.015 is a
+    # number no movement of his resembles.
     rate = None
+    try:
+        spread = movement_rate_range(composer, "downbeat_rest_share")
+        if spread and spread.get("median") is not None:
+            rate = round(float(spread["median"]), 4)
+    except Exception:
+        rate = None
+    if rate is not None:
+        _DOWNBEAT_REST_CACHE[key] = rate
+        return rate
+
+    # Fall back to the pooled rate when there are too few movements to have a
+    # median — a composer armed from three sources still gets an answer.
     try:
         bars = opening_rests = 0
         for bar in _iter_corpus_bars(composer):
@@ -2532,7 +2668,7 @@ def _cadence_matches(cad: str, script_type: str) -> bool:
 
 
 def _slot_contour_class(slot) -> str | None:
-    """"ascending" / "descending" / "static" for this phrase's register plan.
+    """ "ascending" / "descending" / "static" for this phrase's register plan.
 
     The corpus vocabulary, measured over 9,569 indexed phrases: `static` 17180,
     `descending` 9912, `ascending` 9287 — and nothing else. A value outside it
@@ -5887,9 +6023,7 @@ def render_text(brief: CompositionBrief, graph=None) -> str:
             parts.append("melody tail: " + " ".join(t["melody_tail"]))
         lb = t.get("last_bar")
         if lb:
-            parts.append(
-                f"previous bar {lb['bar']} — {_upper}: {lb['rh']} | {_lower}: {lb['lh']}"
-            )
+            parts.append(f"previous bar {lb['bar']} — {_upper}: {lb['rh']} | {_lower}: {lb['lh']}")
         if t.get("last_bass"):
             parts.append(f"last bass: {t['last_bass']}")
         if t.get("last_dynamic"):

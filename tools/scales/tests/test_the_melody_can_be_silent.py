@@ -9,10 +9,17 @@ across two complete pieces:
 Not a low rate. None. The 8-10% of leading rests visible in the exported left
 hand were the assembler PADDING bars where the accompaniment had no downbeat
 note — a statistic that looked healthy in the score and did not exist in the
-music. Real melodies rest on 5-12% of downbeats:
+music. Real melodies rest on 3-9% of downbeats, measured as the MEDIAN
+MOVEMENT rather than pooled over every bar:
 
-    schubert 11.6%  beethoven 11.1%  chopin 8.9%  mozart 8.3%
-    haydn     7.5%  bach       5.3%
+    beethoven 8.8%  schubert 7.7%  mozart 7.3%
+    haydn     4.2%  chopin   3.0%  bach   2.7%
+
+The pooled figures are two to three times higher (Chopin 8.9%, Bach 5.3%)
+because the distribution is right-skewed — a few movements rest a great deal.
+Composing to the aggregate writes a piece more sustained than most of what the
+composer actually wrote, and it was the target here until per-movement
+distributions existed.
 """
 
 from __future__ import annotations
@@ -367,3 +374,37 @@ def test_a_short_phrase_is_not_refused_for_being_short():
     report = {}
     _rest_the_downbeat(ir, (4, 4), share=0.5, report=report)
     assert "too short" not in report.get("reason", ""), report
+
+
+def test_the_rate_is_the_median_movement_not_the_pooled_mean():
+    """A piece resembles a movement, never the average of all of them.
+
+    The two differ by more than rounding, and always in the same direction:
+    every composer's pooled downbeat-rest rate sits ABOVE his median movement,
+    because the distribution is right-skewed. Chopin's bars rest on 8.9% of
+    downbeats in aggregate and his median movement on 3.0% — composing to the
+    aggregate writes a piece three times more sustained than most of what he
+    wrote.
+
+    The starker case is the tie rate, where Haydn's median movement ties ZERO
+    times and his aggregate of 0.015 describes no movement of his at all.
+    """
+    from scales.composition_brief import downbeat_rest_rate, movement_rate_range
+
+    for composer in ("mozart", "beethoven", "chopin", "haydn", "bach"):
+        spread = movement_rate_range(composer, "downbeat_rest_share")
+        if not spread or spread.get("median") is None:
+            continue
+        assert abs(downbeat_rest_rate(composer) - spread["median"]) < 1e-6, (
+            f"{composer}: the pass is composing to something other than the "
+            f"median movement ({downbeat_rest_rate(composer)} vs {spread['median']})"
+        )
+
+
+def test_a_composer_with_too_few_movements_still_gets_a_rate():
+    """`movement_rate_range` returns None rather than guessing under four
+    movements, and a thinly-armed composer must not lose the pass entirely."""
+    from scales.composition_brief import downbeat_rest_rate
+
+    assert downbeat_rest_rate("mozart") is not None
+    assert downbeat_rest_rate("no-such-composer") is None

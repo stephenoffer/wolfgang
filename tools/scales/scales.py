@@ -162,6 +162,61 @@ def _load_graph(piece_id: str) -> "PieceGraph":
     return PieceGraph.load(str(path))
 
 
+class _ToolRefusal(Exception):
+    """A tool was asked to do something that cannot mean what it says.
+
+    Same mechanism as `_MissingPiece` — raised so a guard stays one line at the
+    top of a tool — but the message is the guard's rather than a fixed one.
+    """
+
+    def __init__(self, result: Dict):
+        self.result = result
+
+
+def _require_source_loaded(graph, piece_id: str, tool: str) -> None:
+    """A mode that transforms an existing score needs that score.
+
+    Every mode in `_MODE_LOCKS` — variation, style_transfer, continue_piece,
+    orchestrate, reduce_to_piano — is defined by what it PRESERVES from a
+    source. `load_source_score` is what reads that source in and what applies
+    the lock policy; the orchestrator skill says so plainly ("Without it the
+    mode has no material: the path alone is not the music").
+
+    Nothing enforced it. Planning a `variation` with no source loaded returned
+    ten phrase slots, `contract.source` empty and `contract.locks` **entirely
+    unset** — so the piece composed an original work, called it a variation,
+    and the lock policy that is the mode's whole definition never applied. The
+    same held for style_transfer, reduce_to_piano and continue_piece. Passing
+    `source_path` to `init_workspace` does not help: it records a path, and a
+    path is not a score.
+    """
+    mode = str(getattr(graph, "mode", "") or "")
+    if mode not in _MODE_LOCKS:
+        return
+    phrases = getattr(graph, "phrases", None) or {}
+    if any(getattr(p, "salience", "") == "source" for p in phrases.values()):
+        return
+    path = getattr(getattr(graph.contract, "source", None), "path", "")
+    raise _ToolRefusal(
+        {
+            "error": (
+                f"'{piece_id}': mode is '{mode}', which transforms an existing "
+                f"score, but no source has been loaded — so there is nothing to "
+                f"{'vary' if mode == 'variation' else 'transform'}."
+            ),
+            "hint": (
+                f"Call load_source_score('{piece_id}') before {tool}(). It reads "
+                f"the score in as phrases marked salience='source' AND applies "
+                f"the mode's lock policy ({', '.join(sorted(_MODE_LOCKS[mode]))}), "
+                f"which is what makes this mode different from compose_from_text."
+            ),
+            "source_path_recorded": path or None,
+            "next": f"load_source_score('{piece_id}'"
+            + (f", path='{path}')" if path else ", path='<score.musicxml>')"),
+        }
+    )
+
+
 def _tool(fn):
     """Turn a missing piece into the tool's normal error result."""
     import functools
@@ -170,7 +225,7 @@ def _tool(fn):
     def wrapper(*args, **kwargs):
         try:
             return fn(*args, **kwargs)
-        except _MissingPiece as exc:
+        except (_MissingPiece, _ToolRefusal) as exc:
             return exc.result
 
     return wrapper
@@ -272,6 +327,165 @@ _KEYBOARD_WORDS = (
     "pianoforte",
     "clavier",
 )
+#: Singers named by VOICE TYPE. "A sacred piece for soprano, alto, tenor and
+#: bass" named four people and resolved to `solo_piano`, because the singer
+#: words this module knew were "voice"/"voices"/"choir" and none of them appear
+#: in it — so four singers got a grand staff and the pianist's hand-span limit,
+#: which is the motet failure described below wearing different words.
+#:
+#: The names are shared with instruments, so a bare word list cannot be used:
+#: "bass clarinet", "alto saxophone", "tenor trombone" and "double bass" all
+#: name a voice type and none of them is a person. Hence the two guard sets and
+#: the position-aware scan in `_singer_voice_types`.
+_VOICE_TYPE_FAMILY = {
+    "soprano": "soprano",
+    "sopranos": "soprano",
+    "soprani": "soprano",
+    "superius": "soprano",
+    "cantus": "soprano",
+    "treble": "soprano",
+    "trebles": "soprano",
+    "descant": "soprano",
+    "mezzo": "mezzo",
+    "alto": "alto",
+    "altos": "alto",
+    "alti": "alto",
+    "altus": "alto",
+    "contralto": "alto",
+    "tenor": "tenor",
+    "tenors": "tenor",
+    "tenori": "tenor",
+    "tenore": "tenor",
+    "countertenor": "countertenor",
+    "baritone": "baritone",
+    "baritones": "baritone",
+    "bass": "bass",
+    "basses": "bass",
+    "basso": "bass",
+    "bassi": "bass",
+    "bassus": "bass",
+}
+_VOICE_TYPES = frozenset(_VOICE_TYPE_FAMILY)
+#: A voice type FOLLOWED by one of these is an instrument or a position in the
+#: texture, not a singer — "bass clarinet", "alto flute", "tenor line".
+_INSTRUMENT_AFTER_VOICE_TYPE = frozenset(
+    {
+        "clarinet",
+        "clarinets",
+        "saxophone",
+        "saxophones",
+        "sax",
+        "saxes",
+        "trombone",
+        "trombones",
+        "flute",
+        "flutes",
+        "recorder",
+        "recorders",
+        "oboe",
+        "oboes",
+        "horn",
+        "horns",
+        "tuba",
+        "tubas",
+        "trumpet",
+        "trumpets",
+        "cornet",
+        "cornets",
+        "bassoon",
+        "bassoons",
+        "viol",
+        "viols",
+        "viola",
+        "violin",
+        "guitar",
+        "guitars",
+        "drum",
+        "drums",
+        "lute",
+        "gamba",
+        "shawm",
+        "sackbut",
+        "crumhorn",
+        "harp",
+        "marimba",
+        "xylophone",
+        "banjo",
+        "mandolin",
+        "pipe",
+        "pipes",
+        "string",
+        "strings",
+        "continuo",
+        "line",
+        "lines",
+        "clef",
+        "register",
+        "staff",
+        "stave",
+        "entry",
+        "entries",
+    }
+)
+#: A voice type PRECEDED by one of these is an instrument or a figured-bass
+#: idiom — "double bass", "figured bass", "walking bass".
+_INSTRUMENT_BEFORE_VOICE_TYPE = frozenset(
+    {
+        "double",
+        "contra",
+        "contrabass",
+        "string",
+        "figured",
+        "ground",
+        "walking",
+        "thorough",
+        "thoroughbass",
+        "electric",
+        "upright",
+        "acoustic",
+    }
+)
+#: Repertoire for ONE singer. Lets a single named voice type beside a keyboard
+#: read as a song rather than as a keyboard piece whose tenor register is being
+#: described ("a chorale prelude for organ with the cantus in the tenor").
+#: Voice types that ALSO name a register or a line in keyboard writing — "the
+#: cantus in the tenor", "the bass of the fugue". Beside a named keyboard these
+#: are not evidence of a singer. The rest ("soprano", "contralto", "baritone",
+#: "mezzo", "countertenor") name people and nothing else.
+_REGISTER_AMBIGUOUS_TYPES = frozenset(
+    {
+        "alto",
+        "altos",
+        "alti",
+        "altus",
+        "tenor",
+        "tenors",
+        "tenori",
+        "tenore",
+        "bass",
+        "basses",
+        "basso",
+        "bassi",
+        "bassus",
+        "treble",
+        "trebles",
+        "cantus",
+        "superius",
+        "descant",
+    }
+)
+_SOLO_SONG_GENRES = frozenset(
+    {
+        "song",
+        "songs",
+        "lied",
+        "lieder",
+        "aria",
+        "arias",
+        "arietta",
+    }
+)
+
 #: "two-voice", "four-part" — a COUNT OF CONTRAPUNTAL LINES, not a count of
 #: people. It is the standard way to describe keyboard counterpoint.
 _TEXTURE_COUNT = re.compile(
@@ -286,6 +500,30 @@ def _words_of(text: str) -> frozenset:
 def _names_any(text: str, words) -> bool:
     present = _words_of(text)
     return any(w in present for w in words)
+
+
+def _singer_voice_types(text: str) -> set:
+    """The voice-type WORDS in `text` that name PEOPLE, not instruments.
+
+    Position-aware on purpose: the word alone cannot tell a singer from a
+    "bass clarinet". Words are returned rather than families because the caller
+    needs both how many distinct voices were named (via `_VOICE_TYPE_FAMILY`,
+    so "sopranos" and "soprano" count once) and whether any of them was one of
+    the unambiguous ones.
+    """
+    tokens = re.findall(r"[a-z]+", text)
+    found = set()
+    for i, tok in enumerate(tokens):
+        if tok not in _VOICE_TYPES:
+            continue
+        after = tokens[i + 1] if i + 1 < len(tokens) else ""
+        before = tokens[i - 1] if i else ""
+        if after in _INSTRUMENT_AFTER_VOICE_TYPE:
+            continue
+        if before in _INSTRUMENT_BEFORE_VOICE_TYPE:
+            continue
+        found.add(tok)
+    return found
 
 
 #: Modes whose TARGET forces are fixed by the mode itself, whatever the request
@@ -325,6 +563,16 @@ def _infer_instrumentation(description: str) -> Optional[str]:
         is actually named, so an unqualified "for four voices" still means four
         people.
 
+    A fourth class, added after "a sacred piece for soprano, alto, tenor and
+    bass" came back `solo_piano`: singers named by VOICE TYPE. Those names are
+    shared with instruments, so they are read in context — a type followed by
+    an instrument ("bass clarinet") or preceded by a qualifier ("double bass")
+    is not a person. A type that survives that scan means singers when two
+    distinct types appear, when no instrument is named at all, or when the
+    request names solo-song repertoire; a LONE type beside a named keyboard is
+    left undecided, because "a chorale prelude for organ with the cantus in the
+    tenor" is describing a register, not hiring a singer.
+
     Vocal is tested before ensemble and keyboard is not a shortcut, or "a piano
     trio" resolves to a keyboard piece.
     """
@@ -332,6 +580,16 @@ def _infer_instrumentation(description: str) -> Optional[str]:
     names_keyboard = _names_any(d, _KEYBOARD_WORDS)
     scanned = _TEXTURE_COUNT.sub(" ", d) if names_keyboard else d
     if _names_any(scanned, _VOCAL_FORCES):
+        return "choir"
+    voiced = _singer_voice_types(scanned)
+    families = {_VOICE_TYPE_FAMILY[t] for t in voiced}
+    if voiced and (
+        # a word that names a person and nothing else
+        any(t not in _REGISTER_AMBIGUOUS_TYPES for t in voiced)
+        or _names_any(scanned, _SOLO_SONG_GENRES)
+        # register words mean singers when no instrument is competing for them
+        or (not names_keyboard and (len(families) > 1 or not _names_any(scanned, _ENSEMBLE_WORDS)))
+    ):
         return "choir"
     if _names_any(scanned, _ENSEMBLE_WORDS):
         return "ensemble"
@@ -650,6 +908,10 @@ def build_form_graph(
             )
     workspace = _WORKSPACE / piece_id
     graph = _load_graph(piece_id)
+    # Planning is the first step that commits to a form, and for a mode whose
+    # form is supposed to COME FROM the source, planning without one is where
+    # the mode quietly turns into compose_from_text.
+    _require_source_loaded(graph, piece_id, "build_form_graph")
 
     # Build sections and phrases based on form
     # Build ON the existing form graph when this is an additional movement.
@@ -1753,6 +2015,10 @@ def run_scales_section(
     # reported exactly what it would have reported if it had been working. The
     # `planning_gaps` report says which INPUTS were missing; this says which
     # passes actually reached the notes.
+    # The last report from each pass, carrying its decline reasons. A section
+    # runs a pass once per phrase, so this is the final phrase's detail — enough
+    # to say WHICH rule is declining, which a bare count cannot.
+    _pass_reports: Dict[str, Dict[str, Any]] = {}
     _passes: Dict[str, int] = {
         "melody_thickened": 0,
         "bass_thickened": 0,
@@ -1798,12 +2064,15 @@ def run_scales_section(
                     node.surface.key
                     or getattr(getattr(_existing, "slot", None), "key", "")
                     or "C major",
+                    report=_pass_reports.setdefault("melody_thickened", {}),
                 )
                 _passes["bass_thickened"] += _thicken_bass_foundation(
                     node.surface,
                     node.surface.key
                     or getattr(getattr(_existing, "slot", None), "key", "")
                     or "C major",
+                    report=_pass_reports.setdefault("bass_thickened", {}),
+                    composer=composer_id,
                 )
                 # Before the tie pass, which must not find a note it is about
                 # to bind already rewritten underneath it.
@@ -1822,12 +2091,13 @@ def run_scales_section(
                     tuple(slot_meter_for(graph, node.phrase_id)),
                     composer=composer_id,
                     protect_bars=_theme_statement_bars(graph, _slot),
+                    report=_pass_reports.setdefault("barline_ties", {}),
                 )
                 # The OTHER way a bar avoids a fresh downbeat: it opens with a
                 # rest. `_hold_over_barline` ties into the bar; nothing let the
                 # melody simply be silent there, and this engine wrote ZERO
                 # leading rests in any layer across two complete pieces where
-                # real melodies rest on 5-12% of downbeats. After the tie pass,
+                # real melodies rest on 3-9% of downbeats. After the tie pass,
                 # which must not find a note it is about to bind already turned
                 # into a rest.
                 _passes["downbeat_rests"] += _rest_the_downbeat(
@@ -2061,6 +2331,8 @@ def run_scales_section(
         result["engine_repairs"] = engine_repairs
     # Reported ALWAYS, including the zeroes — a zero is the informative case.
     result["surface_passes"] = dict(_passes)
+    if _pass_reports:
+        result["surface_pass_detail"] = {k: v for k, v in _pass_reports.items() if v}
     idle = sorted(name for name, count in _passes.items() if not count)
     if idle:
         result["surface_passes_idle"] = idle

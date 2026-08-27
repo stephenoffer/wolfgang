@@ -543,7 +543,8 @@ def _rest_the_downbeat(
     A bar can lack a fresh downbeat attack two ways: the previous note is held
     across the barline, or the bar simply OPENS WITH A REST. `_hold_over_barline`
     covers the first. Nothing covered the second, and it is the larger share —
-    real melodies rest on 5-12% of downbeats where they tie on 1-5%.
+    real melodies rest on 3-9% of downbeats, by median movement, where they tie
+    on 0-5%.
 
     Measured on this engine's own output: **zero** leading rests, in any layer,
     across two complete pieces. Not a low rate — none. Every bar of the melody
@@ -738,9 +739,13 @@ def _rest_the_downbeat(
     # rate over the whole work however the phrases are cut. What it cannot do is
     # move an allowance to a phrase that can spend it: over a 41-bar ternary it
     # allotted three rests and two landed on phrases with ZERO eligible bars,
-    # where they were forfeited. Measured result, against each composer's own
-    # rate: sonatas 6.0-7.2% against 8.3-11.1%, ternaries 2.4-7.3% against
-    # 7.5-11.6%. Short, never over.
+    # where they were forfeited. Measured against each composer's MEDIAN
+    # MOVEMENT, six of seven configurations land inside his own p25-p75; the
+    # seventh (Schubert, whose rate is the highest of the six) falls below p25,
+    # which is where the forfeit shows. The earlier report of a systematic
+    # shortfall was scored against the POOLED rate, which sits above the median
+    # for every composer measured — the pass was closer to real than its own
+    # numbers said.
     #
     # Weighting the quota by each phrase's eligible fraction was tried and
     # OVERSHOT — a phrase with few eligible bars gets weighted up by more than
@@ -960,7 +965,11 @@ def _hold_over_barline(
 
 
 def _thicken_bass_foundation(
-    layer: LayerIR, key: str, share: float = 0.15, report: Optional[dict] = None
+    layer: LayerIR,
+    key: str,
+    share: float = 0.15,
+    report: Optional[dict] = None,
+    composer: str = "",
 ) -> int:
     """Give the left hand weight — thirds, fifths and octaves above the bass.
 
