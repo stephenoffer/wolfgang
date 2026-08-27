@@ -8,7 +8,10 @@ one auditable, patchable graph.
 
 from __future__ import annotations
 
+import contextlib
 import json
+import os
+import tempfile
 from dataclasses import asdict, fields
 from dataclasses import fields as dataclass_fields
 from datetime import datetime, timezone
@@ -685,12 +688,40 @@ class PieceGraph:
         self._data = data
 
     def save(self, path: str) -> None:
-        """Save the graph to a JSON file."""
+        """Save the graph to a JSON file, atomically.
+
+        `open(path, "w")` truncates before it writes, so this file was empty for
+        as long as the write took — and the graph is the SINGLE SOURCE OF TRUTH
+        for a whole composition. Anything interrupting the write left an empty
+        or half-written file where hours of work had been: a crash, a Ctrl-C, a
+        full disk. A concurrent reader saw the same thing, which is how it
+        surfaced — a test fixture reading a graph mid-save got
+        `JSONDecodeError: Expecting value: line 1 column 1 (char 0)`, the
+        signature of decoding an empty string.
+
+        Write beside it, flush to the platter, then rename. `os.replace` is
+        atomic, so a reader sees either the whole previous file or the whole new
+        one and never a partial one.
+        """
         filepath = Path(path)
         filepath.parent.mkdir(parents=True, exist_ok=True)
         data = self._to_data()
-        with open(filepath, "w") as f:
-            json.dump(data, f, indent=2, default=str)
+        # Same directory: `os.replace` is only atomic within one filesystem.
+        fd, tmp = tempfile.mkstemp(
+            dir=str(filepath.parent), prefix=f".{filepath.name}.", suffix=".tmp"
+        )
+        try:
+            with os.fdopen(fd, "w") as f:
+                json.dump(data, f, indent=2, default=str)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp, filepath)
+        except BaseException:
+            # Leave the previous good file in place, and take the scratch file
+            # with us rather than littering the workspace.
+            with contextlib.suppress(OSError):
+                os.unlink(tmp)
+            raise
 
     @classmethod
     def load(cls, path: str) -> "PieceGraph":

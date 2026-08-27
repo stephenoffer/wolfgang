@@ -125,7 +125,11 @@ def round_tripped(tmp_path):
     state.slot.meter = (3, 4)
     state.sketch = _populate(M.SketchIR)
     state.realized = compose_phrase(
-        [{"rh": "C5h. // G4h. // E4h.", "lh": "C3h."}], key="C", bar_start=1, phrase_id="p1", meter=(3, 4)
+        [{"rh": "C5h. // G4h. // E4h.", "lh": "C3h."}],
+        key="C",
+        bar_start=1,
+        phrase_id="p1",
+        meter=(3, 4),
     )
     state.realized.pickup_beats = 1.0
     state.realized.principal_line[0].technique = "arpeggio"
@@ -172,3 +176,42 @@ def test_the_specific_fields_that_were_being_dropped(round_tripped):
     assert phrase.craft_check is not None and phrase.craft_check.has_breath_point is not None
     assert isinstance(back.phrases["p1"].review, M.ReviewResult), "the critic's verdict stays typed"
     assert phrase.sketch.texture_plan, "SketchIR.texture_plan"
+
+
+def test_a_save_never_leaves_a_partial_graph():
+    """`open(path, "w")` truncates before it writes, so the graph — the SINGLE
+    SOURCE OF TRUTH for a whole composition — was empty for as long as the write
+    took.
+
+    Anything interrupting it left an empty file where hours of work had been: a
+    crash, a Ctrl-C, a full disk. A concurrent reader saw the same, which is how
+    it surfaced — a fixture reading a graph mid-save raised
+    `JSONDecodeError: Expecting value: line 1 column 1 (char 0)`, which is what
+    decoding an empty string looks like.
+    """
+    import os
+    import tempfile
+    from pathlib import Path
+
+    from scales.piece_graph import PieceGraph
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "piece_graph.json"
+        graph = PieceGraph()
+        graph.piece_id = "atomic-probe"
+        graph.save(str(path))
+        good = path.read_text()
+        assert good.strip(), "the first save wrote nothing"
+
+        class _Unserializable:
+            def __repr__(self):
+                raise RuntimeError("boom")
+
+        graph.output_paths = {"score": _Unserializable()}
+        with pytest.raises(Exception):
+            graph.save(str(path))
+
+        # The previous good file survives, byte for byte.
+        assert path.read_text() == good, "a failed save destroyed the last good graph"
+        # And no scratch file is left in the workspace.
+        assert os.listdir(tmp) == ["piece_graph.json"], os.listdir(tmp)
