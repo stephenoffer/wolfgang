@@ -140,14 +140,22 @@ def test_a_bar_whose_accompaniment_is_also_silent_is_left_alone():
     assert _rest_the_downbeat(ir, (4, 4), share=0.5) == 0
 
 
-def test_the_bars_melodic_peak_is_never_the_note_removed():
-    """Silencing a bar's highest note silences what it was shaped toward."""
+def test_the_phrases_climax_is_never_the_note_removed():
+    """Silencing the note the whole phrase is shaped toward removes the phrase.
+
+    The first version of this rule protected each BAR's highest note, which
+    sounds careful and excludes every descending bar — a melody that falls from
+    its downbeat has its peak there by construction. It became the single
+    largest decline reason in the sweep. A bar-local high point is ordinary; the
+    phrase's climax is not.
+    """
     ir = LayerIR(phrase_id="p", meter=(4, 4), bar_count=24, key="C major")
     ir.principal_line = [
         LayerEvent(
             bar=b,
             beat=1.0 + i,
-            pitch=["G5", "C5", "E5", "D5"][i % 4],  # the DOWNBEAT is the peak
+            # Bar 1 beat 1 is the highest note in the whole phrase.
+            pitch=("C7" if (b, i) == (1, 0) else ["C5", "E5", "G5", "D5"][i % 4]),
             duration="q",
             role="structural",
             source_layer="principal_line",
@@ -159,7 +167,44 @@ def test_the_bars_melodic_peak_is_never_the_note_removed():
         LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w", source_layer="bass_foundation")
         for b in range(1, 25)
     ]
-    assert _rest_the_downbeat(ir, (4, 4), share=0.5) == 0
+    report = {}
+    _rest_the_downbeat(ir, (4, 4), share=0.9, report=report)
+    first = sorted([e for e in ir.principal_line if e.bar == 1], key=lambda x: float(x.beat))
+    assert first[0].pitch == "C7", "the phrase's climax was silenced"
+    assert report["declined"]["the downbeat is the phrase's climax"] == 1
+
+
+def test_a_bar_that_merely_falls_from_its_downbeat_is_still_eligible():
+    """The converse, asserted because a rule with only one side stated is the
+    one that gets half-reverted later. Every bar here descends, so under the old
+    rule every downbeat was a local peak and nothing was ever eligible."""
+    ir = LayerIR(phrase_id="p", meter=(4, 4), bar_count=24, key="C major")
+    # Every bar FALLS from its downbeat — so under the old rule every downbeat
+    # was a local peak. Only bar 12 reaches the phrase's actual high point, so
+    # the climax rule excludes one bar and not twenty-four. (A first version of
+    # this fixture started every bar on the same G5, which made every downbeat
+    # the phrase peak too, and it failed for the fixture's reason rather than
+    # the code's.)
+    tops = ["G5", "A5", "F5", "E5", "G5", "A5", "F5", "E5", "G5", "A5", "F5", "C6"]
+    ir.principal_line = [
+        LayerEvent(
+            bar=b,
+            beat=1.0 + i,
+            pitch=[tops[(b - 1) % len(tops)], "D5", "C5", "B4"][i % 4],
+            duration="q",
+            role="structural",
+            source_layer="principal_line",
+        )
+        for b in range(1, 25)
+        for i in range(4)
+    ]
+    ir.bass_foundation = [
+        LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w", source_layer="bass_foundation")
+        for b in range(1, 25)
+    ]
+    assert _rest_the_downbeat(ir, (4, 4), share=0.12) > 0, (
+        "every bar descends, so under a bar-local peak rule nothing is ever eligible"
+    )
 
 
 def test_the_rest_is_written_explicitly_and_fills_the_gap_it_opens():
@@ -265,3 +310,60 @@ def test_a_pass_that_acted_carries_no_reason():
     assert _rest_the_downbeat(ir, (4, 4), share=0.12, report=report) > 0
     assert "reason" not in report, report
     assert report["applied"] > 0
+
+
+def test_a_zero_is_never_bare():
+    """The invariant the report exists to hold: `applied == 0` implies a reason
+    or a declined candidate.
+
+    A peer session found `applied: 0` with an empty `declined` and no `reason` —
+    the one shape this class was built to make impossible. The cause was a
+    `continue` in the apply loop that recorded nothing when a gap turned out not
+    to be a notatable rest. Rather than trust that every future path remembers,
+    the report SAYS SO when it happens: a reader who sees that sentence knows to
+    look at the pass rather than at the music.
+    """
+    from scales.surface_composer import PassReport
+
+    bare = PassReport("probe")
+    bare.applied = 0
+    assert "unaccounted path" in bare.as_dict()["reason"]
+
+    acted = PassReport("probe")
+    acted.applied = 3
+    assert "reason" not in acted.as_dict()
+
+    declined = PassReport("probe")
+    declined.decline("nothing eligible")
+    assert "reason" not in declined.as_dict()
+    assert declined.as_dict()["declined"] == {"nothing eligible": 1}
+
+
+def test_every_zero_this_pass_can_return_is_explained():
+    """Walked across the conditions rather than asserted once."""
+    cases = [
+        ("share zero", dict(share=0.0), _piece()),
+        ("no accompaniment", dict(share=0.5), _piece(with_bass=False)),
+        ("all protected", dict(share=0.5, protect_bars=frozenset(range(1, 25))), _piece()),
+        ("too short", dict(share=0.5), _piece(bars=1, notes=2)),
+    ]
+    for label, kwargs, ir in cases:
+        report = {}
+        applied = _rest_the_downbeat(ir, (4, 4), report=report, **kwargs)
+        assert applied == 0, label
+        assert report.get("reason") or report.get("declined"), f"{label}: bare zero -> {report}"
+        assert "unaccounted path" not in report.get("reason", ""), f"{label}: {report}"
+
+
+def test_a_short_phrase_is_not_refused_for_being_short():
+    """The floor was eight notes, set when the pass was new.
+
+    The rate comes from the composer's corpus and the quota from absolute bar
+    numbers, so neither depends on how much material is in front of this call.
+    All an eight-note floor did was refuse every short phrase — the identical
+    floor, set the same way, was making the tie pass idle on three composers.
+    """
+    ir = _piece(bars=3, notes=2)
+    report = {}
+    _rest_the_downbeat(ir, (4, 4), share=0.5, report=report)
+    assert "too short" not in report.get("reason", ""), report

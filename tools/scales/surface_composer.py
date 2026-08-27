@@ -315,7 +315,9 @@ def _clip_to_next_onset_in_voice(bundles: list[OnsetBundle]) -> None:
                 onset.duration = fitted[0]
 
 
-def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> int:
+def _thicken_principal_line(
+    layer: LayerIR, key: str, share: float = 0.10, report: Optional[dict] = None
+) -> int:
     """Give the melody weight at its arrivals — thirds, sixths and octaves.
 
     Every melody this engine wrote was 100% single notes, so no moment sounded
@@ -340,16 +342,17 @@ def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> in
     # so a caller disabling this pass got a pass that still fired once — and a
     # control arm that was not a control. Its sibling passes guard this; this
     # one did not, which I asserted otherwise about before checking.
+    made = _report_into(report, "melody_thickened")
     if share <= 0:
-        return 0
+        return made.stop(report, "share is zero")
     notes = [e for e in layer.principal_line if e.pitch != "rest" and not isinstance(e.pitch, list)]
     if len(notes) < 8:
-        return 0
+        return made.stop(report, f"only {len(notes)} melody notes — too short to judge")
 
     midis = {id(e): pitch_to_midi(e.pitch) for e in notes}
     notes = [e for e in notes if midis[id(e)] is not None]
     if len(notes) < 8:
-        return 0
+        return made.stop(report, "too few melody notes could be read as pitches")
 
     # Never thicken an instant that already carries more than one note — the
     # composer put a chord there and it is not this pass's business.
@@ -374,9 +377,11 @@ def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> in
     # out thicker than either the composer or the corpus asked for — the same
     # compounding that took a section from 7 dynamics to 9.
     already = sum(1 for n in counts.values() if n > 1)
+    made.considered = len(counts)
     budget = max(1, round(len(counts) * share)) - already
+    made.allowance = max(0, budget)
     if budget <= 0:
-        return 0
+        return made.stop(report, f"{already} attacks already carry a chord — quota met")
     chosen: list = [peak]
     if budget > 1 and len(structural) > 1:
         step = max(1, len(structural) // (budget - 1))
@@ -384,10 +389,12 @@ def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> in
             if e is not peak and len(chosen) < budget:
                 chosen.append(e)
 
+    made.eligible = len(chosen)
     added = 0
     for event in chosen:
         instant = (event.bar, round(float(event.beat), 4))
         if counts.get(instant, 0) > 1:
+            made.decline("the attack already carries a chord")
             continue
         top = midis[id(event)]
         # The peak gets the octave; elsewhere a third, then a sixth.
@@ -413,6 +420,8 @@ def _thicken_principal_line(layer: LayerIR, key: str, share: float = 0.10) -> in
 
     if added:
         layer.principal_line.sort(key=lambda e: (e.bar, float(e.beat)))
+    made.applied = added
+    _finish(report, made)
     return added
 
 
@@ -474,6 +483,17 @@ class PassReport:
         return 0
 
     def as_dict(self) -> dict:
+        # A ZERO MUST BE EXPLAINED. The whole point of this class is that
+        # `applied: 0` is never bare, and a pass reporting zero with no reason
+        # and no declined candidate has a hole in its own accounting — a path
+        # that returns without saying anything, which is the exact thing the
+        # report replaces. Say so rather than emit the silent zero: a reader who
+        # sees this knows to look at the pass, not at the music.
+        if self.applied == 0 and not self.reason and not self.declined:
+            self.reason = (
+                "returned zero without declining a candidate or stating a reason "
+                f"— {self.name} has an unaccounted path"
+            )
         out = {
             "pass": self.name,
             "ran": True,
@@ -581,7 +601,13 @@ def _rest_the_downbeat(
         (e for e in layer.principal_line if not isinstance(e.pitch, list)),
         key=lambda e: (e.bar, float(e.beat)),
     )
-    if len(line) < 8:
+    # FOUR NOTES, not eight. The rate comes from the composer's corpus and the
+    # quota from absolute bar numbers, so neither depends on how much material
+    # is in front of this call — a floor of eight refused every short phrase and
+    # bought nothing. What the operation actually needs is a bar with a note to
+    # silence and a note left over. (The same floor, set the same way for the
+    # same non-reason, was making the tie pass idle on three composers.)
+    if len(line) < 4:
         return made.stop(report, f"melody too short to judge ({len(line)} notes)")
 
     by_bar: dict[int, list] = {}
@@ -629,6 +655,17 @@ def _rest_the_downbeat(
     # without the melody), the bar must keep real melodic content after the
     # rest, and the note removed must not be the bar's melodic peak — silencing
     # the highest note in a bar is silencing the thing it was shaped toward.
+    # THE PHRASE'S CLIMAX, not each bar's local peak.
+    #
+    # The first rule was "never silence the highest note in the bar", which
+    # sounds careful and excludes every descending bar — a melody that falls
+    # from its downbeat has its peak there by construction. It became the single
+    # largest decline reason in the sweep. A bar-local high point is ordinary;
+    # the note that must survive is the one the whole phrase is shaped toward.
+    peaks = [pitch_to_midi(e.pitch) for e in line if e.pitch != "rest"]
+    peaks = [m for m in peaks if m is not None]
+    phrase_peak = max(peaks) if peaks else None
+
     bass_downbeats = {
         e.bar
         for e in (layer.bass_foundation or []) + (layer.response_layer or [])
@@ -663,12 +700,10 @@ def _rest_the_downbeat(
         if abs(float(head.beat) - 1.0) > 1e-6:
             made.decline("bar already starts late")
             continue  # nothing to silence: the bar already starts late
-        tops = [pitch_to_midi(e.pitch) for e in events if e.pitch != "rest"]
-        tops = [m for m in tops if m is not None]
         head_midi = pitch_to_midi(head.pitch)
-        if tops and head_midi is not None and head_midi >= max(tops):
-            made.decline("the downbeat is the bar's peak")
-            continue  # the bar's peak is not a note to delete
+        if head_midi is not None and phrase_peak is not None and head_midi >= phrase_peak:
+            made.decline("the downbeat is the phrase's climax")
+            continue  # the note the whole phrase is shaped toward
         gap = float(nxt.beat) - float(head.beat)
         if gap <= 0:
             continue
@@ -731,6 +766,7 @@ def _rest_the_downbeat(
     for bar, head, gap in eligible:
         duration = beats_to_dur(gap) or largest_dur_at_most(gap)
         if duration is None or (dur_to_beats(duration) or 0) <= 0:
+            made.decline("the gap is not a notatable rest")
             continue
         head.pitch = "rest"
         head.duration = duration
@@ -749,6 +785,7 @@ def _hold_over_barline(
     share: float = 0.09,
     composer: str = "",
     protect_bars: frozenset = frozenset(),
+    report: Optional[dict] = None,
 ) -> int:
     """Let the melody lean into the next bar instead of restarting every time.
 
@@ -766,8 +803,9 @@ def _hold_over_barline(
     note is written as a tied pair, which is what an engraver writes and what
     the MIDI preview sounds.
     """
+    made = _report_into(report, "barline_ties")
     if share <= 0:
-        return 0
+        return made.stop(report, "share is zero")
     # HOW OFTEN, from the composer's own music. Real practice varies eightfold —
     # Haydn 0.015 ties per bar, Beethoven 0.134, Palestrina 0.192 — and a fixed
     # 0.09 was right for nobody but Mozart and Chopin. Measured at 0.09 the
@@ -782,13 +820,23 @@ def _hold_over_barline(
         if measured is not None:
             share = measured
             if share <= 0:
-                return 0
+                return made.stop(report, f"{composer} never holds over a barline")
     events = sorted(
         (e for e in layer.principal_line if e.pitch != "rest" and not isinstance(e.pitch, list)),
         key=lambda e: (e.bar, float(e.beat)),
     )
-    if len(events) < 12:
-        return 0
+    # A TIE NEEDS TWO ADJACENT NOTES AT A BARLINE, not twelve notes.
+    #
+    # This floor was 12, chosen when the pass was new and guarding against
+    # judging a rate on tiny material — but the rate comes from the composer's
+    # corpus and the quota from absolute bar numbers, so neither depends on how
+    # much is in front of it. All the floor did was refuse every short phrase:
+    # its own report showed "only 8 melody notes" and "only 10 melody notes"
+    # accounting for the idle pass on Bach, Haydn and Schubert. Four is what
+    # the operation actually requires — a note either side of one barline, with
+    # something left in each bar afterwards.
+    if len(events) < 4:
+        return made.stop(report, f"only {len(events)} melody notes — nothing to hold")
 
     from .duration import dur_to_beats
 
@@ -816,15 +864,21 @@ def _hold_over_barline(
         # same pair, re-set the same two fields, and returned 1 — reporting work
         # it had not done. The state was idempotent and the COUNT was not, which
         # is the harder half to notice.
+        made.considered += 1
         if a.tie or b.tie:
+            made.decline("already tied")
             continue
         if occupancy.get((a.bar, round(float(a.beat), 4)), 0) > 1:
+            made.decline("the note already carries a chord")
             continue
         if occupancy.get((b.bar, round(float(b.beat), 4)), 0) > 1:
+            made.decline("the downbeat already carries a chord")
             continue
         if b.bar != a.bar + 1 or abs(float(b.beat) - 1.0) > 1e-6:
+            made.decline("the next note is not the following downbeat")
             continue
         if abs((float(a.beat) + float(dur_to_beats(a.duration))) - (1.0 + cap)) > 1e-6:
+            made.decline("the held note does not reach the barline")
             continue
         # A SUSPENSION DISPLACES A STRUCTURAL ARRIVAL — that is what makes it a
         # suspension. Refusing every structural downbeat was safe while nothing
@@ -841,16 +895,20 @@ def _hold_over_barline(
         # is an artifact of that placement and one held note is what anyone
         # would write.
         if b.bar in protect_bars:
+            made.decline("the theme is stated in that bar")
             continue
         if b.role not in absorbable and a.pitch != b.pitch and b.role != NoteRole.STRUCTURAL.value:
+            made.decline("the downbeat is neither absorbable nor structural")
             continue
         midi = pitch_to_midi(a.pitch)
         if midi is None or midi % 12 not in scale_pcs:
+            made.decline("the held pitch is outside the key")
             continue
         candidates.append((a, b))
 
+    made.eligible = len(candidates)
     if not candidates:
-        return 0
+        return made.stop(report, "no pair could be held across a barline")
 
     # Less the ties already there, so a revision loop does not add a fresh
     # budget's worth on every pass — the same compounding the thickening passes
@@ -876,8 +934,12 @@ def _hold_over_barline(
     quota = round(last * share) - round((first_bar - 1) * share)
     already = sum(1 for e in layer.principal_line if e.tie == "start")
     budget = quota - already
+    made.allowance = max(0, budget)
     if budget <= 0:
-        return 0
+        return made.stop(
+            report,
+            f"the quota of {quota} for bars {first_bar}-{last} is already met ({already} tied)",
+        )
     step = max(1, len(candidates) // budget)
     held = 0
     for a, b in candidates[::step]:
@@ -891,10 +953,14 @@ def _hold_over_barline(
         b.articulation = None
         b.ornament = None
         held += 1
+    made.applied = held
+    _finish(report, made)
     return held
 
 
-def _thicken_bass_foundation(layer: LayerIR, key: str, share: float = 0.15) -> int:
+def _thicken_bass_foundation(
+    layer: LayerIR, key: str, share: float = 0.15, report: Optional[dict] = None
+) -> int:
     """Give the left hand weight — thirds, fifths and octaves above the bass.
 
     Every accompaniment this engine wrote was single notes: 11 distinct LH
@@ -910,18 +976,19 @@ def _thicken_bass_foundation(layer: LayerIR, key: str, share: float = 0.15) -> i
     and it never lands on an instant that already carries more than one note —
     that is a texture the composer chose.
     """
+    made = _report_into(report, "bass_thickened")
     if share <= 0:
-        return 0
+        return made.stop(report, "share is zero")
     events = [
         e for e in layer.bass_foundation if e.pitch != "rest" and not isinstance(e.pitch, list)
     ]
     if len(events) < 8:
-        return 0
+        return made.stop(report, f"only {len(events)} bass notes — too short to judge")
 
     midis = {id(e): pitch_to_midi(e.pitch) for e in events}
     events = [e for e in events if midis[id(e)] is not None]
     if len(events) < 8:
-        return 0
+        return made.stop(report, "too few bass notes could be read as pitches")
 
     occupancy: dict = {}
     for e in layer.bass_foundation:
@@ -937,16 +1004,20 @@ def _thicken_bass_foundation(layer: LayerIR, key: str, share: float = 0.15) -> i
 
     # In INSTANTS, less what is already a chord — see `_thicken_principal_line`.
     already = sum(1 for n in occupancy.values() if n > 1)
+    made.considered = len(occupancy)
     budget = max(1, round(len(occupancy) * share)) - already
+    made.allowance = max(0, budget)
     if budget <= 0:
-        return 0
+        return made.stop(report, f"{already} bass attacks already carry a chord — quota met")
     step = max(1, len(preferred) // budget)
+    made.eligible = len(preferred[::step])
     added = 0
     for event in preferred[::step]:
         if added >= budget:
             break
         instant = (event.bar, round(float(event.beat), 4))
         if occupancy.get(instant, 0) > 1:
+            made.decline("the bass attack already carries a chord")
             continue
         bottom = midis[id(event)]
         # THE INTERVAL DEPENDS ON THE REGISTER, and trying a third first
@@ -987,6 +1058,8 @@ def _thicken_bass_foundation(layer: LayerIR, key: str, share: float = 0.15) -> i
 
     if added:
         layer.bass_foundation.sort(key=lambda e: (e.bar, float(e.beat)))
+    made.applied = added
+    _finish(report, made)
     return added
 
 
@@ -1046,7 +1119,9 @@ def _shape_the_bass_cadence(layer: LayerIR, bar_len, shape: str, last_bar: int) 
     return True
 
 
-def _shape_the_cadence(layer: LayerIR, meter: tuple, cadence: str, last_bar: int) -> bool:
+def _shape_the_cadence(
+    layer: LayerIR, meter: tuple, cadence: str, last_bar: int, report: Optional[dict] = None
+) -> bool:
     """Let the close depend on what kind of close it is.
 
     Every phrase ending this engine wrote had the identical rhythm — a quarter
@@ -1060,8 +1135,12 @@ def _shape_the_cadence(layer: LayerIR, meter: tuple, cadence: str, last_bar: int
     rest opens after it. An evaded cadence is not stopping at all, so it is left
     alone — which is the whole point of an evaded cadence.
     """
+    made = _report_into(report, "cadences_shaped")
+    made.considered = 1
     shape = _CADENCE_SHAPE.get((cadence or "none").strip(), "carry_on")
     if shape == "carry_on":
+        made.decline(f"a {cadence or 'none'} cadence is not stopping")
+        _finish(report, made)
         return False
 
     from .duration import beats_to_dur, dur_to_beats
@@ -1149,6 +1228,66 @@ def _clamp_to_period_register(layer: LayerIR, composer: str) -> int:
                 event.pitch = midi_to_pitch(shifted, layer.key or "C")
                 moved += 1
     return moved
+
+
+def _map_pattern_to_chord(pattern_midis: list[int], choices: list[int]) -> dict:
+    """Map a pattern's DISTINCT pitches onto chord tones, keeping its shape.
+
+    Snapping each note independently to its nearest chord tone destroys the
+    figure whenever the tones are sparser than the pattern: a real Alberti bass
+    (root, fifth, third, fifth — four positions, three pitches, spanning a
+    tenth) came out as `D2 D3 D3 D2 D3 D2 D3`, two pitches oscillating at the
+    octave, because every pattern pitch found a D nearer than anything else.
+    Measured with the corpus's own classifier, the left hand held **1.52
+    distinct pitches per bar against real Mozart's 3.30**, and the flattened
+    result was then classified as what it had become — `pedal_point` in 27% of
+    bars where Mozart writes it in 3.4%, while `block_chord_offbeat`, 10.4% of
+    his bars, never appeared at all.
+
+    A pattern is a SHAPE. Its lowest pitch takes the nearest chord tone, its
+    next-lowest the nearest one ABOVE that, and so on: contour and the number of
+    distinct pitches both survive, which is what keeps the figure recognisable
+    as the idiom it was retrieved as.
+    """
+    uniq = sorted(set(pattern_midis))
+    if not uniq or not choices:
+        return {}
+    ordered = sorted(choices)
+    mapping: dict = {}
+    taken = -1
+    for midi in uniq:
+        above = [c for c in ordered if c > taken] or [ordered[-1]]
+        pick = min(above, key=lambda c: abs(c - midi))
+        mapping[midi] = pick
+        taken = pick
+    return mapping
+
+
+def _lh_chord_tone_choices(chord_tones_midi: list[int]) -> list[int]:
+    """The chord's tones ACROSS the left hand's register, not in one octave.
+
+    `_get_chord_tones_for_bar` returns a triad built from `root + 48` — three or
+    four pitches inside a single octave. Every retrieved pattern's pitch was then
+    snapped to the nearest of those and clamped into 36..60, so a figure spanning
+    an octave and a third collapsed onto two or three notes. Measured against the
+    classifier the corpus itself uses, our left hand played **1.52 distinct
+    pitches per bar where real Mozart plays 3.30** — and the flattened result was
+    then classified as what it had become: `pedal_point` 27% of bars against his
+    real 3.4%, `block_chord_tremolo` 7% against his 0.4%, while
+    `block_chord_offbeat` (the oom-pah, 10.4% of his bars) never appeared at all.
+
+    A real Alberti bass is C2 G2 E3 G2 — the same three tones, placed in the
+    register the hand is actually in. Offering every octave copy inside the left
+    hand's range lets the snap keep the pattern's shape instead of erasing it.
+    """
+    out: set[int] = set()
+    for tone in chord_tones_midi:
+        pc = tone % 12
+        midi = BASS_RANGE[0] + ((pc - BASS_RANGE[0]) % 12)
+        while midi <= BASS_RANGE[1]:
+            out.add(midi)
+            midi += 12
+    return sorted(out) or list(chord_tones_midi)
 
 
 # The register a melody is allowed to occupy, measured rather than assumed.
@@ -2510,6 +2649,15 @@ class SurfaceComposer:
         # it to the current bar rather than emitting onsets past the barline for
         # the repair pass to drop.
         bar_cap = float(bar_duration(meter)) + 1.0
+        _pattern_midis = [
+            m
+            for m in (pitch_to_midi(e.pitch) for e in lh_events if e.pitch != "rest")
+            if m is not None
+        ]
+        _shape = _map_pattern_to_chord(
+            _pattern_midis, _lh_chord_tone_choices(chord_tones_midi)
+        )
+
         events: list[_TaggedEvent] = []
         for _i, evt in enumerate(lh_events):
             if float(evt.beat) >= bar_cap - 1e-9:
@@ -2536,7 +2684,9 @@ class SurfaceComposer:
             # Snap each pattern pitch to nearest chord tone
             evt_midi = pitch_to_midi(evt.pitch)
             if evt_midi is not None and chord_tones_midi:
-                snapped = min(chord_tones_midi, key=lambda ct: abs(ct - evt_midi))
+                snapped = _shape.get(evt_midi) or min(
+                    _lh_chord_tone_choices(chord_tones_midi), key=lambda ct: abs(ct - evt_midi)
+                )
                 # Keep in LH register
                 snapped = clamp_to_range(snapped, 36, 60)
                 pitch = midi_to_pitch(snapped, key)
