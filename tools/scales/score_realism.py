@@ -235,6 +235,79 @@ def detect_repeated_bars(bars: List[Dict[str, Any]], cap: int = 6) -> List[Dict[
     return out
 
 
+#: Fewest phrase openings (or endings) before "nothing comes back" is a claim
+#: about the music rather than about the sample. Measured over real movements
+#: from six composers, the share where the most common figure appears exactly
+#: once: 6.2% / 2.9% at four phrases, 3.0% / 0.5% at six.
+_RECURRENCE_MIN_PHRASES = 6
+
+
+def detect_no_recurring_material(
+    bars: List[Dict[str, Any]],
+    phrase_start_bars: Sequence[int],
+    phrase_end_bars: Sequence[int],
+    melody_staff: int = 0,
+    cap: int = 2,
+) -> List[Dict[str, Any]]:
+    """Nothing in the piece ever comes back.
+
+    Every detector in this file catches too MUCH sameness. None of them catches
+    too little, and a piece where nothing recurs passes all of them — which is
+    the other half of sounding machine-made, and the more common half here. On
+    an 85-bar generated piece: the most common phrase opening appeared in 1 of
+    19 phrases, against a real median of a third. That is not variety. It is a
+    piece with no theme, where the listener is given nothing to recognise.
+
+    Measured over 304 real movements (mozart, beethoven, chopin, haydn,
+    schubert, bach) with at least six marked phrase openings, the most common
+    opening figure appears exactly once in **3.0%** of them; for cadential
+    rhythms, **0.5%** of 386. Below six phrases the same measure hits 6.2% and
+    2.9%, because at four phrases "nothing repeated" is as much a statement
+    about the sample as about the music — hence the floor.
+
+    `info`, never `warn`: a composer may genuinely write through-composed music
+    with no returning figure, and the fresh-ears critic is better placed than a
+    counter to say whether this piece wanted one.
+    """
+    out: List[Dict[str, Any]] = []
+    for label, positions, key in (
+        (
+            "opening",
+            phrase_start_bars,
+            lambda r: (_rhythm_sig(r), _contour_sig(r)),
+        ),
+        ("cadence", phrase_end_bars, _rhythm_sig),
+    ):
+        marks = set(int(b) for b in positions)
+        recs = [b for b in bars if b["staff"] == melody_staff and b["bar"] in marks and b["midis"]]
+        if len(recs) < _RECURRENCE_MIN_PHRASES:
+            continue
+        counts = Counter(key(r) for r in recs)
+        top = counts.most_common(1)[0][1]
+        if top > 1:
+            continue
+        out.append(
+            _finding(
+                "no_recurring_material",
+                min(r["bar"] for r in recs),
+                _INFO,
+                f"No {label} figure appears twice: all {len(recs)} phrase {label}s "
+                f"are different. Real movements reuse one in about a third of "
+                f"their phrases; nothing here comes back for the listener to "
+                f"recognise.",
+                "Bring the head-motif back — literally at a return, varied in a "
+                "sequence, in the bass under new material, inverted in a "
+                "development. A piece with no recurring idea has nothing to "
+                "develop and nothing to resolve.",
+                phrases_examined=len(recs),
+                kind=label,
+            )
+        )
+        if len(out) >= cap:
+            break
+    return out
+
+
 #: Share of phrase endings sharing one rhythm before it reads as formula rather
 #: than style. Per staff: see `detect_cadence_formula_reuse` for the measured
 #: distributions these come from. Both sit at an 8% false-positive rate on real
@@ -1393,7 +1466,23 @@ def phrase_boundaries(graph, scope: str = "full") -> Dict[str, Any]:
     at every phrase ending" is not computable from the score alone. Bars are
     re-based the same way the assembler re-bases a partial scope, so the numbers
     line up with the bars in the assembled file.
+
+    IT DID NOT FILTER BY SCOPE. Every phrase in the graph was collected however
+    narrow the scope, so evaluating one section of a three-movement work handed
+    the detectors phrase ends at bars 4, 8, 12 … 85 against an assembled file
+    holding bars 1-8. Two of those ends existed, the detectors need three, and
+    all four of them returned nothing — so `self_evaluate` reported a clean
+    realism audit on every section of every piece, and the section gate's
+    advisories were empty because the detectors could not see the music, not
+    because the music was clean. A section that does not start at bar 1 was
+    worse: `shift` came from the global minimum, so nothing was re-based either.
+
+    `_in_scope` is the assembler's own answer to "is this phrase in this scope",
+    and asking it is what keeps these bar numbers aligned with the file the
+    detectors are reading.
     """
+    from .assembler import _in_scope
+
     starts: List[int] = []
     ends: List[int] = []
     lengths: List[int] = []
@@ -1401,6 +1490,8 @@ def phrase_boundaries(graph, scope: str = "full") -> Dict[str, Any]:
     for ps in (getattr(graph, "phrases", None) or {}).values():
         slot = getattr(ps, "slot", None)
         if slot is None or not getattr(ps, "realized", None):
+            continue
+        if not _in_scope(ps, scope):
             continue
         b0 = int(slot.bar_start or 1)
         n = int(slot.bar_count or 1)
@@ -1537,6 +1628,11 @@ def realism_report(
     findings += detect_syncopation_absence(bars, composer=composer)
     findings += detect_uniform_phrase_lengths(bounds["lengths"])
     findings += detect_identical_phrase_openings(bars, bounds["starts"], melody_staff=melody_staff)
+    # The mirror of the two above: everything else in this file catches too much
+    # sameness, and a piece where nothing recurs passes all of them.
+    findings += detect_no_recurring_material(
+        bars, bounds["starts"], bounds["ends"], melody_staff=melody_staff
+    )
     findings += detect_register_stasis(bars, melody_staff, staff_count=staff_count)
     findings += detect_scalar_overuse(bars, melody_staff, composer=composer)
     findings += detect_closing_gesture_absence(bars)

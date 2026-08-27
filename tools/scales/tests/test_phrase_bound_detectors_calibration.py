@@ -8,12 +8,16 @@ returns empty lists, and FOUR detectors take their input from it:
     detect_uniform_phrase_lengths      bounds["lengths"]
     detect_identical_phrase_openings   bounds["starts"]
     detect_texture_stasis_across_sections   bounds["sections"]
+    detect_no_recurring_material       bounds["starts"] + bounds["ends"]
 
 Each of them returns immediately on an empty sequence. So their clean record in
 that harness says nothing about whether they clear real music — they never ran
 on it. A check reporting nothing may be unable to report anything, and the
 promise in `score_realism`'s docstring that "every threshold was set by running
 the detector over the real corpus" was not true of these.
+
+`detect_no_recurring_material` was added afterwards and this file's structural
+test is what caught it joining the set — which is the gap not coming back.
 
 The corpus bar records carry what the reference scores lack: `phrase_position`,
 marking bars `cadential` / `closing` / `opening`. This harness reconstructs
@@ -195,6 +199,53 @@ def test_the_melody_staff_is_resolved_not_assumed():
     assert "melody_staff" in src
 
 
+@pytest.mark.calibration
+def test_no_recurring_material_clears_real_music():
+    """The FLAGS half for a detector that mostly FINDS.
+
+    "Nothing in this piece comes back" must not be said of real music. Measured
+    as the share of movements whose most common phrase opening (or cadential
+    rhythm) appears exactly once.
+    """
+    from scripts.build_corpus_indexes import group_by_source, load_bars
+
+    from scales.score_realism import _RECURRENCE_MIN_PHRASES, _contour_sig, _rhythm_sig
+
+    stats = {}
+    for position, key in (
+        ("opening", lambda r: (_rhythm_sig(r), _contour_sig(r))),
+        ("cadential", _rhythm_sig),
+    ):
+        total = flagged = 0
+        for composer in (*_COMPOSERS, "schubert", "bach"):
+            for _src, mvt in group_by_source(load_bars(composer)).items():
+                marked = [
+                    b
+                    for b in mvt
+                    if str(b.get("phrase_position", "")).lower() == position and b.get("rh_display")
+                ]
+                if len(marked) < _RECURRENCE_MIN_PHRASES:
+                    continue
+                total += 1
+                if Counter(key(_as_rec(b)) for b in marked).most_common(1)[0][1] <= 1:
+                    flagged += 1
+        stats[position] = (flagged, total)
+
+    if stats["opening"][1] < 50:
+        pytest.skip("corpus bar records not available")
+
+    over = {}
+    for position, (flagged, total) in sorted(stats.items()):
+        rate = flagged / total
+        print(f"\n  no_recurring_material ({position}): {flagged}/{total} = {rate:.1%}")
+        if rate > _MAX_FALSE_POSITIVE_RATE:
+            over[position] = rate
+    assert not over, (
+        "no_recurring_material says 'nothing comes back' about real movements at "
+        + ", ".join(f"{p} {r:.0%}" for p, r in over.items())
+    )
+
+
 def test_uniform_phrase_lengths_still_finds_what_is_definitely_there():
     """The other half of falsification.
 
@@ -250,6 +301,9 @@ def test_the_four_bounds_dependent_detectors_are_named():
         "detect_uniform_phrase_lengths",
         "detect_identical_phrase_openings",
         "detect_texture_stasis_across_sections",
+        # Added after this guard existed, and the guard is what said so — the
+        # mirror of the two above, for a piece where nothing comes back.
+        "detect_no_recurring_material",
     }
     assert users == expected, (
         f"the set of detectors fed from `phrase_boundaries` changed: {sorted(users)}.\n"
