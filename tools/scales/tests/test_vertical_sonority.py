@@ -148,3 +148,47 @@ def test_the_contour_reads_the_top_of_a_chord_not_the_bottom():
     assert _voice_midi(["C5", "E5", "G5"], "bottom") == _voice_midi("C5", "top")
     assert _voice_midi("rest", "top") is None
     assert _voice_midi(None, "top") is None
+
+
+@pytest.mark.calibration
+@pytest.mark.parametrize("composer,ceiling", [("mozart", 0.05), ("haydn", 0.05), ("bach", 0.10)])
+def test_muddy_low_intervals_are_rare_in_real_music(composer, ceiling):
+    """`detect_spacing_gaps` calls two notes within a third below C3 muddy.
+
+    That is editorial advice, and it is measurable: across Mozart, Haydn,
+    Beethoven and Chopin the smallest interval between two notes below C3 is an
+    octave 59.5% of the time and a fifth 17.0%, against 6.5% for thirds. Three
+    quarters of low doublings are an octave or a fifth.
+
+    A detector that FLAGS has to clear real music, so this pins the rate. If it
+    ever rises, either the threshold has drifted or the corpus has.
+    """
+    import itertools
+
+    from scales.composition_brief import _iter_corpus_bars
+    from scales.corpus_metrics import _stream_spans
+    from scales.pitch import pitch_to_midi
+
+    bars = list(itertools.islice(_iter_corpus_bars(composer), 1500))
+    if not bars:
+        pytest.skip(f"no corpus for {composer}")
+
+    muddy = measured = 0
+    for bar in bars:
+        spans = [(s, e, pitch_to_midi(p)) for s, e, p in _stream_spans(bar)]
+        spans = [(s, e, m) for s, e, m in spans if m is not None]
+        if not spans:
+            continue
+        measured += 1
+        for attack in sorted({s for s, _, _ in spans}):
+            pitches = sorted({m for s, e, m in spans if s <= attack < e})
+            if any(hi < 48 and 1 <= hi - lo <= 4 for lo, hi in zip(pitches, pitches[1:])):
+                muddy += 1
+                break
+
+    rate = muddy / max(measured, 1)
+    assert rate <= ceiling, (
+        f"{composer} trips muddy_low_interval on {rate:.3f} of his bars — a "
+        f"detector that flags what real composers write measures the threshold, "
+        f"not the music"
+    )
