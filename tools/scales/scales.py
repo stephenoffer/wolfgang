@@ -1728,7 +1728,12 @@ def _build_theme_variations(
 
 
 def _build_simple(
-    key: str, tempo: int, meter: Tuple[int, int], form: str, style: StyleDNA, movement_id: str = "m1"
+    key: str,
+    tempo: int,
+    meter: Tuple[int, int],
+    form: str,
+    style: StyleDNA,
+    movement_id: str = "m1",
 ) -> List[PhraseSlot]:
     """A short song-form default for unrecognized form names."""
     return _build_from_spec(_SIMPLE_SPEC, key, tempo, meter, style, movement_id)
@@ -3862,8 +3867,11 @@ def self_evaluate(
             # that looks like evidence and is not, which is the exact failure
             # this report is elsewhere used to catch. What IS recorded for an
             # agent commit is the brief receipt, so report that instead.
-            raw = [ps.context_trace or {} for ps in graph.phrases.values()
-                   if not section_id or (ps.slot and ps.slot.section_id == section_id)]
+            raw = [
+                ps.context_trace or {}
+                for ps in graph.phrases.values()
+                if not section_id or (ps.slot and ps.slot.section_id == section_id)
+            ]
             briefed = [t for t in raw if t.get("brief_fetched")]
             if briefed and not any(v for k, v in util.items() if isinstance(v, (int, float)) and v):
                 report["context_utilization"] = {
@@ -5045,6 +5053,7 @@ def _source_tempo(path: Path) -> Optional[int]:
     except Exception:
         return None
 
+
 #: Words in a profile's role description that name what the part DOES.
 _MELODY_WORDS = ("melod", "leader", "soprano", "principal", "tune", "sings", "lead ")
 _BASS_WORDS = ("bass", "root", "foundation", "anchor", "lowest", "pedal")
@@ -5080,7 +5089,6 @@ def _style_role_assignments(roles, ensemble) -> Dict[str, str]:
         elif "bass" not in out and any(w in described for w in _BASS_WORDS):
             out["bass"] = key
     return out
-
 
 
 @_tool
@@ -5301,6 +5309,18 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
         events = [e for e in events if e.staff != inst] + list(holder.principal_line)
     if orch_repairs:
         _LOG.warning("orchestration repairs in %s: %s", section_id, orch_repairs)
+    # How many pitches the plan asked for, counted BEFORE the repair, so the
+    # return value can say whether any were lost. A trimmed overlap can trim a
+    # note to nothing, and this reported only into the log — an agent reading
+    # the tool result saw a clean `ok: True` for a part the planner had made
+    # unplayable. The viola of a real orchestrated section arrived with an inner
+    # line and a wind pad written into the same voice, and two of its pitches
+    # went silently.
+    planned_pitches = 0
+    for part_events in (data.get("parts") or {}).values():
+        for ev in part_events:
+            pitch = ev.get("pitch")
+            planned_pitches += len(pitch) if isinstance(pitch, list) else 1
 
     # Re-base bars so the score starts at bar 1
     shift = min(e.bar for e in events) - 1
@@ -5329,8 +5349,20 @@ def assemble_orchestration(piece_id: str, section_id: str) -> Dict[str, Any]:
     # score whose parts are correctly flute, oboe, clarinet, bassoon, horn,
     # strings — so an agent checking its own output reads an alphabetical list
     # and concludes the score order is broken when it is not.
-    return {
+    written_pitches = sum(len(n.pitches) for n in score.recurse().notes)
+    result = {
         "ok": True,
         "path": str(out_path),
         "parts": [p.partName or p.id for p in score.parts],
+        "notes_planned": planned_pitches,
+        "notes_written": written_pitches,
     }
+    if orch_repairs:
+        result["repairs"] = orch_repairs
+    if written_pitches < planned_pitches:
+        result["warning"] = (
+            f"{planned_pitches - written_pitches} planned pitch(es) did not reach "
+            f"the score — the planner wrote overlapping notes into one part's "
+            f"single voice and the repair trimmed them away. See `repairs`."
+        )
+    return result

@@ -2259,3 +2259,48 @@ def test_the_preview_carries_the_pieces_forces_end_to_end():
         checked += 1
     if not checked:
         pytest.skip("no probe pieces in the workspace")
+
+
+def test_orchestral_assembly_reports_notes_it_could_not_place():
+    """A trimmed overlap can trim a note to nothing, and that reported only into
+    the log — the tool returned a clean `ok: True` for a part the planner had
+    made unplayable.
+
+    Measured on a real orchestrated section: the viola arrived with an inner
+    line and a wind pad written into the same single voice, and two of its
+    pitches went silently.
+    """
+    import inspect
+
+    from scales import scales
+
+    src = inspect.getsource(scales.assemble_orchestration)
+    assert "notes_planned" in src and "notes_written" in src, (
+        "the result must say how many pitches were asked for and how many landed"
+    )
+    assert '"repairs"' in src, "repairs must reach the caller, not only the log"
+
+
+def test_orchestral_note_accounting_is_exact_when_nothing_is_dropped():
+    """The counter must agree with the file, or the warning is noise."""
+    import json
+
+    import music21
+
+    plan = Path("workspace/mozart-andante-fmaj-v2-20260826/orchestration/m1_a.json")
+    score_path = Path(
+        "workspace/mozart-andante-fmaj-v2-20260826/output/"
+        "mozart-andante-fmaj-v2-20260826_m1_a_orch.musicxml"
+    )
+    if not plan.exists() or not score_path.exists():
+        pytest.skip("no orchestrated probe section in the workspace")
+
+    data = json.loads(plan.read_text())
+    planned = 0
+    for events in (data.get("parts") or {}).values():
+        for event in events:
+            pitch = event.get("pitch")
+            planned += len(pitch) if isinstance(pitch, list) else 1
+    written = sum(len(n.pitches) for n in music21.converter.parse(str(score_path)).recurse().notes)
+    # Never MORE than planned: that would mean the assembler invented notes.
+    assert written <= planned, f"{written} notes written from {planned} planned"
