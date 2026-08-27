@@ -738,3 +738,45 @@ def test_the_chord_frame_spells_this_projects_symbols_not_music21s():
     assert "i=D/F/A" in text, "the minor tonic must not be spelled with a major third"
     assert "V=A/C#/E" in text, "the dominant of a minor key is major"
     assert "i6=F/A/D" in text, "an inversion names its own bass note first"
+
+
+def test_exemplars_show_the_ties_and_articulation_they_were_written_with():
+    """The brief instructs "TIE ACROSS BARLINES. The last generated score had
+    ZERO ties" — and then showed the composer 125,325 real bars containing none.
+
+    Four layers dropped it, each true when written: the extractor recorded only
+    `type`/`dur`/`is_grace`/`orn`; the corpus on disk therefore had none; the
+    adapter carried through ornaments and said in its docstring that
+    "articulation is NOT in the corpus"; and the exemplar renderer emitted
+    ornament suffixes alone. Being shown real music stripped of the marks and
+    told to write them is a contradiction, not an instruction.
+
+    Slurs are still absent, deliberately: music21's Humdrum reader returns none
+    from kern, so the flagship corpus genuinely has zero of them.
+    """
+    from scales.composition_brief import _retrieve_exemplars
+    from scales.direct_compose import parse_issues
+    from scales.models import PhraseSlot
+
+    seen_tie = seen_artic = 0
+    hands = 0
+    for composer in ("mozart", "beethoven", "chopin"):
+        for meter in ((4, 4), (3, 4)):
+            slot = PhraseSlot(phrase_id="p", bar_start=1, bar_count=4, key="C", meter=meter)
+            for exemplar in _retrieve_exemplars(composer, slot, 8, []):
+                for shorthand in (exemplar.rh, exemplar.lh):
+                    if not shorthand:
+                        continue
+                    hands += 1
+                    seen_tie += "~" in shorthand
+                    seen_artic += any(
+                        mark in shorthand for mark in (":stacc", ":ten", ":acc", ":marc", ":port")
+                    )
+                    # Whatever is shown must be COPYABLE — an exemplar carrying
+                    # a token the parser rejects teaches a note that vanishes.
+                    assert not parse_issues([{"rh": shorthand, "lh": "C3w"}]), shorthand
+
+    if not hands:
+        pytest.skip("no corpus on disk")
+    assert seen_artic, "no exemplar carries an articulation"
+    assert seen_tie, "no exemplar carries a tie"

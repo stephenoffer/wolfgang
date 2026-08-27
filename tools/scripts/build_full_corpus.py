@@ -16,6 +16,8 @@ import time
 from fractions import Fraction
 from pathlib import Path
 
+from scales.atomic_io import write_json_atomic
+
 BASE = Path(__file__).resolve().parent.parent
 REF_INDEX = BASE / "reference_index"
 REF_INDEX.mkdir(exist_ok=True)
@@ -159,6 +161,78 @@ _ORNAMENT_CLASSES = (
 )
 
 
+_ARTICULATION_CODES = (
+    ("Staccatissimo", "staccatissimo"),
+    ("Staccato", "staccato"),
+    ("Accent", "accent"),
+    ("Tenuto", "tenuto"),
+    ("Marcato", "marcato"),
+    ("Spiccato", "staccato"),
+)
+
+
+def _tie_of(el):
+    """`start`, `stop`, `continue` — or None when the note is not tied.
+
+    The extractor recorded `type`, `dur`, `is_grace` and `orn` and nothing else,
+    so a tie was invisible to every reader downstream. Measured over 46,180
+    notes of real Bach, Mozart, Beethoven and Haydn, **6.5% of notes are tied** —
+    the corpus said 0.0% for all eleven composers, which is not a property of
+    the music but of this function. Nothing could brief the agent on a note held
+    across a barline because nothing had ever seen one.
+    """
+    try:
+        tie = el.tie
+    except AttributeError:
+        return None
+    return getattr(tie, "type", None) if tie is not None else None
+
+
+def _articulations_of(el):
+    """The articulation marks on this note, as shorthand codes.
+
+    7.2% of notes in the same 46,180 carry one, and the corpus recorded none —
+    so `expression_enricher` had to invent every staccato and accent from period
+    rules, with no evidence of what the composer actually marked.
+    """
+    out = []
+    try:
+        marks = el.articulations
+    except AttributeError:
+        return out
+    for art in marks or []:
+        name = type(art).__name__
+        for needle, code in _ARTICULATION_CODES:
+            if needle in name:
+                if code not in out:
+                    out.append(code)
+                break
+    return out
+
+
+def _slur_role_of(el):
+    """`start`, `stop`, `inner` — where this note sits in a slur, or None.
+
+    A slur is a spanner, so it lives beside the notes rather than on them; the
+    extractor walked notes only and the whole phrasing layer was dropped. The
+    same sample carries 5,783 slurs.
+    """
+    try:
+        sites = [sp for sp in el.getSpannerSites() if type(sp).__name__ == "Slur"]
+    except (AttributeError, Exception):
+        return None
+    for slur in sites:
+        try:
+            if slur.isFirst(el):
+                return "start"
+            if slur.isLast(el):
+                return "stop"
+        except Exception:
+            continue
+        return "inner"
+    return None
+
+
 def _ornament_of(el):
     """Shorthand ornament code on this note, or None.
 
@@ -247,6 +321,9 @@ def _timed_records(timed, tonic_pc, bar_len, cap=32, rest_spans=()):
             continue  # already covered by a sounding note in this voice
         is_grace = bool(getattr(el.duration, "isGrace", False))
         orn = _ornament_of(el)
+        tie = _tie_of(el)
+        artic = _articulations_of(el)
+        slur = _slur_role_of(el)
         next_off = ordered[i + 1][0] if i + 1 < len(ordered) else None
         limit = bar_len_f if next_off is None else min(bar_len_f, next_off)
         raw = Fraction(0) if is_grace else _frac(el.quarterLength)
@@ -276,6 +353,9 @@ def _timed_records(timed, tonic_pc, bar_len, cap=32, rest_spans=()):
                     "dur": _round_dur(dur),
                     "is_grace": is_grace,
                     "orn": orn,
+                    "tie": tie,
+                    "artic": artic,
+                    "slur": slur,
                 },
                 {
                     "type": "chord",
@@ -284,6 +364,9 @@ def _timed_records(timed, tonic_pc, bar_len, cap=32, rest_spans=()):
                     "dur": _round_dur(dur),
                     "is_grace": is_grace,
                     "orn": orn,
+                    "tie": tie,
+                    "artic": artic,
+                    "slur": slur,
                 },
             )
         elif hasattr(el, "pitch"):
@@ -296,6 +379,9 @@ def _timed_records(timed, tonic_pc, bar_len, cap=32, rest_spans=()):
                     "dur": _round_dur(dur),
                     "is_grace": is_grace,
                     "orn": orn,
+                    "tie": tie,
+                    "artic": artic,
+                    "slur": slur,
                 },
                 {
                     "type": "note",
@@ -303,6 +389,9 @@ def _timed_records(timed, tonic_pc, bar_len, cap=32, rest_spans=()):
                     "dur": _round_dur(dur),
                     "is_grace": is_grace,
                     "orn": orn,
+                    "tie": tie,
+                    "artic": artic,
+                    "slur": slur,
                 },
             )
         else:
@@ -1073,20 +1162,62 @@ def _mean_top_midi(part) -> float:
 
 
 def _write_bar_index(composer, all_bars, shard_size=2000):
-    """Write bar records to reference_index/<composer>/ as sharded lists."""
+    """Write bar records to reference_index/<composer>/ as sharded lists.
+
+    MERGES BY SOURCE. A composer's corpus is the union of everywhere their
+    music came from, and the three build modes each supply different sources —
+    `--reference` the kern scores, `--music21` the built-in collection,
+    `--local` a fetched directory. CLAUDE.md documents running them in sequence,
+    and each one used to REPLACE the whole corpus, so the last to run was the
+    only one that survived.
+
+    Chopin is the case that showed it: 8,013 bars committed, made of 4,853
+    mazurkas plus 3,160 preludes. Rebuilding with `--reference` left 4,853;
+    following it with `--local` left 3,160. Neither said anything.
+
+    So: bars whose `source` this build did not touch are kept, and the rebuilt
+    sources replace their own previous records.
+    """
     cdir = REF_INDEX / composer
     cdir.mkdir(parents=True, exist_ok=True)
-    for old in cdir.glob("bars_*.json"):
-        old.unlink()
+
+    rebuilt_sources = {b.get("source") for b in all_bars}
+    kept: list = []
+    for shard_path in sorted(cdir.glob("bars_*.json")):
+        try:
+            existing = json.loads(shard_path.read_text())
+        except (json.JSONDecodeError, OSError):
+            continue  # a damaged shard is not evidence of anything to preserve
+        kept.extend(b for b in existing if b.get("source") not in rebuilt_sources)
+    if kept:
+        print(
+            f"  keeping {len(kept)} bars from {len({b.get('source') for b in kept})} "
+            f"source(s) this build did not touch"
+        )
+        all_bars = kept + list(all_bars)
+    # WRITE FIRST, then remove what is left over. Deleting every shard up front
+    # left the composer with NO corpus for the whole length of the rebuild — and
+    # `_iter_corpus_bars` reports a missing shard as bars simply absent, so a
+    # brief fetched during a rebuild is answered from a fraction of the corpus,
+    # or none of it, without failing.
+    #
+    # Each shard is written atomically for the same reason one level down: an
+    # interrupted write leaves a truncated file, which is skipped, which is a
+    # composer quietly missing several thousand bars.
     n_shards = max(1, (len(all_bars) + shard_size - 1) // shard_size)
     for i in range(n_shards):
         shard = all_bars[i * shard_size : (i + 1) * shard_size]
-        (cdir / f"bars_{i:02d}.json").write_text(json.dumps(shard, separators=(",", ":")))
-    (cdir / "bar_index.json").write_text(
-        json.dumps(
-            {"composer": composer, "total_bars": len(all_bars), "schema": 3},
-            separators=(",", ":"),
-        )
+        write_json_atomic(cdir / f"bars_{i:02d}.json", shard, separators=(",", ":"))
+    for stale in cdir.glob("bars_*.json"):
+        try:
+            if int(stale.stem.split("_")[1]) >= n_shards:
+                stale.unlink()
+        except (ValueError, IndexError, OSError):
+            continue
+    write_json_atomic(
+        cdir / "bar_index.json",
+        {"composer": composer, "total_bars": len(all_bars), "schema": 3},
+        separators=(",", ":"),
     )
     return n_shards
 

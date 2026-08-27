@@ -302,8 +302,17 @@ class CorpusAdapter:
         use_events = display if display else events
 
         def _ornaments(src: Dict) -> Dict:
-            """Carry through ornament/grace metadata the corpus actually stores
-            (slurs/dynamics/articulation are NOT in the corpus — only these)."""
+            """Carry through the notation the corpus actually stores.
+
+            This said "slurs/dynamics/articulation are NOT in the corpus — only
+            these", and that was true when it was written. The extractor records
+            `tie` and `artic` now, and dropping them here meant a real bar
+            reached the composer stripped of the staccato it was written with
+            and of every tie in it — while the brief in the same breath asks for
+            ties across barlines. Slurs are still absent, and for a reason worth
+            keeping written down: music21's Humdrum reader returns none from
+            kern, so the flagship corpus genuinely has zero.
+            """
             orn = {}
             if src.get("has_trill"):
                 orn["has_trill"] = True
@@ -311,6 +320,9 @@ class CorpusAdapter:
                 orn["has_turn"] = True
             if src.get("is_grace"):
                 orn["is_grace"] = True
+            for name in ("tie", "artic", "orn"):
+                if src.get(name):
+                    orn[name] = src[name]
             return orn
 
         for evt in use_events:

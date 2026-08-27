@@ -3156,6 +3156,29 @@ def _positions_for(slot, n_bars: int) -> List[str]:
 # ─── Exemplar retrieval & rendering ──────────────────────────────────────────
 
 
+#: Corpus articulation names -> the shorthand suffix the agent writes.
+_ARTICULATION_SUFFIXES = {
+    "staccato": "stacc",
+    "staccatissimo": "stacciss",
+    "accent": "acc",
+    "strong-accent": "marc",
+    "marcato": "marc",
+    "tenuto": "ten",
+    "portato": "port",
+    "detached-legato": "port",
+    "legato": "leg",
+    "spiccato": "spicc",
+    "breath": "breath",
+    "caesura": "caes",
+}
+
+
+def _tie_mark(event: Dict[str, Any]) -> str:
+    """`~` when this corpus note ties into the next, as the shorthand spells it."""
+    tie = str(event.get("tie") or "").strip().lower()
+    return "~" if tie in ("start", "continue", "start-stop") else ""
+
+
 def _adapted_to_shorthand(adapted: AdaptedBar) -> Tuple[str, str]:
     """Render an AdaptedBar as direct_compose shorthand, preserving chords."""
 
@@ -3173,7 +3196,26 @@ def _adapted_to_shorthand(adapted: AdaptedBar) -> Tuple[str, str]:
             # Ornament suffixes the corpus actually records (carried through
             # corpus_adapter._transpose_events). Stackable, ":"-delimited so
             # _shorthand_beats strips them cleanly.
+            # Articulation and TIE, from the corpus record. These were never
+            # rendered: the exemplar renderer emitted ornament suffixes and
+            # nothing else, so a real bar reached the agent stripped of the
+            # staccato it was written with and of every tie in it — while the
+            # brief in the same breath instructs "TIE ACROSS BARLINES. The last
+            # generated score had ZERO ties."
+            #
+            # Being shown 125,325 real bars containing no tie and told to write
+            # one is not an instruction, it is a contradiction.
             suffix = ":grace" if is_grace else ""
+            # The corpus stores this as a LIST — `['staccato']`, one entry in
+            # all but a handful of bars. Stringifying it gave "['staccato']",
+            # which matches no name, so every articulation in 125,325 bars was
+            # dropped one step after being carried through.
+            raw = e.get("artic")
+            if isinstance(raw, (list, tuple)):
+                raw = raw[0] if raw else ""
+            artic = str(raw or "").strip().lower()
+            if artic in _ARTICULATION_SUFFIXES:
+                suffix += f":{_ARTICULATION_SUFFIXES[artic]}"
             if e.get("has_trill"):
                 suffix += ":tr"
             if e.get("has_turn"):
@@ -3191,11 +3233,11 @@ def _adapted_to_shorthand(adapted: AdaptedBar) -> Tuple[str, str]:
                 # the bar records keep what they measured.
                 pitches = _distinct_pitches(e.get("pitches", []))
                 if len(pitches) > 1:
-                    toks.append(f"[{','.join(pitches)}]{dur_code}{suffix}")
+                    toks.append(f"[{','.join(pitches)}]{dur_code}{suffix}{_tie_mark(e)}")
                 elif pitches:
-                    toks.append(f"{pitches[0]}{dur_code}{suffix}")
+                    toks.append(f"{pitches[0]}{dur_code}{suffix}{_tie_mark(e)}")
             elif e.get("pitch"):
-                toks.append(f"{e['pitch']}{dur_code}{suffix}")
+                toks.append(f"{e['pitch']}{dur_code}{suffix}{_tie_mark(e)}")
         return toks
 
     def _with_inner(main_events, inner_events) -> str:
