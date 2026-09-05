@@ -112,20 +112,119 @@ class SlotExitState:
 # ─── SurfaceComposer ──────────────────────────────────────────────────────────
 
 
-def _duration_code_for(beats: Fraction) -> tuple[str, Fraction] | None:
+#: The compass a left hand actually covers, as opposed to the two octaves this
+#: module used to assume. Measured over 226,000 real left-hand notes: a 36-60
+#: window excludes 36.8% of Mozart's, 24.6% of Beethoven's and 24.0% of
+#: Chopin's, where 28-79 excludes 0.5% of the worst-served composer. Wide enough
+#: to hold a `broken_chord_wave`, whose real span runs to 25 semitones at the
+#: 90th percentile.
+LH_PATTERN_RANGE = (28, 79)
+
+
+def _displace_into(midi: int, span: tuple[int, int]) -> int:
+    """Move a pitch inside `span` by OCTAVES, keeping its pitch class.
+
+    A clamp flattens everything past the boundary onto the boundary, which
+    invents a repeated note and destroys the figure's shape. An octave keeps
+    both the pitch class and the interval pattern around it.
+    """
+    low, high = span
+    while midi < low:
+        midi += 12
+    while midi > high:
+        midi -= 12
+    return max(low, min(high, midi))
+
+
+def _complete_tuplet_groups(profile: list[str]) -> list[str]:
+    """Pad each incomplete tuplet run in a duration profile to a whole group.
+
+    A tuplet only exists as a complete group — three triplet-eighths to the
+    beat, five quintuplet-sixteenths to the beat. A corpus cell can carry a
+    fragment because the extraction cut its source bar mid-group, and emitting
+    that fragment leaves music21 to finish it by splitting, which puts durations
+    on the page that nobody wrote.
+
+    Padding repeats the run's own value until the run fills a whole number of
+    beats, which preserves the elapsed time. A run that cannot be completed
+    within a reasonable group (more than one group's worth away) is left alone
+    for the downstream repair to deal with.
+    """
+    if not profile:
+        return profile
+    out: list[str] = []
+    index = 0
+    while index < len(profile):
+        family = _tuplet_family_of(_as_fraction(profile[index]))
+        if not family:
+            out.append(profile[index])
+            index += 1
+            continue
+        end, total = index, Fraction(0)
+        while end < len(profile) and _tuplet_family_of(_as_fraction(profile[end])) == family:
+            total += _as_fraction(profile[end])
+            end += 1
+        run = profile[index:end]
+        if total.denominator != 1:
+            unit = _as_fraction(run[-1])
+            needed = 0
+            probe = total
+            # At most one full group of padding: a triplet run is three, a
+            # quintuplet five, and anything further from whole is not a cut
+            # group but something this function should not guess at.
+            while probe.denominator != 1 and needed < 7:
+                probe += unit
+                needed += 1
+            if probe.denominator == 1:
+                run = run + [run[-1]] * needed
+        out.extend(run)
+        index = end
+    return out
+
+
+def _as_fraction(code: str) -> Fraction:
+    """A duration code's exact length in beats."""
+    value = DURATION_VALUES.get(code, Fraction(1, 2))
+    return value if isinstance(value, Fraction) else Fraction(str(value)).limit_denominator(96)
+
+
+def _tuplet_family_of(span: Fraction) -> frozenset:
+    """The odd primes in a duration's denominator — the tuplet family it belongs to."""
+    return frozenset(prime for prime in (3, 5, 7) if span.denominator % prime == 0)
+
+
+def _duration_code_for(beats: Fraction, family: frozenset | None = None) -> tuple[str, Fraction] | None:
     """The longest written duration that fits in `beats`, or None.
 
     Used to shorten a note the gesture profile made too long for the bar it
     lands in. Returns the code AND its exact length so the caller's cursor stays
     exact — returning only the code would put the cursor back on floats, which
     is the drift this module already had once.
+
+    `family` is the tuplet family of the note BEING shortened, and it matters
+    more than the length. Choosing the longest value from every code regardless
+    of family INVENTED tuplets: a quintuplet run needing a sliver filled took a
+    triplet-16th, then a 64th, then a triplet-32nd rest — three families inside
+    a quarter of one beat, in the middle of a quintuplet group. music21 then
+    tried to complete those groups during `makeNotation` and needed a 2048th to
+    do it, which MusicXML cannot express, so the export raised and the whole
+    score was lost.
+
+    Prefer the note's own family so a group stays a group, then binary values,
+    which sit alongside anything. Never a family the passage was not already in.
     """
-    best: tuple[str, Fraction] | None = None
+    same: tuple[str, Fraction] | None = None
+    binary: tuple[str, Fraction] | None = None
     for code, value in DURATION_VALUES.items():
         span = value if isinstance(value, Fraction) else Fraction(str(value)).limit_denominator(96)
-        if span <= beats and (best is None or span > best[1]):
-            best = (code, span)
-    return best
+        if span > beats:
+            continue
+        span_family = _tuplet_family_of(span)
+        if family and span_family == family and (same is None or span > same[1]):
+            same = (code, span)
+        if not span_family and (binary is None or span > binary[1]):
+            binary = (code, span)
+    return same or binary
 
 
 def _approach_the_cadence(bundles: list[OnsetBundle], control: PhraseControlIR) -> None:
@@ -316,7 +415,11 @@ def _clip_to_next_onset_in_voice(bundles: list[OnsetBundle]) -> None:
 
 
 def _thicken_principal_line(
-    layer: LayerIR, key: str, share: float = 0.10, report: Optional[dict] = None
+    layer: LayerIR,
+    key: str,
+    share: float = 0.10,
+    report: Optional[dict] = None,
+    bar_textures: Optional[dict] = None,
 ) -> int:
     """Give the melody weight at its arrivals — thirds, sixths and octaves.
 
@@ -377,22 +480,63 @@ def _thicken_principal_line(
     # further. A revision loop runs these again, so a phrase revised twice came
     # out thicker than either the composer or the corpus asked for — the same
     # compounding that took a section from 7 dynamics to 9.
+    # WHICH BARS, from the texture the planner gave them.
+    #
+    # Melody chord share belongs to the RH TEXTURE, exactly as the left hand's
+    # belongs to its accompaniment idiom. Measured per bar over five composers:
+    #
+    #     chordal            median bar 100%   (70% of bars entirely chords)
+    #     singing_melody     median bar   0%   (90% of bars carry none)
+    #     scalar_run           0%    zigzag_figuration 0%    held_note 0%
+    #
+    # A flat share spread chords through singing-melody bars that should have
+    # none — ours read 25% against a real 0% — while leaving the chordal bars at
+    # half the 100% they should be. So thicken the bars the planner marked
+    # `chordal`, and leave the rest alone.
+    if bar_textures:
+        chordal_bars = {
+            bar for bar, texture in bar_textures.items() if str(texture) == "chordal"
+        }
+        if not chordal_bars:
+            return made.stop(report, "no bar in this phrase is planned as chordal")
+        notes = [e for e in notes if e.bar in chordal_bars]
+        if not notes:
+            return made.stop(report, "the chordal bars carry no melody note")
+        counts = {
+            instant: n
+            for instant, n in counts.items()
+            if instant[0] in chordal_bars
+        }
+
     already = sum(1 for n in counts.values() if n > 1)
     made.considered = len(counts)
-    budget = max(1, round(len(counts) * share)) - already
+    # A chordal bar is chords THROUGHOUT — 70% of real ones are entirely
+    # chords — so once the bars are chosen there is no further sampling.
+    wanted = len(counts) if bar_textures else max(1, round(len(counts) * share))
+    budget = wanted - already
     made.allowance = max(0, budget)
     if budget <= 0:
         return made.stop(report, f"{already} attacks already carry a chord — quota met")
-    chosen: list = [peak]
-    if budget > 1 and len(structural) > 1:
-        step = max(1, len(structural) // (budget - 1))
-        for e in structural[::step]:
-            if e is not peak and len(chosen) < budget:
-                chosen.append(e)
+    if bar_textures:
+        # EVERY attack in a chordal bar, not a sample of its structural ones.
+        # Sampling left the bar part-chorded, which classifies as a singing
+        # melody that happens to carry chords — the very thing the texture-aware
+        # selection was meant to stop. 70% of real chordal bars are chords all
+        # the way through.
+        chosen = list(notes)
+    else:
+        chosen = [peak]
+        if budget > 1 and len(structural) > 1:
+            step = max(1, len(structural) // (budget - 1))
+            for e in structural[::step]:
+                if e is not peak and len(chosen) < budget:
+                    chosen.append(e)
 
     made.eligible = len(chosen)
     added = 0
     for event in chosen:
+        if not bar_textures and added >= budget:
+            break
         instant = (event.bar, round(float(event.beat), 4))
         if counts.get(instant, 0) > 1:
             made.decline("the attack already carries a chord")
@@ -989,6 +1133,21 @@ def _thicken_bass_foundation(
     made = _report_into(report, "bass_thickened")
     if share <= 0:
         return made.stop(report, "share is zero")
+    # THE MEDIAN MOVEMENT, not a fixed rate and not the composer's pooled mean.
+    #
+    # A first attempt at this targeted `voicing_profile`'s pooled figure and I
+    # reverted it as a regression — but that figure was measured from the first
+    # 4,000 bars of each composer, which is a quarter of Beethoven chosen by
+    # filename, and Chopin's real pooled share is 0.380 rather than the 0.292 I
+    # was aiming at. The pooled figure is also the wrong question: an aggregate
+    # over bars is not a description of a piece. Chopin's MEDIAN MOVEMENT chords
+    # 53.9% of its left-hand attacks; Haydn's median movement chords 1.3%.
+    if composer:
+        from .composition_brief import movement_rate_range
+
+        spread = movement_rate_range(composer, "lh_chord_share")
+        if spread and spread.get("median"):
+            share = float(spread["median"])
     events = [
         e for e in layer.bass_foundation if e.pitch != "rest" and not isinstance(e.pitch, list)
     ]
@@ -1536,6 +1695,13 @@ class SurfaceComposer:
         # Stage 2: Gesture slot planning
         slots = self._plan_gesture_slots(control, voicing_map, prototype)
 
+        #: The note value a bar has already settled on, so a second slot inside
+        #: it can keep it. Cleared per phrase.
+        self._bar_rhythm: dict[int, str] = {}
+        #: What this piece is, so the uniform-figure preference can be asked of
+        #: the right composer AND the right metre.
+        self._meter = getattr(control, "meter", None)
+
         # Stage 3: Co-composed realization per slot
         all_bundles: list[OnsetBundle] = []
         prev_exit = SlotExitState()
@@ -1921,7 +2087,7 @@ class SurfaceComposer:
         )
 
         # 3b: Retrieve gesture for melodic fill between anchors
-        gesture = self._retrieve_gesture(slot, ctx, key, mode, trace)
+        gesture = self._retrieve_gesture(slot, ctx, key, mode, trace, bar_dur)
 
         # 3c: Generate melody events (anchor + gesture fill)
         melody_events = self._construct_melody(
@@ -2156,15 +2322,67 @@ class SurfaceComposer:
 
         # If there's a gesture dur_profile, use it for rhythmic skeleton
         if gesture and gesture.dur_profile:
+            # A CELL RECURS; it does not stop halfway through the slot.
+            #
+            # This emitted the retrieved profile exactly once. A gesture is a
+            # bar or two of the corpus, and a slot is often longer, so a
+            # four-event cell in an eight-beat slot wrote four notes and then
+            # left the rest of the slot empty — half a beat's worth of melody
+            # per beat. That is why bars planned `zigzag_figuration` came back
+            # classified `singing_melody`: the classifier wants more than two
+            # notes per beat and the slot was being written at well under one.
+            #
+            # Repeat the cell at ITS OWN rate rather than inventing a rate:
+            # the profile is a real composer's figure and its density is that
+            # composer's density for the texture. Capped by the bar's density
+            # target so a short cell cannot run away, and the emit loop below
+            # still stops at the slot's end.
+            dur_profile = list(gesture.dur_profile)
+            _cell_beats = sum(
+                float(DURATION_VALUES.get(code, Fraction(1, 2))) for code in gesture.dur_profile
+            )
+            _span = float(getattr(slot, "span_beats", 0) or 0)
+            # The target is per BAR and a slot is often half of one, so both the
+            # fill's ceiling and the emit loop's budget take the slot's share of
+            # it. Counting whole bars gave a half-bar slot a full bar's
+            # allowance and let the fill write twice the notes the texture asked
+            # for.
+            _target = int(getattr(slot, "density_target", 0) or 0)
+            if _cell_beats > 0 and _span > _cell_beats:
+                _ceiling = (
+                    max(1, int(_target * (_span / float(bar_dur)) * 1.25))
+                    if _target and bar_dur
+                    else len(dur_profile) * 8
+                )
+                _filled = _cell_beats
+                while _filled < _span and len(dur_profile) + len(gesture.dur_profile) <= _ceiling:
+                    dur_profile.extend(gesture.dur_profile)
+                    _filled += _cell_beats
+            # A TUPLET IS WRITTEN AS A COMPLETE GROUP OR NOT AT ALL.
+            #
+            # Cells arrive with tuplet runs their source bar wrote whole and the
+            # extraction cut — a lone triplet-eighth, or a pair. Emitted as they
+            # stand, **52 of 52 triplet runs in a generated piece were
+            # fragments**, and music21 completes a fragment by SPLITTING it: a
+            # seventh of the written notes came out as triplet-16ths nobody
+            # composed, against real Mozart's 0.3%.
+            #
+            # Completing the group here preserves the time, where rewriting the
+            # fragment to a binary value downstream loses a twelfth of a beat
+            # per note and opens rests at the barline. It also lets a real
+            # triplet reach the page: we were writing none at all, against his
+            # 2.4%.
+            dur_profile = _complete_tuplet_groups(dur_profile)
             _chord_pcs = _slot_chord_pcs(slot, key, voicing_map)
             pitches = self._interpolate_melody_pitches(
                 start_midi,
                 effective_end,
-                len(gesture.dur_profile),
+                len(dur_profile),
                 scale,
                 key,
                 chord_pcs=_chord_pcs,
-                strong_steps=_strong_step_indices(gesture.dur_profile, bar_dur),
+                strong_steps=_strong_step_indices(dur_profile, bar_dur),
+                zigzag=(getattr(slot, "rh_texture", "") == "zigzag_figuration"),
             )
             # An EXACT cursor, and emit-then-advance.
             #
@@ -2182,7 +2400,47 @@ class SurfaceComposer:
             beat_cursor = Fraction(str(slot.beat_start)).limit_denominator(96)
             bar_len = Fraction(str(bar_dur)).limit_denominator(96)
             bar_cursor = slot.bar_start
-            for i, dur_code in enumerate(gesture.dur_profile):
+            # The slot's anchor was already written above and is a note in the
+            # bar like any other, so it counts against the budget. Starting the
+            # count at zero handed every slot one note more than its texture
+            # asked for, which is a fifth of a `singing_melody` bar.
+            # THE ANCHOR IS SHARED, so it is counted once and not per slot.
+            #
+            # A bar is written by two slots and the second slot's anchor lands
+            # on the first slot's last instant, where the surface repair
+            # de-duplicates it. Charging every slot for its own anchor
+            # therefore removes a note that was never written twice: with the
+            # target in outer-attack units it left two attacks in a four-attack
+            # bar, and 16 of Chopin's `singing_melody` bars came out as
+            # `held_note`.
+            #
+            # The budget is now the slot's exact share of the bar's attacks —
+            # no inflation, because `_target` is measured in the same units the
+            # loop emits.
+            emitted = 0
+            #: Elapsed time inside the tuplet run being written, so the budget
+            #: can wait for the group to close.
+            _tuplet_run = Fraction(0)
+            _slot_budget = None
+            if _target and bar_dur:
+                _slot_budget = max(1, int(round(_target * (_span / float(bar_dur)))))
+                # A triplet beat legitimately holds three attacks where a
+                # binary beat holds two, so a group is charged one attack more
+                # than the budget was calibrated for and the tuplet section of a
+                # profile is often never reached — we write no triplets at all,
+                # against a median Mozart movement's 1.1%.
+                #
+                # Granting each complete group its extra attack was measured and
+                # REVERTED. After `_complete_tuplet_groups` runs, most profiles
+                # contain a complete group, so the allowance inflated every
+                # budget rather than only the tuplet ones: bars whose melody
+                # reaches the barline rose 66% -> 85% (exactly real) and texture
+                # agreement fell 80% -> 61%, with 8 `singing_melody` bars
+                # written densely enough to read as `scalar_run`.
+                #
+                # The allowance has to distinguish a group the CELL brought from
+                # one the padding created, which the profile alone cannot say.
+            for i, dur_code in enumerate(dur_profile):
                 dur_beats = DURATION_VALUES.get(dur_code, Fraction(1, 2))
                 if not isinstance(dur_beats, Fraction):
                     dur_beats = Fraction(str(dur_beats)).limit_denominator(96)
@@ -2233,11 +2491,51 @@ class SurfaceComposer:
                 if room <= 0:
                     break
                 if dur_beats > room:
-                    fitted = _duration_code_for(room)
+                    fitted = _duration_code_for(room, _tuplet_family_of(dur_beats))
                     if fitted is None:
                         break
                     dur_code, dur_beats = fitted
+                # THE BAR'S NOTE COUNT IS A CEILING, not just a floor.
+                #
+                # Retrieval prefers a cell at the wanted rate but the bank
+                # scores that at 0.10 and can be outvoted, so a slot could still
+                # be handed a figure running at twice the texture's speed. A
+                # `singing_melody` bar asking six notes came back with ten,
+                # which `_classify_rh_texture` calls a `scalar_run` — the same
+                # failure as writing too few, from the other side.
+                # ...but never mid-group. A tuplet exists only as a whole
+                # group, and stopping a bar's melody after one or two notes of
+                # a triplet leaves a fragment that music21 finishes by
+                # SPLITTING — which is where the triplet-16ths nobody composed
+                # came from. Completing the profile's groups upstream achieves
+                # nothing if the budget then cuts one in half.
+                if (
+                    _slot_budget is not None
+                    and emitted >= _slot_budget
+                    and _tuplet_run.denominator == 1
+                ):
+                    break
                 if i < len(pitches):
+                    # THREE ATTEMPTS TO MAKE ROOM FOR A TRIPLET, ALL REVERTED.
+                    #
+                    # A triplet beat holds three attacks where a binary beat
+                    # holds two, so a group is charged one more than the budget
+                    # was calibrated for and the tuplet section of a profile is
+                    # often never reached: we write essentially no triplets,
+                    # against a median Mozart movement's 1.1%.
+                    #
+                    #   granting the allowance upfront   mozart agreement 80->61
+                    #   charging the group as written    identical, 80->61
+                    #   judging the band on the padded
+                    #     profile                        mozart 80, chopin 93->61
+                    #
+                    # Every version trades one composer against the other,
+                    # because there is no room in the bar's attack budget for a
+                    # group on top of the binary content the cell already
+                    # carries. Making room means selecting cells whose whole
+                    # attack count — tuplets included — matches the target, and
+                    # that is a retrieval change, not a budget one.
+                    emitted += 1
                     midi_val = clamp_to_range(pitches[i], *MELODY_RANGE)
                     events.append(
                         _TaggedEvent(
@@ -2285,6 +2583,55 @@ class SurfaceComposer:
                         )
                     )
 
+        # A LINE THAT STOPS IS NOT THE SAME AS A LINE THAT RESTS.
+        #
+        # The melody took its length from the retrieved cell and from the slot's
+        # note budget, and when either ran out the emit loop simply stopped —
+        # leaving the rest of the bar with no melody in it. `_pad_measure_to_meter`
+        # then filled the gap with a rest, so the bar NOTATED correctly and
+        # SOUNDED empty, which is why nothing upstream ever objected. Measured
+        # on the assembled score the melody fell silent before the barline in
+        # 54% of Chopin's bars and 68% of Mozart's, against a real 8-14%; every
+        # single `chordal` bar did it.
+        #
+        # Real music leaves a bar's tail silent, but as a choice and at a tenth
+        # of that rate. The choice belongs to `_shape_the_cadence`, which runs
+        # after this and deliberately shortens a note to open a breath at a half
+        # cadence. What does not belong to anything is a line that stops because
+        # its figure ran out, so the last note is held to the end of its bar.
+        from .duration import dur_to_beats as _dur_beats
+
+        _sopranos = [e for e in events if e.voice == "soprano"]
+        if _sopranos:
+            _last = _sopranos[-1]
+            _bar_len = Fraction(str(bar_dur)).limit_denominator(96)
+            _ends_at = Fraction(str(_last._beat)).limit_denominator(96) + Fraction(
+                str(_dur_beats(_last.duration))
+            ).limit_denominator(96)
+            _bar_end = _bar_len + 1
+            # Only inside the note's OWN bar: this generator writes no ties, so
+            # a note cannot be held across a barline here.
+            _slot_reaches_bar_end = (slot.bar_end > _last._bar) or (
+                Fraction(str(slot.beat_end)).limit_denominator(96) >= _bar_len
+            )
+            if _slot_reaches_bar_end and _ends_at < _bar_end:
+                # The hold runs to the barline and not less.
+                #
+                # Capping it at half the bar was measured, to bring
+                # `whole_ratio` (0.0139 against a real Mozart maximum of 0.008)
+                # inside the range and to restore the long end-of-bar breaths
+                # real music writes in 6% of its bars. It moved `whole_ratio` by
+                # 0.002 — still outside — and took bars whose melody stops
+                # before the barline from 17% to 46%, against a real 15-17%.
+                # The remaining whole notes come from `_shape_the_cadence`,
+                # where a note held through its cadence bar is correct.
+                _held = _duration_code_for(
+                    _bar_end - Fraction(str(_last._beat)).limit_denominator(96),
+                    _tuplet_family_of(Fraction(str(_dur_beats(_last.duration)))),
+                )
+                if _held is not None and _held[1] > Fraction(str(_dur_beats(_last.duration))):
+                    _last.duration = _held[0]
+
         # Place end anchor if it exists and is different from start
         if slot.anchor_end and end_midi is not None and slot.anchor_end.bar != slot.bar_start:
             events.append(
@@ -2312,6 +2659,7 @@ class SurfaceComposer:
         key: str,
         chord_pcs: frozenset[int] | None = None,
         strong_steps: frozenset[int] | None = None,
+        zigzag: bool = False,
     ) -> list[int]:
         """Shape a line from `start_midi` to `end_midi` through the scale.
 
@@ -2363,6 +2711,19 @@ class SurfaceComposer:
         # cross-relation into eight, every one of them the peak sounding a
         # scale degree the harmony had altered.
         span = abs(end_idx - start_idx)
+        # A SHORT LINE'S REACH WAS MEASURED AND LEFT ALONE.
+        #
+        # Chopin's `singing_melody` bars step in 38% of their intervals and ours
+        # in 6% — a singing melody that almost never steps — because a slot of
+        # about three notes that rises a third to its peak and falls back makes
+        # every interval a leap. Dropping the reach to one scale step for short
+        # lines moved that to 10% and cost the thing the arch exists for: his
+        # direction changes per bar fell from 3.0, matching him exactly, to 1.5.
+        #
+        # Four points of stepwise motion is not worth half the melodic turns.
+        # The leaps come mostly from the ANCHORS the line has to connect, which
+        # sit further apart than a step, and closing that means changing where
+        # anchors are placed rather than how the line travels between them.
         reach = 3 if span >= 5 else 2
         rising = end_idx >= start_idx
         peak_idx = (
@@ -2403,6 +2764,32 @@ class SurfaceComposer:
                 t = (step - peak_at) / (n_steps - peak_at + 1)
                 idx = peak_idx + (end_idx - peak_idx) * t
             i = max(0, min(len(scale) - 1, int(round(idx))))
+            # A ZIGZAG oscillates; an arch walks. The two are different shapes
+            # and only the walk was ever built, so a bar planned
+            # `zigzag_figuration` came out with the right number of notes and
+            # the wrong contour — the classifier calls anything 60% stepwise a
+            # `scalar_run`, and a many-note arch over a short span is nothing
+            # but steps, because consecutive scale indices round to the same
+            # place.
+            #
+            # Alternate off the arch and back onto it, so the figure turns on
+            # every other note. The displacement is TWO scale steps, which is a
+            # third — the interval a broken-chord figure is made of — and it
+            # lands on a chord tone where one is adjacent. Interior notes only:
+            # the first and last belong to the anchors, which are harmonic
+            # facts and not this function's to move.
+            if zigzag and 1 < step < n_steps and step % 2 == 0:
+                lift = 2 if (step // 2) % 2 else -2
+                j = max(0, min(len(scale) - 1, i + lift))
+                if chord_pcs:
+                    near = [
+                        k
+                        for k in range(len(scale))
+                        if scale[k] % 12 in chord_pcs and abs(k - j) <= 1
+                    ]
+                    if near:
+                        j = min(near, key=lambda k: abs(k - j))
+                i = j
             # A note on a STRONG beat is heard against the bass; a note on a
             # weak one passes. Snapping only the strong ones keeps passing
             # tones — which are most of what makes a line sing — while removing
@@ -2414,6 +2801,23 @@ class SurfaceComposer:
                 ]
                 if near:
                     i = min(near, key=lambda j: abs(j - i))
+            # A LINE THAT ROUNDS TWICE ONTO ONE NOTE IS NOT A REPEATED NOTE.
+            #
+            # The arch walks scale INDICES and rounds each to the nearest, so
+            # whenever more notes are asked for than the span has indices,
+            # consecutive steps land on the same degree. Measured against the
+            # corpus the melody repeated its pitch in **20% of adjacent pairs
+            # against a real 8-9%** — a line sitting on one note is among the
+            # plainest tells of a machine, and none of these repeats was chosen.
+            #
+            # A real repeated note is written deliberately and survives: this
+            # only moves the ones the ROUNDING made, one scale step in the
+            # direction the arch is already travelling, so the shape is kept.
+            if result and scale[i] == result[-1] and len(scale) > 1:
+                _rising = (peak_idx >= start_idx) if step <= peak_at else (end_idx >= peak_idx)
+                _nudged = i + (1 if _rising else -1)
+                if 0 <= _nudged < len(scale) and scale[_nudged] != result[-1]:
+                    i = _nudged
             result.append(scale[i])
 
         return result
@@ -2559,7 +2963,30 @@ class SurfaceComposer:
             if lh_texture in ctx.active_patterns:
                 patterns = ctx.active_patterns[lh_texture]
                 if patterns:
-                    pattern = patterns[(variant + bar_off) % len(patterns)]
+                    # A PATTERN HAS TO FILL THE BAR IT IS PUT IN.
+                    #
+                    # Patterns are stored at the length of the bar they were
+                    # lifted from and nothing checked that against the bar they
+                    # were poured into, so a three-beat figure — a mazurka's —
+                    # covered three beats of a 4/4 bar and the accompaniment
+                    # simply stopped. Measured: the left hand fell silent before
+                    # the barline in 100% of `block_chord_sparse` bars, 79% of
+                    # `alberti` and 50% of `broken_chord_wave`, against a real
+                    # 25%, 18% and 3% in Chopin. Real music does leave a bar's
+                    # tail silent — it is an ordinary thing to do — but at a
+                    # quarter of our rate, and never because the figure ran out.
+                    #
+                    # `duration_total` is the only record of that length the
+                    # library keeps. Prefer the patterns that fit, and fall back
+                    # to the whole set so a texture the corpus holds at no other
+                    # length still gets one.
+                    fitted = [
+                        candidate
+                        for candidate in patterns
+                        if abs(float(candidate.get("duration_total") or 0) - bar_dur) < 1e-6
+                    ]
+                    pool = fitted or patterns
+                    pattern = pool[(variant + bar_off) % len(pool)]
                     bar_events = self._adapt_pattern_to_harmony(
                         pattern,
                         bar,
@@ -2635,6 +3062,33 @@ class SurfaceComposer:
         # it to the current bar rather than emitting onsets past the barline for
         # the repair pass to drop.
         bar_cap = float(bar_duration(meter)) + 1.0
+        # THE OUTER NOTES OF A FIGURE KEEP THEIR REACH.
+        #
+        # Snapping each note independently to its nearest chord tone moves every
+        # one of them by up to six semitones, and the movement is inward on
+        # average — so a figure arrives spanning 14 semitones and leaves
+        # spanning 12. That is not a rounding loss, it is an identity loss:
+        # `broken_chord_wave` and `alberti` run the SAME twelve attacks to the
+        # bar in real Chopin and differ only in reach, 18 semitones against 11,
+        # and the classifier's own boundary is 12. Fourteen of twenty-two bars
+        # planned as waves were written as Alberti figures.
+        #
+        # So the lowest and highest notes of the pattern snap OUTWARD — to the
+        # nearest chord tone at or beyond where they already were — and
+        # everything between them still takes its nearest tone. The figure keeps
+        # the shape it was retrieved for.
+        _pattern_midis = [
+            pitch_to_midi(e.pitch)
+            for e in lh_events
+            if isinstance(e.pitch, str) and e.pitch != "rest"
+        ]
+        _pattern_midis = [m for m in _pattern_midis if m is not None]
+        _reach_low = min(_pattern_midis) if _pattern_midis else None
+        _reach_high = max(_pattern_midis) if _pattern_midis else None
+        #: The previous note as the PATTERN had it, and as we wrote it. Two
+        #: different pattern notes must not be snapped onto one pitch.
+        _prev_source: int | None = None
+        _prev_written: int | None = None
         events: list[_TaggedEvent] = []
         for _i, evt in enumerate(lh_events):
             if float(evt.beat) >= bar_cap - 1e-9:
@@ -2658,8 +3112,14 @@ class SurfaceComposer:
             if evt.pitch == "rest":
                 continue
 
-            # Snap each pattern pitch to nearest chord tone
-            evt_midi = pitch_to_midi(evt.pitch)
+            # Snap each pattern pitch to nearest chord tone.
+            #
+            # Only ask for a single MIDI number when the pitch IS a single note.
+            # `pitch_to_midi` answers a list with its highest note, which is a
+            # documented convenience and the wrong question here — leaving a
+            # plausible number in `evt_midi` for a chord is how the chord branch
+            # below came to be missing in the first place.
+            evt_midi = None if isinstance(evt.pitch, list) else pitch_to_midi(evt.pitch)
             if isinstance(evt.pitch, list) and chord_tones_midi:
                 # A CHORD IN THE PATTERN IS A CHORD IN THE MUSIC.
                 #
@@ -2674,18 +3134,35 @@ class SurfaceComposer:
                 #
                 # Each member snaps to its own chord tone, ascending, so the
                 # voicing keeps its spacing instead of collapsing onto one pitch.
+                # THE CHORD TONES ACROSS THE HAND'S REGISTER, not in the one
+                # octave they were voiced in.
+                #
+                # Mapping each member to the nearest tone STRICTLY ABOVE the
+                # previous one runs out of tones — a triad offers three — so a
+                # two-note chord whose members both landed on the same tone
+                # deduped to a single note. Measured per idiom, adaptation was
+                # losing 29 points of chord share on `block_chord_offbeat`
+                # (19.2% written against a real 84.3%) and 24 on
+                # `block_chord_sparse`, while the single-line idioms came
+                # through correctly. Offering every octave copy inside the left
+                # hand's range gives each member its own tone near its own
+                # pitch, so the voicing keeps both its spacing and its size.
+                choices = sorted(
+                    {
+                        midi
+                        for tone in chord_tones_midi
+                        for midi in range(
+                            BASS_RANGE[0] + ((tone - BASS_RANGE[0]) % 12), BASS_RANGE[1] + 1, 12
+                        )
+                    }
+                )
                 members: list[int] = []
                 for one in evt.pitch:
                     m = pitch_to_midi(one) if isinstance(one, str) else None
                     if m is None:
                         continue
-                    above = [
-                        c for c in sorted(chord_tones_midi) if c > (members[-1] if members else -1)
-                    ]
-                    candidates = above or sorted(chord_tones_midi)
-                    members.append(
-                        clamp_to_range(min(candidates, key=lambda ct: abs(ct - m)), 36, 60)
-                    )
+                    free = [c for c in choices if c not in members] or choices
+                    members.append(min(free, key=lambda ct: abs(ct - m)))
                 spelled = [midi_to_pitch(m, key) for m in sorted(set(members))]
                 pitch = spelled if len(spelled) > 1 else (spelled[0] if spelled else evt.pitch)
             elif evt_midi is not None and chord_tones_midi:
@@ -2709,19 +3186,65 @@ class SurfaceComposer:
                 # instead of being pulled into whichever octave the chord tones
                 # were voiced in.
                 classes = {ct % 12 for ct in chord_tones_midi}
-                snapped = min(
-                    (
-                        candidate
-                        for pc in classes
-                        for candidate in (
-                            evt_midi - ((evt_midi - pc) % 12),
-                            evt_midi + ((pc - evt_midi) % 12),
-                        )
-                    ),
-                    key=lambda c: (abs(c - evt_midi), c),
-                )
-                # Keep in LH register
-                snapped = clamp_to_range(snapped, 36, 60)
+                candidates = [
+                    candidate
+                    for pc in classes
+                    for candidate in (
+                        evt_midi - ((evt_midi - pc) % 12),
+                        evt_midi + ((pc - evt_midi) % 12),
+                    )
+                ]
+                outward = None
+                if _reach_low is not None and evt_midi == _reach_low and evt_midi != _reach_high:
+                    outward = [c for c in candidates if c <= evt_midi]
+                elif _reach_high is not None and evt_midi == _reach_high:
+                    outward = [c for c in candidates if c >= evt_midi]
+                ranked = sorted(outward or candidates, key=lambda c: (abs(c - evt_midi), c))
+                snapped = ranked[0]
+                # A FIGURE THAT MOVED MUST GO ON MOVING.
+                #
+                # Two adjacent pattern notes can snap onto the same chord tone,
+                # and the repeat that creates is not a small error: the corpus
+                # classifier counts a repeated top as "stepwise" (its test is
+                # `interval <= 2`, which includes 0), and real Alberti bass has
+                # a stepwise ratio of **0.00** — an Alberti figure never repeats
+                # its top note twice running. Ours measured 0.33, which is how
+                # bars planned `alberti` came back labelled `walking_bass`.
+                #
+                # So when the pattern moved and the snap did not, take the next
+                # nearest tone instead. Only when the pattern itself moved: a
+                # genuine repeated note in the source stays a repeated note.
+                if (
+                    _prev_written is not None
+                    and _prev_source is not None
+                    and evt_midi != _prev_source
+                    and snapped == _prev_written
+                ):
+                    for candidate in ranked[1:]:
+                        if candidate != _prev_written:
+                            snapped = candidate
+                            break
+                _prev_source, _prev_written = evt_midi, snapped
+                # Keep in LH register — by OCTAVE, and in the register the
+                # composers actually use.
+                #
+                # This clamped to 36-60, which excludes **24-37% of every real
+                # left hand measured** (mozart 36.8%, beethoven 24.6%, chopin
+                # 24.0%, over 226,000 notes). And a clamp FLATTENS: every note
+                # past the ceiling lands on the ceiling, inventing a repeated
+                # pitch that was never written — the same fault
+                # `_clamp_to_period_register` was built to avoid, twenty lines
+                # of comment after this one insists "the registral shape IS the
+                # pattern".
+                #
+                # Together those undid the retrieval. A `broken_chord_wave` is
+                # distinguished from an `alberti` by SPAN, not by density —
+                # both run 12 attacks to the bar in real Chopin, but the wave
+                # covers 18 semitones and the Alberti 11. Every stored wave
+                # pattern spans more than an octave; squeezed into 24 semitones
+                # and flattened at the edges they came out under 12 and were
+                # written as Alberti in 14 of 22 planned bars.
+                snapped = _displace_into(snapped, LH_PATTERN_RANGE)
                 pitch = midi_to_pitch(snapped, key)
             else:
                 pitch = evt.pitch
@@ -3117,26 +3640,198 @@ class SurfaceComposer:
     # ─── Gesture Retrieval ────────────────────────────────────────────────
 
     def _retrieve_gesture(
-        self, slot: GestureSlot, ctx: PhraseContext, key: str, mode: str, trace: ContextTrace
+        self,
+        slot: GestureSlot,
+        ctx: PhraseContext,
+        key: str,
+        mode: str,
+        trace: ContextTrace,
+        bar_dur: float = 4.0,
     ) -> GestureResult | None:
         """Retrieve a gesture from GestureBank matching the slot's function."""
         if not self.gesture_bank:
             return None
         try:
+            # The slot knows how many notes the bar wants and the bank scores
+            # on it (weight 0.10) — but nothing passed it, so every gesture
+            # ranked equally on density and results[0] could be a three-event
+            # figure for a bar asking twelve. That is how a bar planned
+            # `zigzag_figuration` got written as a singing melody: the
+            # classifier's own rule needs more than two notes per beat.
+            #
+            # Rank on the cell's OWN events per beat, not on the density of the
+            # bar it was lifted from. Those come apart — Chopin's zigzag cells
+            # record a source density of 2.25 notes per beat and carry profiles
+            # running at 2.0 — and it is the profile that decides how many
+            # notes get written. `density_target` is per BAR while a slot is
+            # often half of one, so convert before comparing.
+            #
+            # A band, not the number: the bank SCORES this, it does not filter
+            # on it, so a wide band costs nothing when the corpus holds no cell
+            # of that weight and still prefers the right one when it does.
+            events_per_beat_range = None
+            target = getattr(slot, "density_target", None)
+            if target and bar_dur:
+                wanted = float(target) / float(bar_dur)
+                # Centred and narrow. A band open to 1.6x the wanted rate let a
+                # `singing_melody` asking six notes be written with fourteen,
+                # which is not a singing melody by the same classifier's rule.
+                # Overshooting the texture is as wrong as falling short of it.
+                events_per_beat_range = (wanted * 0.85, wanted * 1.25)
             query = GestureQuery(
                 function=slot.function,
                 texture_rh=slot.rh_texture,
                 texture_lh=slot.lh_texture,
+                events_per_beat_range=events_per_beat_range,
                 min_span_beats=max(1.0, slot.span_beats - 4),
                 max_span_beats=slot.span_beats + 4,
                 key_mode=mode,
-                n=3,
+                n=12,
             )
             results = self.gesture_bank.retrieve(query)
             if results:
-                g = results[0]
-                trace.gestures_applied.append(g.cell_id)
-                return g
+                # The band is worth 0.10 of the bank's score and loses to the
+                # other criteria combined, so asking for it was not enough: a
+                # `singing_melody` bar wanting six notes was written with
+                # thirteen, which is a scalar run by the classifier's own rule
+                # and not a singing melody at all. Overshooting a texture is as
+                # wrong as falling short of it.
+                #
+                # So CHOOSE among the candidates rather than only ranking them,
+                # and keep the bank's order otherwise — the first cell whose own
+                # rhythm runs at the wanted rate, else the bank's own best. A
+                # fallback rather than a filter: a texture the corpus holds at no
+                # other speed still gets its cell.
+                def _in_band(candidate):
+                    if not events_per_beat_range:
+                        return True
+                    profile = candidate.dur_profile or []
+                    span = float(candidate.span_beats or 0)
+                    if not profile or not span:
+                        return False
+                    low, high = events_per_beat_range
+                    return low <= len(profile) / span <= high
+
+                def _dominant(candidate):
+                    profile = candidate.dur_profile or []
+                    return collections.Counter(profile).most_common(1)[0][0] if profile else ""
+
+                # A BAR IS USUALLY ONE FIGURE.
+                #
+                # Slots run between melody anchors, so a bar is often written by
+                # two of them, and each was retrieving its own cell with its own
+                # rhythm. The result is a bar made of two different figures:
+                # measured against the corpus, **66.7% of real Chopin's melody
+                # bars use a single note value and 12.2% of ours do**, while 22%
+                # of ours use four or more against his 3.9%. A patchwork bar is
+                # not richer than a uniform one, it is less coherent — real
+                # figuration holds its value and changes at the barline.
+                #
+                # So a slot that continues a bar prefers the value that bar has
+                # already settled on. Still a preference, under the density band
+                # and above nothing else: the first slot in a bar is free.
+                settled = self._bar_rhythm.get(slot.bar_start)
+                banded = [candidate for candidate in results if _in_band(candidate)]
+                chosen = None
+                if settled:
+                    chosen = next(
+                        (c for c in banded if _dominant(c) == settled),
+                        next((c for c in results if _dominant(c) == settled), None),
+                    )
+                if chosen is None:
+                    # A REAL FIGURATION BAR HOLDS ONE NOTE VALUE.
+                    #
+                    # Measured within texture, so the comparison is like for
+                    # like: 81% of real Chopin `zigzag_figuration` bars use a
+                    # single note value and 0% of ours did; 54% of his
+                    # `singing_melody` bars against our 12%. And the corpus
+                    # concentrates on attack counts that divide the bar evenly —
+                    # his zigzag bars sit at 16 attacks a third of the time and
+                    # are uniform in 100% of those, at 12 attacks in 100% —
+                    # because a bar you can fill with one value is the bar a
+                    # composer reaches for.
+                    #
+                    # A preference among cells already inside the density band,
+                    # not a filter: the counts that CANNOT divide evenly (real
+                    # Chopin's five-attack bars, 0% uniform) still get the mixed
+                    # profiles they need, because no uniform candidate will be
+                    # in band for them.
+                    # ...and only where the composer WRITES uniform bars in
+                    # this metre. The share swings by three and a half times
+                    # between his own metres — Chopin's `zigzag_figuration` is
+                    # 81% single-value in 4/4 and 23% in 3/4, his
+                    # `singing_melody` 54% against 19% — because his 3/4 corpus
+                    # is mazurkas. A preference calibrated on the 4/4 figure
+                    # would impose it on a mazurka, which is the same
+                    # substitution as reading a pooled number for a metre-scoped
+                    # one, and it has caught us both repeatedly.
+                    #
+                    # Matching the composer's MEDIAN distinct-value count
+                    # instead of preferring uniformity was measured and is
+                    # worse: a cell's distinct count is not the bar's, because a
+                    # bar is one cell repeated plus whatever the cadence and the
+                    # held final note add. It cost Chopin's `chordal` bars their
+                    # single-value share outright (56% -> 0%, real 50%) to buy
+                    # 15 points of Mozart's 4+ share. The binary preference,
+                    # gated on the composer's own rate in this metre, measured
+                    # best.
+                    prefer_uniform = True
+                    composer_id = getattr(self.gesture_bank, "composer", "")
+                    if composer_id and slot.rh_texture:
+                        try:
+                            from .composition_brief import uniform_bar_share
+
+                            share = uniform_bar_share(
+                                composer_id, slot.rh_texture, "rh", self._meter
+                            )
+                        except Exception:
+                            share = None
+                        if share is not None:
+                            # The threshold is 0.40 because that is where the
+                            # measured shares actually separate, not because it
+                            # is a round number. A half excluded Mozart's
+                            # `chordal` at 0.44 — his single-value bars went to
+                            # 0% against a real 44% — while 0.40 admits it and
+                            # still refuses Chopin's 3/4 textures at 0.19-0.25.
+                            #
+                            # Spreading the preference across a `share` fraction
+                            # of bars instead of thresholding was measured and
+                            # is worse: it applies uniformity to Chopin's
+                            # `singing_melody` often enough that 7 bars come out
+                            # as `held_note` (agreement 90% -> 73%) and costs a
+                            # direction change per bar (turns 3.0 -> 2.0). A
+                            # sparse uniform cell is not a neutral choice.
+                            prefer_uniform = share >= 0.40
+                    chosen = (
+                        next(
+                            (c for c in banded if len(set(c.dur_profile or [])) == 1),
+                            banded[0] if banded else results[0],
+                        )
+                        if prefer_uniform
+                        else (banded[0] if banded else results[0])
+                    )
+                # PREFERRING A FRAGMENT-FREE CELL WAS MEASURED AND REVERTED.
+                #
+                # A tuplet fragment must be completed (lengthening the profile)
+                # or rewritten to a shorter binary value downstream (leaving a
+                # rest), and the resulting short-gap share is 0.415 against this
+                # composer's median 0.000 and p75 0.012 — outside his practice.
+                # Choosing cells that carry no fragment fixes exactly that:
+                # Chopin's short gaps fall 34% -> 12%.
+                #
+                # It costs the texture, in band or out of it: **his
+                # fragment-free cells are his sparse ones**, so 13
+                # `singing_melody` bars come out as `held_note` and agreement
+                # falls 93% -> 61%. Confining the preference to the density band
+                # changes nothing, because the sparse cells are inside it.
+                #
+                # Fourth attempt at reclaiming this cost and the fourth to trade
+                # about thirty points of texture for it. The gap is a property
+                # of which cells carry tuplets in this corpus, not of how they
+                # are chosen.
+                self._bar_rhythm.setdefault(slot.bar_start, _dominant(chosen))
+                trace.gestures_applied.append(chosen.cell_id)
+                return chosen
         except Exception:
             pass
         return None
@@ -3230,9 +3925,22 @@ class SurfaceComposer:
         return tones
 
     def _last_bass_midi(self, events: list[_TaggedEvent]) -> int | None:
-        """Get the last bass MIDI from accompaniment events."""
+        """The last bass note — the BOTTOM of it when the bass is a chord.
+
+        `pitch_to_midi` documents that it returns the HIGHEST note of a list, so
+        this read the top of a left-hand chord and called it the bass. It was
+        unreachable while nothing produced chords in the accompaniment; now that
+        retrieved patterns keep theirs, it fires 150 times in a single piece and
+        hands the voice-leading continuity the wrong voice every time.
+        """
         for e in reversed(events):
             if e.voice == "bass" and e.pitch != "rest":
+                if isinstance(e.pitch, list):
+                    lows = [pitch_to_midi(one) for one in e.pitch if one != "rest"]
+                    lows = [m for m in lows if m is not None]
+                    if lows:
+                        return min(lows)
+                    continue
                 m = pitch_to_midi(e.pitch)
                 if m is not None:
                     return m

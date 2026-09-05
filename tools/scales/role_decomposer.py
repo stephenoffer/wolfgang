@@ -25,6 +25,13 @@ class RoleEvent:
     pitch: str = ""
     duration: str = "q"
     dynamic: str | None = None
+    # What the source note was MARKED with. A reduction that cannot see the
+    # original's phrasing cannot preserve it, and this carried only `dynamic`:
+    # a polonaise with 27 slurs reduced to a piano part with none.
+    slur: str | None = None
+    articulation: str | None = None
+    ornament: str | None = None
+    tie: str | None = None
     role: str = OrchestraRole.HARMONIC_PAD.value
     salience: float = 0.5
 
@@ -65,6 +72,17 @@ class RoleDecomposer:
         # Strings
         "violin_1": OrchestraRole.PRINCIPAL_MELODY.value,
         "violin_2": OrchestraRole.SECONDARY_MELODY.value,
+        # An undivided violin part carries the tune: a score that writes plain
+        # "Violin" is not writing a second violin.
+        "violin": OrchestraRole.PRINCIPAL_MELODY.value,
+        # Voices. A chorale or a mass reduced to piano has no strings in it at
+        # all, and every one of these used to resolve to a harmonic pad.
+        "soprano": OrchestraRole.PRINCIPAL_MELODY.value,
+        "mezzo_soprano": OrchestraRole.SECONDARY_MELODY.value,
+        "alto": OrchestraRole.SECONDARY_MELODY.value,
+        "tenor": OrchestraRole.SECONDARY_MELODY.value,
+        "baritone": OrchestraRole.BASS_FOUNDATION.value,
+        "bass": OrchestraRole.BASS_FOUNDATION.value,
         "viola": OrchestraRole.HARMONIC_PAD.value,
         "cello": OrchestraRole.BASS_FOUNDATION.value,
         "contrabass": OrchestraRole.BASS_FOUNDATION.value,
@@ -81,6 +99,16 @@ class RoleDecomposer:
         "tuba": OrchestraRole.BASS_FOUNDATION.value,
         # Percussion
         "timpani": OrchestraRole.RHYTHMIC_MOTOR.value,
+        # Present in `INSTRUMENT_RANGES` and absent here, so a score with any of
+        # them reduced that part as an unnamed harmonic pad.
+        "piccolo": OrchestraRole.PRINCIPAL_MELODY.value,
+        "english_horn": OrchestraRole.SECONDARY_MELODY.value,
+        "bass_clarinet": OrchestraRole.BASS_FOUNDATION.value,
+        "contrabassoon": OrchestraRole.BASS_FOUNDATION.value,
+        "bass_trombone": OrchestraRole.BASS_FOUNDATION.value,
+        "harp": OrchestraRole.COLOR_PUNCTUATION.value,
+        "celesta": OrchestraRole.COLOR_PUNCTUATION.value,
+        "glockenspiel": OrchestraRole.COLOR_PUNCTUATION.value,
         # Piano
         "piano_rh": OrchestraRole.PRINCIPAL_MELODY.value,
         "piano_lh": OrchestraRole.BASS_FOUNDATION.value,
@@ -105,6 +133,10 @@ class RoleDecomposer:
                 pitch=event_data.get("pitch", ""),
                 duration=event_data.get("duration", "q"),
                 dynamic=event_data.get("dynamic"),
+                slur=event_data.get("slur"),
+                articulation=event_data.get("articulation"),
+                ornament=event_data.get("ornament"),
+                tie=event_data.get("tie"),
             )
 
             # Assign role
@@ -119,8 +151,23 @@ class RoleDecomposer:
         return graph
 
     def _assign_role(self, event: RoleEvent) -> str:
-        """Assign orchestral role to an event."""
-        instrument = event.instrument.lower().replace(" ", "_")
+        """Assign orchestral role to an event.
+
+        The lookup was `event.instrument.lower().replace(" ", "_")` against a
+        table keyed `violin_1`, `cello`, `flute`. Measured against the part names
+        in real scores, **11 of 15 missed** — every violin spelling ("Violin",
+        "Violin I", "1st Violin"), "Violoncello", and all four voice names — and
+        a miss returns HARMONIC_PAD. So in `reduce_to_piano` the first violin,
+        which is carrying the tune, was filed as filler in every real orchestral
+        score, and the reduction had no principal melody to preserve.
+        """
+        from .models import canonical_instrument
+
+        key, division = canonical_instrument(event.instrument)
+        # "Violin I" and "Violin II" are different roles; "Flute 1" and "Flute 2"
+        # are not, so a division only counts where the table names it.
+        divided = f"{key}_{division}" if division else ""
+        instrument = divided if divided in self._ROLE_PRIORS else key
 
         # Start with instrument prior
         role = self._ROLE_PRIORS.get(instrument, OrchestraRole.HARMONIC_PAD.value)

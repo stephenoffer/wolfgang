@@ -62,3 +62,78 @@ Any section claiming Mussorgsky's style needs ≥3 of these 5 present.
 - `"dyn": "pp"` to `"dyn": "fff"` — Mussorgsky's Bell passages build to fff.
 - `"expr": "pesante"` (heavy) for the Boris/Kiev ceremonial passages.
 - `"expr": "misterioso"` for supernatural sections.
+
+---
+
+## Composing a Mussorgsky phrase: step by step
+
+The organising fact is that **the piano is struck, not stroked**. Where a Chopin
+left hand flows, this one lands. Supplying arpeggios is the surest way to lose
+him.
+
+### Step 1 — Write the rhythm from spoken Russian, not from a metre
+
+Repeated notes on one pitch following the stresses, then a sudden opening out.
+Phrase lengths of five and seven bars; the tune ends when the sentence ends.
+
+```json
+"speech_rhythm": [
+  {"p": "C4", "d": "e"},
+  {"p": "C4", "d": "e"},
+  {"p": "C4", "d": "q"},
+  {"p": "Eb4", "d": "e"},
+  {"p": "D4", "d": "e"},
+  {"p": "C4", "d": "h"}
+]
+```
+
+### Step 2 — Harmonise it modally, with the third often missing
+
+Bare fifths, a flat seventh instead of a leading tone, and parallel triads moving
+in blocks — parallels and all.
+
+```json
+"bare_fifths": [
+  {"p": ["G2", "D3"], "d": "h"},
+  {"p": ["F2", "C3"], "d": "h"},
+  {"p": ["Eb2", "Bb2"], "d": "w"}
+]
+```
+
+### Step 3 — Strike the chords; do not roll them
+
+Blocks in the low register, five and six notes, struck together.
+
+```json
+"struck_block": [
+  {"p": ["C2", "G2", "C3", "Eb3", "G3"], "d": "h", "dyn": "ff"},
+  {"p": ["C2", "G2", "C3", "Eb3", "G3"], "d": "h"}
+]
+```
+
+### Step 4 — Use the extremes bare, with nothing between
+
+A low octave against a mid-register chord, repeated as the harmony changes above
+it. The bell effect, and the reason his hands sit far apart.
+
+### Step 5 — Change level in steps, never by hairpin
+
+`ff` beside `pp` in adjacent bars. And let the music stop dead — a rest is often
+the loudest moment.
+
+```json
+"sudden_silence": [
+  {"p": ["C3", "Eb3", "G3"], "d": "q", "dyn": "ff"},
+  {"p": "rest", "d": "q"},
+  {"p": "rest", "d": "h"}
+]
+```
+
+---
+
+## Checking a finished phrase
+
+- Is there an arpeggio? There should not be.
+- Is any phrase five or seven bars?
+- Are the dynamics graded, or terraced? They should be terraced.
+- Are the parallel fifths still there? Leave them.

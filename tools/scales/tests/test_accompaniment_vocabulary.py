@@ -55,8 +55,15 @@ def test_a_varied_hand_is_not_flagged():
 
 
 def test_the_melody_staff_is_not_judged_as_accompaniment():
+    """It is judged against the MELODY floor, which is a different number —
+    Mozart's melody floor is 20 shapes and his accompaniment floor is 13. This
+    test originally asserted no finding at all, which was true only while the
+    detector ignored the melody entirely."""
     bars = [_bar(0, i, [0.5, 0.5, 0.5, 0.5], [1, 1, 1, 1]) for i in range(1, 41)]
-    assert detect_accompaniment_vocabulary_poverty(bars, composer="mozart", melody_staff=0) == []
+    out = detect_accompaniment_vocabulary_poverty(bars, composer="mozart", melody_staff=0)
+    kinds = {f["detector"] for f in out}
+    assert "accompaniment_vocabulary_poverty" not in kinds, kinds
+    assert kinds <= {"melody_vocabulary_poverty"}, kinds
 
 
 def test_short_excerpts_are_left_alone():
@@ -104,3 +111,63 @@ def test_the_floor_does_not_reject_real_movements():
         if rate > 0.10:
             failures.append(f"{comp}: floor {floor} rejects {rate:.0%} of real movements")
     assert not failures, "\n".join(failures)
+
+
+# ─── the melody has a floor too ─────────────────────────────────────────────
+
+
+def test_a_melody_of_one_shape_is_flagged():
+    """The detector looked only at the accompaniment. A melody repeating its
+    shape IS a style — Chopin's most-common melody shape covers 18% of bars at
+    the median and 84% at the 95th percentile — but there is still a floor:
+    across 85 real Chopin movements the 5th percentile is 6 distinct melody
+    shapes, and a melody below that has stopped being a melody."""
+    bars = []
+    for i in range(1, 41):
+        bars.append(_bar(0, i, [1.0] * 4, [1] * 4))
+        n = 2 + (i % 7)
+        bars.append(_bar(1, i, [0.25] * n, [1 + (i % 3)] * n))
+    out = detect_accompaniment_vocabulary_poverty(bars, composer="mozart", melody_staff=0)
+    kinds = {f["detector"] for f in out}
+    assert "melody_vocabulary_poverty" in kinds, kinds
+    assert "accompaniment_vocabulary_poverty" not in kinds, "the varied hand must not be flagged"
+
+
+def test_the_melody_floor_is_composer_relative():
+    """Chopin's melody floor is far below Mozart's; a fixed bound taken from one
+    would misjudge the other."""
+    from scales.score_realism import _shape_vocabulary_floor
+
+    mz = _shape_vocabulary_floor("mozart", "rh")
+    ch = _shape_vocabulary_floor("chopin", "rh")
+    if mz is None or ch is None:
+        pytest.skip("corpora not present")
+    assert mz > ch, (mz, ch)
+
+
+def test_each_hand_is_measured_against_its_own_floor():
+    """A melody and an accompaniment do not have the same vocabulary; measuring
+    both against one number would flag the wrong hand."""
+    from scales.score_realism import _shape_vocabulary_floor
+
+    for comp in ("mozart", "chopin", "beethoven"):
+        rh = _shape_vocabulary_floor(comp, "rh")
+        lh = _shape_vocabulary_floor(comp, "lh")
+        if rh is None or lh is None:
+            continue
+        assert rh != lh or rh is None, f"{comp}: identical floors {rh}/{lh} is suspicious"
+
+
+def test_a_real_piece_is_not_flagged():
+    """My own nocturne sits at 17 melody shapes with the commonest covering 34%
+    — inside Chopin's range, on the repetitive side. Reading it, I thought it
+    was too repetitive; measuring said otherwise, and metric-chasing it would
+    have made the music worse."""
+    import os
+
+    from scales.scales import self_evaluate
+
+    if not os.path.exists("workspace/chopin-nocturne-ebmaj-20260826/piece_graph.json"):
+        pytest.skip("nocturne not present")
+    fs = self_evaluate("chopin-nocturne-ebmaj-20260826")["realism"].get("findings") or []
+    assert not any(f["detector"] == "melody_vocabulary_poverty" for f in fs)

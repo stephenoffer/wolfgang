@@ -298,12 +298,42 @@ class MotifObject:
 # ─── Narrative Arc ───────────────────────────────────────────────────────────
 
 
+def narrative_section_is_in_movement(section, movement_id: str) -> bool:
+    """Does this narrative section belong to ``movement_id``?
+
+    THE one predicate — `composition_brief` resolves a section for a phrase and
+    `scales._apply_narrative_curves` maps its curves onto a slot, and two copies
+    of this rule drifting apart is the failure mode `project_one_parser_one_loader`
+    records as this repo's most expensive.
+
+    An empty `movement_id` on the section means "any movement": that is what
+    every single-movement piece wants and what every graph already on disk holds.
+    A movement named in the section's `id` or `label` (`"m2_open"`) is honoured
+    too, because narratives written before the field existed said it there.
+    """
+    declared = (getattr(section, "movement_id", "") or "").strip()
+    if declared:
+        return declared == movement_id
+    for name in (getattr(section, "id", ""), getattr(section, "label", "")):
+        head = (name or "").split("_", 1)[0].split(" ", 1)[0]
+        if head.startswith("m") and head[1:].isdigit():
+            return head == movement_id
+    return True
+
+
 @dataclass
 class NarrativeSection:
     """One section in the emotional narrative."""
 
     id: str = ""
     label: str = ""
+    # Which movement these bars belong to. Bar numbers RESTART per movement, so
+    # a range alone cannot identify a section in a multi-movement work: a phrase
+    # at bar 1 of movement two matched a section covering bars 1-8 of movement
+    # one and was handed the wrong movement's CREATIVE INTENT — the one line the
+    # composer is told to start from. Empty means "any movement", which is what
+    # every single-movement piece wants and what existing graphs already hold.
+    movement_id: str = ""
     bar_start: int = 1
     bar_end: int = 8
     energy_curve: List[float] = field(default_factory=list)
@@ -455,12 +485,23 @@ class PhraseSlot:
     # it exists, so every one came out locally optimal and the piece had no arc.
     dramatic_role: str = ""  # establish|extend|depart|intensify|crisis|
     # retreat|return|confirm|close
-    climax_distance: int = 0  # phrases from the piece's peak (0 = it IS)
+    # Phrases from the piece's peak; 0 means this phrase IS the climax.
+    # NOTE the trap in that: the default is also 0, so an unplanned phrase
+    # claims the peak. Readers must check `dramatic_role` (which the planner
+    # always sets alongside this) before trusting a 0 — nine workspace pieces
+    # had EVERY phrase telling the composer it was the climax of the piece.
+    climax_distance: int = 0
     return_strategy: str = ""  # how a RETURN must differ from the statement
     return_strategy_detail: str = ""
     key_motion: str = ""  # prolong | depart | arrive
     pivot_hint: str = ""  # tones common to the old and new key
     section_techniques: List[str] = field(default_factory=list)  # from SectionContract
+    # `section_rhetoric()` returns (goals, techniques) and only the techniques
+    # were copied here, so the composer was told HOW ("rising sequence",
+    # "pivot chord") and never WHAT FOR ("raise tension continuously",
+    # "make the return feel earned"). The goals half went to
+    # `SectionContract.rhetorical_goals`, which nothing reads.
+    section_goals: List[str] = field(default_factory=list)
     # Free-text character note from the form spec (e.g. "variation 2 — minore").
     # Surfaced in the brief so a variation set actually varies in character.
     notes: str = ""
@@ -586,6 +627,21 @@ class SketchIR:
     motif_placements: List[MotifPlacement] = field(default_factory=list)
     breath_points: List[BreathPoint] = field(default_factory=list)
     cadence: CadenceApproach = field(default_factory=CadenceApproach)
+    # SUPERSEDED, and measured as such: across 426 phrases in `workspace/`,
+    # ten have a sketch at all and **zero** carry either signature. Only
+    # `sketch_proposer` (the engine fallback) and `reducer` ever write them, and
+    # neither runs on the default agent path.
+    #
+    # `exit_signature` is still read by `composition_brief`, so that block is
+    # unreachable in practice; `entry_signature` is written by nobody who reads
+    # it and read by nobody at all. Phrase-to-phrase continuity is carried
+    # instead by `_derive_continuation`, which works off the previous phrase's
+    # REALIZED notes rather than its plan — the same replacement that retired
+    # `ContinuationContext` (see the note there).
+    #
+    # Do not wire `entry_signature` into anything expecting data: it will be
+    # empty. If sketching becomes routine, populate these first and measure
+    # before reading them.
     entry_signature: EntryExitState = field(default_factory=EntryExitState)
     exit_signature: EntryExitState = field(default_factory=EntryExitState)
 
@@ -660,6 +716,235 @@ ORCHESTRAL_LAYERS: tuple[str, ...] = (
 #: Every event-bearing layer. Kept in step with the dataclass by the test
 #: `test_layer_groups_match_the_model`, rather than by anyone remembering.
 ALL_LAYERS: tuple[str, ...] = PIANO_LAYERS + ORCHESTRAL_LAYERS
+
+#: Forces that are NOT two hands at a keyboard.
+#:
+#: Membership is tested against THIS set rather than against a keyboard
+#: whitelist, because the two errors are not symmetric. Mistaking an ensemble
+#: for a keyboard over-reports — a hand-span complaint on music with no hands,
+#: which a reader immediately sees is wrong. Mistaking a keyboard for an
+#: ensemble goes SILENT: the texture floors relax, the playability check is
+#: skipped, and silence is indistinguishable from a clean score.
+#:
+#: Four call sites each carried their own `in ("solo_piano", "piano")`
+#: whitelist. Saved graphs on disk carry `piano_solo` and `solo piano` (with a
+#: space) too, so real keyboard pieces were falling through all four — and one
+#: of those four gates the hand-span check, a STRICT physical constraint. That
+#: same `solo piano` spelling had already broken assembler routing once.
+ENSEMBLE_INSTRUMENTATION = frozenset(
+    {
+        "ensemble", "orchestra", "orchestral", "chamber", "choir", "chorus",
+        "choral", "vocal", "voices", "satb", "string_quartet", "quartet",
+        "quintet", "trio", "band", "consort", "concerto", "symphony",
+        # Sung forms. Without these a motet resolved to "keyboard" — the
+        # unknown-means-yes default — so a piece for four voices was checked for
+        # hand span and notes-per-hand, which a choir does not have.
+        "motet", "madrigal", "mass", "anthem", "requiem", "cantata", "a_cappella",
+    }
+)
+
+
+def is_keyboard(instrumentation) -> bool:
+    """Whether this is two hands at a keyboard. Unknown means yes.
+
+    Accepts a string or anything with an `.instrumentation` attribute.
+    Unrecognised spellings resolve to keyboard, which is the reading that can
+    only over-report.
+    """
+    if not isinstance(instrumentation, str):
+        instrumentation = getattr(instrumentation, "instrumentation", "") or ""
+    inst = str(instrumentation or "solo_piano").strip().lower()
+    inst = inst.replace("-", "_").replace(" ", "_")
+    if not inst:
+        return True
+    if inst in ENSEMBLE_INSTRUMENTATION:
+        return False
+    return not any(w in ENSEMBLE_INSTRUMENTATION for w in inst.split("_"))
+
+
+#: Words that name a piece sung rather than played. Kept beside
+#: `ENSEMBLE_INSTRUMENTATION` because a choir is an ensemble AND a vocal one,
+#: and the two questions have different answers for a string quartet.
+VOCAL_INSTRUMENTATION: frozenset[str] = frozenset(
+    {
+        "choir",
+        "chorus",
+        "choral",
+        "vocal",
+        "voices",
+        "satb",
+        "a_cappella",
+        "motet",
+        "madrigal",
+        "mass",
+        "anthem",
+        "requiem",
+        "cantata",
+        # NOT "chorale": a chorale is sung, but a chorale PRELUDE is for organ,
+        # and the word alone cannot tell them apart. Guessing "sung" there would
+        # route an organ work to the ensemble path and give it singers' ranges.
+    }
+)
+
+
+def is_vocal(instrumentation) -> bool:
+    """Whether the parts are sung. Unknown means no.
+
+    The opposite default from `is_keyboard`, and for the same reason: the
+    reading that can only under-report is the safe one here, because what this
+    gates is a range check strict enough to block.
+    """
+    if not isinstance(instrumentation, str):
+        instrumentation = getattr(instrumentation, "instrumentation", "") or ""
+    inst = str(instrumentation or "").strip().lower().replace("-", "_").replace(" ", "_")
+    if not inst:
+        return False
+    if inst in VOCAL_INSTRUMENTATION:
+        return True
+    return any(w in VOCAL_INSTRUMENTATION for w in inst.split("_"))
+
+
+#: Real spellings -> the canonical instrument key used by `INSTRUMENT_RANGES`,
+#: `RoleDecomposer._ROLE_PRIORS` and SABRE's part-picking. Every one of these was
+#: found in a real score's `partName`.
+_INSTRUMENT_ALIASES = {
+    "violoncello": "cello",
+    "violon_cello": "cello",
+    "vc": "cello",
+    "vcl": "cello",
+    "contrabass": "double_bass",
+    "string_bass": "double_bass",
+    "kontrabass": "double_bass",
+    "cb": "double_bass",
+    "french_horn": "horn",
+    "corno": "horn",
+    "cor": "horn",
+    "cor_anglais": "english_horn",
+    "corno_inglese": "english_horn",
+    "kettledrum": "timpani",
+    "timpano": "timpani",
+    "fagotto": "bassoon",
+    "flauto": "flute",
+    "traverso": "flute",
+    "clarinetto": "clarinet",
+    "tromba": "trumpet",
+    "posaune": "trombone",
+    "bratsche": "viola",
+    "vla": "viola",
+    "vln": "violin",
+    "vn": "violin",
+    "violine": "violin",
+    "violino": "violin",
+    "geige": "violin",
+    "cantus": "soprano",
+    "superius": "soprano",
+    "discantus": "soprano",
+    "altus": "alto",
+    "contratenor": "alto",
+    "tenore": "tenor",
+    "bassus": "bass",
+    "basso": "bass",
+    "pianoforte": "piano",
+    "fortepiano": "piano",
+}
+
+#: Ordinal spellings a score uses for a divided section, in the order they must
+#: be stripped (longest first, so "iii" is not eaten by "ii").
+_ORDINALS = (
+    ("iii", 3), ("ii", 2), ("iv", 4), ("i", 1),
+    ("1st", 1), ("2nd", 2), ("3rd", 3), ("4th", 4),
+    ("1", 1), ("2", 2), ("3", 3), ("4", 4),
+    ("primo", 1), ("secondo", 2),
+)
+
+
+def canonical_instrument(name) -> tuple[str, int | None]:
+    """A score's `partName` -> `(canonical key, division number or None)`.
+
+    Measured against the part names in real music21 scores, **11 of 15 missed**
+    the tables that look instruments up: `_ROLE_PRIORS` knows `violin_1` while
+    scores write "Violin I", "1st Violin" and plain "Violin"; it knows `cello`
+    while scores write "Violoncello". A miss there is silent and returns
+    `HARMONIC_PAD`, so in `reduce_to_piano` the first violin — the tune — was
+    filed as filler in every real orchestral score.
+
+    Returns the division separately so "Violin I" and "Violin II" resolve to the
+    same instrument with different parts, which is what a range check wants and
+    what a role prior does not.
+    """
+    text = str(name or "").strip().lower()
+    for ch in ".,()[]/":
+        text = text.replace(ch, " ")
+    text = text.replace("-", " ").replace("_", " ")
+    tokens = [t for t in text.split() if t]
+    if not tokens:
+        return ("", None)
+
+    division = None
+    kept = []
+    for token in tokens:
+        matched = next((n for word, n in _ORDINALS if token == word), None)
+        if matched is not None and division is None and len(tokens) > 1:
+            division = matched
+            continue
+        kept.append(token)
+    if not kept:
+        kept = tokens
+
+    key = "_".join(kept)
+    key = _INSTRUMENT_ALIASES.get(key, key)
+    if key not in _INSTRUMENT_ALIASES.values() and len(kept) > 1:
+        # "Violin I Solo", "Flute 1 (doubling piccolo)" — try the head word.
+        head = _INSTRUMENT_ALIASES.get(kept[0], kept[0])
+        key = head
+    return (key, division)
+
+
+def is_string_ensemble(instrumentation) -> bool:
+    """Whether the parts are bowed strings and nothing else.
+
+    Only when the word "string" is actually there. "quartet" alone will not do:
+    a quartet can be winds, brass or voices, and guessing strings would hand a
+    wind quartet a viola.
+    """
+    if not isinstance(instrumentation, str):
+        instrumentation = getattr(instrumentation, "instrumentation", "") or ""
+    inst = str(instrumentation or "").strip().lower().replace("-", "_").replace(" ", "_")
+    if not inst:
+        return False
+    words = set(inst.split("_"))
+    if "string" in words or "strings" in words:
+        return True
+    return inst in ("string_quartet", "string_quintet", "string_trio", "string_orchestra")
+
+
+#: What a real singer's part actually spans, in MIDI, as the UNION of the
+#: measured extremes over 60 Bach chorales, 40 Palestrina works and 25
+#: Monteverdi works — not a percentile and not a textbook tessitura.
+#:
+#: Union rather than intersection because the ranges genuinely differ by
+#: repertoire: a Bach soprano starts at C4 where a Palestrina cantus reaches
+#: down to G3, and Monteverdi's alto parts (often read in a different clef)
+#: descend to A2, 8 semitones below the alto figure in `INSTRUMENT_RANGES`.
+#: Checking against anything narrower flags real music: the alto bound alone
+#: would reject 6.2% of real Monteverdi alto notes.
+VOCAL_RANGES: dict[str, tuple[int, int]] = {
+    "soprano": (55, 81),
+    "alto": (45, 77),
+    "tenor": (48, 72),
+    "bass": (36, 65),
+}
+
+#: Which voice sings which layer. Mirrors `assembler._VOCAL_ROLES`, which maps
+#: the STAFF names the same layers become — keep the two in step.
+VOICE_FOR_LAYER: dict[str, str] = {
+    "principal_line": "soprano",
+    "foreground": "soprano",
+    "counter_reply": "alto",
+    "response_layer": "tenor",
+    "bass_foundation": "bass",
+}
+
 
 #: Layers carrying a melody, whichever forces the piece is for.
 MELODIC_LAYERS: tuple[str, ...] = ("principal_line", "foreground")
@@ -1162,6 +1447,13 @@ class GestureQuery:
     texture_rh: Optional[str] = None
     texture_lh: Optional[str] = None
     density_range: Optional[Tuple[int, int]] = None
+    #: Events per beat in the cell's OWN rhythm, which is what decides how many
+    #: notes the slot ends up holding. Distinct from ``density_range``, which is
+    #: the density of the SOURCE BAR the cell was lifted from — the two come
+    #: apart (a cell taken from a nine-note bar can carry a three-event
+    #: profile), and ranking on the source bar chose figures too slow for the
+    #: texture that was asked for.
+    events_per_beat_range: Optional[Tuple[float, float]] = None
     register_range: Optional[Tuple[int, int]] = None
     contour: Optional[str] = None
     entry_state: Optional[str] = None

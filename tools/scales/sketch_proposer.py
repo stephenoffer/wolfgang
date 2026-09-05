@@ -12,6 +12,7 @@ generates the "engine-side" candidates that Claude adjudicates.
 from __future__ import annotations
 
 import random
+from fractions import Fraction
 
 from .cadence_bank import CadenceBank
 from .enums import (
@@ -245,7 +246,7 @@ class SketchProposer:
                 anchors.append(
                     Anchor(
                         bar=bar,
-                        beat=3.0,
+                        beat=_mid_bar_beat(slot.meter),
                         pitch_or_degree=mid_degree,
                         weight=0.5,
                         role="passing",
@@ -255,23 +256,49 @@ class SketchProposer:
         return anchors
 
     def _build_contour(self, bar_count: int, peak_pos: int, variant_idx: int, cadence: str) -> list:
-        """Build a scale-degree contour for the full phrase."""
-        degrees = []
-        # Define contour templates (scale degrees 1-7)
-        if variant_idx % 3 == 0:
-            # Arch: 1-3-5-6-5-3-2-1
-            raw = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
-        elif variant_idx % 3 == 1:
-            # Descending: 5-4-3-2-1-7-6-5
-            raw = [5, 4, 3, 2, 1, 7, 6, 5, 4, 3]
-        else:
-            # Ascending with late peak: 1-2-3-4-5-6-7-6-5-3-1
-            raw = [1, 2, 3, 4, 5, 6, 7, 6, 5, 3, 1]
+        """Build a scale-degree contour for the full phrase.
 
-        # Interpolate to match bar_count
-        for i in range(bar_count):
-            idx = int(i * (len(raw) - 1) / max(bar_count - 1, 1))
-            degrees.append(f"^{raw[idx]}")
+        Two things were wrong here, and together they flattened every melody
+        this proposer wrote.
+
+        The templates were fixed lists of degrees 1-7 — ONE OCTAVE, by
+        construction. A melody cannot use register structurally if its
+        vocabulary stops at the seventh, and the `register_stasis` audit was
+        measuring exactly that ceiling: 19 semitones across a whole piece,
+        against a median of 33 over 336 real keyboard movements.
+
+        And `peak_pos` — the climax position the caller computes per variant —
+        was accepted and never read. The peak fell wherever the template
+        happened to put it after interpolation, so an arch asked to peak at
+        two-thirds peaked at the middle, and the one asked to peak late peaked
+        early. The phrase's high point was decided by list arithmetic.
+
+        Now the arc is built from its three structural points — where it opens,
+        where it turns, where it closes — and the turn happens where the caller
+        asked. Degrees run past the octave because that is how a climax is
+        written: `^12` is the twelfth above the tonic, not a wrapped `^5`.
+        """
+        # (opening degree, turning degree, closing degree)
+        profiles = [
+            (1, 12, 1),  # arch — rise a twelfth to the climax and fall back
+            (10, 3, 1),  # descent from a high opening
+            (1, 10, 1),  # late peak
+        ]
+        open_deg, turn_deg, close_deg = profiles[variant_idx % 3]
+
+        if bar_count <= 1:
+            degrees = [f"^{turn_deg}"]
+        else:
+            turn_idx = min(max(int(peak_pos), 1), bar_count - 1)
+            degrees = []
+            for i in range(bar_count):
+                if i <= turn_idx:
+                    t = i / turn_idx
+                    raw = open_deg + (turn_deg - open_deg) * t
+                else:
+                    t = (i - turn_idx) / (bar_count - 1 - turn_idx)
+                    raw = turn_deg + (close_deg - turn_deg) * t
+                degrees.append(f"^{max(1, min(14, round(raw)))}")
 
         # Force cadence soprano
         if cadence and cadence != "none":
@@ -286,7 +313,9 @@ class SketchProposer:
         mid = (a + b) // 2
         if mid == a:
             mid = a + (1 if variant_idx % 2 == 0 else -1)
-        mid = max(1, min(7, mid))
+        # Clamped to 7, which pulled every mid-bar anchor back inside one
+        # octave even when the anchors it sits between were a tenth apart.
+        mid = max(1, min(14, mid))
         return f"^{mid}"
 
     # ─── Bass Anchors ─────────────────────────────────────────────────────
@@ -423,6 +452,20 @@ class SketchProposer:
         """Build cadence approach from slot targets."""
         arrival_bar = slot.cadence_bar or (slot.bar_start + slot.bar_count - 1)
         approach_bar = max(arrival_bar - 1, slot.bar_start)
+        # A slot whose plan says "none" is asking for NO cadence. Unguarded, the
+        # tables below handed it the PAC's answers — soprano ^1 over V-I — so a
+        # phrase explicitly planned not to close was given the strongest close
+        # available. `_cadence_soprano_degree`'s caller already guards this; this
+        # one did not.
+        target = (slot.cadence_target or "").strip()
+        if not target or target == CadenceTarget.NONE.value:
+            return CadenceApproach(
+                type=target,
+                approach_bar=approach_bar,
+                arrival_bar=arrival_bar,
+                soprano_arrival_degree=0,
+                bass_motion="",
+            )
         return CadenceApproach(
             type=slot.cadence_target,
             approach_bar=approach_bar,
@@ -455,11 +498,19 @@ class SketchProposer:
         """
         try:
             key_mode = "minor" if slot.key.endswith("m") else "major"
+            # The same three dimensions the brief now fills — 0.20 of the
+            # ranking that was a flat 0.5 for every candidate. See
+            # `composition_brief._slot_contour_class`.
+            from .composition_brief import _slot_contour_class, _slot_entry_texture
+
             query = PhraseQuery(
                 formal_function=slot.function,
                 cadence_type=slot.cadence_target if slot.cadence_target != "none" else None,
                 length_range=(max(1, slot.bar_count - 1), slot.bar_count + 1),
                 key_mode=key_mode,
+                cadence_distance=slot.bar_count,
+                contour_class=_slot_contour_class(slot),
+                entry_texture=_slot_entry_texture(slot),
                 n=1,
             )
             results = self.phrase_bank.retrieve(query)
@@ -488,9 +539,35 @@ class SketchProposer:
             PhraseFunction.INTRODUCTION.value: ["pickup"],
             PhraseFunction.CODETTA.value: ["cadential_release"],
             PhraseFunction.CODA.value: ["sustain", "cadential_release"],
+            # Eleven of the enum's members were listed and the rest fell through
+            # to the PRESENTATION gestures, so a phrase that RETURNS the theme —
+            # the recapitulation, the payoff — was given "pickup, answer", the
+            # gestures of a beginning. Measured over 426 slots in `workspace/`,
+            # 31% took that fallback, led by `contrasting_theme` (56) and
+            # `return` (49), both of which ARE enum members.
+            PhraseFunction.CONTRASTING_THEME.value: ["pickup", "answer"],
+            PhraseFunction.RETURN.value: ["arrival", "answer"],
+            PhraseFunction.RETURN_VARIED.value: ["arrival", "answer"],
+            PhraseFunction.LIQUIDATION.value: ["cadential_release"],
+            PhraseFunction.EPISODE.value: ["sequence_step", "answer"],
+            # ...and the vocabulary the planner writes that the enum does not
+            # contain at all. Names are drawn from the four gesture families
+            # (`_same_gesture_family`): initiate, drive, resolve, answer.
+            "development": ["sequence_step", "insist"],
+            "extension": ["sequence_step", "cadential_push"],
+            "climactic": ["insist", "arrival"],
+            "climax": ["insist", "arrival"],
+            "standing_on_dominant": ["insist", "lean_in"],
+            "resolution": ["cadential_release", "sustain"],
+            "recapitulation": ["arrival", "answer"],
+            "false_recap": ["arrival", "answer"],
+            "varied_return": ["arrival", "answer"],
+            "contrasting": ["pickup", "answer"],
         }
 
-        gesture_functions = _FUNCTION_TO_GESTURES.get(slot.function, ["pickup", "answer"])
+        gesture_functions = _FUNCTION_TO_GESTURES.get(
+            (slot.function or "").strip(), ["pickup", "answer"]
+        )
 
         results: list[GestureResult] = []
         try:
@@ -510,43 +587,62 @@ class SketchProposer:
 
 
 def _classify_harmonic_function(roman: str) -> str:
-    """Classify a Roman numeral chord as tonic/predominant/dominant/chromatic."""
-    r = roman.lower().strip()
-    if r in ("i", "iii", "vi"):
-        return HarmonicFunction.TONIC.value
-    if r in ("ii", "ii6", "iv", "iio"):
-        return HarmonicFunction.PREDOMINANT.value
-    if r in ("v", "v7", "viio", "vii"):
-        return HarmonicFunction.DOMINANT.value
-    if "#" in r or "b" in r or "/" in r:
+    """Classify a Roman numeral chord as tonic/predominant/dominant/chromatic.
+
+    Delegates to `harmony_analysis`, which owns Roman-numeral parsing. This was
+    an exact-match table over eleven spellings with a fallback of
+    ``return TONIC`` — so every numeral it did not literally list came back
+    TONIC, and the ones it did not list are the inversions and sevenths that
+    make up most of real music:
+
+        ii65 IV6 iv6   -> tonic, should be predominant
+        V65 V43 V42    -> tonic, should be DOMINANT
+        viio6 viio7 vii07 -> tonic, should be DOMINANT
+
+    Nine of twenty-two common numerals wrong, six of them dominants read as
+    tonic — which inverts the tension of every cadence built on one. The
+    canonical `parse_roman` + `classify_function` path gets all twenty-two
+    right, and it is the same pair that already round-trips 9,216 combinations
+    of degree, quality and inversion.
+    """
+    from .harmony_analysis import classify_function, parse_roman
+
+    parsed = parse_roman((roman or "").strip(), "major")
+    if not parsed:
         return HarmonicFunction.CHROMATIC.value
-    return HarmonicFunction.TONIC.value
+    return classify_function(parsed["degree"] % 12, parsed["quality"], 0, "major")
 
 
 def _roman_to_bass_degree(roman: str) -> str:
-    """Convert Roman numeral to bass scale degree."""
-    mapping = {
-        "I": "^1",
-        "i": "^1",
-        "II": "^2",
-        "ii": "^2",
-        "ii6": "^4",
-        "III": "^3",
-        "iii": "^3",
-        "IV": "^4",
-        "iv": "^4",
-        "V": "^5",
-        "v": "^5",
-        "V7": "^5",
-        "VI": "^6",
-        "vi": "^6",
-        "VII": "^7",
-        "vii": "^7",
-        "viio": "^7",
-        "I64": "^5",
-    }
-    return mapping.get(roman.strip(), "^1")
+    """The scale degree in the BASS for a Roman numeral, as `^n`.
 
+    This was a hand-written dict of about twenty spellings ending in
+    `return "^1"`, so every numeral it did not list put the TONIC in the bass:
+
+        bVI -> ^1    V/V -> ^1    viio7 -> ^1    #ivo -> ^1
+
+    A chromatic chord over a tonic bass is not that chord. Same shape as the
+    harmonic-function table in Addendum 73 — an exact-match table whose fallback
+    is the most stable answer available, which is the most damaging one to be
+    wrong with.
+
+    Derived instead from `harmony_analysis`: parse the numeral, take the chord's
+    template, pick the member the inversion puts in the bass, and name the scale
+    degree closest to it. Falls back to `^1` only when the numeral does not parse
+    at all.
+    """
+    from .harmony_analysis import roman_bass_offset
+
+    bass_pc = roman_bass_offset(roman)
+    if bass_pc is None:
+        return "^1"
+    # Name it as a major-scale degree; chromatic bass notes take the nearest
+    # degree below with an accidental, which is how they are written.
+    major = (0, 2, 4, 5, 7, 9, 11)
+    if bass_pc in major:
+        return f"^{major.index(bass_pc) + 1}"
+    below = max(i for i, pc in enumerate(major) if pc < bass_pc)
+    return f"^#{below + 1}"
 
 def _cadence_soprano_degree(cadence_type: str) -> str:
     """Target soprano degree for a cadence type."""
@@ -556,6 +652,11 @@ def _cadence_soprano_degree(cadence_type: str) -> str:
         CadenceTarget.HC.value: "^2",
         CadenceTarget.DC.value: "^1",
         CadenceTarget.PLAGAL.value: "^1",
+        # An EVADED cadence is defined by the resolution NOT arriving — the
+        # soprano avoids the tonic and the bass goes somewhere other than I.
+        # It was falling through to the PAC default and being handed ^1 over
+        # V-I, which is the exact opposite of the gesture.
+        CadenceTarget.EVADED.value: "^2",
     }
     return mapping.get(cadence_type, "^1")
 
@@ -566,6 +667,8 @@ def _cadence_soprano_int(cadence_type: str) -> int:
         CadenceTarget.IAC.value: 3,
         CadenceTarget.HC.value: 2,
         CadenceTarget.DC.value: 1,
+        CadenceTarget.PLAGAL.value: 1,
+        CadenceTarget.EVADED.value: 2,
     }
     return mapping.get(cadence_type, 1)
 
@@ -576,6 +679,9 @@ def _cadence_bass_motion(cadence_type: str) -> str:
         CadenceTarget.HC.value: "?-V",
         CadenceTarget.DC.value: "V-vi",
         CadenceTarget.PLAGAL.value: "IV-I",
+        CadenceTarget.IAC.value: "V-I",
+        # The dominant arrives and its resolution is withheld.
+        CadenceTarget.EVADED.value: "V-?",
     }
     return mapping.get(cadence_type, "V-I")
 
@@ -595,14 +701,49 @@ def _energy_to_dynamic(energy: float) -> str:
     return "ff"
 
 
+def _beat_positions(meter: tuple[int, int]) -> list[float]:
+    """The ONE-BASED positions of a bar's metrical beats.
+
+    Beats are one-based here, so a bar of length `d` spans `[1.0, 1.0 + d)`
+    and `float(num)` is not a position in any metre but n/4. In 6/8 it named
+    beat 6.0, a full two quarters past a bar that ends at 4.0.
+
+    A compound metre is counted in dotted beats — 6/8 has two, not six — which
+    is what makes 2.5 (the second dotted beat) the mid-bar position rather than
+    an offbeat.
+    """
+    num, denom = meter
+    if num > 3 and num % 3 == 0:
+        unit = Fraction(4, denom) * 3
+        count = num // 3
+    else:
+        unit = Fraction(4, denom)
+        count = num
+    return [float(1 + unit * i) for i in range(max(1, count))]
+
+
+def _mid_bar_beat(meter: tuple[int, int]) -> float:
+    """The strong interior beat a mid-bar anchor belongs on.
+
+    This was hardcoded to 3.0 — the midpoint of a 4/4 bar and of nothing else.
+    In 2/4 it is the barline exactly, so every mid-bar anchor in the phrase was
+    written outside its bar and dropped by the repair pass. 4/4 still resolves
+    to 3.0, so the common case is unchanged.
+    """
+    positions = _beat_positions(meter)
+    return positions[len(positions) // 2] if len(positions) > 1 else positions[0]
+
+
 def _breath_beat(meter: tuple[int, int], variant_idx: int) -> float:
-    """Choose a beat position for a breath."""
+    """Choose a beat position for a breath — late in the bar."""
     num, denom = meter
     if num == 4 and denom == 4:
         return [4.0, 3.0, 4.5][variant_idx % 3]
     if num == 3 and denom == 4:
         return [3.0, 2.0][variant_idx % 2]
-    return float(num)
+    positions = _beat_positions(meter)
+    tail = positions[-2:]
+    return tail[(len(tail) - 1 - variant_idx) % len(tail)]
 
 
 def _weighted_choice(distribution: dict[str, float], default: str) -> str:

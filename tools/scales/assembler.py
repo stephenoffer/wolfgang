@@ -57,6 +57,7 @@ def assemble(
     scope: str = "full",
     output_dir: Optional[str] = None,
     performance_marks: bool = True,
+    include_source: bool = False,
 ) -> str:
     """Assemble all realized phrases into MusicXML.
 
@@ -64,6 +65,10 @@ def assemble(
         piece_graph: The PieceGraph with realized phrases
         scope: "full" | "movement-1" | "section-m1_expo_pt"
         output_dir: Where to write the file (default: workspace/<piece_id>/output/)
+        include_source: engrave the phrases `load_source_score` read in
+            (`salience='source'`) alongside the composed ones. Off by
+            default: they are the score being transformed, not the output,
+            and they occupy the same bars as the new music — see `_is_source`.
         performance_marks: insert notational performance indications
             derived from PerformanceIR — "rit." at cadential phrase
             endings (with "a tempo" at the next phrase), "con pedale"
@@ -78,8 +83,16 @@ def assemble(
         raise ImportError("music21 is required for assembly. Install with: pip install music21")
 
     # Collect all EventIR from realized phrases
-    all_events = _collect_events(piece_graph, scope)
+    all_events = _collect_events(piece_graph, scope, include_source)
     if not all_events:
+        n_source = sum(1 for ps in piece_graph.phrases.values() if _is_source(ps))
+        if n_source and not include_source:
+            raise ValueError(
+                f"No realized phrases found for scope '{scope}'. The graph holds "
+                f"{n_source} SOURCE phrase(s) from load_source_score, which are "
+                f"reference material and are not engraved; nothing has been "
+                f"composed against them yet."
+            )
         raise ValueError(f"No realized phrases found for scope '{scope}'")
 
     # Get metadata
@@ -122,6 +135,8 @@ def assemble(
     for phrase_id, phrase_state in piece_graph.phrases.items():
         s = phrase_state.slot
         if not s or not _in_scope(phrase_state, scope) or not phrase_state.realized:
+            continue
+        if not include_source and _is_source(phrase_state):
             continue
         s_meter = tuple(s.meter) if s.meter else meter
         pickup = float(getattr(phrase_state.realized, "pickup_beats", 0) or 0)
@@ -315,6 +330,8 @@ def _apply_structural_barlines(score, piece_graph, scope: str) -> None:
         slot = getattr(ps, "slot", None)
         if slot is None or not _in_scope(ps, scope) or not ps.realized:
             continue
+        if _is_source(ps):
+            continue
         by_section.setdefault(slot.section_id, []).append(slot.bar_start + slot.bar_count - 1)
     for ends in by_section.values():
         section_ends.add(max(ends))
@@ -364,6 +381,8 @@ def _movement_bounds(piece_graph, scope: str, shift: int):
     for ps in piece_graph.phrases.values():
         slot = getattr(ps, "slot", None)
         if slot is None or not ps.realized or not _in_scope(ps, scope):
+            continue
+        if _is_source(ps):
             continue
         section = slot.section_id or ""
         # The `m<N>_` section-id convention is what identifies a movement; see
@@ -469,12 +488,36 @@ _LOG = logging.getLogger(__name__)
 _PIANO_STAVES = frozenset({"treble", "bass"})
 
 
-def _collect_events(piece_graph: PieceGraph, scope: str) -> List[EventIR]:
+def _is_source(phrase_state) -> bool:
+    """A phrase that came from the SOURCE score, not from this piece.
+
+    `load_source_score` reads a source in as phrases marked
+    `salience='source'` so the composer can see what must survive. They are
+    reference material — the thing being varied, restyled or reduced — and not
+    part of the output.
+
+    Nothing filtered them. Assembling a `reduce_to_piano` of a string quartet
+    engraved the 11 source phrases (608 events, bars 1-41) AND the reduction
+    (312 events, bars 1-41) onto the same two staves, so **40 of the 41 bars of
+    the right hand held 6.0 beats in a 3/4 bar** — every bar of the source
+    printed on top of every bar of the reduction. The LayerIR was correct
+    throughout; only the export was wrong, which is why nothing upstream caught
+    it. Every source-based mode was affected: variation, style_transfer,
+    continue_piece, orchestrate and reduce_to_piano.
+    """
+    return str(getattr(phrase_state, "salience", "") or "") == "source"
+
+
+def _collect_events(
+    piece_graph: PieceGraph, scope: str, include_source: bool = False
+) -> List[EventIR]:
     """Collect all EventIR from realized phrases matching scope."""
     events = []
 
     for phrase_id, phrase_state in piece_graph.phrases.items():
         if not _in_scope(phrase_state, scope):
+            continue
+        if not include_source and _is_source(phrase_state):
             continue
         if phrase_state.realized:
             phrase_events = layer_ir_to_event_ir(phrase_state.realized)
@@ -552,6 +595,25 @@ def _pad_measure_to_meter(measure, music21, capacity) -> None:
         left = missing
         while left > Fraction(1, 32):
             take = min(left, Fraction(2))
+            # The padding rest must be NOTATABLE, exactly as the barline clamp
+            # below already requires of a clamped note. This wrote a rest of
+            # whatever was missing, so a remainder a shade over a 32nd — say
+            # 33/1024, which the tolerance above lets through — became a rest
+            # music21 renders as a 2048th and refuses to export, taking the
+            # whole score with it. The bar being short is a separate matter and
+            # the meter check reports it; padding must not turn a thin bar into
+            # an unexportable one.
+            fitted = largest_dur_at_most(take)
+            fitted_beats = dur_to_beats(fitted) if fitted is not None else Fraction(0)
+            # `largest_dur_at_most` clamps UP to the shortest notatable value
+            # rather than returning nothing, so a gap narrower than a 64th comes
+            # back as a 64th. Padding with that would push the bar PAST its
+            # barline — the one outcome this function exists to prevent. A bar
+            # left a sliver short is thin and the meter check says so; a bar
+            # made overfull is unreadable.
+            if fitted_beats <= 0 or fitted_beats > left:
+                break
+            take = fitted_beats
             rest = music21.note.Rest()
             rest.duration = music21.duration.Duration(float(take))
             container.insert(float(position), rest)
@@ -964,6 +1026,8 @@ def _build_ensemble_score(
     # validator that gives those same parts a singer's range.
     vocal = is_vocal(instrumentation)
     strings = is_string_ensemble(instrumentation)
+    # (upper, lower) staff ids belonging to ONE instrument, braced together.
+    braced_pairs: List[Tuple[str, str]] = []
 
     if bar_meta is None:
         bar_meta = {}
@@ -993,11 +1057,26 @@ def _build_ensemble_score(
         # instrumental part keeps its staff name, which is already how an
         # orchestration plan spells it ("violin_1" -> "Violin 1").
         bowed_name = string_part_name(staff_name) if strings else None
-        part.partName = bowed_name or (
-            instrument.instrumentName
-            if vocal and getattr(instrument, "instrumentName", None)
-            else staff_name.replace("_", " ").title()
+        # A concerto soloist is ONE instrument on two staves. It is emitted as
+        # two parts (the ensemble path gives each part a single staff, and a
+        # soloist on one staff had its hands overlapping and 42 events trimmed),
+        # and the lower one was then named from its staff id — so the score
+        # listed "Piano" and "Piano Lh" as if they were two players. The
+        # instrument is named once, at the top of the brace, as in any engraved
+        # concerto.
+        is_lower_of_pair = staff_name.endswith("_lh") and staff_name[:-3] in staff_events
+        part.partName = (
+            ""
+            if is_lower_of_pair
+            else bowed_name
+            or (
+                instrument.instrumentName
+                if vocal and getattr(instrument, "instrumentName", None)
+                else staff_name.replace("_", " ").title()
+            )
         )
+        if is_lower_of_pair:
+            braced_pairs.append((staff_name[:-3], staff_name))
         part.id = staff_name
         note_map: Dict[int, Any] = {}
         part.insert(0, instrument)
@@ -1062,6 +1141,23 @@ def _build_ensemble_score(
         _apply_spanners(part, staff_evts, note_map)
         score.insert(0, part)
 
+    # Brace the soloist's two staves so a reader sees one instrument, not two
+    # players. Without this the parts are merely adjacent and the second one's
+    # blank name reads as an unnamed extra stave.
+    by_id = {p.id: p for p in score.parts}
+    for upper_id, lower_id in braced_pairs:
+        upper, lower = by_id.get(upper_id), by_id.get(lower_id)
+        if upper is None or lower is None:
+            continue
+        try:
+            group = music21.layout.StaffGroup(
+                [upper, lower], symbol="brace", barTogether=True
+            )
+            group.name = upper.partName or upper_id.replace("_", " ").title()
+            score.insert(0, group)
+        except Exception:
+            pass  # a missing brace must not cost the score
+
     return score
 
 
@@ -1078,9 +1174,17 @@ def _apply_performance_marks(piece_graph: PieceGraph, scope: str, events: List[E
     # Included phrases under this scope, in bar order
     phrases = []
     for phrase_id, ps in piece_graph.phrases.items():
-        if scope.startswith("section-"):
-            if not ps.slot or ps.slot.section_id != scope.replace("section-", ""):
-                continue
+        # ONE scope matcher for the whole file. This had its own, which
+        # understood only "section-<id>" and fell through to `append` for
+        # everything else — so assembling "movement-1" of a three-movement work
+        # took its rit./a tempo/con pedale marks from ALL THREE movements, and a
+        # bare section id ("m1_a", which is what `self_evaluate` passes) did the
+        # same. The identical defect is recorded against the MIDI renderer's
+        # private copy; see `_in_scope`.
+        if not _in_scope(ps, scope):
+            continue
+        if _is_source(ps):
+            continue
         if ps.realized:
             phrases.append(ps)
     if not phrases:

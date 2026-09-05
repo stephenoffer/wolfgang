@@ -232,6 +232,9 @@ I9 -> IV9 -> bVII9 -> bIII9 (circle in 9th chords)
 | Fadeout | Diminuendo to niente on any chord | No formal close |
 | Modal cadence | bVII -> I or bII -> I | Archaic, non-dominant |
 | Sideslip cadence | Db major -> C major (semitone above) | Elegant arrival |
+| PAC (authentic close) | IV(add9) -> I(maj7), or a pedal arrival on I | The Impressionist answer to a perfect authentic cadence. V7-I is deliberately avoided: the leading tone is the machinery this idiom exists to switch off. When a plan asks for a PAC, close plagally or settle onto a pedal — the *arrival* is real, the dominant is not |
+| HC (half close) | Rest on an unresolved dominant ninth, or on a whole-tone sonority | The Impressionist answer to a half cadence. Nothing needs to lean toward the tonic; suspension is achieved by a chord that belongs to no key rather than by one that demands resolution |
+| IAC (weak close) | I(maj7) reached by step in the bass, melody on the 3rd or 9th | An arrival that does not insist. The commonest close in this idiom |
 
 ## Quick Reference: Harmonic Color Palette
 

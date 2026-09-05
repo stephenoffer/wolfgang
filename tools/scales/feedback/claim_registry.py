@@ -65,9 +65,16 @@ class MeasurableClaim:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> MeasurableClaim:
-        known = {f.name for f in cls.__dataclass_fields__.values()}
-        filtered = {k: v for k, v in data.items() if k in known}
-        return cls(**filtered)
+        """Rebuild from a dict via THE field-driven reconstructor.
+
+        This filtered `data` against the field names itself, in a body identical
+        to the one in the sibling module — two copies of the rule that
+        `piece_graph._dataclass_from_dict` already owns, and which recurses into
+        nested dataclasses where these did not.
+        """
+        from ..piece_graph import _dataclass_from_dict
+
+        return _dataclass_from_dict(cls, data)
 
 
 # ─── Claim Registry ────────────────────────────────────────────────────────

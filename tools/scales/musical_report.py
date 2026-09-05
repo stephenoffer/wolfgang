@@ -36,6 +36,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from .models import LayerIR
+
 # ─── Report ──────────────────────────────────────────────────────────────────
 
 
@@ -94,20 +96,22 @@ def _phrase_layer(phrase_state, slot: dict[str, Any]):
         key=str(slot.get("key", "C") or "C"),
         meter=(int(meter[0]), int(meter[1])),
     )
+    for name in _CARRIED:
+        val = (
+            realized.get(name) if isinstance(realized, dict) else getattr(realized, name, None)
+        )
+        if val:
+            setattr(ir, name, val)
     fields = LayerEvent.__dataclass_fields__
-    for name in (
-        "principal_line",
-        "bass_foundation",
-        "response_layer",
-        "counter_reply",
-        "ornamental_surface",
-    ):
+    for name in _LAYER_NAMES:
         src = (
             realized.get(name)
             if isinstance(realized, dict)
             else getattr(realized, name, None)
         ) or []
-        target = getattr(ir, name)
+        if not src:
+            continue
+        target = ir.ensure_layer(name)
         for n in src:
             if isinstance(n, dict):
                 target.append(LayerEvent(**{k: v for k, v in n.items() if k in fields}))
@@ -125,7 +129,7 @@ def _phrase_layer(phrase_state, slot: dict[str, Any]):
             else n
             for n in evs
         ]
-    ir.bar_count = len({e.bar for e in ir.principal_line}) or 1
+    ir.bar_count = _count_bars(ir)
     return ir
 
 
@@ -175,19 +179,45 @@ def _merge(layers):
         key=layers[0].key,
         meter=layers[0].meter,
     )
+    for name in _CARRIED:
+        for ir in layers:
+            if getattr(ir, name, None):
+                setattr(merged, name, getattr(ir, name))
+                break
     for ir in layers:
-        for name in (
-            "principal_line",
-            "bass_foundation",
-            "response_layer",
-            "counter_reply",
-            "ornamental_surface",
-        ):
-            getattr(merged, name).extend(getattr(ir, name) or [])
+        for name in _LAYER_NAMES:
+            src = getattr(ir, name, None)
+            if not src:
+                continue
+            merged.ensure_layer(name).extend(src)
         for vname, evs in (ir.inner_voices or {}).items():
             merged.inner_voices.setdefault(vname, []).extend(evs)
-    merged.bar_count = len({e.bar for e in merged.principal_line}) or 1
+    merged.bar_count = _count_bars(merged)
     return merged
+
+
+# The layer names, derived from the model rather than typed out. Three separate
+# hand-written lists here carried only the five PIANO layers, so an orchestral
+# piece reached the critic as an EMPTY report: the six orchestral layers were
+# dropped, `bar_count` was computed from an empty `principal_line` (giving 1),
+# and `instrumentation` was never carried, so the ensemble texture floors could
+# not fire on the production path at all. Deriving the names means a new layer
+# joins every reader at once.
+_LAYER_NAMES: tuple[str, ...] = tuple(LayerIR.event_layer_names())
+_CARRIED: tuple[str, ...] = ("instrumentation", "pickup_beats")
+
+
+def _all_events(ir) -> list:
+    """Every sounding event in a LayerIR, whatever its instrumentation.
+
+    `LayerIR.all_events()` already covers all eleven layers and the inner
+    voices; this is a thin alias so the merge reads the same as the readers.
+    """
+    return ir.all_events()
+
+
+def _count_bars(ir) -> int:
+    return len({e.bar for e in _all_events(ir)}) or 1
 
 
 # ─── Sections of the report ──────────────────────────────────────────────────
@@ -345,7 +375,7 @@ def _continuity_section(kept, layers) -> dict[str, Any]:
 
 
 def _texture_section(merged, style: str | None) -> dict[str, Any]:
-    from .voicing import analyze_voicing, texture_runs
+    from .voicing import CORPUS_TEXTURE, analyze_voicing, compare_to_corpus_texture, texture_runs
 
     rep = analyze_voicing(merged, style=style)
     runs = texture_runs(merged)
@@ -354,6 +384,14 @@ def _texture_section(merged, style: str | None) -> dict[str, Any]:
         "concerns": list(rep.suggestions),
         "measurements": rep.as_dict(),
     }
+    # How this texture sits against the period it is written in. Prose, not
+    # z-scores: handing a composer a distance from a distribution turns
+    # composition into metric whack-a-mole, which this project has already
+    # established is a ceiling rather than a path.
+    period = "romantic" if (rep.style or "") in ("romantic", "impressionist") else "classical"
+    for line in compare_to_corpus_texture(rep, CORPUS_TEXTURE.get(period)):
+        out["observations"].append(line)
+
     # A long unchanging run is the "twelve bars of the same figure" finding,
     # made visible without anyone having to read the score by eye.
     long_runs = [(lab, a, b) for lab, a, b in runs if b - a + 1 >= 8]
@@ -414,15 +452,7 @@ def _page_section(merged, style: str | None) -> dict[str, Any]:
     from .expression_enricher import expression_density
     from .ornament_realization import ornament_summary
 
-    events = []
-    for name in (
-        "principal_line",
-        "bass_foundation",
-        "response_layer",
-        "counter_reply",
-        "ornamental_surface",
-    ):
-        events.extend(getattr(merged, name) or [])
+    events = _all_events(merged)
     density = expression_density(merged)
     orn = ornament_summary(events)
     out: dict[str, Any] = {

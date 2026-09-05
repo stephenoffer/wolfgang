@@ -32,6 +32,7 @@ from .models import (
     RubatoWindow,
     TimingOffset,
     VoicingEmphasis,
+    is_keyboard,
 )
 from .performance_params import StylePerfProfile, profile_for_period
 from .performance_util import shape
@@ -50,6 +51,34 @@ _DYN_VELOCITY = {
 }
 
 _DEFAULT_VELOCITY = 80
+
+
+def _melody(layer) -> list:
+    """The melodic line, whichever layer holds it.
+
+    The dynamic curve, the agogic lean at slurred entries, the melodic lead and
+    the voicing emphasis all read `principal_line` and called it the melody.
+    Orchestral music never populates it — its tune is in `foreground` — so an
+    orchestral piece got NO interpretation: no arch, no lead, no agogic accent.
+    That matters more than it looks, because the humanized MIDI is what the
+    fresh-ears `music-critic` actually LISTENS to. The critic was judging
+    orchestral music from a dead-flat render and hearing exactly the
+    machine-made quality this whole layer exists to remove.
+    """
+    line = getattr(layer, "melody_line", None)
+    if callable(line):
+        return line()
+    return list(getattr(layer, "principal_line", None) or getattr(layer, "foreground", None) or [])
+
+
+def _accompaniment(layer) -> list:
+    """The lower structural line — the other half of the hand separation."""
+    line = getattr(layer, "bass_line", None)
+    if callable(line):
+        return line()
+    return list(
+        getattr(layer, "bass_foundation", None) or getattr(layer, "harmonic_mass", None) or []
+    )
 
 
 def _beats_per_bar(meter) -> float:
@@ -92,16 +121,13 @@ def build_performance_ir(
     meter = tuple(getattr(layer, "meter", (4, 4)) or (4, 4))
     bpb = _beats_per_bar(meter)
 
-    all_events = sorted(
-        (
-            layer.principal_line
-            + layer.bass_foundation
-            + layer.response_layer
-            + layer.counter_reply
-            + layer.ornamental_surface
-        ),
-        key=lambda e: (e.bar, e.beat),
-    )
+    # `LayerIR.all_events()` covers all ELEVEN layers. This gather listed the
+    # five piano ones, so an orchestral phrase produced an empty list and the
+    # function returned an empty PerformanceIR on the very next line — no
+    # dynamic curve, no rubato, no pedal, no microtiming. Every downstream fix
+    # in here was unreachable until this one line changed, which is why fixing
+    # the melody lookups alone measured as no improvement at all.
+    all_events = sorted(layer.all_events(), key=lambda e: (e.bar, e.beat))
     if not all_events:
         return perf
     first_bar = min(e.bar for e in all_events)
@@ -247,8 +273,22 @@ def build_performance_ir(
     # ── Pedal: follow the harmonic rhythm, releasing just before each chord
     #    change (pedal_lead) to clear blur; fall back to per-bar with no plan.
     #    A breath bar lifts the pedal. ──
-    lh_bars = sorted(
-        {e.bar for e in layer.bass_foundation + layer.response_layer if e.pitch != "rest"}
+    # A sustain pedal is a keyboard mechanism, so this is gated on the forces
+    # rather than left to fall out of layer naming. It already produced the
+    # right answer for an ensemble — `bass_foundation` and `response_layer` are
+    # piano layers and an orchestral phrase leaves them empty — but by accident,
+    # and an accident that happens to be correct is the kind of thing that stops
+    # being correct silently. `is_keyboard` treats an unknown instrumentation as
+    # a keyboard, so this can only ever over-pedal, never go quiet.
+    # ...and on the period's instrument HAVING a pedal. `pedal_lead_ms=0.0` was
+    # the only thing standing for "harpsichord: no pedal", and a release timing
+    # is not a prohibition: pedal bars were produced for Bach and Palestrina all
+    # along, silently extending their bass notes, and became a real damper pedal
+    # the moment the preview learned to emit CC64.
+    lh_bars = (
+        sorted({e.bar for e in layer.bass_foundation + layer.response_layer if e.pitch != "rest"})
+        if is_keyboard(layer) and getattr(profile, "uses_pedal", True)
+        else []
     )
     breath_bars = {b for (b, _bt) in (breath_points or [])}
     harmony_plan = list(getattr(slot, "harmony_plan", []) or []) if slot else []
@@ -293,7 +333,7 @@ def build_performance_ir(
 
     # ── Microtiming: agogic lean into slurred entries; a pre-onset stretch at
     #    breath points (a performer takes a breath before resuming). ──
-    for e in layer.principal_line:
+    for e in _melody(layer):
         if e.slur == "start":
             perf.microtiming.append(
                 TimingOffset(bar=e.bar, beat=e.beat, offset_ms=profile.upbeat_lean_ms + 2.0)
@@ -321,10 +361,11 @@ def build_performance_ir(
     # The lead REPLACES the profile's flat `hand_offset_ms` rather than stacking
     # with it — both express hand separation, and applying both would double it.
     ms_per_beat = 60000.0 / max(1.0, float(getattr(slot, "tempo_bpm", 0) or 90))
-    melodic = {id(e) for e in layer.principal_line}
-    peak = max((_top_midi_of(e) or 0) for e in layer.principal_line) if layer.principal_line else 0
+    _mel = _melody(layer)
+    melodic = {id(e) for e in _mel}
+    peak = max((_top_midi_of(e) or 0) for e in _mel) if _mel else 0
     seen = {(m.bar, round(m.beat, 3), getattr(m, "voice", None)) for m in perf.microtiming}
-    for e in layer.principal_line + layer.bass_foundation:
+    for e in _mel + _accompaniment(layer):
         if e.pitch == "rest":
             continue
         is_melody = id(e) in melodic
@@ -463,7 +504,7 @@ def phrase_arch_points(
 
     mel = [
         e
-        for e in sorted(layer.principal_line, key=lambda e: (e.bar, e.beat))
+        for e in sorted(_melody(layer), key=lambda e: (e.bar, e.beat))
         if getattr(e, "pitch", None) and e.pitch != "rest"
     ]
     if len(mel) < min_notes:

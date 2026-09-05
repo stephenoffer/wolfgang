@@ -155,6 +155,17 @@ class GestureBank:
             if query.density_range[0] <= density <= query.density_range[1]:
                 score += w
 
+        # Events per beat in the cell's own rhythm (0.10)
+        if query.events_per_beat_range:
+            w = 0.10
+            weights_total += w
+            profile = cell.get("dur_profile") or []
+            span = cell.get("span_beats") or 0
+            if profile and span:
+                rate = len(profile) / float(span)
+                if query.events_per_beat_range[0] <= rate <= query.events_per_beat_range[1]:
+                    score += w
+
         # Entry state (0.10)
         if query.entry_state:
             w = 0.10

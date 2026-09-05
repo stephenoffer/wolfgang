@@ -90,3 +90,32 @@ every bar has the same note-count sounds mechanical even with varied idioms.
   recap); Neapolitan + cadential 6/4 into the final PAC.
 - **Coda/closing**: confirmation gestures, brilliant flourishes, echo,
   emphatic cadential trill, octave unison for the final stamp.
+
+## What to avoid
+
+Mozart is the composer this system defaults to, which makes his negative list
+the one that matters most: a wrong habit here contaminates every piece that
+does not specify otherwise.
+
+- **Beethoven's insistence.** A motif hammered, developed and driven is the next
+  composer. Mozart states an idea, answers it, and moves on. If a figure repeats
+  more than about three times without being answered, it has stopped being his.
+- **Romantic rubato and pedal wash.** The rhythm is exact and the textures are
+  dry. Sustain through a harmony change is an anachronism.
+- **A thick, continuously chordal right hand.** Measured over 25,345 of his own
+  attacks, only **8.4%** carry more than one note. The melody is a singing line;
+  thirds and octaves are for accents and cadences, not for the tune throughout.
+- **Unrelieved figuration.** Real Mozart bars are full of long values and rests —
+  the left hand stops, the right hand holds. Perpetual sixteenths in both hands
+  is the commonest way a pastiche betrays itself.
+- **Chromatic harmony as ordinary vocabulary.** Chromaticism is an event: a
+  borrowed chord at a turn, a diminished seventh at a moment of shadow. It is not
+  the everyday language.
+- **Fast harmonic rhythm inside the bar.** He prolongs; changing chord on every
+  beat busies the surface and flattens the phrase.
+- **Irregular phrase lengths.** The four-bar unit and its answer are the frame.
+  Extend by elision or by an added cadential bar, not by writing a five-bar
+  phrase and leaving it unexplained.
+- **Ending a phrase without a cadence.** Every unit is punctuated; his grammar is
+  the clearest of any composer here.
+- **A bass that never rests.** The left hand breathes with the phrase.

@@ -62,3 +62,83 @@ Any section claiming Vivaldi's style needs ≥3 of these 5 present.
 **Dynamics:**
 - Forte: all ritornello statements (full orchestra).
 - Piano: all solo episodes (soloist + continuo only, or light string support).
+
+---
+
+## Composing a Vivaldi phrase: step by step
+
+The organising fact is the **ritornello**: a fixed tutti passage that returns
+between solo episodes, in a different key each time. Everything else serves it.
+
+### Step 1 — Write the ritornello as separable modules
+
+Build it from two or three short units so later returns can use only the first,
+or only the last. This is what makes a partial return sound intentional.
+
+```json
+"ritornello_head": [
+  {"p": "A4", "d": "e", "dyn": "f"},
+  {"p": "A4", "d": "e"},
+  {"p": "E5", "d": "e"},
+  {"p": "E5", "d": "e"},
+  {"p": "F5", "d": "q"},
+  {"p": "E5", "d": "q"}
+]
+```
+
+Repeated-note energy, then a step. Diatonic, immediate, memorable in one
+hearing.
+
+### Step 2 — Drive it with a walking or repeating bass
+
+The bass is a motor. Even values, no rubato, no rest.
+
+```json
+"motor_bass": [
+  {"p": "A2", "d": "e"},
+  {"p": "A2", "d": "e"},
+  {"p": "A2", "d": "e"},
+  {"p": "A2", "d": "e"},
+  {"p": "G#2", "d": "e"},
+  {"p": "G#2", "d": "e"},
+  {"p": "A2", "d": "e"},
+  {"p": "A2", "d": "e"}
+]
+```
+
+### Step 3 — Write the solo episode as sequence over a circle of fifths
+
+The soloist departs; the harmony walks the circle. Exact transposition each
+step, and the figuration stays the same shape.
+
+```json
+"solo_sequence": [
+  {"p": "E5", "d": "s"},
+  {"p": "C5", "d": "s"},
+  {"p": "A4", "d": "s"},
+  {"p": "C5", "d": "s"},
+  {"p": "D5", "d": "s"},
+  {"p": "B4", "d": "s"},
+  {"p": "G4", "d": "s"},
+  {"p": "B4", "d": "s"}
+]
+```
+
+### Step 4 — Return the ritornello in a new key, shortened
+
+Second return in the dominant or relative major, using only the head. Final
+return in the tonic, complete.
+
+### Step 5 — Keep the harmonic rhythm fast and the vocabulary plain
+
+One or two chords a bar, almost all diatonic. Vivaldi's colour is rhythm and
+scoring, not harmony.
+
+---
+
+## Checking a finished phrase
+
+- Is the ritornello recognisable from its first two bars alone?
+- Does the bass ever stop? It should not.
+- Are the sequences exact?
+- Is there chromaticism? There should be almost none.

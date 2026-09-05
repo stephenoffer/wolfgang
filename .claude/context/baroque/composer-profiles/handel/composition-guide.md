@@ -60,3 +60,97 @@ Any section claiming Handel's style needs ≥3 of these 5 present.
 - Trills at all cadence arrivals.
 - Turns in melodic peaks of slow movements.
 - Da capo return: add ornamental elaboration (additional runs, trills) to the A section repeat.
+
+---
+
+## Composing a Handel phrase: step by step
+
+The organising fact is scale, not intricacy. If the inner parts are as busy as
+the outer ones, the grandeur is gone and you have written Bach.
+
+### Step 1 — Choose the ground plan before the notes
+
+A movement is usually one of three: a fugue on a single subject, a homophonic
+declamation, or a ground bass with varied material above. Choosing settles most
+later decisions.
+
+### Step 2 — Write the bass first, and let it walk
+
+```json
+"walking_bass": [
+  {"p": "D2", "d": "q"},
+  {"p": "C#2", "d": "q"},
+  {"p": "B1", "d": "q"},
+  {"p": "A1", "d": "q"},
+  {"p": "G1", "d": "q"},
+  {"p": "F#1", "d": "q"},
+  {"p": "E1", "d": "q"},
+  {"p": "A1", "d": "q"}
+]
+```
+
+A descending tetrachord in even quarters. Under it, one chord per bar or per
+two — Handel prolongs where Bach moves.
+
+### Step 3 — Put a singable, leaping melody over it
+
+Wider intervals than Bach's and more vocal in shape: a rising fourth or fifth,
+then a stepwise descent filling it.
+
+```json
+"aria_melody": [
+  {"p": "D5", "d": "dq", "art": "legato"},
+  {"p": "A4", "d": "e"},
+  {"p": "B4", "d": "q"},
+  {"p": "C#5", "d": "q"},
+  {"p": "D5", "d": "h"},
+  {"p": "C#5", "d": "q"},
+  {"p": "B4", "d": "q"},
+  {"p": "A4", "d": "h"}
+]
+```
+
+### Step 4 — Sequence it, exactly
+
+Handel builds by sequence more than by development. State the idea, restate it a
+step or a third lower, **transposed exactly**. Varying a sequence is the wrong
+idiom.
+
+```json
+"sequence_step_down": [
+  {"p": "C5", "d": "dq"},
+  {"p": "G4", "d": "e"},
+  {"p": "A4", "d": "q"},
+  {"p": "B4", "d": "q"},
+  {"p": "B4", "d": "dq"},
+  {"p": "F#4", "d": "e"},
+  {"p": "G4", "d": "q"},
+  {"p": "A4", "d": "q"}
+]
+```
+
+### Step 5 — Terrace the dynamic; never taper it
+
+```json
+"echo_pair": [
+  {"p": ["D4", "F#4", "A4"], "d": "h", "dyn": "f"},
+  {"p": ["D4", "F#4", "A4"], "d": "h", "dyn": "p"}
+]
+```
+
+The phrase, then the same phrase softer. That is the period's dynamic
+vocabulary. No hairpins.
+
+### Step 6 — Stop everything before the final cadence
+
+A grand pause, then the cadence. Handel uses it in every chorus and it costs
+nothing to write.
+
+---
+
+## Checking a finished phrase
+
+- Is the harmonic rhythm slow enough — one chord a bar or slower?
+- Are the sequences exact transpositions?
+- Are the inner parts quieter than the outer ones?
+- Is there a hairpin anywhere? There should not be.

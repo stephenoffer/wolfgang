@@ -146,9 +146,20 @@ class Reducer:
             for event in layer_events:
                 if event.pitch == "rest" or event.role == NoteRole.PASSING.value:
                     continue
-                midi = pitch_to_midi(event.pitch)
-                if midi is not None:
-                    bar_tones.setdefault(event.bar, []).append(midi)
+                # EVERY note of a chord is part of the harmony. `pitch_to_midi`
+                # returns only the highest note of a list, so a left-hand triad
+                # contributed one pitch to the bar's harmony instead of three —
+                # and the comment below picks the LOWEST tone as the root, which
+                # was then the top of a chord. Unreachable until the retrieved
+                # patterns started keeping their chords; 507 calls in one piece
+                # now.
+                pitches = event.pitch if isinstance(event.pitch, list) else [event.pitch]
+                for one in pitches:
+                    if one == "rest":
+                        continue
+                    midi = pitch_to_midi(one)
+                    if midi is not None:
+                        bar_tones.setdefault(event.bar, []).append(midi)
 
         for bar, tones in sorted(bar_tones.items()):
             # Simple: use lowest tone as root indicator

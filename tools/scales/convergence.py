@@ -126,8 +126,25 @@ def converged(
 
 
 def detector_counts(findings) -> dict[str, int]:
-    """Per-detector finding counts from an ear_report's findings list."""
+    """Per-detector counts from an ear_report's findings list.
+
+    Every detector LISTS at most `cap` findings. This counted the list, so a
+    section with 40 overfull bars scored identically to one with 12 and a
+    revision that repaired 28 of them registered as no improvement — and this
+    number is what `composite_score` ranks revisions by. A third of the generated
+    scores that trip `bar_length` sit exactly at its cap.
+
+    A detector that truncates its list records the real total in each finding's
+    `evidence["occurrences"]`; that wins over the length of the list.
+    """
     out: dict[str, int] = {}
+    reported: dict[str, int] = {}
     for f in findings or []:
-        out[f.get("detector", "?")] = out.get(f.get("detector", "?"), 0) + 1
+        detector = f.get("detector", "?")
+        out[detector] = out.get(detector, 0) + 1
+        occurrences = (f.get("evidence") or {}).get("occurrences")
+        if isinstance(occurrences, int):
+            reported[detector] = max(reported.get(detector, 0), occurrences)
+    for detector, total in reported.items():
+        out[detector] = max(out.get(detector, 0), total)
     return out

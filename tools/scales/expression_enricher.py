@@ -38,6 +38,7 @@ from fractions import Fraction
 from typing import Any
 
 from .duration import dur_to_beats
+from .models import MELODIC_LAYERS, is_keyboard
 from .pitch import pitch_to_midi
 
 # ─── Style profiles ──────────────────────────────────────────────────────────
@@ -101,7 +102,19 @@ ENGRAVING_STYLES: dict[str, EngravingStyle] = {
         tenuto_on_appoggiatura=False,
         terraced=True,
         hairpin_min_notes=99,  # Bach did not write hairpins
-        dynamic_every_n_bars=8,
+        # ...and did not write dynamics either. This was 8 — one written
+        # dynamic every eight bars — with no justification beside it, while the
+        # renaissance entry above says plainly "dynamics are not notated".
+        # Measured over the corpus this system learns Baroque from:
+        #     bach     20/20 scores carry ZERO dynamics (median 0.000/bar)
+        #     corelli   1/1  zero
+        #     handel    1/1  0.278/bar   <- the only counter-example, and n=1
+        # A generated 22-bar Bach invention came out with five dynamics in it,
+        # none of them written by the composer. Set to match the evidence, with
+        # the Handel file recorded as the reason this is not certain: Baroque
+        # ORCHESTRAL music does mark echo effects, and if that repertoire is ever
+        # armed this deserves re-measuring rather than inheriting.
+        dynamic_every_n_bars=99,
         pedal="none",
         arpeggiate_span=14,
         uses_character_words=False,
@@ -126,7 +139,16 @@ ENGRAVING_STYLES: dict[str, EngravingStyle] = {
         slur_max_notes=16,
         slur_breaks_on_leap=8,
         accompaniment_staccato=False,
-        staccato_max_beats=Fraction(1, 4),
+        # A SIXTEENTH was four times too short. Chopin's own staccato lands on
+        # a QUARTER NOTE more often than anything else — 446 of his 827 marked
+        # notes, median 1.0, 90th percentile 1.0 — so a ceiling of 1/4 meant no
+        # note in a nocturne-tempo texture could ever qualify, and a whole
+        # Romantic piece came out with zero articulation marks of any kind
+        # while real Chopin marks 2.15% of his attacks. (Mozart's median is
+        # 0.5, which is what `classical` already has, so only this one was
+        # wrong.) The accompaniment still does not get dots — that part was
+        # right; a nocturne's left hand flows.
+        staccato_max_beats=Fraction(1),
         tenuto_on_appoggiatura=True,
         terraced=False,
         hairpin_min_notes=3,
@@ -280,6 +302,31 @@ _ORCH_LAYERS = (
     "color_layer",
     "punctuation",
 )
+
+
+def _melody(layer_ir) -> list:
+    """The melodic line, whichever layer holds it.
+
+    Five dynamics writers here — `add_dynamics`, `add_echo_terracing`,
+    `add_hairpins`, `add_cadential_diminuendo`, `add_closing_marks` — read
+    `principal_line` and called it the melody. Orchestral music never populates
+    it; its tune is in `foreground`, so all five searched an empty layer and
+    returned having marked nothing, which is not an error.
+
+    MEASURED on an eight-bar orchestral phrase: the tune carried **1** dynamic
+    or hairpin mark before and **4** after. Not zero before — the opening
+    dynamic reaches every layer by another route — so this is a flattened
+    dynamic shape rather than a missing one. Worth stating precisely: the
+    tempting claim was "no dynamics at all", and it is wrong.
+    """
+    line = getattr(layer_ir, "melody_line", None)
+    if callable(line):
+        return line()
+    for name in MELODIC_LAYERS:
+        evs = getattr(layer_ir, name, None)
+        if evs:
+            return list(evs)
+    return []
 
 
 def _blank(ev, attr: str) -> bool:
@@ -648,10 +695,16 @@ def add_melodic_articulation(layer_ir, style: EngravingStyle, report: Enrichment
             # an inner voice that stopped halfway through the phrase — producing
             # a staccato dot in the middle of a held line, for no reason a
             # player could see.
+            # The ceiling is the STYLE'S, not a hardcoded eighth. Chopin's own
+            # staccato lands on a quarter note more often than anything else
+            # (446 of 827, median 1.0), so a fixed 1/2 could never mark a
+            # nocturne-tempo phrase ending — and with the repeated-note rule
+            # above gated off for the Romantics, a whole Chopin piece came out
+            # with zero articulation marks against his real 2.15%.
             if (
                 style.melody_detached
                 and i == len(events) - 1
-                and dur <= Fraction(1, 2)
+                and dur <= style.staccato_max_beats
                 and bpb >= 2
                 and int(getattr(ev, "bar", 1)) >= last_bar
             ):
@@ -724,7 +777,7 @@ def add_dynamics(
     """
     if style.dynamic_every_n_bars > 50:
         return  # this style does not notate dynamics at all (Renaissance vocal)
-    melody = _sorted(getattr(layer_ir, "principal_line", None) or [])
+    melody = _sorted(_melody(layer_ir))
     if not melody:
         for _, evs in _all_layers(layer_ir):
             melody = _sorted(evs)
@@ -797,7 +850,7 @@ def add_echo_terracing(layer_ir, style: EngravingStyle, report: EnrichmentReport
     """
     if not style.terraced:
         return
-    melody = _sorted(getattr(layer_ir, "principal_line", None) or [])
+    melody = _sorted(_melody(layer_ir))
     if len(melody) < 8:
         return
     by_bar: dict[int, list] = {}
@@ -851,7 +904,7 @@ def add_hairpins(layer_ir, style: EngravingStyle, report: EnrichmentReport) -> N
     """
     if style.hairpin_min_notes > 50:
         return  # this style does not notate hairpins
-    melody = _sorted(getattr(layer_ir, "principal_line", None) or [])
+    melody = _sorted(_melody(layer_ir))
     sounding = [e for e in melody if not _is_rest(e)]
     if len(sounding) < style.hairpin_min_notes * 2:
         return
@@ -908,7 +961,7 @@ def add_cadential_diminuendo(
     """
     if style.hairpin_min_notes > 50 or cadence_bar is None:
         return
-    melody = _sorted(getattr(layer_ir, "principal_line", None) or [])
+    melody = _sorted(_melody(layer_ir))
     tail = [
         e
         for e in melody
@@ -959,7 +1012,18 @@ def add_pedal(
     """
     if style.pedal == "none":
         return
-    if getattr(layer_ir, "instrumentation", "solo_piano") not in ("solo_piano", "piano"):
+    # Also a whitelist of two spellings, against four on disk: "piano_solo" and
+    # "solo piano" missed it, so three workspace pieces got no pedal at all —
+    # silently, since a missing mark looks exactly like a style that pedals
+    # sparingly. `is_keyboard` normalizes the spelling; the explicit exclusions
+    # are the keyboards that have no sustain pedal to lift.
+    instrumentation = getattr(layer_ir, "instrumentation", "solo_piano")
+    if not is_keyboard(instrumentation):
+        return
+    if any(
+        w in str(instrumentation or "").lower()
+        for w in ("harpsichord", "clavichord", "organ", "celesta")
+    ):
         return
     bass = _sorted(getattr(layer_ir, "bass_foundation", None) or [])
     if not bass:
@@ -1081,7 +1145,7 @@ def add_closing_marks(
             report.detail.append("final-fermata")
 
     if character and style.uses_character_words:
-        melody = _sorted(getattr(layer_ir, "principal_line", None) or [])
+        melody = _sorted(_melody(layer_ir))
         head = next((e for e in melody if not _is_rest(e)), None)
         if head is not None and _blank(head, "expression"):
             head.expression = character

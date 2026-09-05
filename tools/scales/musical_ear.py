@@ -48,12 +48,51 @@ def _finding(detector, bar, beat, severity, problem, fix_hint, **evidence) -> Di
 # ─── Score-based detectors (need real simultaneity) ──────────────────────────
 
 
+def _drop(_finding_dict) -> None:
+    """Counted but not listed — the cap limits what is printed, not what is measured."""
+
+
+#: Clashes per 100 bars in real music, measured with this detector. A minor 2nd
+#: is common; what varies is how common, and by repertoire — suspension-driven
+#: polyphony clashes about four times as often as a sonata, by construction.
+_REAL_CLASH_RATES = {
+    "mozart sonatas": "median 2.8, max 22.2",
+    "chopin mazurkas": "median 3.5, max 11.6",
+    "haydn quartets": "median 7.1, max 17.4",
+    "palestrina motets": "median 11.6, max 22.2",
+}
+
+
 def detect_vertical_clashes(score, cap: int = 8) -> List[Dict[str, Any]]:
     """Flag simultaneously-sounding pitches that clash: a cross-relation (G♮+G♭ —
     same letter, different accidental) is an error; a bare half-step cluster is a
     warning (it may be an appoggiatura). Uses chordify so both hands are merged
-    into the literal sounding sonority."""
+    into the literal sounding sonority.
+
+    **A minor 2nd is not rare in real music, and this said so eight times with no
+    sense of scale.** Measured as clashes per 100 bars:
+
+        real mozart sonatas   median  2.8   p90  8.0   max 22.2
+        real chopin mazurkas  median  3.5   p90  8.3   max 11.6
+        real haydn quartets   median  7.1   p90 11.9   max 17.4
+        real palestrina       median 11.6   p90 19.4   max 22.2
+        generated pieces      median 16.7   p90 22.2   max 40.0
+
+    So the finding fires on 79% of real Mozart movements and **100%** of real
+    Palestrina and Haydn — and the critic reads these before deciding what to
+    revise. Presence carries almost no information; the RATE does, and only
+    against the right repertoire, since a suspension-driven motet clashes four
+    times as often as a sonata by construction. Every clash finding now carries
+    the piece's own rate and that table, so eight listed clashes in a 40-bar
+    piece can be told from eight in a 400-bar one.
+
+    The count is over the WHOLE score even though only `cap` are listed: it used
+    to stop scanning at the cap, so the rate could not have been computed at all.
+    """
     out: List[Dict[str, Any]] = []
+    # Counted over the WHOLE score even though only `cap` are listed. This used
+    # to `break` at the cap, so the rate below could not have been computed.
+    counted = 0
     try:
         chordy = score.chordify()
     except Exception:
@@ -101,7 +140,8 @@ def detect_vertical_clashes(score, cap: int = 8) -> List[Dict[str, Any]]:
             # between them (diminished-seventh resolutions, chromatic passing
             # tones). Promoting this to an error would reject real music, which
             # is the standing test every rule here has to pass.
-            out.append(
+            counted += 1
+            (out.append if len(out) < cap else _drop)(
                 _finding(
                     "vertical_clash",
                     bar,
@@ -114,8 +154,6 @@ def detect_vertical_clashes(score, cap: int = 8) -> List[Dict[str, Any]]:
                     pitches=[p.nameWithOctave for p in ps],
                 )
             )
-            if len(out) >= cap:
-                break
             continue
         # half-step cluster among simultaneously sounding pitches (softer)
         midis = sorted(p.midi for p in ps)
@@ -124,7 +162,8 @@ def detect_vertical_clashes(score, cap: int = 8) -> List[Dict[str, Any]]:
             a, b = clash_pair
             import music21
 
-            out.append(
+            counted += 1
+            (out.append if len(out) < cap else _drop)(
                 _finding(
                     "vertical_clash",
                     bar,
@@ -138,8 +177,32 @@ def detect_vertical_clashes(score, cap: int = 8) -> List[Dict[str, Any]]:
                     midis=[a, b],
                 )
             )
-            if len(out) >= cap:
-                break
+    total = counted
+    if total:
+        bars = 0
+        try:
+            bars = max(
+                (len(part.getElementsByClass("Measure")) for part in score.parts), default=0
+            )
+        except Exception:
+            bars = 0
+        rate = round(100.0 * total / bars, 1) if bars else None
+        for finding in out:
+            if finding.get("severity") != "warn":
+                continue
+            evidence = finding.setdefault("evidence", {})
+            evidence["clashes_in_piece"] = total
+            evidence["occurrences"] = total
+            evidence["clashes_per_100_bars"] = rate
+            evidence["real_per_100_bars"] = dict(_REAL_CLASH_RATES)
+        if rate is not None:
+            first = next((f for f in out if f.get("severity") == "warn"), None)
+            if first is not None:
+                first["problem"] += (
+                    f" [{total} clashes in {bars} bars = {rate} per 100; real music runs "
+                    f"2.8-3.5 per 100 for piano and 7-12 for polyphony, so judge the RATE, "
+                    f"not the presence]"
+                )
     return out
 
 
@@ -161,17 +224,42 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
     anything still sound past the barline", and overlapping voices must not be
     double-counted.
 
-    **A known false positive, recorded honestly.** Run over the reference
-    corpus, this fires an `error` on bar 43 of Mozart's K.281 third movement:
-    music21's Humdrum importer lays that bar out with offsets running 0 to 16
-    inside a 2/2 measure. The music is fine; the *parse* is not, and no
-    measurement of the parsed stream can tell the difference between "the
-    importer merged some bars" and "our exporter overflowed one". Since this is
-    the only detector family whose findings block a section, that limit is worth
-    stating: it is trustworthy on the MusicXML this system writes (where it
-    catches the 7.5-beats-in-4/4 shape several notation bugs have produced), and
-    it should not be pointed at freshly-imported Humdrum without checking.
-    `test_score_realism_calibration` tolerates exactly this one file.
+    **Only an overshoot you can HEAR is an error.** A bar can run past its
+    barline because a voice's trailing REST is too long — which is silent, and
+    which real engraving does constantly. Measured over real scores, of the
+    overfull bars found:
+
+        monteverdi madrigals   56 bars   all 56 rests-only
+        haydn quartets         11 bars   all 11 rests-only
+        beethoven sonatas       5 bars       1 rests-only
+        bach                   16 bars       0 rests-only
+
+    77% of overfull bars in real music are inaudible, and they were blocking
+    sections: 56% of real Haydn quartets and 31% of real Beethoven sonata
+    movements raised a BLOCKING error here. This system's own engraver writes
+    them too — 69 across three workspace pieces — so this was not a problem
+    confined to imported files. An overshoot made of rests is now a warning; one
+    where a NOTE still sounds past the barline stays an error, which is the shape
+    every notation bug in this system has actually had.
+
+    **Its false positives are the Humdrum importer, and there are more than one.**
+    This was documented as firing on a single file — bar 43 of Mozart's K.281
+    third movement, where music21's Humdrum importer lays out offsets running 0
+    to 16 inside a 2/2 measure. Measured across the whole reference corpus rather
+    than the 26-file sample the harness happened to draw, it fires on **36 of 224
+    files (16%)**: 26% of the Beethoven sonatas, 10% of the Mozart, 4% of the
+    Chopin mazurkas. The extents are frequently absurd — 465 beats inside a 2/4
+    bar — which is a parse collapse, not music. But the ratio does not separate
+    them: 73 of the 102 errors are under 2x the meter, so "big enough to be a
+    parse artifact" is not a rule that works, and none is applied.
+
+    No measurement of the parsed stream can tell "the importer merged some bars"
+    from "our exporter overflowed one". Since this is the only detector family
+    whose findings block a section, state the limit plainly: it is trustworthy on
+    the MusicXML this system writes — where it catches the 7.5-beats-in-4/4 shape
+    several notation bugs have produced — and it should not be pointed at
+    freshly-imported Humdrum. On imported MusicXML it is clean: 0 of 73 real
+    quartets, madrigals and motets block after the rest fix above.
     """
 
     def _sounding_extent(measure) -> float:
@@ -184,7 +272,18 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
                 continue
         return end
 
+    def _audible_extent(measure) -> float:
+        """The same, counting only what actually sounds — see the docstring."""
+        end = 0.0
+        for el in measure.recurse().notes:
+            try:
+                end = max(end, float(el.offset) + float(el.duration.quarterLength))
+            except (TypeError, ValueError):
+                continue
+        return end
+
     out: List[Dict[str, Any]] = []
+    occurrences = 0
     for part in score.parts:
         for m in part.getElementsByClass("Measure"):
             ts = m.timeSignature or m.getContextByClass("TimeSignature")
@@ -199,30 +298,39 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
                 continue
             if actual > expected + 0.01:
                 # OVERFULL is an error: unengravable, and the signature of every
-                # notation bug this system has shipped.
-                out.append(
+                # notation bug this system has shipped — but only when something
+                # still SOUNDS past the barline. See the docstring.
+                audible = _audible_extent(m)
+                heard_over = audible > expected + 0.01
+                (out.append if len(out) < cap else _drop)(
                     _finding(
                         "bar_length",
                         m.number,
                         None,
-                        "error",
+                        "error" if heard_over else "warn",
                         f"Bar {m.number} ({part.partName or 'part'}) holds "
                         f"{actual:g} beats but the meter is {ts.ratioString} "
-                        f"({expected:g} beats).",
+                        f"({expected:g} beats)."
+                        + (
+                            ""
+                            if heard_over
+                            else " Only a trailing rest runs past the barline, so nothing "
+                            "sounds late; it is an engraving tidy-up, not a wrong bar."
+                        ),
                         "Make every voice in the bar sum to the meter. A sustained "
                         "bass under figuration is a second voice, not a longer first note.",
                         expected=expected,
                         actual=actual,
+                        audible_extent=audible,
                     )
                 )
-                if len(out) >= cap:
-                    return out
+                occurrences += 1
             elif actual < expected - 0.01:
                 # UNDERFULL is only a warning. Falsified against the reference
                 # corpus: real engraved scores are full of short bars (second
                 # endings, repeat structures, written-out partial measures) —
                 # 22 of them across nine sonatas and mazurkas.
-                out.append(
+                (out.append if len(out) < cap else _drop)(
                     _finding(
                         "bar_length",
                         m.number,
@@ -236,8 +344,14 @@ def detect_bar_length_errors(score, cap: int = 12) -> List[Dict[str, Any]]:
                         actual=actual,
                     )
                 )
-                if len(out) >= cap:
-                    return out
+                occurrences += 1
+    # `cap` limits what is LISTED, never what is counted. `convergence` ranks a
+    # revision by its per-detector finding counts, so a capped list made a
+    # section with 40 overfull bars score identically to one with 12, and a fix
+    # that repaired 28 of them registered as no improvement at all. 33% of the
+    # generated scores that trip this detector sit exactly at its cap.
+    for finding in out:
+        finding.setdefault("evidence", {})["occurrences"] = occurrences
     return out
 
 
@@ -264,6 +378,11 @@ def detect_out_of_range(score, low: int = 21, high: int = 108, cap: int = 8):
     return out
 
 
+# The worst buried-bar share measured across real Palestrina, Bach chorales and
+# Mozart sonatas. Below this, voices are simply crossing, which is counterpoint.
+_BURIED_SHARE_MAX = 0.25
+
+
 def detect_melody_buried(score, cap: int = 8) -> List[Dict[str, Any]]:
     """Per bar, is the melody (top of the highest-register part) actually the
     highest sounding pitch, or is an accompaniment voice sitting above it?"""
@@ -281,6 +400,8 @@ def detect_melody_buried(score, cap: int = 8) -> List[Dict[str, Any]]:
     mel_part = next((p for p in parts if has_treble(p)), parts[0])
     others = [p for p in parts if p is not mel_part]
     mel_measures = list(mel_part.getElementsByClass("Measure"))
+    buried_bars: List[int] = []
+    checked_bars = 0
     for m in mel_measures:
         bar = m.number
         mel_notes = [n for n in m.recurse().notes if n.pitches]
@@ -303,23 +424,42 @@ def detect_melody_buried(score, cap: int = 8) -> List[Dict[str, Any]]:
         # Only flag a bar where the tune is buried for MOST of the bar — and even
         # then it is advisory: voices legitimately cross in real counterpoint
         # (Bach, Beethoven), so this is a hint for the ear, never a hard defect.
+        checked_bars += 1
         if buried_beats and buried_beats >= max(2, len(mel_notes) * 0.6):
-            out.append(
-                _finding(
-                    "melody_buried",
-                    bar,
-                    None,
-                    "warn",
-                    f"Bar {bar}: the melody may be buried — another voice sounds above it on "
-                    f"{buried_beats}/{len(mel_notes)} notes (fine if voices are meant to cross).",
-                    "If the tune should lead, voice the accompaniment below it or thin the "
-                    "inner voices on the melodic beats.",
-                    buried=buried_beats,
-                    total=len(mel_notes),
-                )
+            buried_bars.append(bar)
+    # Report ONCE, on the SHARE, not once per bar. Firing per bar produced eight
+    # findings for a single condition and drowned the rest of the report.
+    #
+    # Calibrated against real scores: the share of bars in which the top voice is
+    # covered runs a median of 0.00 and a 75th percentile of 0.02 in real
+    # Palestrina, with a worst case of 0.23 — voices genuinely cross in
+    # counterpoint. Above that maximum the texture is not "voices crossing", it
+    # is a top line that has stopped being on top.
+    share = (len(buried_bars) / checked_bars) if checked_bars else 0.0
+    # Three buried bars is the evidence bar for a real piece; a two-bar excerpt
+    # cannot supply three, so the minimum scales to what there is to look at.
+    min_bars = min(3, checked_bars)
+    if share > _BURIED_SHARE_MAX and len(buried_bars) >= max(1, min_bars):
+        out.append(
+            _finding(
+                "melody_buried",
+                buried_bars[0],
+                None,
+                "warn",
+                f"The top voice is covered by another part in {len(buried_bars)} of "
+                f"{checked_bars} bars ({share:.0%}) — bars "
+                f"{', '.join(str(b) for b in buried_bars[:8])}"
+                f"{'…' if len(buried_bars) > 8 else ''}. Real counterpoint crosses "
+                f"voices, but not this often: the worst of the reference scores is 23%.",
+                "Let the top line ride above the texture where it should lead, or "
+                "accept that this is equal-voice polyphony and give the covered "
+                "phrases somewhere else to be heard — a rest in the covering voice, "
+                "a thinner accompaniment on those beats.",
+                buried_bars=len(buried_bars),
+                checked_bars=checked_bars,
+                share=round(share, 3),
             )
-            if len(out) >= cap:
-                break
+        )
     return out
 
 
@@ -858,6 +998,27 @@ def detect_harmonic_stagnation(bars: List[Dict[str, Any]], cap: int = 6):
             if len(out) >= cap:
                 return out
         run_start, run_len, prev = None, 1, roman
+
+    # THE RUN THAT REACHES THE LAST BAR. The report was only ever written when a
+    # run ENDED — when a different harmony followed it — so a piece that settles
+    # onto one chord and stays there to the final bar was never reported at all.
+    # That is the worst case of the defect this detector names, and the one it
+    # could not see.
+    if run_len >= 6 and run_start is not None and len(out) < cap:
+        out.append(
+            _finding(
+                "harmonic_stagnation",
+                run_start,
+                None,
+                "warn",
+                f"Bars {run_start}–{run_start + run_len - 1}: {run_len} bars on the same "
+                f"harmony ({prev}) — the phrase stops moving.",
+                "Change the harmony, tonicize, or make the stasis expressive "
+                "(a pedal under real motion above it).",
+                run=run_len,
+                roman=prev,
+            )
+        )
     return out
 
 

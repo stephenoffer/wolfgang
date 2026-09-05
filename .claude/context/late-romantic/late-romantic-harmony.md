@@ -236,6 +236,9 @@ w: V7b9 I V7#5b9 i
 | Deceptive resolution | V -> not-I | Continuation forced |
 | Evaded cadence | V -> I becomes V -> I6 or IV6 | Weakened arrival |
 | Interrupted cadence | New phrase interrupts before resolution | Breathless |
+| PAC (authentic close) | V7 -> I, both root position, melody on the tonic — and used **sparingly** | The late-Romantic idiom defers cadences for pages; when a plan asks for a real PAC it should be a structural event, at the end of a large section, and it should feel earned by everything that avoided one before it |
+| HC (half close) | Arrival on V, often a dominant ninth or thirteenth, held and coloured rather than plain | The half cadence is this idiom's natural state — the dominant is where the music lives, and the tonic is what it postpones |
+| IAC (weak close) | V -> I with an inversion or the third in the melody, or V -> I under a continuing line | The default close: an arrival that keeps the music moving |
 | Elided cadence | Arrival = new departure | Continuous flow |
 | Plagal substitution | IV replaces V for cadence | Softer closure |
 | Modal cadence | Aeolian: bVII -> i | Archaic, open |

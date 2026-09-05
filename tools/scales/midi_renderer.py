@@ -26,7 +26,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .assembler import _in_scope, scoped_basename
+from .assembler import _in_scope, _is_source, scoped_basename
 from .duration import DURATION_VALUES, GRACE_ORNAMENTS, bar_duration, dur_to_beats
 from .models import EventIR, PerformanceIR
 from .music_io import layer_ir_to_event_ir
@@ -372,6 +372,45 @@ def _instrumentation_of(piece_graph) -> str:
     return str(getattr(target, "instrumentation", "") or "")
 
 
+#: Which layers a plan's voicing-priority name refers to. The plan writes
+#: "melody" / "bass" / "inner"; an EventIR carries `source_layer`.
+_EMPHASIS_LAYERS = {
+    "melody": ("principal_line", "foreground"),
+    "principal": ("principal_line", "foreground"),
+    "soprano": ("principal_line", "foreground"),
+    "top": ("principal_line", "foreground"),
+    "bass": ("bass_foundation",),
+    "bassline": ("bass_foundation",),
+    "inner": ("counter_reply", "response_layer", "harmonic_mass"),
+    "counter": ("counter_reply",),
+    "alto": ("counter_reply",),
+    "tenor": ("response_layer",),
+    "ornament": ("ornamental_surface",),
+}
+
+
+def _emphasis_by_bar(perf) -> dict:
+    """`{bar: {layer: boost}}` from a phrase's `PerformanceIR.voicing_emphasis`.
+
+    `performance_renderer` computes this per phrase — "the plan says the bass
+    carries the line here, bring it out" — and **nothing applied it**. It was
+    written, filtered, tested in isolation, and never read by the renderer that
+    turns velocity into sound, whose own module docstring claims the dynamic
+    curve comes "with melody voicing emphasis". A phrase planned around a
+    singing bass came out with the same flat per-layer balance as every other.
+    """
+    out: dict = {}
+    for emphasis in getattr(perf, "voicing_emphasis", None) or []:
+        layers = _EMPHASIS_LAYERS.get(str(emphasis.voice or "").strip().lower())
+        if layers is None:
+            # A plan may name a layer directly.
+            layers = (str(emphasis.voice or "").strip().lower(),)
+        for layer in layers:
+            bar = out.setdefault(int(emphasis.bar), {})
+            bar[layer] = max(bar.get(layer, 0.0), float(emphasis.boost or 0.0))
+    return out
+
+
 def _score_from_parts(marks, music21, parts: Dict[str, Any], instrumentation: str):
     """A Score with one Part per staff, each carrying its own instrument.
 
@@ -379,12 +418,15 @@ def _score_from_parts(marks, music21, parts: Dict[str, Any], instrumentation: st
     first part so every player follows one clock.
     """
     from .assembler import _instrument_for, _score_order
-    from .models import is_keyboard
+    from .models import is_keyboard, is_string_ensemble, is_vocal
 
-    vocal = any(
-        w in str(instrumentation or "").lower()
-        for w in ("choir", "chorus", "choral", "vocal", "satb", "voices", "a_cappella")
-    )
+    # A THIRD copy of the vocal word list lived here — the same short one, which
+    # knew "choir" but not "motet", "madrigal" or "mass". What the critic hears
+    # is this preview, so a motet previewed as a piano and a cello was reviewed
+    # as a piano and a cello. One predicate, shared with the assembler that
+    # engraves the same piece and the validator that ranges it.
+    vocal = is_vocal(instrumentation)
+    strings = is_string_ensemble(instrumentation)
     # A keyboard's staves are both the same instrument; an ensemble's are not.
     keyboard = (
         ""
@@ -397,7 +439,7 @@ def _score_from_parts(marks, music21, parts: Dict[str, Any], instrumentation: st
     for index, name in enumerate(ordered):
         part = marks if index == 0 else music21.stream.Part()
         try:
-            part.insert(0, _instrument_for(name, vocal=vocal, keyboard=keyboard))
+            part.insert(0, _instrument_for(name, vocal=vocal, keyboard=keyboard, strings=strings))
         except Exception:
             pass  # an unresolvable staff name must not cost the preview
         for offset, note in parts[name]:
@@ -413,8 +455,14 @@ def render_midi(
     scope: str = "full",
     output_dir: Optional[str] = None,
     humanize: bool = True,
+    include_source: bool = False,
 ) -> str:
-    """Render piece to MIDI file. Returns path to the MIDI file."""
+    """Render piece to MIDI file. Returns path to the MIDI file.
+
+    ``include_source`` mirrors `assemble`: the phrases `load_source_score` read
+    in (`salience='source'`) are the score being transformed, not the output,
+    and they occupy the same bars as the new music. Off by default.
+    """
     try:
         import music21
     except ImportError:
@@ -450,6 +498,14 @@ def render_midi(
         # The preview is what the critic HEARS, so a wrong scope here means an
         # artistic judgement made about the wrong music.
         if not _in_scope(phrase_state, scope):
+            continue
+        # ...and the same is true of the SOURCE. A variation renders its source
+        # over the top of itself otherwise: the preview of a piece whose graph
+        # holds both played G4-A4-B4 (the source) and C5-D5-E5 (the piece) in
+        # the same bar. An artistic judgement made about the wrong music,
+        # exactly as the scope note above describes, and worse because the
+        # critic is the sole driver of revision.
+        if not include_source and _is_source(phrase_state):
             continue
         if not phrase_state.realized:
             continue
@@ -530,6 +586,7 @@ def render_midi(
     for events, perf, meter, key in phrase_renders:
         beats_per_bar = float(bar_duration(meter))
         pedaled = set(pedal_bars(perf)) if perf else set()
+        emphasis_by_bar = _emphasis_by_bar(perf) if perf else {}
         # Tendency-tone pitch class (the leading tone) for harmony-aware
         # emphasis: it pulls toward the tonic and is played with a touch more
         # weight. Cheap, key-only, no full harmonic analysis needed.
@@ -601,6 +658,11 @@ def render_midi(
                 if layer_mul is None:
                     layer_mul = 1.12 if (event.staff == "treble" and event.voice == 1) else 1.0
                 vel *= layer_mul
+                # The voicing emphasis the PLAN asked for on THIS bar — which
+                # voice carries the line here. See `_emphasis_by_bar`.
+                boost = (emphasis_by_bar.get(event.bar) or {}).get(event.source_layer or "")
+                if boost:
+                    vel *= 1.0 + float(boost)
                 # Written hairpins actually swell and fade.
                 vel *= hairpin_scale.get(id(event), 1.0)
                 # Tendency-tone (leading-tone) emphasis.

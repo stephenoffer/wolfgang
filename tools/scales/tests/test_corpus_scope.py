@@ -112,14 +112,15 @@ def test_the_fingerprint_inherits_the_narrowness_caveat():
     assert "four-part chorales" in head
 
 
-def test_the_scope_warning_reaches_the_brief_first():
+def test_the_scope_warning_reaches_the_brief_first(function_source):
     """It qualifies every number after it, so it has to come before them."""
-    import inspect
-
     from scales import composition_brief as cb
 
-    src = inspect.getsource(cb)
-    assert "render_corpus_scope(brief.composer)" in src
-    assert src.index("render_corpus_scope(brief.composer)") < src.index(
-        "render_rhythmic_fingerprint(brief.composer)"
-    )
+    # Ordering, without pinning the ARGUMENTS: both calls gained a `graph`
+    # parameter and this broke, though the order it checks never changed.
+    # Located by NAME (see conftest._function_source): `inspect.getsource`
+    # resolves the line numbers recorded at import, so an edit to the file
+    # during the run returns a different function's text.
+    src = function_source(cb, "render_text")
+    assert "render_corpus_scope(" in src
+    assert src.index("render_corpus_scope(") < src.index("render_rhythmic_fingerprint(")

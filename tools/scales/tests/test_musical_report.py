@@ -80,9 +80,7 @@ def test_a_planned_placement_is_reported_as_exact():
 
     mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
     mel2, bass2 = _plain_phrase(2, ["G5", "A5", "B5", "C6"])
-    g = _graph(
-        [("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)]
-    )
+    g = _graph([("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)])
     g.principal_theme_id = "motif_A"
     g.principal_theme_surface = LayerIR(
         key="C major",
@@ -104,9 +102,7 @@ def test_a_plan_that_states_the_theme_once_is_a_real_concern():
 
     mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
     mel2, bass2 = _plain_phrase(2, ["G5", "A5", "B5", "C6"])
-    g = _graph(
-        [("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)]
-    )
+    g = _graph([("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)])
     g.principal_theme_id = "motif_A"
     g.principal_theme_surface = LayerIR(
         key="C major",
@@ -230,9 +226,7 @@ def test_concerns_only_gathers_every_section():
 def test_scope_limits_the_report_to_one_section():
     mel1, bass1 = _plain_phrase(1, ["C5", "D5", "E5", "F5"])
     mel2, bass2 = _plain_phrase(2, ["G5", "A5", "B5", "C6"])
-    g = _graph(
-        [("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)]
-    )
+    g = _graph([("m1_a_p1", 1, 1, "PAC", mel1, bass1), ("m1_b_p1", 2, 1, "PAC", mel2, bass2)])
     assert build_report(g, scope="section-m1_a").phrases == 1
     assert build_report(g, scope="full").phrases == 2
 
@@ -336,3 +330,91 @@ def test_each_phrases_tail_is_reported_for_the_next_one():
     tails = build_report(g, style="mozart").continuity["tails"]
     assert "m1_a_p1" in tails
     assert "the melody ended on" in tails["m1_a_p1"]
+
+
+# ─── Orchestral material must survive the trip to the critic ─────────────────
+#
+# Three separate hand-written layer lists in this module carried only the five
+# PIANO layers. LayerIR has eleven. An orchestral piece therefore reached the
+# critic as an empty report — every orchestral note dropped, `bar_count` derived
+# from an empty `principal_line` (so: 1), and `instrumentation` never carried,
+# which meant the ensemble texture floors could not fire on the production path
+# at all no matter how carefully they were measured.
+#
+# These tests go through `build_report`, deliberately. The earlier ensemble
+# tests passed because they handed `analyze_voicing` a LayerIR they had built
+# themselves with `instrumentation="ensemble"` — they proved the floors worked
+# when reached, never that anything reached them. Testing the object you
+# constructed rather than the one production builds is the failure this session
+# has now hit four times.
+
+
+def _orchestral_graph(bars=8):
+    g = PieceGraph()
+    g.piece_id = "orch-piece"
+    slot = PhraseSlot(
+        phrase_id="m1_a_p1",
+        section_id="m1_a",
+        bar_start=1,
+        bar_count=bars,
+        key="C major",
+        meter=(4, 4),
+        cadence_bar=bars,
+        cadence_target="PAC",
+    )
+    ir = LayerIR(phrase_id="m1_a_p1", key="C major", meter=(4, 4), instrumentation="ensemble")
+    # The six orchestral layers default to None, not [] — the same asymmetry
+    # that made the merge above crash the moment orchestral music reached it.
+    ir.foreground, ir.harmonic_mass, ir.punctuation = [], [], []
+    tune = ["C5", "D5", "E5", "F5", "G5", "A5", "G5", "E5"]
+    for b in range(1, bars + 1):
+        for i, p in enumerate(tune[:4]):
+            ir.foreground.append(_ev(b, 1.0 + i, p, "q"))
+        ir.harmonic_mass.append(_ev(b, 1.0, ["E4", "G4"], "w"))
+        ir.punctuation.append(_ev(b, 1.0, "C2", "w"))
+    g.phrases["m1_a_p1"] = PhraseState(slot=slot, realized=ir, status="realized")
+    return g
+
+
+def test_an_orchestral_piece_does_not_reach_the_critic_empty():
+    report = build_report(_orchestral_graph(bars=8))
+    assert report.bars == 8, (
+        f"the report counted {report.bars} bars in an 8-bar orchestral phrase — "
+        "bar_count is being derived from a piano layer that orchestral music "
+        "never populates"
+    )
+    text = render_text(report)
+    assert "nothing realized yet" not in text
+    assert report.page.get("marks_per_bar") is not None
+
+
+def test_instrumentation_survives_to_the_texture_floors():
+    """Otherwise every ensemble piece is judged by the piano floors."""
+    from scales.musical_report import _merge, _ordered_phrases, _phrase_layer
+
+    g = _orchestral_graph()
+    layers = [_phrase_layer(st, sl) for _pid, st, sl in _ordered_phrases(g)]
+    assert layers[0].instrumentation == "ensemble", "dropped rebuilding the phrase"
+    assert _merge(layers).instrumentation == "ensemble", "dropped merging the piece"
+
+
+def test_the_ensemble_relaxation_actually_reaches_production():
+    """The end-to-end claim: ensemble scoring draws no hand-span complaint."""
+    concerns = " ".join(concerns_only(build_report(_orchestral_graph())))
+    assert "hand" not in concerns.lower(), (
+        f"an ensemble piece was told its hands cannot reach: {concerns}"
+    )
+
+
+def test_a_piano_piece_is_still_judged_as_a_piano_piece():
+    """Relaxing for ensembles must not quietly relax the keyboard case."""
+    from scales.musical_report import _merge, _ordered_phrases, _phrase_layer
+
+    mel, bass = _plain_phrase(1, ["C5", "D5", "E5", "F5"] * 4)
+    g = _graph([("m1_a_p1", 1, 4, "PAC", mel, bass)])
+    layers = [_phrase_layer(st, sl) for _pid, st, sl in _ordered_phrases(g)]
+    merged = _merge(layers)
+    from scales.voicing import _is_keyboard, floors_for
+
+    assert _is_keyboard(merged)
+    assert floors_for("mozart", merged)["simultaneity_cv"] > 0.0

@@ -386,13 +386,148 @@ def test_musical_ear_errors_do_not_fire_on_canonical_music():
             key = str(f.relative_to(_REF))
             offenders[key] = sorted({x.get("detector") for x in errs})
 
-    # Humdrum import artifacts — see the docstring.
+    # Humdrum import artifacts — see `detect_bar_length_errors`. This allowlist
+    # was TWO filenames, and it held only because the sample above draws 14
+    # Mozart files, 6 Chopin and 6 Beethoven. Measured over all 224 files in
+    # `reference_scores/`, 36 of them (16%) raise a blocking error: 26% of the
+    # Beethoven sonatas, 10% of the Mozart, 4% of the mazurkas. Every one is
+    # music21's Humdrum importer merging bars — extents run as high as 465 beats
+    # inside a 2/4 measure — and the ratio does not separate them from a real
+    # overflow, so there is nothing to detect our way out of. Naming the files
+    # was hiding the rate behind a sample; the rate is asserted instead.
     known = {
         "mozart-piano-sonatas/kern/sonata03-3.krn",
         "beethoven-piano-sonatas/kern/sonata02-1.krn",
     }
     unexpected = {k: v for k, v in offenders.items() if k not in known}
+    non_bar_length = {
+        k: v for k, v in unexpected.items() if any(d != "bar_length" for d in v)
+    }
     print(f"\n{len(files)} canonical movements; ear errors on {sorted(offenders)}")
-    assert not unexpected, "musical_ear raises BLOCKING errors on canonical music: " + ", ".join(
-        f"{k} {v}" for k, v in unexpected.items()
+    assert not non_bar_length, (
+        "musical_ear raises BLOCKING errors on canonical music for something "
+        "other than the documented Humdrum import artifact: "
+        + ", ".join(f"{k} {v}" for k, v in non_bar_length.items())
     )
+    rate = len(offenders) / len(files)
+    assert rate <= 0.25, (
+        f"bar_length blocks {rate:.0%} of this sample, above the 16% measured "
+        f"across all of reference_scores/ — the importer artifact has grown or a "
+        f"real regression is hiding in it"
+    )
+
+
+@pytest.mark.calibration
+def test_an_inaudible_overfull_bar_does_not_block():
+    """A bar can run past its barline because a voice's trailing REST is long.
+    Nothing sounds late, and real engraving does it constantly: of the overfull
+    bars found in real scores, 56/56 Monteverdi and 11/11 Haydn were rests-only.
+    They were raising BLOCKING errors — 56% of real Haydn quartets and 12% of
+    real Monteverdi madrigals could not have passed a section gate — and this
+    system's own engraver writes them too (69 across three workspace pieces).
+
+    A note sounding past the barline stays an error: that is the shape every
+    notation bug here has actually had (7.5 beats in 4/4 from a pedal figure
+    parsed sequentially).
+    """
+    warnings.filterwarnings("ignore")
+    from music21 import corpus
+
+    from scales.musical_ear import ear_report
+
+    for composer, limit in (("haydn", 12), ("monteverdi", 25), ("palestrina", 25)):
+        try:
+            paths = [str(p) for p in corpus.getComposer(composer)[:limit]]
+        except Exception:  # pragma: no cover - corpus not installed
+            pytest.skip(f"music21 corpus has no {composer}")
+        blocked, scored = [], 0
+        for path in paths:
+            try:
+                rep = ear_report(path, [], graph=None)
+            except Exception:
+                continue
+            scored += 1
+            if any(f.get("severity") == "error" for f in rep.get("findings", [])):
+                blocked.append(path.split("/")[-1])
+        if scored < 8:
+            pytest.skip(f"only {scored} {composer} movements parsed")
+        print(f"\n{composer}: {len(blocked)}/{scored} blocked")
+        assert not blocked, (
+            f"musical_ear BLOCKS real {composer}: {blocked} — an overfull bar made "
+            f"only of rests is inaudible and must not fail a section gate"
+        )
+
+
+@pytest.mark.calibration
+def test_detectors_do_not_reject_ensemble_music():
+    """The harness above reads only `reference_scores/`, which is Mozart,
+    Beethoven and Chopin — so every threshold in `score_realism` was falsified
+    against Classical and Romantic piano music and against nothing else. Two
+    detectors turned out to be describing that repertoire rather than music:
+
+        syncopation_absent          fired on 40/40 real Palestrina, 17/30 Monteverdi
+        rhythm_vocabulary_poverty   fired on 10/40 Palestrina, 11/30 Monteverdi
+
+    Renaissance vocal polyphony puts nearly every attack on a beat — its
+    characteristic displacement, the suspension, is a whole beat long — and it
+    draws on a deliberately narrow set of note values. Neither is a defect, and
+    a warning that is wrong that often teaches the critic to discount the ones
+    that are right.
+
+    This test reads music21's own corpus rather than `reference_scores/`, which
+    holds no early music at all.
+    """
+    warnings.filterwarnings("ignore")
+    from music21 import corpus
+
+    from scales.score_realism import realism_report
+
+    # Measured after the fix; a little headroom so one odd parse cannot fail CI.
+    # Every entry here was above 0 before the fix, several far above: the shipped
+    # bounds were measured on a 2-staff piano corpus and several of them turned
+    # out to describe the grand staff rather than music. Rates before -> after:
+    #
+    #   voicing_poverty        mozart 50% haydn 78% palestrina 76% monteverdi 40% -> 0
+    #   register_stasis        palestrina 100% monteverdi 68% haydn 11%           -> 0
+    #   syncopation_absent     palestrina 100% monteverdi 57%                     -> 0
+    #   rhythm_vocab_poverty   monteverdi 36% palestrina 29% haydn 22% bach 15%   -> <=16%
+    #   melody_vocab_poverty   mozart 29% palestrina 24% monteverdi 24%           -> 0
+    #   scalar_overuse         haydn 22% palestrina 16%                           -> 0
+    _ENSEMBLE = {
+        "syncopation_absent": 0.05,
+        "voicing_poverty": 0.05,
+        "register_stasis": 0.05,
+        "scalar_overuse": 0.10,
+        "melody_vocabulary_poverty": 0.10,
+        "accompaniment_vocabulary_poverty": 0.10,
+    }
+    ceilings = {
+        "palestrina": {**_ENSEMBLE, "rhythm_vocabulary_poverty": 0.15},
+        "monteverdi": {**_ENSEMBLE, "rhythm_vocabulary_poverty": 0.25},
+        "haydn": {**_ENSEMBLE, "rhythm_vocabulary_poverty": 0.15},
+        "mozart": {**_ENSEMBLE, "rhythm_vocabulary_poverty": 0.15},
+    }
+    for composer, limits in ceilings.items():
+        try:
+            paths = [str(p) for p in corpus.getComposer(composer)[:30]]
+        except Exception:  # pragma: no cover - corpus not installed
+            pytest.skip(f"music21 corpus has no {composer}")
+        fires: Counter = Counter()
+        scored = 0
+        for path in paths:
+            try:
+                rep = realism_report(path, composer=composer)
+            except Exception:
+                continue
+            scored += 1
+            for name in {f.get("detector") for f in rep.get("findings") or []}:
+                fires[name] += 1
+        if scored < 8:
+            pytest.skip(f"only {scored} {composer} movements parsed")
+        for detector, ceiling in limits.items():
+            rate = fires[detector] / scored
+            print(f"\n{composer}: {detector} fires on {fires[detector]}/{scored} ({rate:.0%})")
+            assert rate <= ceiling, (
+                f"{detector} fires on {rate:.0%} of real {composer} "
+                f"(ceiling {ceiling:.0%}) — it is rejecting canonical music"
+            )

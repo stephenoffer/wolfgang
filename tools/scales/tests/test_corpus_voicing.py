@@ -42,7 +42,9 @@ def _real_layers():
 
     paths = (
         sorted(glob.glob("tools/reference_scores/mozart-piano-sonatas/kern/sonata0[1-6]-*.krn"))[:8]
-        + sorted(glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True))[:4]
+        + sorted(
+            glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True)
+        )[:4]
         + sorted(glob.glob("tools/reference_scores/chopin-mazurkas/**/*.krn", recursive=True))[:4]
     )
     if not paths:
@@ -73,9 +75,7 @@ def _real_layers():
                         except Exception:
                             d = "q"
                         pitch = (
-                            [x.nameWithOctave for x in n.pitches]
-                            if n.isChord
-                            else n.nameWithOctave
+                            [x.nameWithOctave for x in n.pitches] if n.isChord else n.nameWithOctave
                         )
                         tgt.append(
                             LayerEvent(
@@ -89,9 +89,7 @@ def _real_layers():
             # rather than the code — Chopin's simultaneity CV reaches 0.17 and
             # Mozart's never drops below 0.21, so one floor cannot serve both.
             style = (
-                "chopin"
-                if "chopin" in path
-                else ("beethoven" if "beethoven" in path else "mozart")
+                "chopin" if "chopin" in path else ("beethoven" if "beethoven" in path else "mozart")
             )
             out.append((path, ir, style))
     if len(out) < 8:
@@ -140,9 +138,7 @@ def test_the_corpus_baselines_still_match_the_corpus():
     """`CORPUS_TEXTURE` is quoted to the composer; it has to stay true."""
     from scales.voicing import CORPUS_TEXTURE
 
-    rh = statistics.median(
-        analyze_voicing(ir).rh_notes_per_attack for _p, ir, _s in _real_layers()
-    )
+    rh = statistics.median(analyze_voicing(ir).rh_notes_per_attack for _p, ir, _s in _real_layers())
     classical = CORPUS_TEXTURE["classical"]["rh_notes_per_attack"]
     romantic = CORPUS_TEXTURE["romantic"]["rh_notes_per_attack"]
     assert min(classical, romantic) <= rh <= max(classical, romantic) * 1.3, (

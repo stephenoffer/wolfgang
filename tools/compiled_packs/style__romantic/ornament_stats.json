@@ -1,0 +1,55 @@
+{
+ "composer": "style__romantic",
+ "schema": 1,
+ "total_bars": 17588,
+ "textures": {
+  "scalar_run": {
+   "grace": 0.0523,
+   "trill": 0.002,
+   "mordent": 0.002,
+   "turn": 0.0,
+   "dotted": 0.2203,
+   "n": 994
+  },
+  "zigzag_figuration": {
+   "grace": 0.0167,
+   "trill": 0.0013,
+   "mordent": 0.0017,
+   "turn": 0.0,
+   "dotted": 0.3607,
+   "n": 4608
+  },
+  "held_note": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.5497,
+   "n": 342
+  },
+  "chordal": {
+   "grace": 0.0111,
+   "trill": 0.0,
+   "mordent": 0.0004,
+   "turn": 0.0,
+   "dotted": 0.3303,
+   "n": 5658
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 280
+  },
+  "singing_melody": {
+   "grace": 0.0252,
+   "trill": 0.0109,
+   "mordent": 0.0079,
+   "turn": 0.0,
+   "dotted": 0.367,
+   "n": 5706
+  }
+ }
+}

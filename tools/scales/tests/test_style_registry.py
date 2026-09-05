@@ -55,9 +55,7 @@ def test_unknown_style_with_no_armed_members():
     from scales.composition_brief import available_corpus_composers
 
     armed = set(available_corpus_composers())
-    empty = next(
-        (st for st, m in SR._STYLE_MEMBERS.items() if not (set(m) & armed)), None
-    )
+    empty = next((st for st, m in SR._STYLE_MEMBERS.items() if not (set(m) & armed)), None)
     if empty is None:
         pytest.skip("every known style now has at least one armed member")
         return
@@ -182,7 +180,11 @@ def test_the_transition_matrix_loader_exists_only_once():
             if fn.name != "_load_transition_matrix":
                 continue
             # Strip the docstring — it *describes* the by_genre bug it fixed.
-            stmts = [n for n in fn.body if not (isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant))]
+            stmts = [
+                n
+                for n in fn.body
+                if not (isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant))
+            ]
             body = "\n".join(ast.unparse(n) for n in stmts)
             assert "load_transition_matrix" in body, (
                 f"{mod.__name__}._load_transition_matrix does not delegate to "
@@ -280,8 +282,7 @@ def test_genre_matrices_are_not_contaminated_across_periods():
         members = set(SR._STYLE_MEMBERS.get(style, []))
         strays = [c for c in sources if c not in members]
         assert not strays, (
-            f"{path.name} is built from {strays}, which are not members of the "
-            f"{style!r} style"
+            f"{path.name} is built from {strays}, which are not members of the {style!r} style"
         )
 
 

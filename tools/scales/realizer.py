@@ -825,7 +825,12 @@ class Realizer:
         # If it's a scale degree like "^5"
         if p.startswith("^"):
             try:
-                degree = int(p[1:])
+                from .pitch import parse_scale_degree
+
+                parsed = parse_scale_degree(p)
+                if parsed is None:
+                    return None
+                degree, alter = parsed
                 root = key_to_root_midi(key) + 60  # octave 4
                 mode = "minor" if is_minor_key(key) else "major"
                 intervals = {
@@ -837,7 +842,18 @@ class Realizer:
                     6: 9 if mode == "major" else 8,
                     7: 11,
                 }
-                return root + intervals.get(degree, 0)
+                # Degrees ABOVE the octave, and below the tonic.
+                #
+                # This table stopped at 7 and read `intervals.get(degree, 0)`,
+                # so `^8` — the tonic an octave up, the most ordinary way to
+                # mark a climax — resolved to offset 0 and came out as the
+                # tonic in the SAME octave. Not an error, just the wrong note,
+                # and silently: a melody asking to rise an octave stayed put.
+                # It is why no contour this proposer wrote could span more than
+                # the seven degrees the table listed.
+                octave, base = divmod(degree - 1, 7)
+                offset = intervals[base + 1] + 12 * octave
+                return root + offset + alter
             except ValueError:
                 return None
 
@@ -926,35 +942,18 @@ def _roman_to_quality(roman: str) -> str:
 
 
 def _roman_to_bass_offset(roman: str) -> int:
-    """Map Roman numeral to semitone offset from key root for bass note."""
-    mapping = {
-        "I": 0,
-        "i": 0,
-        "II": 2,
-        "ii": 2,
-        "ii6": 5,
-        "III": 4,
-        "iii": 4,
-        "IV": 5,
-        "iv": 5,
-        "V": 7,
-        "v": 7,
-        "V7": 7,
-        "VI": 9,
-        "vi": 9,
-        "VII": 11,
-        "vii": 11,
-        "viio": 11,
-        "I64": 7,
-        "bII": 1,
-        "bII6": 1,
-        "bIII": 3,
-        "bVI": 8,
-        "bVII": 10,
-        "It6": 8,
-    }
-    return mapping.get(roman.strip(), 0)
+    """Semitone offset from the key root to this numeral's bass note.
 
+    Delegates to `harmony_analysis.roman_bass_offset`. This was a 24-entry dict
+    ending in `mapping.get(roman, 0)`, so seven of eighteen common numerals came
+    back 0 — the TONIC — including `V65`, `V43`, `ii65`, `IV6` and `I6`. Someone
+    had hand-added `ii6` and `I64` and stopped; the rest of the inversions were
+    silently tonic.
+    """
+    from .harmony_analysis import roman_bass_offset
+
+    offset = roman_bass_offset(roman)
+    return 0 if offset is None else offset
 
 def _choose_melody_duration(beats_to_next: float, variant: int) -> str:
     """Choose a melodic note duration based on available space."""

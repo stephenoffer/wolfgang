@@ -43,8 +43,12 @@ def _real_metrics():
     from scales.style_analyzer import analyze_score
 
     paths = (
-        sorted(glob.glob("tools/reference_scores/mozart-piano-sonatas/kern/sonata0[1-9]-*.krn"))[:10]
-        + sorted(glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True))[:5]
+        sorted(glob.glob("tools/reference_scores/mozart-piano-sonatas/kern/sonata0[1-9]-*.krn"))[
+            :10
+        ]
+        + sorted(
+            glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True)
+        )[:5]
         + sorted(glob.glob("tools/reference_scores/chopin-mazurkas/**/*.krn", recursive=True))[:5]
     )
     if not paths:
@@ -86,9 +90,7 @@ def test_every_gate_target_describes_real_music():
                 f"{metric}: target {mean}±{sd} excludes the real median {med:.2f} "
                 f"(real range {min(core):.2f}-{max(core):.2f})"
             )
-    assert not offenders, (
-        "these gate targets do not describe real music:\n" + "\n".join(offenders)
-    )
+    assert not offenders, "these gate targets do not describe real music:\n" + "\n".join(offenders)
 
 
 def test_the_texture_change_target_has_not_drifted_back_up():
@@ -146,16 +148,16 @@ def test_the_gate_still_rejects_mechanical_music():
         "events_per_bar": 8.0,
         "events_per_bar_rh": 4.0,
         "events_per_bar_lh": 4.0,
-        "rest_ratio": 0.0,          # never breathes
+        "rest_ratio": 0.0,  # never breathes
         "triplet_pct": 0.0,
-        "rhythmic_variety": 1.0,    # one duration throughout
+        "rhythmic_variety": 1.0,  # one duration throughout
         "chromatic_pct": 0.0,
         "leap_pct": 2.0,
         "dynamic_markings_per_bar": 0.0,
         "texture_change_pct": 0.0,  # one texture forever
         "direction_changes_per_bar": 0.2,
-        "density_cv": 0.02,         # perfectly flat
-        "stepwise_pct": 98.0,       # a scale exercise
+        "density_cv": 0.02,  # perfectly flat
+        "stepwise_pct": 98.0,  # a scale exercise
     }
     rep = compare(mechanical, targets, threshold=0.35)
     assert rep["failing"] >= 2, f"a deliberately mechanical score passed: {rep}"

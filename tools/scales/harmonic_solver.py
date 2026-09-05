@@ -128,7 +128,23 @@ class HarmonicSolver:
         voice-leading hints and emotional color guidance.
         """
         roman = cell.roman
-        quality = cell.quality or _roman_quality(roman, mode)
+        # The ROMAN decides the quality when there is one.
+        #
+        # This read `cell.quality or _roman_quality(roman, mode)`, and
+        # `HarmonicCell.quality` defaults to `"major"` — a non-empty default, so
+        # the `or` never fell through and the parsed quality was never consulted
+        # for any cell built without an explicit one. Which is all of them on
+        # the v6 path.
+        #
+        # Every minor chord was therefore voiced MAJOR: `i` in D minor came out
+        # D-F#-A and `iv` came out G-B-D. Measured on a planned piece, **5 of 16
+        # bars carried a pitch class outside their own chord**, every one of
+        # them that F#, sounding against a melody correctly playing F natural.
+        #
+        # `i` IS minor — the numeral says so, and `parse_roman` reads it
+        # correctly. The `quality` field is redundant beside a roman and only
+        # meaningful without one.
+        quality = _roman_quality(roman, mode) if roman else (cell.quality or "major")
         degree_offset = _roman_degree(roman, mode)
 
         # Compute root MIDI
@@ -265,8 +281,47 @@ class HarmonicSolver:
 
         if len(inner_candidates) >= 2:
             inner_candidates.sort()
-            tenor = inner_candidates[0]
-            alto = inner_candidates[-1]
+            # THE INNER VOICES COMPLETE THE CHORD.
+            #
+            # Taking the lowest and highest candidate picks by REGISTER, and a
+            # seventh chord has four notes for four voices: with the bass on the
+            # root and the soprano on the fifth, the extremes can easily be two
+            # octaves of the third, and the seventh — the note that makes it a
+            # seventh chord — is never sounded.
+            #
+            # Measured on the assembled score: the plan asks for sevenths in
+            # 19.5% of Mozart's chords and 9.8% of Chopin's, and the written
+            # score analyses at 5.1% and 6.0% against their real 14.1% and
+            # 17.8%. The harmony was planned correctly and thinned on the way
+            # to the notes.
+            #
+            # So prefer pitch classes the outer voices do not already carry,
+            # lowest and highest among those, and fall back to the register
+            # extremes when the chord is a triad already fully covered.
+            # ...and they must carry DIFFERENT pitch classes. Taking the
+            # lowest and highest of the missing notes picks two octaves of the
+            # same one where a chord has several placements — B2 and B4 for a
+            # G7 whose bass is G and soprano D — which leaves the seventh out
+            # just as surely as picking by register did.
+            outer = {bass % 12, soprano % 12}
+            missing = [c for c in inner_candidates if c % 12 not in outer]
+            if len(missing) >= 2:
+                tenor = missing[0]
+                higher = [c for c in missing if c % 12 != tenor % 12]
+                alto = higher[-1] if higher else missing[-1]
+                if alto < tenor:
+                    tenor, alto = alto, tenor
+            elif len(missing) == 1:
+                # One note still missing: give it a voice, and let the other
+                # take whichever extreme is not its own pitch class.
+                tenor = missing[0]
+                others = [c for c in inner_candidates if c % 12 != tenor % 12]
+                alto = others[-1] if others else inner_candidates[-1]
+                if alto < tenor:
+                    tenor, alto = alto, tenor
+            else:
+                tenor = inner_candidates[0]
+                alto = inner_candidates[-1]
         elif len(inner_candidates) == 1:
             tenor = inner_candidates[0]
             alto = (tenor + soprano) // 2

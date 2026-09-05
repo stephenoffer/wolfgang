@@ -62,3 +62,79 @@ Any section claiming Rimsky-Korsakov's style needs ≥3 of these 5 present.
 - Solo passages: pp to p — the solo instrument must sing above a near-silent orchestra.
 - `"expr": "brillante"` for fast, colorful passages.
 - `"expr": "fantastico"` for supernatural sections.
+
+---
+
+## Composing a Rimsky-Korsakov phrase: step by step
+
+Measured over his own bars, **62% of his right-hand attacks carry more than one
+note** — the highest of any armed composer — and the hands sit only 7 semitones
+apart. That is a piano reduction of orchestral scoring, and it is what he is.
+Ask which instrument has each line and the texture arranges itself.
+
+### Step 1 — Write the melody doubled, in the middle register
+
+Thirds, sixths or full chords. A bare single line is the wrong texture here.
+
+```json
+"doubled_melody": [
+  {"p": ["E4", "G4"], "d": "q", "dyn": "mf"},
+  {"p": ["F#4", "A4"], "d": "e"},
+  {"p": ["G4", "B4"], "d": "e"},
+  {"p": ["A4", "C5"], "d": "h"}
+]
+```
+
+### Step 2 — Put a wide rolling arpeggio underneath — the harp
+
+Continuous sixteenths spanning a tenth or more, even and unhurried.
+
+```json
+"harp_wave": [
+  {"p": "E2", "d": "s"},
+  {"p": "B2", "d": "s"},
+  {"p": "E3", "d": "s"},
+  {"p": "G3", "d": "s"},
+  {"p": "B3", "d": "s"},
+  {"p": "G3", "d": "s"},
+  {"p": "E3", "d": "s"},
+  {"p": "B2", "d": "s"}
+]
+```
+
+### Step 3 — Hold the harmony still and change the colour instead
+
+One chord for four or eight bars while the figuration around it changes. The
+harmony is not the interest; the scoring is.
+
+### Step 4 — For anything magical, use the octatonic scale
+
+Alternating tone and semitone. His signature, and largely his invention as a
+systematic device.
+
+```json
+"octatonic_figure": [
+  {"p": "C5", "d": "e"},
+  {"p": "D5", "d": "e"},
+  {"p": "Eb5", "d": "e"},
+  {"p": "F5", "d": "e"},
+  {"p": "F#5", "d": "e"},
+  {"p": "G#5", "d": "e"},
+  {"p": "A5", "d": "e"},
+  {"p": "B5", "d": "e"}
+]
+```
+
+### Step 5 — Build by re-scoring the theme, not by fragmenting it
+
+Same tune, new register, new thickness, new figuration. Each restatement heavier
+than the last.
+
+---
+
+## Checking a finished phrase
+
+- Is the melody doubled? At 62% chordal it usually should be.
+- Do the hands stay near each other? They should.
+- Did the harmony change more than twice in eight bars? It probably should not.
+- Is the phrase square? Unlike Mussorgsky, his are.

@@ -45,9 +45,7 @@ def test_a_three_four_reduction_does_not_overfill_its_bars():
     from scales.validator import validate_meter
 
     ir = SABRE().reduce_to_piano(_events(bars=4, per_bar=3), ["violin_1"], key="C", meter=(3, 4))
-    events = (
-        ir.principal_line + ir.bass_foundation + ir.response_layer + ir.counter_reply
-    )
+    events = ir.principal_line + ir.bass_foundation + ir.response_layer + ir.counter_reply
     issues = validate_meter(events, meter=tuple(ir.meter), bar_count=ir.bar_count)
     overfull = [i for i in issues if getattr(i, "severity", "") == "error"]
     assert not overfull, [getattr(i, "message", "") for i in overfull]

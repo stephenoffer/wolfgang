@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional, Tuple
 
-from .models import EventIR, LayerEvent, LayerIR
+from .models import EventIR, LayerEvent, LayerIR, is_keyboard
 
 
 def parse_musicxml_to_events(path: str) -> Tuple[List[Dict[str, Any]], List[str]]:
@@ -71,6 +71,7 @@ def parse_musicxml_to_events(path: str) -> Tuple[List[Dict[str, Any]], List[str]
                             "pitch": pitches,
                             "duration": _m21_duration_to_code(element.duration),
                             "dynamic": _get_dynamic(element),
+                            **_get_marks(element),
                         }
                     )
                 elif element.isNote:
@@ -82,6 +83,7 @@ def parse_musicxml_to_events(path: str) -> Tuple[List[Dict[str, Any]], List[str]
                             "pitch": str(element.pitch),
                             "duration": _m21_duration_to_code(element.duration),
                             "dynamic": _get_dynamic(element),
+                            **_get_marks(element),
                         }
                     )
 
@@ -93,7 +95,9 @@ def layer_ir_to_event_ir(layer_ir: LayerIR) -> List[EventIR]:
     events = []
 
     # Piano: principal + ornamental → treble staff, bass + response → bass staff
-    if layer_ir.instrumentation in ("solo_piano", "piano"):
+    # One decider (models.is_keyboard) — see the note there on why unknown
+    # spellings resolve to keyboard rather than ensemble.
+    if is_keyboard(layer_ir):
         for event in layer_ir.principal_line:
             events.append(_layer_to_event(event, "treble", 1))
         # counter_reply and ornamental_surface are DIFFERENT voices. Filing both
@@ -184,6 +188,65 @@ def _m21_duration_to_code(dur) -> str:
     from .duration import beats_to_dur
 
     return beats_to_dur(dur.quarterLength)
+
+
+def _get_marks(element) -> Dict[str, Any]:
+    """Everything the source note is MARKED with, beyond its dynamic.
+
+    The extractor read pitch, duration and dynamic and nothing else, so every
+    mode that loads a source score — `reduce_to_piano`, `orchestrate`,
+    `variation`, `style_transfer`, `continue_piece`, five of the six — saw the
+    music with its articulation, phrasing, ornaments and ties stripped off. A
+    Clara Schumann polonaise carrying 27 slurs reduced to a piano part carrying
+    none: the reduction could not preserve phrasing it was never shown.
+
+    Slurs are SPANNERS, not note attributes, which is why reading
+    ``element.articulations`` alone never found them.
+    """
+    out: Dict[str, Any] = {}
+
+    arts = [a.name for a in (getattr(element, "articulations", None) or []) if getattr(a, "name", None)]
+    if arts:
+        out["articulation"] = arts[0].replace(" ", "_")
+
+    exprs = [
+        type(e).__name__.lower()
+        for e in (getattr(element, "expressions", None) or [])
+        if type(e).__name__.lower() in _ORNAMENT_NAMES
+    ]
+    if exprs:
+        out["ornament"] = exprs[0]
+
+    tie = getattr(element, "tie", None)
+    if tie is not None and getattr(tie, "type", None):
+        out["tie"] = tie.type
+
+    try:
+        for sp in element.getSpannerSites():
+            if type(sp).__name__ != "Slur":
+                continue
+            if sp.isFirst(element):
+                out["slur"] = "start"
+            elif sp.isLast(element):
+                out["slur"] = "stop"
+            break
+    except Exception:
+        pass  # a spanner music21 cannot resolve must not lose the note
+
+    return out
+
+
+_ORNAMENT_NAMES = {
+    "trill",
+    "mordent",
+    "invertedmordent",
+    "turn",
+    "invertedturn",
+    "appoggiatura",
+    "acciaccatura",
+    "schleifer",
+    "fermata",
+}
 
 
 def _get_dynamic(element) -> Optional[str]:

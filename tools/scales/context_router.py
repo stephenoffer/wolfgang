@@ -210,11 +210,19 @@ class ContextRouter:
             if tier in ("A", "B"):
                 genre = None  # Tier A/B have their own patterns, no filter needed
 
+            # Eight was too few to choose from once anything downstream had a
+            # second criterion. A pattern must FILL the bar it is put in, and
+            # the library stores each at the length of the bar it came from —
+            # of eight offered, as few as none were the right length, so a
+            # three-beat mazurka figure went into a 4/4 bar and the left hand
+            # fell silent before the barline in 79-100% of them. Widening the
+            # pool is what makes that choice possible; it does not by itself
+            # change which pattern is picked.
             patterns = self.pattern_retriever.retrieve(
                 texture=texture,
                 density_range=density_range,
                 genre_filter=genre,
-                n=8,
+                n=48,
             )
             if patterns:
                 result[texture] = patterns
@@ -268,7 +276,19 @@ class ContextRouter:
         self, intents: list[OrnamentIntent], slot: PhraseSlot, energy: float
     ) -> list[OrnamentIntent]:
         """Map phrase function to ornament contexts."""
-        fn = slot.function
+        fn = (slot.function or "").strip().lower()
+        # Keyed by the vocabulary the PLANNER ACTUALLY WRITES, which is wider
+        # than `PhraseFunction` and does not always spell things the same way.
+        # Measured across 426 slots in `workspace/`, this map covered 61% of
+        # them: `development`, `transition`, `climactic`, `sequence`,
+        # `standing_on_dominant`, `resolution`, `extension`, `recapitulation`
+        # are not enum members at all, and two more were NEAR MISSES — the data
+        # says `contrasting` and `varied_return` where the enum says
+        # `contrasting_theme` and `return_varied`, so a function that WAS meant
+        # to be mapped fell through on its spelling.
+        #
+        # An unmapped function is not given a wrong ornament context; it is
+        # given none, so 39% of slots chose ornaments from energy alone.
         context_map = {
             PhraseFunction.PRESENTATION.value: "phrase_entry",
             PhraseFunction.CADENTIAL.value: "cadential_arrival",
@@ -277,6 +297,29 @@ class ContextRouter:
             PhraseFunction.RETURN_VARIED.value: "theme_return",
             PhraseFunction.CLOSING.value: "dying_away",
             PhraseFunction.CODA.value: "dying_away",
+            # written by the planner, absent from the enum
+            "introduction": "phrase_entry",
+            "antecedent": "phrase_entry",
+            "consequent": "cadential_arrival",
+            "continuation": "between_phrases",
+            "development": "between_phrases",
+            "episode": "between_phrases",
+            "transition": "between_phrases",
+            "sequence": "between_phrases",
+            "extension": "between_phrases",
+            "retransition": "between_phrases",
+            "climactic": "emotional_peak",
+            "climax": "emotional_peak",
+            "standing_on_dominant": "cadential_arrival",
+            "resolution": "cadential_arrival",
+            "fragmentation": "dying_away",
+            "liquidation": "dying_away",
+            "codetta": "dying_away",
+            # near misses on the enum's own spellings
+            "contrasting": "between_phrases",
+            "varied_return": "theme_return",
+            "recapitulation": "theme_return",
+            "false_recap": "theme_return",
         }
         target_context = context_map.get(fn, "")
 

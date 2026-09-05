@@ -36,10 +36,20 @@ def _decent_phrase():
     """Melody over a chordal accompaniment, varied rhythm, a rest, a leap."""
     ir = LayerIR(key="C major", meter=(4, 4), bar_count=4)
     tune = [
-        ("C5", "q"), ("E5", "e"), ("G5", "e"), ("C6", "h"),
-        ("B5", "q"), ("A5", "q"), ("G5", "h"),
-        ("F5", "e"), ("E5", "e"), ("D5", "q"), ("rest", "h"),
-        ("E5", "q"), ("D5", "q"), ("C5", "h"),
+        ("C5", "q"),
+        ("E5", "e"),
+        ("G5", "e"),
+        ("C6", "h"),
+        ("B5", "q"),
+        ("A5", "q"),
+        ("G5", "h"),
+        ("F5", "e"),
+        ("E5", "e"),
+        ("D5", "q"),
+        ("rest", "h"),
+        ("E5", "q"),
+        ("D5", "q"),
+        ("C5", "h"),
     ]
     bar, beat = 1, 1.0
     for pitch, dur in tune:
@@ -245,3 +255,46 @@ def test_findings_name_only_what_failed():
     findings = craft_findings(CraftChecker().check(ir))
     assert any("No rest anywhere" in f for f in findings)
     assert not any("no clear shape" in f for f in findings)
+
+
+# ─── An empty list must mean "nothing failed", never "I could not tell" ──────
+
+
+def test_the_natural_composition_of_the_two_functions_works():
+    """`craft_findings(check_phrase(ir))` is the obvious way to use these.
+
+    `check_phrase` returns `(check, findings)`, and passing that tuple to
+    `craft_findings` returned `[]` — a tuple has none of the named attributes,
+    so `getattr(check, name) is False` was False for every one and the phrase
+    read as passing.
+
+    I wrote both functions and still made that call while falsifying these
+    checks against real scores. It reported **zero findings across 133 real
+    phrases**, which looked like a clean bill of health and was a broken
+    harness. The real rates are 2-13%. An empty result that means "I could not
+    tell" is the failure mode this whole session has been about.
+    """
+    from scales.craft_checker import check_phrase, craft_findings
+
+    ir = LayerIR(key="D minor", meter=(4, 4), instrumentation="solo_piano", bar_count=1)
+    for i, pitch in enumerate(["F5", "A5", "G5", "F5"]):
+        ir.principal_line.append(LayerEvent(bar=1, beat=1.0 + i, pitch=pitch, duration="q"))
+    for i, pitch in enumerate(["D2", "A2", "D3", "F3", "A3", "F3", "D3", "A2"]):
+        ir.bass_foundation.append(LayerEvent(bar=1, beat=1.0 + i * 0.5, pitch=pitch, duration="e"))
+
+    pair = check_phrase(ir)
+    assert isinstance(pair, tuple)
+    assert craft_findings(pair), "the tuple form reported nothing wrong with a bare texture"
+    assert craft_findings(pair) == craft_findings(pair[0])
+
+
+def test_a_phrase_that_passes_still_reports_nothing():
+    """The fix must not turn every input into findings."""
+    from scales.craft_checker import craft_findings
+
+    class _AllGood:
+        pass
+
+    assert craft_findings(_AllGood()) == []
+    assert craft_findings(None) == []
+    assert craft_findings(()) == []

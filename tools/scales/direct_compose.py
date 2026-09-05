@@ -66,7 +66,7 @@ from .duration import (
     dur_codes_longest_first,
     normalize_dot_suffix,
 )
-from .models import LayerEvent, LayerIR
+from .models import LayerEvent, LayerIR, is_keyboard
 
 # Longest-first so "trip_e" wins over "e" and "ds" over "s" — a short-first scan
 # turned every "C5trip_e" into a 32nd note.
@@ -799,6 +799,36 @@ def compose_phrase(
         # split (backward compatible).
         beats_per_bar = bar_duration(meter)
         lh_voices = _split_voices(bar_data.get("lh", []))
+        if len(lh_voices) > 1 and not is_keyboard(instrumentation):
+            # A closed score writes the lower staff's UPPER voice first — tenor
+            # before bass, viola before cello — which is the opposite of the
+            # piano convention this branch was built for (a sustained pedal note
+            # first, figuration second). Taking the written order meant
+            # `bass_foundation` held the tenor and `response_layer` the bass, and
+            # since the ensemble path names one staff per layer, the part
+            # engraved as **Bass** carried the tenor line. The two upper voices
+            # were unaffected, which is why it read as plausible.
+            #
+            # This was first gated to VOCAL scores, and that was too narrow: a
+            # string quartet written `viola // cello` came out with the viola
+            # part labelled Violoncello, playing 40-59 — below the viola's lowest
+            # string. Every closed-score ensemble shares the convention; the
+            # keyboard is the exception, because a piano's pedal note is not
+            # reliably below its own figuration and that branch is relied on.
+            #
+            # Order by pitch: `bass_foundation` means the lowest voice.
+            from .pitch import pitch_to_midi
+
+            def _mean_midi(voice):
+                got = [
+                    pitch_to_midi(n["pitch"])
+                    for n in voice
+                    if isinstance(n, dict) and n.get("pitch") not in (None, "rest")
+                ]
+                got = [m for m in got if m is not None]
+                return sum(got) / len(got) if got else 0.0
+
+            lh_voices = sorted(lh_voices, key=_mean_midi)
         if len(lh_voices) > 1:
             _emit_voice(
                 layer.bass_foundation,

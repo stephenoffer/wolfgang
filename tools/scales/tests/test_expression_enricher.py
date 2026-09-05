@@ -587,3 +587,51 @@ def test_a_planned_touch_still_never_overwrites_the_composer():
     ir.principal_line[0].articulation = "accent"
     enrich_layer_ir(ir, style="mozart", control=_Control("legato"))
     assert ir.principal_line[0].articulation == "accent"
+
+
+# ─── The engraver's pass must find an orchestral tune ────────────────────────
+
+
+def _orch_phrase(bars=8):
+    ir = LayerIR(key="C major", meter=(4, 4), instrumentation="ensemble")
+    for b in range(1, bars + 1):
+        for i, p in enumerate(("C5", "E5", "G5", "F5")):
+            ir.ensure_layer("foreground").append(
+                LayerEvent(bar=b, beat=1.0 + i, pitch=p, duration="q")
+            )
+        ir.ensure_layer("harmonic_mass").append(
+            LayerEvent(bar=b, beat=1.0, pitch=["E4", "G4"], duration="w")
+        )
+    ir.bar_count = bars
+    return ir
+
+
+def _marked(events):
+    return sum(1 for e in events if getattr(e, "dynamic", None) or getattr(e, "hairpin", None))
+
+
+def test_an_orchestral_tune_gets_a_dynamic_shape():
+    """Five writers read `principal_line`, which orchestral music leaves empty.
+
+    Measured: 1 mark on the tune before, 4 after. Not zero before — the opening
+    dynamic arrives by another route — so the defect was a FLATTENED shape, not
+    an absent one. The threshold here is deliberately the measured before-value
+    plus one, so the test fails if the melody lookup regresses.
+    """
+    ir = _orch_phrase()
+    enrich_layer_ir(ir, style="classical", cadence_bar=8, is_final_phrase=True)
+    assert _marked(ir.foreground) >= 2, (
+        "the orchestral tune came back with the flat dynamic shape that means "
+        "the melody lookup found an empty principal_line"
+    )
+
+
+def test_the_piano_melody_is_still_the_one_marked():
+    """The orchestral layer is a fallback, never a replacement."""
+    ir = LayerIR(key="C major", meter=(4, 4), instrumentation="solo_piano", bar_count=4)
+    for b in range(1, 5):
+        for i, p in enumerate(("C5", "E5", "G5", "F5")):
+            ir.principal_line.append(LayerEvent(bar=b, beat=1.0 + i, pitch=p, duration="q"))
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
+    enrich_layer_ir(ir, style="classical", cadence_bar=4, is_final_phrase=True)
+    assert _marked(ir.principal_line) >= 2

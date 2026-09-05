@@ -12,7 +12,7 @@ Deterministic and dependency-light: no music21, no RNG.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 
 @dataclass
@@ -46,6 +46,13 @@ class StylePerfProfile:
 
     # Pedal
     pedal_lead_ms: float = 30.0  # release this far before a chord change
+    # Whether this period's instrument HAS a sustain pedal at all. The baroque
+    # profile encoded "no pedal" as `pedal_lead_ms=0.0`, which is a release
+    # timing, not a prohibition — so the performance renderer went on emitting
+    # pedal bars for Bach and Palestrina, and once the preview gained real CC64
+    # that became a damper pedal on a harpsichord (62 events in an invention)
+    # and on unaccompanied voices (56 in a motet).
+    uses_pedal: bool = True
 
     # Ensemble / hands
     ensemble_spread_ms: float = 12.0  # spread of simultaneous chord attacks
@@ -83,6 +90,7 @@ _BAROQUE = StylePerfProfile(
     accent_boost=0.12,
     tenuto_extend=0.08,
     pedal_lead_ms=0.0,  # harpsichord idiom: ~no pedal
+    uses_pedal=False,
     ensemble_spread_ms=8.0,
     hand_offset_ms=4.0,
     voicing_balance={
@@ -126,17 +134,42 @@ _ROMANTIC = StylePerfProfile(
 )
 
 # A few later periods lean romantic for performance practice.
+# Renaissance shares the baroque performance values but must not answer
+# `period == "baroque"`: `profile.period` is read to decide period-specific
+# behaviour, and Palestrina reporting himself as baroque is simply wrong.
+_RENAISSANCE = replace(_BAROQUE, period="renaissance")
+
+# The same correction, for every other period that borrows another's parameters.
+# Sharing a rubato and articulation profile is deliberate — an impressionist
+# piece really is played with romantic freedom, a minimalist one with classical
+# precision. Sharing the period NAME is not: `ornament_realization` decides
+# where a trill starts with
+#
+#     start_upper = period in ("baroque", "classical", "renaissance")
+#
+# so Glass, Reich, Stravinsky, Schoenberg, Bartok, Copland, Messiaen, Prokofiev,
+# Shostakovich, Webern and Arvo Pärt — everything the registry calls `modern` or
+# `minimalist` — reported themselves as "classical" and got **upper-note trills**,
+# which is Baroque and Classical practice and wrong by a century and a half. It
+# is audible in the preview the critic judges.
+_LATE_ROMANTIC = replace(_ROMANTIC, period="late-romantic")
+_IMPRESSIONIST = replace(_ROMANTIC, period="impressionist")
+_NATIONALISTIC = replace(_ROMANTIC, period="nationalistic")
+_FILM_SCORE = replace(_ROMANTIC, period="film-score")
+_MODERN = replace(_CLASSICAL, period="modern")
+_MINIMALIST = replace(_CLASSICAL, period="minimalist")
+
 _PERIOD_PROFILES: dict[str, StylePerfProfile] = {
-    "renaissance": _BAROQUE,
+    "renaissance": _RENAISSANCE,
     "baroque": _BAROQUE,
     "classical": _CLASSICAL,
     "romantic": _ROMANTIC,
-    "late-romantic": _ROMANTIC,
-    "impressionist": _ROMANTIC,
-    "nationalistic": _ROMANTIC,
-    "modern": _CLASSICAL,
-    "minimalist": _CLASSICAL,
-    "film-score": _ROMANTIC,
+    "late-romantic": _LATE_ROMANTIC,
+    "impressionist": _IMPRESSIONIST,
+    "nationalistic": _NATIONALISTIC,
+    "modern": _MODERN,
+    "minimalist": _MINIMALIST,
+    "film-score": _FILM_SCORE,
 }
 
 

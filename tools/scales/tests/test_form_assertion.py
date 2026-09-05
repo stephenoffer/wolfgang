@@ -24,7 +24,7 @@ def test_an_asserted_form_is_claimed():
 
 
 def test_negation_is_read_per_clause():
-    """"It is a rondo, not a sonata" claims one form and denies the other."""
+    """ "It is a rondo, not a sonata" claims one form and denies the other."""
     t = "The finale is a rondo, not a sonata."
     assert _form_is_asserted(t, "rondo")
     assert not _form_is_asserted(t, "sonata")
@@ -50,7 +50,7 @@ def test_the_renaissance_composers_claim_no_sonata():
         p = f"tools/compiled_packs/{c}/formal_graphs.json"
         if not os.path.exists(p):
             continue
-        forms = (json.load(open(p)).get("forms") or {})
+        forms = json.load(open(p)).get("forms") or {}
         assert "sonata" not in forms, f"{c} claims sonata form"
 
 

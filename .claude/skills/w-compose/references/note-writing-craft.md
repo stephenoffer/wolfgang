@@ -148,16 +148,17 @@ Depth: `figuration-patterns.md`, `human-sounding-music.md` (LH tables).
   or give it a rhythmic profile instead of even values.
 - **Repeated notes are melodic.** Real melodies restate a pitch 2-30% of the
   time (median 9%) — insistence, declamation, a drum-beat under a rising line.
-  The last generated piece repeated a pitch 1.5% of the time, below every
-  movement measured. A line that never stays put reads as restless noodling.
+  Generated melodies tend to sit far below that, and a line that never stays
+  put reads as restless noodling.
 
 Depth: `melody-craft.md`, `melodic-construction.md`.
 
 ## §4b Cadences — vary how the music arrives
 
-This is the loudest measured tell in the last generated piece: **seven of nine
-phrase endings used the identical cadential rhythm** (a half note plus a
-quarter rest, with the same root-chord-rest underneath). Every phrase closed
+This is the loudest tell there is, and the characteristic result of composing
+phrases in isolation: **every phrase ending using the identical cadential
+rhythm** (a half note plus a quarter rest, with the same root-chord-rest
+underneath). Every phrase closes
 the same way, so the form had no punctuation — just a repeating full stop.
 
 Real music varies the arrival at least as much as the departure. Some ways:
@@ -226,9 +227,10 @@ rests typically 5-10% of the surface; let cadences ring. Depth:
 
 ### §6a Density was never the problem — variance was
 
-Measured against 22 real Mozart movements, the last generated piece was *not*
-thin: 1.13 notes per right-hand attack against a real median of 1.15, and a
-texture-change rate of 0.62 inside the real 0.37-0.67 range. Density was fine.
+Measured against 22 real Mozart movements, generated music is often *not* thin
+by the numbers — around 1.13 notes per right-hand attack against a real median
+of 1.15, with a texture-change rate inside the real 0.37-0.67 range. Density is
+rarely the problem.
 
 What was missing was **variance**: simultaneity CV 0.19 against a Mozart floor
 of 0.22. The texture never thickened into a climax and never thinned into a
@@ -299,9 +301,27 @@ has ever used them, and their absence is audible:
   the start of the next. The assembler also splits a note that overruns its bar
   into tied fragments automatically, but writing the tie yourself is clearer.
   A score with no ties anywhere has every bar sealed off from the next.
-- **`:acci` vs `:appo`.** A crushed grace and an accented appoggiatura are
-  different ornaments that engrave and sound differently. `:grace` is the
-  unspecified fallback.
+
+  Measured over 103 real keyboard scores, ties run a **median 0.35 per bar**
+  (p25 0.06, max 3.94). Everything this system has composed so far runs
+  **0.008 per bar across 5,848 bars** — a fortieth of the median. Zero is a
+  legitimate choice (19 of those 103 scores have none, mostly strict
+  counterpoint where every voice is its own line), so this is not a rule. It is
+  a tendency worth knowing you have: a held note across a barline is how one bar
+  becomes a phrase instead of a unit, and the default here has been to seal
+  every bar shut. The engraver's pass cannot fix it either — it only fills
+  fields left blank and never changes a duration, so a tie is yours to write.
+- **`:acci` vs `:appo` — and why `:grace` is the wrong default.** A crushed
+  grace and an accented appoggiatura are different ornaments: `:appo` leans ON
+  the beat, takes half the principal's written value away from it, and is the
+  louder of the two; `:acci` is crushed in before the beat and steals no time.
+  In Baroque and Classical writing an unmarked small note is normally read as
+  the **long appoggiatura** — the leaning dissonance is where the expression
+  lives in a slow movement — so reach for `:appo` first and `:acci` when you
+  specifically want the flick. `:grace` is the *unspecified* mark and it sounds
+  literally, as the short note you wrote: correct when that is what you mean,
+  flat when you meant a lean. (28 of the first 30 grace marks written in this
+  system were bare `:grace`, which is what prompted this note.)
 
 Durations:
 - plain: `w h q e s t x` — whole, half, quarter, eighth, 16th, 32nd, 64th
@@ -462,8 +482,8 @@ failing and neither is a notation problem — both are compositional.**
 
 - **`register_stasis`.** Measured across the 26 reference movements, the melody
   staff spans **24 to 49 semitones (median 32.5)**; the narrowest canonical
-  movement is a Chopin mazurka at exactly two octaves. The last generated
-  andante spanned **19 semitones over 41 bars** — narrower than anything real.
+  movement is a Chopin mazurka at exactly two octaves. A generated piece that
+  stays inside that is narrower than anything real.
   Register is the cheapest structural device there is: open below where you
   intend to peak, take the return an octave up, drop to the tenor for the
   darkest phrase. A melody that lives inside one octave sounds like it is being

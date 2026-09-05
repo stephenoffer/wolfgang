@@ -15,7 +15,8 @@ import re
 from dataclasses import fields
 from dataclasses import fields as _dataclass_fields
 from datetime import datetime, timezone
-from fractions import Fraction as _F
+from fractions import Fraction
+from itertools import groupby
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -2050,7 +2051,6 @@ def run_scales_section(
                 _hold_over_barline,
                 _rest_the_downbeat,
                 _shape_the_cadence,
-                _thicken_bass_foundation,
                 _thicken_principal_line,
             )
 
@@ -2059,21 +2059,40 @@ def run_scales_section(
             # one guarantee this path makes.
             _existing = graph.phrases.get(node.phrase_id)
             if not getattr(_existing, "agent_authored", False):
+                _slot_for_texture = getattr(_existing, "slot", None)
+                _plan = getattr(_slot_for_texture, "texture_plan", None) or []
+                _bar_tex = {
+                    _slot_for_texture.bar_start + i: getattr(bp, "rh_texture", "")
+                    for i, bp in enumerate(_plan)
+                } if _slot_for_texture else {}
                 _passes["melody_thickened"] += _thicken_principal_line(
                     node.surface,
                     node.surface.key
-                    or getattr(getattr(_existing, "slot", None), "key", "")
+                    or getattr(_slot_for_texture, "key", "")
                     or "C major",
                     report=_pass_reports.setdefault("melody_thickened", {}),
+                    bar_textures=_bar_tex,
                 )
-                _passes["bass_thickened"] += _thicken_bass_foundation(
-                    node.surface,
-                    node.surface.key
-                    or getattr(getattr(_existing, "slot", None), "key", "")
-                    or "C major",
-                    report=_pass_reports.setdefault("bass_thickened", {}),
-                    composer=composer_id,
-                )
+                # THE LEFT HAND'S CHORDS BELONG TO ITS IDIOM, and the retrieved
+                # patterns already carry them. Measured over 100,000 real
+                # left-hand attacks, chord share is a property of the ACCOMPANIMENT
+                # FIGURE and not of the composer:
+                #
+                #     block_chord_sparse  86.1%      alberti            1.7%
+                #     block_chord_offbeat 84.3%      broken_chord_wave  2.3%
+                #     bass_melody          5.7%      pedal_point        0.1%
+                #
+                # So a flat per-piece rate thickens an Alberti bass that should be
+                # 1.7% chords and under-thickens a block-chord bar that should be
+                # 86%. Scored against what each piece's own idiom mix predicts, the
+                # synthetic pass had a mean error of 12.2 points against 7.6 with it
+                # off — Chopin came out at 31.7% where his mix predicts 5.9% — and
+                # it cost 12 points of IDIOM SURVIVAL, because adding a note to a
+                # broken-chord wave makes it classify as something else.
+                #
+                # `_thicken_bass_foundation` is kept, and tested, for a caller that
+                # can supply the bar's own idiom rate. Called with a flat share it
+                # is measurably worse than leaving the patterns alone.
                 # Before the tie pass, which must not find a note it is about
                 # to bind already rewritten underneath it.
                 _slot = getattr(_existing, "slot", None)
@@ -2566,6 +2585,14 @@ def _build_from_spec(
         # statement and a crisis should not be handed the same palette, and the
         # sampler cannot know which it is unless it is told.
         drole = role_for(section_id, counters[section_id] - 1)
+        # The accompaniment the previous phrase ENDED on, so a continuing phrase
+        # can carry it across the opening instead of re-picking. The median real
+        # run of eight bars or more crosses exactly one phrase opening.
+        prev_lh = ""
+        if phrases:
+            prev_plan = getattr(phrases[-1], "texture_plan", None) or []
+            if prev_plan:
+                prev_lh = getattr(prev_plan[-1], "lh_texture", "") or ""
         phrases.append(
             _make_slot(
                 f"{section_id}_p{counters[section_id]}",
@@ -2578,6 +2605,7 @@ def _build_from_spec(
                 meter,
                 tempo,
                 style,
+                prev_lh_texture=prev_lh,
                 dramatic_role=drole,
             )
         )
@@ -2701,6 +2729,7 @@ def _make_slot(
     meter: Tuple[int, int],
     tempo: int,
     style: StyleDNA,
+    prev_lh_texture: str = "",
     dramatic_role: str = "",
 ) -> PhraseSlot:
     """Create a PhraseSlot with SUGGESTED harmony and texture plans.
@@ -2745,7 +2774,10 @@ def _make_slot(
         seed=bar_start,
     )
 
-    texture_plan = _default_texture_plan(style, function, cadence, bar_count, meter, seed=bar_start)
+    texture_plan = _default_texture_plan(
+        style, function, cadence, bar_count, meter, seed=bar_start,
+        prev_lh_texture=prev_lh_texture,
+    )
 
     # Energy curve
     energy = _default_energy_curve(function, bar_count)
@@ -2842,8 +2874,41 @@ def _rh_change_rate(style) -> float:
     return float(mean) if isinstance(mean, (int, float)) and 0 < mean < 1 else 0.35
 
 
+#: Phrase functions that CONTINUE what came before rather than stating
+#: something new. A run of one accompaniment crosses a phrase opening in
+#: 52-66% of real cases, and the median long run crosses exactly one — so a
+#: continuing phrase inherits its predecessor's idiom instead of re-picking.
+_CONTINUING_FUNCTIONS = frozenset({"continuation", "cadential", "retransition"})
+
+
+def _density_for(composer_id, texture, hand, meter, beats, table, default):
+    """Notes per bar for this texture — the composer's own median, else the table.
+
+    The table below is a period-generic guess and reads LOW against every armed
+    composer measured in its own metre: it asks 1.2 notes per beat of a singing
+    melody where Mozart, Chopin and Beethoven all write 1.5, and 1.0 of a
+    chordal bar where Bach writes 2.75 — chorale texture at a quarter strength.
+    Prefer the measured number whenever the corpus attests it.
+    """
+    from .composition_brief import median_bar_texture_density
+
+    try:
+        measured = median_bar_texture_density(composer_id, texture, hand, meter)
+    except Exception:
+        measured = None
+    if measured is not None:
+        return measured
+    return max(1, round(beats * table.get(texture, default)))
+
+
 def _default_texture_plan(
-    style, function: str, cadence: str, bar_count: int, meter, seed: int = 0
+    style,
+    function: str,
+    cadence: str,
+    bar_count: int,
+    meter,
+    seed: int = 0,
+    prev_lh_texture: str = "",
 ) -> List:
     """Plan the accompaniment's character bar by bar at the composer's own rate.
 
@@ -2867,8 +2932,32 @@ def _default_texture_plan(
         keep = [k for k, v in ranked if (v / total) >= min_share]
         return keep or [ranked[0][0]] or [fallback]
 
+    # AN ACTUAL MOVEMENT'S IDIOM MIX, not the composer's pooled distribution.
+    #
+    # A piece is one movement, and a movement COMMITS. Measured over each
+    # composer's own movements, the median gives its top accompaniment idiom
+    # 76.2% of its bars for Chopin, 54.4% for Bach, 36.4% for Beethoven —
+    # against pooled figures of 44.8%, 41.5% and 20.9%. Scheduling from the
+    # pooled distribution changes idiom about twice as often as the composer
+    # does, and three of four generated pieces scored below their composer's own
+    # p25 for concentration.
+    #
+    # `movement_idiom_mix` returns a REAL movement's distribution — the one at
+    # the median concentration — rather than an average of movements, because
+    # averaging concentrations reproduces exactly the flattening this fixes.
+    lh_dist = getattr(style, "lh_distribution", None)
+    composer_id = getattr(style, "composer_id", "") or ""
+    if composer_id:
+        try:
+            from .composition_brief import movement_idiom_mix
+
+            mix = movement_idiom_mix(composer_id)
+            if mix and mix.get("idioms"):
+                lh_dist = mix["idioms"]
+        except Exception:
+            pass
     rh_opts = _ranked(getattr(style, "rh_distribution", None), TextureType.SINGING_MELODY.value)
-    lh_opts = _ranked(getattr(style, "lh_distribution", None), AccompType.ALBERTI.value)
+    lh_opts = _ranked(lh_dist, AccompType.ALBERTI.value)
     # "silence" is a real corpus label (the staff rests for a bar) but it is not
     # something to PLAN as a phrase's accompaniment idiom — a phrase whose plan
     # opens on silence has no accompaniment at all. It was filtered out of the
@@ -2894,7 +2983,45 @@ def _default_texture_plan(
     step = 0 if anchored else (offset // 4)
     rh = rh_opts[step % len(rh_opts)]
     lh = lh_opts[step % len(lh_opts)]
+    # A CONTINUING PHRASE KEEPS THE ACCOMPANIMENT IT INHERITED.
+    #
+    # Every phrase re-picked its idiom from the ranked list, so a run could
+    # never outlast one phrase — and 52-66% of real runs of eight bars or more
+    # DO cross a phrase opening, the median crossing exactly one. A hold
+    # confined to a single phrase caps at that phrase's length, which is why
+    # Mozart's went 2 to 4 and Chopin's, whose contrasting section is four bars,
+    # did not move at all.
+    #
+    # Only functions that continue: a presentation, a contrasting theme and a
+    # return each STATE something, and should be free to state it in a new
+    # accompaniment.
+    if prev_lh_texture and (function or "").lower() in _CONTINUING_FUNCTIONS:
+        if prev_lh_texture in lh_opts:
+            lh = prev_lh_texture
+    #: The idiom this phrase settles on. A departure comes back to it.
+    home_lh = lh
     rate = _lh_change_rate(style)
+    # ONE PLACE THAT HOLDS.
+    #
+    # The composer's change rate is right for the MEDIAN bar — real Mozart
+    # changes accompaniment every two bars and so do we. What no rate produces
+    # is the TAIL: 86% of Chopin's movements hold one accompaniment for eight
+    # bars or more somewhere, 73% of Beethoven's, 37% of Mozart's, and ours
+    # capped at 2-6. A movement states a contrasting idea and stays with it;
+    # that is what a B section is for, and it is the one span where a plan can
+    # settle without flattening the rest of the piece.
+    #
+    # Composer-specific, because Chopin needs it in nearly every movement and
+    # Bach in a quarter of them.
+    if (function or "").lower() in ("contrasting_theme", "development"):
+        try:
+            from .composition_brief import movement_idiom_runs
+
+            holds = (movement_idiom_runs(composer_id) or {}).get("share_with_run_over_8")
+            if holds is None or holds >= 0.25:
+                rate = 0.0
+        except Exception:
+            rate = 0.0
     rh_rate_of_change = _rh_change_rate(style)
 
     beats = float(bar_duration(meter)) if meter else 4.0
@@ -2938,7 +3065,23 @@ def _default_texture_plan(
             accrued += rate
             if accrued >= 1.0:
                 accrued -= 1.0
-                lh = _next_lh_texture(style, lh, lh_opts, i + offset)
+                # A DEPARTURE RETURNS HOME. `_next_lh_texture` only ever moves
+                # AWAY from the current idiom, so every change wandered to a new
+                # one and the plan never settled: its longest run of a single
+                # accompaniment was 2 bars for Mozart and 6 for Chopin, against
+                # real movement medians of 7 and 20. A real movement holds one
+                # accompaniment somewhere and leaves it a bar at a time —
+                # 21-47% of real departures last exactly one bar and go back.
+                #
+                # This was tried and reverted earlier today because it moved
+                # nothing measurable. It moved nothing because I was measuring
+                # the WRITTEN texture, which the adaptation chain was then
+                # rewriting; with that chain clean the plan is what survives, so
+                # the change is re-tested here against the plan's own runs.
+                if lh != home_lh:
+                    lh = home_lh
+                else:
+                    lh = _next_lh_texture(style, lh, lh_opts, i + offset)
             # The UPPER staff was pinned to one texture for the whole phrase —
             # so every bar retrieved the same exemplars and got the same density
             # target, while the brief printed the composer's real
@@ -2961,11 +3104,15 @@ def _default_texture_plan(
             BarTexturePlan(
                 rh_texture=bar_rh,
                 lh_texture=bar_lh,
-                rh_density_target=max(
-                    1, round(beats * (0.4 if is_cadence else rh_rate.get(bar_rh, 1.2)))
+                rh_density_target=(
+                    max(1, round(beats * 0.4))
+                    if is_cadence
+                    else _density_for(composer_id, bar_rh, "rh", meter, beats, rh_rate, 1.2)
                 ),
-                lh_density_target=max(
-                    1, round(beats * (0.5 if is_cadence else lh_rate.get(bar_lh, 1.5)))
+                lh_density_target=(
+                    max(1, round(beats * 0.5))
+                    if is_cadence
+                    else _density_for(composer_id, bar_lh, "lh", meter, beats, lh_rate, 1.5)
                 ),
             )
         )
@@ -3867,7 +4014,7 @@ _SUBDIVISIONS = (1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 16, 20, 21, 24, 28, 30,
 # How far a stored onset may sit from a subdivision and still be read as it.
 # A 256th of a beat is far below anything anyone writes and far above float
 # noise or a value rounded to four decimals.
-_GRID_TOLERANCE = _F(1, 256)
+_GRID_TOLERANCE = Fraction(1, 256)
 
 
 def _contract_instrumentation(graph) -> str:
@@ -4045,6 +4192,75 @@ def _repair_engine_surface(
                             counts.get("isolated_tuplet_rewritten", 0) + 1
                         )
                         break
+
+        # A TUPLET FRAGMENT IS NOT A TUPLET.
+        #
+        # Measured on the committed IR of a generated piece: **52 of 52
+        # triplet-family runs are incomplete** — 32 of them a single note, 20 a
+        # pair, and not one a complete group of three. music21 does not ignore
+        # that; `makeNotation` completes the group by SPLITTING, and the
+        # fragments reach the score as durations we never wrote:
+        #
+        #     value      in our IR   in the assembled score
+        #     0.3333        9.1%        1.8%
+        #     0.1667        0.0%       14.0%   <- appears only after assembly
+        #     0.2083        0.0%        4.4%   <- appears only after assembly
+        #
+        # Against real Mozart, who writes a triplet-16th in 0.3% of his notes,
+        # ours came out at 14% — a rhythm nobody composed.
+        #
+        # An earlier version of this check was reverted because replayed over
+        # the corpus it appeared to rewrite 18-45% of real tuplet runs. That
+        # measurement was the artefact: it ran over `*_display` records, where
+        # rests and two-voice staves break a run that the score writes whole.
+        # Here the input is our OWN engine surface, where every run is a
+        # one-or-two-note fragment, and this function only ever runs on that
+        # surface — never on a phrase the agent authored.
+        events.sort(key=lambda x: (x.bar, str(getattr(x, "voice", "")), x.beat))
+        for _key, _group in groupby(events, key=lambda x: (x.bar, str(getattr(x, "voice", "")))):
+            run = list(_group)
+            start = 0
+            while start < len(run):
+                family = _tuplet_family(Fraction(dur_to_beats(run[start].duration)))
+                if not family:
+                    start += 1
+                    continue
+                end, total = start, Fraction(0)
+                while (
+                    end < len(run)
+                    and _tuplet_family(Fraction(dur_to_beats(run[end].duration))) == family
+                ):
+                    total += Fraction(dur_to_beats(run[end].duration))
+                    end += 1
+                if total.denominator != 1:
+                    for stray in run[start:end]:
+                        stray.duration = _binary_at_most(dur_to_beats(stray.duration))
+                        counts["tuplet_fragment_rewritten"] = (
+                            counts.get("tuplet_fragment_rewritten", 0) + 1
+                        )
+                    # THE COST, MEASURED WITH THE REPAIR SWITCHED OFF AS A
+                    # CONTROL. A binary value is shorter than the tuplet it
+                    # replaces (0.25 for a 0.3333), and the freed twelfth of a
+                    # beat becomes a rest: bars whose melody reaches the barline
+                    # fall from 85% to 66% (mozart) and 76% to 54% (chopin),
+                    # against a real 85% and 83%. Every one of those gaps is
+                    # SHORT — the long ones stay at 0% — so what rises is the
+                    # under-half-a-beat share, from 10% to 29% against a real
+                    # 4-7%.
+                    #
+                    # Giving the time back to the last note does not work and
+                    # was removed rather than left looking useful: no binary
+                    # value fills a third of a beat, which is the whole reason
+                    # the rewrite loses time. Closing it properly means emitting
+                    # complete tuplet GROUPS in the generator, not patching the
+                    # remainder in a repair.
+                    #
+                    # Kept because the alternative is worse: without it 14% of
+                    # written notes are a triplet-16th nobody composed (real
+                    # Mozart 0.3%), 4.4% are a quintuplet value he never writes,
+                    # and `dur_variety` sits at 16 against a maximum of 14 over
+                    # every movement of his measured.
+                start = end
 
         events.sort(key=lambda x: (x.bar, x.beat))
 

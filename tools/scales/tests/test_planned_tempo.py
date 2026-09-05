@@ -171,9 +171,7 @@ def test_the_plan_decides_which_voice_is_brought_out():
 
 def test_a_named_voice_outranks_the_ones_after_it():
     ir, slot = _phrase()
-    perf = build_performance_ir(
-        ir, slot, control=_Intent(voicing_priorities=["bass", "melody"])
-    )
+    perf = build_performance_ir(ir, slot, control=_Intent(voicing_priorities=["bass", "melody"]))
     boosts = {v.voice: v.boost for v in perf.voicing_emphasis}
     assert boosts["bass"] > boosts["melody"]
 
@@ -289,11 +287,11 @@ def test_an_accented_note_is_given_more_time():
 
     ir, slot = _unmarked_phrase()
     plain = build_performance_ir(ir, slot)
-    before = microtiming_at(plain, 3, 1.0)
+    before = microtiming_at(plain, 3, 1.0, voice="melody")
 
     ir2, slot2 = _unmarked_phrase()
     ir2.principal_line[4].articulation = "accent"  # bar 3, beat 1
-    after = microtiming_at(build_performance_ir(ir2, slot2), 3, 1.0)
+    after = microtiming_at(build_performance_ir(ir2, slot2), 3, 1.0, voice="melody")
     assert after > before, f"{after} !> {before}"
 
 
@@ -302,9 +300,7 @@ def test_a_flat_line_gets_no_invented_arch():
     from scales.performance_renderer import phrase_arch_points
 
     ir = LayerIR(key="C major", meter=(4, 4))
-    ir.principal_line = [
-        LayerEvent(bar=b, beat=1.0, pitch="C5", duration="w") for b in range(1, 9)
-    ]
+    ir.principal_line = [LayerEvent(bar=b, beat=1.0, pitch="C5", duration="w") for b in range(1, 9)]
     assert phrase_arch_points(ir) == []
 
 
@@ -319,3 +315,59 @@ def test_melodic_lead_is_not_written_through_a_channel_that_cannot_carry_it():
     # Melody and bass share bar 1 beat 1; whatever offset exists applies to both,
     # so it must be the agogic one (>= 0), never a negative lead.
     assert microtiming_at(perf, 1, 1.0) >= 0
+
+
+def test_the_melody_is_struck_ahead_of_the_bass_on_the_same_beat():
+    """Melodic lead — the most documented cue that a human is playing.
+
+    Impossible while `TimingOffset` was keyed by (bar, beat) alone: melody and
+    bass collided on one key, whichever was recorded first won, and both moved
+    together — silently the opposite of the intent. It was left unwired for that
+    reason rather than shipped producing wrong values.
+    """
+    from scales.performance_renderer import microtiming_at
+
+    ir = LayerIR(key="C major", meter=(4, 4))
+    for b in range(1, 5):
+        ir.principal_line.append(
+            LayerEvent(bar=b, beat=1.0, pitch=["C5", "E5", "G5", "C6"][b - 1], duration="w")
+        )
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
+    slot = PhraseSlot(
+        phrase_id="p", bar_start=1, bar_count=4, key="C major", meter=(4, 4), tempo_bpm=90
+    )
+    perf = build_performance_ir(ir, slot)
+
+    melody = microtiming_at(perf, 4, 1.0, voice="melody")
+    bass = microtiming_at(perf, 4, 1.0, voice="accompaniment")
+    assert melody < bass, f"melody {melody} is not ahead of bass {bass}"
+
+
+def test_the_lead_grows_at_the_phrases_peak():
+    from scales.performance_params import profile_for_period
+    from scales.performance_renderer import melodic_lead_beats
+
+    profile = profile_for_period("romantic")
+    e = LayerEvent(bar=1, beat=1.0, pitch="C6", duration="q")
+    plain = melodic_lead_beats(e, profile, 666.0, is_peak=False, is_melody=True)
+    peak = melodic_lead_beats(e, profile, 666.0, is_peak=True, is_melody=True)
+    assert peak < plain < 0, (peak, plain)
+
+
+def test_an_accompaniment_note_gets_no_lead():
+    from scales.performance_params import profile_for_period
+    from scales.performance_renderer import melodic_lead_beats
+
+    e = LayerEvent(bar=1, beat=1.0, pitch="C3", duration="q")
+    assert melodic_lead_beats(e, profile_for_period("romantic"), 666.0, is_melody=False) == 0.0
+
+
+def test_a_breath_still_applies_to_every_voice():
+    """An offset with no voice means "every line at this instant" — which is
+    what a breath and an agogic stretch mean. Those must not become
+    melody-only when the field was added."""
+    from scales.performance_renderer import microtiming_at
+
+    ir, slot = _unmarked_phrase()
+    perf = build_performance_ir(ir, slot, breath_points=[(2, 1.0)])
+    assert microtiming_at(perf, 2, 1.0) != 0

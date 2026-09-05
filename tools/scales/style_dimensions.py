@@ -32,23 +32,26 @@ _PC_BASE = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
 
 
 def _note_to_midi(name: str) -> int | None:
-    """Parse a music21 nameWithOctave (e.g. 'Db4', 'F##5', 'Ab-1') → MIDI."""
-    if not name or name[0] not in _PC_BASE:
-        return None
-    pc = _PC_BASE[name[0]]
-    i = 1
-    while i < len(name) and name[i] in "#b-":
-        if name[i] == "#":
-            pc += 1
-        else:  # both 'b' and '-' are flats in music21 nameWithOctave
-            pc -= 1
-        i += 1
-    octave_str = name[i:]
+    """Parse a music21 nameWithOctave (e.g. 'Db4', 'F##5', 'Ab-1') → MIDI.
+
+    Delegates to `pitch.pitch_to_midi`, the one pitch parser. This was a second
+    implementation of it — accidentals walked by hand, `-` treated as a flat —
+    and the two agreed on every spelling tested, including music21's `E-4` form
+    and double accidentals like `B--4`. Duplicated parsers are what
+    `project_one_parser_one_loader` records as this repo's most expensive defect
+    class, and two copies agreeing today is exactly how the four key parsers
+    started.
+
+    Speed was the plausible reason to keep it and does not survive measurement:
+    0.57µs per call against 0.18µs, which is ~0.2s across a full-corpus pass of
+    half a million notes.
+    """
+    from .pitch import pitch_to_midi
+
     try:
-        octave = int(octave_str)
-    except ValueError:
+        return pitch_to_midi(name)
+    except (ValueError, KeyError, TypeError):
         return None
-    return pc + 12 * (octave + 1)
 
 
 def _rh_notes(bar: dict[str, Any]) -> list[dict[str, Any]]:
@@ -66,7 +69,25 @@ def _melody_notes(bar: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _all_events(bar: dict[str, Any]) -> list[dict[str, Any]]:
-    return list(bar.get("rh_display", [])) + list(bar.get("lh_display", []))
+    """Every sounding event in the bar — INCLUDING the inner voices.
+
+    This read the two outer staves and nothing else, so for the contrapuntal
+    corpora it measured soprano and bass and discarded everything between:
+    **77,749 of Bach's events are inner-voice, against 72,555 outer**, and
+    374,182 of Palestrina's against 304,150. `analyze_score_bars` folds the alto
+    and tenor of a four-part score into `rh_inner_display`/`lh_inner_display`
+    exactly so they survive — and then every harmonic metric ignored them.
+
+    The ratios barely move (Bach's chromatic share goes 7.18% to 7.96%), which
+    is itself worth knowing: the outer voices are representative. What changes
+    is the power behind the number — the sample doubles.
+    """
+    return (
+        list(bar.get("rh_display", []))
+        + list(bar.get("lh_display", []))
+        + list(bar.get("rh_inner_display", []))
+        + list(bar.get("lh_inner_display", []))
+    )
 
 
 def _scale_for(bar: dict[str, Any]) -> frozenset:

@@ -2330,6 +2330,149 @@ _QL_NAME = {
 }
 
 
+_UNIFORM_SHARE_CACHE: Dict[Tuple[str, str, str, str], Optional[float]] = {}
+
+
+def uniform_bar_share(composer: str, texture: str, hand: str, meter=None) -> Optional[float]:
+    """How often this composer writes this texture in ONE note value, in this metre.
+
+    Strongly metre-dependent, which is why it is measured rather than assumed:
+    Chopin's `zigzag_figuration` is 81% single-value in 4/4 and **23% in 3/4**,
+    and his `singing_melody` 54% against 19%. A preference for uniform figures
+    calibrated on his 4/4 overshoots a mazurka by three and a half times.
+
+    Returns None when the texture is unattested in that metre.
+    """
+    beats = str(meter[0] if isinstance(meter, (tuple, list)) else meter)
+    cache_key = (composer, texture, hand, beats)
+    if cache_key in _UNIFORM_SHARE_CACHE:
+        return _UNIFORM_SHARE_CACHE[cache_key]
+
+    field = "rh_display" if hand == "rh" else "lh_display"
+    label = "rh_texture" if hand == "rh" else "lh_texture"
+    total = uniform = 0
+    try:
+        for bar in _iter_corpus_bars(composer):
+            if bar.get(label) != texture:
+                continue
+            if meter is not None:
+                time_sig = bar.get("time_sig") or []
+                if not isinstance(time_sig, (list, tuple)) or not time_sig:
+                    continue
+                if str(time_sig[0]) != beats:
+                    continue
+            values = {
+                round(float(e.get("dur") or 0), 3)
+                for e in (bar.get(field) or [])
+                if e.get("type") != "rest" and float(e.get("dur") or 0) > 0
+            }
+            if not values:
+                continue
+            total += 1
+            if len(values) == 1:
+                uniform += 1
+    except Exception:
+        _UNIFORM_SHARE_CACHE[cache_key] = None
+        return None
+
+    share = (uniform / total) if total >= 40 else None
+    _UNIFORM_SHARE_CACHE[cache_key] = share
+    return share
+
+
+_OUTER_ATTACK_CACHE: Dict[Tuple[str, str, str, str], Optional[int]] = {}
+
+
+def _outer_attacks_per_bar(composer: str, texture: str, hand: str, meter=None) -> Optional[int]:
+    """Attacks in the median bar's OUTER voice, for this texture and metre.
+
+    The number a single-line generator can actually aim at. Returns None when
+    the texture is unattested in that metre, so the caller falls back to the
+    stored voice-event count rather than to nothing.
+    """
+    beats = str(meter[0] if isinstance(meter, (tuple, list)) else meter)
+    cache_key = (composer, texture, hand, beats)
+    if cache_key in _OUTER_ATTACK_CACHE:
+        return _OUTER_ATTACK_CACHE[cache_key]
+
+    field = "rh_display" if hand == "rh" else "lh_display"
+    label = "rh_texture" if hand == "rh" else "lh_texture"
+    counts: List[int] = []
+    try:
+        for bar in _iter_corpus_bars(composer):
+            if bar.get(label) != texture:
+                continue
+            if meter is not None:
+                time_sig = bar.get("time_sig") or []
+                if not isinstance(time_sig, (list, tuple)) or not time_sig:
+                    continue
+                if str(time_sig[0]) != beats:
+                    continue
+            attacks = sum(1 for e in (bar.get(field) or []) if e.get("type") != "rest")
+            if attacks:
+                counts.append(attacks)
+    except Exception:
+        _OUTER_ATTACK_CACHE[cache_key] = None
+        return None
+
+    result = None
+    if len(counts) >= 40:
+        counts.sort()
+        result = max(1, int(round(counts[len(counts) // 2])))
+    _OUTER_ATTACK_CACHE[cache_key] = result
+    return result
+
+
+def median_bar_texture_density(composer: str, texture: str, hand: str, meter=None) -> Optional[int]:
+    """How many notes the composer's OWN median bar of this texture holds.
+
+    Returns a per-bar note count, not a rate, because that is how the corpus
+    records it and how ``_classify_rh_texture`` reads it back.
+
+    Scoped to the piece's METER first. The pooled figure is an average over
+    movements in every metre, and for a composer whose corpus leans one way it
+    describes none of them: Chopin's ``zigzag_figuration`` is a median 8 notes
+    pooled, but that is his 3/4 mazurkas (902 bars of 1303) — in 4/4 the same
+    texture holds 12. Handing the pooled number to a 4/4 piece would ask for
+    two thirds of the notes he writes.
+
+    Falls back to the pooled median when the metre is unattested, and to None
+    when the texture is unattested, so the caller keeps its own default rather
+    than being handed a number from the wrong population.
+    """
+    # Measured over the OUTER voice, which is what a single-line generator
+    # writes — and the budget arithmetic in `_construct_melody` is calibrated
+    # against these units, not against `melody_density`.
+    #
+    # `melody_density`, which `texture_density_stats` is built from, counts
+    # attacks across `rh_display` AND `rh_inner_display`: voice-events, not
+    # rhythmic positions. Real music spends the difference on SIMULTANEITIES —
+    # a Chopin `chordal` bar reads 6 by that count, has 4 outer attacks and
+    # carries 9 notes — while a single voice handed 6 spends every one of them
+    # on a separate rhythmic position. That is how bars come out with three and
+    # four distinct note values where 50-81% of the composer's own use one.
+    counted = _outer_attacks_per_bar(composer, texture, hand, meter)
+    if counted is not None:
+        return counted
+    try:
+        stats = texture_density_stats(composer) or {}
+    except Exception:
+        return None
+    entry = ((stats.get(hand) or {}).get(texture)) or {}
+    if not entry:
+        return None
+    if meter is not None:
+        beats_key = str(meter[0] if isinstance(meter, (tuple, list)) else meter)
+        by_meter = (entry.get("by_meter") or {}).get(beats_key) or {}
+        # A metre attested by only a handful of bars is a sample, not a target.
+        if by_meter.get("n", 0) >= 40 and by_meter.get("median"):
+            return max(1, int(round(float(by_meter["median"]))))
+    median = entry.get("median")
+    if entry.get("n", 0) >= 40 and median:
+        return max(1, int(round(float(median))))
+    return None
+
+
 def render_rhythmic_fingerprint(composer: str, graph=None, movement_id: str = "") -> List[str]:
     """The fingerprint as brief lines, in the units a composer reasons in."""
     fp = rhythmic_fingerprint(composer)

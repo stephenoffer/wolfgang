@@ -59,3 +59,71 @@ Any section claiming Satie's style needs ≥3 of these 5 present.
 - Satie: pp to p exclusively. Anything louder is wrong.
 - `"expr": "lent et douloureux"` (slow and painful) — Satie's marking for Gymnopédie No.1.
 - `"expr": "sans ornement"` (without ornament) — literally his instruction.
+
+---
+
+## Composing a Satie phrase: step by step
+
+Measured over his own bars: the two hands sit **21 semitones apart**, the widest
+gap of any armed composer, and **one bar in six has no left hand at all**. The
+emptiness is the sound. Filling it turns him into salon music.
+
+### Step 1 — Put a bare bass low, and a chord far above it
+
+Nothing in between. The octave and a half of silence between the hands is the
+piece.
+
+```json
+"gymnopedie_bass": [
+  {"p": "G2", "d": "h."},
+  {"p": "rest", "d": "q"},
+  {"p": ["B3", "D4", "F#4"], "d": "q"},
+  {"p": "rest", "d": "q"}
+]
+```
+
+### Step 2 — Leave the third beat empty and keep it empty
+
+In 3/4, beat three is a rest, every bar, for pages. That is not a gap waiting to
+be filled.
+
+### Step 3 — Write a melody in long even values with no ornament
+
+Small range — a fifth or a sixth for a whole phrase. It does not reach.
+
+```json
+"plain_melody": [
+  {"p": "F#5", "d": "h"},
+  {"p": "A5", "d": "q"},
+  {"p": "G5", "d": "h"},
+  {"p": "F#5", "d": "q"},
+  {"p": "E5", "d": "w"}
+]
+```
+
+### Step 4 — Move the harmony in parallel, unresolved
+
+Sevenths and ninths moving as blocks. Nothing resolves in the textbook sense; a
+seventh goes to another seventh.
+
+```json
+"parallel_sevenths": [
+  {"p": ["D4", "F#4", "A4", "C#5"], "d": "h"},
+  {"p": ["E4", "G4", "B4", "D5"], "d": "h"},
+  {"p": ["F#4", "A4", "C#5", "E5"], "d": "w"}
+]
+```
+
+### Step 5 — Repeat without developing, and mark the mood in words
+
+Say it three times, nearly identically. Write the direction in French prose
+above the staff, not in Italian.
+
+---
+
+## Checking a finished phrase
+
+- Is the middle register empty?
+- Did anything develop? It should not have.
+- Is there a hairpin or a crescendo? There should not be.
+- Does any phrase last four bars exactly? His rarely do.

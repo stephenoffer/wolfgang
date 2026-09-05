@@ -309,6 +309,14 @@ def spell_roman(root_pc: int, quality: str, inversion: int, tonic_pc: int, mode:
     that are not wrong so much as unreadable, and that no downstream vocabulary
     could match.
     """
+    # An unknown or absent quality must not become a bare KeyError deep in the
+    # symbol tables. 85 of 8,811 corpus bar records carry `chord_quality: None`;
+    # no live caller passes one today (every call site takes its quality from
+    # `candidates`, which only emits known values), but a bar record reaching
+    # here directly would take out the whole analysis for an unreadable chord.
+    if not quality or quality not in dict(CHORD_TEMPLATES):
+        quality = "minor" if str(mode or "").lower().startswith("min") else "major"
+
     degree = (root_pc - tonic_pc) % 12
     base = (_DEGREE_MINOR if mode == "minor" else _DEGREE_MAJOR)[degree]
     acc = base[: -len(base.lstrip("b#"))] if base[0] in "b#" else ""
@@ -739,3 +747,24 @@ def roman_function(symbol: str, mode: str = "major") -> str:
     if not parsed:
         return "chromatic"
     return classify_function(int(parsed["degree"]), str(parsed["quality"]), 0, mode)
+
+def roman_bass_offset(symbol: str, mode: str = "major") -> Optional[int]:
+    """Semitones from the key root to the note this numeral puts in the BASS.
+
+    Root position gives the root; an inversion gives the chord member the figure
+    names. Returns None when the symbol does not parse.
+
+    One derivation, because there were two hand-written tables doing this — a
+    24-entry dict in `realizer` and a 20-entry one in `sketch_proposer` — each
+    ending in a fallback of "tonic" and each missing most inversions:
+
+        V65 V43 ii65 IV6 viio6 I6 V/V   ->  0   (the tonic, in both)
+
+    Two tables that must agree, disagreeing with each other and with the music.
+    """
+    parsed = parse_roman((symbol or "").strip(), mode)
+    if not parsed:
+        return None
+    template = dict(CHORD_TEMPLATES).get(str(parsed["quality"]), (0, 4, 7))
+    inversion = int(parsed["inversion"]) % len(template)
+    return (int(parsed["degree"]) + template[inversion]) % 12

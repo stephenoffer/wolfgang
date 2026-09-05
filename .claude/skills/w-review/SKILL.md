@@ -53,9 +53,10 @@ rejects. It answers the questions that decide whether a piece is any good:
   Nothing checked a realized cadence against its plan until recently — the
   previous piece closed seven of its nine phrases identically, and two of its
   structural cadences had no dominant at all.
-- **Does the texture's weight move?** Not "is it thick enough" — the last piece
-  measured normal density and a simultaneity CV *below* anything real Mozart
-  does, meaning it never thickened at a climax or thinned into a cadence.
+- **Does the texture's weight move?** Not "is it thick enough" — a piece can
+  measure normal density and still have a simultaneity CV *below* anything real
+  Mozart does, meaning it never thickened at a climax or thinned into a
+  cadence.
 - **Does the page read as engraved music?** Articulation, ties, slurs,
   hairpins per bar against the real-corpus range.
 - **Is the part-writing clean?** Parallels, hidden octaves, spacing, hand span.

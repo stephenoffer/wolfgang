@@ -201,6 +201,9 @@ C D _E E ^F G _A A B c |
 | Wrong-note style | Expected note displaced by semitone | Prokofiev |
 | Pandiatonic clusters | Non-functional diatonic stacking | Copland, Stravinsky |
 | Modal cadence | Cadence on modal degree, not V-I | Mixolydian bVII-I |
+| PAC (authentic close) | Root-position arrival reached by any means the piece has established — fourths, a modal step, an ostinato stopping | The modern answer to a perfect authentic cadence. Closure comes from *arrival and cessation*, not from a dominant: the bass lands on the tonic, the texture stops moving, and that is the close. V7-I in this idiom reads as quotation |
+| HC (half close) | Stop on a sonority that is stable but not the tonic — an added-note chord, a fourth-built chord, a held cluster | The modern answer to a half cadence. Openness comes from stopping somewhere that is clearly not home, not from a chord that demands resolution |
+| IAC (weak close) | Tonic arrival with the third or the second in the melody, or under a continuing ostinato | An arrival that does not fully close |
 | Ostinato harmony | Static bass, shifting upper voices | Stravinsky |
 | Superimposed triads | Two triads at non-standard interval | Ravel, Stravinsky |
 

@@ -360,9 +360,15 @@ def realize_event(
     key: str = "C",
     tempo_bpm: float = 90.0,
     period: str = "classical",
-    principal_midi: int | None = None,
+    grace_midi: int | None = None,
 ) -> list[PlayedNote]:
     """Convenience wrapper reading an EventIR/LayerEvent's own fields.
+
+    ``event`` is the PRINCIPAL note and ``grace_midi`` is the small note leaning
+    into it — an appoggiatura and an acciaccatura are a pair, and both realize to
+    ``[]`` without it. This argument was once called ``principal_midi``, which
+    read as "the default is fine" at a call site that then rendered every leaning
+    dissonance in the piece as a plain note.
 
     Returns ``[]`` when the event carries no realizable ornament, so a caller
     can use the result's truthiness to decide whether to substitute.
@@ -390,7 +396,7 @@ def realize_event(
         dur,
         key=key,
         tempo_bpm=tempo_bpm,
-        grace_midi=principal_midi,
+        grace_midi=grace_midi,
         period=period,
     )
 

@@ -1,21 +1,30 @@
 {
  "composer": "weber",
  "source_bar_index": "reference_index/weber/bar_index.json",
- "total_phrases": 19,
- "avg_phrase_length": 12.68,
+ "total_phrases": 49,
+ "avg_phrase_length": 4.92,
  "length_distribution": {
-  "1": 4,
-  "13": 1,
-  "16": 14
+  "1": 10,
+  "2": 11,
+  "3": 3,
+  "4": 7,
+  "5": 4,
+  "6": 2,
+  "7": 2,
+  "9": 2,
+  "10": 1,
+  "12": 2,
+  "13": 2,
+  "16": 3
  },
  "role_distribution": {
-  "opening": 2,
-  "middle": 13,
-  "closing": 4
+  "opening": 37,
+  "closing": 12
  },
  "cadence_distribution": {
-  "none": 15,
-  "half": 4
+  "half": 33,
+  "authentic": 14,
+  "none": 2
  },
  "phrases": [
   {
@@ -23,19 +32,483 @@
    "source": "weber/concertino_clarinet",
    "bar_range": [
     1,
-    1
+    13
    ],
-   "length": 1,
+   "length": 13,
    "role": "opening",
-   "cadence_type": "none",
+   "cadence_type": "half",
    "key": "C",
-   "key_mode": "major",
+   "key_mode": "minor",
    "time_sig": [
-    4,
+    3,
     4
    ],
    "density_curve": [
+    0.2727,
+    0.8182,
+    0.4545,
+    0.1818,
+    0.1818,
+    0.1818,
+    0.2727,
+    0.2727,
+    0.3636,
+    0.6364,
+    1.0,
+    1.0,
+    0.2727
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.8636,
+    0.6364,
+    0.7273
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody",
+    "pedal_point",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "descending",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "major",
+    "major",
+    "dim7",
+    "major",
+    "major",
+    "halfdim7",
+    "dom7",
+    "halfdim7",
+    "halfdim7",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 10,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3846,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 76,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p1",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    14,
+    15
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8
+   ],
+   "register_curve": [
+    1.0,
     0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 10,
+    "register_center": 68,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 56,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p2",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    16,
+    17
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.8889
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 8.5,
+   "entry_state": {
+    "density": 9,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p3",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    18,
+    20
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.6923,
+    0.6154
+   ],
+   "register_curve": [
+    0.0,
+    0.5,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 13,
+    "register_center": 63,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p4",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    21,
+    22
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 12,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p5",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    23,
+    26
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.8,
+    1.0,
+    0.5333,
+    0.6667
+   ],
+   "register_curve": [
+    0.25,
+    0.75,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "bass_melody",
+    "pedal_point",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "minor",
+    "dim7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.25,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 11.25,
+   "entry_state": {
+    "density": 12,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p6",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    27,
+    27
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0
    ],
    "register_curve": [
     0.0
@@ -44,10 +517,446 @@
     0.0
    ],
    "rh_textures": [
-    "held_note"
+    "chordal"
    ],
    "lh_textures": [
-    "bass_melody"
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dim7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 1.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 10.0,
+   "entry_state": {
+    "density": 10,
+    "register_center": 80,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 80,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p7",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    28,
+    32
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.8462,
+    0.6923,
+    0.6923,
+    1.0,
+    0.4615
+   ],
+   "register_curve": [
+    0.75,
+    0.5,
+    0.25,
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "ascending",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "dom7",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 9.6,
+   "entry_state": {
+    "density": 11,
+    "register_center": 77,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 74,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p8",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    33,
+    36
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.5,
+    0.3333
+   ],
+   "register_curve": [
+    1.0,
+    0.0667,
+    0.2,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody",
+    "singing_melody",
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "block_chord_sparse",
+    "silence",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim7",
+    "major",
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 4.25,
+   "entry_state": {
+    "density": 6,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 57,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p9",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    37,
+    45
+   ],
+   "length": 9,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    3,
+    4
+   ],
+   "density_curve": [
+    0.0,
+    0.8462,
+    0.8462,
+    1.0,
+    0.9231,
+    0.8462,
+    0.8462,
+    1.0,
+    0.5385
+   ],
+   "register_curve": [
+    0.0,
+    0.8947,
+    0.9474,
+    1.0,
+    0.8421,
+    0.8947,
+    0.9474,
+    0.8947,
+    0.9474
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "pedal_point",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major",
+    "maj7",
+    "dom7",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 9.8889,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p10",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    46,
+    47
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.6667
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 12.5,
+   "entry_state": {
+    "density": 15,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 10,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p11",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    48,
+    48
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "ascending"
+   ],
+   "harmony_path": [
+    "minor"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 1.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 12.0,
+   "entry_state": {
+    "density": 12,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p12",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    49,
+    49
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "walking_bass"
    ],
    "melody_directions": [
     "static"
@@ -58,546 +967,136 @@
    "peak_bar_offset": 0,
    "grace_note_ratio": 0.0,
    "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 0.0,
+   "avg_melody_density": 3.0,
    "entry_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
+    "density": 3,
+    "register_center": 79,
+    "texture": "chordal",
     "has_rests": false
    },
    "exit_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
+    "density": 3,
+    "register_center": 79,
+    "texture": "chordal",
     "has_rests": false
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p1",
+   "phrase_id": "weber_weber_concertino_clarinet_p13",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    2,
-    17
+    50,
+    53
    ],
-   "length": 16,
+   "length": 4,
    "role": "opening",
-   "cadence_type": "none",
-   "key": "C",
+   "cadence_type": "half",
+   "key": "B-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.2,
+    0.8462,
+    0.8462,
     1.0,
-    1.0,
-    0.4,
-    0.8,
-    0.4,
-    0.6,
-    0.4
+    0.5385
    ],
    "register_curve": [
-    0.1538,
-    0.1538,
-    0.1538,
-    0.1538,
-    0.1538,
-    0.1538,
-    0.1538,
-    0.1538,
-    1.0,
-    0.8846,
-    0.6923,
-    0.7692,
-    0.4615,
     0.0,
-    0.6154,
-    0.8462
+    0.5,
+    1.0,
+    0.5
    ],
    "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   "rh_textures": [
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note"
-   ],
-   "lh_textures": [
-    "alberti",
-    "broken_chord_wave",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "bass_melody",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave"
-   ],
-   "melody_directions": [
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "descending",
-    "static",
-    "static",
-    "descending",
-    "static",
-    "ascending",
-    "descending"
-   ],
-   "harmony_path": [
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "minor",
-    "minor",
-    "major",
-    "minor",
-    "major"
-   ],
-   "peak_bar_offset": 9,
-   "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.25,
-   "avg_melody_density": 1.5,
-   "entry_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 2,
-    "register_center": 78,
-    "texture": "held_note",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p2",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    18,
-    33
-   ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "F",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    0.6364,
-    0.2727,
-    0.1818,
-    0.5455,
-    0.1818,
-    0.5455,
-    0.8182,
-    0.1818,
-    0.3636,
-    0.3636,
-    0.4545,
-    0.2727,
-    0.2727,
     1.0,
-    0.1818,
-    0.1818
-   ],
-   "register_curve": [
-    0.0,
-    0.4706,
-    0.9412,
-    0.7059,
-    0.5294,
-    0.7059,
-    0.8235,
-    0.6471,
-    0.8824,
     1.0,
-    0.8235,
-    0.7647,
-    0.7059,
-    0.8824,
-    0.6471,
-    0.5294
-   ],
-   "rest_pattern": [
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   "rh_textures": [
-    "scalar_run",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "scalar_run",
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "scalar_run",
-    "held_note",
-    "held_note"
-   ],
-   "lh_textures": [
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point",
-    "bass_melody",
-    "bass_melody"
-   ],
-   "melody_directions": [
-    "descending",
-    "ascending",
-    "descending",
-    "static",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "descending",
-    "ascending",
-    "ascending",
-    "static",
-    "descending",
-    "descending"
-   ],
-   "harmony_path": [
-    "major",
-    "major",
-    "minor",
-    "minor",
-    "minor",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major"
-   ],
-   "peak_bar_offset": 13,
-   "grace_note_ratio": 0.125,
-   "dotted_rhythm_ratio": 0.4375,
-   "avg_melody_density": 4.4375,
-   "entry_state": {
-    "density": 7,
-    "register_center": 63,
-    "texture": "scalar_run",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 2,
-    "register_center": 72,
-    "texture": "held_note",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p3",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    34,
-    49
-   ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "A",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    0.7143,
-    0.2857,
-    0.1429,
-    0.0,
-    0.4286,
-    0.4286,
-    0.7143,
-    0.8571,
-    0.4286,
-    0.4286,
-    0.7143,
-    0.2857,
-    1.0,
-    0.2857,
-    0.5714,
-    0.1429
-   ],
-   "register_curve": [
-    0.0455,
-    0.1364,
-    0.0,
-    0.1364,
-    0.9091,
-    0.9545,
-    1.0,
-    0.8636,
-    0.9091,
-    0.9545,
-    0.9091,
-    0.9545,
-    0.8182,
-    0.8636,
-    0.9091,
     1.0
    ],
-   "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
    "rh_textures": [
-    "singing_melody",
-    "held_note",
-    "held_note",
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "scalar_run",
-    "held_note",
-    "singing_melody",
-    "held_note"
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
    ],
    "lh_textures": [
     "pedal_point",
     "pedal_point",
     "pedal_point",
-    "silence",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point"
+    "block_chord_sparse"
    ],
    "melody_directions": [
     "ascending",
-    "descending",
     "static",
-    "static",
-    "ascending",
-    "static",
-    "ascending",
-    "static",
-    "ascending",
-    "static",
-    "ascending",
-    "static",
-    "ascending",
-    "descending",
     "ascending",
     "static"
    ],
    "harmony_path": [
     "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "minor",
-    "major",
-    "minor",
-    "minor",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major"
+    "maj7",
+    "dom7",
+    "dom7"
    ],
-   "peak_bar_offset": 12,
-   "grace_note_ratio": 0.0625,
-   "dotted_rhythm_ratio": 0.1875,
-   "avg_melody_density": 3.25,
+   "peak_bar_offset": 2,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 10.5,
    "entry_state": {
-    "density": 5,
-    "register_center": 58,
-    "texture": "singing_melody",
-    "has_rests": false
+    "density": 11,
+    "register_center": 77,
+    "texture": "zigzag_figuration",
+    "has_rests": true
    },
    "exit_state": {
-    "density": 1,
-    "register_center": 79,
-    "texture": "held_note",
-    "has_rests": false
+    "density": 7,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p4",
+   "phrase_id": "weber_weber_concertino_clarinet_p14",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    50,
+    54,
     65
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "F",
+   "length": 12,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
-    0.2,
-    0.2,
+    0.8333,
+    0.8889,
+    0.4444,
+    0.7778,
+    0.7778,
     0.3333,
-    0.1333,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.9333,
-    0.7333,
+    0.8333,
     1.0,
-    0.7333,
+    0.8889,
     1.0,
-    0.1333
+    0.8889,
+    0.2778
    ],
    "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.65,
     0.85,
-    0.9,
-    0.95,
-    0.9,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
     0.65,
-    0.9,
-    0.65,
-    0.9,
+    0.85,
     0.55,
     1.0
    ],
@@ -608,58 +1107,42 @@
     0.0,
     0.0,
     0.0,
+    1.0,
     0.0,
+    1.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+    1.0,
+    1.0
    ],
    "rh_textures": [
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "passage_work",
     "scalar_run",
-    "passage_work",
     "scalar_run",
-    "passage_work",
-    "held_note"
+    "singing_melody",
+    "scalar_run",
+    "scalar_run",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "chordal"
    ],
    "lh_textures": [
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
     "alberti",
-    "alberti",
-    "broken_chord_wave",
-    "alberti",
-    "alberti",
-    "broken_chord_wave",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "walking_bass",
     "pedal_point",
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
-    "pedal_point",
-    "bass_melody"
+    "alberti",
+    "block_chord_sparse",
+    "alberti",
+    "block_chord_sparse",
+    "walking_bass"
    ],
    "melody_directions": [
-    "ascending",
-    "static",
-    "ascending",
-    "static",
     "static",
     "static",
     "static",
@@ -675,475 +1158,87 @@
    ],
    "harmony_path": [
     "major",
-    "minor",
+    "major",
+    "dom7",
     "major",
     "major",
     "major",
     "major",
+    "dom7",
     "major",
+    "dom7",
     "major",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "minor",
-    "major",
-    "minor"
+    "major"
    ],
-   "peak_bar_offset": 12,
-   "grace_note_ratio": 0.125,
-   "dotted_rhythm_ratio": 0.125,
-   "avg_melody_density": 5.0625,
+   "peak_bar_offset": 7,
+   "grace_note_ratio": 0.1667,
+   "dotted_rhythm_ratio": 0.1667,
+   "avg_melody_density": 13.4167,
    "entry_state": {
-    "density": 3,
-    "register_center": 77,
-    "texture": "singing_melody",
+    "density": 15,
+    "register_center": 60,
+    "texture": "scalar_run",
     "has_rests": false
    },
    "exit_state": {
-    "density": 2,
+    "density": 5,
     "register_center": 80,
-    "texture": "held_note",
-    "has_rests": false
+    "texture": "chordal",
+    "has_rests": true
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p5",
+   "phrase_id": "weber_weber_concertino_clarinet_p15",
    "source": "weber/concertino_clarinet",
    "bar_range": [
     66,
-    81
+    70
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "C",
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
     1.0,
-    1.0,
-    0.5333,
-    0.4667,
-    0.0667,
-    0.0,
-    0.0,
-    0.4667,
-    0.4667,
-    0.8,
-    0.8,
-    0.4667,
-    0.4667,
-    0.8,
-    0.4667,
-    0.6
+    0.9412,
+    0.7059,
+    0.5882,
+    0.4706
    ],
    "register_curve": [
-    0.3,
-    0.5,
+    0.0,
+    0.2857,
     1.0,
-    0.7,
-    0.6,
-    0.0,
-    0.0,
-    0.85,
-    0.95,
-    0.4,
-    0.45,
-    0.85,
-    0.95,
-    0.85,
-    0.9,
-    0.65
+    0.5714,
+    0.4286
    ],
    "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   "rh_textures": [
-    "passage_work",
-    "passage_work",
-    "scalar_run",
-    "scalar_run",
-    "held_note",
-    "held_note",
-    "held_note",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run"
-   ],
-   "lh_textures": [
-    "pedal_point",
-    "pedal_point",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "alberti",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave"
-   ],
-   "melody_directions": [
-    "descending",
-    "ascending",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "static",
-    "ascending",
-    "descending",
-    "descending",
-    "ascending",
-    "ascending",
-    "descending",
-    "ascending",
-    "descending",
-    "ascending"
-   ],
-   "harmony_path": [
-    "major",
-    "minor",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "minor",
-    "major",
-    "major",
-    "minor",
-    "minor",
-    "major",
-    "major",
-    "minor"
-   ],
-   "peak_bar_offset": 0,
-   "grace_note_ratio": 0.0625,
-   "dotted_rhythm_ratio": 0.0625,
-   "avg_melody_density": 7.875,
-   "entry_state": {
-    "density": 15,
-    "register_center": 66,
-    "texture": "passage_work",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 9,
-    "register_center": 73,
-    "texture": "scalar_run",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p6",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    82,
-    97
-   ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "G",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    0.375,
-    0.5625,
-    0.1875,
-    0.75,
-    0.8125,
-    0.4375,
-    0.4375,
-    0.75,
-    0.4375,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
+    1.0,
+    1.0,
     0.0,
     1.0,
     1.0
    ],
-   "register_curve": [
-    0.75,
-    0.9,
-    0.95,
-    0.9,
-    0.6,
-    0.85,
-    0.95,
-    0.85,
-    0.9,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.8,
-    1.0
-   ],
-   "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
    "rh_textures": [
-    "singing_melody",
-    "scalar_run",
-    "singing_melody",
-    "scalar_run",
-    "passage_work",
+    "zigzag_figuration",
     "scalar_run",
     "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "passage_work",
-    "passage_work"
+    "zigzag_figuration",
+    "singing_melody"
    ],
    "lh_textures": [
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "bass_melody",
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave"
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat"
    ],
    "melody_directions": [
-    "descending",
-    "ascending",
-    "static",
-    "descending",
-    "static",
-    "ascending",
-    "descending",
-    "ascending",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "static",
-    "static",
-    "ascending",
-    "descending"
-   ],
-   "harmony_path": [
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "minor"
-   ],
-   "peak_bar_offset": 14,
-   "grace_note_ratio": 0.25,
-   "dotted_rhythm_ratio": 0.125,
-   "avg_melody_density": 6.75,
-   "entry_state": {
-    "density": 6,
-    "register_center": 75,
-    "texture": "singing_melody",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 16,
-    "register_center": 80,
-    "texture": "passage_work",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p7",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    98,
-    113
-   ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "F",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    1.0,
-    1.0,
-    0.9375,
-    1.0,
-    1.0,
-    0.5625,
-    0.5,
-    0.8125,
-    0.6875,
-    0.1875,
-    0.8125,
-    1.0,
-    1.0,
-    0.5625,
-    0.0,
-    0.0
-   ],
-   "register_curve": [
-    0.85,
-    0.5,
-    0.6,
-    0.8,
-    0.5,
-    0.4,
-    0.6,
-    0.8,
-    1.0,
-    0.9,
-    0.75,
-    0.8,
-    0.5,
-    0.4,
-    0.0,
-    0.0
-   ],
-   "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   "rh_textures": [
-    "passage_work",
-    "passage_work",
-    "passage_work",
-    "passage_work",
-    "passage_work",
-    "scalar_run",
-    "scalar_run",
-    "passage_work",
-    "scalar_run",
-    "singing_melody",
-    "passage_work",
-    "passage_work",
-    "passage_work",
-    "scalar_run",
-    "held_note",
-    "held_note"
-   ],
-   "lh_textures": [
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "alberti",
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "alberti",
-    "alberti"
-   ],
-   "melody_directions": [
-    "ascending",
-    "descending",
-    "ascending",
-    "descending",
-    "ascending",
-    "descending",
-    "ascending",
-    "descending",
-    "ascending",
-    "static",
-    "ascending",
     "descending",
     "ascending",
     "descending",
@@ -1151,75 +1246,682 @@
     "static"
    ],
    "harmony_path": [
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "minor",
+    "dom7",
     "major",
     "major",
     "major",
     "major"
    ],
    "peak_bar_offset": 0,
-   "grace_note_ratio": 0.0625,
-   "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 11.0625,
+   "grace_note_ratio": 0.2,
+   "dotted_rhythm_ratio": 0.2,
+   "avg_melody_density": 12.6,
    "entry_state": {
-    "density": 16,
-    "register_center": 77,
-    "texture": "passage_work",
+    "density": 17,
+    "register_center": 66,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p16",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    71,
+    80
+   ],
+   "length": 10,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.3,
+    0.4,
+    0.75,
+    0.75,
+    1.0,
+    0.65,
+    0.75,
+    0.75,
+    1.0,
+    0.6
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.8947,
+    1.0,
+    0.4211,
+    0.4737,
+    0.8947,
+    1.0,
+    0.8947,
+    0.9474
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "pedal_point",
+    "pedal_point",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "pedal_point",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "descending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "major",
+    "maj7",
+    "dom7",
+    "major",
+    "major",
+    "minor",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 13.9,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "chordal",
     "has_rests": false
    },
    "exit_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
+    "density": 12,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p17",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    81,
+    82
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.8235
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.5,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 15.5,
+   "entry_state": {
+    "density": 17,
+    "register_center": 73,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 14,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
     "has_rests": false
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p8",
+   "phrase_id": "weber_weber_concertino_clarinet_p18",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    114,
-    129
+    83,
+    84
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "C",
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.5,
-    0.1667,
-    0.3333,
     1.0,
-    0.5
+    0.2667
    ],
    "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.5,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 9.5,
+   "entry_state": {
+    "density": 15,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p19",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    85,
+    90
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.65,
+    0.7,
+    0.75,
+    0.75,
+    1.0,
+    0.6
+   ],
+   "register_curve": [
+    0.8571,
+    0.0,
+    0.7143,
+    1.0,
+    0.7143,
+    0.8571
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "descending",
+    "static",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "major",
+    "minor",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.1667,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 14.8333,
+   "entry_state": {
+    "density": 13,
+    "register_center": 78,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 12,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p20",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    91,
+    103
+   ],
+   "length": 13,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.2917,
+    0.25,
+    0.1667,
+    0.25,
+    0.0833,
+    1.0,
+    1.0,
+    1.0,
+    0.875,
+    0.9583,
+    1.0,
+    1.0,
+    0.5833
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.75,
+    1.0,
+    0.85,
+    0.5,
+    0.6,
+    0.8,
+    0.5,
+    0.4
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_tremolo",
+    "block_chord_tremolo",
+    "broken_chord_wave",
+    "block_chord_tremolo",
+    "block_chord_tremolo",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "minor",
+    "dom7",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0769,
+   "dotted_rhythm_ratio": 0.3077,
+   "avg_melody_density": 15.6154,
+   "entry_state": {
+    "density": 7,
+    "register_center": 60,
+    "texture": "singing_melody",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 14,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p21",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    104,
+    107
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.7619,
+    1.0,
+    0.9048,
+    0.2381
+   ],
+   "register_curve": [
+    0.0,
+    0.5,
+    1.0,
+    0.875
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "alberti",
+    "broken_chord_wave",
+    "bass_melody",
+    "alberti"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "minor",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.25,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 15.25,
+   "entry_state": {
+    "density": 16,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p22",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    108,
+    111
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.875,
+    1.0,
+    1.0,
+    0.7083
+   ],
+   "register_curve": [
+    0.875,
+    1.0,
+    0.25,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_tremolo",
+    "broken_chord_wave",
+    "broken_chord_wave",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "ascending",
+    "descending",
+    "ascending",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.25,
+   "avg_melody_density": 21.5,
+   "entry_state": {
+    "density": 21,
+    "register_center": 75,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 17,
+    "register_center": 68,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p23",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    112,
+    127
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.8,
+    0.8,
+    0.8,
+    1.0,
+    0.5333,
+    0.5333,
+    0.2,
+    0.4,
+    0.2,
+    0.0667,
+    0.0667,
+    0.0,
+    0.0,
+    0.2667,
+    0.1333,
+    0.2
+   ],
+   "register_curve": [
+    0.6364,
+    0.6364,
     0.6364,
     0.6364,
     0.6364,
@@ -1233,15 +1935,13 @@
     0.6364,
     0.0,
     0.2727,
-    1.0,
-    0.9091,
-    0.0
+    1.0
    ],
    "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
     0.0,
     0.0,
     0.0,
@@ -1256,40 +1956,40 @@
     0.0
    ],
    "rh_textures": [
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "chordal",
+    "silence",
+    "silence",
     "singing_melody",
-    "held_note",
-    "held_note",
-    "singing_melody",
+    "chordal",
     "singing_melody"
    ],
    "lh_textures": [
-    "alberti",
-    "alberti",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "bass_melody",
-    "broken_chord_wave",
-    "bass_melody",
-    "pedal_point",
-    "pedal_point",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "interlocking",
+    "interlocking",
+    "interlocking",
+    "interlocking",
+    "interlocking",
+    "interlocking",
+    "interlocking",
+    "interlocking",
+    "interlocking",
     "silence",
     "silence",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point"
+    "silence"
    ],
    "melody_directions": [
     "static",
@@ -1305,324 +2005,467 @@
     "static",
     "static",
     "static",
-    "ascending",
+    "static",
+    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "major",
+    "minor",
+    "major",
+    "dom7",
+    "dom7",
+    "major",
+    "minor",
+    "maj7",
+    "dom7",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "major",
+    "dim",
+    "dom7"
+   ],
+   "peak_bar_offset": 3,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.625,
+   "avg_melody_density": 5.625,
+   "entry_state": {
+    "density": 12,
+    "register_center": 60,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 64,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p24",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    128,
+    129
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0,
+    0.5714
+   ],
+   "register_curve": [
+    1.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
     "descending",
     "static"
    ],
    "harmony_path": [
     "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
     "major"
    ],
-   "peak_bar_offset": 14,
+   "peak_bar_offset": 0,
    "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.1875,
-   "avg_melody_density": 0.9375,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.5,
    "entry_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
+    "density": 7,
+    "register_center": 63,
+    "texture": "singing_melody",
     "has_rests": false
    },
    "exit_state": {
-    "density": 3,
+    "density": 4,
     "register_center": 53,
     "texture": "singing_melody",
     "has_rests": false
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p9",
+   "phrase_id": "weber_weber_concertino_clarinet_p25",
    "source": "weber/concertino_clarinet",
    "bar_range": [
     130,
-    145
+    131
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "C#",
-   "key_mode": "major",
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
-    0.2,
-    0.8,
-    0.2,
-    0.6,
-    1.0,
-    0.8,
-    0.2,
-    0.0,
-    0.6,
-    0.2,
-    0.8,
     0.4,
-    0.0,
-    0.0,
-    0.4,
-    0.4
-   ],
-   "register_curve": [
-    0.1304,
-    0.1304,
-    0.0,
-    0.8261,
-    0.7391,
-    0.6957,
-    0.087,
-    0.3043,
-    0.0,
-    0.1304,
-    0.1304,
-    0.1304,
-    0.3043,
-    0.3043,
-    0.8261,
     1.0
    ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
    "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
     0.0,
     0.0
    ],
    "rh_textures": [
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note"
+    "chordal",
+    "singing_melody"
    ],
    "lh_textures": [
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "bass_melody",
-    "broken_chord_wave",
-    "bass_melody",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point",
-    "pedal_point"
+    "silence",
+    "silence"
    ],
    "melody_directions": [
     "static",
-    "ascending",
-    "static",
-    "static",
-    "descending",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "static",
-    "ascending",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "static"
+    "ascending"
    ],
    "harmony_path": [
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "minor"
+    "dim",
+    "dom7"
    ],
-   "peak_bar_offset": 4,
+   "peak_bar_offset": 1,
    "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.375,
-   "avg_melody_density": 2.0625,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 3.5,
    "entry_state": {
-    "density": 1,
+    "density": 2,
     "register_center": 56,
-    "texture": "held_note",
+    "texture": "chordal",
     "has_rests": false
    },
    "exit_state": {
-    "density": 2,
-    "register_center": 76,
-    "texture": "held_note",
+    "density": 5,
+    "register_center": 56,
+    "texture": "singing_melody",
     "has_rests": false
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p10",
+   "phrase_id": "weber_weber_concertino_clarinet_p26",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    146,
-    161
+    132,
+    132
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
    "key": "C",
-   "key_mode": "major",
+   "key_mode": "minor",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
-    0.0,
-    0.3636,
-    0.3636,
-    0.3636,
-    1.0,
-    0.4545,
-    0.3636,
-    0.5455,
-    0.1818,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+    1.0
    ],
    "register_curve": [
-    0.0,
-    0.75,
-    1.0,
-    0.9,
-    0.8,
-    0.8,
-    1.0,
-    0.75,
-    0.9,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
     0.0
    ],
    "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 2.0,
+   "entry_state": {
+    "density": 2,
+    "register_center": 53,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 53,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p27",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    133,
+    138
+   ],
+   "length": 6,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.7778,
+    1.0,
+    0.8889,
+    0.2222,
+    0.1111,
+    0.4444
+   ],
+   "register_curve": [
+    1.0,
+    0.8947,
+    0.8421,
+    0.1053,
+    0.3684,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
     0.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
+    1.0,
     0.0
    ],
    "rh_textures": [
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "scalar_run",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note"
+    "chordal",
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody"
    ],
    "lh_textures": [
     "silence",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
     "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "bass_melody",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
+    "silence",
+    "silence",
+    "interlocking",
     "broken_chord_wave"
    ],
    "melody_directions": [
     "static",
-    "ascending",
-    "static",
-    "ascending",
     "descending",
-    "ascending",
-    "static",
-    "ascending",
+    "descending",
     "static",
     "static",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "minor",
+    "major",
+    "dim",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.6667,
+   "avg_melody_density": 5.1667,
+   "entry_state": {
+    "density": 7,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 53,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p28",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    139,
+    140
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.4,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "chordal",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "silence"
+   ],
+   "melody_directions": [
     "static",
-    "static",
-    "static",
+    "ascending"
+   ],
+   "harmony_path": [
+    "dim",
+    "dom7"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.5,
+   "avg_melody_density": 3.5,
+   "entry_state": {
+    "density": 2,
+    "register_center": 56,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 56,
+    "texture": "singing_melody",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p29",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    141,
+    141
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "authentic",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence"
+   ],
+   "melody_directions": [
+    "descending"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 3.0,
+   "entry_state": {
+    "density": 3,
+    "register_center": 56,
+    "texture": "singing_melody",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 56,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p30",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    142,
+    144
+   ],
+   "length": 3,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.25,
+    0.25,
+    1.0
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "held_note",
+    "held_note",
+    "chordal"
+   ],
+   "lh_textures": [
+    "pedal_point",
+    "pedal_point",
+    "silence"
+   ],
+   "melody_directions": [
     "static",
     "static",
     "static"
@@ -1630,73 +2473,231 @@
    "harmony_path": [
     "major",
     "major",
-    "minor",
-    "minor",
-    "minor",
-    "major",
-    "minor",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major"
+    "dim"
    ],
-   "peak_bar_offset": 4,
+   "peak_bar_offset": 2,
    "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.0625,
-   "avg_melody_density": 2.5,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 2.0,
    "entry_state": {
-    "density": 0,
+    "density": 1,
     "register_center": 60,
     "texture": "held_note",
     "has_rests": false
    },
    "exit_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
+    "density": 4,
+    "register_center": 72,
+    "texture": "chordal",
+    "has_rests": true
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p11",
+   "phrase_id": "weber_weber_concertino_clarinet_p31",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    162,
-    177
+    145,
+    145
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "C",
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    2,
+    2
    ],
    "density_curve": [
-    0.0,
-    0.5789,
-    0.6316,
-    0.6316,
-    0.6316,
-    0.5789,
-    0.6316,
-    0.6316,
-    0.6316,
-    0.5263,
-    0.6316,
-    0.3684,
-    0.4737,
-    0.0526,
-    0.6316,
     1.0
    ],
    "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "silence"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.0,
+   "avg_melody_density": 4.0,
+   "entry_state": {
+    "density": 4,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 4,
+    "register_center": 76,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p32",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    146,
+    154
+   ],
+   "length": 9,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "B-",
+   "key_mode": "major",
+   "time_sig": [
+    2,
+    2
+   ],
+   "density_curve": [
+    0.0,
+    0.8333,
+    0.8333,
+    0.8333,
+    1.0,
+    0.9167,
+    0.8333,
+    1.0,
+    0.5
+   ],
+   "register_curve": [
+    0.0,
+    0.75,
+    1.0,
+    0.9,
+    0.8,
+    0.8,
+    1.0,
+    0.75,
+    0.9
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "rh_textures": [
+    "silence",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "silence",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "pedal_point",
+    "walking_bass",
+    "walking_bass",
+    "walking_bass",
+    "bass_melody"
+   ],
+   "melody_directions": [
+    "static",
+    "ascending",
+    "static",
+    "ascending",
+    "descending",
+    "ascending",
+    "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "major",
+    "major",
+    "minor",
+    "dom7",
+    "dom7"
+   ],
+   "peak_bar_offset": 4,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.1111,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 0,
+    "register_center": 60,
+    "texture": "silence",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 78,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p33",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    155,
+    170
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.3333,
+    0.3333,
+    0.3889,
+    0.1111,
+    0.3333,
+    0.3333,
+    0.3889,
+    0.1111,
+    0.9444,
+    1.0,
+    0.8889,
+    0.8889,
+    0.9444,
+    1.0,
+    0.8889,
+    0.8889
+   ],
+   "register_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
     0.0,
     0.45,
     1.0,
@@ -1705,184 +2706,307 @@
     0.45,
     1.0,
     0.8,
-    0.8,
-    0.95,
-    0.9,
-    0.9,
-    0.8,
-    0.6,
-    0.5,
-    0.55
+    0.8
    ],
    "rest_pattern": [
     0.0,
     0.0,
     0.0,
+    1.0,
     0.0,
     0.0,
     0.0,
+    1.0,
     0.0,
     0.0,
+    1.0,
+    1.0,
     0.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+    1.0,
+    1.0
    ],
    "rh_textures": [
-    "held_note",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "held_note",
-    "scalar_run",
-    "passage_work"
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
    ],
    "lh_textures": [
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "bass_melody",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "pedal_point",
-    "pedal_point"
+    "block_chord_offbeat",
+    "alberti",
+    "block_chord_offbeat",
+    "interlocking",
+    "block_chord_offbeat",
+    "alberti",
+    "block_chord_offbeat",
+    "alberti",
+    "block_chord_tremolo",
+    "block_chord_tremolo",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_tremolo",
+    "block_chord_tremolo",
+    "block_chord_offbeat",
+    "block_chord_offbeat"
    ],
    "melody_directions": [
     "static",
-    "ascending",
-    "descending",
-    "ascending",
-    "ascending",
-    "ascending",
-    "descending",
-    "ascending",
-    "ascending",
     "static",
     "static",
-    "descending",
-    "descending",
     "static",
+    "static",
+    "static",
+    "static",
+    "static",
+    "ascending",
     "descending",
+    "ascending",
+    "ascending",
+    "ascending",
+    "descending",
+    "ascending",
     "ascending"
    ],
    "harmony_path": [
     "major",
     "major",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "minor",
     "major",
     "major",
     "major",
     "major",
     "major",
-    "major"
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "dom7",
+    "major",
+    "major",
+    "dom7",
+    "dom7"
    ],
-   "peak_bar_offset": 15,
-   "grace_note_ratio": 0.0625,
-   "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 10.25,
+   "peak_bar_offset": 9,
+   "grace_note_ratio": 0.125,
+   "dotted_rhythm_ratio": 0.125,
+   "avg_melody_density": 11.0,
    "entry_state": {
-    "density": 0,
+    "density": 6,
     "register_center": 60,
-    "texture": "held_note",
+    "texture": "chordal",
     "has_rests": false
    },
    "exit_state": {
-    "density": 19,
-    "register_center": 71,
-    "texture": "passage_work",
-    "has_rests": false
+    "density": 16,
+    "register_center": 76,
+    "texture": "zigzag_figuration",
+    "has_rests": true
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p12",
+   "phrase_id": "weber_weber_concertino_clarinet_p34",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    178,
-    193
+    171,
+    175
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "B",
+   "length": 5,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "B-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    6,
+    8
    ],
    "density_curve": [
+    0.9375,
     1.0,
-    0.0833,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.4167,
-    0.1667,
-    0.5,
-    0.3333,
-    0.4167,
-    0.25,
-    0.4167,
-    0.25,
-    0.0833
+    0.625,
+    0.75,
+    0.5
    ],
    "register_curve": [
-    0.5357,
-    0.0,
-    0.1786,
-    0.1786,
-    0.1786,
-    0.1786,
-    0.1786,
-    0.8214,
-    0.8214,
-    0.6786,
-    0.75,
-    0.8214,
-    0.9286,
-    0.8571,
     1.0,
-    0.8929
+    0.8571,
+    0.8571,
+    0.5714,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "bass_melody",
+    "interlocking",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "descending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "major",
+    "major",
+    "dom7",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.2,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 12.2,
+   "entry_state": {
+    "density": 15,
+    "register_center": 79,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 72,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p35",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    176,
+    179
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "F",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.65,
+    1.0,
+    0.65,
+    0.4
+   ],
+   "register_curve": [
+    0.9375,
+    1.0,
+    0.9375,
+    0.0
    ],
    "rest_pattern": [
     0.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "scalar_run",
+    "zigzag_figuration",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "descending",
+    "ascending",
+    "descending",
+    "static"
+   ],
+   "harmony_path": [
+    "dim7",
+    "major",
+    "halfdim7",
+    "major"
+   ],
+   "peak_bar_offset": 1,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 13.5,
+   "entry_state": {
+    "density": 13,
+    "register_center": 70,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 55,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p36",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    180,
+    186
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    0.6,
+    0.4,
+    0.4,
+    0.6,
+    0.6,
+    1.0,
+    0.8
+   ],
+   "register_curve": [
     0.0,
     0.0,
     0.0,
     0.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
     0.0,
     0.0,
     0.0,
@@ -1892,51 +3016,120 @@
     0.0
    ],
    "rh_textures": [
-    "scalar_run",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "held_note",
-    "singing_melody",
-    "held_note",
+    "chordal",
+    "chordal",
+    "chordal",
     "singing_melody",
     "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "held_note"
+    "chordal",
+    "chordal"
    ],
    "lh_textures": [
-    "pedal_point",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "broken_chord_wave"
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
    ],
    "melody_directions": [
-    "descending",
     "static",
     "static",
     "static",
     "static",
     "static",
     "static",
-    "static",
-    "descending",
+    "descending"
+   ],
+   "harmony_path": [
+    "minor",
+    "minor",
+    "dim7",
+    "major",
+    "minor",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.1429,
+   "dotted_rhythm_ratio": 0.5714,
+   "avg_melody_density": 6.2857,
+   "entry_state": {
+    "density": 6,
+    "register_center": 60,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 8,
+    "register_center": 78,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p37",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    187,
+    193
+   ],
+   "length": 7,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.9091,
+    0.9091,
+    0.8182,
+    1.0,
+    0.8182,
+    0.6364
+   ],
+   "register_curve": [
+    0.0,
+    0.2222,
+    0.4444,
+    0.7778,
+    0.5556,
+    1.0,
+    0.6667
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "chordal",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "chordal",
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
     "static",
     "static",
     "static",
@@ -1947,81 +3140,255 @@
    ],
    "harmony_path": [
     "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
+    "dom7",
     "major",
     "major",
     "minor",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major",
     "major",
     "major"
    ],
    "peak_bar_offset": 0,
-   "grace_note_ratio": 0.25,
-   "dotted_rhythm_ratio": 0.5,
-   "avg_melody_density": 2.9375,
+   "grace_note_ratio": 0.4286,
+   "dotted_rhythm_ratio": 0.7143,
+   "avg_melody_density": 9.5714,
    "entry_state": {
-    "density": 12,
-    "register_center": 70,
-    "texture": "scalar_run",
+    "density": 11,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
     "has_rests": false
    },
    "exit_state": {
-    "density": 1,
+    "density": 7,
     "register_center": 80,
-    "texture": "held_note",
+    "texture": "chordal",
     "has_rests": false
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p13",
+   "phrase_id": "weber_weber_concertino_clarinet_p38",
    "source": "weber/concertino_clarinet",
    "bar_range": [
     194,
-    209
+    194
    ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "C",
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    6,
+    8
    ],
    "density_curve": [
-    0.1667,
-    0.8333,
-    0.3333,
-    0.8333,
-    0.6667,
-    0.8333,
-    0.3333,
-    1.0,
-    0.6667,
-    0.0,
-    0.6667,
-    0.0,
-    0.6667,
-    0.0,
-    0.6667,
-    0.0
+    1.0
    ],
    "register_curve": [
-    0.95,
-    0.9,
-    0.9,
-    0.7,
-    0.8,
-    0.9,
-    0.9,
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "chordal"
+   ],
+   "lh_textures": [
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 7.0,
+   "entry_state": {
+    "density": 7,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 7,
+    "register_center": 79,
+    "texture": "chordal",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p39",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    195,
+    196
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.8235
+   ],
+   "register_curve": [
+    0.0,
+    0.0
+   ],
+   "rest_pattern": [
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.5,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 15.5,
+   "entry_state": {
+    "density": 17,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 14,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p40",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    197,
+    200
+   ],
+   "length": 4,
+   "role": "opening",
+   "cadence_type": "authentic",
+   "key": "G",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.9412,
+    1.0,
+    0.8235
+   ],
+   "register_curve": [
+    0.0,
+    0.5,
+    1.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse"
+   ],
+   "melody_directions": [
+    "static",
+    "static",
+    "static",
+    "descending"
+   ],
+   "harmony_path": [
+    "major",
+    "dom7",
+    "major",
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.5,
+   "dotted_rhythm_ratio": 0.75,
+   "avg_melody_density": 16.0,
+   "entry_state": {
+    "density": 17,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 14,
+    "register_center": 78,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p41",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    201,
+    216
+   ],
+   "length": 16,
+   "role": "opening",
+   "cadence_type": "none",
+   "key": "C",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.8889,
+    0.2222,
+    0.2222,
+    0.2222,
+    0.2222,
+    0.2222,
+    0.2222,
+    0.2222,
+    0.3889,
+    0.7222,
+    0.6667,
+    0.5,
+    0.4444,
+    0.6667,
+    0.6667
+   ],
+   "register_curve": [
     0.7,
     0.8,
     0.0,
@@ -2030,10 +3397,18 @@
     1.0,
     0.0,
     0.85,
-    0.0
+    0.0,
+    0.0,
+    0.15,
+    0.55,
+    0.75,
+    0.7,
+    0.15,
+    0.55
    ],
    "rest_pattern": [
     0.0,
+    1.0,
     0.0,
     0.0,
     0.0,
@@ -2042,306 +3417,144 @@
     0.0,
     0.0,
     0.0,
+    1.0,
+    1.0,
     0.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   "rh_textures": [
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note",
-    "singing_melody",
-    "held_note"
-   ],
-   "lh_textures": [
-    "broken_chord_wave",
-    "alberti",
-    "alberti",
-    "alberti",
-    "alberti",
-    "alberti",
-    "alberti",
-    "alberti",
-    "alberti",
-    "bass_melody",
-    "silence",
-    "bass_melody",
-    "silence",
-    "bass_melody",
-    "silence",
-    "bass_melody"
-   ],
-   "melody_directions": [
-    "static",
-    "static",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "descending",
-    "static",
-    "static",
-    "static",
-    "descending",
-    "static",
-    "descending",
-    "static",
-    "descending",
-    "static"
-   ],
-   "harmony_path": [
-    "major",
-    "major",
-    "minor",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "minor",
-    "major"
-   ],
-   "peak_bar_offset": 7,
-   "grace_note_ratio": 0.25,
-   "dotted_rhythm_ratio": 0.375,
-   "avg_melody_density": 2.875,
-   "entry_state": {
-    "density": 1,
-    "register_center": 79,
-    "texture": "held_note",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p14",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    210,
-    225
-   ],
-   "length": 16,
-   "role": "middle",
-   "cadence_type": "none",
-   "key": "C",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    0.0,
-    0.5882,
-    0.5882,
-    0.2941,
-    0.2353,
-    0.5882,
-    0.5882,
-    0.2941,
-    0.2353,
-    0.5882,
-    0.7059,
-    0.7059,
-    0.7059,
-    0.9412,
-    0.0588,
+    1.0,
     1.0
    ],
-   "register_curve": [
-    0.0,
-    0.1429,
-    0.5238,
-    0.7143,
-    0.6667,
-    0.1429,
-    0.5238,
-    0.7143,
-    0.6667,
-    0.8095,
-    0.6667,
-    0.7143,
-    0.7619,
-    0.2857,
-    1.0,
-    0.4762
-   ],
-   "rest_pattern": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
    "rh_textures": [
-    "held_note",
-    "scalar_run",
-    "scalar_run",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "singing_melody",
+    "chordal",
+    "singing_melody",
+    "chordal",
     "singing_melody",
     "singing_melody",
-    "scalar_run",
-    "scalar_run",
-    "singing_melody",
-    "singing_melody",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "scalar_run",
-    "passage_work",
-    "held_note",
-    "passage_work"
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration"
    ],
    "lh_textures": [
-    "broken_chord_wave",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "silence",
+    "block_chord_offbeat",
+    "silence",
+    "block_chord_offbeat",
+    "silence",
     "bass_melody",
-    "pedal_point",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_sparse",
     "bass_melody",
-    "bass_melody",
-    "pedal_point",
-    "pedal_point",
-    "broken_chord_wave",
-    "bass_melody",
-    "bass_melody",
-    "bass_melody",
-    "broken_chord_wave",
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
-    "pedal_point"
+    "block_chord_offbeat",
+    "block_chord_offbeat"
    ],
    "melody_directions": [
     "static",
-    "ascending",
-    "ascending",
+    "static",
+    "static",
     "descending",
+    "static",
+    "descending",
+    "static",
+    "descending",
+    "static",
     "static",
     "ascending",
     "ascending",
     "descending",
     "static",
-    "descending",
-    "descending",
     "ascending",
-    "descending",
-    "ascending",
-    "static",
     "ascending"
    ],
    "harmony_path": [
-    "major",
-    "major",
-    "major",
-    "major",
+    "minor",
+    "dom7",
+    "minor",
+    "minor",
+    "dim7",
+    "dim",
     "minor",
     "major",
     "major",
     "major",
-    "minor",
-    "major",
-    "minor",
     "major",
     "major",
-    "major",
+    "dom7",
+    "dom7",
     "major",
     "major"
    ],
-   "peak_bar_offset": 15,
-   "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 8.625,
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0625,
+   "dotted_rhythm_ratio": 0.125,
+   "avg_melody_density": 8.4375,
    "entry_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
+    "density": 18,
+    "register_center": 74,
+    "texture": "zigzag_figuration",
     "has_rests": false
    },
    "exit_state": {
-    "density": 17,
-    "register_center": 70,
-    "texture": "passage_work",
-    "has_rests": false
+    "density": 12,
+    "register_center": 71,
+    "texture": "zigzag_figuration",
+    "has_rests": true
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p15",
+   "phrase_id": "weber_weber_concertino_clarinet_p42",
    "source": "weber/concertino_clarinet",
    "bar_range": [
-    226,
-    238
+    217,
+    228
    ],
-   "length": 13,
+   "length": 12,
    "role": "closing",
    "cadence_type": "half",
-   "key": "F",
+   "key": "B-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    6,
+    8
    ],
    "density_curve": [
-    0.0588,
+    0.5556,
+    0.4444,
+    0.7778,
+    0.8889,
+    0.9444,
     1.0,
-    0.0588,
-    0.7059,
-    0.7059,
-    0.7059,
-    0.7059,
-    0.0588,
-    0.0588,
-    0.5882,
-    0.0588,
-    0.1765,
-    0.0588
+    0.9444,
+    0.3889,
+    1.0,
+    0.3889,
+    1.0,
+    0.3333
    ],
    "register_curve": [
-    0.6667,
+    0.3913,
+    0.3478,
+    0.4783,
+    0.3478,
+    0.3913,
+    0.4348,
     0.0,
-    1.0,
-    0.4667,
-    0.4667,
-    0.2667,
-    0.1333,
-    0.3333,
-    0.3333,
-    0.3333,
-    0.9333,
-    0.8667,
+    0.6522,
+    0.1739,
+    0.7826,
+    0.3478,
     1.0
    ],
    "rest_pattern": [
@@ -2351,250 +3564,456 @@
     0.0,
     0.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
    ],
    "rh_textures": [
-    "held_note",
-    "passage_work",
-    "held_note",
+    "chordal",
+    "chordal",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "zigzag_figuration",
     "scalar_run",
+    "chordal",
     "scalar_run",
+    "chordal",
     "scalar_run",
-    "scalar_run",
-    "held_note",
-    "held_note",
-    "scalar_run",
-    "held_note",
-    "singing_melody",
-    "held_note"
+    "chordal"
    ],
    "lh_textures": [
-    "broken_chord_wave",
-    "pedal_point",
-    "broken_chord_wave",
     "bass_melody",
     "bass_melody",
-    "pedal_point",
-    "silence",
-    "pedal_point",
-    "bass_melody",
-    "bass_melody",
-    "pedal_point",
-    "bass_melody",
-    "broken_chord_wave"
+    "block_chord_sparse",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "alberti",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_offbeat"
    ],
    "melody_directions": [
+    "descending",
+    "static",
+    "descending",
+    "descending",
+    "ascending",
+    "descending",
+    "ascending",
     "static",
     "ascending",
     "static",
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "dom7",
+    "dom7",
+    "major",
+    "minor",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major",
+    "major"
+   ],
+   "peak_bar_offset": 5,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4167,
+   "avg_melody_density": 13.0,
+   "entry_state": {
+    "density": 10,
+    "register_center": 75,
+    "texture": "chordal",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 6,
+    "register_center": 89,
+    "texture": "chordal",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p43",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    229,
+    233
+   ],
+   "length": 5,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    1.0,
+    0.8125,
+    0.75,
+    0.1875
+   ],
+   "register_curve": [
+    1.0,
+    1.0,
+    0.4,
+    0.0,
+    0.6
+   ],
+   "rest_pattern": [
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration",
+    "zigzag_figuration",
+    "scalar_run",
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "interlocking",
+    "interlocking",
+    "pedal_point",
+    "silence",
+    "walking_bass"
+   ],
+   "melody_directions": [
     "static",
     "static",
     "descending",
     "ascending",
-    "static",
-    "static",
-    "ascending",
-    "static",
-    "static",
     "static"
    ],
    "harmony_path": [
     "major",
     "major",
     "major",
-    "major",
-    "major",
     "minor",
-    "minor",
-    "major",
-    "major",
-    "major",
-    "major",
-    "major",
     "major"
    ],
-   "peak_bar_offset": 1,
-   "grace_note_ratio": 0.0769,
-   "dotted_rhythm_ratio": 0.4615,
-   "avg_melody_density": 6.4615,
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 0.4,
+   "avg_melody_density": 12.0,
    "entry_state": {
-    "density": 1,
-    "register_center": 84,
-    "texture": "held_note",
+    "density": 16,
+    "register_center": 81,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 3,
+    "register_center": 79,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p44",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    234,
+    234
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "G",
+   "key_mode": "minor",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 79,
+    "texture": "singing_melody",
     "has_rests": false
    },
    "exit_state": {
-    "density": 1,
-    "register_center": 89,
-    "texture": "held_note",
+    "density": 5,
+    "register_center": 79,
+    "texture": "singing_melody",
     "has_rests": false
    }
   },
   {
-   "phrase_id": "weber_weber_concertino_clarinet_p16",
+   "phrase_id": "weber_weber_concertino_clarinet_p45",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    235,
+    236
+   ],
+   "length": 2,
+   "role": "opening",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0,
+    0.1429
+   ],
+   "register_curve": [
+    0.0,
+    1.0
+   ],
+   "rest_pattern": [
+    0.0,
+    1.0
+   ],
+   "rh_textures": [
+    "scalar_run",
+    "singing_melody"
+   ],
+   "lh_textures": [
+    "walking_bass",
+    "pedal_point"
+   ],
+   "melody_directions": [
+    "ascending",
+    "static"
+   ],
+   "harmony_path": [
+    "major",
+    "dim"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 8.0,
+   "entry_state": {
+    "density": 14,
+    "register_center": 79,
+    "texture": "scalar_run",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 2,
+    "register_center": 88,
+    "texture": "singing_melody",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p46",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    237,
+    237
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    0.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "dom7"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 1.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 5.0,
+   "entry_state": {
+    "density": 5,
+    "register_center": 88,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   },
+   "exit_state": {
+    "density": 5,
+    "register_center": 88,
+    "texture": "zigzag_figuration",
+    "has_rests": false
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p47",
+   "source": "weber/concertino_clarinet",
+   "bar_range": [
+    238,
+    238
+   ],
+   "length": 1,
+   "role": "closing",
+   "cadence_type": "half",
+   "key": "E-",
+   "key_mode": "major",
+   "time_sig": [
+    6,
+    8
+   ],
+   "density_curve": [
+    1.0
+   ],
+   "register_curve": [
+    0.0
+   ],
+   "rest_pattern": [
+    1.0
+   ],
+   "rh_textures": [
+    "zigzag_figuration"
+   ],
+   "lh_textures": [
+    "block_chord_offbeat"
+   ],
+   "melody_directions": [
+    "static"
+   ],
+   "harmony_path": [
+    "major"
+   ],
+   "peak_bar_offset": 0,
+   "grace_note_ratio": 0.0,
+   "dotted_rhythm_ratio": 1.0,
+   "avg_melody_density": 9.0,
+   "entry_state": {
+    "density": 9,
+    "register_center": 89,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   },
+   "exit_state": {
+    "density": 9,
+    "register_center": 89,
+    "texture": "zigzag_figuration",
+    "has_rests": true
+   }
+  },
+  {
+   "phrase_id": "weber_weber_concertino_clarinet_p48",
    "source": "weber/concertino_clarinet",
    "bar_range": [
     239,
-    239
-   ],
-   "length": 1,
-   "role": "closing",
-   "cadence_type": "half",
-   "key": "C",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    0.0
-   ],
-   "register_curve": [
-    0.0
-   ],
-   "rest_pattern": [
-    0.0
-   ],
-   "rh_textures": [
-    "held_note"
-   ],
-   "lh_textures": [
-    "broken_chord_wave"
-   ],
-   "melody_directions": [
-    "static"
-   ],
-   "harmony_path": [
-    "major"
-   ],
-   "peak_bar_offset": 0,
-   "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 0.0,
-   "entry_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p17",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    240,
-    240
-   ],
-   "length": 1,
-   "role": "closing",
-   "cadence_type": "half",
-   "key": "C",
-   "key_mode": "major",
-   "time_sig": [
-    4,
-    4
-   ],
-   "density_curve": [
-    0.0
-   ],
-   "register_curve": [
-    0.0
-   ],
-   "rest_pattern": [
-    0.0
-   ],
-   "rh_textures": [
-    "held_note"
-   ],
-   "lh_textures": [
-    "pedal_point"
-   ],
-   "melody_directions": [
-    "static"
-   ],
-   "harmony_path": [
-    "major"
-   ],
-   "peak_bar_offset": 0,
-   "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 0.0,
-   "entry_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
-   },
-   "exit_state": {
-    "density": 0,
-    "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
-   }
-  },
-  {
-   "phrase_id": "weber_weber_concertino_clarinet_p18",
-   "source": "weber/concertino_clarinet",
-   "bar_range": [
-    241,
     241
    ],
-   "length": 1,
-   "role": "closing",
+   "length": 3,
+   "role": "opening",
    "cadence_type": "half",
-   "key": "C",
+   "key": "E-",
    "key_mode": "major",
    "time_sig": [
-    4,
-    4
+    6,
+    8
    ],
    "density_curve": [
-    0.0
+    1.0,
+    0.3333,
+    0.1667
    ],
    "register_curve": [
+    0.0,
+    0.0,
     0.0
    ],
    "rest_pattern": [
+    1.0,
+    1.0,
     0.0
    ],
    "rh_textures": [
-    "held_note"
+    "singing_melody",
+    "chordal",
+    "chordal"
    ],
    "lh_textures": [
-    "pedal_point"
+    "block_chord_offbeat",
+    "block_chord_sparse",
+    "block_chord_sparse"
    ],
    "melody_directions": [
+    "static",
+    "static",
     "static"
    ],
    "harmony_path": [
+    "major",
+    "major",
     "major"
    ],
    "peak_bar_offset": 0,
    "grace_note_ratio": 0.0,
-   "dotted_rhythm_ratio": 0.0,
-   "avg_melody_density": 0.0,
+   "dotted_rhythm_ratio": 0.3333,
+   "avg_melody_density": 3.0,
    "entry_state": {
-    "density": 0,
+    "density": 6,
     "register_center": 60,
-    "texture": "held_note",
-    "has_rests": false
+    "texture": "singing_melody",
+    "has_rests": true
    },
    "exit_state": {
-    "density": 0,
+    "density": 1,
     "register_center": 60,
-    "texture": "held_note",
+    "texture": "chordal",
     "has_rests": false
    }
   }

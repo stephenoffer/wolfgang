@@ -1,24 +1,118 @@
 {
  "counts": {
-  "pedal_point": {
-   "pedal_point": 13,
-   "bass_melody": 13,
-   "broken_chord_wave": 1
+  "block_chord_sparse": {
+   "block_chord_sparse": 29,
+   "walking_bass": 5,
+   "bass_melody": 8,
+   "alberti": 9,
+   "block_chord_offbeat": 1,
+   "silence": 2,
+   "broken_chord_desc": 1
+  },
+  "walking_bass": {
+   "walking_bass": 357,
+   "bass_melody": 97,
+   "block_chord_sparse": 8,
+   "alberti": 72,
+   "broken_chord_wave": 94,
+   "pedal_point": 26,
+   "broken_chord_desc": 3,
+   "block_chord_offbeat": 2,
+   "broken_chord_asc": 2,
+   "block_chord_tremolo": 3,
+   "silence": 2
   },
   "bass_melody": {
-   "pedal_point": 8,
-   "bass_melody": 5,
-   "broken_chord_wave": 6
+   "walking_bass": 96,
+   "bass_melody": 95,
+   "block_chord_sparse": 6,
+   "broken_chord_wave": 23,
+   "pedal_point": 15,
+   "broken_chord_desc": 2,
+   "block_chord_offbeat": 3,
+   "alberti": 15,
+   "silence": 2,
+   "broken_chord_asc": 1
+  },
+  "block_chord_offbeat": {
+   "block_chord_sparse": 5,
+   "bass_melody": 3,
+   "block_chord_offbeat": 5,
+   "walking_bass": 1,
+   "alberti": 1,
+   "broken_chord_desc": 2,
+   "broken_chord_wave": 1
+  },
+  "alberti": {
+   "block_chord_sparse": 7,
+   "alberti": 74,
+   "broken_chord_wave": 50,
+   "walking_bass": 72,
+   "bass_melody": 23,
+   "block_chord_offbeat": 2,
+   "pedal_point": 9,
+   "block_chord_tremolo": 2
   },
   "broken_chord_wave": {
-   "pedal_point": 6,
-   "bass_melody": 1
+   "block_chord_sparse": 3,
+   "walking_bass": 71,
+   "broken_chord_wave": 194,
+   "alberti": 58,
+   "block_chord_offbeat": 3,
+   "pedal_point": 9,
+   "bass_melody": 25,
+   "silence": 3,
+   "broken_chord_asc": 1,
+   "block_chord_tremolo": 1
+  },
+  "silence": {
+   "walking_bass": 11,
+   "silence": 27,
+   "broken_chord_wave": 3,
+   "alberti": 2,
+   "block_chord_sparse": 1,
+   "bass_melody": 1,
+   "pedal_point": 4
+  },
+  "pedal_point": {
+   "walking_bass": 27,
+   "broken_chord_wave": 4,
+   "silence": 7,
+   "alberti": 4,
+   "block_chord_sparse": 1,
+   "pedal_point": 28,
+   "bass_melody": 8,
+   "block_chord_tremolo": 1
+  },
+  "broken_chord_desc": {
+   "walking_bass": 4,
+   "bass_melody": 2,
+   "block_chord_sparse": 1,
+   "alberti": 1
+  },
+  "broken_chord_asc": {
+   "alberti": 1,
+   "broken_chord_asc": 1,
+   "broken_chord_wave": 2,
+   "walking_bass": 1
+  },
+  "block_chord_tremolo": {
+   "walking_bass": 6,
+   "broken_chord_wave": 1
   }
  },
  "self_continuation": {
-  "pedal_point": 0.4815,
-  "bass_melody": 0.2632,
-  "broken_chord_wave": 0.0
+  "block_chord_sparse": 0.5273,
+  "walking_bass": 0.536,
+  "bass_melody": 0.3682,
+  "block_chord_offbeat": 0.2778,
+  "alberti": 0.3096,
+  "broken_chord_wave": 0.5272,
+  "silence": 0.551,
+  "pedal_point": 0.35,
+  "broken_chord_desc": 0.0,
+  "broken_chord_asc": 0.2,
+  "block_chord_tremolo": 0.0
  },
- "total_transitions": 53
+ "total_transitions": 1753
 }

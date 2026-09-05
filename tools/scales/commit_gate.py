@@ -675,8 +675,17 @@ def _check_contour(layer: LayerIR) -> Optional[GateDiagnostic]:
     )
 
 
-def _check_interval_profile(layer: LayerIR) -> Optional[GateDiagnostic]:
-    score, detail = musicality.melodic_interval_profile(layer)
+def _check_interval_profile(
+    layer: LayerIR, composer: str = ""
+) -> Optional[GateDiagnostic]:
+    # The composer's OWN interval distribution, not a generic 65/25/10 that
+    # describes nobody — see `musicality.composer_interval_priors`. This runs at
+    # commit time, so the constant was actively pushing every romantic phrase
+    # toward the stepwise writing that `score_realism` then flags on the
+    # finished piece.
+    score, detail = musicality.melodic_interval_profile(
+        layer, priors=musicality.composer_interval_priors(composer)
+    )
     if detail.get("interval_count", 0) < 8 or score >= 0.5:
         return None
     actual = detail.get("actual", {})
@@ -865,8 +874,11 @@ def run_commit_gate(
         )
 
     # Musicality warns
-    for check_fn in (_check_contour, _check_interval_profile):
-        d = check_fn(layer)
+    for check_fn, kwargs in (
+        (_check_contour, {}),
+        (_check_interval_profile, {"composer": resolved}),
+    ):
+        d = check_fn(layer, **kwargs)
         if d:
             diagnostics.append(d)
     d = _check_expression_zero(layer, slot, resolved)

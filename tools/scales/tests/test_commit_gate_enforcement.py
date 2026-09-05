@@ -605,8 +605,9 @@ def test_a_silent_bar_has_no_density_floor():
 
 def test_flat_dynamics_does_not_scold_a_period_that_does_not_notate_dynamics():
     """`expression_enricher.ENGRAVING_STYLES` sets renaissance
-    `dynamic_every_n_bars=99` — "dynamics are not notated" — and baroque 8, and
-    the engraver obeys it.
+    `dynamic_every_n_bars=99` — "dynamics are not notated" — and, since the
+    Baroque corpus was measured (20/20 Bach scores carry zero), 99 for baroque
+    too. The engraver obeys it and so does this.
 
     The detector had no period awareness and warned at 4 bars for everyone, so
     every Palestrina phrase was told forever that its dynamics were flat, about
@@ -630,9 +631,15 @@ def test_flat_dynamics_does_not_scold_a_period_that_does_not_notate_dynamics():
     # Renaissance notates none at any length.
     assert not warns("palestrina", 4)
     assert not warns("palestrina", 16)
-    # Baroque marks about every 8 bars, so a 4-bar phrase proves nothing.
+    # Nor does the Baroque. This asserted `warns("bach", 8)` while the table said
+    # baroque marks every 8 bars — a figure written with no evidence beside it.
+    # Measured since: **20 of 20 real Bach scores carry ZERO dynamics** (median
+    # 0.000 per bar), and Corelli 1/1 the same, against Mozart's 0.873 and
+    # Chopin's 0.472. The table now says 99 for both early periods and this
+    # follows it, which is the whole point of the two reading one table.
     assert not warns("bach", 4)
-    assert warns("bach", 8)
+    assert not warns("bach", 8)
+    assert not warns("bach", 32)
     # Classical and Romantic mark often enough that 4 bars is a real claim.
     assert warns("mozart", 4)
     assert warns("chopin", 4)

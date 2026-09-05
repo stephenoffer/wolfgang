@@ -83,8 +83,9 @@ movements, stepwise motion runs **40% to 79%, median 64.5%** (p10 55%, p90 75%).
 
 The figure previously given here was "roughly 70-80%", which is the *top* of
 that range: aiming at it pushes a melody toward continuous scalar motion, which
-is the `scalar_overuse` defect — the last generated piece ran 39% of its melody
-bars as plain unbroken scale runs against a real median of 2%. A melody at 50%
+is the `scalar_overuse` defect: real movements run 0-15% of melody bars as
+plain unbroken scale runs, median 2%, and generated music drifts far above that
+whenever "stepwise" is treated as a target rather than a description. A melody at 50%
 stepwise is not leap-heavy; it is Beethoven.
 
 It varies widely by style — Baroque Fortspinnung is more stepwise, angular

@@ -36,6 +36,7 @@ from statistics import mean, pstdev
 from typing import Any
 
 from .counterpoint import attack_times, extract_voices, sounding_at
+from .models import is_keyboard
 
 # ─── Registers ───────────────────────────────────────────────────────────────
 #
@@ -121,6 +122,13 @@ CORPUS_TEXTURE = {
 # Floors set BELOW the minimum any of the 22 real movements reached, so a
 # suggestion means "outside the repertoire", not "below average". A rule tuned
 # to the median would fire on half of Mozart.
+#
+# These are the GENERIC floors; a caller may pass composer-scoped ones (Chopin's
+# right hand runs 1.30-2.43 notes per attack, Mozart's 1.14-1.58). Any message
+# quoting a threshold must therefore read it out of `floor` rather than hard-code
+# it — one did, quoting the LEFT hand's 1.06 in the RIGHT hand's sentence, so the
+# critic was handed "averages 1.14 ... below the 1.06 minimum", which is both
+# arithmetically false and the wrong hand.
 _FLOOR = {
     "rh_notes_per_attack": 1.12,  # real minimum 1.14
     "lh_notes_per_attack": 1.04,  # real minimum 1.06
@@ -156,12 +164,62 @@ def _period_of(style: str | None) -> str | None:
     return name if name in ("classical", "baroque", "romantic", "impressionist") else None
 
 
-def floors_for(style: str | None = None) -> dict[str, float]:
-    """The suggestion floors in force, with any per-style tightening applied."""
+# Ensemble writing is not thin piano writing, and judging it by piano floors
+# rejects it. FALSIFIED against 22 real multi-part (4+ voice) movements —
+# Vivaldi, Mendelssohn, Brahms, Fauré, Tchaikovsky part-songs and chamber works:
+#
+#   "only N registers are used"          fired on 23% of them
+#   "the left hand averages 1.0 / bar"   fired on 14%
+#   "the right hand is a bare single line" fired on 9%
+#
+# All three are properties of ENSEMBLE SCORING rather than defects. Each
+# instrument covers a narrow register, so four registers across a quartet is
+# full scoring, not a narrow piece. A bass instrument plays one line, so 1.0
+# notes per attack is what a cello IS, not a thin left hand. And a single
+# melody instrument is a single line by definition.
+_ENSEMBLE_FLOOR = {
+    "registers_used": 2,          # a quartet spanning four registers is fully scored
+    "lh_notes_per_attack": 0.0,   # one bass instrument = one line, by definition
+    "rh_notes_per_attack": 0.0,   # one melody instrument = one line, by definition
+    "single_line_rh_pct": 1.01,   # never fires: a melody part is monophonic
+    "thirds_sixths_pct": 0.0,     # doubling in thirds is an orchestration choice
+    # MEASURED over 59 real multi-part movements: simultaneity CV runs
+    # min 0.000, 5th percentile 0.000, median 0.136, max 0.549. Sustained
+    # ensemble scoring holds a constant number of parts for long stretches —
+    # that is what "scoring" means — and a genuine zero is common. There is no
+    # floor above zero that does not reject real music, so the check does not
+    # fire for ensembles at all. A guessed 0.06 still rejected 25% of them;
+    # setting a threshold by eye and then measuring it is the mistake this
+    # session keeps repeating.
+    "simultaneity_cv": 0.0,
+    "register_span": 25,          # real ensemble p5 is 28 semitones
+    "texture_shift_low": 0.0,     # real ensemble p5 is 0.0 — a held texture is scoring
+}
+
+
+def _is_keyboard(layer_ir) -> bool:
+    """Whether the texture floors below are the right ones for this material.
+
+    Delegates to `models.is_keyboard`, which is the single decider — four call
+    sites each had their own keyboard whitelist and all four missed the
+    `piano_solo` and `solo piano` spellings that saved graphs actually carry.
+    """
+    return is_keyboard(layer_ir)
+
+
+def floors_for(style: str | None = None, layer_ir=None) -> dict[str, float]:
+    """The suggestion floors in force.
+
+    Tightened by period where a period's own range is narrower than the union,
+    and relaxed for ensemble material, whose texture statistics differ by nature
+    rather than by quality.
+    """
     out = dict(_FLOOR)
     period = _period_of(style)
     if period and period in _STYLE_FLOOR:
         out.update(_STYLE_FLOOR[period])
+    if layer_ir is not None and not _is_keyboard(layer_ir):
+        out.update(_ENSEMBLE_FLOOR)
     return out
 
 
@@ -442,7 +500,11 @@ def analyze_voicing(
     report.simultaneity_cv = (pstdev(sims) / mean(sims)) if mean(sims) else 0.0
     report.thirds_sixths_pct = _thirds_and_sixths(layer_ir)
 
-    hs = _hand_spans(layer_ir)
+    # A hand span is meaningless without hands. In ensemble writing the two
+    # "hands" are different players, so a wide gap between them is scoring, not
+    # a reach — and the check fired on real four-part movements with spans of
+    # two and three octaves that no single performer was ever asked to play.
+    hs = _hand_spans(layer_ir) if _is_keyboard(layer_ir) else []
     if hs:
         report.widest_hand_span = max(s for _, _, s in hs)
         report.unplayable_spans = [
@@ -451,7 +513,7 @@ def analyze_voicing(
 
     report.style = _period_of(style) or ""
     _observe(report)
-    _suggest(report, floors_for(style))
+    _suggest(report, floors_for(style, layer_ir))
     return report
 
 
@@ -495,14 +557,15 @@ def _suggest(r: VoicingReport, floor: dict[str, float] | None = None) -> None:
     if r.rh_notes_per_attack and r.rh_notes_per_attack < floor["rh_notes_per_attack"]:
         r.suggestions.append(
             f"The right hand averages {r.rh_notes_per_attack:.2f} notes per attack — "
-            f"below the 1.06 minimum of every real movement measured. It is one line "
-            f"and nothing else, all the way through."
+            f"below the {floor['rh_notes_per_attack']:.2f} floor taken from real "
+            f"movements. It is one line and nothing else, all the way through."
         )
     if r.lh_notes_per_attack and r.lh_notes_per_attack < floor["lh_notes_per_attack"]:
         r.suggestions.append(
-            f"The left hand averages {r.lh_notes_per_attack:.2f} notes per attack "
-            f"(real range 1.05-2.57). Even a simple accompaniment usually carries a "
-            f"third above the bass somewhere."
+            f"The left hand averages {r.lh_notes_per_attack:.2f} notes per attack, "
+            f"below the {floor['lh_notes_per_attack']:.2f} floor taken from real "
+            f"movements. Even a simple accompaniment usually carries a third above "
+            f"the bass somewhere."
         )
     if r.thirds_sixths_pct < floor["thirds_sixths_pct"]:
         r.suggestions.append(

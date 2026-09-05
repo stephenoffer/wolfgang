@@ -30,7 +30,7 @@ import json
 import logging
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, List, Optional
 
 # Parsing a numbered, bolded catalogue item: `N. **Name** — description`.
 #
@@ -50,7 +50,197 @@ from typing import Any
 # this class of bug, and `test_composer_craft_coverage` asserts the parsed count
 # equals the number of numbered items in the source.
 _ITEM_HEAD_RE = re.compile(r"^[ \t]*(\d+)\.\s+\*\*(?P<name>.+?)\*\*(?P<rest>.*)$")
+#: The same item whose bold NAME wraps onto the next line — markdown allows it
+#: and a person writing a long device name does it without thinking. Matching
+#: only the single-line form dropped such an item silently, which is precisely
+#: the failure this parser was rewritten as a line walker to stop: the
+#: catalogue looked complete, the pack was one device short, and nothing said so.
+_ITEM_HEAD_OPEN_RE = re.compile(r"^[ \t]*(\d+)\.\s+\*\*(?P<name>[^*]+)$")
 _SECTION_RE = re.compile(r"^##+\s+(?P<title>.+?)\s*$")
+
+
+
+_TABLE_ROW_RE = re.compile(r"^\s*\|(?P<cells>.+)\|\s*$")
+_TABLE_RULE_RE = re.compile(r"^\s*\|[\s:|-]+\|\s*$")
+
+
+
+def _profile_dirs(composer: str) -> list[Path]:
+    """EVERY profile directory for a composer, heaviest first.
+
+    Wagner has two, and they are not a mistake: `romantic/wagner` covers the
+    earlier operas and `late-romantic/wagner` covers Tristan onward. Each
+    cross-references the other, and the late one's own guide says "for
+    composition, use the romantic/wagner fingerprints".
+
+    The compiler picked the heavier one and warned that "half the doctrine is
+    unreachable", which was exactly right: **536 substantive lines** existed only
+    in the copy it discarded — the Parsifal key associations, the layered-motif
+    tables, the late orchestration philosophy.
+    """
+    out: list[tuple[int, Path]] = []
+    for genre_dir in sorted(CONTEXT_DIR.iterdir()):
+        if not genre_dir.is_dir():
+            continue
+        profiles = genre_dir / "composer-profiles" / composer
+        if profiles.is_dir():
+            out.append((-sum(f.stat().st_size for f in profiles.glob("*.md")), profiles))
+    out.sort(key=lambda pair: (pair[0], str(pair[1])))
+    return [path for _weight, path in out]
+
+
+
+def _merge_pass_result(into, addition):
+    """Merge one pass's output from another composer into the accumulator.
+
+    Lists concatenate and deduplicate by `id` (or by the whole entry when there
+    is none); dicts merge key-wise with the same rule; scalars keep the first
+    non-empty value. That covers every shape the profile-derived passes return.
+    """
+    if into is None:
+        return addition
+    if isinstance(into, list) and isinstance(addition, list):
+        seen = {json.dumps(e.get("id"), sort_keys=True) if isinstance(e, dict) and e.get("id")
+                else json.dumps(e, sort_keys=True) for e in into}
+        for entry in addition:
+            key = (
+                json.dumps(entry.get("id"), sort_keys=True)
+                if isinstance(entry, dict) and entry.get("id")
+                else json.dumps(entry, sort_keys=True)
+            )
+            if key not in seen:
+                seen.add(key)
+                into.append(entry)
+        return into
+    if isinstance(into, dict) and isinstance(addition, dict):
+        for key, value in addition.items():
+            into[key] = _merge_pass_result(into.get(key), value)
+        return into
+    return into if into not in (None, "", 0, [], {}) else addition
+
+
+def _style_member_dirs(composer: str) -> list[Path]:
+    """Profile directories of a style's member composers, or [] if not a style.
+
+    Every profile-derived pass takes ONE directory, and a style id
+    (`style__classical`) has none — so `compile("style__classical")` produced a
+    pack with **no orchestration roles, no influences and no phrase prototypes**,
+    while `compile("mozart")` produced 40, 15 and 8 of them.
+
+    Composing "in the classical style" is a first-class mode in this system, and
+    it was silently losing every piece of composer-profile doctrine. Only the
+    passes fed by the SHARED general documents — figuration, cadence scripts,
+    harmonic devices — survived, which is why the style packs looked populated.
+    """
+    try:
+        from .style_registry import is_style_id, style_members, style_name
+    except ImportError:  # pragma: no cover - defensive
+        return []
+    if not is_style_id(composer):
+        return []
+    out: list[Path] = []
+    for member in style_members(style_name(composer)) or []:
+        for directory in _profile_dirs(member):
+            if directory not in out:
+                out.append(directory)
+    return out
+
+
+def _profile_text(profile_dir: Path | None, filename: str) -> str:
+    """A named profile file, joined across ALL of that composer's directories.
+
+    Concatenating is safe for every reader of this: they parse tables and
+    numbered catalogues, so a second copy of the file yields more entries rather
+    than a conflicting single value. Duplicate rows deduplicate downstream by id.
+    """
+    if profile_dir is None:
+        return ""
+    texts: list[str] = []
+    for directory in _profile_dirs(profile_dir.name) or [profile_dir]:
+        path = directory / filename
+        if not path.exists():
+            continue
+        try:
+            body = path.read_text()
+        except OSError:
+            continue
+        if body and body not in texts:
+            texts.append(body)
+    return "\n\n".join(texts)
+
+
+def _parse_md_tables(text: str) -> List[dict]:
+    """Every markdown table in a document, with the heading it sits under.
+
+    The composer profiles carry their most structured knowledge in TABLES —
+    Chopin's orchestration.md opens with a "Voice Roles" table (voice, hand,
+    function, register) and cross-references.md with "Who Influenced Chopin"
+    (source, what was absorbed, where you hear it). Three compiler passes read
+    those files and none of them could read a table:
+
+      * `_pass_orchestration` was a stub. It opened the file, confirmed it
+        existed, and returned `{"instruments": {}}` with the comment "would be
+        more sophisticated in production". Empty for **55 of 55** composers.
+      * `_pass_cross_references` matched the literal phrases "influenced by",
+        "learned from" or "absorbed" followed by one word. The tables say none of
+        those things. Empty for 39 of 50.
+      * `_pass_prototypes` looked for ```json blocks in prose guides that have
+        none. Empty for 47 of 50.
+
+    All three feed live consumers — `orchestration_roles` is what the concerto
+    and symphony path reads for instrument assignment, and `influence_axes` is
+    how `donor_strategy` finds historically related composers. Each was reading
+    an empty drawer.
+    """
+    tables: List[dict] = []
+    caption = ""
+    headers: List[str] = []
+    rows: List[List[str]] = []
+
+    def cells_of(line: str) -> List[str]:
+        return [c.strip() for c in _TABLE_ROW_RE.match(line).group("cells").split("|")]
+
+    def flush():
+        if headers and rows:
+            tables.append({"caption": caption, "headers": headers, "rows": rows})
+
+    for line in text.splitlines():
+        if _SECTION_RE.match(line):
+            flush()
+            headers, rows = [], []
+            caption = _SECTION_RE.match(line).group("title")
+            continue
+        if _TABLE_RULE_RE.match(line):
+            continue
+        if _TABLE_ROW_RE.match(line):
+            values = cells_of(line)
+            if not headers:
+                headers = values
+            elif len(values) == len(headers):
+                rows.append(values)
+            continue
+        if headers and rows:
+            flush()
+            headers, rows = [], []
+    flush()
+    return tables
+
+
+def _table_column(table: dict, *names: str, taken: Optional[set] = None) -> Optional[int]:
+    """Index of the first header whose text contains any of `names`.
+
+    `taken` excludes columns already claimed by another field. Chopin's voice
+    table heads a column `Hand/Register`, which matches both the hand lookup and
+    the register lookup — so the same cell was filed twice and the entry read as
+    though it carried two facts when it carried one.
+    """
+    for i, header in enumerate(table["headers"]):
+        if taken and i in taken:
+            continue
+        low = header.lower()
+        if any(n in low for n in names):
+            return i
+    return None
 
 
 def _parse_catalogue(text: str):
@@ -66,7 +256,11 @@ def _parse_catalogue(text: str):
         # An item whose whole content is its bold title is still an item.
         return (section, name, body or name)
 
-    for line in text.splitlines():
+    lines = text.splitlines()
+    idx = 0
+    while idx < len(lines):
+        line = lines[idx]
+        idx += 1
         sm = _SECTION_RE.match(line)
         if sm:
             done = _flush()
@@ -76,6 +270,28 @@ def _parse_catalogue(text: str):
             section = sm.group("title")
             continue
         hm = _ITEM_HEAD_RE.match(line)
+        if hm is None and _ITEM_HEAD_OPEN_RE.match(line):
+            # A bold name wrapped onto the next line: rejoin and re-match, so a
+            # wrapped device parses exactly like an unwrapped one.
+            joined = line.rstrip()
+            for look in range(idx, min(idx + 3, len(lines))):
+                nxt = lines[look]
+                # A name that never closes must not swallow what follows. Stop at
+                # a blank line, a new section, or the next numbered item — the
+                # lookahead happily joined `2. **A perfectly good item**` onto an
+                # unclosed name and consumed it whole.
+                if (
+                    not nxt.strip()
+                    or _SECTION_RE.match(nxt)
+                    or _ITEM_HEAD_RE.match(nxt)
+                    or _ITEM_HEAD_OPEN_RE.match(nxt)
+                ):
+                    break
+                joined = joined + " " + nxt.strip()
+                hm = _ITEM_HEAD_RE.match(joined)
+                if hm is not None:
+                    idx = look + 1
+                    break
         if hm:
             done = _flush()
             if done:
@@ -119,6 +335,22 @@ class ContextCompiler:
         """
         # Find profile directory
         profile_dir = self._find_profile_dir(composer, genre)
+        # A STYLE has no profile directory of its own. Run each profile-derived
+        # pass once per member composer and merge, or the style pack ships with
+        # none of the doctrine the individual packs carry — see
+        # `_style_member_dirs`.
+        member_dirs = _style_member_dirs(composer)
+        if member_dirs and profile_dir is None:
+            profile_dir = member_dirs[0]
+
+        def _over_members(fn, *args):
+            """Run a profile-derived pass over every member and merge."""
+            if not member_dirs:
+                return fn(profile_dir, *args)
+            merged = None
+            for directory in member_dirs:
+                merged = _merge_pass_result(merged, fn(directory, *args))
+            return merged
         from .style_registry import pack_dir_name
 
         output_dir = COMPILED_PACKS / pack_dir_name(composer)
@@ -132,7 +364,7 @@ class ContextCompiler:
         results["manifest"] = manifest
 
         # Pass 2: Fingerprints
-        fingerprints = self._pass_fingerprints(profile_dir)
+        fingerprints = _over_members(self._pass_fingerprints)
         self._write_json(output_dir / "fingerprint_rules.json", fingerprints)
         results["fingerprints"] = len(fingerprints.get("items", []))
 
@@ -142,26 +374,26 @@ class ContextCompiler:
         results["statistics"] = bool(statistics.get("total_bars"))
 
         # Pass 4: Formal grammars
-        formal = self._pass_formal_grammar(profile_dir)
+        formal = _over_members(self._pass_formal_grammar)
         self._write_json(output_dir / "formal_graphs.json", formal)
         results["formal"] = len(formal.get("forms", {}))
 
         # Pass 5: Harmonic rules
-        harmonic = self._pass_harmonic_rules(profile_dir, composer)
+        harmonic = _over_members(self._pass_harmonic_rules, composer)
         self._write_json(output_dir / "harmonic_rules.json", harmonic)
         results["harmonic"] = len(harmonic.get("cadence_vocabulary", []))
 
         # Pass 6: Orchestration + period overlays
-        orchestration = self._pass_orchestration(profile_dir)
+        orchestration = _over_members(self._pass_orchestration)
         self._write_json(output_dir / "orchestration_roles.json", orchestration)
-        periods = self._pass_periods(profile_dir)
+        periods = _over_members(self._pass_periods)
         self._write_json(output_dir / "period_overlays.json", periods)
         results["periods"] = len(periods.get("periods", []))
 
         # Pass 7: Cross-references + prototypes + review rubric
-        influence = self._pass_cross_references(profile_dir)
+        influence = _over_members(self._pass_cross_references)
         self._write_json(output_dir / "influence_axes.json", influence)
-        prototypes = self._pass_prototypes(profile_dir)
+        prototypes = _over_members(self._pass_prototypes)
         self._write_json(output_dir / "phrase_prototypes.json", prototypes)
         rubric = self._pass_review_rubric(profile_dir, fingerprints)
         self._write_json(output_dir / "review_rubric.json", rubric)
@@ -213,9 +445,9 @@ class ContextCompiler:
         # written specifically to stop the surface sounding generic never
         # reached the composer that reads this pack.
         fig_tmpl = (
-            self._composer_hand_idioms(profile_dir)
+            _over_members(ContextCompiler._composer_hand_idioms)
             + self._pass_figuration_templates()
-            + self._composer_devices(profile_dir)
+            + _over_members(ContextCompiler._composer_devices)
         )
         self._write_json(output_dir / "figuration_templates.json", fig_tmpl)
         results["figuration_templates"] = len(fig_tmpl)
@@ -345,11 +577,36 @@ class ContextCompiler:
         # Pattern count
         pattern_count = 0
         registry_path = PATTERN_LIBRARY / "composer_registry.json"
+        registry = {}
         if registry_path.exists():
             with open(registry_path) as f:
                 registry = json.load(f)
             if composer in registry:
                 pattern_count = registry[composer].get("pattern_count", 0)
+
+        # A STYLE's corpus is the union of its members'. Both lookups above are
+        # by id, and there is no `reference_index/style__classical/` and no
+        # pattern-registry entry for one — so every style scored 0 bars and 0
+        # patterns and classified as tier **C**, while mozart, haydn and
+        # beethoven are each tier A. Tier C/D is what triggers
+        # `DonorStrategy` in `compile_style`, so composing "in the classical
+        # style" — over the richest corpus this system has, ~27,800 bars — was
+        # treated as a sparse corpus needing a donor, and got one.
+        if not corpus_bar_count:
+            from .style_registry import is_style_id, normalize_style, style_members, style_name
+
+            # Either form: the id `style__classical`, or the bare word the user
+            # typed — `compile_style(piece, "classical")` threads "classical"
+            # all the way down here, and checking only `is_style_id` left the
+            # commoner case computing 0 bars.
+            canon = style_name(composer) if is_style_id(composer) else normalize_style(composer)
+            if canon:
+                for member in style_members(canon):
+                    member_index = REFERENCE_INDEX / member / "bar_index.json"
+                    if member_index.exists():
+                        with open(member_index) as f:
+                            corpus_bar_count += json.load(f).get("total_bars", 0)
+                    pattern_count += (registry.get(member) or {}).get("pattern_count", 0)
 
         # Tier classification
         tier = "D"
@@ -554,9 +811,9 @@ class ContextCompiler:
         if not formal.exists():
             return {"forms": {}}
 
-        text = formal.read_text()
+        text = _profile_text(profile_dir, "formal-approach.md")
         forms = {}
-        for name in ("sonata", "rondo", "ternary"):
+        for name in _FORM_VOCABULARY:
             if not _form_is_asserted(text, name):
                 continue
             sections = _extract_section_proportions(text, name)
@@ -572,7 +829,17 @@ class ContextCompiler:
                         "recap_rule": "tonic",
                     },
                 }
-            elif sections:
+            else:
+                # `elif sections:` — a non-sonata form was recorded ONLY if
+                # section proportions had been extracted, and those come from
+                # "(35-40%)" patterns that most profiles do not use. So a form
+                # the document plainly asserts was dropped for lacking a
+                # percentage table: Palestrina's own heading reads "The point of
+                # imitation — the unit of construction" and his pack compiled
+                # with no forms at all, as did Monteverdi's, Glass's, Reich's,
+                # Part's and the three film composers'.
+                #
+                # An asserted form with no measured proportions is still a form.
                 forms[name] = {"sections": sections, "key_scheme": {}}
         return {"forms": forms}
 
@@ -625,8 +892,50 @@ class ContextCompiler:
         if not orch.exists():
             return {"instruments": {}}
 
-        # Basic extraction — would be more sophisticated in production
-        return {"instruments": {}, "source_file": "orchestration.md"}
+        instruments: dict = {}
+        textures: List[dict] = []
+        for table in _parse_md_tables(_profile_text(profile_dir, "orchestration.md")):
+            name_col = _table_column(table, "voice", "instrument", "pattern", "texture")
+            if name_col is None:
+                continue
+            claimed = {name_col}
+            role_col = _table_column(table, "function", "role", "description", taken=claimed)
+            claimed.add(role_col)
+            # "range" BEFORE "register": Chopin's table heads two columns
+            # `Hand/Register` and `Register Range`, and matching "register"
+            # first claimed the hand column — so the entry carried
+            # "LH, lowest note of arpeggio" as its register and the actual
+            # `C1-E3` was never read.
+            range_col = _table_column(table, "range", "span", taken=claimed)
+            if range_col is None:
+                range_col = _table_column(table, "register", taken=claimed)
+            claimed.add(range_col)
+            hand_col = _table_column(table, "hand", taken=claimed)
+            claimed.add(hand_col)
+            genre_col = _table_column(table, "genre", "where", "used", taken=claimed)
+            for row in table["rows"]:
+                name = row[name_col].strip("* ")
+                if not name:
+                    continue
+                entry = {"name": name, "section": table["caption"]}
+                if role_col is not None:
+                    entry["function"] = row[role_col]
+                if range_col is not None:
+                    entry["register"] = row[range_col]
+                if hand_col is not None:
+                    entry["hand"] = row[hand_col]
+                if genre_col is not None:
+                    entry["genre"] = row[genre_col]
+                key = name.lower().replace(" ", "_")
+                if range_col is not None or hand_col is not None:
+                    instruments[key] = entry
+                else:
+                    textures.append(entry)
+        return {
+            "instruments": instruments,
+            "textures": textures,
+            "source_file": "orchestration.md",
+        }
 
     def _pass_periods(self, profile_dir: Path | None) -> dict:
         """Extract period overlays from stylistic-evolution.md."""
@@ -637,7 +946,7 @@ class ContextCompiler:
         if not evolution.exists():
             return {"periods": []}
 
-        text = evolution.read_text()
+        text = _profile_text(profile_dir, "stylistic-evolution.md")
         periods = []
 
         # Look for common period labels
@@ -658,16 +967,56 @@ class ContextCompiler:
         if not xref.exists():
             return {"influenced_by": [], "comparative_axes": {}}
 
-        text = xref.read_text()
+        text = _profile_text(profile_dir, "cross-references.md")
 
-        # Extract named composers
-        influenced_by = []
-        for match in re.finditer(
-            r"(?:influenced by|learned from|absorbed)\s+(\w+)", text, re.IGNORECASE
-        ):
-            influenced_by.append({"composer": match.group(1)})
+        influenced_by: List[dict] = []
+        influenced: List[dict] = []
+        axes: dict = {}
+        seen: set = set()
+        for table in _parse_md_tables(text):
+            source_col = _table_column(table, "source", "composer", "influence", "successor")
+            if source_col is None:
+                continue
+            claimed = {source_col}
+            what_col = _table_column(
+                table, "absorbed", "what", "took", "learned", "inherited", taken=claimed
+            )
+            claimed.add(what_col)
+            where_col = _table_column(table, "where", "hear", "evidence", "example", taken=claimed)
+            caption = table["caption"].lower()
+            # "Who Influenced X" vs "Whom X Influenced" — the direction is in the
+            # caption, and getting it backwards would hand `donor_strategy` a
+            # composer's descendants as its sources.
+            forward = "influenced" in caption and not caption.startswith("who influenced")
+            bucket = influenced if forward else influenced_by
+            for row in table["rows"]:
+                name = row[source_col].strip("* ")
+                if not name or name.lower() in seen:
+                    continue
+                seen.add(name.lower())
+                entry = {"composer": name}
+                if what_col is not None:
+                    entry["absorbed"] = row[what_col]
+                if where_col is not None:
+                    entry["heard_in"] = row[where_col]
+                bucket.append(entry)
+            if source_col is not None and what_col is None and where_col is None:
+                axes[table["caption"]] = [r[source_col] for r in table["rows"]]
 
-        return {"influenced_by": influenced_by, "comparative_axes": {}}
+        # Prose fallback for profiles that state it in a sentence rather than a
+        # table. It found almost nothing on its own — the tables are where this
+        # knowledge lives — but it costs nothing and catches the odd one.
+        if not influenced_by:
+            for match in re.finditer(
+                r"(?:influenced by|learned from|absorbed)\s+(\w+)", text, re.IGNORECASE
+            ):
+                influenced_by.append({"composer": match.group(1)})
+
+        return {
+            "influenced_by": influenced_by,
+            "influenced": influenced,
+            "comparative_axes": axes,
+        }
 
     def _pass_prototypes(self, profile_dir: Path | None) -> dict:
         """Extract JSON code examples from composition-guide.md."""
@@ -681,18 +1030,42 @@ class ContextCompiler:
         text = guide.read_text()
         prototypes = []
 
-        # Find JSON code blocks
+        # A ```json block in these guides usually holds SEVERAL objects one after
+        # another — a phrase prototype, then the next. `json.loads` parses the
+        # first and raises "Extra data" on the rest, and the `except: continue`
+        # below discarded the WHOLE block including the object it had already
+        # read. Measured across the guides: 66 blocks, of which 55 failed and not
+        # one composer had a block that parsed. Chopin lost 8 of 13.
+        #
+        # `raw_decode` reads one value and reports where it stopped, so a block
+        # of concatenated objects yields all of them.
+        decoder = json.JSONDecoder()
         for match in re.finditer(r"```json\s*\n(.*?)\n```", text, re.DOTALL):
-            try:
-                data = json.loads(match.group(1))
-                prototypes.append(
-                    {
-                        "id": f"prototype_{len(prototypes)}",
-                        "data": data,
-                    }
-                )
-            except json.JSONDecodeError:
-                continue
+            block = match.group(1)
+            # Many blocks are a FRAGMENT of an object — `"bass": [ ... ]` — not a
+            # standalone value. `raw_decode` happily reads `"bass"` as a string
+            # and stops at the colon, so an earlier version of this recorded
+            # SEVEN of Chopin's fourteen prototypes as the bare word "bass".
+            # A prototype that is a string is worse than no prototype: a reader
+            # trusts it. Wrapping the fragment restores the object it belongs to.
+            if re.match(r'\s*"[^"]+"\s*:', block):
+                block = "{" + block.rstrip().rstrip(",") + "}"
+            pos = 0
+            while pos < len(block):
+                while pos < len(block) and block[pos] in " \t\r\n,":
+                    pos += 1
+                if pos >= len(block):
+                    break
+                try:
+                    data, end = decoder.raw_decode(block, pos)
+                except ValueError:
+                    # Not JSON from here on — prose after the objects, or a
+                    # snippet with an ellipsis. Keep what was already read.
+                    break
+                # A bare scalar is never a phrase prototype.
+                if isinstance(data, (dict, list)) and data:
+                    prototypes.append({"id": f"prototype_{len(prototypes)}", "data": data})
+                pos = end
 
         return {"prototypes": prototypes}
 
@@ -1000,15 +1373,29 @@ class ContextCompiler:
                         except ValueError:
                             pass
 
+                    # `chord_sequence` was hard-coded `[]` — in 1,254 of 1,254
+                    # devices across every pack — while `_chord_chain`, which the
+                    # cadence path a few lines below calls on exactly these
+                    # cells, sat unused. A harmonic device whose chords are empty
+                    # is a name, and `cadence_bank`, `donor_strategy` and the
+                    # brief all read that field.
+                    #
+                    # The name carries them as often as the description does:
+                    # "Chromatic mediants (C to Ab, C to E)".
+                    chords = _chord_chain([name, *cols[1:]])
+                    contexts = [c.strip() for c in context.split(",") if c.strip()]
                     devices.append(
                         {
                             "id": dev_id,
                             "name": name,
-                            "chord_sequence": [],
-                            "voice_leading_hints": [],
-                            "contexts": [c.strip() for c in context.split(",") if c.strip()],
+                            "chord_sequence": chords,
+                            "voice_leading_hints": _voice_leading_hints(" ".join(cols)),
+                            "contexts": contexts,
                             "frequency_weight": freq_weight,
-                            "emotional_color": "",
+                            # The emotional reading was already being collected
+                            # into `contexts` and then a separate field for it
+                            # was written empty beside it.
+                            "emotional_color": contexts[0] if contexts else "",
                             "source_file": _source_label,
                         }
                     )
@@ -1208,6 +1595,10 @@ class ContextCompiler:
                         "hand": "lh",
                         "name": name,
                         "description": body[:400],
+                        # The idiom's own notes, and what they measure. Keeping
+                        # only the prose meant the brief could NAME a left-hand
+                        # idiom without handing over the pattern that is it.
+                        **_idiom_shape(body),
                         "source_file": f"{profile_dir.name}/{path.name}",
                         "grounding": "profile",
                     }
@@ -1644,6 +2035,7 @@ class ContextCompiler:
             return templates
 
         text = fp_file.read_text()
+        _climax = _climax_suggestions(text)
 
         # Parse the main figuration catalog table
         rows = _parse_markdown_table(text, required_header="#")
@@ -1693,8 +2085,15 @@ class ContextCompiler:
                     "character": character,
                     "when_to_use": [],
                     "variation_operators": [],
-                    "density_suggestion": None,
-                    "register_suggestion": "",
+                    # Indexed by this template's own number — see
+                    # `_climax_suggestions`. Both fields were hard-coded empty
+                    # while the document answered them two tables further down.
+                    "density_suggestion": (
+                        "; ".join(_climax.get(str(num), {}).get("density", [])) or None
+                    ),
+                    "register_suggestion": "; ".join(
+                        dict.fromkeys(_climax.get(str(num), {}).get("register", []))
+                    ),
                     "grounding": "interpretive",
                     "source_file": "figuration-patterns.md",
                 }
@@ -1749,8 +2148,16 @@ class ContextCompiler:
                     if smoothness
                     else "",
                     "best_for": [s.strip() for s in best_for.split(",") if s.strip()],
-                    "chord_sequence": [],
-                    "voice_leading_hints": [],
+                    # The mechanism prose is where the progression is written —
+                    # "V7/x -> x", "I -> bVI -> V of the new key". Both this and
+                    # the pivot branch below hard-coded `chord_sequence` to `[]`
+                    # in all 605 scripts, while `harmonic_solver` and the brief
+                    # read it. The document names a pivot or an arrow chain
+                    # 2,133 times.
+                    "chord_sequence": _chord_chain([mechanism, mod_type, best_for]),
+                    "voice_leading_hints": _voice_leading_hints(
+                        " ".join([mechanism, smoothness, best_for])
+                    ),
                     "pivot_chord_in_old": "",
                     "pivot_chord_in_new": "",
                     "grounding": "hard_corroborated",
@@ -1775,8 +2182,20 @@ class ContextCompiler:
                         "mechanism": f"Pivot: {pivot}",
                         "smoothness": "very_smooth",
                         "best_for": ["transitions", "expositions"],
-                        "chord_sequence": [],
-                        "voice_leading_hints": [],
+                        # A pivot modulation IS a three-chord sequence and the
+                        # three chords were already sitting in the two fields
+                        # below it: the chord as the old key hears it, and as the
+                        # new key rehears it. Writing an empty `chord_sequence`
+                        # beside them was the whole defect.
+                        # ONLY the Roman numerals. Taking the cells whole gave
+                        # `["C major", "I = IV", "IV of G"]` — a key name, an
+                        # equation and a prose phrase — which is not a chord
+                        # sequence and would be read as one. A field that is
+                        # wrong is worse than a field that is empty.
+                        "chord_sequence": _pivot_chords(in_old, pivot, in_new),
+                        "voice_leading_hints": _voice_leading_hints(
+                            " ".join([pivot, in_old, in_new, "common tone held"])
+                        ),
                         "pivot_chord_in_old": in_old,
                         "pivot_chord_in_new": in_new,
                         "grounding": "hard_corroborated",
@@ -2211,24 +2630,88 @@ _NEGATORS = re.compile(
 )
 
 
+
+#: The forms this compiler can recognise.
+#:
+#: It knew three — sonata, rondo, ternary — which is the Classical instrumental
+#: repertoire and nobody else. So the ten composers whose `formal_graphs.json`
+#: compiled EMPTY were exactly the ones who write something else: Palestrina and
+#: Monteverdi (points of imitation, madrigals), Part, Glass and Reich (process
+#: and additive forms), Morricone, Williams and Zimmer (cues), Mussorgsky.
+#: Their `formal-approach.md` files describe their forms in detail — Palestrina's
+#: opens by explaining that asking where the B section is "mistakes the genre" —
+#: and the compiler had no word for any of it, so it recorded that they have no
+#: form at all.
+#:
+#: A form is still only counted where the document ASSERTS it, so adding words
+#: here cannot give a composer a form his profile denies.
+_FORM_VOCABULARY = (
+    # Classical instrumental
+    "sonata",
+    "rondo",
+    "ternary",
+    "binary",
+    "theme and variations",
+    "minuet and trio",
+    "scherzo",
+    # Baroque
+    "fugue",
+    "ritornello",
+    "da capo",
+    "passacaglia",
+    "chaconne",
+    "ground bass",
+    "suite",
+    "prelude",
+    "toccata",
+    # Renaissance and vocal polyphony
+    "point of imitation",
+    "motet",
+    "madrigal",
+    "mass",
+    "cantus firmus",
+    "responsorial",
+    # Song and character piece
+    "strophic",
+    "through-composed",
+    "song form",
+    "character piece",
+    # Later and non-Classical
+    "arch",
+    "cyclic",
+    "additive process",
+    "phase process",
+    "ostinato form",
+    "tintinnabuli",
+    "cue",
+    "leitmotif",
+)
+
+
 def _form_is_asserted(text: str, form: str) -> bool:
     """Is ``form`` claimed by this profile, rather than merely mentioned?
 
     Headings and table cells are assertions. Prose counts only when the clause
     naming the form carries no negator before it.
     """
+    # WORD BOUNDARIES, not substrings. `"mass" in "massive"` gave Zimmer a
+    # Mass; `"arch" in "architecture"` gives everyone arch form. This is the
+    # same collision that made `chorale` match `choral` and turn a solo organ
+    # work into a choir.
+    pattern = re.compile(r"\b" + re.escape(form).replace(r"\ ", r"\s+") + r"\b")
     for line in text.splitlines():
         low = line.lower()
-        if form not in low:
+        if not pattern.search(low):
             continue
         stripped = line.strip()
         if stripped.startswith("#") or stripped.startswith("|"):
             return True
         # Split into clauses so "it is a rondo, not a sonata" is read per-clause.
         for clause in re.split(r"[;,.]|\s+—\s+", low):
-            if form not in clause:
+            found = pattern.search(clause)
+            if not found:
                 continue
-            before = clause.split(form, 1)[0]
+            before = clause[: found.start()]
             if not _NEGATORS.search(before):
                 return True
     return False
@@ -2336,6 +2819,142 @@ def _parse_range(text: str) -> tuple | None:
 _ARROW = re.compile(r"\s*(?:->|→|—>|>)\s*")
 _ROMAN_TOKEN = re.compile(r"^(?:cad\s*)?[b#]?[ivIV]+[°ø+o]?(?:64|65|43|42|6|7|2)?$")
 _ROMAN_BASS_DEGREE = {"i": 1, "ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7}
+
+
+
+#: Phrases in the doctrine that describe how the VOICES move, as opposed to
+#: which chords sound. `voice_leading_hints` is read by `harmonic_solver` and was
+#: an empty list in every device and every modulation script in every pack.
+_VOICE_LEADING_CUES = (
+    ("common tone held", r"common[- ]tone|held in common|shared (?:note|tone)"),
+    ("step in the bass", r"bass (?:moves|steps|falls|rises) by step|stepwise bass"),
+    ("chromatic inner voice", r"chromatic (?:inner|middle|descent|line|voice)"),
+    ("contrary motion", r"contrary motion"),
+    ("leading tone resolves up", r"leading[- ]tone (?:resolves|rises)"),
+    ("seventh resolves down", r"seventh (?:resolves|falls)|7th (?:resolves|falls)"),
+    ("suspension", r"suspension|4-3|7-6|9-8"),
+    ("pedal point", r"pedal (?:point|tone)"),
+    ("parallel thirds or sixths", r"parallel (?:thirds|sixths|3rds|6ths)"),
+    ("voice exchange", r"voice exchange"),
+    ("smooth, minimal movement", r"smooth(?:est)? (?:voice[- ]leading|movement)|minimal movement"),
+)
+
+
+def _voice_leading_hints(text: str) -> list[str]:
+    """Voice-leading instructions a prose cell states, as short phrases."""
+    if not text:
+        return []
+    low = text.lower()
+    return [label for label, pattern in _VOICE_LEADING_CUES if re.search(pattern, low)]
+
+
+
+
+
+#: A backticked run that looks like this system's shorthand rather than prose.
+_SHORTHAND_RE = re.compile(r"`([^`]*[A-G][#b-]?\d[^`]*)`")
+
+
+def _idiom_shape(description: str) -> dict:
+    """The playable pattern inside an idiom's prose, and what it measures.
+
+    Every `*-lh-vocabulary.md` entry states its idiom as real shorthand —
+    ``Ab1e Eb3e Ab3e C4e Eb4e C4e Ab3e Eb3e`` — and the compiler kept only the
+    prose, truncated to 400 characters. So the brief could name a composer's
+    left-hand idioms and never hand over the notes, while the pattern sat inside
+    a string it had already read. 208 of these parse cleanly.
+
+    Returns the shorthand plus its measured register and density, which are the
+    two things the pack's own schema asks for elsewhere and which no document
+    states in words: `register`, `span_semitones`, `events`.
+    """
+    if not description:
+        return {}
+    match = _SHORTHAND_RE.search(description)
+    if not match:
+        return {}
+    pattern = match.group(1).strip()
+    shape: dict = {"shorthand": pattern}
+    try:
+        from .direct_compose import _parse_shorthand
+        from .pitch import pitch_to_midi
+    except ImportError:  # pragma: no cover - defensive
+        return shape
+    try:
+        events = _parse_shorthand(pattern)
+    except Exception:
+        return shape
+    midis: list[int] = []
+    for event in events:
+        pitch = event.get("pitch")
+        for one in pitch if isinstance(pitch, list) else [pitch]:
+            if not one or one == "rest":
+                continue
+            try:
+                midi = pitch_to_midi(one)
+            except (ValueError, KeyError, TypeError):
+                continue
+            # `pitch_to_midi` RETURNS None for a token it cannot read rather
+            # than raising, so an except clause alone lets None into the list
+            # and `min()` fails on it later, far from the cause.
+            if midi is not None:
+                midis.append(midi)
+    if events:
+        shape["events"] = len(events)
+    if midis:
+        shape["register"] = [min(midis), max(midis)]
+        shape["span_semitones"] = max(midis) - min(midis)
+    return shape
+
+
+def _climax_suggestions(text: str) -> dict[str, dict[str, list[str]]]:
+    """Register span and rhythmic density per figuration, from the climax table.
+
+    `figuration-patterns.md` carries a "Climax Building Reference Table" that
+    maps each dynamic level to a texture, a REGISTER SPAN, a RHYTHMIC DENSITY,
+    and the figuration numbers it applies to:
+
+        | mf | Inner voices added | #11, #12 | 2-3 octaves | Sixteenth notes |
+        | ff | Cascading arpeggios | #6, #10, #12 | 4+ octaves | Dense sixteenths |
+
+    Every figuration template shipped with `density_suggestion: None` and
+    `register_suggestion: ""` — 660 blank fields across the packs, read by
+    `style_resolver` — while the answer sat in a table in the same document,
+    indexed by the very number in each template's own id (`fig_11_...`).
+
+    Returns `{"11": {"register": [...], "density": [...]}}`.
+    """
+    out: dict[str, dict[str, list[str]]] = {}
+    for table in _parse_md_tables(text):
+        fig_col = _table_column(table, "figuration")
+        reg_col = _table_column(table, "register", "span")
+        den_col = _table_column(table, "density", "rhythmic")
+        if fig_col is None or (reg_col is None and den_col is None):
+            continue
+        for row in table["rows"]:
+            for num in re.findall(r"#(\d+)", row[fig_col]):
+                entry = out.setdefault(num, {"register": [], "density": []})
+                if reg_col is not None and row[reg_col]:
+                    entry["register"].append(row[reg_col].strip())
+                if den_col is not None and row[den_col]:
+                    entry["density"].append(row[den_col].strip())
+    return out
+
+
+def _pivot_chords(*cells: str) -> list[str]:
+    """The Roman numerals a pivot row names, in order, deduplicated.
+
+    A pivot table's cells are analysis rather than notation — "I = IV",
+    "IV of G", "reinterpret as V of F". The numerals inside them are the
+    modulation; the prose around them is not.
+    """
+    out: list[str] = []
+    for cell in cells:
+        for token in re.split(r"[\s,;()=]+", cell or ""):
+            token = token.strip(".").strip()
+            if token and _ROMAN_TOKEN.match(token) and (not out or out[-1] != token):
+                out.append(token)
+    return out
 
 
 def _chord_chain(cells: list[str]) -> list[str]:

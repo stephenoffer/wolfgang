@@ -148,6 +148,7 @@ def test_craft_section_cross_references_resolve(path):
         f"not exist: {['§' + m for m in missing]}"
     )
 
+
 def test_every_tool_a_snippet_imports_actually_exists():
     """A doc that names a tool the code does not have teaches a step nobody can do.
 

@@ -173,6 +173,14 @@ def dur_to_beats(d: Union[str, int, float]) -> Fraction:
     d_str = str(d).strip()
     if d_str in DURATION_VALUES:
         return DURATION_VALUES[d_str]
+    # `q.` and `h.` are the DOCUMENTED trailing-dot spellings, and they were
+    # falling straight through to the 0-returning tail: a dotted quarter written
+    # the way the guidance spells it evaluated to no duration at all, silently.
+    # `direct_compose` normalises before it gets here, which is why this survived
+    # — but every other caller passing a raw code did not.
+    normalized = normalize_dot_suffix(d_str)
+    if normalized in DURATION_VALUES:
+        return DURATION_VALUES[normalized]
     try:
         return Fraction(d_str).limit_denominator(64)
     except (ValueError, TypeError, ZeroDivisionError):
@@ -255,21 +263,47 @@ def beats_per_bar(time_sig) -> float:
 
 
 def is_strong_beat(beat: float, time_sig: tuple) -> bool:
-    """Check if a beat position is a strong beat in the given meter."""
-    num, denom = time_sig
-    if denom == 4:
-        if num == 4:
-            return beat in (1.0, 3.0)
-        if num == 3:
-            return beat == 1.0
-        if num == 2:
-            return beat == 1.0
-    if denom == 8:
-        if num == 6:
-            return beat in (1.0, 2.5)  # compound duple
-        if num == 9:
-            return beat in (1.0, 2.0, 3.0)
-    return beat == 1.0
+    """Is this position one the metre stresses?
+
+    Beats are counted in QUARTER-NOTE units, which is what makes compound metre
+    the trap: in 12/8 the four beats are dotted quarters and fall at 1.0, 2.5,
+    4.0 and 5.5 — not at the integers. The hand-enumerated table this replaces
+    had 6/8 right, **9/8 wrong** (it named 1.0, 2.0 and 3.0, where the real
+    beats are 1.0, 2.5 and 4.0), no entry for 12/8 at all — so a nocturne in
+    12/8 had exactly one strong beat per bar — and nothing for cut time.
+    """
+    try:
+        num, denom = int(time_sig[0]), int(time_sig[1])
+    except (TypeError, ValueError, IndexError):
+        return abs(float(beat) - 1.0) < 1e-6
+    if num <= 0 or denom <= 0:
+        return abs(float(beat) - 1.0) < 1e-6
+
+    # One beat's length in quarter-note units, and how many of them a bar holds.
+    compound = denom == 8 and num % 3 == 0 and num > 3
+    if compound:
+        beat_len, count = 1.5, num // 3          # compound: 6/8, 9/8, 12/8
+    else:
+        beat_len, count = 4.0 / denom, num       # simple, incl. 2/2 and 4/2
+
+    positions = [1.0 + i * beat_len for i in range(count)]
+    # Which of those the metre STRESSES. Duple and quadruple groupings stress
+    # the half-bar; triple groupings stress only the downbeat.
+    if count == 4:
+        stressed = {positions[0], positions[2]}
+    elif count == 2 and compound:
+        # Compound duple stresses BOTH its beats — 6/8 is felt in two, and the
+        # second dotted quarter carries a real accent. Simple duple (2/4, 2/2)
+        # does not: its second beat is the weak half of the bar.
+        stressed = {positions[0], positions[1]}
+    elif count in (2, 3):
+        stressed = {positions[0]}
+    elif count and count % 2 == 0:
+        stressed = {positions[0], positions[count // 2]}
+    else:
+        stressed = {positions[0]} if positions else set()
+
+    return any(abs(float(beat) - p) < 1e-6 for p in stressed)
 
 
 def is_downbeat(beat: float) -> bool:

@@ -58,3 +58,74 @@ Any section claiming Schumann's style needs ≥3 of these 5 present.
 - `"dyn": "pp"` for Eusebius sections, `"dyn": "f"` for Florestan.
 - Sudden shifts: `"dyn": "ff"` followed immediately (next measure) by `"dyn": "pp"`.
 - `"expr": "innig"` (intimate/heartfelt) — Schumann's most characteristic marking.
+
+---
+
+## Composing a Schumann phrase: step by step
+
+The organising fact is that **the metre and the melody disagree**. Schumann
+writes the tune off the beat and leaves it there, so the ear hears a pulse the
+barline denies. Straighten it out and he is gone.
+
+### Step 1 — Write the melody, then displace it
+
+Compose the phrase on the beat first, then move every note a half-beat or a
+whole beat later and tie across the barline. The syncopation is structural, not
+decoration.
+
+```json
+"displaced_melody": [
+  {"p": "rest", "d": "e"},
+  {"p": "A4", "d": "q"},
+  {"p": "C5", "d": "q"},
+  {"p": "B4", "d": "q"},
+  {"p": "A4", "d": "q", "tie": "start"},
+  {"p": "A4", "d": "e", "tie": "stop"}
+]
+```
+
+### Step 2 — Let the accompaniment keep the true beat
+
+The left hand states the metre plainly so the displacement is audible. If both
+hands are off the beat, nothing is off the beat.
+
+```json
+"steady_accompaniment": [
+  {"p": "F2", "d": "q"},
+  {"p": ["A3", "C4", "F4"], "d": "q"},
+  {"p": ["A3", "C4", "F4"], "d": "q"},
+  {"p": ["A3", "C4", "F4"], "d": "q"}
+]
+```
+
+### Step 3 — Hide a melody in an inner voice
+
+A second tune in the tenor, moving in longer values under the surface. His
+textures have more going on in the middle than they appear to.
+
+```json
+"inner_melody": [
+  {"p": "F3", "d": "h"},
+  {"p": "E3", "d": "h"},
+  {"p": "D3", "d": "h"},
+  {"p": "C3", "d": "w"}
+]
+```
+
+### Step 4 — Write in short character pieces and let them contrast hard
+
+The unit is a page, not a movement. Two adjacent pieces should differ in
+character completely — that contrast is the form.
+
+### Step 5 — Modulate by third, not by fifth
+
+A chromatic mediant or a common-tone shift. It should feel like a change of
+light rather than a journey.
+
+---
+
+## Checking a finished phrase
+
+- Does the melody land on a downbeat? It mostly should not.
+- Does the left hand keep the metre honest?
+- Is there a line in the middle worth hearing?

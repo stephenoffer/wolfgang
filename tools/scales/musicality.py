@@ -19,24 +19,22 @@ from itertools import pairwise
 from typing import Any
 
 from .duration import dur_to_beats
-from .models import LayerEvent, LayerIR
+from .models import ALL_LAYERS, LOWER_LAYERS, UPPER_LAYERS, LayerEvent, LayerIR
 from .pitch import pitch_to_midi
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
 
-_PIANO_LAYERS = (
-    "principal_line",
-    "bass_foundation",
-    "response_layer",
-    "counter_reply",
-    "ornamental_surface",
-)
-
-_RH_LAYERS = ("principal_line", "ornamental_surface", "counter_reply")
-_LH_LAYERS = ("bass_foundation", "response_layer")
+# These listed only the five piano layers, so every metric in this module —
+# rhythmic variety, interval profile, figuration richness, contour, rest ratio —
+# measured an ORCHESTRAL piece as having no notes and returned a clean bill of
+# health rather than an error. Now the model's own grouping, so an added layer
+# joins every reader at once.
+_PIANO_LAYERS = ALL_LAYERS
+_RH_LAYERS = UPPER_LAYERS
+_LH_LAYERS = LOWER_LAYERS
 
 
-def _events(layer: LayerIR, layer_names=_PIANO_LAYERS) -> list[LayerEvent]:
+def _events(layer: LayerIR, layer_names=ALL_LAYERS) -> list[LayerEvent]:
     out: list[LayerEvent] = []
     for name in layer_names:
         out.extend(getattr(layer, name, None) or [])
@@ -136,6 +134,74 @@ def melodic_smoothness(layer: LayerIR) -> tuple[float, dict[str, Any]]:
     return round(ratio, 3), detail
 
 
+_INTERVAL_PRIOR_CACHE: dict[str, dict[str, float] | None] = {}
+
+#: Used only when a composer's own distribution is unmeasurable.
+_GENERIC_INTERVAL_PRIOR = {"stepwise": 0.65, "small_leap": 0.25, "large_leap": 0.10}
+
+
+def composer_interval_priors(composer: str) -> dict[str, float] | None:
+    """This composer's own interval distribution, in the bands used below.
+
+    The generic prior (65/25/10) is what every phrase was scored against, and it
+    describes nobody. Measured over the corpus in these same bands:
+
+        palestrina 0.813   bach 0.611*   mozart 0.611   haydn 0.600
+        beethoven  0.538   chopin 0.498  liszt 0.358        (* bach 0.736)
+
+    It is far too stepwise for Liszt — whose real rate is 0.358, less than half
+    the prior — and not stepwise enough for Palestrina. Its large-leap figure of
+    0.10 is off by nearly four times for Liszt, at 0.377.
+
+    That matters because this runs at COMMIT time: it was telling a romantic
+    phrase to aim for 65% stepwise motion while `score_realism` told the
+    finished piece it was too scalar and the brief told the composer the line
+    should leap. Three subsystems, three different answers, one of them a
+    constant.
+
+    Returns None when the composer has no usable corpus, in which case the
+    caller keeps the generic prior — which is the honest fallback, not a
+    silently wrong composer.
+    """
+    key = (composer or "").strip().lower()
+    if not key:
+        return None
+    if key in _INTERVAL_PRIOR_CACHE:
+        return _INTERVAL_PRIOR_CACHE[key]
+    priors: dict[str, float] | None = None
+    try:
+        import itertools as _it
+
+        from .composition_brief import _iter_corpus_bars
+
+        step = small = large = 0
+        for bar in _it.islice(_iter_corpus_bars(key), 4000):
+            line = [
+                e.get("midi")
+                for e in (bar.get("melody_line") or [])
+                if isinstance(e, dict) and e.get("midi") is not None
+            ]
+            for a, b in _it.pairwise(line):
+                distance = abs(int(b) - int(a))
+                if distance <= 2:
+                    step += 1
+                elif distance <= 5:
+                    small += 1
+                else:
+                    large += 1
+        total = step + small + large
+        if total >= 200:  # below this the shape is noise, not a prior
+            priors = {
+                "stepwise": round(step / total, 4),
+                "small_leap": round(small / total, 4),
+                "large_leap": round(large / total, 4),
+            }
+    except Exception:
+        priors = None
+    _INTERVAL_PRIOR_CACHE[key] = priors
+    return priors
+
+
 def melodic_interval_profile(
     layer: LayerIR,
     priors: dict[str, float] | None = None,
@@ -147,7 +213,7 @@ def melodic_interval_profile(
     profile (65/25/10) when no composer prior is available.
     """
     if priors is None:
-        priors = {"stepwise": 0.65, "small_leap": 0.25, "large_leap": 0.10}
+        priors = dict(_GENERIC_INTERVAL_PRIOR)
     intervals = _melody_intervals(layer)
     detail: dict[str, Any] = {"priors": priors, "interval_count": len(intervals)}
     if not intervals:

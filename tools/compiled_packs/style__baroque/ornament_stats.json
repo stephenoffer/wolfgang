@@ -1,39 +1,55 @@
 {
  "composer": "style__baroque",
  "schema": 1,
- "total_bars": 6868,
+ "total_bars": 10914,
  "textures": {
   "singing_melody": {
    "grace": 0.0,
-   "trill": 0.0031,
+   "trill": 0.0024,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.1987,
-   "n": 2874
+   "dotted": 0.2135,
+   "n": 3729
   },
-  "zigzag_figuration": {
-   "grace": 0.0006,
-   "trill": 0.004,
-   "mordent": 0.0,
-   "turn": 0.0,
-   "dotted": 0.2051,
-   "n": 3228
-  },
-  "scalar_run": {
-   "grace": 0.0062,
+  "chordal": {
+   "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.2469,
-   "n": 162
+   "dotted": 0.2642,
+   "n": 564
+  },
+  "zigzag_figuration": {
+   "grace": 0.0004,
+   "trill": 0.0026,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.2593,
+   "n": 5079
+  },
+  "scalar_run": {
+   "grace": 0.0014,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.1952,
+   "n": 712
   },
   "held_note": {
    "grace": 0.0,
    "trill": 0.0,
    "mordent": 0.0,
    "turn": 0.0,
-   "dotted": 0.2261,
-   "n": 597
+   "dotted": 0.2334,
+   "n": 677
+  },
+  "silence": {
+   "grace": 0.0,
+   "trill": 0.0,
+   "mordent": 0.0,
+   "turn": 0.0,
+   "dotted": 0.0,
+   "n": 153
   }
  }
 }

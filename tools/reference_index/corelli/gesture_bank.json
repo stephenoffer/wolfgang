@@ -1,26 +1,37 @@
 {
  "composer": "corelli",
  "source_bar_index": "reference_index/corelli/bar_index.json",
- "total_gestures": 19,
+ "total_gestures": 143,
  "function_distribution": {
-  "answer": 10,
-  "answer_with_space": 3,
-  "pickup": 2,
-  "cadential_push": 2,
-  "cadential_release": 2
+  "cadential_push": 60,
+  "answer": 27,
+  "pickup": 24,
+  "insist": 19,
+  "answer_with_space": 9,
+  "cadential_release": 4
  },
  "contour_distribution": {
-  "descending": 9,
-  "ascending": 3,
-  "static": 7
+  "descending": 36,
+  "ascending": 29,
+  "static": 78
  },
  "gestures": [
   {
    "cell_id": "corelli_opus3no1_1gravexml_b1",
    "function": "pickup",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "q",
+    "q"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "lead",
@@ -39,22 +50,32 @@
    ],
    "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "bass_melody",
-   "melody_density": 4,
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b2",
-   "function": "pickup",
+   "function": "answer",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "e",
+    "e",
+    "q"
+   ],
    "contour": "ascending",
    "contour_intervals": [],
-   "interaction_role": "lead",
+   "interaction_role": "respond",
    "harmony_binding": "linear_bass",
-   "entry_state": "fresh_phrase",
+   "entry_state": "continuing",
    "exit_state": "to_continue",
    "transform_ops": [
     "transpose",
@@ -66,19 +87,29 @@
     2,
     2
    ],
-   "key_mode": "minor",
+   "key_mode": "major",
    "rh_texture": "singing_melody",
    "lh_texture": "bass_melody",
-   "melody_density": 4,
+   "melody_density": 7,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b3",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "respond",
@@ -96,18 +127,24 @@
     3
    ],
    "key_mode": "major",
-   "rh_texture": "singing_melody",
+   "rh_texture": "zigzag_figuration",
    "lh_texture": "broken_chord_wave",
-   "melody_density": 4,
+   "melody_density": 9,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b4",
-   "function": "answer_with_space",
+   "function": "answer",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
@@ -124,19 +161,31 @@
     4,
     4
    ],
-   "key_mode": "minor",
-   "rh_texture": "held_note",
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
    "lh_texture": "bass_melody",
-   "melody_density": 2,
+   "melody_density": 6,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b5",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "dq",
+    "s",
+    "s"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
@@ -153,19 +202,31 @@
     5,
     5
    ],
-   "key_mode": "minor",
-   "rh_texture": "singing_melody",
-   "lh_texture": "broken_chord_wave",
-   "melody_density": 5,
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "alberti",
+   "melody_density": 11,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b6",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "s",
+    "s",
+    "dq",
+    "e"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
@@ -183,24 +244,41 @@
     6
    ],
    "key_mode": "major",
-   "rh_texture": "singing_melody",
-   "lh_texture": "broken_chord_wave",
-   "melody_density": 5,
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "alberti",
+   "melody_density": 11,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b7",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
    "harmony_binding": "linear_bass",
    "entry_state": "continuing",
-   "exit_state": "to_continue",
+   "exit_state": "to_rest",
    "transform_ops": [
     "transpose",
     "register_shift",
@@ -213,17 +291,33 @@
    ],
    "key_mode": "major",
    "rh_texture": "scalar_run",
-   "lh_texture": "bass_melody",
-   "melody_density": 7,
+   "lh_texture": "walking_bass",
+   "melody_density": 11,
    "has_grace_notes": false,
    "has_dotted_rhythms": false
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b8",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "s",
+    "s",
+    "s",
+    "s",
+    "q",
+    "q",
+    "q"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "respond",
@@ -241,22 +335,30 @@
     8
    ],
    "key_mode": "major",
-   "rh_texture": "scalar_run",
-   "lh_texture": "broken_chord_wave",
-   "melody_density": 7,
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "alberti",
+   "melody_density": 13,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b9",
-   "function": "answer_with_space",
+   "function": "answer",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
    "contour": "ascending",
    "contour_intervals": [],
    "interaction_role": "respond",
-   "harmony_binding": "pedal",
+   "harmony_binding": "arpeggiated",
    "entry_state": "continuing",
    "exit_state": "to_continue",
    "transform_ops": [
@@ -269,25 +371,33 @@
     9,
     9
    ],
-   "key_mode": "minor",
+   "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "pedal_point",
-   "melody_density": 3,
+   "lh_texture": "alberti",
+   "melody_density": 5,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b10",
-   "function": "answer_with_space",
+   "function": "cadential_push",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "respond",
-   "harmony_binding": "pedal",
+   "harmony_binding": "linear_bass",
    "entry_state": "continuing",
-   "exit_state": "to_continue",
+   "exit_state": "to_cadence",
    "transform_ops": [
     "transpose",
     "register_shift",
@@ -298,24 +408,36 @@
     10,
     10
    ],
-   "key_mode": "minor",
+   "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "pedal_point",
-   "melody_density": 3,
+   "lh_texture": "walking_bass",
+   "melody_density": 5,
    "has_grace_notes": false,
    "has_dotted_rhythms": false
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b11",
-   "function": "answer",
+   "function": "pickup",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "e",
+    "e",
+    "q"
+   ],
    "contour": "descending",
    "contour_intervals": [],
-   "interaction_role": "respond",
+   "interaction_role": "lead",
    "harmony_binding": "linear_bass",
-   "entry_state": "continuing",
+   "entry_state": "fresh_phrase",
    "exit_state": "to_continue",
    "transform_ops": [
     "transpose",
@@ -327,25 +449,37 @@
     11,
     11
    ],
-   "key_mode": "minor",
+   "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "bass_melody",
-   "melody_density": 5,
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b12",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "de",
+    "s",
+    "q",
+    "q"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "respond",
    "harmony_binding": "linear_bass",
    "entry_state": "continuing",
-   "exit_state": "to_continue",
+   "exit_state": "to_rest",
    "transform_ops": [
     "transpose",
     "register_shift",
@@ -356,23 +490,33 @@
     12,
     12
    ],
-   "key_mode": "minor",
-   "rh_texture": "singing_melody",
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
    "lh_texture": "bass_melody",
-   "melody_density": 5,
+   "melody_density": 9,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b13",
-   "function": "answer",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "e",
+    "e"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "respond",
-   "harmony_binding": "arpeggiated",
+   "harmony_binding": "linear_bass",
    "entry_state": "continuing",
    "exit_state": "to_continue",
    "transform_ops": [
@@ -386,24 +530,34 @@
     13
    ],
    "key_mode": "major",
-   "rh_texture": "singing_melody",
-   "lh_texture": "broken_chord_wave",
-   "melody_density": 4,
+   "rh_texture": "scalar_run",
+   "lh_texture": "walking_bass",
+   "melody_density": 10,
    "has_grace_notes": false,
-   "has_dotted_rhythms": false
+   "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b14",
-   "function": "answer",
+   "function": "cadential_push",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
    "contour": "ascending",
    "contour_intervals": [],
    "interaction_role": "respond",
    "harmony_binding": "linear_bass",
    "entry_state": "continuing",
-   "exit_state": "to_continue",
+   "exit_state": "to_cadence",
    "transform_ops": [
     "transpose",
     "register_shift",
@@ -416,22 +570,32 @@
    ],
    "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "bass_melody",
-   "melody_density": 4,
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
    "has_grace_notes": false,
    "has_dotted_rhythms": false
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b15",
-   "function": "answer",
+   "function": "pickup",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "dq",
+    "e"
+   ],
    "contour": "descending",
    "contour_intervals": [],
-   "interaction_role": "respond",
+   "interaction_role": "lead",
    "harmony_binding": "linear_bass",
-   "entry_state": "continuing",
+   "entry_state": "fresh_phrase",
    "exit_state": "to_continue",
    "transform_ops": [
     "transpose",
@@ -443,25 +607,37 @@
     15,
     15
    ],
-   "key_mode": "minor",
+   "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "bass_melody",
-   "melody_density": 4,
+   "lh_texture": "walking_bass",
+   "melody_density": 7,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b16",
-   "function": "cadential_push",
+   "function": "answer",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "de",
+    "s"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
-   "harmony_binding": "linear_bass",
+   "harmony_binding": "arpeggiated",
    "entry_state": "continuing",
-   "exit_state": "to_cadence",
+   "exit_state": "to_continue",
    "transform_ops": [
     "transpose",
     "register_shift",
@@ -474,23 +650,33 @@
    ],
    "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "bass_melody",
-   "melody_density": 5,
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 8,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b17",
-   "function": "cadential_push",
+   "function": "insist",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "dq",
+    "e"
+   ],
    "contour": "descending",
    "contour_intervals": [],
    "interaction_role": "respond",
-   "harmony_binding": "arpeggiated",
-   "entry_state": "fresh_phrase",
-   "exit_state": "to_cadence",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
    "transform_ops": [
     "transpose",
     "register_shift",
@@ -502,23 +688,31 @@
     17
    ],
    "key_mode": "major",
-   "rh_texture": "singing_melody",
-   "lh_texture": "broken_chord_wave",
-   "melody_density": 4,
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 9,
    "has_grace_notes": false,
    "has_dotted_rhythms": true
   },
   {
    "cell_id": "corelli_opus3no1_1gravexml_b18",
-   "function": "cadential_release",
+   "function": "cadential_push",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
-   "harmony_binding": "linear_bass",
-   "entry_state": "fresh_phrase",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
    "exit_state": "to_cadence",
    "transform_ops": [
     "transpose",
@@ -530,10 +724,10 @@
     18,
     18
    ],
-   "key_mode": "minor",
+   "key_mode": "major",
    "rh_texture": "singing_melody",
-   "lh_texture": "bass_melody",
-   "melody_density": 3,
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
    "has_grace_notes": false,
    "has_dotted_rhythms": false
   },
@@ -541,8 +735,12 @@
    "cell_id": "corelli_opus3no1_1gravexml_b19",
    "function": "cadential_release",
    "span_beats": 4.0,
-   "accent_profile": [],
-   "dur_profile": [],
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "w"
+   ],
    "contour": "static",
    "contour_intervals": [],
    "interaction_role": "respond",
@@ -562,7 +760,4661 @@
    "key_mode": "major",
    "rh_texture": "held_note",
    "lh_texture": "pedal_point",
-   "melody_density": 1,
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_1grave_b1",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b2",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b3",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "major",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b4",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b5",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "dq",
+    "s",
+    "s"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "alberti",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b6",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "s",
+    "s",
+    "dq",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "major",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "alberti",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b7",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "e",
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "walking_bass",
+   "melody_density": 11,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_1grave_b8",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "s",
+    "s",
+    "s",
+    "s",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "major",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "alberti",
+   "melody_density": 13,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b9",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "alberti",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b10",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_1grave_b11",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b12",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "de",
+    "s",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "bass_melody",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b13",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "e",
+    "e"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "major",
+   "rh_texture": "scalar_run",
+   "lh_texture": "walking_bass",
+   "melody_density": 10,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b14",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_1grave_b15",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "dq",
+    "e"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b16",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "de",
+    "s"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "arpeggiated",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "broken_chord_wave",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b17",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "dq",
+    "e"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 17",
+   "source_bar_range": [
+    17,
+    17
+   ],
+   "key_mode": "major",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_1grave_b18",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 18",
+   "source_bar_range": [
+    18,
+    18
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_1grave_b19",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "w"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "1grave bar 19",
+   "source_bar_range": [
+    19,
+    19
+   ],
+   "key_mode": "major",
+   "rh_texture": "held_note",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b1",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b2",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b3",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b4",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b5",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b6",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b7",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b8",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b9",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b10",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b11",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b12",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b13",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b14",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "dh",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b15",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b16",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b17",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 17",
+   "source_bar_range": [
+    17,
+    17
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b18",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 18",
+   "source_bar_range": [
+    18,
+    18
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b19",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 19",
+   "source_bar_range": [
+    19,
+    19
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b20",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 20",
+   "source_bar_range": [
+    20,
+    20
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b21",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 21",
+   "source_bar_range": [
+    21,
+    21
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b22",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 22",
+   "source_bar_range": [
+    22,
+    22
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b23",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 23",
+   "source_bar_range": [
+    23,
+    23
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b24",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 24",
+   "source_bar_range": [
+    24,
+    24
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b25",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 25",
+   "source_bar_range": [
+    25,
+    25
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b26",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 26",
+   "source_bar_range": [
+    26,
+    26
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b27",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 27",
+   "source_bar_range": [
+    27,
+    27
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b28",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 28",
+   "source_bar_range": [
+    28,
+    28
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b29",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 29",
+   "source_bar_range": [
+    29,
+    29
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b30",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 30",
+   "source_bar_range": [
+    30,
+    30
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b31",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 31",
+   "source_bar_range": [
+    31,
+    31
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b32",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 32",
+   "source_bar_range": [
+    32,
+    32
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b33",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 33",
+   "source_bar_range": [
+    33,
+    33
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b34",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 34",
+   "source_bar_range": [
+    34,
+    34
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b35",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "dh",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 35",
+   "source_bar_range": [
+    35,
+    35
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b36",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 36",
+   "source_bar_range": [
+    36,
+    36
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b37",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 37",
+   "source_bar_range": [
+    37,
+    37
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b38",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 38",
+   "source_bar_range": [
+    38,
+    38
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b39",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 39",
+   "source_bar_range": [
+    39,
+    39
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b40",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 40",
+   "source_bar_range": [
+    40,
+    40
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b41",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 41",
+   "source_bar_range": [
+    41,
+    41
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b42",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 42",
+   "source_bar_range": [
+    42,
+    42
+   ],
+   "key_mode": "minor",
+   "rh_texture": "held_note",
+   "lh_texture": "silence",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b43",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 43",
+   "source_bar_range": [
+    43,
+    43
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b44",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 44",
+   "source_bar_range": [
+    44,
+    44
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b45",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 45",
+   "source_bar_range": [
+    45,
+    45
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b46",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 46",
+   "source_bar_range": [
+    46,
+    46
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b47",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 47",
+   "source_bar_range": [
+    47,
+    47
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b48",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "dq",
+    "e",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 48",
+   "source_bar_range": [
+    48,
+    48
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b49",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "dq",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 49",
+   "source_bar_range": [
+    49,
+    49
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b50",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 50",
+   "source_bar_range": [
+    50,
+    50
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b51",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 51",
+   "source_bar_range": [
+    51,
+    51
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b52",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "dq",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 52",
+   "source_bar_range": [
+    52,
+    52
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b53",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 53",
+   "source_bar_range": [
+    53,
+    53
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b54",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 54",
+   "source_bar_range": [
+    54,
+    54
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b55",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 55",
+   "source_bar_range": [
+    55,
+    55
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b56",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 56",
+   "source_bar_range": [
+    56,
+    56
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b57",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 57",
+   "source_bar_range": [
+    57,
+    57
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b58",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 58",
+   "source_bar_range": [
+    58,
+    58
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b59",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 59",
+   "source_bar_range": [
+    59,
+    59
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b60",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 60",
+   "source_bar_range": [
+    60,
+    60
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b61",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 61",
+   "source_bar_range": [
+    61,
+    61
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b62",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 62",
+   "source_bar_range": [
+    62,
+    62
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b63",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 63",
+   "source_bar_range": [
+    63,
+    63
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b64",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 64",
+   "source_bar_range": [
+    64,
+    64
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b65",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 65",
+   "source_bar_range": [
+    65,
+    65
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b66",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 66",
+   "source_bar_range": [
+    66,
+    66
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b67",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 67",
+   "source_bar_range": [
+    67,
+    67
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b68",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "e",
+    "e",
+    "e",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 68",
+   "source_bar_range": [
+    68,
+    68
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b69",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "dq",
+    "e",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 69",
+   "source_bar_range": [
+    69,
+    69
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b70",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "dq",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 70",
+   "source_bar_range": [
+    70,
+    70
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b71",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 71",
+   "source_bar_range": [
+    71,
+    71
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b72",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "dq",
+    "e",
+    "e",
+    "e",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 72",
+   "source_bar_range": [
+    72,
+    72
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b73",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "dq",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 73",
+   "source_bar_range": [
+    73,
+    73
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b74",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "e",
+    "e",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 74",
+   "source_bar_range": [
+    74,
+    74
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b75",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 75",
+   "source_bar_range": [
+    75,
+    75
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b76",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 76",
+   "source_bar_range": [
+    76,
+    76
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b77",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 77",
+   "source_bar_range": [
+    77,
+    77
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b78",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 78",
+   "source_bar_range": [
+    78,
+    78
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b79",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 79",
+   "source_bar_range": [
+    79,
+    79
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b80",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 80",
+   "source_bar_range": [
+    80,
+    80
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b81",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 81",
+   "source_bar_range": [
+    81,
+    81
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b82",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 82",
+   "source_bar_range": [
+    82,
+    82
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b83",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 83",
+   "source_bar_range": [
+    83,
+    83
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch-1_b84",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch-1 bar 84",
+   "source_bar_range": [
+    84,
+    84
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "silence",
+   "melody_density": 3,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b1",
+   "function": "cadential_push",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "rest"
+   ],
+   "dur_profile": [
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 1",
+   "source_bar_range": [
+    1,
+    1
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b2",
+   "function": "cadential_push",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "rest"
+   ],
+   "dur_profile": [
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 2",
+   "source_bar_range": [
+    2,
+    2
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b3",
+   "function": "pickup",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "rest",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "e"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 3",
+   "source_bar_range": [
+    3,
+    3
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 6,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b4",
+   "function": "answer",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 4",
+   "source_bar_range": [
+    4,
+    4
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "bass_melody",
+   "melody_density": 5,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b5",
+   "function": "cadential_push",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 5",
+   "source_bar_range": [
+    5,
+    5
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "walking_bass",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b6",
+   "function": "cadential_push",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 6",
+   "source_bar_range": [
+    6,
+    6
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b7",
+   "function": "cadential_push",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "dh"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 7",
+   "source_bar_range": [
+    7,
+    7
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b8",
+   "function": "cadential_push",
+   "span_beats": 3.0,
+   "accent_profile": [
+    "strong",
+    "rest"
+   ],
+   "dur_profile": [
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 8",
+   "source_bar_range": [
+    8,
+    8
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b9",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 9",
+   "source_bar_range": [
+    9,
+    9
+   ],
+   "key_mode": "minor",
+   "rh_texture": "silence",
+   "lh_texture": "walking_bass",
+   "melody_density": 0,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b10",
+   "function": "answer_with_space",
+   "span_beats": 4.0,
+   "accent_profile": [],
+   "dur_profile": [],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 10",
+   "source_bar_range": [
+    10,
+    10
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "bass_melody",
+   "melody_density": 2,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b11",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "rest",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_rest",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 11",
+   "source_bar_range": [
+    11,
+    11
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b12",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 12",
+   "source_bar_range": [
+    12,
+    12
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "bass_melody",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b13",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "linear_bass",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 13",
+   "source_bar_range": [
+    13,
+    13
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 8,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b14",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "e",
+    "e"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 14",
+   "source_bar_range": [
+    14,
+    14
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "bass_melody",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b15",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "e",
+    "e"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 15",
+   "source_bar_range": [
+    15,
+    15
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "pedal_point",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b16",
+   "function": "cadential_push",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 16",
+   "source_bar_range": [
+    16,
+    16
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "pedal_point",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b17",
+   "function": "pickup",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "e",
+    "e",
+    "q",
+    "q"
+   ],
+   "contour": "descending",
+   "contour_intervals": [],
+   "interaction_role": "lead",
+   "harmony_binding": "pedal",
+   "entry_state": "fresh_phrase",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 17",
+   "source_bar_range": [
+    17,
+    17
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "pedal_point",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b18",
+   "function": "insist",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "q",
+    "q",
+    "q"
+   ],
+   "contour": "ascending",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 18",
+   "source_bar_range": [
+    18,
+    18
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 9,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b19",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong",
+    "weak",
+    "weak"
+   ],
+   "dur_profile": [
+    "q",
+    "h",
+    "q"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "linear_bass",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 19",
+   "source_bar_range": [
+    19,
+    19
+   ],
+   "key_mode": "minor",
+   "rh_texture": "zigzag_figuration",
+   "lh_texture": "walking_bass",
+   "melody_density": 7,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": false
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b20",
+   "function": "answer",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "w"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_continue",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 20",
+   "source_bar_range": [
+    20,
+    20
+   ],
+   "key_mode": "minor",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 4,
+   "has_grace_notes": false,
+   "has_dotted_rhythms": true
+  },
+  {
+   "cell_id": "corelli_nr8-quartet__soundch_b21",
+   "function": "cadential_release",
+   "span_beats": 4.0,
+   "accent_profile": [
+    "strong"
+   ],
+   "dur_profile": [
+    "w"
+   ],
+   "contour": "static",
+   "contour_intervals": [],
+   "interaction_role": "respond",
+   "harmony_binding": "pedal",
+   "entry_state": "continuing",
+   "exit_state": "to_cadence",
+   "transform_ops": [
+    "transpose",
+    "register_shift",
+    "rhythm_mutate"
+   ],
+   "source": "nr8-quartet__soundch bar 21",
+   "source_bar_range": [
+    21,
+    21
+   ],
+   "key_mode": "major",
+   "rh_texture": "singing_melody",
+   "lh_texture": "pedal_point",
+   "melody_density": 2,
    "has_grace_notes": false,
    "has_dotted_rhythms": false
   }

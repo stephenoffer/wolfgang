@@ -22,7 +22,7 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any
 
-from .duration import beats_to_dur
+from .duration import bar_duration, beats_to_dur
 from .models import LayerEvent, LayerIR
 from .pitch import midi_to_pitch, pitch_to_midi
 from .validator import INSTRUMENT_RANGES
@@ -39,6 +39,24 @@ _DYN_RANK = {
     "sfz": 5,
     "fp": 4,
 }
+
+# The reverse direction, for parts the orchestrator WRITES rather than carries.
+_RANK_DYN = ("ppp", "pp", "p", "mp", "mf", "f", "ff", "fff")
+
+
+def pad_dynamic(rank: int) -> str:
+    """What a sustaining wind pad is marked, under a melody at ``rank``.
+
+    A pad supports rather than leads, so it sits one step below the texture it
+    is holding up — the standard balance instruction in orchestral writing, and
+    the reason a horn chord under a singing oboe is marked p and not mf.
+
+    This exists because the pads were written with ``"dynamic": None``: the
+    horn, clarinet and bassoon parts arrived carrying whole notes and no
+    marking at all, which is not a stylistic weakness but an unplayable part.
+    A wind player holding a chord has to be told how loud to hold it.
+    """
+    return _RANK_DYN[max(0, min(len(_RANK_DYN) - 1, int(rank) - 1))]
 
 # Instrument-name → range-table key
 _RANGE_ALIASES = {
@@ -353,11 +371,27 @@ def plan_orchestration(
         by_bar: dict[int, list[LayerEvent]] = defaultdict(list)
         for e in sorted(bass_events, key=lambda e: (e.bar, e.beat)):
             by_bar[e.bar].append(e)
+        from dataclasses import replace as _replace
+
+
+        capacity = float(bar_duration(tuple(layer.meter or (4, 4))))
         bass_events, response_events = [], []
         for bar, evs in sorted(by_bar.items()):
             sounding = [e for e in evs if e.pitch != "rest"]
             if sounding:
-                bass_events.append(sounding[0])
+                # The anchor must SUSTAIN. Keeping its original value gave the
+                # cello one quarter note followed by three beats of silence in a
+                # bar where every other part is moving — the bass line of an
+                # orchestral tutti reduced to isolated blips. Hold it until the
+                # bar ends (the next anchor is the next downbeat), which is what
+                # a bass instrument does under moving inner parts.
+                anchor = sounding[0]
+                span = max(0.0, capacity - float(anchor.beat) + 1.0)
+                try:
+                    held = _replace(anchor, duration=beats_to_dur(span))
+                except Exception:
+                    held = anchor
+                bass_events.append(held)
                 response_events.extend(sounding[1:])
             else:
                 bass_events.extend(evs)
@@ -454,7 +488,20 @@ def plan_orchestration(
     # ── Inner motion → violin_2 / viola split by register ──
     inner_high = violin_2 or _pick(["violin_2", "viola", "clarinet"], ensemble, taken)
     inner_low = viola if viola and viola != inner_high else None
-    for e in layer.response_layer:
+    # The inner STRINGS have the same nearly-empty hole the wind pads had: this
+    # reads `response_layer` alone, so a core whose inner motion covers one bar
+    # of fourteen leaves violin II and viola with one bar of material and
+    # thirteen of silence. Where a bar carries no inner motion, they take the
+    # harmony that bar implies from the outer texture — the same principle as
+    # the pads below, and the same reason: a real orchestrator voices what the
+    # bar implies rather than falling silent because one layer is thin.
+    inner_events = list(layer.response_layer or [])
+    _inner_bars = {e.bar for e in inner_events if e.pitch != "rest"}
+    for e in layer.bass_foundation or []:
+        if e.bar not in _inner_bars and e.pitch != "rest":
+            inner_events.append(e)
+    inner_events.sort(key=lambda e: (e.bar, float(e.beat)))
+    for e in inner_events:
         if e.pitch == "rest":
             continue
         first = e.pitch[0] if isinstance(e.pitch, list) else e.pitch
@@ -488,22 +535,65 @@ def plan_orchestration(
     # invented, only heard.
     pads = [i for i in (clarinet, bassoon, horn) if i and i not in (lead, bass)]
     if pads:
+        # PER BAR, not all-or-nothing. The guard below used to be
+        # `if not pad_source`, which fires only when the inner layers are
+        # entirely empty. A core with a LITTLE inner motion — three events, all
+        # in one bar of fourteen — is not empty, so the fallback never fired and
+        # `by_bar` had a single key: clarinet, bassoon and viola each came out
+        # with exactly ONE note in the whole section. Nearly-empty reached the
+        # same tacet outcome as empty, through the guard rather than around it.
+        #
+        # Deciding per bar needs no coverage threshold either, which is the
+        # better reason for it: a real orchestrator voices the harmony each bar
+        # implies, from whichever line implies it. Measured on the section that
+        # exposed this, pad coverage went from 1 bar of 14 to 14 of 14.
         by_bar: dict[int, list[int]] = defaultdict(list)
-        pad_source = layer.response_layer + layer.counter_reply
-        if not pad_source:
-            pad_source = layer.principal_line + layer.bass_foundation
-        for e in pad_source:
-            if e.pitch == "rest":
-                continue
-            for p in e.pitch if isinstance(e.pitch, list) else [e.pitch]:
-                try:
-                    m = pitch_to_midi(p)
-                except (ValueError, KeyError, TypeError):
+        inner_by_bar: dict[int, list[int]] = defaultdict(list)
+        outer_by_bar: dict[int, list[int]] = defaultdict(list)
+
+        def _collect(events, into):
+            for e in events or []:
+                if e.pitch == "rest":
                     continue
-                if m is not None:
-                    by_bar[e.bar].append(m)
-        bpb = layer.meter[0] * 4.0 / layer.meter[1] if layer.meter else 4.0
+                for p in e.pitch if isinstance(e.pitch, list) else [e.pitch]:
+                    try:
+                        m = pitch_to_midi(p)
+                    except (ValueError, KeyError, TypeError):
+                        continue
+                    if m is not None:
+                        into[e.bar].append(m)
+
+        _collect(layer.response_layer, inner_by_bar)
+        _collect(layer.counter_reply, inner_by_bar)
+        _collect(layer.principal_line, outer_by_bar)
+        _collect(layer.bass_foundation, outer_by_bar)
+        for bar in set(inner_by_bar) | set(outer_by_bar):
+            by_bar[bar] = inner_by_bar.get(bar) or outer_by_bar.get(bar, [])
+        # `bar_duration` is imported at the top and is the guarded form. This
+        # inline version is the one that raised ZeroDivisionError on a
+        # malformed meter — it was the root cause of twelve separate crashes.
+        bpb = float(bar_duration(layer.meter or (4, 4)))
         pad_dur = beats_to_dur(bpb)
+        pad_marked: dict[str, str] = {}
+
+        def _pad_event(inst: str, bar: int, pitch: str, rank: int) -> dict[str, Any]:
+            """One pad note, marked the way a part is marked: at entry, and on
+            every change of dynamic thereafter — never re-stating the same mark
+            bar after bar, which is what `score_realism.detect_notation_spam`
+            exists to catch."""
+            dyn = pad_dynamic(rank)
+            written = dyn if pad_marked.get(inst) != dyn else None
+            pad_marked[inst] = dyn
+            return {
+                "bar": bar,
+                "beat": 1.0,
+                "pitch": pitch,
+                "duration": pad_dur,
+                "dynamic": written,
+                "articulation": None,
+                "slur": None,
+            }
+
         for bar, midis in sorted(by_bar.items()):
             # Horn pads loud bars; clarinet+bassoon pad soft/mid bars
             chord = sorted(set(midis))
@@ -512,17 +602,7 @@ def plan_orchestration(
             if loudness.get(bar, 4) >= 5 and horn and horn in pads:
                 lo, hi = practical_range(horn)
                 p = midi_to_pitch(_clamp_octave(chord[len(chord) // 2], lo, hi), key)
-                parts[horn].append(
-                    {
-                        "bar": bar,
-                        "beat": 1.0,
-                        "pitch": p,
-                        "duration": pad_dur,
-                        "dynamic": None,
-                        "articulation": None,
-                        "slur": None,
-                    }
-                )
+                parts[horn].append(_pad_event(horn, bar, p, loudness.get(bar, 4)))
             else:
                 for inst, idx in ((clarinet, -1), (bassoon, 0)):
                     if not inst:
@@ -530,15 +610,7 @@ def plan_orchestration(
                     lo, hi = practical_range(inst)
                     p = midi_to_pitch(_clamp_octave(chord[idx], lo, hi), key)
                     parts[inst].append(
-                        {
-                            "bar": bar,
-                            "beat": 1.0,
-                            "pitch": p,
-                            "duration": pad_dur,
-                            "dynamic": None,
-                            "articulation": None,
-                            "slur": None,
-                        }
+                        _pad_event(inst, bar, p, loudness.get(bar, 4))
                     )
 
     # ── Counter-melody → oboe (or viola) ──
@@ -578,7 +650,122 @@ def plan_orchestration(
     # of that exists in the piano core to be assigned; it is added at
     # orchestration time, which is what orchestration means.
     _add_doublings(parts, layer, ensemble, lead, bass, key, loudness)
+    _mark_part_dynamics(parts, loudness)
+    _bow_string_parts(parts)
     return parts
+
+
+# Strings, for the parts that need a bow rather than a breath.
+# Substrings, so `violin_i`/`violin_ii` both match — but NOT a bare "bass",
+# which matches `bassoon`, a double reed that has never been bowed.
+_STRING_KEYS = ("violin", "viola", "cello", "contrabass", "double_bass", "string_bass")
+
+# Slurs per 100 notes, measured per part over 82 real multi-part scores in the
+# music21 core corpus — the RANGE, because a mean is not a bound:
+#   violin  n=103  min  1.4  median 14.9  max 26.5
+#   viola   n= 51  min  1.0  median 11.4  max 24.5
+#   cello   n= 49  min  0.3  median  9.5  max 21.6
+#
+# Read these as a CEILING and nothing else. The sample counts only parts that
+# carry at least one slur, so the minima are an artifact of that filter, not a
+# floor: plenty of real parts have none. A large share of the multi-part scores
+# in this corpus are Bach chorale transcriptions, which mark no slurs anywhere,
+# and a chorale part at 0 is perfectly correct. What the numbers license is the
+# upper bound below, not a claim that every part must be bowed.
+_REAL_STRING_SLUR_RANGE = {"violin": (1.4, 26.5), "viola": (1.0, 24.5), "cello": (0.3, 21.6)}
+
+
+def _bow_string_parts(parts: dict[str, list[dict]]) -> None:
+    """Slur the string parts, because for a string player the slur IS the bowing.
+
+    The parts built from the piano core's melody inherit its slurs and come out
+    fine. The parts built from the **bass** inherit nothing, because a pianist's
+    left hand is not phrased the way a cello is bowed — measured on a real
+    orchestration off this system, cello 60 notes and 0 slurs, viola 0. Real
+    orchestral strings that are bowed at all run a median 9.5-14.9 slurs per 100
+    notes. (Not every real part is: Bach chorale transcriptions mark none, which
+    is why this only ever ADDS bowing to a part that has none in a texture that
+    calls for it, and never asserts a part must be slurred.)
+
+    Bowing is added the way it is added on the stand: a slur over a **conjunct
+    run inside one bar**, and a bow change wherever the line leaps, repeats a
+    note, rests, or crosses a barline. Leaving leaps and repetitions separately
+    bowed is what keeps the rate near the corpus instead of slurring everything
+    in sight, and it is also simply how the passage is played.
+    """
+    for inst, events in parts.items():
+        if not any(k in inst.lower() for k in _STRING_KEYS):
+            continue
+        ordered = sorted(
+            (e for e in events if isinstance(e, dict)),
+            key=lambda e: (e.get("bar", 0), e.get("beat", 0)),
+        )
+        if any(e.get("slur") for e in ordered):
+            continue  # this part already carries the composer's own phrasing
+        run: list[dict] = []
+
+        def _close(run: list[dict]) -> None:
+            # Three notes, not two. Slurring every stepwise pair put the rate at
+            # 25 slurs per 100 notes against a real 9.6-13.7 — twice as bowed as
+            # real music, which reads as fussy rather than as phrased.
+            if len(run) < 3:
+                return
+            run[0]["slur"] = "start"
+            run[-1]["slur"] = "stop"
+
+        prev_midi = None
+        prev_bar = None
+        for ev in ordered:
+            midi = _top_midi(ev.get("pitch"))
+            step = (
+                midi is not None
+                and prev_midi is not None
+                and 0 < abs(midi - prev_midi) <= 2
+                and ev.get("bar") == prev_bar
+            )
+            if step:
+                run.append(ev)
+            else:
+                _close(run)
+                run = [ev] if midi is not None else []
+            prev_midi, prev_bar = midi, ev.get("bar")
+        _close(run)
+
+
+def _mark_part_dynamics(parts: dict[str, list[dict]], loudness: dict[int, int]) -> None:
+    """Give every part its own dynamics, the way a real part has them.
+
+    Dynamics live on the piano core's melody layer, and each orchestral part
+    inherits only the marks that were on the events it was built from. So the
+    parts derived from the melody arrived marked and **everything else arrived
+    blank**: measured on a real orchestration off this system, cello 60 notes /
+    0 dynamics, violin I 48 / 0, violin II 48 / 0, viola and horn 0 of
+    everything. It is the whole of the notation gap between a piano core (2.21
+    marks per staff-bar) and its orchestration (0.63) — and it is not a
+    stylistic weakness, it is a part a player cannot use. There is no orchestral
+    part in the repertoire with no dynamic in it.
+
+    Marks go in where a copyist puts them: at the part's entry, and on each
+    change thereafter. Never bar after bar — `score_realism.detect_notation_spam`
+    is the check that would (rightly) fire on that, and re-stating an unchanged
+    dynamic is what makes a score look machine-set.
+    """
+    for events in parts.values():
+        if not events:
+            continue
+        ordered = sorted(
+            (e for e in events if isinstance(e, dict)),
+            key=lambda e: (e.get("bar", 0), e.get("beat", 0)),
+        )
+        last: str | None = None
+        for ev in ordered:
+            if ev.get("dynamic"):
+                last = ev["dynamic"]
+                continue
+            want = _RANK_DYN[max(0, min(len(_RANK_DYN) - 1, loudness.get(ev.get("bar", 1), 4)))]
+            if want != last:
+                ev["dynamic"] = want
+                last = want
 
 
 def _add_doublings(parts, layer, ensemble, lead, bass, key, loudness) -> None:
@@ -638,7 +825,10 @@ def _add_doublings(parts, layer, ensemble, lead, bass, key, loudness) -> None:
     inst = _pick(["horn", "trombone", "bassoon"], ensemble, {lead, bass})
     if _empty(inst) and bassline:
         lo, hi = practical_range(inst, "mp")
-        bpb = layer.meter[0] * 4.0 / layer.meter[1] if layer.meter else 4.0
+        # `bar_duration` is imported at the top and is the guarded form. This
+        # inline version is the one that raised ZeroDivisionError on a
+        # malformed meter — it was the root cause of twelve separate crashes.
+        bpb = float(bar_duration(layer.meter or (4, 4)))
         held = beats_to_dur(bpb)
         seen = set()
         for e in sorted(bassline, key=lambda x: (x.bar, x.beat)):
@@ -663,14 +853,40 @@ def _add_doublings(parts, layer, ensemble, lead, bass, key, loudness) -> None:
             if p:
                 parts[inst].append(_event_dict(e, p))
 
-    # 5. Anything still silent doubles the melody in its own register, quietly.
-    #    Better a real part than a tacet stave in a score that names it.
+    # 5. Anything still silent takes a part, quietly — better a real part than a
+    #    tacet stave in a score that names it. But WHICH part depends on where
+    #    the instrument lives.
+    #
+    #    This doubled the MELODY unconditionally. In a concerto tutti, where the
+    #    piano core is octaves over a bass and there is little inner material,
+    #    that left flute, oboe, clarinet, bassoon AND violin 1 all on the tune —
+    #    five instruments in unison at 95-100% the same pitch classes — while
+    #    violin 2 had 4 notes and the cello 8 across eight bars. A bassoon
+    #    doubling a soprano melody is not a thin part, it is a wrong one.
+    #
+    #    A low instrument doubles the BASS instead, which is what step 4 already
+    #    does for the viola and calls "the oldest filler in the orchestra".
     for inst, events in list(parts.items()):
-        if events or not melody:
+        if events:
             continue
         lo, hi = practical_range(inst, "p")
-        for e in melody:
-            p = _transpose_event_pitch(e.pitch, 0, lo, hi, key)
+        centre = (lo + hi) / 2
+        # Below the melody's own centre of gravity, an instrument belongs under
+        # the texture rather than on top of it.
+        melody_midis = [
+            m
+            for e in melody
+            for m in ([pitch_to_midi(x) for x in e.pitch] if isinstance(e.pitch, list)
+                      else [pitch_to_midi(e.pitch)])
+            if m is not None
+        ]
+        melody_centre = (sum(melody_midis) / len(melody_midis)) if melody_midis else 72
+        source = melody if centre >= melody_centre - 7 else (bassline or melody)
+        shift = 12 if source is bassline and centre > 55 else 0
+        if not source:
+            continue
+        for e in source:
+            p = _transpose_event_pitch(e.pitch, shift, lo, hi, key)
             if p:
                 ev = _event_dict(e, p)
                 ev["dynamic"] = None

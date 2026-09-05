@@ -18,7 +18,16 @@ from fractions import Fraction
 from typing import Any, Dict, List, Optional, Tuple
 
 from .duration import bar_duration, dur_to_beats, is_grace
-from .models import EventIR, LayerEvent, LayerIR, PhysicalConstraints, is_keyboard
+from .models import (
+    VOCAL_RANGES,
+    VOICE_FOR_LAYER,
+    EventIR,
+    LayerEvent,
+    LayerIR,
+    PhysicalConstraints,
+    is_keyboard,
+    is_vocal,
+)
 from .pitch import pitch_to_midi
 
 # ─── Voice Ranges ────────────────────────────────────────────────────────────
@@ -164,7 +173,17 @@ def validate_range(
 ) -> List[ValidationIssue]:
     """Check that all pitches are within instrument range."""
     issues = []
-    low, high = INSTRUMENT_RANGES.get(instrumentation, (21, 108))
+    # The table is keyed `cello`, `double_bass`, `english_horn`; a real score
+    # writes "Violoncello", "Contrabass", "Cor Anglais", and the piece-level
+    # spellings ("ensemble", "choir") match nothing at all. A miss falls through
+    # to the piano keyboard, which is why this check could never report a
+    # soprano at C7 — see the vocal-range block in `validate_layer_ir`.
+    from .models import canonical_instrument
+
+    key, _division = canonical_instrument(instrumentation)
+    low, high = INSTRUMENT_RANGES.get(
+        instrumentation, INSTRUMENT_RANGES.get(key, (21, 108))
+    )
     if constraints:
         low = max(low, constraints.piano_low)
         high = min(high, constraints.piano_high)
@@ -590,6 +609,42 @@ def validate_layer_ir(
                         f"{layer_name}: {issue.message}",
                         issue.bar,
                         issue.beat,
+                        layer_name,
+                    )
+
+    # A SUNG line has a range, and nothing was checking it. `validate_range`
+    # looks its bounds up by the PIECE's instrumentation — "choir", "ensemble",
+    # "orchestra" — none of which is a key in `INSTRUMENT_RANGES`, so every
+    # non-keyboard piece fell through to the piano's 21-108 and was then clamped
+    # to it again by `constraints.piano_low/high`. The table holds real bounds
+    # for soprano, alto, tenor, bass, violin, cello and 37 more, and no
+    # ensemble piece could reach any of them: the check was live, ran on every
+    # commit, and could not have reported a soprano written at C7.
+    #
+    # No shipped piece turned out to violate this — the generated motet's A3
+    # soprano and E4 bass, which look wrong against a Bach chorale, are inside
+    # what real Palestrina cantus and bassus do. It closes a promise the gate
+    # makes rather than fixing damage already done.
+    if not is_keyboard(layer_ir.instrumentation) and is_vocal(layer_ir.instrumentation):
+        for layer_name, voice in VOICE_FOR_LAYER.items():
+            events = getattr(layer_ir, layer_name, None) or []
+            if not events:
+                continue
+            low, high = VOCAL_RANGES[voice]
+            for event in events:
+                pitches = event.pitch if isinstance(event.pitch, list) else [event.pitch]
+                for pitch in pitches:
+                    if pitch == "rest":
+                        continue
+                    midi = pitch_to_midi(pitch)
+                    if midi is None or low <= midi <= high:
+                        continue
+                    report.add_error(
+                        "range",
+                        f"{layer_name}: {pitch} (MIDI {midi}) is outside the {voice} "
+                        f"range [{low}, {high}] — no singer on that part can reach it",
+                        event.bar,
+                        event.beat,
                         layer_name,
                     )
 

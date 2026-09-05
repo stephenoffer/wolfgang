@@ -20,6 +20,7 @@ later somewhere else.
 from __future__ import annotations
 
 import inspect
+import json
 
 import pytest
 
@@ -85,10 +86,19 @@ def test_the_failure_names_the_piece_and_says_what_to_do(name, fn, sig):
         return
     except Exception:
         return  # covered by the test above
-    if not isinstance(result, dict) or "error" not in result:
+    if not isinstance(result, dict):
         return
-    message = f"{result.get('error', '')} {result.get('hint', '')}"
-    assert _GHOST in message, f"{name}'s error does not name the piece: {result}"
+    # Not every tool reports trouble under an "error" key: `plan_readiness`
+    # answers `{"ready": False, "missing": ["no workspace for '<id>'"]}`, which
+    # is a perfectly good report — and the old `"error" not in result: return`
+    # skipped it, so two of these parametrised cases asserted nothing at all.
+    # What matters is that the reply NAMES the piece, whatever shape it takes.
+    reported = json.dumps(result, default=str)
+    if _GHOST not in reported and not any(
+        k in result for k in ("error", "missing", "hint", "warning")
+    ):
+        return  # this tool answered normally; nothing to report on a ghost piece
+    assert _GHOST in reported, f"{name}'s failure does not name the piece: {result}"
 
 
 def test_an_empty_result_never_doubles_as_a_missing_piece(tmp_path, monkeypatch):
@@ -197,3 +207,38 @@ def test_the_documented_operations_are_the_implemented_ones():
     text = doc.read_text()
     for op in _REVISION_OPS:
         assert f"`{op}`" in text, f"{op} is implemented but not offered to the critic"
+
+
+def test_every_tool_that_takes_a_piece_id_is_decorated():
+    """`_load_graph` reports a missing piece by RAISING `_MissingPiece`, and the
+    docstring says why: "Raised rather than returned so `_load_graph` can be a
+    one-line call at the top of a tool without every caller needing a two-value
+    unpack." That only holds if the tool carries `@_tool`, which turns the
+    exception back into the tool's normal error result.
+
+    `run_scales_section` — the SCALES engine's own entry point — was the one
+    public tool taking a `piece_id` without it, so a mistyped piece id came back
+    as a FileNotFoundError traceback with a path in it while every neighbouring
+    tool returned `{"error": "No workspace for '<id>'", "hint": ...}`.
+
+    Parsed from the source rather than read off the objects: `functools.wraps`
+    makes a decorated function indistinguishable from an undecorated one at
+    runtime, so asking the object cannot answer this.
+    """
+    import ast
+    import pathlib
+
+    tree = ast.parse(pathlib.Path("tools/scales/scales.py").read_text())
+    undecorated = []
+    for node in tree.body:
+        if not isinstance(node, ast.FunctionDef) or node.name.startswith("_"):
+            continue
+        args = [a.arg for a in node.args.args]
+        if not args or args[0] != "piece_id":
+            continue
+        if "_tool" not in {ast.unparse(d) for d in node.decorator_list}:
+            undecorated.append(node.name)
+    assert not undecorated, (
+        f"these tools take a piece_id and would raise a traceback on a missing "
+        f"piece instead of returning a structured error: {undecorated}"
+    )

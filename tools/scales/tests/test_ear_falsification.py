@@ -42,6 +42,14 @@ _MAX_FALSE_POSITIVE_RATE = {
     "monotony": 0.35,
     "arpeggiated_melody": 0.45,
     "static_bass": 0.45,
+    # Three bar-record detectors that were never in this harness at all. Their
+    # clean record was unearned in the same way four `score_realism` detectors'
+    # was: nothing had ever run them on a real movement. Measured over the same
+    # 60 — flat_harmonic_rhythm 0%, harmonic_stagnation 13%,
+    # photocopied_accompaniment 0% — and bounded with headroom above that.
+    "flat_harmonic_rhythm": 0.10,
+    "harmonic_stagnation": 0.25,
+    "photocopied_accompaniment": 0.10,
 }
 
 
@@ -142,6 +150,28 @@ def _unambiguous_cases():
                 lh_display=[{"type": "note", "pitch": "C2", "dur": 4.0}],
             )
             for i in range(1, 7)
+        ],
+        # Every bar the same single harmony, for long enough that the piece has
+        # stopped moving.
+        "flat_harmonic_rhythm": [
+            _bar(i, _notes(["C5", "E5", "G5", "E5"]), roman="I", harmony_events=[{"roman": "I"}])
+            for i in range(1, 13)
+        ],
+        "harmonic_stagnation": [
+            _bar(i, _notes(["C5", "E5", "G5", "E5"]), roman="I") for i in range(1, 13)
+        ],
+        # The identical accompaniment bar, photocopied down the page.
+        "photocopied_accompaniment": [
+            _bar(
+                i,
+                _notes(["C5", "D5", "E5", "F5"]),
+                lh_display=[
+                    {"type": "note", "pitch": p, "dur": 1.0} for p in ("C2", "G2", "E3", "G2")
+                ],
+            )
+            # At least 12 bars: "throughout" is a claim about proportion and the
+            # detector rightly refuses to make it about a shorter span.
+            for i in range(1, 15)
         ],
     }
 
@@ -346,3 +376,33 @@ def test_composed_blind_recognises_a_surface_that_is_the_exemplar():
     ):
         score = resemblance(signature_from_shorthand(surface), ref)
         assert score >= BLIND_FLOOR, f"{label} scored {score} against its own exemplar"
+
+
+def test_harmonic_stagnation_sees_a_run_that_reaches_the_last_bar():
+    """The report was only ever written when a run ENDED — when a different
+    harmony followed it. A piece that settles onto one chord and stays there to
+    the final bar was never reported, which is the worst case of the defect this
+    detector names and the one it could not see."""
+    bars = [_bar(i, _notes(["C5", "D5", "E5", "F5"]), roman="V") for i in range(1, 11)]
+    findings = ME.detect_harmonic_stagnation(bars)
+    assert findings, "a ten-bar run to the end of the piece went unreported"
+    assert findings[0]["evidence"]["run"] >= 6
+
+
+def test_harmonic_stagnation_still_reports_a_run_that_ends():
+    """The flush must not replace the in-loop report."""
+    bars = [_bar(i, _notes(["C5", "D5", "E5", "F5"]), roman="V") for i in range(1, 9)]
+    bars += [_bar(9, _notes(["C5", "D5", "E5", "F5"]), roman="I")]
+    assert ME.detect_harmonic_stagnation(bars)
+
+
+def test_harmonic_stagnation_does_not_double_report_the_same_run():
+    """A run that ends AND a flush must not both fire on it."""
+    bars = [_bar(i, _notes(["C5", "D5", "E5", "F5"]), roman="V") for i in range(1, 9)]
+    bars += [_bar(9, _notes(["C5", "D5", "E5", "F5"]), roman="I")]
+    assert len(ME.detect_harmonic_stagnation(bars)) == 1
+
+
+def test_a_short_final_run_is_not_reported():
+    bars = [_bar(i, _notes(["C5", "D5", "E5", "F5"]), roman="I") for i in range(1, 4)]
+    assert not ME.detect_harmonic_stagnation(bars)

@@ -238,3 +238,65 @@ def test_every_meter_measures_without_error(meter):
         ir.bass_foundation.append(_ev(b, 1.0, "C3", "q"))
     rep = analyze_voicing(ir)
     assert len(rep.bars) == 8
+
+
+# ─── The inverse of the ensemble fix ─────────────────────────────────────────
+#
+# Relaxing the floors for ensembles creates a new way to be wrong: if anything
+# ever decides "ensemble" by COUNTING PARTS, every piano piece becomes a
+# two-player ensemble, because a grand staff is two parts both named "Piano".
+# Every keyboard piece would then get the relaxed floors and the texture checks
+# would go quiet across the board — which looks exactly like the fix working.
+
+
+def test_forces_are_decided_by_name_and_never_by_part_count():
+    """A grand staff is two parts. That must not read as two players."""
+    from scales.voicing import _is_keyboard
+
+    for name in ("solo_piano", "piano", "keyboard", "harpsichord", "organ", "celesta", ""):
+        assert _is_keyboard(LayerIR(instrumentation=name)), name
+    for name in ("ensemble", "choir", "orchestra", "string_quartet"):
+        assert not _is_keyboard(LayerIR(instrumentation=name)), name
+
+
+def test_a_two_staff_piano_texture_still_gets_the_strict_floors():
+    """The end-to-end version: two busy staves, still judged as a keyboard."""
+    from scales.voicing import floors_for
+
+    ir = LayerIR(instrumentation="solo_piano", key="C major", meter=(4, 4))
+    for b in range(1, 5):
+        for i, p in enumerate(("C5", "D5", "E5", "F5")):
+            ir.principal_line.append(LayerEvent(bar=b, beat=1.0 + i, pitch=p, duration="q"))
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
+    assert floors_for("mozart", ir)["simultaneity_cv"] > 0.0
+    assert floors_for("mozart", ir)["registers_used"] > 2
+
+
+def test_the_spellings_that_actually_occur_in_saved_graphs_are_keyboards():
+    """Not hypothetical. `piece_graph.json` files on disk carry all three.
+
+    A keyboard whitelist held only `solo_piano`, so `piano_solo` and
+    `solo piano` — both present in real saved graphs — were handed the relaxed
+    ENSEMBLE floors and their texture checks went quiet. That is the failure
+    mode that looks like everything passing. The `solo piano` spelling had
+    already broken assembler routing once.
+    """
+    from scales.voicing import _is_keyboard
+
+    for name in ("solo_piano", "piano_solo", "solo piano", "Solo Piano", "fortepiano"):
+        assert _is_keyboard(LayerIR(instrumentation=name)), name
+
+
+def test_an_unrecognised_instrumentation_gets_the_STRICT_reading():
+    """The two errors are not symmetric, so the default is not arbitrary.
+
+    Calling an ensemble a keyboard over-reports — a hand-span complaint on
+    music with no hands, which a reader immediately sees is wrong. Calling a
+    keyboard an ensemble goes silent, and silence reads as a clean score.
+    Unknown therefore means keyboard.
+    """
+    from scales.voicing import _is_keyboard, floors_for
+
+    ir = LayerIR(instrumentation="something_nobody_has_written_yet")
+    assert _is_keyboard(ir)
+    assert floors_for("mozart", ir)["simultaneity_cv"] > 0.0

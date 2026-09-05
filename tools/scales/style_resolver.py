@@ -8,7 +8,10 @@ Replaces: genre_pack.py, composer_support.py
 from __future__ import annotations
 
 import json
+import re
+from datetime import datetime
 from pathlib import Path
+from typing import Tuple
 
 from .models import (
     AntiPatternRule,
@@ -25,6 +28,7 @@ from .models import (
     FormTemplate,
     HarmonicDevice,
     HarmonicTemperature,
+    InstrumentRole,
     MelodyPrior,
     ModulationScript,
     OrnamentIntent,
@@ -42,6 +46,58 @@ TEXTURE_TEMPLATES = _BASE / "texture_templates"
 REFERENCE_INDEX = _BASE / "reference_index"
 
 
+#: Note names as the profiles write a register, e.g. "C1-E3", "G4-C6".
+_REGISTER_RE = re.compile(
+    r"\b([A-G][#b]?)(-?\d)\s*[-–—]\s*([A-G][#b]?)(-?\d)\b", re.IGNORECASE
+)
+
+
+def _overlay_is_stale(overlay_data: dict, pack_mtime: float | None) -> bool:
+    """Is this overlay's evidence older than the artefact it would override?
+
+    Overlays are machine-written from corpus feedback and carry `last_updated`.
+    When the pack has been recompiled since — because the corpus was rebuilt,
+    which happened for every flagship composer today — the overlay is describing
+    a corpus that no longer exists. Without a date it is treated as current,
+    because a missing date is not evidence of age.
+    """
+    if pack_mtime is None:
+        return False
+    stamp = overlay_data.get("last_updated")
+    if not isinstance(stamp, str):
+        return False
+    try:
+        written = datetime.strptime(stamp[:10], "%Y-%m-%d").timestamp()
+    except ValueError:
+        return False
+    # A day's grace: a pack and an overlay written the same day are the same
+    # generation, and file mtimes are not a reliable ordering within one.
+    return pack_mtime > written + 86400
+
+
+def _parse_register(text: str) -> Tuple[int, int]:
+    """A profile's written register as a MIDI pair.
+
+    The orchestration tables state ranges as "C1-E3" or "G4-C6" beside each
+    voice. Without this the role would carry the dataclass default (60, 84) —
+    a middle-of-the-keyboard range for a double bass as readily as for a flute,
+    which is worse than no range at all.
+    """
+    match = _REGISTER_RE.search(text or "")
+    if not match:
+        return (60, 84)
+    from .pitch import pitch_to_midi
+
+    try:
+        low = pitch_to_midi(f"{match.group(1)}{match.group(2)}")
+        high = pitch_to_midi(f"{match.group(3)}{match.group(4)}")
+    except (ValueError, KeyError, TypeError):
+        return (60, 84)
+    if low is None or high is None:
+        return (60, 84)
+    return (min(low, high), max(low, high))
+
+
 class StyleResolver:
     """Resolves style specifications into usable StyleDNA objects."""
 
@@ -50,9 +106,24 @@ class StyleResolver:
     ) -> StyleDNA:
         """Load StyleDNA for a single composer."""
         pack = self._load_pack(composer)
+        # A STYLE's tier is its members', computed here rather than read off the
+        # manifest. The style packs' manifests say "C" because the tier is
+        # classified from `reference_index/<id>/` and there is no
+        # `reference_index/style__classical/` — a style's corpus is the union of
+        # its members'. Tier C/D is what triggers `DonorStrategy` in
+        # `compile_style`, so "in the classical style" — mozart, haydn and
+        # beethoven, ~27,800 bars — was augmented with a donor as though it were
+        # a sparse corpus.
+        #
+        # Computed at load time because nothing can regenerate a style manifest:
+        # `build_style_profiles` writes only the corpus profile, and running the
+        # COMPILER on a style destroys the pack (it has no profile directory to
+        # build from). See the guard in `compile_style`.
+        tier = pack.get("manifest", {}).get("support_tier", "D")
+        style_tier = self._style_tier(composer)
         dna = StyleDNA(
             composer_id=composer,
-            tier=pack.get("manifest", {}).get("support_tier", "D"),
+            tier=style_tier or tier,
         )
 
         # Fingerprints
@@ -281,12 +352,32 @@ class StyleResolver:
 
     # ─── Loading ──────────────────────────────────────────────────────────
 
+    def _style_tier(self, reference: str) -> str | None:
+        """The tier a style earns from its members' corpora, or None if not a style."""
+        from .style_registry import is_style_id, normalize_style, style_members, style_name
+
+        canon = style_name(reference) if is_style_id(reference) else normalize_style(reference)
+        if not canon:
+            return None
+        members = style_members(canon)
+        if not members:
+            return None
+        best = "D"
+        for member in members:
+            member_tier = (
+                self._load_pack(member).get("manifest", {}).get("support_tier", "D")
+            )
+            if member_tier < best:  # "A" < "B" < "C" < "D"
+                best = member_tier
+        return best
+
     def _load_pack(self, composer: str) -> dict:
         """Load a compiled ComposerPack."""
         from .style_registry import pack_dir_name
 
         pack_dir = COMPILED_PACKS / pack_dir_name(composer)
         pack = {}
+        pack_built: dict[str, float] = {}
         for filename in [
             "manifest.json",
             "fingerprint_rules.json",
@@ -318,6 +409,7 @@ class StyleResolver:
                 with open(filepath) as f:
                     key = filename.replace(".json", "")
                     pack[key] = json.load(f)
+                pack_built[key] = filepath.stat().st_mtime
 
         # Load overlay files (per-composer learned overrides)
         overlay_dir = CONTEXT_OVERLAYS / composer
@@ -331,8 +423,27 @@ class StyleResolver:
                         # Union: extend existing list
                         pack[key].extend(overlay_data)
                     elif isinstance(pack[key], dict) and isinstance(overlay_data, dict):
-                        # Override: overlay updates existing dict
-                        pack[key].update(overlay_data)
+                        # AN OVERLAY MUST NOT OVERRIDE A NEWER MEASUREMENT.
+                        #
+                        # `update()` replaced the pack's keys wholesale, so
+                        # Mozart's `lh_distribution` came from a four-month-old
+                        # overlay (evidence dated 2026-04-19) rather than from
+                        # the pack rebuilt from his corrected corpus the same
+                        # day. The planned distribution was `pedal_point` 0.090
+                        # against his real 0.034 and `block_chord_offbeat` 0.045
+                        # against his real 0.104 — and the generated output
+                        # reproduced the overlay's numbers faithfully, which is
+                        # what made it look like a generator defect.
+                        #
+                        # An overlay is EVIDENCE, and evidence has a date. Where
+                        # the compiled artefact is newer than the evidence, the
+                        # measurement wins and the overlay may still contribute
+                        # keys the measurement does not carry.
+                        if _overlay_is_stale(overlay_data, pack_built.get(key)):
+                            for field, value in overlay_data.items():
+                                pack[key].setdefault(field, value)
+                        else:
+                            pack[key].update(overlay_data)
                     else:
                         pack[key] = overlay_data
                 else:
@@ -439,6 +550,47 @@ class StyleResolver:
                     why=oi.get("why", ""),
                     density_arc=oi.get("density_arc", ""),
                 )
+            )
+
+        # Load orchestration roles.
+        #
+        # `StyleProgram.orchestration_roles` is READ by `orchestrate_section`,
+        # which passes it to `plan_orchestration` as `style_roles` — and nothing
+        # ever assigned it, so every orchestral piece was scored generically no
+        # matter whose style it was in. The field defaulted to `{}`, the getter
+        # returned it, and the planner's own fallback took over silently.
+        #
+        # The pass that produces this data was a stub until recently (it returned
+        # `{"instruments": {}}` for all 55 composers), so the empty drawer had an
+        # empty drawer behind it and fixing one alone changed nothing.
+        roles_pack = pack.get("orchestration_roles", {})
+        # BOTH buckets. A table with a hand or register column files its rows as
+        # `instruments`; one without files them as `textures`. Beethoven's
+        # orchestration tables have no hand column, so reading only
+        # `instruments` gave him zero roles while Chopin got twelve.
+        entries = dict(roles_pack.get("instruments", {}))
+        for texture in roles_pack.get("textures", []) or []:
+            if isinstance(texture, dict) and texture.get("name"):
+                entries.setdefault(texture["name"].lower().replace(" ", "_"), texture)
+        for key, entry in entries.items():
+            if not isinstance(entry, dict):
+                continue
+            # The field lives on StyleDNA, which the program WRAPS —
+            # `program.orchestration_roles` does not exist, and the consumer's
+            # `getattr(program, "orchestration_roles", None)` hid that
+            # completely: it read a field off the wrong object and got None
+            # forever, with no error anywhere.
+            program.dna.orchestration_roles[key] = InstrumentRole(
+                name=entry.get("name", key),
+                role=entry.get("function", entry.get("role", "")),
+                characteristic_usage=entry.get("genre", entry.get("section", "")),
+                # Any field may hold it: the tables put a range under
+                # `Register Range`, `Span`, or inside the function prose.
+                register_range=_parse_register(
+                    " ".join(str(v) for v in entry.values() if isinstance(v, str))
+                ),
+                doubling_partners=[],
+                solo_frequency="occasional",
             )
 
         # Load review rubric

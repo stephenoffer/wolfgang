@@ -123,12 +123,24 @@ class SABRE:
         plan = {}
 
         # Heuristic assignment
-        melody_candidates = ["violin_1", "flute", "oboe", "clarinet"]
-        bass_candidates = ["cello", "contrabass", "double_bass", "bassoon", "tuba"]
-        inner_candidates = ["violin_2", "viola", "horn", "clarinet"]
+        melody_candidates = ["violin_1", "violin", "flute", "oboe", "clarinet", "soprano"]
+        bass_candidates = ["cello", "double_bass", "bassoon", "tuba", "bass", "trombone"]
+        inner_candidates = ["violin_2", "viola", "horn", "clarinet", "alto", "tenor"]
+
+        # Same silent miss as `RoleDecomposer._assign_role`: these candidate
+        # lists are spelled `violin_1`, and a real score writes "Violin I" or
+        # "1st Violin". Every miss fell through to "the first part is the melody
+        # and the last is the bass", which is only true by accident of score
+        # order — and is wrong for a chorale, where the first part IS the melody
+        # but the resolver was never asked.
+        from .models import canonical_instrument
 
         for inst in instruments:
-            inst_lower = inst.lower().replace(" ", "_")
+            key, division = canonical_instrument(inst)
+            divided = f"{key}_{division}" if division else ""
+            inst_lower = divided if divided in (
+                melody_candidates + bass_candidates + inner_candidates
+            ) else key
             if inst_lower in melody_candidates and "melody" not in plan:
                 plan["melody"] = inst
             elif inst_lower in bass_candidates and "bass" not in plan:

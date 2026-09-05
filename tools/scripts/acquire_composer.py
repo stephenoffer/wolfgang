@@ -158,23 +158,149 @@ def _html_hrefs(html: str) -> List[str]:
     return out
 
 
-def _mutopia_composer_code(composer: str) -> Optional[str]:
-    """Resolve a composer name to a Mutopia folder code (e.g. liszt → LisztF).
+# Mutopia folder codes are `<Surname><Initials>` and several surnames carry more
+# than one composer. Prefix-matching the surname picked whichever sorted first,
+# which for "bach" is **BachCPE** — Carl Philipp Emanuel, not Johann Sebastian.
+# The tool downloaded a CPE rondo into `_fetch_bach/` intending it as J.S. Bach,
+# and one successful parse would have merged it into his corpus. "haydn" is
+# FJ/JM (Joseph and his brother Michael), "strauss" is F/JJ, "williams" is R/RH.
+#
+# Where this project names a composer whose surname is shared, the intended one
+# is recorded here. Anything else ambiguous is REFUSED rather than guessed: a
+# corpus silently attributed to the wrong composer is worse than no corpus.
+_MUTOPIA_INITIALS = {
+    "bach": "JS",
+    "haydn": "FJ",
+    "strauss": "R",
+    "strauss-r": "R",
+    "scarlatti": "D",
+    "couperin": "F",
+}
 
-    Mutopia codes are '<Surname><Initials>'. We list the /ftp/ root and match
-    the first folder whose lowercased name starts with the requested surname
-    (the last whitespace-separated token), so 'liszt' and 'franz liszt' both
-    resolve to 'LisztF'.
+
+def _split_mutopia_code(code: str) -> Tuple[str, str]:
+    """`BachCPE` -> ('Bach', 'CPE'); `LisztF` -> ('Liszt', 'F')."""
+    m = re.match(r"^(.*?)([A-Z]{1,4})$", code)
+    if not m or not m.group(1):
+        return code, ""
+    return m.group(1), m.group(2)
+
+
+def _mutopia_composer_code(composer: str) -> Optional[str]:
+    """Resolve a composer name to a Mutopia folder code (e.g. liszt -> LisztF).
+
+    Matches the SURNAME EXACTLY, not by prefix. Where a surname is shared, the
+    intended composer must be identifiable — from `_MUTOPIA_INITIALS`, or from
+    initials the caller supplied ("bach js") — or nothing is returned.
     """
     raw = _http_get(_MUTOPIA_ROOT)
     if not raw:
         return None
-    surname = composer.split()[-1].replace("-", "").lower()
+    tokens = [t for t in re.split(r"[\s_]+", composer.strip().lower()) if t]
+    if not tokens:
+        return None
     codes = [h.rstrip("/") for h in _html_hrefs(raw.decode("utf-8", "replace")) if h.endswith("/")]
+    stems = {_split_mutopia_code(c)[0].replace("-", "").lower() for c in codes}
+
+    # "js bach" and "bach js" are both natural; whichever token names a real
+    # folder is the surname and the rest are initials. Taking the last token
+    # unconditionally made "cpe" the surname of "bach cpe".
+    surname, rest = tokens[-1].replace("-", ""), tokens[:-1]
+    if surname not in stems:
+        for i, tok in enumerate(tokens):
+            if tok.replace("-", "") in stems:
+                surname = tok.replace("-", "")
+                rest = tokens[:i] + tokens[i + 1 :]
+                break
+    # "cpe bach" gives the initials as ONE token and "carl philipp emanuel bach"
+    # as three; accept either reading rather than assuming one.
+    given_forms = {"".join(rest).upper(), "".join(t[0] for t in rest).upper()} - {""}
+
+    matches = []
     for code in codes:
-        if code.replace("-", "").lower().startswith(surname):
+        stem, initials = _split_mutopia_code(code)
+        if stem.replace("-", "").lower() == surname:
+            matches.append((code, initials))
+    if not matches:
+        return None
+    if len(matches) == 1:
+        return matches[0][0]
+
+    wanted = set(given_forms)
+    default = _MUTOPIA_INITIALS.get(composer.strip().lower()) or _MUTOPIA_INITIALS.get(surname)
+    if not wanted and default:
+        wanted = {default.upper()}
+    for code, initials in matches:
+        if initials.upper() in wanted:
             return code
+    print(
+        f"  ambiguous: Mutopia has {len(matches)} composers named "
+        f"'{matches[0][0][: len(matches[0][0]) - len(matches[0][1])]}' "
+        f"({', '.join(c for c, _ in matches)}). Refusing to guess — name the "
+        f"initials (e.g. '{surname} {matches[0][1].lower()}')."
+    )
     return None
+
+
+#: Mutopia packages a piece's MIDI as a ZIP beside the loose files
+#: (`nr8-quartet-mids.zip`), and for many pieces the ZIP is the ONLY copy.
+#: Sampling four composer folders found 12 such archives against 5 loose `.mid`
+#: files — so a crawler that accepts only loose files reaches a minority of what
+#: the archive holds, and reports "no files" rather than "I skipped them".
+#: Corelli's entire folder is a single zipped quartet.
+_ARCHIVE_EXTS = (".zip",)
+#: Refuse an implausible archive rather than unpack it: a real MIDI bundle for
+#: one piece is a handful of small files.
+_ARCHIVE_MAX_MEMBERS = 64
+_ARCHIVE_MAX_BYTES = 32 * 1024 * 1024
+
+
+def _is_score_archive(name: str) -> bool:
+    """Whether this looks like a bundle of scores rather than of PDFs.
+
+    `-mids.zip` and `-lys.zip` sit beside `-a4-pdfs.zip` and `-let-pss.zip`;
+    only the first carries anything playable, so the name is the filter — the
+    others would each cost a download to reject.
+    """
+    low = name.lower()
+    if not low.endswith(_ARCHIVE_EXTS):
+        return False
+    return "mid" in low or "xml" in low or "krn" in low
+
+
+def _extract_score_archive(data: bytes, dest: Path, stem: str) -> List[str]:
+    """Write the playable members of a score archive out as loose files.
+
+    Returns the paths written. Anything malformed or implausibly large is
+    skipped rather than raised — an unreadable archive should cost this
+    composer one source, not the whole acquisition.
+    """
+    import io
+    import zipfile
+
+    written: List[str] = []
+    try:
+        zf = zipfile.ZipFile(io.BytesIO(data))
+    except (zipfile.BadZipFile, OSError):
+        return written
+    with zf:
+        members = [m for m in zf.infolist() if not m.is_dir()]
+        if len(members) > _ARCHIVE_MAX_MEMBERS:
+            return written
+        if sum(m.file_size for m in members) > _ARCHIVE_MAX_BYTES:
+            return written
+        for m in members:
+            name = Path(m.filename).name
+            if not name or not name.lower().endswith(_SCORE_EXTS):
+                continue
+            try:
+                payload = zf.read(m)
+            except (zipfile.BadZipFile, OSError, RuntimeError):
+                continue
+            fp = dest / f"{stem}__{name}"
+            fp.write_bytes(payload)
+            written.append(str(fp))
+    return written
 
 
 def _crawl_mutopia_midis(base_url: str, max_files: int) -> List[str]:
@@ -197,7 +323,7 @@ def _crawl_mutopia_midis(base_url: str, max_files: int) -> List[str]:
             if href.endswith("/"):
                 if child not in seen:
                     queue.append(child)
-            elif href.lower().endswith(_SCORE_EXTS):
+            elif href.lower().endswith(_SCORE_EXTS) or _is_score_archive(href):
                 found.append(child)
                 if len(found) >= max_files:
                     break
@@ -230,6 +356,12 @@ def _fetch_mutopia(composer: str, dest: Path, max_files: int) -> List[str]:
         # Leaf folders reuse the same basename (piece/piece.mid); disambiguate
         # with the parent folder to avoid clobbering distinct pieces.
         parent = Path(url).parent.name
+        if _is_score_archive(url):
+            members = _extract_score_archive(data, dest, parent)
+            if not members:
+                print(f"  Mutopia: {Path(url).name} held no playable score")
+            saved.extend(members)
+            continue
         fp = dest / f"{parent}__{Path(url).name}"
         fp.write_bytes(data)
         saved.append(str(fp))
@@ -390,7 +522,13 @@ def acquire(
             print(f"→ web: {src_name}")
             got = fetcher(composer, tmp, max_files)
             if got:
-                paths = list(paths) + list(got)
+                # WEB PATHS FIRST. `_extract_bars` stops after `max_files`, and
+                # appending the fetched files after 413 local ones meant the cap
+                # was spent entirely on the local corpus — which is already
+                # ingested. Sixty genuine J.S. Bach organ and keyboard files
+                # downloaded and contributed zero bars, and the run reported
+                # success. When broadening, the new material is the point.
+                paths = list(got) + list(paths)
                 source = f"{source}+{src_name}"
                 break
     elif not paths and use_web:

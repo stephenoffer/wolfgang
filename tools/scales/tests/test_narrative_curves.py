@@ -86,11 +86,19 @@ def test_uncovered_bars_fall_back():
     assert s.curves.energy[5] == 0.5
 
 
-def test_narrative_survives_save_load(tmp_path):
+def test_narrative_survives_save_load(tmp_path, monkeypatch):
     """Regression: narrative was serialized but never reconstructed on load, so
-    section.character never reached compose time. Guard the load-drop bug class."""
+    section.character never reached compose time. Guard the load-drop bug class.
+
+    `monkeypatch` rather than a bare assignment: this test used to leave
+    `scales._WORKSPACE` pointed at its own tmp_path for the REST OF THE SUITE.
+    Every later test that touched the workspace then ran against a directory
+    that had one piece in it, and any test holding a module-level
+    `from scales.scales import _WORKSPACE` (an import-time copy) silently
+    diverged from the code under test — passing alone, failing in the suite.
+    """
     ws = tmp_path
-    scales._WORKSPACE = ws
+    monkeypatch.setattr(scales, "_WORKSPACE", ws)
     pid = "narr-roundtrip"
     (ws / pid).mkdir(parents=True)
     g = PieceGraph()

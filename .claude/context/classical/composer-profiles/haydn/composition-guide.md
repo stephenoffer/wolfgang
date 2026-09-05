@@ -57,3 +57,96 @@ Any section claiming Haydn's style needs ≥3 of these 5 present.
 - The "Surprise" principle: use `"dyn": "f"` where the listener expects `"p"`, and vice versa. At least once per section.
 - Extended piano passages suddenly interrupted by forte outburst.
 - Use `"dyn": "fp"` at structural surprise points.
+
+---
+
+## Composing a Haydn phrase: step by step
+
+The organising fact is **wit**, which in music means setting up an expectation
+precisely and then not meeting it. A Haydn phrase that behaves is a Mozart
+phrase.
+
+### Step 1 — State a short, plain idea
+
+Shorter than Mozart's and deliberately ordinary — often just a triad in rhythm.
+The material has to be simple enough that the audience notices what happens to
+it later.
+
+```json
+"opening_idea": [
+  {"p": "D5", "d": "q", "dyn": "f"},
+  {"p": "D5", "d": "e"},
+  {"p": "D5", "d": "e"},
+  {"p": "F#5", "d": "q"},
+  {"p": "A5", "d": "q"}
+]
+```
+
+### Step 2 — Answer it, and cadence on the dominant
+
+Four bars out, four bars back. The answer is the same idea adjusted to close on
+V — the antecedent-consequent frame the joke will later break.
+
+### Step 3 — Break the phrase length
+
+Now write the third phrase **five bars long, or three**. Extend by repeating the
+cadential bar, or cut by eliding the last bar of one phrase with the first of
+the next. This is the single most Haydnesque thing available and Mozart does it
+far less.
+
+```json
+"elided_cadence": [
+  {"p": "A4", "d": "q"},
+  {"p": "G4", "d": "q"},
+  {"p": "F#4", "d": "h"},
+  {"p": "D5", "d": "q", "dyn": "f"},
+  {"p": "D5", "d": "e"},
+  {"p": "D5", "d": "e"}
+]
+```
+
+The F#4 resolves the phrase and the next idea starts in the same bar. The seam
+is the point.
+
+### Step 4 — Put the silence in
+
+A general pause where the ear expects the next bar. Haydn stops the music mid-
+sentence more than any composer before Beethoven, and the rest is the joke.
+
+```json
+"the_pause": [
+  {"p": ["D4", "F#4", "A4"], "d": "q", "dyn": "ff"},
+  {"p": "rest", "d": "q"},
+  {"p": "rest", "d": "h"},
+  {"p": ["A3", "C#4", "E4"], "d": "h", "dyn": "pp"}
+]
+```
+
+### Step 5 — Keep the accompaniment sparse and let it rest
+
+Real Haydn bars are full of long values and rests. His left hand is thinner than
+Mozart's — repeated block triads, an open fifth drone from the folk dances, and
+whole bars where it simply does not play.
+
+```json
+"sparse_accompaniment": [
+  {"p": ["D3", "F#3", "A3"], "d": "q"},
+  {"p": "rest", "d": "q"},
+  {"p": ["D3", "F#3", "A3"], "d": "q"},
+  {"p": "rest", "d": "q"}
+]
+```
+
+### Step 6 — Develop by fragmenting, not by spinning out
+
+Take the first three notes of the idea and sequence them through remote keys.
+Haydn develops one small cell hard, where Mozart introduces new material.
+
+---
+
+## Checking a finished phrase
+
+- Is any phrase not four bars long? At least one should not be.
+- Is there a real silence anywhere?
+- Does the left hand ever stop?
+- Was the surprise set up plainly enough that it registers as one?

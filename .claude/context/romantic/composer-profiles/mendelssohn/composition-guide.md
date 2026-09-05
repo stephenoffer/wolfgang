@@ -65,3 +65,87 @@ Any section claiming Mendelssohn's style needs ≥3 of these 5 present.
 - Mendelssohn's range: pp to ff, but most music lives between p and f.
 - `"expr": "leggiero"` (light) for fast passages.
 - `"expr": "con fuoco"` (with fire) only at final climax, not maintained.
+
+---
+
+## Composing a Mendelssohn phrase: step by step
+
+The organising fact is **Classical proportion carrying Romantic warmth**. The
+harmony is Romantic; the phrase structure is Mozart's. Generated "Romantic
+piano" usually loses the squareness, and losing it is losing him.
+
+### Step 1 — Write a singing melody in a strict four-bar frame
+
+Song without words: the tune must be playable by one hand and singable by one
+voice, with an accompaniment that never competes.
+
+```json
+"song_melody": [
+  {"p": "E5", "d": "q", "dyn": "p", "art": "legato"},
+  {"p": "F#5", "d": "e"},
+  {"p": "G5", "d": "e"},
+  {"p": "A5", "d": "h"},
+  {"p": "G5", "d": "q"},
+  {"p": "F#5", "d": "q"},
+  {"p": "E5", "d": "h"}
+]
+```
+
+### Step 2 — Put a murmuring inner voice between the hands
+
+His signature texture: the melody on top, the bass below, and a quiet repeated
+figure in the middle played between the two. Neither hand owns it.
+
+```json
+"inner_murmur": [
+  {"p": "B3", "d": "e"},
+  {"p": "E4", "d": "e"},
+  {"p": "B3", "d": "e"},
+  {"p": "E4", "d": "e"},
+  {"p": "B3", "d": "e"},
+  {"p": "E4", "d": "e"}
+]
+```
+
+### Step 3 — Keep the bass simple and slow
+
+One note a bar, or two. The interest is the middle voice, and a busy bass turns
+the texture muddy.
+
+```json
+"slow_bass": [
+  {"p": "E2", "d": "h"},
+  {"p": "B2", "d": "h"}
+]
+```
+
+### Step 4 — For a scherzo, halve every value and lighten every touch
+
+The elfin scherzo is the other Mendelssohn: staccato, pianissimo, fast, and
+almost entirely stepwise so it can be played at speed.
+
+```json
+"elfin_scherzo": [
+  {"p": "G5", "d": "s", "dyn": "pp", "art": "staccato"},
+  {"p": "A5", "d": "s"},
+  {"p": "B5", "d": "s"},
+  {"p": "C6", "d": "s"},
+  {"p": "B5", "d": "s"},
+  {"p": "A5", "d": "s"},
+  {"p": "G5", "d": "s"},
+  {"p": "F#5", "d": "s"}
+]
+```
+
+### Step 5 — Cadence properly and on time
+
+He does not evade. The four-bar unit closes where it said it would.
+
+---
+
+## Checking a finished phrase
+
+- Is the phrase four bars, or eight?
+- Is there a voice between the hands, or only melody and bass?
+- Could the tune be sung?
+- In a scherzo, is anything marked louder than `p`? It should not be.

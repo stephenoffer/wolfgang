@@ -36,11 +36,22 @@ def _craft() -> str:
 @pytest.mark.parametrize(
     "section",
     [
-        "CREATIVE INTENT", "PRINCIPAL THEME", "CHORD FRAME", "TRANSITION IN",
-        "NAMED GESTURES", "CORPUS GESTURES", "RHYTHMIC FINGERPRINT",
-        "COMPOSER FINGERPRINTS", "STYLE DOCTRINE", "PHRASE SHAPE",
-        "CADENCE PATTERN", "TEXTURE TRANSITIONS", "LH VOCABULARY",
-        "EXEMPLARS", "TARGET STATS", "AVOID",
+        "CREATIVE INTENT",
+        "PRINCIPAL THEME",
+        "CHORD FRAME",
+        "TRANSITION IN",
+        "NAMED GESTURES",
+        "CORPUS GESTURES",
+        "RHYTHMIC FINGERPRINT",
+        "COMPOSER FINGERPRINTS",
+        "STYLE DOCTRINE",
+        "PHRASE SHAPE",
+        "CADENCE PATTERN",
+        "TEXTURE TRANSITIONS",
+        "LH VOCABULARY",
+        "EXEMPLARS",
+        "TARGET STATS",
+        "AVOID",
     ],
 )
 def test_every_brief_section_is_named_in_the_guidance(section):
@@ -81,8 +92,12 @@ def test_the_shorthand_suffixes_in_the_docs_all_parse():
     )
 
     known = (
-        set(_ORNAMENTS) | set(_ARTICULATIONS) | set(_DYNAMICS)
-        | set(_TECHNIQUES) | set(_PEDALS) | set(_EXPRESSIONS)
+        set(_ORNAMENTS)
+        | set(_ARTICULATIONS)
+        | set(_DYNAMICS)
+        | set(_TECHNIQUES)
+        | set(_PEDALS)
+        | set(_EXPRESSIONS)
     )
     craft = _craft()
     offered = {
@@ -115,6 +130,12 @@ def test_the_realism_detectors_a_composer_may_see_are_explained():
     """The critic and the composer both read these names; an unexplained
     finding is one nobody can act on."""
     craft = _craft()
-    for detector in ("cadence_formula", "scalar_overuse", "articulation_absent",
-                     "tie_absent", "notation_spam", "accompaniment_monoculture"):
+    for detector in (
+        "cadence_formula",
+        "scalar_overuse",
+        "articulation_absent",
+        "tie_absent",
+        "notation_spam",
+        "accompaniment_monoculture",
+    ):
         assert detector in craft, f"{detector} can be reported and is undocumented"

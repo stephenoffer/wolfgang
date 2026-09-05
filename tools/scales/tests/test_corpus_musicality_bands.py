@@ -44,8 +44,12 @@ def _real_layers():
     import music21 as m21
 
     paths = (
-        sorted(glob.glob("tools/reference_scores/mozart-piano-sonatas/kern/sonata0[1-9]-*.krn"))[:10]
-        + sorted(glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True))[:5]
+        sorted(glob.glob("tools/reference_scores/mozart-piano-sonatas/kern/sonata0[1-9]-*.krn"))[
+            :10
+        ]
+        + sorted(
+            glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True)
+        )[:5]
         + sorted(glob.glob("tools/reference_scores/chopin-mazurkas/**/*.krn", recursive=True))[:5]
     )
     if not paths:

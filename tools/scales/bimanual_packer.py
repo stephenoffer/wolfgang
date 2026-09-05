@@ -7,10 +7,95 @@ assigned to piano hands with playability constraints.
 
 from __future__ import annotations
 
+from dataclasses import replace as _replace
+
 from .enums import NoteRole, OrchestraRole, ReductionMode
 from .models import LayerEvent, LayerIR, PhysicalConstraints
 from .pitch import midi_to_pitch, pitch_to_midi
 from .role_decomposer import RoleEvent, RoleGraph
+
+
+def _merge_simultaneous(events: list[LayerEvent]) -> list[LayerEvent]:
+    """Collapse events sharing an onset into one chord event.
+
+    Duration is the SHORTEST of the merged notes. Taking the longest would push
+    the chord over the next onset and re-create the overflow this exists to
+    remove; a pianist reading a reduction re-strikes rather than holds, and the
+    bar arithmetic has to be exact because meter is a strict constraint.
+    """
+    from collections import OrderedDict
+
+    from .duration import dur_to_beats
+
+    groups: "OrderedDict[tuple, list[LayerEvent]]" = OrderedDict()
+    for event in sorted(events, key=lambda e: (e.bar, float(e.beat))):
+        groups.setdefault((event.bar, round(float(event.beat), 4)), []).append(event)
+
+    out: list[LayerEvent] = []
+    for group in groups.values():
+        if len(group) == 1:
+            out.append(group[0])
+            continue
+        pitches: list[str] = []
+        for event in group:
+            for pitch in event.pitch if isinstance(event.pitch, list) else [event.pitch]:
+                if pitch and pitch != "rest" and pitch not in pitches:
+                    pitches.append(pitch)
+        if not pitches:
+            out.append(group[0])
+            continue
+        shortest = min(
+            group,
+            key=lambda e: (
+                float(dur_to_beats(e.duration)) if e.duration else float("inf")
+            ),
+        )
+        merged = _replace(
+            shortest,
+            pitch=pitches[0] if len(pitches) == 1 else pitches,
+        )
+        out.append(merged)
+    return _clip_to_next_onset(out)
+
+
+def _clip_to_next_onset(events: list[LayerEvent]) -> list[LayerEvent]:
+    """Shorten any note that outlasts the next onset in its own bar.
+
+    Merging simultaneous onsets fixed most of it, but a held note can still be
+    overlapped by a LATER, shorter one — "A4h at beat 3 while F#4q starts at
+    beat 3" is two notes in one voice just as surely. A hand plays one thing at
+    a time, so the earlier note ends where the next begins.
+
+    Only within a bar: a note tied across a barline is legitimate and this must
+    not shorten it.
+    """
+    from .duration import beats_to_dur, dur_to_beats
+
+    out: list[LayerEvent] = []
+    ordered = sorted(events, key=lambda e: (e.bar, float(e.beat)))
+    for index, event in enumerate(ordered):
+        nxt = ordered[index + 1] if index + 1 < len(ordered) else None
+        if nxt is None or nxt.bar != event.bar:
+            out.append(event)
+            continue
+        try:
+            span = float(dur_to_beats(event.duration))
+        except (ValueError, KeyError, TypeError):
+            out.append(event)
+            continue
+        room = float(nxt.beat) - float(event.beat)
+        if room <= 0 or span <= room + 1e-9:
+            out.append(event)
+            continue
+        try:
+            clipped = beats_to_dur(room)
+        except (ValueError, KeyError, TypeError):
+            # Not a writable duration (an odd remainder). Leave it: a wrong
+            # duration is worse than a long one, and the gate will say so.
+            out.append(event)
+            continue
+        out.append(_replace(event, duration=clipped))
+    return out
 
 
 class BimanualPacker:
@@ -49,6 +134,10 @@ class BimanualPacker:
         """
         layer = LayerIR(
             phrase_id="reduction",
+            # Correct, not an oversight: the OUTPUT of a reduction is a piano
+            # whatever the source was. This is the one hardcode in the family
+            # that should stay — and the playability check it enables is exactly
+            # what a reduction needs most.
             instrumentation="solo_piano",
             key=key,
             meter=meter,
@@ -64,10 +153,17 @@ class BimanualPacker:
             bar_events = bars[bar_num]
             rh_events, lh_events = self._pack_bar(bar_events, mode, key)
 
-            # Assign to layers
-            for event in rh_events:
+            # Assign to layers, MERGING anything that sounds at the same
+            # instant. Each layer is ONE voice, and the packer emitted a
+            # separate event per source part — so a four-part chorale reduced
+            # to a right hand whose 4/4 bars held 5, 6 and 9 beats, and whose
+            # own validator said "G4q starts at beat 1 while D4q is still
+            # sounding — one voice cannot play both". Every reduction failed the
+            # strict meter gate, which is the one constraint that cannot be
+            # waived. A pianist plays those notes as a chord; so does this.
+            for event in _merge_simultaneous(rh_events):
                 layer.principal_line.append(event)
-            for event in lh_events:
+            for event in _merge_simultaneous(lh_events):
                 layer.bass_foundation.append(event)
 
         return layer
@@ -151,6 +247,12 @@ class BimanualPacker:
                         duration=event.duration,
                         role=self._map_role(event.role),
                         dynamic=event.dynamic,
+                        # The marks the source note carried. Dropping them here
+                        # is why a reduction lost every slur the original had.
+                        slur=event.slur,
+                        articulation=event.articulation,
+                        ornament=event.ornament,
+                        tie=event.tie,
                         source_layer="principal_line",
                     )
                 )
@@ -164,6 +266,12 @@ class BimanualPacker:
                         duration=event.duration,
                         role=self._map_role(event.role),
                         dynamic=event.dynamic,
+                        # The marks the source note carried. Dropping them here
+                        # is why a reduction lost every slur the original had.
+                        slur=event.slur,
+                        articulation=event.articulation,
+                        ornament=event.ornament,
+                        tie=event.tie,
                         source_layer="bass_foundation",
                     )
                 )

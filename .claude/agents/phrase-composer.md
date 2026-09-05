@@ -106,10 +106,11 @@ the brief brings you the three facts about them that decide whether this phrase
 sounds like part of a piece or like a fragment that happens to follow one:
 
 - **CADENCES ALREADY USED** — how every earlier phrase closed, and a warning
-  when a closing rhythm has been reused. The last piece this system produced
-  closed **seven of its nine phrases with the identical gesture**, because each
-  phrase-composer chose the same locally-reasonable ending in ignorance of the
-  others. If you see that warning, close differently: land on a weak beat, tie
+  when a closing rhythm has been reused. This is the failure mode of composing
+  in isolation: every phrase-composer picks the same locally-reasonable ending
+  in ignorance of the others, and the form ends up with no punctuation, only a
+  repeating full stop. The warning is computed from the phrases committed so
+  far — trust it over any figure quoted here. If you see that warning, close differently: land on a weak beat, tie
   over the barline into the next phrase, elide, decorate the arrival with an
   appoggiatura or a turn, or cut the phrase a bar short. Craft §4b lists nine.
 - **texture coming in** — how long the current accompaniment idiom has already
@@ -125,9 +126,9 @@ Plan the phrase as one musical thought — where it enters, where it peaks, what
 harmony drives it, where it breathes — and **record it** with
 `commit_phrase_sketch(piece_id, phrase_id, {...})` (full example: `/w-compose`
 step 2). It comes back as the SKETCH section of the NEXT phrase's brief, so this
-is how the phrase after yours knows what you planned. Until recently there was no
-tool for this and the step could not be done at all; on 164 real phrases the
-field held a value ten times, all of them engine-realized.
+is how the phrase after yours knows what you planned. It is easy to skip because
+nothing blocks on it, and skipping it is why a phrase can come out a well-formed
+fragment that does not continue anything.
 
 ## Composing rules
 
@@ -164,19 +165,24 @@ field held a value ten times, all of them engine-realized.
   a dynamic marking wherever the level changes. Full shorthand grammar:
   craft reference §8. Measured over 26 canonical Mozart/Beethoven/Chopin
   movements, real engraved music carries a **median 0.57 articulation marks
-  and 0.18 ties per bar** — the last piece this system produced had
-  **zero of both in 41 bars**, which is the single loudest "a machine wrote
-  this" signal there is. An engraver's pass fills in what you leave blank,
+  and 0.18 ties per bar**. A score with zero of either is the single loudest
+  "a machine wrote this" signal there is; the brief's MARKS SO FAR section
+  reports what this piece has actually written, which is the figure to judge
+  yourself against. An engraver's pass fills in what you leave blank,
   but it can only phrase what you actually wrote; it will never invent the
   tenuto on the note that has to be leaned on.
 - **Use register as a structural device.** Real movements span **24-49
-  semitones (median 32.5)** in the melody staff; the last generated piece
-  spanned **19 across 41 bars**, narrower than anything in the corpus. Open
+  semitones (median 32.5)** in the melody staff, and a generated piece that
+  stays inside two octaves has nothing that ever sounds high or low relative to
+  anything else. RANGE SO FAR in the brief reports where this piece has actually
+  been. Open
   below where you intend to peak, take a return an octave up, drop to the
   tenor for the darkest phrase. This is the cheapest way to make a piece
   sound composed rather than generated, and it costs nothing.
-- **Vary your cadences.** Seven of the last piece's nine phrase endings were
-  the identical rhythm. Change the approach, the rhythm of the arrival, and
+- **Vary your cadences.** Closing every phrase with the same rhythm is the
+  characteristic result of composing them in isolation, and the brief's
+  CADENCES ALREADY USED section reports what this piece has actually done.
+  Change the approach, the rhythm of the arrival, and
   whether the line falls to the tonic or rises to the third. (Repeating a
   *bar* elsewhere is fine — real movements do it constantly.)
 - **A scale is a gesture, not a way to get to the next bar.** Real melody

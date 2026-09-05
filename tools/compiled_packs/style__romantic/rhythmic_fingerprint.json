@@ -1,0 +1,32 @@
+{
+ "composer": "style__romantic",
+ "schema": 1,
+ "bars": 17588,
+ "notes": 75039,
+ "rest_bar_pct": 0.4893,
+ "dotted_bar_pct": 0.343,
+ "fast_note_pct": 0.0007,
+ "lh_texture_change_pct": 0.348,
+ "top_note_values": [
+  [
+   0.5,
+   0.3681
+  ],
+  [
+   0.25,
+   0.2501
+  ],
+  [
+   1.0,
+   0.1674
+  ],
+  [
+   0.3333,
+   0.0902
+  ],
+  [
+   1.5,
+   0.0331
+  ]
+ ]
+}

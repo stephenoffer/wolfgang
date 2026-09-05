@@ -30,8 +30,10 @@ from scales.corpus_metrics import (
     SCALAR_METRICS,
     bar_metrics,
     l1_distance,
+    sonority_metrics,
     texture_distribution,
 )
+from scales.style_dimensions import FINGERPRINT_FEATURES, style_fingerprint
 from scales.style_registry import (
     available_styles,
     make_style_id,
@@ -41,6 +43,16 @@ from scales.style_registry import (
 _TOOLS = Path(__file__).resolve().parent.parent
 COMPILED_PACKS = _TOOLS / "compiled_packs"
 _MIN_MOVEMENT_BARS = 6
+
+# The SAME feature vector `build_corpus_profiles` builds for a composer. This
+# file aggregated `SCALAR_METRICS` alone — 13 of the 39 — so a style profile
+# described texture and rhythm and said nothing about harmony, melody or how
+# many notes sound together. `compare_to_corpus` scores a piece on whatever the
+# profile carries, so composing "in the classical style" was judged on a third
+# of the dimensions a named composer is judged on, and the missing two thirds
+# were exactly the ones that separate one classical composer from another.
+_SONORITY_FEATURES = ("mean_sonority", "chorded_attack_pct")
+_ALL_FEATURES = list(SCALAR_METRICS) + list(FINGERPRINT_FEATURES) + list(_SONORITY_FEATURES)
 
 
 def _aggregate(values: List[float]) -> Dict[str, float]:
@@ -78,22 +90,26 @@ def build_style_profile(style: str, min_bars: int = _MIN_MOVEMENT_BARS) -> Optio
     groups = _group_by_source(bars)
     pooled_lh = texture_distribution(bars, "lh")
 
-    per_metric: Dict[str, List[float]] = {m: [] for m in SCALAR_METRICS}
+    per_metric: Dict[str, List[float]] = {m: [] for m in _ALL_FEATURES}
     lh_l1_samples: List[float] = []
     movements_used = 0
     for src, mvt_bars in groups.items():
         if len(mvt_bars) < min_bars:
             continue
-        metrics = bar_metrics(mvt_bars)
-        for m in SCALAR_METRICS:
-            per_metric[m].append(metrics[m])
+        metrics = {
+            **bar_metrics(mvt_bars),
+            **style_fingerprint(mvt_bars),
+            **sonority_metrics(mvt_bars),
+        }
+        for m in _ALL_FEATURES:
+            per_metric[m].append(metrics.get(m, 0.0))
         lh_l1_samples.append(l1_distance(texture_distribution(mvt_bars, "lh"), pooled_lh))
         movements_used += 1
 
     if movements_used == 0:  # fallback: whole style as one sample
-        whole = bar_metrics(bars)
-        for m in SCALAR_METRICS:
-            per_metric[m].append(whole[m])
+        whole = {**bar_metrics(bars), **style_fingerprint(bars), **sonority_metrics(bars)}
+        for m in _ALL_FEATURES:
+            per_metric[m].append(whole.get(m, 0.0))
         movements_used = 1
 
     return {

@@ -16,6 +16,7 @@ These tests pin the coverage so it cannot silently regress, and the parse so a
 badly-formatted file is noticed rather than silently yielding nothing.
 """
 
+import glob
 import pathlib
 
 import pytest
@@ -97,10 +98,29 @@ def test_devices_reach_the_compiled_pack():
     `_composer_devices` is wired into the figuration-templates pass; if it is
     ever unwired, the catalogues stop reaching the composer while every other
     test here still passes.
+
+    Checked against the COMPILED PACKS rather than against the source text. The
+    earlier version asserted the literal string `self._composer_devices(
+    profile_dir)` appeared in the compiler, and broke the moment that call was
+    legitimately rewritten to run over a style's member profiles — flagging a
+    correct change as a regression while proving nothing about whether any
+    device ever reached a pack.
     """
-    source = pathlib.Path("tools/scales/context_compiler.py").read_text()
-    assert "self._composer_devices(profile_dir)" in source, (
-        "the devices catalogue is parsed but no longer fed into the pack"
+    import json
+
+    reached = 0
+    for path in glob.glob("tools/compiled_packs/*/figuration_templates.json"):
+        data = json.load(open(path))
+        items = (
+            data
+            if isinstance(data, list)
+            else next((v for v in data.values() if isinstance(v, list)), [])
+        )
+        if any(i.get("category") == "composer_device" for i in items if isinstance(i, dict)):
+            reached += 1
+    assert reached >= 20, (
+        f"only {reached} compiled packs carry any composer_device entry — "
+        "the catalogue is parsed but not fed into the pack"
     )
 
 
@@ -189,3 +209,44 @@ def test_a_multi_line_description_is_joined():
     items = list(_parse_catalogue(text))
     assert len(items) == 1
     assert "continues on the next line" in items[0][2]
+
+
+def test_an_item_whose_bold_name_wraps_is_still_parsed():
+    """Markdown lets a bold name run onto the next line, and a person writing a
+    long device name does it without thinking:
+
+        15. **Themes built from a rising interval — a fifth or an octave — then
+            a slow stepwise descent.** Spacious, singable, slow to unfold.
+
+    Matching only the single-line form dropped that item silently. Bruckner's
+    catalogue read 17 items and compiled 16, and nothing anywhere said so — the
+    fourth distinct way this parser has lost an item without an error, which is
+    why it is a line walker and why every one of them has a test.
+    """
+    from scales.context_compiler import _parse_catalogue
+
+    text = (
+        "## Melodic devices\n\n"
+        "1. **Short name** — a body.\n\n"
+        "2. **A name that runs on past the width of the line and keeps\n"
+        "   going before it closes.** The body follows here.\n\n"
+        "3. **Another short one** — more body.\n"
+    )
+    items = list(_parse_catalogue(text))
+    assert len(items) == 3, f"parsed {len(items)} of 3: {[i[1] for i in items]}"
+    assert "runs on past the width" in items[1][1]
+    assert "The body follows here" in items[1][2]
+    assert items[2][1] == "Another short one", "the item AFTER a wrapped one must survive"
+
+
+def test_a_wrapped_name_that_never_closes_is_not_swallowed():
+    """The lookahead must give up rather than eat the following items."""
+    from scales.context_compiler import _parse_catalogue
+
+    text = (
+        "## Devices\n\n"
+        "1. **An unclosed name that never gets its stars\n\n"
+        "2. **A perfectly good item** — with a body.\n"
+    )
+    names = [i[1] for i in _parse_catalogue(text)]
+    assert "A perfectly good item" in names

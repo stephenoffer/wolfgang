@@ -140,10 +140,14 @@ def _entry_points(module_name):
             continue
         first = params[0].name
         kind = (
-            "layer" if first in _LAYER_ARGS
-            else "graph" if first in _GRAPH_ARGS
-            else "events" if first in _EVENTS_ARGS
-            else "mapping" if first in _MAPPING_ARGS
+            "layer"
+            if first in _LAYER_ARGS
+            else "graph"
+            if first in _GRAPH_ARGS
+            else "events"
+            if first in _EVENTS_ARGS
+            else "mapping"
+            if first in _MAPPING_ARGS
             else None
         )
         if kind is None:
@@ -176,9 +180,12 @@ def test_no_analysis_entry_point_crashes_on_degenerate_material(module_name):
     graph_cases = {"empty_graph": _EmptyGraph}
     for fn_name, fn, kind in _entry_points(module_name):
         cases = (
-            layer_cases if kind == "layer"
-            else graph_cases if kind == "graph"
-            else mapping_cases if kind == "mapping"
+            layer_cases
+            if kind == "layer"
+            else graph_cases
+            if kind == "graph"
+            else mapping_cases
+            if kind == "mapping"
             else event_cases
         )
         for case_name, make in cases.items():

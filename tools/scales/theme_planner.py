@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from itertools import pairwise
 
-from .models import MotifObject, MotifTransform, MotifTransformOp
+from .models import MELODIC_LAYERS, MotifObject, MotifTransform, MotifTransformOp
 from .pitch import midi_to_pitch
 
 _DEV_ROLES = ("development", "contrasting", "episode")
@@ -95,6 +95,43 @@ def _ev_top_midi(ev) -> int | None:
     return max(mids) if mids else None
 
 
+def _melody_of(source) -> list:
+    """The melodic line of a phrase, whatever forces it is scored for.
+
+    Every read in this module was `principal_line`, which orchestral music
+    never populates — its tune is in `foreground` — so theme capture,
+    recurrence and `phrase_carries_theme` reported "no theme" for every
+    orchestral piece, indistinguishable from a piece that genuinely has none.
+
+    `LayerIR.melody_line()` already did exactly this and already carried the
+    explanation; this only adds the two shapes it cannot take. Delegating
+    rather than reimplementing is the point — a private fifth copy of a model
+    method is how the divergence starts.
+    """
+    if source is None:
+        return []
+    # A bare sequence of events IS the line. `_midis_of` passes one, and an
+    # earlier version of this helper returned [] for it rather than passing it
+    # through — the caller distinguished None from empty, so every
+    # list-of-events call silently measured nothing.
+    if isinstance(source, (list, tuple)):
+        return list(source)
+    if isinstance(source, dict):
+        for name in MELODIC_LAYERS:
+            evs = source.get(name)
+            if evs:
+                return list(evs)
+        return []
+    line = getattr(source, "melody_line", None)
+    if callable(line):
+        return line()
+    for name in MELODIC_LAYERS:
+        evs = getattr(source, name, None)
+        if evs:
+            return list(evs)
+    return []
+
+
 def capture_theme_surface(graph, phrase_id: str, n_bars: int = 4):
     """Store the COMPOSED theme (the principal_line of the first n_bars of the
     committed theme phrase) on the graph, so later sections DEVELOP the real
@@ -106,11 +143,12 @@ def capture_theme_surface(graph, phrase_id: str, n_bars: int = 4):
     if not st or not getattr(st, "realized", None):
         return None
     real = st.realized
-    bars = sorted({e.bar for e in real.principal_line})[:n_bars]
+    _src = _melody_of(real)
+    bars = sorted({e.bar for e in _src})[:n_bars]
     theme = LayerIR(phrase_id=f"{phrase_id}__theme", key=real.key, meter=real.meter,
                     instrumentation=real.instrumentation, bar_count=len(bars))
     base = bars[0] if bars else 1
-    for e in sorted(real.principal_line, key=lambda x: (x.bar, x.beat)):
+    for e in sorted(_src, key=lambda x: (x.bar, x.beat)):
         if e.bar in bars:
             theme.principal_line.append(
                 LayerEvent(bar=e.bar - base + 1, beat=e.beat, pitch=e.pitch,
@@ -169,7 +207,7 @@ def _theme_span_beats(theme) -> float:
     """Beats the theme occupies, from its own bars and meter."""
     from .duration import dur_to_beats
 
-    evs = getattr(theme, "principal_line", None) or []
+    evs = _melody_of(theme)
     if not evs:
         return 0.0
     meter = tuple(getattr(theme, "meter", (4, 4)) or (4, 4))
@@ -215,9 +253,9 @@ def develop_theme_surface(theme, op: str, transpose_semitones: int = 0) -> str:
     """Render a SUGGESTED development of the real theme melody as shorthand, for
     the brief. The agent treats it as a starting point to develop creatively, not
     a verbatim output. op ∈ state/sequence/fragment/invert/augment/retrograde."""
-    if theme is None or not theme.principal_line:
+    if theme is None or not _melody_of(theme):
         return ""
-    evs = sorted(theme.principal_line, key=lambda x: (x.bar, x.beat))
+    evs = sorted(_melody_of(theme), key=lambda x: (x.bar, x.beat))
     notes = [(_ev_top_midi(e), e.duration) for e in evs]
     notes = [(m, d) for m, d in notes if m is not None]
     if not notes:
@@ -282,7 +320,7 @@ def analyze_theme(theme) -> dict[str, object]:
     from .duration import dur_to_beats
 
     evs = sorted(
-        (e for e in (getattr(theme, "principal_line", None) or [])
+        (e for e in _melody_of(theme)
          if getattr(e, "pitch", None) and e.pitch != "rest"),
         key=lambda e: (getattr(e, "bar", 1), getattr(e, "beat", 1.0)),
     )
@@ -503,9 +541,7 @@ def theme_recurrence(
         realized = getattr(state, "realized", None)
         if realized is None:
             continue
-        line = getattr(realized, "principal_line", None)
-        if line is None and isinstance(realized, dict):
-            line = realized.get("principal_line")
+        line = _melody_of(realized)
         if not line:
             continue
         mids = _midis_of(line)
@@ -554,7 +590,7 @@ def _midis_of(source) -> list[int]:
 
         return [m for m in (_top(ev.get("pitch")) for ev in _parse_shorthand(source)) if m is not None]
 
-    events = getattr(source, "principal_line", None)
+    events = _melody_of(source)
     if events is None:
         events = source if isinstance(source, (list, tuple)) else []
     out = []

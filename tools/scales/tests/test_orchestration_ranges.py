@@ -13,7 +13,13 @@ in exactly those places — legal, and unplayable as written.
 
 import pytest
 
-from scales.orchestration_planner import _range_of, practical_range, range_warnings
+from scales.models import LayerEvent, LayerIR
+from scales.orchestration_planner import (
+    _range_of,
+    plan_orchestration,
+    practical_range,
+    range_warnings,
+)
 
 # ─── The practical range is inside the physical one ──────────────────────────
 
@@ -146,8 +152,16 @@ def test_every_notation_field_survives_orchestration():
     )
     out = _event_dict(e)
     for field in (
-        "dynamic", "articulation", "slur", "ornament", "tie",
-        "hairpin", "expression", "technique", "pedal", "fingering",
+        "dynamic",
+        "articulation",
+        "slur",
+        "ornament",
+        "tie",
+        "hairpin",
+        "expression",
+        "technique",
+        "pedal",
+        "fingering",
     ):
         assert out.get(field) is not None, f"{field} was dropped on the way to the part"
 
@@ -189,7 +203,10 @@ def _two_part_core():
         for i, p in enumerate(["F5", "G5", "A5"]):
             ir.principal_line.append(
                 LayerEvent(
-                    bar=b, beat=1 + i, pitch=p, duration="q",
+                    bar=b,
+                    beat=1 + i,
+                    pitch=p,
+                    duration="q",
                     dynamic=("f" if b == 5 and i == 0 else None),
                 )
             )
@@ -198,8 +215,16 @@ def _two_part_core():
 
 
 _ENSEMBLE = [
-    "flute", "oboe", "clarinet", "bassoon", "horn",
-    "trumpet", "violin_1", "violin_2", "viola", "cello",
+    "flute",
+    "oboe",
+    "clarinet",
+    "bassoon",
+    "horn",
+    "trumpet",
+    "violin_1",
+    "violin_2",
+    "viola",
+    "cello",
 ]
 
 
@@ -258,3 +283,119 @@ def test_a_rich_core_is_not_given_redundant_doublings():
         ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
     parts = plan_orchestration(ir, _ENSEMBLE, key="C major")
     assert not [k for k in _ENSEMBLE if not parts.get(k)]
+
+
+def test_the_bass_anchor_sustains_under_moving_inner_parts():
+    """A piano-core left hand is split — first event per bar anchors the bass,
+    the rest becomes inner motion — but the anchor kept its ORIGINAL value. In a
+    bar whose left hand read `C3q C3q C2e C3e C2e C3e`, the cello was given one
+    quarter note and three beats of silence while every other part moved. An
+    orchestral bass sustains or repeats; it does not blip once and vanish.
+    """
+    from scales.models import LayerEvent, LayerIR
+    from scales.orchestration_planner import plan_orchestration
+
+    lh = []
+    for bar in (1, 2, 3, 4):
+        for i, beat in enumerate((1.0, 2.0, 3.0, 4.0)):
+            lh.append(
+                LayerEvent(
+                    bar=bar,
+                    beat=beat,
+                    pitch="C3" if i else "C2",
+                    duration="q",
+                    role="bass_foundation",
+                )
+            )
+    rh = [
+        LayerEvent(bar=bar, beat=b, pitch="G4", duration="q", role="principal_line")
+        for bar in (1, 2, 3, 4)
+        for b in (1.0, 2.0, 3.0, 4.0)
+    ]
+    layer = LayerIR(
+        phrase_id="p",
+        principal_line=rh,
+        bass_foundation=lh,
+        key="C minor",
+        meter=(4, 4),
+        bar_count=4,
+    )
+    parts = plan_orchestration(layer, ["cello", "violin_1", "viola"])
+    cello = parts.get("cello") or []
+    assert cello, "the cello must receive the bass line"
+
+    from scales.duration import dur_to_beats
+
+    by_bar = {}
+    for e in cello:
+        pitch = e.get("pitch") if isinstance(e, dict) else getattr(e, "pitch", None)
+        if pitch == "rest":
+            continue
+        bar = e.get("bar") if isinstance(e, dict) else getattr(e, "bar", None)
+        dur = e.get("duration") if isinstance(e, dict) else getattr(e, "duration", None)
+        by_bar.setdefault(bar, 0.0)
+        by_bar[bar] += float(dur_to_beats(dur))
+    assert by_bar, "the cello part carries no sounding notes"
+    for bar, held in by_bar.items():
+        assert held >= 3.0, f"bar {bar}: cello sounds for only {held} of 4 beats"
+
+
+# ─── Nearly-empty is not the same as empty ───────────────────────────────────
+
+
+def _core(inner_bars, bars=14):
+    """A two-part piano core with inner motion in only the named bars."""
+    ir = LayerIR(key="C minor", meter=(4, 4), instrumentation="solo_piano", bar_count=bars)
+    for b in range(1, bars + 1):
+        for i, p in enumerate(["C5", "Eb5", "G5", "F5"]):
+            ir.principal_line.append(LayerEvent(bar=b, beat=1.0 + i, pitch=p, duration="q"))
+        ir.bass_foundation.append(LayerEvent(bar=b, beat=1.0, pitch="C3", duration="w"))
+    for b in inner_bars:
+        for i, p in enumerate(["Eb3", "G3", "Bb3"]):
+            ir.response_layer.append(LayerEvent(bar=b, beat=1.0 + i, pitch=p, duration="q"))
+    return ir
+
+
+_ENS = ["violin_i", "violin_ii", "viola", "cello", "flute", "oboe", "clarinet", "bassoon", "horn"]
+
+
+def _bars_played(parts, name):
+    events = parts.get(name) or []
+    return len({e["bar"] if isinstance(e, dict) else e.bar for e in events})
+
+
+@pytest.mark.parametrize(
+    "label,inner",
+    [("one bar of fourteen", [13]), ("none at all", []), ("throughout", list(range(1, 15)))],
+)
+def test_no_instrument_is_left_effectively_tacet(label, inner):
+    """The wind pads and the inner strings both fell back only when their
+    source layer was ENTIRELY empty.
+
+    A core with a LITTLE inner motion — three events, all in one bar of
+    fourteen — is not empty, so neither fallback fired: clarinet, bassoon and
+    viola each came out with exactly ONE note in the whole section. Nearly-empty
+    reached the same tacet outcome as empty, through the guard rather than
+    around it.
+
+    Deciding per bar needs no coverage threshold, which is the better reason for
+    it: a real orchestrator voices the harmony each bar implies, from whichever
+    line implies it.
+    """
+    parts = plan_orchestration(_core(inner), _ENS, key="C minor")
+    silent = [name for name in _ENS if name in parts and _bars_played(parts, name) <= 2]
+    assert not silent, f"with inner motion {label}, these are effectively tacet: {silent}"
+
+
+def test_the_pads_cover_the_whole_section_when_inner_motion_is_sparse():
+    """The measured case: 1 bar of 14 -> 14 of 14."""
+    parts = plan_orchestration(_core([13]), _ENS, key="C minor")
+    for wind in ("clarinet", "bassoon", "horn"):
+        assert _bars_played(parts, wind) >= 13, f"{wind} pads only {_bars_played(parts, wind)} bars"
+
+
+def test_real_inner_motion_is_still_preferred_over_the_fallback():
+    """The fallback must fill gaps, not replace the written inner line."""
+    parts = plan_orchestration(_core(list(range(1, 15))), _ENS, key="C minor")
+    dense = parts.get("violin_ii") or parts.get("viola") or []
+    assert len(dense) >= 14, "the written inner motion was thrown away"

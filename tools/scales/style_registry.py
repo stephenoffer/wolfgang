@@ -149,15 +149,43 @@ def all_style_members(style: str) -> list[str]:
     return list(_STYLE_MEMBERS.get(normalize_style(style) or style, []))
 
 
-def style_members(style: str, armed_only: bool = True) -> list[str]:
-    """Members of a style. When armed_only, keep only composers with corpus."""
+# Below this many bars a corpus cannot teach a voice, and `composer_coverage_tier`
+# already says so by reporting tier C. Membership was gated on "has a corpus
+# directory on disk" instead, so a 16-bar Bartok corpus was a full member of
+# `modern` — the ONLY member, making the whole style 100% backed by 16 bars —
+# and three of `nationalistic`'s four members (53% of its material) were the
+# same kind of stub. CLAUDE.md's rule is that a thin corpus reports tier C
+# "rather than pretending it can teach a voice"; nothing enforced it here.
+_USABLE_TIERS = ("A", "B")
+
+
+def style_members(style: str, armed_only: bool = True, usable_only: bool = True) -> list[str]:
+    """Members of a style.
+
+    ``armed_only`` keeps composers with a corpus on disk; ``usable_only``
+    additionally drops the ones whose corpus is too thin to anchor a brief
+    (tier C/D). Pass ``usable_only=False`` to see what a style *would* contain
+    if its stubs were properly acquired — which is what the honest "this style
+    is not supported yet, run acquire_composer" message needs.
+    """
     members = all_style_members(style)
     if not armed_only:
         return members
-    from .composition_brief import available_corpus_composers
+    from .composition_brief import available_corpus_composers, composer_coverage_tier
 
     armed = set(available_corpus_composers())
-    return [m for m in members if m in armed]
+    out = [m for m in members if m in armed]
+    if not usable_only:
+        return out
+    usable = []
+    for m in out:
+        try:
+            tier = (composer_coverage_tier(m) or {}).get("tier", "D")
+        except Exception:
+            tier = "D"
+        if tier in _USABLE_TIERS:
+            usable.append(m)
+    return usable
 
 
 def styles_for_composer(composer: str) -> list[str]:
@@ -181,30 +209,52 @@ def resolve_reference(request: str | None) -> dict[str, Any]:
       armed:   whether the reference has corpus to anchor a brief
       note:    a human-readable status line
     """
-    from .composition_brief import available_corpus_composers
+    from .composition_brief import available_corpus_composers, composer_coverage_tier
 
     armed = set(available_corpus_composers())
     req = (request or "").strip()
     low = req.lower()
 
-    # 1. Exact composer match (armed)
+    def _composer_result(cid: str, note_prefix: str) -> dict[str, Any]:
+        """One composer answer, with the coverage tier actually consulted.
+
+        `armed` here meant only "has a corpus directory". `composer_coverage_tier`
+        applies the rule CLAUDE.md states — at least three distinct source
+        movements and real harmonic coverage — and the two disagreed: it reports
+        bartok as `tier C, armed false` on **16 bars from one source**, while
+        this said `armed: True` and offered no tier at all. `style_members` two
+        functions up already consults the tier; only the direct-composer path,
+        which is the commoner request, did not. So "compose in Bartok's style"
+        was answered as though the corpus could teach that voice.
+        """
+        try:
+            coverage = composer_coverage_tier(cid) or {}
+        except Exception:
+            coverage = {}
+        tier = coverage.get("tier")
+        usable = tier in _USABLE_TIERS if tier else True
+        note = f"{note_prefix} (armed, tier {tier})" if usable else (
+            f"{note_prefix} has a corpus but only {coverage.get('bars', '?')} bars "
+            f"from {coverage.get('distinct_sources', '?')} source(s) — tier {tier}, too thin to "
+            f"anchor a brief. Compose in a STYLE instead, or run "
+            f"`python -m scripts.acquire_composer {cid}` to broaden it."
+        )
+        return {
+            "kind": "composer",
+            "id": cid,
+            "members": [],
+            "armed": bool(usable),
+            "tier": tier,
+            "bars": coverage.get("bars"),
+            "note": note,
+        }
+
+    # 1. Exact composer match
     base = low.split("-")[0].split("_")[0]
     if low in armed:
-        return {
-            "kind": "composer",
-            "id": low,
-            "members": [],
-            "armed": True,
-            "note": f"composer '{low}' (armed)",
-        }
+        return _composer_result(low, f"composer '{low}'")
     if base in armed and not normalize_style(low):
-        return {
-            "kind": "composer",
-            "id": base,
-            "members": [],
-            "armed": True,
-            "note": f"composer '{low}' → '{base}' (armed)",
-        }
+        return _composer_result(base, f"composer '{low}' → '{base}'")
 
     # 2. Style / genre request
     canon = normalize_style(low)
@@ -245,7 +295,13 @@ def resolve_reference(request: str | None) -> dict[str, Any]:
         "note": (
             f"'{req}' is not an armed composer or known style. "
             + (f"Closest armed style(s): {armed_fallback}. " if armed_fallback else "")
-            + f"Arm it with `acquire_composer.py {base}` or pass a "
+            # The FULL name, not `base`. `base` is `low.split("-")[0]`, which
+            # exists to match "mozart-k331" back to "mozart" — using it here
+            # handed the user a command that cannot work for any hyphenated
+            # composer: `acquire_composer.py vaughan` for vaughan-williams,
+            # `saint` for saint-saens, `arvo` for arvo-part, `strauss` for
+            # strauss-r. A hint naming the wrong argument is worse than no hint.
+            + f"Arm it with `python -m scripts.acquire_composer {low}` or pass a "
             f"style like 'classical'/'baroque'/'romantic'."
         ),
     }
@@ -292,6 +348,24 @@ def pack_dir_name(composer_id: str) -> str:
     safe = safe.strip("._")
     if not safe:
         raise ValueError(f"composer id {composer_id!r} has no filesystem-safe form")
+    # A bare STYLE NAME is not a pack directory. Style packs are written as
+    # `style__<name>`, and `resolve_reference` returns that id — but
+    # `compile_style(piece, "classical")` threads the user's word through, so
+    # `_load_pack("classical")` looked for `compiled_packs/classical/`, found
+    # nothing, and every field fell to its default: tier "D", zero fingerprints,
+    # zero left-hand textures. Tier C/D is what triggers `DonorStrategy`, so
+    # composing "in the classical style" was treated as a sparse corpus and
+    # given a donor — over mozart, haydn and beethoven together.
+    #
+    # Only redirect when there is no pack of that name already, so a composer
+    # who happens to share a style word keeps his own.
+    from pathlib import Path
+
+    packs_root = Path(__file__).resolve().parents[1] / "compiled_packs"
+    if not (packs_root / safe).is_dir():
+        canon = normalize_style(raw)
+        if canon:
+            return make_style_id(canon)
     return safe
 
 

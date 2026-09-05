@@ -77,6 +77,48 @@ CHORD_INTERVALS = {
     "sus2": [0, 2, 7],
 }
 
+#: What the CORPUS calls these chords, which is not what the table above calls
+#: them. `analyze_score_bars` writes `dom7` and `halfdim7`; the table has `7` and
+#: `hdim7`, and `chord_tones` falls back to a MAJOR TRIAD on a miss. So every
+#: dominant seventh the engine realized lost its seventh — 734 bars of Mozart
+#: alone carry `dom7` — and every half-diminished chord came out major, which is
+#: not a thinner version of the chord but a different one.
+CHORD_QUALITY_ALIASES = {
+    "dom7": "7",
+    "dominant7": "7",
+    "dominant_seventh": "7",
+    "halfdim7": "hdim7",
+    "half_dim7": "hdim7",
+    "halfdiminished7": "hdim7",
+    "m7": "min7",
+    "minor7": "min7",
+    "major7": "maj7",
+    "M7": "maj7",
+    "diminished": "dim",
+    "diminished7": "dim7",
+    "augmented": "aug",
+    "maj": "major",
+    "min": "minor",
+    "m": "minor",
+    "M": "major",
+}
+
+
+def chord_intervals(quality: str) -> list[int]:
+    """Semitone intervals for a chord quality, whatever the caller spells it.
+
+    A miss still resolves to a major triad, because every caller here is
+    building notes and none can do anything useful with nothing — but the
+    spellings the corpus and the analyzer actually emit now resolve.
+    """
+    text = str(quality or "major").strip()
+    if text in CHORD_INTERVALS:
+        return CHORD_INTERVALS[text]
+    key = CHORD_QUALITY_ALIASES.get(text) or CHORD_QUALITY_ALIASES.get(text.lower())
+    if key is None:
+        key = CHORD_INTERVALS.get(text.lower()) and text.lower()
+    return CHORD_INTERVALS.get(key or text, CHORD_INTERVALS["major"])
+
 
 # ─── Pitch Conversion ────────────────────────────────────────────────────────
 
@@ -196,12 +238,39 @@ def key_spelling(key: str = "C") -> dict:
         if not candidates:
             out[pc] = SEMITONE_TO_NOTE_FLAT[pc]
             continue
+        prefer_sharp = below is not None and degree_of.get((pc - 1) % 12) in raised
+
+        # A RAISED DEGREE keeps its letter even when that costs an accidental.
+        #
+        # "Fewest accidentals" is right for avoiding Cb and E-double-flat, and
+        # wrong for the leading tone. In F# minor the raised seventh is E#, one
+        # sharp; the alternative is F natural, no accidental — so the count rule
+        # chose F, which is a different LETTER from the seventh degree and reads
+        # as the tonic F# flattened. It sounded against the tonic in another
+        # voice as a false relation, and every sharp minor key had it: C# minor
+        # spelled its leading tone C instead of B#.
+        #
+        # A DOUBLE sharp earns it too, which capping this at one accidental got
+        # wrong. In G-sharp minor the leading tone is F-double-sharp; the
+        # alternative, G natural, is not merely an enharmonic but the SAME
+        # LETTER as the tonic G-sharp, so the spelling map used one letter
+        # twice and the leading tone read as the tonic flattened — the exact
+        # false relation the raised-degree rule exists to prevent. Real scores
+        # in these keys write the double sharp for this reason.
+        #
+        # It changes nothing outside the extreme sharp keys: only C#/G#/D#/A#
+        # and their minors have a raised degree whose letter is already spoken
+        # for. `_alter` still returns None past a double accidental, so a key
+        # needing a triple falls back rather than inventing a name.
+        if prefer_sharp and sharp and abs(_accidental(sharp)) <= 2:
+            out[pc] = sharp
+            continue
+
         best = min(abs(_accidental(c)) for c in candidates)
         simple = [c for c in candidates if abs(_accidental(c)) == best]
         if len(simple) == 1:
             out[pc] = simple[0]
             continue
-        prefer_sharp = below is not None and degree_of.get((pc - 1) % 12) in raised
         out[pc] = (sharp if prefer_sharp else flat) or simple[0]
     _SPELLING_CACHE[norm] = out
     return out
@@ -216,7 +285,20 @@ def midi_to_pitch(midi_val: int, key: str = "C") -> str:
     """Convert MIDI number to pitch string, spelled the way ``key`` writes it."""
     midi_val = int(midi_val)
     octave = (midi_val // 12) - 1
-    return f"{key_spelling(key)[midi_val % 12]}{octave}"
+    name = key_spelling(key)[midi_val % 12]
+
+    # B# and Cb cross the octave boundary, and the octave number follows the
+    # LETTER, not the pitch class. B#3 sounds MIDI 60 — the same pitch as C4 —
+    # so writing it "B#4" puts it an octave high on the page and reads back an
+    # octave high too. Round-tripping every pitch through every key found 18
+    # such notes, all of them B# or Cb, in F# major, Gb major and (once the
+    # leading tone was spelled correctly) every sharp minor key.
+    letter = name[0]
+    if letter == "B" and name.count("#") == 1:
+        octave -= 1
+    elif letter == "C" and name.count("b") == 1:
+        octave += 1
+    return f"{name}{octave}"
 
 
 def pitch_class(midi_val: int) -> int:
@@ -379,7 +461,7 @@ def is_minor_key(key: str) -> bool:
 
 def chord_tones(root_midi: int, quality: str = "major") -> List[int]:
     """Return MIDI values for chord tones given root and quality."""
-    intervals = CHORD_INTERVALS.get(quality, [0, 4, 7])
+    intervals = chord_intervals(quality)
     return [root_midi + iv for iv in intervals]
 
 
@@ -404,3 +486,26 @@ def parallel_perfect(s1: int, b1: int, s2: int, b2: int) -> bool:
         return False  # no motion -> not "parallel"
     i1, i2 = (s1 - b1) % 12, (s2 - b2) % 12
     return i1 == i2 and i1 in (0, 7) and s1 != s2 and b1 != b2
+
+def parse_scale_degree(text: str) -> tuple[int, int] | None:
+    """Split a scale-degree anchor like ``^5``, ``^b6``, ``^#4`` into
+    ``(degree, alteration_in_semitones)``.
+
+    Returns None for anything that is not a degree (a pitch name, empty, junk),
+    which is the caller's signal to treat the value as a pitch.
+
+    One definition, because two resolvers previously did `int(p[1:])` and so
+    returned nothing at all for an ALTERED degree — and the altered degrees are
+    exactly the expressive ones (the borrowed flat sixth, the raised fourth).
+    """
+    raw = str(text or "").strip()
+    if not raw.startswith("^"):
+        return None
+    body = raw[1:]
+    alter = 0
+    while body[:1] in ("#", "b", "-", "+"):
+        alter += 1 if body[0] in "#+" else -1
+        body = body[1:]
+    if not body.isdigit():
+        return None
+    return int(body), alter

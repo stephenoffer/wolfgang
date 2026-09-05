@@ -63,3 +63,78 @@ Any section claiming Liszt's style needs ≥3 of these 5 present.
 - Rhetorical silence: `{"p": "rest", "d": "q"}` — short, dramatic.
 - `"expr": "grandioso"` for heroic sections.
 - `"expr": "dolcissimo"` for lyrical transformations.
+
+---
+
+## Composing a Liszt phrase: step by step
+
+Measured over his own bars, **half of Liszt's right-hand attacks carry more than
+one note** and only 36% of his melodic intervals are stepwise — the highest
+chord share and the lowest step share of any armed composer. A smooth scalar
+melody in single notes is the wrong instrument for this idiom.
+
+### Step 1 — Give the theme to the middle of the keyboard, in octaves
+
+The tune sits in the tenor register where the piano sings loudest, doubled at
+the octave, with the accompaniment above AND below it. This is the
+*three-hand texture* he invented.
+
+```json
+"theme_in_octaves": [
+  {"p": ["Ab3", "Ab4"], "d": "q", "dyn": "mf"},
+  {"p": ["C4", "C5"], "d": "e"},
+  {"p": ["Db4", "Db5"], "d": "e"},
+  {"p": ["Eb4", "Eb5"], "d": "h"}
+]
+```
+
+### Step 2 — Wrap it in arpeggiation that crosses the theme
+
+Both hands sweep through the harmony above and below the melody. The span is
+wide — a tenth or more between consecutive notes is normal.
+
+```json
+"enveloping_arpeggio": [
+  {"p": "Ab1", "d": "s"},
+  {"p": "Eb2", "d": "s"},
+  {"p": "Ab2", "d": "s"},
+  {"p": "C3", "d": "s"},
+  {"p": "Eb3", "d": "s"},
+  {"p": "Ab3", "d": "s"},
+  {"p": "C4", "d": "s"},
+  {"p": "Eb4", "d": "s"}
+]
+```
+
+### Step 3 — Transform the theme rather than developing it
+
+The same tune returns as a march, as a lament, as a chorale — new metre, new
+tempo, new accompaniment, same intervals. Thematic transformation is his
+structural principle and it replaces development.
+
+```json
+"theme_transformed_march": [
+  {"p": ["Ab3", "Ab4"], "d": "dq", "dyn": "ff", "art": "marcato"},
+  {"p": ["C4", "C5"], "d": "s"},
+  {"p": ["Db4", "Db5"], "d": "s"},
+  {"p": ["Eb4", "Eb5"], "d": "q"}
+]
+```
+
+### Step 4 — Move to a key a third away with no preparation
+
+Chromatic mediants and augmented triads. He does not pivot; he simply arrives.
+
+### Step 5 — Let the climax be genuinely enormous, then strip it bare
+
+Full-range chords at `fff`, then a single unharmonised line at `pp`. The
+contrast is the drama, and both halves must be extreme.
+
+---
+
+## Checking a finished phrase
+
+- Is the right hand a bare single line anywhere for long? At 50% chordal, it
+  should not be.
+- Does the theme sit in the middle with texture on both sides?
+- Is the widest span in the phrase at least two octaves?

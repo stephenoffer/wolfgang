@@ -62,3 +62,76 @@ Any section claiming Fauré's style needs ≥3 of these 5 present.
 - Fauré: pp to mf. `"dyn": "f"` only at extended climactic passages; `"dyn": "ff"` very rare.
 - `"expr": "dolce"` for melodic entries.
 - `"expr": "très doux"` (very soft) — Fauré's typical marking.
+
+---
+
+## Composing a Fauré phrase: step by step
+
+The organising fact is **harmony that moves constantly and never lands hard**.
+Fauré modulates more often than almost anyone and cadences less firmly than
+almost anyone, which is why his music feels like it is always turning.
+
+### Step 1 — Write a long, arching, seamless melody
+
+Eight bars or more without an obvious breath. It should be hard to say where the
+phrase divides.
+
+```json
+"long_arch": [
+  {"p": "Ab4", "d": "q", "dyn": "p", "art": "legato"},
+  {"p": "Bb4", "d": "q"},
+  {"p": "C5", "d": "h"},
+  {"p": "Db5", "d": "q"},
+  {"p": "C5", "d": "q"},
+  {"p": "Bb4", "d": "h"},
+  {"p": "Ab4", "d": "w"}
+]
+```
+
+### Step 2 — Change the harmony under a held note
+
+The melody sustains; the chord beneath it slides somewhere unexpected. This is
+his most characteristic single gesture.
+
+```json
+"harmony_shifts_under": [
+  {"p": ["Ab2", "Eb3", "Ab3", "C4"], "d": "h"},
+  {"p": ["F2", "Db3", "Ab3", "C4"], "d": "h"},
+  {"p": ["Db2", "Ab2", "F3", "C4"], "d": "w"}
+]
+```
+
+The C4 on top is held across all three; everything under it moves.
+
+### Step 3 — Use sevenths and ninths as ordinary consonance
+
+Not colour, not tension — the normal vocabulary. A plain triad is the special
+event.
+
+### Step 4 — Keep the accompaniment flowing and even
+
+Broken chords in continuous eighths or triplets, never rhythmically assertive.
+
+```json
+"flowing_accompaniment": [
+  {"p": "Ab2", "d": "e"},
+  {"p": "Eb3", "d": "e"},
+  {"p": "Ab3", "d": "e"},
+  {"p": "C4", "d": "e"},
+  {"p": "Ab3", "d": "e"},
+  {"p": "Eb3", "d": "e"}
+]
+```
+
+### Step 5 — Cadence weakly, or sideways
+
+Avoid the root-position dominant. Approach the tonic by step in the bass, or
+through a mediant, or end on an inversion.
+
+---
+
+## Checking a finished phrase
+
+- Can you hear where the phrase divides? You should not, easily.
+- Does any chord last more than two bars? It should not.
+- Is the final cadence a strong root-position V-I? It should not be.

@@ -50,6 +50,7 @@ def test_the_decision_is_deterministic():
     """A rebuild must not silently change the music."""
     a = _fresh("t_metric_entry_det")
     b = _fresh("t_metric_entry_det")
+
     def first(d):
         return min(d["phrases"].values(), key=lambda p: p["slot"]["bar_start"])
 

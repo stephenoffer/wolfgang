@@ -17,6 +17,7 @@ import pytest
 
 from scales.models import LayerEvent, LayerIR, MotifObject
 from scales.theme_planner import (
+    _melody_of,
     analyze_theme,
     capture_theme_surface,
     develop_theme_surface,
@@ -79,9 +80,7 @@ def test_augmentation_works_on_triplets():
     """The old 7-entry table silently returned triplets unchanged."""
     ir = LayerIR(key="C major", meter=(4, 4))
     for i, p in enumerate(["C5", "D5", "E5"]):
-        ir.principal_line.append(
-            LayerEvent(bar=1, beat=1 + i / 3, pitch=p, duration="trip_e")
-        )
+        ir.principal_line.append(LayerEvent(bar=1, beat=1 + i / 3, pitch=p, duration="trip_e"))
     out = develop_theme_surface(ir, "augment")
     assert "trip_q" in out, out
 
@@ -208,8 +207,7 @@ def test_a_different_tune_is_not_counted_as_a_return():
     theme = _theme(["C5", "D5", "E5", "G5"])
     other = {
         "principal_line": [
-            {"bar": 9, "beat": 1.0, "pitch": p, "duration": "q"}
-            for p in ("C5", "C4", "B5", "F4")
+            {"bar": 9, "beat": 1.0, "pitch": p, "duration": "q"} for p in ("C5", "C4", "B5", "F4")
         ]
     }
     r = theme_recurrence(_Graph({"m1_b_p1": _Phrase(other)}), theme)
@@ -221,8 +219,7 @@ def test_recurrence_accepts_a_layer_ir_not_only_a_string():
     theme = _theme(["C5", "D5", "E5", "G5"])
     same = {
         "principal_line": [
-            {"bar": 1, "beat": 1.0, "pitch": p, "duration": "q"}
-            for p in ("C5", "D5", "E5", "G5")
+            {"bar": 1, "beat": 1.0, "pitch": p, "duration": "q"} for p in ("C5", "D5", "E5", "G5")
         ]
     }
     r = theme_recurrence(_Graph({"m1_a_p1": _Phrase(same)}), theme)
@@ -273,8 +270,12 @@ def _graph_with_theme():
     }
     g.principal_theme_id = elect_principal_theme(g.motif_bank) or ""
     slot = PhraseSlot(
-        phrase_id="m1_a_p1", section_id="m1_a", bar_start=1, bar_count=1,
-        key="C major", meter=(4, 4),
+        phrase_id="m1_a_p1",
+        section_id="m1_a",
+        bar_start=1,
+        bar_count=1,
+        key="C major",
+        meter=(4, 4),
     )
     ir = LayerIR(phrase_id="m1_a_p1", key="C major", meter=(4, 4))
     for i, p in enumerate(["C5", "D5", "E5", "F5"]):
@@ -331,3 +332,49 @@ def test_no_theme_anywhere_resolves_to_empty():
 
     assert principal_theme_phrase(PieceGraph()) == ""
     assert phrase_carries_theme(PieceGraph(), "m1_a_p1") is False
+
+
+# ─── An orchestral theme is a theme ──────────────────────────────────────────
+#
+# Every melodic read in this module was `principal_line`. Orchestral music never
+# populates it — its tune is in `foreground`. So theme capture, recurrence and
+# `phrase_carries_theme` returned "no theme" for every orchestral piece, which
+# is indistinguishable from a piece that genuinely has none. Same shape as the
+# whole-piece merge that dropped six of eleven layers.
+
+
+def _orch_phrase(pitches, bar=1):
+    ir = LayerIR(key="C major", meter=(4, 4), instrumentation="ensemble")
+    ir.foreground = [
+        LayerEvent(bar=bar + i // 4, beat=1.0 + (i % 4), pitch=p, duration="q")
+        for i, p in enumerate(pitches)
+    ]
+    return ir
+
+
+def test_an_orchestral_theme_is_captured():
+    tune = ["C5", "E5", "G5", "E5"]
+    assert [e.pitch for e in _melody_of(_orch_phrase(tune))] == tune
+
+
+def test_an_orchestral_theme_is_found_when_it_returns():
+    tune = ["C5", "E5", "G5", "E5", "F5", "D5", "C5", "C5"]
+    theme = _orch_phrase(tune)
+    g = _Graph({"m1_a_p1": _Phrase(theme), "m1_a_p2": _Phrase(_orch_phrase(tune, bar=3))})
+    assert theme_recurrence(g, theme)["recurrences"], (
+        "an orchestral theme stated twice was reported as never returning"
+    )
+
+
+def test_a_piano_theme_is_still_read_from_principal_line():
+    """The orchestral layer is a fallback, never a replacement."""
+    ir = LayerIR(key="C major")
+    ir.principal_line = [LayerEvent(bar=1, beat=1.0, pitch="C5", duration="q")]
+    ir.foreground = [LayerEvent(bar=1, beat=1.0, pitch="G3", duration="q")]
+    assert [e.pitch for e in _melody_of(ir)] == ["C5"]
+
+
+def test_a_bare_list_of_events_is_the_line():
+    """`_midis_of` passes one, and returning [] for it measured nothing."""
+    evs = [LayerEvent(bar=1, beat=1.0, pitch="C5", duration="q")]
+    assert _melody_of(evs) == evs

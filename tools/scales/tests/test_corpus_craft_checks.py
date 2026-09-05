@@ -45,7 +45,9 @@ def _real_phrases():
 
     paths = (
         sorted(glob.glob("tools/reference_scores/mozart-piano-sonatas/kern/sonata0[1-6]-*.krn"))[:8]
-        + sorted(glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True))[:4]
+        + sorted(
+            glob.glob("tools/reference_scores/beethoven-piano-sonatas/**/*.krn", recursive=True)
+        )[:4]
         + sorted(glob.glob("tools/reference_scores/chopin-mazurkas/**/*.krn", recursive=True))[:4]
     )
     if not paths:
@@ -137,9 +139,7 @@ def test_the_craft_checklist_passes_real_music():
             offenders.append(
                 f"{name}: passes only {rate:.1%} of {n} real phrases (floor {floor:.0%})"
             )
-    assert not offenders, (
-        "these craft checks reject canonical music:\n" + "\n".join(offenders)
-    )
+    assert not offenders, "these craft checks reject canonical music:\n" + "\n".join(offenders)
 
 
 def test_the_checklist_still_rejects_empty_music():
@@ -147,9 +147,7 @@ def test_the_checklist_still_rejects_empty_music():
     ir = LayerIR(key="C major", meter=(4, 4), bar_count=4)
     for b in range(1, 5):
         for i in range(4):
-            ir.principal_line.append(
-                LayerEvent(bar=b, beat=1 + i, pitch="C5", duration="q")
-            )
+            ir.principal_line.append(LayerEvent(bar=b, beat=1 + i, pitch="C5", duration="q"))
     chk = CraftChecker().check(ir)
     failed = [k for k, v in vars(chk).items() if isinstance(v, bool) and not v]
     assert len(failed) >= 5, f"a one-note phrase failed only {failed}"

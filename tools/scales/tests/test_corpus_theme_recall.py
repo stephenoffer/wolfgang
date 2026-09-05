@@ -127,9 +127,7 @@ def test_the_detector_finds_a_theme_that_is_provably_there():
     """The blindness test. A detector that never fires never rejects either."""
     theme, others = _variations()
     ir = _theme_ir(theme)
-    found = sum(
-        1 for _f, m in others if theme_recurrence(_as_graph(m), ir)["recurrences"]
-    )
+    found = sum(1 for _f, m in others if theme_recurrence(_as_graph(m), ir)["recurrences"])
     recall = found / len(others)
     assert recall >= _MIN_RECALL, (
         f"the theme was found in only {found} of {len(others)} variations that "
@@ -143,14 +141,14 @@ def test_the_detector_does_not_match_everything():
     ir = _theme_ir(theme)
     unrelated = [
         _melody(p)
-        for p in sorted(glob.glob("tools/reference_scores/chopin-mazurkas/**/*.krn", recursive=True))[:6]
+        for p in sorted(
+            glob.glob("tools/reference_scores/chopin-mazurkas/**/*.krn", recursive=True)
+        )[:6]
     ]
     unrelated = [m for m in unrelated if len(m) >= 40]
     if len(unrelated) < 3:
         pytest.skip("not enough unrelated movements parsed")
-    matched = sum(
-        1 for m in unrelated if theme_recurrence(_as_graph(m), ir)["recurrences"]
-    )
+    matched = sum(1 for m in unrelated if theme_recurrence(_as_graph(m), ir)["recurrences"])
     rate = matched / len(unrelated)
     assert rate <= _MAX_FALSE_RATE, (
         f"a Mozart theme matched {matched} of {len(unrelated)} unrelated Chopin "

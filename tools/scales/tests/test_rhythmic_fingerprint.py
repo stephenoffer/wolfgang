@@ -72,15 +72,19 @@ def test_a_narrow_corpus_never_gets_the_unqualified_wording():
         assert "FACTS ABOUT HIM" not in text, c
 
 
-def test_the_fingerprint_reaches_the_brief():
+def test_the_fingerprint_reaches_the_brief(function_source):
     """Two complete, well-tested modules once sat in this repo that nothing
     imported. A fingerprint the brief does not carry is decoration."""
-    import inspect
 
     from scales import composition_brief as cb
 
-    src = inspect.getsource(cb)
-    assert "render_rhythmic_fingerprint(brief.composer)" in src
+    # Checked by CALL, not by the exact call text. Matching
+    # "render_rhythmic_fingerprint(brief.composer)" broke the moment a second
+    # argument was added, while the property — the brief carries the
+    # fingerprint — was untouched. A test that a new argument can falsify is
+    # testing the spelling, not the wiring.
+    src = function_source(cb, "render_text")
+    assert "render_rhythmic_fingerprint(" in src
 
 
 # ─── The evaluation side: z-scores restated as sentences ────────────────────
@@ -94,8 +98,16 @@ def test_a_gap_reads_correctly_on_BOTH_sides():
 
     def gap(value, mean, sd):
         return _rhythmic_gap(
-            {"metrics": {"rest_bar_ratio": {"value": value, "corpus_mean": mean, "corpus_sd": sd,
-                                            "z": (value - mean) / sd}}},
+            {
+                "metrics": {
+                    "rest_bar_ratio": {
+                        "value": value,
+                        "corpus_mean": mean,
+                        "corpus_sd": sd,
+                        "z": (value - mean) / sd,
+                    }
+                }
+            },
             "beethoven",
         )["gaps"]
 
@@ -112,8 +124,11 @@ def test_only_real_distances_are_reported():
     from scales.scales import _rhythmic_gap
 
     inside = _rhythmic_gap(
-        {"metrics": {"rest_bar_ratio": {"value": 0.50, "corpus_mean": 0.48,
-                                        "corpus_sd": 0.17, "z": 0.12}}},
+        {
+            "metrics": {
+                "rest_bar_ratio": {"value": 0.50, "corpus_mean": 0.48, "corpus_sd": 0.17, "z": 0.12}
+            }
+        },
         "beethoven",
     )
     assert inside["gaps"] == []
@@ -125,8 +140,11 @@ def test_the_gap_report_names_a_distance_not_a_target():
     from scales.scales import _rhythmic_gap
 
     note = _rhythmic_gap(
-        {"metrics": {"rest_bar_ratio": {"value": 0.10, "corpus_mean": 0.48,
-                                        "corpus_sd": 0.17, "z": -2.2}}},
+        {
+            "metrics": {
+                "rest_bar_ratio": {"value": 0.10, "corpus_mean": 0.48, "corpus_sd": 0.17, "z": -2.2}
+            }
+        },
         "mozart",
     )["gaps"][0]["note"]
     for word in ("must", "should", "target", "increase to", "aim for"):
